@@ -3,11 +3,14 @@ var app = getApp()
 Page({
   data: {
     id: "",
-    scroll_height: "",
     scrollTop: '800',
     input_type: "number",
     input_foucs: "",
     products_info: "",
+    keyboard_width: "",
+    orderid: "",
+    color: ["藏青色", "玫红色"],
+    size: ["S", "M"],
   },
   onLoad: function () {
     var that = this
@@ -19,7 +22,7 @@ Page({
     wx.getSystemInfo({
       success: function (res) {
         that.setData({
-          scroll_height: res.windowHeight - 74 - 67
+          keyboard_width: (res.windowWidth - 8)/4 - 4
         })
       }
     })
@@ -31,13 +34,6 @@ Page({
         scrollTop: this.data.scrollTop,
       })
     }, 100)
-    wx.getSystemInfo({
-      success: function (res) {
-        that.setData({
-          scroll_height: res.windowHeight - 74 - 67
-        })
-      }
-    })
   },
   input_type_change: function (e) {
     var that = this
@@ -99,6 +95,25 @@ Page({
     let data = e.target.dataset
     this.setData({
       id: e.target.dataset.id
+    })
+  },
+  //买单
+  order: function () {
+    wx.switchTab({
+      url: '../order/order'
+    })
+  },
+  order_buy: function (e) {
+    var that = this
+    let data = e.target.dataset
+    that.setData({
+      orderid: data.orderid
+    })
+    console.log(data)
+  },
+  order_back: function () {
+    this.setData({
+      orderid: ""
     })
   }
 })

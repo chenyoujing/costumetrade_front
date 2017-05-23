@@ -4,7 +4,7 @@
   <view class="dictionary">
     <view class="dictionary_text {{current=='0' ? 'active' : ''}}" bindtap="dictionarytype" data-dictionary="0">员工管理∨</view>
     <view class="dictionary_text {{current=='1' ? 'active' : ''}}" bindtap="dictionarytype" data-dictionary="1">打印信息∨</view>
-    <view class="dictionary_text {{current=='2' ? 'active' : ''}}" bindtap="dictionarytype" data-dictionary="2">支付管理∨</view>
+    <view class="dictionary_text {{current=='2' ? 'active' : ''}}" bindtap="dictionarytype" data-dictionary="2">高级设置∨</view>
     <view class="clear"></view>
   </view>
   <swiper interval="0" duration="500" current="{{current}}" bindchange="swiper_change">
@@ -134,7 +134,7 @@
           <view class="delete">
             <image src="../../../images/7.png" mode="aspectFit" class="delete_image" />
           </view>
-          支付管理
+          支付方式
         </view>
         <view class="print_info">
           <view class="add">
@@ -146,7 +146,118 @@
           客户种类
         </view>
         <view class="setting_view">
-          123
+          <view class="setting_title">
+            <view class="setting_text">客户种类</view>
+            <view class="setting_text">客户名称</view>
+            <view class="setting_text">编辑</view>
+            <view class="clear"></view>
+          </view>
+          <view class="setting_content">
+            <view class="setting_text">种类一</view>
+            <view class="setting_text">普通</view>
+            <view class="setting_text" bindtap="customer">修改</view>
+            <view class="clear"></view>
+          </view>
+          <view class="setting_content">
+            <view class="setting_text">种类二</view>
+            <view class="setting_text">会员</view>
+            <view class="setting_text">修改</view>
+            <view class="clear"></view>
+          </view>
+          <view class="setting_content">
+            <view class="setting_text">种类三</view>
+            <view class="setting_text">高级会员</view>
+            <view class="setting_text">修改</view>
+            <view class="clear"></view>
+          </view>
+        </view>
+        <view class="print_info">
+          <view class="add">
+            <image src="../../../images/7.png" mode="aspectFit" class="add_image" />
+          </view>
+          <view class="delete">
+            <image src="../../../images/7.png" mode="aspectFit" class="delete_image" />
+          </view>
+          货品级别
+        </view>
+        <view class="setting_view">
+          <view class="setting_title">
+            <view class="setting_text">货品级别</view>
+            <view class="setting_text">级别名称</view>
+            <view class="setting_text">编辑</view>
+            <view class="clear"></view>
+          </view>
+          <view class="setting_content">
+            <view class="setting_text">一</view>
+            <view class="setting_text">处理</view>
+            <view class="setting_text">修改</view>
+            <view class="clear"></view>
+          </view>
+          <view class="setting_content">
+            <view class="setting_text">二</view>
+            <view class="setting_text">促销</view>
+            <view class="setting_text">修改</view>
+            <view class="clear"></view>
+          </view>
+          <view class="setting_content">
+            <view class="setting_text">三</view>
+            <view class="setting_text">在销</view>
+            <view class="setting_text">修改</view>
+            <view class="clear"></view>
+          </view>
+          <view class="setting_content">
+            <view class="setting_text">四</view>
+            <view class="setting_text">热销</view>
+            <view class="setting_text">修改</view>
+            <view class="clear"></view>
+          </view>
+          <view class="setting_content">
+            <view class="setting_text">五</view>
+            <view class="setting_text">新品</view>
+            <view class="setting_text">修改</view>
+            <view class="clear"></view>
+          </view>
+          <view class="setting_content">
+            <view class="setting_text">六</view>
+            <view class="setting_text">急销</view>
+            <view class="setting_text">修改</view>
+            <view class="clear"></view>
+          </view>
+        </view>
+        <view class="print_info">
+          <view class="add">
+            <image src="../../../images/7.png" mode="aspectFit" class="add_image" />
+          </view>
+          <view class="delete">
+            <image src="../../../images/7.png" mode="aspectFit" class="delete_image" />
+          </view>
+          价格名称
+        </view>
+        <view class="setting_view">
+          <view class="setting_title">
+            <view class="setting_text">价格种类</view>
+            <view class="setting_text">价格名称</view>
+            <view class="setting_text">编辑</view>
+            <view class="clear"></view>
+          </view>
+          <view class="setting_content">
+            <view class="setting_text">第一价格</view>
+            <view class="setting_text">零售价</view>
+            <view class="setting_text">修改</view>
+            <view class="clear"></view>
+          </view>
+          <view class="setting_content">
+            <view class="setting_text">第二价格</view>
+            <view class="setting_text">批发价</view>
+            <view class="setting_text">修改</view>
+            <view class="clear"></view>
+          </view>
+          <view class="setting_content">
+            <view class="setting_text">第三价格</view>
+            <view class="setting_text">打包价</view>
+            <view class="setting_text">修改</view>
+            <view class="clear"></view>
+          </view>
         </view>
       </scroll-view>
       <button class="submit">保存</button>
@@ -154,3 +265,33 @@
   </swiper>
 </view>
 
+
+<!--客户种类修改-->
+<view class="modal_cover" bindtap="customer_close" animation="{{customer_opacity}}" style="display:{{customer}};"></view>
+<view class="modal" animation="{{customer_opacity}}" style="display:{{customer}};">
+  <view class="modal_header">客户种类修改</view>
+  <view class="modal_close" bindtap="customer_close">×</view>
+  <scroll-view scroll-y="true">
+    <view class="customer_input">
+      <view class="customer_input_text">会员种类名称：</view>
+      <input type="text" class="customer_input1" />
+      <view class="clear"></view>
+    </view>
+    <view class="customer_input">
+      <view class="customer_input_text">折扣基础价：</view>
+      <input type="text" class="customer_input1" />
+      <view class="clear"></view>
+    </view>
+    <view class="customer_input">
+      <view class="customer_input_text">商品可见级别：</view>
+      <input type="text" class="customer_input1" />
+      <view class="clear"></view>
+    </view>
+    <view class="customer_input">
+      <view class="customer_input_text">积分需求：</view>
+      <input type="text" class="customer_input1" />
+      <view class="clear"></view>
+    </view>
+  </scroll-view>
+  <button class="modal_submit">保存</button>
+</view>

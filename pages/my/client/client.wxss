@@ -155,6 +155,7 @@ button::after{
   color: #ffffff;
   font-size: 32px;
   line-height: 40px;
+  height: 40px;
 }
 .client_add scroll-view{
   position: absolute;
@@ -174,7 +175,10 @@ button::after{
   float: left;
 }
 .client_add_input:last-child{
-  margin-bottom: 10px;
+  padding-bottom: 10px;
+}
+.client_add_input:first-child{
+  padding-top: 40px;
 }
 .client_add_input_text{
   width: 30%;
@@ -346,11 +350,14 @@ swiper{
 }
 
 /*补货*/
+.container{
+  float: left;
+  padding: 10px;
+  box-sizing:border-box;
+}
 .content_container{
   box-shadow: 0.5px 0.5px 2px #000000;
-  padding: 5px;
   position: relative;
-  margin: 10px;
   border-radius: 3px;
 }
 .content_container > image{
@@ -372,8 +379,9 @@ swiper{
   float: right;
 }
 .content_container_title{
-  font-size: 14px;
-  padding: 10px 5px;
+  font-size: 16px;
+  line-height: 20px;
+  padding: 15px 5px;
   word-break:keep-all;
   white-space:nowrap;
   overflow:hidden;

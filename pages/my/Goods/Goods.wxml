@@ -77,7 +77,7 @@
     </view>
   </view>
   <scroll-view scroll-y style="max-height:{{scroll_height}}px" class="content">
-    <block wx:for="{{product}}" wx:key="{{id}}">
+    <view style="padding:10px;" wx:for="{{product}}" wx:key="{{id}}">
       <view class="content_container">
         <image src="{{item.image ? item.image : '../../../images/image_none.png'}}" mode="aspectFill" />
         <view class="content_container_text">
@@ -96,7 +96,7 @@
         </view>
         <view class="clear"></view>
       </view>
-    </block>
+    </view>
   </scroll-view>
 </view>
 

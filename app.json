@@ -1,8 +1,8 @@
 {
   "pages":[
-    "pages/my/client/client",
     "pages/my/dictionary/dictionary",
     "pages/my/order/order",
+    "pages/my/client/client",
     "pages/my/Goods/Goods",
     "pages/my/openOrder/openOrder",
     "pages/index/index"
@@ -30,10 +30,6 @@
       {
         "pagePath": "pages/my/Goods/Goods",
         "text": "货品"
-      },
-      {
-        "pagePath": "pages/my/openOrder/openOrder",
-        "text": "开单-货号"
       }
     ]
   }

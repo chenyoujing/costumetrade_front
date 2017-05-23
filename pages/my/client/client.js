@@ -20,6 +20,8 @@ Page({
     paytype: ["现金", "刷卡", "微信", "支付宝", "农业银行", "工商银行", "广发银行", "招商银行", "中信银行", "华夏银行", "建设银行"],
     paytype_index: 0,
     zero: "",
+    container_width: "100%",
+    image_width: "115",
   },
   onLoad: function (e) {
     var that = this
@@ -242,6 +244,36 @@ Page({
     this.setData({
       goods: "0",
     })
+  },
+  rank: function() {
+    var that = this
+    if (this.data.container_width == "100%"){
+      wx.getSystemInfo({
+        success: function (res) {
+          that.setData({
+            container_width: "50%",
+            image_width: res.windowWidth/2 - 20,
+            text_position: "relative",
+            text_left: "0",
+            text_padding: "0 5px",
+            title_padding: "5px 5px 0",
+            info_padding: "0",
+            info_border: "none",
+          })
+        }
+      })
+    }else{
+      that.setData({
+        container_width: "100%",
+        image_width: "115",
+        text_position: "absolute",
+        text_left: "115px",
+        text_padding: "",
+        title_padding: "",
+        info_padding: "",
+        info_border: "",
+      })
+    }
   },
   goods_close: function () {
     this.setData({

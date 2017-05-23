@@ -16,7 +16,7 @@
     <view class="client_text {{client=='3' ? 'active' : ''}}" bindtap="clienttype" data-client="3">朋友∨</view>
     <view class="clear"></view>
   </view>
-  <scroll-view class="content" scroll-y style="max-height:{{scroll_height}}px;">
+  <scroll-view class="content" scroll-y>
     <view class="client_content">
       <view class="client_content_top">
         <image image src="{{item.image ? item.image : '../../../images/image_none.png'}}" mode="aspectFill" class="client_tx" />
@@ -36,13 +36,23 @@
 
 <!--上传资料详情-->
 <view class="client_add" style="top:{{client_add}}; bottom:-{{client_add}};">
-  <view class="client_add_title">名称</view>
+  <view class="client_add_title">{{client=='1' ? '客户' : ''}}{{client=='2' ? '供货商' : ''}}{{client=='3' ? '朋友' : ''}}</view>
   <view class="client_add_close" bindtap="close">×</view>
   <form class="client_add_content" bindsubmit="client_add_submit" data-clientid="{{clientid}}">
     <scroll-view scroll-y="true" style="top:">
       <view class="client_add_input">
-        <view class="client_add_input_text">*真实姓名：</view>
+        <view class="client_add_input_text">名称：</view>
         <input type="text" class="client_add_input1" name="name0" value="{{updata_name}}" />
+        <view class="clear"></view>
+      </view>
+      <view class="client_add_input">
+        <view class="client_add_input_text">收货地址：</view>
+        <input type="text" class="client_add_input1" name="address" value="{{updata_packprice}}" />
+        <view class="clear"></view>
+      </view>
+      <view class="client_add_input">
+        <view class="client_add_input_text">固定电话：</view>
+        <input type="number" class="client_add_input1" name="telephone"  value="{{updata_code}}"/>
         <view class="clear"></view>
       </view>
       <view class="client_add_input">
@@ -51,8 +61,8 @@
         <view class="clear"></view>
       </view>
       <view class="client_add_input">
-        <view class="client_add_input_text">座机电话：</view>
-        <input type="number" class="client_add_input1" name="telephone"  value="{{updata_code}}"/>
+        <view class="client_add_input_text">联系人：</view>
+        <input type="number" class="client_add_input1" name="contact"  value="{{updata_code}}"/>
         <view class="clear"></view>
       </view>
       <view class="client_add_input">
@@ -65,9 +75,9 @@
         </view>
         <view class="clear"></view>
       </view>
-      <view class="client_add_input">
-        <view class="client_add_input_text">详细地址：</view>
-        <input type="text" class="client_add_input1" name="address" value="{{updata_packprice}}" />
+      <view class="client_add_input" hidden="{{client=='1' ? '' : 'hidden'}}">
+        <view class="client_add_input_text">客户类型：</view>
+        <input type="number" class="client_add_input1" name="contact"  value="{{updata_code}}"/>
         <view class="clear"></view>
       </view>
     </scroll-view>
@@ -215,33 +225,54 @@
   <view class="title">
     <view class="title_text">客户补货</view>
     <form bindsubmit="search">
-      <input class="title_input" type="text" name="search" placeholder="货号" confirm-type="search" style="width:50%;" />
+      <input class="title_input" type="number" name="search" placeholder="货号" confirm-type="search" style="width:50%;" />
       <button form-type="submit" style="right:20%;">
         <icon type="search" size="16" color="#000000" />
       </button>
     </form>
-    <icon style="right:10%;" type="search" size="16" color="#000000" bindtap="upload" />
+    <icon style="right:10%;" type="search" size="16" color="#000000" bindtap="rank" />
     <view class="client_add_close" bindtap="goods_close" style="top:0;right:10px;bottom:0;margin:auto;">×</view>
     <view class="clear"></view>
   </view>
-  <scroll-view scroll-y="true" style="top:0;bottom:0;">
-    <view class="content_container">
-      <image src="{{item.image ? item.image : '../../../images/image_none.png'}}" mode="aspectFill" />
-      <view class="content_container_text">
-        <image src="" mode="aspectFit" bindtap="stock" data-storeid="{{item.storeId}}" data-id="{{item.id}}"/>
-        <view class="clear"></view>
-        <view class="content_container_title">{{item.name}}</view>
-        <view class="content_container_info">
-          <view class="price">{{item.price}}</view>
-          <view class="info_other">
-            <view class="volume" wx:if="{{!item.volume}}">0</view>
-            <view class="volume" wx:if="{{item.volume}}">{{item.volume}}</view>
-            <view class="date">{{item.timeUp}}</view>
-          </view>
+  <scroll-view scroll-y="true" style="top:65px;bottom:0;">
+    <view class="container" style="width:{{container_width}};">
+      <view class="content_container">
+        <image src="{{item.image ? item.image : '../../../images/image_none.png'}}" mode="aspectFill" style="width:{{image_width}}px;height:{{image_width}}px;" />
+        <view class="content_container_text" style="position:{{text_position}};left:{{text_left}};padding:{{text_padding}};">
           <view class="clear"></view>
+          <view class="content_container_title" style="padding:{{title_padding}}">1{{item.name}}</view>
+          <view class="content_container_info" style="padding:{{info_padding}};border:{{info_border}};">
+            <view class="price">{{item.price}}</view>
+            <view class="info_other">
+              <view class="volume" wx:if="{{!item.volume}}">0</view>
+              <view class="volume" wx:if="{{item.volume}}">{{item.volume}}</view>
+              <view class="date">0{{item.timeUp}}</view>
+            </view>
+            <view class="clear"></view>
+          </view>
         </view>
+        <view class="clear"></view>
       </view>
-      <view class="clear"></view>
     </view>
+    <view class="container" style="width:{{container_width}};">
+      <view class="content_container">
+        <image src="{{item.image ? item.image : '../../../images/image_none.png'}}" mode="aspectFill" style="width:{{image_width}}px;height:{{image_width}}px;" />
+        <view class="content_container_text" style="position:{{text_position}};left:{{text_left}};padding:{{text_padding}};">
+          <view class="clear"></view>
+          <view class="content_container_title" style="padding:{{title_padding}}">1{{item.name}}</view>
+          <view class="content_container_info" style="padding:{{info_padding}};border:{{info_border}};">
+            <view class="price">{{item.price}}</view>
+            <view class="info_other">
+              <view class="volume" wx:if="{{!item.volume}}">0</view>
+              <view class="volume" wx:if="{{item.volume}}">{{item.volume}}</view>
+              <view class="date">0{{item.timeUp}}</view>
+            </view>
+            <view class="clear"></view>
+          </view>
+        </view>
+        <view class="clear"></view>
+      </view>
+    </view>
+    <view class="clear"></view>
   </scroll-view>
 </view>

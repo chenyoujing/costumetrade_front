@@ -191,3 +191,96 @@ scroll-view{
   background-color: #DBF4F1;
   margin: 10px 20px;
 }
+.setting_title{
+  padding: 5px 0;
+  margin: 0 10px;
+  border-bottom: 2px solid #52CAC1;
+}
+.setting_text{
+  width: 33.33333333%;
+  text-align: center;
+  float: left;
+  font-size: 16px;
+}
+.setting_content{
+  padding: 5px 0;
+  margin: 0 10px;
+}
+
+
+/*客户种类修改*/
+.modal_cover{
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.2);
+  z-index: 8;
+  opacity: 0;
+}
+.modal{
+  position: absolute;
+  top: 0;
+  left: 10%;
+  right: 10%;
+  bottom: 0;
+  height: 300px;
+  margin: auto;
+  background-color: #ffffff;
+  z-index: 9;
+  opacity: 0;
+}
+.modal_header{
+  font-size: 16px;
+  line-height: 24px;
+  padding: 8px;
+  text-align: center;
+  background-color: #52CAC1;
+  color: #ffffff;
+}
+.modal_close{
+  position: absolute;
+  top: 0;
+  right: 10px;
+  font-size: 32px;
+  line-height: 40px;
+  color: #ffffff;
+}
+.modal scroll-view{
+  position: absolute;
+  top: 40px;
+  bottom: 40px;
+}
+.modal_submit{
+  font-size: 16px;
+  border-radius: 0;
+  background-color: #52CAC1;
+  line-height: 40px;
+  text-align: center;
+  padding: 0;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  color: #ffffff;
+}
+.customer_input{
+  padding: 10px 10px 0;
+}
+.customer_input:first-child{
+  padding-top: 20px;
+}
+.customer_input_text{
+  width: 45%;
+  float: left;
+  text-align: center;
+  font-size: 14px;
+  line-height: 30px;
+}
+.customer_input1{
+  border: 1px solid #52CAC1;
+  font-size: 14px;
+  padding-left: 7px; 
+  height: 28px;
+}

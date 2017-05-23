@@ -6,7 +6,7 @@
         <icon type="search" size="16" color="#000000" />
       </button>
     </form>
-    <icon style="right:10%;" type="search" size="16" color="#000000" bindtap="upload" />
+    <navigator url="../openOrder/openOrder"><icon style="right:10%;" type="search" size="16" color="#000000" /></navigator>
     <icon style="right:0;" type="search" size="16" color="#000000" bindtap="more_function" />
     <view class="clear"></view>
   </view>
@@ -88,7 +88,7 @@
       <view class="bill">
         <view class="info_title">账单操作</view>
         <view class="bill_content">
-          <view class="bill_content_button">微信账单</view>
+          <view class="bill_content_button" bindtap="bill_wechat">微信账单</view>
           <view class="bill_content_button" bindtap="bill_print">打印账单</view>
           <view style="float:left; width:100%;">
             <view class="order_input_text">单据时间：</view>
@@ -126,6 +126,18 @@
       <input type="number" class="order_input1" name="handcount" placeholder="请输入金额" />
     </view>
   </scroll-view>
-  <view class="bill_close">取消</view>
+  <view class="bill_close" bindtap="bill_modal_close">取消</view>
   <view class="bill_submit">确定</view>
+</view>
+
+<!--微信账单-->
+<view class="modal_cover" bindtap="wechat_modal_close" animation="{{wechat_modal_opacity}}" style="display:{{wechat_modal}};"></view>
+<view class="modal" animation="{{wechat_modal_opacity}}" style="display:{{wechat_modal}}; top:20%;bottom: unset; height:auto; padding-bottom:50px;">
+  <view class="wechat_header">请扫码</view>
+  <view class="modal_close" bindtap="wechat_modal_close" style="color:#000000;">×</view>
+  <image src="../../../images/image_none.png" mode="widthFix" style="width:50%;margin: 20px 25%;"></image>
+  <view class="wechat_button">
+    <view class="wechat_submit">扫好了，发账单</view>
+    <view class="wechat_close" bindtap="wechat_modal_close">取消</view>
+  </view>
 </view>
