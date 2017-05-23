@@ -1,0 +1,247 @@
+<view style="overflow:hidden; min-height:100vh;">
+  <view class="title">
+    <form bindsubmit="search">
+      <input class="title_input" type="text" name="search" placeholder="输入名字..." confirm-type="search" />
+      <button form-type="submit">
+        <icon type="search" size="16" color="#000000" />
+      </button>
+    </form>
+    <icon style="right:0;" type="search" size="16" color="#000000" bindtap="client_add" />
+    <view class="clear"></view>
+  </view>
+
+  <view class="client">
+    <view class="client_text {{client=='1' ? 'active' : ''}}" bindtap="clienttype" data-client="1">客户∨</view>
+    <view class="client_text {{client=='2' ? 'active' : ''}}" bindtap="clienttype" data-client="2">供货商∨</view>
+    <view class="client_text {{client=='3' ? 'active' : ''}}" bindtap="clienttype" data-client="3">朋友∨</view>
+    <view class="clear"></view>
+  </view>
+  <scroll-view class="content" scroll-y style="max-height:{{scroll_height}}px;">
+    <view class="client_content">
+      <view class="client_content_top">
+        <image image src="{{item.image ? item.image : '../../../images/image_none.png'}}" mode="aspectFill" class="client_tx" />
+        <view class="client_name">小雨</view>
+        <image image src="../../../images/7.png" mode="aspectFill" class="client_updata" bindtap="client_add" data-clientid="clientid" />
+        <image image src="../../../images/7.png" mode="aspectFill" class="client_delete" bindtap="client_delete" data-clientid="clientid" />
+        <view class="clear"></view>
+      </view>
+      <view class="client_content_bottom">
+        <view class="client_phone">电话：13333333333</view>
+        <button class="client_button client_button1" bindtap="goods">补货</button>
+        <button class="client_button client_button2" bindtap="account">对账</button>
+      </view>
+    </view>
+  </scroll-view>
+</view>
+
+<!--上传资料详情-->
+<view class="client_add" style="top:{{client_add}}; bottom:-{{client_add}};">
+  <view class="client_add_title">名称</view>
+  <view class="client_add_close" bindtap="close">×</view>
+  <form class="client_add_content" bindsubmit="client_add_submit" data-clientid="{{clientid}}">
+    <scroll-view scroll-y="true" style="top:">
+      <view class="client_add_input">
+        <view class="client_add_input_text">*真实姓名：</view>
+        <input type="text" class="client_add_input1" name="name0" value="{{updata_name}}" />
+        <view class="clear"></view>
+      </view>
+      <view class="client_add_input">
+        <view class="client_add_input_text">移动电话：</view>
+        <input type="number" class="client_add_input1" name="phone" value="{{updata_name}}" />
+        <view class="clear"></view>
+      </view>
+      <view class="client_add_input">
+        <view class="client_add_input_text">座机电话：</view>
+        <input type="number" class="client_add_input1" name="telephone"  value="{{updata_code}}"/>
+        <view class="clear"></view>
+      </view>
+      <view class="client_add_input">
+        <view class="client_add_input_text">所属地区：</view>
+        <view style="float:left; width: 70%;">
+          <input type="text" class="client_add_city" name="province" value="{{updata_wholeprice}}" />
+          <input type="text" class="client_add_city" name="city" value="{{updata_wholeprice}}" />
+          <input type="text" class="client_add_city" name="district" value="{{updata_wholeprice}}" />
+          <view class="clear"></view>
+        </view>
+        <view class="clear"></view>
+      </view>
+      <view class="client_add_input">
+        <view class="client_add_input_text">详细地址：</view>
+        <input type="text" class="client_add_input1" name="address" value="{{updata_packprice}}" />
+        <view class="clear"></view>
+      </view>
+    </scroll-view>
+    <button class="submit" form-type="submit">提交</button>
+  </form>
+</view>
+
+
+<!--对账-->
+<view class="client_add" style="top:{{account}}; bottom:-{{account}};">
+  <view class="client_add_title">{{client=='1' ? '客户' : ''}}{{client=='2' ? '供货商' : ''}}{{client=='3' ? '朋友' : ''}}对账</view>
+  <view class="client_add_close" bindtap="account_close">×</view>
+  <view class="client">
+    <view class="client_text {{accounttype=='0' ? 'active' : ''}}" bindtap="accounttype" data-accounttype="0" style="width:50%;">明细</view>
+    <view class="client_text {{accounttype=='1' ? 'active' : ''}}" bindtap="accounttype" data-accounttype="1" style="width:50%;">还款</view>
+    <view class="clear"></view>
+  </view>
+  <swiper current="{{accounttype}}" bindchange="swiper_change">
+    <swiper-item>
+      <scroll-view scroll-y="true" style="top:0;bottom:0;">
+        <view class="account_time">
+            <view style="float:left;line-height:30px;">时间：</view>
+            <picker mode="date" value="{{date_start}}" bindchange="startDateChange">
+              <view class="picker">
+                {{date_start}}
+              </view>
+            </picker>
+            <view style="float:left;padding: 0 10px;line-height:30px;">-</view>
+            <picker mode="date" value="{{date_end}}" bindchange="endDateChange">
+              <view class="picker">
+                {{date_end}}
+              </view>
+            </picker>
+            <view class="clear"></view>
+        </view>
+        <view class="account_title" style="border-top: 3px solid #DBF4F1;">期初</view>
+        <view class="account_view">
+          <view class="account_view1">时间：</view>
+          <view class="account_view2">截止到2017-05-17</view>
+          <view class="clear"></view>
+        </view>
+        <view class="account_view">
+          <view class="account_view1">应收：</view>
+          <view class="account_view2">0元</view>
+          <view class="clear"></view>
+        </view>
+        <view class="account_view">
+          <view class="account_view1">应付：</view>
+          <view class="account_view2">0元</view>
+          <view class="clear"></view>
+        </view>
+        <view class="account_all">
+          <view class="account_all1">合计应收：</view>
+          <view class="account_all2">￥0.00</view>
+          <view class="clear"></view>
+        </view>
+        <view class="account_title">期末</view>
+        <view class="account_view">
+          <view class="account_view1">时间：</view>
+          <view class="account_view2">截止到2017-05-17</view>
+          <view class="clear"></view>
+        </view>
+        <view class="account_view">
+          <view class="account_view1">应收：</view>
+          <view class="account_view2">0元</view>
+          <view class="clear"></view>
+        </view>
+        <view class="account_view">
+          <view class="account_view1">应付：</view>
+          <view class="account_view2">0元</view>
+          <view class="clear"></view>
+        </view>
+        <view class="account_all">
+          <view class="account_all1">合计应收：</view>
+          <view class="account_all2">￥0.00</view>
+          <view class="clear"></view>
+        </view>
+        <view class="account_title">期中</view>
+        <view class="account_container">
+          <view class="account_container_title">
+            <view style="float:left;">单号:170395728358293</view>
+            <view style="float:right; font-size:10px;">2017-05-16 销售出库</view>
+            <view class="clear"></view>
+          </view>
+          <view class="account_container_content">
+            <view class="content_view">合计金额：781</view>
+            <view class="content_view">已付：281</view>
+            <view class="content_view">未付：500</view>
+            <view class="content_button">明细</view>
+          </view>
+        </view>
+      </scroll-view>
+    </swiper-item>
+    <swiper-item>
+      <scroll-view scroll-y="true" style="top:0;bottom:0;">
+        <view class="account_title">付款信息</view>
+        <view class="account_view">
+          <view class="account_view1 padding">单号：</view>
+          <view class="account_view2 padding" style="text-align: center;">123456789</view>
+          <view class="clear"></view>
+        </view>
+        <view class="account_view">
+          <view class="account_view1 padding">时间：</view>
+          <picker mode="date" value="{{account_date}}" bindchange="account_date" class="account_input">
+            <view>
+              {{account_date}}
+            </view>
+          </picker>
+          <view class="clear"></view>
+        </view>
+        <view class="account_view">
+          <view class="account_view1 padding">单据类型：</view>
+            <picker bindchange="billtypePicker" value="{{billtype_index}}" range="{{billtype}}" class="account_input">
+              <view class="picker">
+                {{billtype[billtype_index]}}
+              </view>
+            </picker>
+          <view class="clear"></view>
+        </view>
+        <view class="account_view">
+          <view class="account_view1 padding">姓名：</view>
+          <view class="account_view2" style="text-align: center;">商城用户001</view>
+          <view class="clear"></view>
+        </view>
+        <view class="account_view">
+          <view class="account_view1 padding">总计应收：</view>
+          <view class="account_view2 price padding" style="text-align: center;">500.00</view>
+          <view class="clear"></view>
+        </view>
+        <view class="account_view">
+          <picker bindchange="paytypePicker" value="{{paytype_index}}" range="{{paytype}}">
+            <view class="account_view1 padding">{{paytype[paytype_index]}}：</view>
+          </picker>
+          <input class="account_input zero_input" style="width:48%;" value="{{zero}}" />
+          <view class="zero" bindtap="zero">清零</view>
+          <view class="clear"></view>
+        </view>
+      </scroll-view>
+    </swiper-item>
+  </swiper>
+</view>
+
+<!--补货-->
+<view class="client_add" style="top:{{goods}}; bottom:-{{goods}};">
+  <view class="title">
+    <view class="title_text">客户补货</view>
+    <form bindsubmit="search">
+      <input class="title_input" type="text" name="search" placeholder="货号" confirm-type="search" style="width:50%;" />
+      <button form-type="submit" style="right:20%;">
+        <icon type="search" size="16" color="#000000" />
+      </button>
+    </form>
+    <icon style="right:10%;" type="search" size="16" color="#000000" bindtap="upload" />
+    <view class="client_add_close" bindtap="goods_close" style="top:0;right:10px;bottom:0;margin:auto;">×</view>
+    <view class="clear"></view>
+  </view>
+  <scroll-view scroll-y="true" style="top:0;bottom:0;">
+    <view class="content_container">
+      <image src="{{item.image ? item.image : '../../../images/image_none.png'}}" mode="aspectFill" />
+      <view class="content_container_text">
+        <image src="" mode="aspectFit" bindtap="stock" data-storeid="{{item.storeId}}" data-id="{{item.id}}"/>
+        <view class="clear"></view>
+        <view class="content_container_title">{{item.name}}</view>
+        <view class="content_container_info">
+          <view class="price">{{item.price}}</view>
+          <view class="info_other">
+            <view class="volume" wx:if="{{!item.volume}}">0</view>
+            <view class="volume" wx:if="{{item.volume}}">{{item.volume}}</view>
+            <view class="date">{{item.timeUp}}</view>
+          </view>
+          <view class="clear"></view>
+        </view>
+      </view>
+      <view class="clear"></view>
+    </view>
+  </scroll-view>
+</view>

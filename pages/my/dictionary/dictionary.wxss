@@ -1,0 +1,193 @@
+/* pages/my/Goods/Goods.wxss */
+.title{
+  background-color: #52CAC1;
+  padding: 10px;
+  position: relative;
+  z-index: 3;
+  text-align: center;
+  color: #ffffff;
+  line-height: 21px;
+}
+
+.dictionary{
+  width: 100%;
+}
+.dictionary_text{
+  text-align: center;
+  background-color: #E3E3E3;
+  float: left;
+  font-size: 14px;
+  line-height: 30px;
+}
+.dictionary_text{
+  width: 33.33333333%;
+}
+.active{
+  background: #ffffff;
+}
+.content{
+   box-sizing:border-box;
+}
+swiper{
+  position: absolute;
+  top: 71px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: auto;
+}
+
+.staff{
+  position: relative;
+}
+.bg-1{
+  background-color: #DBF4F1;
+}
+.staff_tx{
+  width: 60px;
+  height: 60px;
+  border-radius: 30px;
+  margin: 10px;
+  margin-right: 0;
+}
+.staff_info{
+  position: absolute;
+  top: 0;
+  left: 70px;
+  right: 40px;
+}
+.staff_info_name,.staff_info_num,.staff_info_state{
+  margin: 10px;
+  float: left;
+  font-size: 14px;
+}
+.staff_modify{
+  width: 15px;
+  height: 15px;
+  position: absolute;
+  top: 15px;
+  right: 15px;
+}
+.staff_updata{
+  position: absolute;
+  top: 0;
+  background-color: #ffffff;
+  transition: all 0.3s
+}
+.staff_updata_top{
+  padding: 10px 0;
+  border-bottom: 10px solid #DBF4F1;
+}
+.checkbox{
+  width: 50%;
+  float: left;
+  text-align: center;
+  padding: 10px 0;
+  font-size: 16px;
+}
+scroll-view{
+  position: absolute;
+  top: 0;
+  bottom: 40px;
+}
+.print_info{
+  padding: 20px 20px 10px;
+  font-size: 18px;
+  position: relative;
+}
+.dictionary_input{
+  padding-right: 30px;
+  margin-bottom: 10px;
+}
+.dictionary_input_text1{
+  width: 30%;
+  float: left;
+  text-align: center;
+  font-size: 14px;
+  line-height: 30px;
+}
+.dictionary_input_text2{
+  width: 60%;
+  float: left;
+  text-align: center;
+  font-size: 14px;
+  line-height: 30px;
+}
+.dictionary_input1{
+  border: 1px solid #52CAC1;
+  font-size: 14px;
+  padding-left: 7px; 
+  height: 28px;
+}
+.dictionary_input radio-group{
+  float: left;
+  width: 40%;
+}
+.dictionary_input .radio{
+  float: left;
+  width: 50%;
+  font-size: 16px;
+}
+.dictionary_input .radio radio{
+  zoom: 80%;
+}
+.image_operation{
+  margin: 0 20px;
+}
+.image_operation_button{
+  box-sizing: border-box;
+  width: 49%;
+  margin: 0.1%;
+  border: 1px solid #52CAC1;
+  float: left;
+  font-size: 16px;
+  line-height: 30px;
+  text-align: center;
+}
+.add{
+  float: right;
+}
+.add_image{
+  width: 15px;
+  height: 15px;
+  padding: 0 5px;
+}
+.add::after{
+  content: "新增";
+  font-size: 14px;
+  line-height: 24px;
+}
+.delete{
+  float: right;
+}
+.delete_image{
+  width: 15px;
+  height: 15px;
+  padding: 0 5px;
+}
+.delete::after{
+  content: "删除";
+  font-size: 14px;
+  line-height: 24px;
+}
+.submit{
+  font-size: 16px;
+  border-radius: 0;
+  background-color: #52CAC1;
+  line-height: 30px;
+  height: 30px;
+  text-align: center;
+  padding: 0;
+  position: absolute;
+  width: 100px;
+  bottom: 5px;
+  left: 0;
+  right: 0;
+  margin: auto;
+  color: #ffffff;
+  transition: all 0.3s;
+}
+.setting_view{
+  background-color: #DBF4F1;
+  margin: 10px 20px;
+}

@@ -1,0 +1,53 @@
+<view class="section">
+  <view class="openorder_title" hidden="{{products_info}}">
+    <view class="title_number">12</view>
+    <view class="title_price">￥12443</view>
+    <view class="title_supplier">
+      <image src="../../../images/image_none.png"  mode="aspectFill" />
+      供货商
+    </view>
+    <view class="title_more">┆</view>
+    <view class="clear"></view>
+  </view>
+  <view class="scroll_title" hidden="{{products_info}}">
+    <view>序号</view>
+    <view>名称</view>
+    <view>数量</view>
+    <view>颜色</view>
+    <view>尺码</view>
+    <view>单价(元)</view>
+    <view>编辑</view>
+    <view class="clear"></view>
+  </view>
+  <scroll-view scroll-y="true" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}" style="height: {{scroll_height}}px; background-color: #000000;" hidden="{{products_info}}">
+    <view id="green0" style="width:200px;height:100px;background:green;"></view>
+    <view id="red0"  style="width:200px;height:100px;background:red;"></view>
+    <view id="yellow0"  style="width:200px;height:100px;background:yellow;"></view>
+    <view id="blue0" style="width:200px;height:100px;background:blue;"></view>
+    <view id="green" style="width:200px;height:100px;background:green;"></view>
+    <view id="red"  style="width:200px;height:100px;background:red;"></view>
+    <view id="yellow"  style="width:200px;height:100px;background:yellow;"></view>
+    <view id="blue" style="width:200px;height:100px;background:blue;"></view>
+  </scroll-view>
+  <scroll-view scroll-y="true" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}" style="height: {{scroll_height + 74}}px; margin:0; background-color: #ffffff;" hidden="{{!products_info}}">
+    <block wx:for="{{products_info}}" wx:key="id">
+      <view class="products_info" bindtap="products_add" data-id="{{item.id}}" style="position: absolute;left: 0;right: 0;">
+        <image src="{{item.image ? item.image : '../../../images/image_none.png'}}" mode="aspectFill" class="products_info_image" />
+        <view class="products_info_name">{{item.code}} {{item.name}}</view>
+        <view class="products_info_price">{{item.price}}</view>
+        <view class="products_info_time">{{item.timeUp}}</view>
+        <view class="clear"></view>
+      </view>
+      <view class="products_info" bindtap="products_add" data-id="{{item.id}}"></view>
+    </block>
+    {{id}}
+  </scroll-view>
+  <view class="openorder_input">
+    <view class="input_text">买单</view>
+    <input type="{{input_type}}" placeholder="123" cursor-spacing="20" focus="{{input_foucs}}" confirm-hold  bindinput="input_change"/>
+    <view class="input_text" bindtap="input_type_change">/</view>
+    <view class="input_text">+</view>
+    <view class="clear"></view>
+  </view>
+
+</view>

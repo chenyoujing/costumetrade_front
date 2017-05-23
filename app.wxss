@@ -1,0 +1,20 @@
+/**app.wxss**/
+page,input{
+  font-family: Microsoft YaHei;
+}
+input{
+  min-height: 1px;
+}
+button{
+  background-color: transparent;
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+button::after {
+  content: none;
+}
+
+.clear{
+  clear: both;
+}

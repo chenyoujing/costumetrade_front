@@ -1,0 +1,40 @@
+{
+  "pages":[
+    "pages/my/client/client",
+    "pages/my/dictionary/dictionary",
+    "pages/my/order/order",
+    "pages/my/Goods/Goods",
+    "pages/my/openOrder/openOrder",
+    "pages/index/index"
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "WeChat",
+    "navigationBarTextStyle":"black"
+  },
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/my/dictionary/dictionary",
+        "text": "设置"
+      },
+      {
+        "pagePath": "pages/my/order/order",
+        "text": "开单"
+      },
+      {
+        "pagePath": "pages/my/client/client",
+        "text": "客户"
+      },
+      {
+        "pagePath": "pages/my/Goods/Goods",
+        "text": "货品"
+      },
+      {
+        "pagePath": "pages/my/openOrder/openOrder",
+        "text": "开单-货号"
+      }
+    ]
+  }
+}
