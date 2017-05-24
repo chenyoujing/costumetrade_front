@@ -1,5 +1,8 @@
 {
   "pages":[
+    "pages/mall/mall",
+    "pages/mall/shoppingcard/shoppingcard",
+    "pages/mall/goods_detail/goods_detail",
     "pages/my/dictionary/dictionary",
     "pages/my/order/order",
     "pages/my/client/client",
@@ -30,6 +33,10 @@
       {
         "pagePath": "pages/my/Goods/Goods",
         "text": "货品"
+      },
+      {
+        "pagePath": "pages/mall/mall",
+        "text": "商城"
       }
     ]
   }
