@@ -2,9 +2,9 @@
 <view style="overflow:hidden; min-height:100vh;">
   <view class="title">
     <form bindsubmit="search">
-      <input class="title_input" type="text" name="search" placeholder="货号" confirm-type="search" />
-      <button form-type="submit">
-        <icon type="search" size="16" color="#000000" />
+      <input class="title_input" type="text" name="search" placeholder="货号" bindinput="bindKeyInput" />
+      <button form-type="submit" bindtap="packPageFilterCode">
+        <icon type="search" size="16" color="#000000"  />
       </button>
     </form>
     <icon style="right:10%;" type="search" size="16" color="#000000" bindtap="upload" />
@@ -84,7 +84,7 @@
           <view class="clear"></view>
           <view class="content_container_title">{{item.name}}</view>
           <view class="content_container_info">
-            <navigator url="../GoodsInfo/GoodsInfo">
+            <navigator url="../GoodsInfo/GoodsInfo?ID={{item.id}}" hover-class="navigator-hover">
               <view class="price">{{item.price}}</view>
             </navigator>
             <view class="info_other">

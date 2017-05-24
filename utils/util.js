@@ -1,8 +1,8 @@
+var app = getApp();
 function formatTime(date) {
   var year = date.getFullYear()
   var month = date.getMonth() + 1
   var day = date.getDate()
-
   var hour = date.getHours()
   var minute = date.getMinutes()
   var second = date.getSeconds()
@@ -34,6 +34,31 @@ var api = {
     }
     string = string.substring(0, string.length - 1)
     return string;
+  },
+  getProductInit:function(){
+    var that = this;
+    wx.showNavigationBarLoading()
+   this.request({
+      url: 'product/getProductInit',
+      data: {
+        storeId: 1
+      },
+      method: 'POST',
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      success: function (res) {
+        wx.hideNavigationBarLoading();
+        app.screen_content1 = res.data.brandList;
+        app.screen_content2 = res.data.productTypeList;
+        app.screen_content3 = that.data.screen_content3;
+        app.screen_content4 = that.data.screen_content4;
+        app.screen_content5 = res.data.productSize,
+        app.screen_content6 = res.data.priceNameList,
+        app.getProductInit = ture
+        
+      }
+    })
   },
   request: function (para) {
     para.url = api.host + para.url ;

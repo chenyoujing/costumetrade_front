@@ -22,6 +22,7 @@ Page({
       value: 'timeUpOp',
       op: 'desc'
     },
+    code:'',
     getFilterData:[],
     condition: "100%",
     scroll_height: "",
@@ -38,7 +39,8 @@ Page({
       data: {
         storeId: 1,
         sort: that.data.getSortData,
-        rules: that.data.getFilterData
+        rules: that.data.getFilterData,
+        code: that.data.code
       },
       method: 'POST',
       header: {
@@ -76,29 +78,14 @@ Page({
   },
 // 点击更多执行方法
   more:function () {
-    var that = this;
-    wx.showNavigationBarLoading()
-    util.api.request({
-      url: 'product/getProductInit',
-      data: {
-        storeId: 1
-      },
-      method: 'POST',
-      header: {
-        'content-type': 'application/x-www-form-urlencoded'
-      },
-      success: function (res) {
-        wx.hideNavigationBarLoading()
-        that.setData({
-          screen_content1: res.data.brandList,
-          screen_content2: res.data.productTypeList
-        })
-      }
-    })
+    if (!app.getProductInit){
+      util.api.getProductInit();
+    }
     this.setData({
+      screen_content1: app.screen_content1,
+      screen_content2: app.screen_content2,
       condition: "0"
     })
- 
   },
   //返回排序
   back: function () {
@@ -175,6 +162,15 @@ Page({
       }
       this.page_request();
     }
+  },
+  bindKeyInput: function (e) {
+    this.setData({
+      code: e.detail.value
+    })
+  },
+  //搜索货号
+  packPageFilterCode:function(){
+    this.page_request();
   },
   //重置
   resetting:function(e){
