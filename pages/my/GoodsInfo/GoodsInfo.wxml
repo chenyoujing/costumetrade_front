@@ -1,0 +1,286 @@
+
+<!--货品详情-->
+<view class="upload" style="top:{{upload}}; bottom:-{{upload}};">
+  <view class="upload_title">货品详情</view>
+  <view class="upload_close" bindtap="close">×</view>
+  <form class="upload_content" bindsubmit="upload_submit" data-id="{{id}}">
+    <scroll-view scroll-y="true">
+      <view class="upload_input">
+        <view class="upload_input_text">*名称：</view>
+        <input type="text" class="upload_input1" name="name0" value="{{updata_name}}" />
+        <view class="clear"></view>
+      </view>
+      <view class="upload_input">
+        <view class="upload_input_text">*货号：</view>
+        <input type="number" class="upload_input1" name="code"  value="{{updata_code}}"/>
+        <view class="clear"></view>
+      </view>
+      <view class="upload_input">
+        <view class="upload_input_text">第一单价：</view>
+        <input type="digit" class="upload_input1" name="wholeprice" value="{{updata_wholeprice}}" />
+        <view class="clear"></view>
+      </view>
+      <view class="upload_input">
+        <view class="upload_input_text">第二单价：</view>
+        <input type="digit" class="upload_input1" name="packprice" value="{{updata_packprice}}" />
+        <view class="clear"></view>
+      </view>
+      <view class="upload_input">
+        <view class="upload_input_text">第三单价：</view>
+        <input type="digit" class="upload_input1" name="retailprice" value="{{updata_retailprice}}" />
+        <view class="clear"></view>
+      </view>
+      <view class="upload_input">
+        <view class="upload_input_text">进货价：</view>
+        <input type="digit" class="upload_input1" name="purchaseprice" value="{{updata_purchaseprice}}" />
+        <view class="clear"></view>
+      </view>
+      <view class="upload_input">
+        <view class="upload_input_text">吊牌价：</view>
+        <input type="digit" class="upload_input1" name="tagprice" value="{{updata_tagprice}}" />
+        <view class="clear"></view>
+      </view>
+      <view class="upload_input">
+        <view class="upload_input_text">*商品品牌：</view>
+        <button class="upload_input_button" bindtap="brand">添加</button>
+        <picker bindchange="brandPicker" value="{{brand_index}}" range="{{screen_content2}}" range-key="brandname">
+            <text>{{screen_content2[brand_index].brandname}}</text>
+        </picker>
+        <view class="clear"></view>
+      </view>
+      <view class="upload_input">
+        <view class="upload_input_text">*商品种类：</view>
+        <button class="upload_input_button" bindtap="producttype">添加</button>
+        <picker bindchange="producttypePicker" value="{{producttype_index}}" range="{{screen_content1}}" range-key="catename">
+            {{screen_content1[producttype_index].catename}}
+        </picker>
+        <view class="clear"></view>
+      </view>
+      <view class="upload_input">
+        <view class="upload_input_text">图片：</view>
+        <view style="width:60px; float:right">
+          <button class="upload_input_button" bindtap="image_add">添加</button>
+          <button class="upload_input_button" bindtap="image_search">搜索</button>
+        </view>
+        <input type="digit" class="upload_input2" />
+        <view class="clear"></view>
+      </view>
+      <view class="upload_input">
+        <view class="upload_input_text">单位：</view>
+        <button class="upload_input_button">添加</button>
+        <picker bindchange="unitPicker" value="{{unit[unit_index]}}" range="{{unit}}" name="unit">
+            {{unit[unit_index]}}
+        </picker>
+        <view class="clear"></view>
+      </view>
+      <view class="upload_input">
+        <view class="upload_input_text">颜色：</view>
+        <button class="upload_input_button" bindtap="color">选色</button>
+        <input disabled='true' type="text" class="upload_input2" name="colors" value="{{color}}" />
+        <view class="clear"></view>
+      </view>
+      <view class="upload_input">
+        <view class="upload_input_text">尺码：</view>
+        <button class="upload_input_button" bindtap="size">尺码组</button>
+        <input disabled='true' type="text" class="upload_input2" name="sizes" value="{{size}}" />
+        <view class="clear"></view>
+      </view>
+      <view class="upload_input">
+        <view class="upload_input_text">主条码：</view>
+        <button class="upload_input_button">扫码</button>
+        <input type="number" class="upload_input2" name="name" />
+        <view class="clear"></view>
+      </view>
+      <view class="upload_input">
+        <view class="upload_input_text">分条码：</view>
+        <button class="upload_input_button">编辑</button>
+        <input type="number" class="upload_input2" name="name" />
+        <view class="clear"></view>
+      </view>
+      <view class="upload_input">
+        <view class="upload_input_text">年份：</view>
+        <picker style="margin-right:0" mode="date" bindchange="year" value="{{year}}" end="{{year}}" name="year" fields="year" value="{{year}}">
+            {{year}}年
+        </picker>
+        <view class="clear"></view>
+      </view>
+      <view class="upload_input">
+        <view class="upload_input_text">等级：</view>
+        <picker style="margin-right:0" bindchange="gradePicker" value="{{grade_index}}" range="{{grade}}" name="grade">
+            {{grade[grade_index]}}
+        </picker>
+        <view class="clear"></view>
+      </view>
+      <view class="upload_input">
+        <view class="upload_input_text">一手件数：</view>
+        <input type="number" class="upload_input1" name="handcount" value="{{updata_handcount}}" />
+        <view class="clear"></view>
+      </view>
+      <view class="upload_input">
+        <view class="upload_input_text">季节：</view>
+        <radio-group class="radio-group" name="season">
+          <label class="radio" wx:for="{{items}}" wx:key="id">
+            <radio value="{{item.name}}" checked="{{season == item.value ? 'true' : ''}}"/>{{item.value}}
+          </label>
+        </radio-group>
+        <view class="clear"></view>
+      </view>
+      <view class="upload_input">
+        <view class="upload_input_text">预警下限：</view>
+        <input type="number" class="upload_input1" name="warnLow" value="{{warnLow}}" />
+        <view class="clear"></view>
+      </view>
+      <view class="upload_input">
+        <view class="upload_input_text">预警上限：</view>
+        <input type="number" class="upload_input1" name="warnHigh" value="{{warnHigh}}" />
+        <view class="clear"></view>
+      </view>
+      <view class="upload_input">
+        <view class="upload_input_text">*上架时间：</view>
+          <picker style="margin-right:0;" mode="date" value="{{date_up}}"start="1970-1-1" end="{{date_down}}" bindchange="bindDateChange_up" name="timeUp">
+            {{date_up}}
+          </picker>
+        <view class="clear"></view>
+      </view>
+      <view class="upload_input">
+        <view class="upload_input_text">*下架时间：</view>
+          <picker style="margin-right:0;" mode="date" value="{{date_down}}" start="{{date_up}}" bindchange="bindDateChange_down" name="timeDown">
+            {{date_down}}
+          </picker>
+        <view class="clear"></view>
+      </view>
+    </scroll-view>
+    <button class="submit" form-type="submit">提交</button>
+  </form>
+</view>
+
+
+<!--添加商品种类-->
+<view class="modal2_cover" bindtap="producttype_modal_close" animation="{{producttype_modal_opacity}}" style="display:{{producttype_modal}};"></view>
+<view class="modal2" animation="{{producttype_modal_opacity}}" style="display:{{producttype_modal}};">
+  <view class="modal_header">商品种类</view>
+  <view class="modal_close" bindtap="producttype_modal_close">×</view>
+
+  <view class="modal2_title">
+    <form bindsubmit="producttype_add">
+      <view class="modal2_titleText">
+        <view class="modal2_title_text">种类</view>
+        <view class="modal2_title_text">助记简码</view>
+      </view>
+      <view class="modal2_titleInput">
+        <input type="text" class="modal2_title_input" name="catename" />
+        <input type="text" class="modal2_title_input" name="fastcode" />
+      </view>
+      <view class="modal2_titleButton">
+        <button class="modal2_title_add" hover-class="hover" form-type="submit">+</button>
+        <view class="modal2_title_delete" bindtap="product_delete">×</view>
+      </view>
+      <view class="clear"></view>
+    </form>
+  </view>
+  <scroll-view scroll-y="true" class="modal2_content" style="top:118px;">
+    <radio-group bindchange="product_radio">
+      <label class="modal2_content_option" wx:for="{{screen_content1}}" wx:key="id">
+        <radio value="{{item.id}}" />{{item.catename}}
+      </label>
+    </radio-group>
+  </scroll-view>
+</view>
+
+<!--添加商品品牌-->
+<view class="modal2_cover" bindtap="brand_modal_close" animation="{{brand_modal_opacity}}" style="display:{{brand_modal}};"></view>
+<view class="modal2" animation="{{brand_modal_opacity}}" style="display:{{brand_modal}};">
+  <view class="modal_header">商品品牌</view>
+  <view class="modal_close" bindtap="brand_modal_close">×</view>
+  <view class="modal2_title">
+    <form bindsubmit="brand_add">
+      <view class="modal2_titleText">
+        <view class="modal2_title_text">品牌名称</view>
+        <view class="modal2_title_text">助记简码</view>
+        <view class="modal2_title_text">商品利润</view>
+      </view>
+      <view class="modal2_titleInput">
+        <input type="text" class="modal2_title_input" name="brandname" />
+        <input type="text" class="modal2_title_input" name="fastcode" />
+        <input type="text" class="modal2_title_input" name="" />
+      </view>
+      <view class="modal2_titleButton">
+        <button class="modal2_title_add" hover-class="hover" form-type="submit">+</button>
+        <view class="modal2_title_delete" bindtap="brand_delete">×</view>
+      </view>
+      <view class="clear"></view>
+    </form>
+  </view>
+  <scroll-view scroll-y="true" class="modal2_content" style="top:152px;">
+    <radio-group bindchange="brand_radio">
+      <label class="modal2_content_option" wx:for="{{screen_content2}}" wx:key="id">
+        <radio value="{{item.id}}" />{{item.brandname}}
+      </label>
+    </radio-group>
+  </scroll-view>
+</view>
+
+<!--添加图片-->
+<view class="modal2_cover" bindtap="image_add_modal_close" animation="{{image_add_modal_opacity}}" style="display:{{image_add_modal}};"></view>
+<view class="modal2" animation="{{image_add_modal_opacity}}" style="display:{{image_add_modal}};">
+  <view class="modal_header">添加图片</view>
+  <view class="modal_close" bindtap="image_add_modal_close">×</view>
+</view>
+
+<!--搜索图片-->
+<view class="modal2_cover" bindtap="image_search_modal_close" animation="{{image_search_modal_opacity}}" style="display:{{image_search_modal}};"></view>
+<view class="modal2" animation="{{image_search_modal_opacity}}" style="display:{{image_search_modal}};">
+  <view class="modal_header" style="border-bottom: 3px solid #DBF4F1;">搜索图片</view>
+  <view class="modal_close" bindtap="image_search_modal_close">×</view>
+</view>
+
+<!--选色-->
+<view class="modal2_cover" bindtap="color_modal_close" animation="{{color_modal_opacity}}" style="display:{{color_modal}};"></view>
+<view class="modal2" animation="{{color_modal_opacity}}" style="display:{{color_modal}};">
+  <view class="modal_header">选色</view>
+  <view class="modal_close" bindtap="color_modal_close">×</view>
+  <view class="modal2_title">
+    <form bindsubmit="color_add">
+      <view class="modal2_titleText">
+        <view class="modal2_title_text">颜色名称</view>
+      </view>
+      <view class="modal2_titleInput">
+        <input type="text" class="modal2_title_input" name="colorname" />
+      </view>
+      <view class="modal2_titleButton">
+        <button class="modal2_title_add" hover-class="hover" form-type="submit">+</button>
+        <view class="modal2_title_delete">×</view>
+      </view>
+      <view class="clear"></view>
+    </form>
+  </view>
+</view>
+
+<!--尺码组-->
+<view class="modal2_cover" bindtap="size_modal_close" animation="{{size_modal_opacity}}" style="display:{{size_modal}};"></view>
+<view class="modal2" animation="{{size_modal_opacity}}" style="display:{{size_modal}};">
+  <view class="modal_header">尺码组</view>
+  <view class="modal_close" bindtap="size_modal_close">×</view>
+  <view class="modal2_title">
+    <view class="modal2_titleText">
+      <view class="modal2_title_text">新增尺码</view>
+    </view>
+    <view class="modal2_titleInput">
+      <input type="text" class="modal2_title_input" />
+    </view>
+    <view class="modal2_titleButton">
+      <view class="modal2_title_add">+</view>
+      <view class="modal2_title_delete">×</view>
+    </view>
+    <view class="clear"></view>
+  </view>
+</view>
+
+
+<!--更多功能-->
+<view class="more_function_cover" bindtap="more_function_close" style="display:{{more_function}};"></view>
+<view class="more_function" animation="{{more_function_opacity}}" style="display:{{more_function}};">
+  <view class="more_function_view">批量删除</view>
+  <view class="more_function_view">分享图片</view>
+  <view class="more_function_view">推广新品</view>
+</view>
