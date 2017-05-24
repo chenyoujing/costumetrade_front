@@ -35,9 +35,9 @@
 </view>
 
 <!--上传资料详情-->
-<view class="slide" style="top:{{client_add}}; bottom:-{{client_add}};">
-  <view class="slide_title">{{client=='1' ? '客户' : ''}}{{client=='2' ? '供货商' : ''}}{{client=='3' ? '朋友' : ''}}</view>
-  <view class="slide_close" bindtap="close">×</view>
+<view class="client_add" style="top:{{client_add}}; bottom:-{{client_add}};">
+  <view class="client_add_title">{{client=='1' ? '客户' : ''}}{{client=='2' ? '供货商' : ''}}{{client=='3' ? '朋友' : ''}}</view>
+  <view class="client_add_close" bindtap="close">×</view>
   <form class="client_add_content" bindsubmit="client_add_submit" data-clientid="{{clientid}}">
     <scroll-view scroll-y="true" style="top:">
       <view class="client_add_input">

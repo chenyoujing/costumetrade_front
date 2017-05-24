@@ -16,7 +16,6 @@ function formatNumber(n) {
   n = n.toString()
   return n[1] ? n : '0' + n
 }
-
 function toDate(number) {
   var n = number;
   var date = new Date(n);
@@ -25,19 +24,43 @@ function toDate(number) {
   var D = date.getDate() < 10 ? '0' + date.getDate() : date.getDate();
   return (Y + M + D)
 }
-
-//透明度变化
-function opacity(num) {
-  var animation = wx.createAnimation({
-    duration: 300,
-    timingFunction: 'ease',
-  })
-  animation.opacity(num).step()
-  return animation.export()
+//请求接口公共方法
+var api = {
+  host: 'http://192.168.2.221:8088/',
+  getFilterArray:function(array){
+    var string = '';
+    for(var p in array){
+      string += array[p]+',';
+    }
+    string = string.substring(0, string.length - 1)
+    return string;
+  },
+  request: function (para) {
+    para.url = api.host + para.url ;
+    para.oldSuccess = para.success;
+    para.method = para.method;
+    para.success = function (data) {
+      var dataResponest = data.data;
+      if (dataResponest.code === 0) {
+        console.log(dataResponest)
+        para.oldSuccess(dataResponest);
+      } else {
+        api.fail(data);
+      }
+    };
+    wx.request(para);
+  },
+  fail: function () {
+    wx.hideNavigationBarLoading()
+    wx.showToast({
+      title: '无法连接服务器',
+      mask: true,
+      duration: 2000
+    })
+  }
 }
-
 module.exports = {
   formatTime: formatTime,
   toDate: toDate,
-  opacity: opacity,
+  api:api
 }
