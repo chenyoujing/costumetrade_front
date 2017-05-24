@@ -21,7 +21,7 @@
     <view style="width:12%;">编辑</view>
     <view class="clear"></view>
   </view>
-  <scroll-view scroll-y="true" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}" style="bottom: {{keyboard_width*3 + 84}}px; background-color: #313131;" hidden="{{products_info}}">
+  <scroll-view scroll-y="true" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}" style="bottom: {{keyboard_height*3 + 84}}px; background-color: #313131;" hidden="{{products_info}}">
     <view class="order_view">
       <view bindtap="order_buy" data-orderid="1" style="width:88%;">
         <view style="width:9%;" data-orderid="1">1</view>
@@ -60,7 +60,7 @@
     </block>
     {{id}}
   </scroll-view>
-  <view class="openorder_input" style="bottom:{{keyboard_width*3 + 20}}px">
+  <view class="openorder_input" style="bottom:{{keyboard_height*3 + 20}}px">
     <view class="input_text" bindtap="order">买单</view>
     <input type="{{input_type}}" placeholder="货号" cursor-spacing="20" focus="{{input_foucs}}" confirm-hold  bindinput="input_change"/>
     <view class="input_text" bindtap="input_type_change">/</view>
@@ -68,18 +68,18 @@
     <view class="clear"></view>
   </view>
   <view class="keyboard">
-    <view class="keyboard_view" style="width:{{keyboard_width}}px;height:{{keyboard_width}}px;line-height:{{keyboard_width}}px;">1</view>
-    <view class="keyboard_view" style="width:{{keyboard_width}}px;height:{{keyboard_width}}px;line-height:{{keyboard_width}}px;">2</view>
-    <view class="keyboard_view" style="width:{{keyboard_width}}px;height:{{keyboard_width}}px;line-height:{{keyboard_width}}px;">3</view>
-    <view class="keyboard_view" style="width:{{keyboard_width}}px;height:{{keyboard_width}}px;line-height:{{keyboard_width}}px;">←</view>
-    <view class="keyboard_view" style="width:{{keyboard_width}}px;height:{{keyboard_width}}px;line-height:{{keyboard_width}}px;">4</view>
-    <view class="keyboard_view" style="width:{{keyboard_width}}px;height:{{keyboard_width}}px;line-height:{{keyboard_width}}px;">5</view>
-    <view class="keyboard_view" style="width:{{keyboard_width}}px;height:{{keyboard_width}}px;line-height:{{keyboard_width}}px;">6</view>
-    <view class="keyboard_view" style="width:{{keyboard_width}}px;height:{{keyboard_width}}px;line-height:{{keyboard_width}}px;">-</view>
-    <view class="keyboard_view" style="width:{{keyboard_width}}px;height:{{keyboard_width}}px;line-height:{{keyboard_width}}px;">7</view>
-    <view class="keyboard_view" style="width:{{keyboard_width}}px;height:{{keyboard_width}}px;line-height:{{keyboard_width}}px;">8</view>
-    <view class="keyboard_view" style="width:{{keyboard_width}}px;height:{{keyboard_width}}px;line-height:{{keyboard_width}}px;">9</view>
-    <view class="keyboard_view" style="width:{{keyboard_width}}px;height:{{keyboard_width}}px;line-height:{{keyboard_width}}px;">0</view>
+    <view class="keyboard_view" style="width:{{keyboard_width}}px;height:{{keyboard_height}}px;line-height:{{keyboard_height}}px;">1</view>
+    <view class="keyboard_view" style="width:{{keyboard_width}}px;height:{{keyboard_height}}px;line-height:{{keyboard_height}}px;">2</view>
+    <view class="keyboard_view" style="width:{{keyboard_width}}px;height:{{keyboard_height}}px;line-height:{{keyboard_height}}px;">3</view>
+    <view class="keyboard_view" style="width:{{keyboard_width}}px;height:{{keyboard_height}}px;line-height:{{keyboard_height}}px;">←</view>
+    <view class="keyboard_view" style="width:{{keyboard_width}}px;height:{{keyboard_height}}px;line-height:{{keyboard_height}}px;">4</view>
+    <view class="keyboard_view" style="width:{{keyboard_width}}px;height:{{keyboard_height}}px;line-height:{{keyboard_height}}px;">5</view>
+    <view class="keyboard_view" style="width:{{keyboard_width}}px;height:{{keyboard_height}}px;line-height:{{keyboard_height}}px;">6</view>
+    <view class="keyboard_view" style="width:{{keyboard_width}}px;height:{{keyboard_height}}px;line-height:{{keyboard_height}}px;">-</view>
+    <view class="keyboard_view" style="width:{{keyboard_width}}px;height:{{keyboard_height}}px;line-height:{{keyboard_height}}px;">7</view>
+    <view class="keyboard_view" style="width:{{keyboard_width}}px;height:{{keyboard_height}}px;line-height:{{keyboard_height}}px;">8</view>
+    <view class="keyboard_view" style="width:{{keyboard_width}}px;height:{{keyboard_height}}px;line-height:{{keyboard_height}}px;">9</view>
+    <view class="keyboard_view" style="width:{{keyboard_width}}px;height:{{keyboard_height}}px;line-height:{{keyboard_height}}px;">0</view>
     <view class="clear:both;"></view>
   </view>
 
@@ -112,18 +112,18 @@
     <view class="keyboard_top" style="width:{{keyboard_width}}px;">元/批</view>
     <view class="keyboard_top" style="width:{{keyboard_width}}px;">555手/55件</view>
     <view class="keyboard_top" style="width:{{keyboard_width}}px;" bindtap="order_back">返回</view>
-    <view class="keyboard_view" style="width:{{keyboard_width}}px;height:{{keyboard_width}}px;line-height:{{keyboard_width}}px;">1</view>
-    <view class="keyboard_view" style="width:{{keyboard_width}}px;height:{{keyboard_width}}px;line-height:{{keyboard_width}}px;">2</view>
-    <view class="keyboard_view" style="width:{{keyboard_width}}px;height:{{keyboard_width}}px;line-height:{{keyboard_width}}px;">3</view>
-    <view class="keyboard_view" style="width:{{keyboard_width}}px;height:{{keyboard_width}}px;line-height:{{keyboard_width}}px;">←</view>
-    <view class="keyboard_view" style="width:{{keyboard_width}}px;height:{{keyboard_width}}px;line-height:{{keyboard_width}}px;">4</view>
-    <view class="keyboard_view" style="width:{{keyboard_width}}px;height:{{keyboard_width}}px;line-height:{{keyboard_width}}px;">5</view>
-    <view class="keyboard_view" style="width:{{keyboard_width}}px;height:{{keyboard_width}}px;line-height:{{keyboard_width}}px;">6</view>
-    <view class="keyboard_view" style="width:{{keyboard_width}}px;height:{{keyboard_width}}px;line-height:{{keyboard_width}}px;">-</view>
-    <view class="keyboard_view" style="width:{{keyboard_width}}px;height:{{keyboard_width}}px;line-height:{{keyboard_width}}px;">7</view>
-    <view class="keyboard_view" style="width:{{keyboard_width}}px;height:{{keyboard_width}}px;line-height:{{keyboard_width}}px;">8</view>
-    <view class="keyboard_view" style="width:{{keyboard_width}}px;height:{{keyboard_width}}px;line-height:{{keyboard_width}}px;">9</view>
-    <view class="keyboard_view" style="width:{{keyboard_width}}px;height:{{keyboard_width}}px;line-height:{{keyboard_width}}px;">0</view>
+    <view class="keyboard_view" style="width:{{keyboard_width}}px;height:{{keyboard_height}}px;line-height:{{keyboard_height}}px;">1</view>
+    <view class="keyboard_view" style="width:{{keyboard_width}}px;height:{{keyboard_height}}px;line-height:{{keyboard_height}}px;">2</view>
+    <view class="keyboard_view" style="width:{{keyboard_width}}px;height:{{keyboard_height}}px;line-height:{{keyboard_height}}px;">3</view>
+    <view class="keyboard_view" style="width:{{keyboard_width}}px;height:{{keyboard_height}}px;line-height:{{keyboard_height}}px;">←</view>
+    <view class="keyboard_view" style="width:{{keyboard_width}}px;height:{{keyboard_height}}px;line-height:{{keyboard_height}}px;">4</view>
+    <view class="keyboard_view" style="width:{{keyboard_width}}px;height:{{keyboard_height}}px;line-height:{{keyboard_height}}px;">5</view>
+    <view class="keyboard_view" style="width:{{keyboard_width}}px;height:{{keyboard_height}}px;line-height:{{keyboard_height}}px;">6</view>
+    <view class="keyboard_view" style="width:{{keyboard_width}}px;height:{{keyboard_height}}px;line-height:{{keyboard_height}}px;">-</view>
+    <view class="keyboard_view" style="width:{{keyboard_width}}px;height:{{keyboard_height}}px;line-height:{{keyboard_height}}px;">7</view>
+    <view class="keyboard_view" style="width:{{keyboard_width}}px;height:{{keyboard_height}}px;line-height:{{keyboard_height}}px;">8</view>
+    <view class="keyboard_view" style="width:{{keyboard_width}}px;height:{{keyboard_height}}px;line-height:{{keyboard_height}}px;">9</view>
+    <view class="keyboard_view" style="width:{{keyboard_width}}px;height:{{keyboard_height}}px;line-height:{{keyboard_height}}px;">0</view>
     <view class="clear:both;"></view>
   </view>
 </view>

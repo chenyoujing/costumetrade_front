@@ -8,6 +8,7 @@ Page({
     input_foucs: "",
     products_info: "",
     keyboard_width: "",
+    keyboard_height: "",
     orderid: "",
     color: ["藏青色", "玫红色"],
     size: ["S", "M"],
@@ -22,7 +23,8 @@ Page({
     wx.getSystemInfo({
       success: function (res) {
         that.setData({
-          keyboard_width: (res.windowWidth - 8)/4 - 4
+          keyboard_width: (res.windowWidth - 8) / 4 - 4,
+          keyboard_height: res.windowHeight / 6 - 10
         })
       }
     })
@@ -46,7 +48,7 @@ Page({
           input_foucs: "foucs",
         })
       }, 100)
-    }else{
+    } else {
       that.setData({
         input_type: "number",
       })
@@ -73,19 +75,19 @@ Page({
         success: function (res) {
           for (var i = 0; i < res.data.data.length; i++) {
             res.data.data[i].timeUp = util.toDate(res.data.data[i].timeUp)
-          } 
+          }
           if (res.data.data[0] != undefined) {
             that.setData({
               products_info: res.data.data,
             })
-          }else{
+          } else {
             that.setData({
               products_info: "",
             })
           }
         }
       })
-    }else{
+    } else {
       that.setData({
         products_info: "",
       })
