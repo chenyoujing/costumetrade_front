@@ -1,0 +1,106 @@
+<!--商品详情-->
+<view class="goods_detail">
+  <swiper indicator-dots autoplay circular style="height:{{height*0.4}}px;">
+    <block wx:for="{{imgUrls}}" wx:key="id">
+      <swiper-item>
+        <image src="{{item ? item : '../../../images/image_none.png'}}" class="slide-image" mode="aspectFill" style="height:{{height*0.4}}px;"/>
+      </swiper-item>
+    </block>
+  </swiper>
+  <view class="detail_title">621报喜鸟11 2017春 打底裤 适中紫</view>
+  <view class="detail_price">￥639.6</view>
+  <view class="detail_price_original">￥1491</view>
+  <view class="detail_info {{infoid == '0' ? 'active' : ''}}" bindtap="detail_info" data-infoid="0">商品描述</view>
+  <view class="detail_info {{infoid == '1' ? 'active' : ''}}" bindtap="detail_info" data-infoid="1">产品参数</view>
+  <swiper current="{{infoid}}" bindchange="detail_info_swiper" class="detail_info_swiper">
+    <swiper-item style="overflow:auto;">
+      <view class="detail_info_view">商品描述：2017春 打底裤</view>
+      <view class="detail_info_view">商品颜色：适中紫,道奇蓝,玫瑰棕</view>
+      <view class="detail_info_view">商品尺码：XXS,44,38</view>
+      <view class="clear"></view>
+    </swiper-item>
+    <swiper-item>
+      <view class="detail_info_view">上架时间：2017-03-27</view>
+      <view class="detail_info_view">下架时间：2027-03-16</view>
+      <view class="detail_info_view">商品条码：2209590002663</view>
+      <view class="clear"></view>
+    </swiper-item>
+  </swiper>
+  <view class="shop">
+    <image src="../../../images/image_none.png" mode="aspectFill"></image>
+    <view class="shop_name">店铺名称</view>
+    <view class="shop_goods">全部货品：105件</view>
+    <view class="clear"></view>
+  </view>
+  <view class="evaluate_button">评价</view>
+  <view class="evaluate_container">
+    商品评价(171)
+    <view class="evaluate_content">
+      <view class="evaluate_content_header">
+        <image src="../../../images/image_none.png" mode="aspectFill" class="client_tx" />
+        <view class="client_name">客户名称</view>
+        <view class="clear"></view>
+      </view>
+      <view class="evaluate_content_body">评价内容。。。。。。</view>
+      <view class="evaluate_content_footer">2017-02-16 颜色分类：藏蓝色 尺码：M</view>
+    </view>
+    <view class="evaluate_content">
+      <view class="evaluate_content_header">
+        <image src="../../../images/image_none.png" mode="aspectFill" class="client_tx" />
+        <view class="client_name">客户名称</view>
+        <view class="clear"></view>
+      </view>
+      <view class="evaluate_content_body">评价内容。。。。。。</view>
+      <view class="evaluate_content_footer">2017-02-16 颜色分类：藏蓝色 尺码：M</view>
+    </view>
+  </view>
+</view>
+<view class="shopping_cart_container">
+  <navigator url="../shoppingcard/shoppingcard" class="shopping_cart">购物车</navigator>
+  <view class="shopping_cart active_red" bindtap="join">加入购物车</view>
+</view>
+
+<!--加入购物车-->
+<view class="join"></view>
+<view class="modal_cover" bindtap="modal_close" animation="{{modal_opacity}}" style="display:{{modal}};"></view>
+<view class="modal" style="top:{{modal_top}};bottom:{{modal_bottom}};">
+  <scroll-view scroll-y="true">
+    <view style="padding:10px;">
+      <view class="goods_container">
+        <image src="../../../images/image_none.png" mode="aspectFill" class="goods_image" />
+        <view class="goods_name">621报喜鸟11 2017春 打底裤 适中紫</view>
+        <view class="clear"></view>
+      </view>
+      <view class="goods_container">
+        <view class="goods_title">尺码类型</view>
+        <view class="goods_check {{sizes == '1' ? 'goods_checked' : ''}}" bindtap="sizes_checked" data-sizes="1">选尺码</view>
+        <view class="goods_check {{sizes == '2' ? 'goods_checked' : ''}}" bindtap="sizes_checked" data-sizes="2">选尺码</view>
+        <view class="clear"></view>
+      </view>
+      <view class="goods_container">
+        <view class="goods_title">颜色分类</view>
+        <view class="goods_check {{color == '1' ? 'goods_checked' : ''}}" bindtap="color_checked" data-color="1">选颜色</view>
+        <view class="goods_check {{color == '2' ? 'goods_checked' : ''}}" bindtap="color_checked" data-color="2">选颜色</view>
+        <view class="goods_check {{color == '3' ? 'goods_checked' : ''}}" bindtap="color_checked" data-color="3">选颜色</view>
+        <view class="clear"></view>
+      </view>
+      <view class="goods_container">
+        <view class="goods_title">尺码</view>
+        <view class="goods_check {{size == '1' ? 'goods_checked' : ''}}" bindtap="size_checked" data-size="1">XXS</view>
+        <view class="goods_check {{size == '2' ? 'goods_checked' : ''}}" bindtap="size_checked" data-size="2">44</view>
+        <view class="goods_check {{size == '3' ? 'goods_checked' : ''}}" bindtap="size_checked" data-size="3">38</view>
+        <view class="clear"></view>
+      </view>
+      <view class="goods_price"><text style="color:#000000;">零售价：</text>639.6元</view>
+      <view class="goods_number">
+        <view class="goods_number_view subtract">-</view>
+        <view class="goods_number_view number">1</view>
+        <view class="goods_number_view add">+</view>
+        <view class="goods_number_text">件数</view>
+        <view class="clear"></view>
+      </view>
+    </view>
+  </scroll-view>
+  <view class="modal_close" bindtap="modal_close">×</view>
+  <button class="modal_submit">确定</button>
+</view>
