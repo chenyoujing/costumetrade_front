@@ -134,7 +134,6 @@ Page({
           unit: res.data.data.unitList,
           size: res.data.data.productSize,
         })
-        console.log(res.data.data.brandList)
       },
       fail: function () {
         wx.hideNavigationBarLoading()
@@ -405,13 +404,8 @@ Page({
       screen: "",
       screen_content_height: "-270px",
     })
-    var animation = wx.createAnimation({
-      duration: 300,
-      timingFunction: 'ease',
-    })
-    animation.opacity(0).step()
     this.setData({
-      screen_opacity: animation.export(),
+      screen_opacity: util.opacity(0),
     })
     setTimeout(() => {
       this.setData({
@@ -433,13 +427,8 @@ Page({
           screen_content_height: "30px",
         })
       } else {
-        var animation = wx.createAnimation({
-          duration: 300,
-          timingFunction: 'ease',
-        })
-        animation.opacity(0).step()
         that.setData({
-          screen_opacity: animation.export(),
+          screen_opacity: util.opacity(1),
           screen: "",
           screen_content_height: "-270px",
         })
@@ -496,23 +485,13 @@ Page({
     this.setData({
       screen_display: "block",
     })
-    var animation = wx.createAnimation({
-      duration: 300,
-      timingFunction: 'ease',
-    })
-    animation.opacity(1).step()
     this.setData({
-      screen_opacity: animation.export()
+      screen_opacity: util.opacity(1)
     })
   },
   screen_close: function () {
-    var animation = wx.createAnimation({
-      duration: 300,
-      timingFunction: 'ease',
-    })
-    animation.opacity(0).step()
     this.setData({
-      screen_opacity: animation.export(),
+      screen_opacity: util.opacity(0),
       screen: "",
       screen_content_height: "-270px",
     })
@@ -546,23 +525,13 @@ Page({
     this.setData({
       modal: "block",
     })
-    var animation = wx.createAnimation({
-      duration: 300,
-      timingFunction: 'ease',
-    })
-    animation.opacity(1).step()
     this.setData({
-      modal_opacity: animation.export()
+      modal_opacity: util.opacity(1)
     })
   },
   modal_close: function () {
-    var animation = wx.createAnimation({
-      duration: 300,
-      timingFunction: 'ease',
-    })
-    animation.opacity(0).step() 
     this.setData({
-      modal_opacity: animation.export()
+      modal_opacity: util.opacity(0)
     })
     setTimeout(() => {
       this.setData({
@@ -635,23 +604,13 @@ Page({
     this.setData({
       producttype_modal: "block",
     })
-    var animation = wx.createAnimation({
-      duration: 300,
-      timingFunction: 'ease',
-    })
-    animation.opacity(1).step()
     this.setData({
-      producttype_modal_opacity: animation.export()
+      producttype_modal_opacity: util.opacity(1)
     })
   },
   producttype_modal_close: function () {
-    var animation = wx.createAnimation({
-      duration: 300,
-      timingFunction: 'ease',
-    })
-    animation.opacity(0).step()
     this.setData({
-      producttype_modal_opacity: animation.export()
+      producttype_modal_opacity: util.opacity(0)
     })
     setTimeout(() => {
       this.setData({
@@ -1028,8 +987,8 @@ Page({
     console.log(e.detail.value.retailprice)//第三单价
     console.log(e.detail.value.purchaseprice)//进货价
     console.log(e.detail.value.tagprice)//吊牌价
-    console.log(this.data.screen_content1[this.data.producttype_index].id)//商品品牌
-    console.log(this.data.screen_content2[this.data.brand_index].id)//商品种类
+    console.log(this.data.screen_content1[this.data.producttype_index].id)//商品种类
+    console.log(this.data.screen_content2[this.data.brand_index].id)//商品品牌
     //图片
     console.log(e.detail.value.unit)//单位
     //颜色

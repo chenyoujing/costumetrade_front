@@ -185,8 +185,6 @@ Page({
     })
   },
   account: function (e) {
-    var that = this
-    let data = e.target.dataset
     this.setData({
       account: "0",
     })
@@ -197,9 +195,8 @@ Page({
     })
   },
   accounttype: function (e) {
-    var that = this
     let data = e.target.dataset
-    that.setData({
+    this.setData({
       accounttype: data.accounttype
     })
   },

@@ -77,7 +77,6 @@
     </view>
   </view>
   <scroll-view scroll-y style="max-height:{{scroll_height}}px" class="content">
-    <view style="padding:10px;" wx:for="{{product}}" wx:key="{{id}}">
       <view class="content_container">
         <image src="{{item.image ? item.image : '../../../images/image_none.png'}}" mode="aspectFill" />
         <view class="content_container_text">
@@ -96,7 +95,6 @@
         </view>
         <view class="clear"></view>
       </view>
-    </view>
   </scroll-view>
 </view>
 
@@ -116,7 +114,6 @@
     <view class="th th1">编辑</view>
   </view>
   <scroll-view scroll-y="true">
-    <block wx:for="{{product_upload}}" wx:key="id">
       <view class="tr tr1">
         <view class="td th1">{{index+1}}</view>
         <view class="td th2">{{item.name}}</view>
@@ -127,7 +124,6 @@
         <view class="td th1" bindtap="upload" data-id="{{item.productid}}">删除</view>
         <view class="clear"></view>
       </view>
-    </block>
   </scroll-view>
   <button class="modal_submit">保存</button>
 </view>

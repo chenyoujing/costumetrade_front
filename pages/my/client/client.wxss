@@ -130,7 +130,7 @@ button::after{
 .client_button2{
   right: 80px;
 }
-.client_add{
+.slide{
   position: fixed;
   top: 100%;
   left: 0;
@@ -140,7 +140,7 @@ button::after{
   z-index: 9;
   transition: all 0.5s;
 }
-.client_add_title{
+.slide_title{
   background-color: #52CAC1;
   font-size: 16px;
   line-height: 24px;
@@ -148,7 +148,7 @@ button::after{
   color: #ffffff;
   text-align: center;
 }
-.client_add_close{
+.slide_close{
   position: absolute;
   top: 0;
   right: 10px;

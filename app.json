@@ -1,14 +1,13 @@
 {
   "pages":[
     "pages/mall/mall",
-    "pages/mall/shoppingcard/shoppingcard",
+    "pages/index/index","pages/mall/shoppingcard/shoppingcard",
     "pages/mall/goods_detail/goods_detail",
     "pages/my/dictionary/dictionary",
     "pages/my/order/order",
     "pages/my/client/client",
     "pages/my/Goods/Goods",
-    "pages/my/openOrder/openOrder",
-    "pages/index/index"
+    "pages/my/openOrder/openOrder"
   ],
   "window":{
     "backgroundTextStyle":"light",

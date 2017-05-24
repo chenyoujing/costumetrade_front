@@ -25,7 +25,19 @@ function toDate(number) {
   var D = date.getDate() < 10 ? '0' + date.getDate() : date.getDate();
   return (Y + M + D)
 }
+
+//透明度变化
+function opacity(num) {
+  var animation = wx.createAnimation({
+    duration: 300,
+    timingFunction: 'ease',
+  })
+  animation.opacity(num).step()
+  return animation.export()
+}
+
 module.exports = {
   formatTime: formatTime,
-  toDate: toDate
+  toDate: toDate,
+  opacity: opacity,
 }

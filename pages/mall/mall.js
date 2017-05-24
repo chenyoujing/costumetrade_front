@@ -21,7 +21,7 @@ Page({
     wx.getSystemInfo({
       success: function (res) {
         that.setData({
-          height: res.windowHeight
+          'height.aa': res.windowHeight
         })
       }
     })

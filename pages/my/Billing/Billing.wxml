@@ -1,4 +1,3 @@
-<!--pages/my/Goods/Goods.wxml-->
 <view style="overflow:hidden; min-height:100vh;">
   <view class="title">
     <form bindsubmit="search">
