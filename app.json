@@ -1,12 +1,16 @@
 {
   "pages":[
+    "pages/my/Goods/Goods",
+    "pages/my/Goodstock/Goodstock",
     "pages/my/dictionary/dictionary",
     "pages/my/order/order",
     "pages/my/client/client",
-    "pages/my/Goods/Goods",
     "pages/my/openOrder/openOrder",
     "pages/index/index",
-    "pages/my/GoodsInfo/GoodsInfo"
+    "pages/my/GoodsInfo/GoodsInfo",
+    "pages/mall/mall",
+    "pages/mall/shoppingcard/shoppingcard",
+    "pages/mall/goods_detail/goods_detail"
   ],
   "window":{
     "backgroundTextStyle":"light",
@@ -17,21 +21,36 @@
   "tabBar": {
     "list": [
       {
-        "pagePath": "pages/my/dictionary/dictionary",
-        "text": "设置"
-      },
-      {
         "pagePath": "pages/my/order/order",
-        "text": "开单"
-      },
-      {
-        "pagePath": "pages/my/client/client",
-        "text": "客户"
+        "text": "开单",
+        "iconPath": "images/order.png",
+        "selectedIconPath": "images/order.png"
       },
       {
         "pagePath": "pages/my/Goods/Goods",
-        "text": "货品"
+        "text": "货品",
+        "iconPath": "images/goods.png",
+        "selectedIconPath": "images/goods.png"
+      },
+      {
+        "pagePath": "pages/my/client/client",
+        "text": "客户",
+        "iconPath": "images/customer.png",
+        "selectedIconPath": "images/customer.png"
+      },
+      {
+        "pagePath": "pages/my/dictionary/dictionary",
+        "text": "设置",
+        "iconPath": "images/form.png",
+        "selectedIconPath": "images/form.png"
+      },
+      {
+        "pagePath": "pages/mall/mall",
+        "text": "商城",
+        "iconPath": "images/my.png",
+        "selectedIconPath": "images/my.png"
       }
-    ]
+    ],
+    "selectedColor": "#52CAC1"
   }
 }
