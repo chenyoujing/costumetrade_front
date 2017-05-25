@@ -17,27 +17,27 @@
   color: #ffffff;
   text-align: center;
 }
-.upload_close{
+.image_close{
   position: absolute;
   top: 0;
-  right: 10px;
-  color: #ffffff;
-  font-size: 32px;
-  line-height: 40px;
+  right: 0;
+  width: 16px;
+  height: 16px;
+  padding: 12px 10px;
 }
-.upload scroll-view{
+.upload_container{
   position: absolute;
   top: 40px;
   bottom: 40px;
 }
 .upload_input{
-  padding: 10px 30px 0;
+  padding: 0 10px 10px;
 }
-.upload_input:last-child{
-  margin-bottom: 10px;
+.upload_input:first-child{
+  padding-top: 15px;
 }
 .upload_input_text{
-  width: 30%;
+  width: 20%;
   float: left;
   text-align: center;
   font-size: 14px;
@@ -46,7 +46,7 @@
 .upload_input1,.upload_input2{
   border: 1px solid #52CAC1;
   font-size: 14px;
-  padding-left: 7px; 
+  padding: 0 7px; 
   height: 28px;
 }
 .upload_input2{
@@ -55,8 +55,7 @@
 .upload_input > picker{
   border: 1px solid #52CAC1;
   height: 28px;
-  margin-right: 70px;
-  margin-left: 30%;
+  margin-left: 20%;
   text-align: center;
   width: auto;
   font-size: 14px;
@@ -73,8 +72,64 @@
   padding: 0;
   color: #ffffff;
 }
+.required{
+  position: relative;
+  padding-right: 20px;
+}
+.required::after{
+  content: "*";
+  color: #ff0000;
+  position: absolute;
+  right: 10px;
+  top: 0;
+  font-size: 20px;
+  line-height: 30px;
+}
+.picker_checkbox{
+  text-align: center;
+  font-size: 14px;
+}
+.picker_title{
+  background-color: #52CAC1;
+  line-height: 33px;
+  color: #ffffff;
+}
+.picker_container{
+  box-sizing: border-box;
+  width: 100%;
+  height: 100px; 
+  border: 1px solid #52CAC1;
+}
+.picker_container picker-view-column{
+  height: 98px;
+}
+.picker_content{
+  line-height: 33px;
+}
+.picker_content_view{
+  display: inline-block;
+  width: 25%;
+  text-align: center;
+  font-size: 12px;
+}
+.image_container{
+  height: 80px;
+  padding-right: 70px;
+  width: auto;
+  white-space: nowrap;
+}
+.image_content{
+  height: 78px;
+  width: 78px;
+  margin-right: 10px;
+  border: 1px solid #52CAC1;
+  display: inline-block;
+}
+.image_search{
+  margin-top: 20px;
+}
 .radio-group{
-  margin-left: 30%;
+  margin-left: 20%;
 }
 .radio{
   font-size: 14px;
@@ -82,7 +137,7 @@
   display: inline-block;
   text-align: center;
 }
-.radio radio{
+radio,checkbox{
   zoom: 80%;
 }
 .submit{

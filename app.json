@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/my/Goods/GoodsImage/GoodsImage",
     "pages/grid/shop/shop",
     "pages/grid/order/order",
     "pages/grid/user/user",
@@ -12,6 +13,8 @@
     "pages/index/index",
     "pages/my/Goods/GoodsInfo/GoodsInfo",
     "pages/my/Goods/GoodsBrand/GoodsBrand",
+    "pages/my/Goods/GoodsSize/GoodsSize",
+    "pages/my/Goods/GoodsColor/GoodsColor",
     "pages/my/Goods/GoodsType/GoodsType",
     "pages/my/Goods/Goodscodes/Goodscodes",
     "pages/my/Goods/Goodstock/Goodstock",
@@ -36,8 +39,8 @@
       {
         "pagePath": "pages/grid/order/order",
         "text": "我的订单",
-        "iconPath": "images/goods.png",
-        "selectedIconPath": "images/goods.png"
+        "iconPath": "images/order.png",
+        "selectedIconPath": "images/order.png"
       },
       {
         "pagePath": "pages/grid/user/user",
@@ -45,6 +48,7 @@
         "iconPath": "images/customer.png",
         "selectedIconPath": "images/customer.png"
       }
-    ]
+    ],
+    "selectedColor": "#52CAC1"
   }
 }

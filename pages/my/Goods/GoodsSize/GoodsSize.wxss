@@ -113,7 +113,7 @@
 }
 .modal2_content{
   position: absolute;
-  top: 118px;
+  top: 84px;
   left: 0;
   right: 0;
   bottom: 0;
