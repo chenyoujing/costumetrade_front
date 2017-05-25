@@ -2,48 +2,48 @@
 <!--货品详情-->
 <view class="upload" style="top:{{upload}}; bottom:-{{upload}};">
   <view class="upload_title">货品详情</view>
-  <!--<view class="upload_close" bindtap="close">×</view>-->
+  <view class="upload_close" bindtap="close">×</view>
   <form class="upload_content" bindsubmit="upload_submit" data-id="{{id}}">
     <scroll-view scroll-y="true">
       <view class="upload_input">
         <view class="upload_input_text">*名称：</view>
-        <input type="text" class="upload_input1" name="name" value="{{name}}" />
+        <input type="text" class="upload_input1" name="name0" value="{{updata_name}}" />
         <view class="clear"></view>
       </view>
       <view class="upload_input">
         <view class="upload_input_text">*货号：</view>
-        <input type="number" class="upload_input1" name="code"  value="{{code}}"/>
+        <input type="number" class="upload_input1" name="code"  value="{{updata_code}}"/>
         <view class="clear"></view>
       </view>
       <view class="upload_input">
         <view class="upload_input_text">第一单价：</view>
-        <input type="digit" class="upload_input1" name="wholeprice" value="{{wholeprice}}" />
+        <input type="digit" class="upload_input1" name="wholeprice" value="{{updata_wholeprice}}" />
         <view class="clear"></view>
       </view>
       <view class="upload_input">
         <view class="upload_input_text">第二单价：</view>
-        <input type="digit" class="upload_input1" name="packprice" value="{{packprice}}" />
+        <input type="digit" class="upload_input1" name="packprice" value="{{updata_packprice}}" />
         <view class="clear"></view>
       </view>
       <view class="upload_input">
         <view class="upload_input_text">第三单价：</view>
-        <input type="digit" class="upload_input1" name="retailprice" value="{{retailprice}}" />
+        <input type="digit" class="upload_input1" name="retailprice" value="{{updata_retailprice}}" />
         <view class="clear"></view>
       </view>
       <view class="upload_input">
         <view class="upload_input_text">进货价：</view>
-        <input type="digit" class="upload_input1" name="purchaseprice" value="{{purchaseprice}}" />
+        <input type="digit" class="upload_input1" name="purchaseprice" value="{{updata_purchaseprice}}" />
         <view class="clear"></view>
       </view>
       <view class="upload_input">
         <view class="upload_input_text">吊牌价：</view>
-        <input type="digit" class="upload_input1" name="tagprice" value="{{tagprice}}" />
+        <input type="digit" class="upload_input1" name="tagprice" value="{{updata_tagprice}}" />
         <view class="clear"></view>
       </view>
       <view class="upload_input">
         <view class="upload_input_text">*商品品牌：</view>
         <button class="upload_input_button" bindtap="brand">添加</button>
-        <picker bindchange="brandPicker" value="{{brand_index}}" range="{{content2}}" range-key="brandname">
+        <picker bindchange="brandPicker" value="{{brand_index}}" range="{{screen_content2}}" range-key="brandname">
             <text>{{screen_content2[brand_index].brandname}}</text>
         </picker>
         <view class="clear"></view>
@@ -277,10 +277,3 @@
 </view>
 
 
-<!--更多功能-->
-<view class="more_function_cover" bindtap="more_function_close" style="display:{{more_function}};"></view>
-<view class="more_function" animation="{{more_function_opacity}}" style="display:{{more_function}};">
-  <view class="more_function_view">批量删除</view>
-  <view class="more_function_view">分享图片</view>
-  <view class="more_function_view">推广新品</view>
-</view>
