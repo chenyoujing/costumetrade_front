@@ -78,9 +78,6 @@ Page({
   },
 // 点击更多执行方法
   more:function () {
-    if (!app.getProductInit){
-      util.api.getProductInit();
-    }
     this.setData({
       screen_content1: app.screen_content1,
       screen_content2: app.screen_content2,
@@ -184,5 +181,6 @@ Page({
   },
   onLoad() {
     this.page_request();
+    util.api.getProductInit();
   }
 });
