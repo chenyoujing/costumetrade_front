@@ -246,6 +246,7 @@ input{
   color: #ffffff;
 }
 .keyboard_top{
+  height: 24px;
   background-color: #ffffff;
   float: left;
   margin: 2px;
