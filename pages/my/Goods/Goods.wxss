@@ -14,7 +14,7 @@
   height:27px;
   min-height:27px;
 }
-icon,.title button{
+.image_search,.image_add,.image_more{
   position: absolute;
   top: 0;
   right: 25%;
@@ -24,7 +24,13 @@ icon,.title button{
   width: 16px;
   height: 16px;
   z-index: 3;
-  padding: 15px;
+  padding: 10px;
+}
+.image_add{
+  right: 10%;
+}
+.image_more{
+  right: 0%;
 }
 .title button{
   width: 50px;
@@ -60,6 +66,13 @@ button::after{
 .sort_text{
   width: 30%;
 }
+.sort_text .image_down{
+  width: 10px;
+  height: 10px;
+}
+.screen_active .sort_up{
+  transform:rotate(180deg);
+}
 .more{
   width: 10%;
 }
@@ -87,7 +100,13 @@ button::after{
   line-height: 30px;
 }
 .screen_text{
-  width: 22.5%;
+  width: 23%;
+}
+.screen_text .image_down{
+  width: 10px;
+  height: 10px;
+  transform:rotate(-90deg);
+  transition: all 0.2s;
 }
 .screen_content{
   position: absolute;
@@ -115,6 +134,11 @@ button::after{
 .screen_active{
   background: #ffffff;
 }
+.screen_active .screen_image{
+  transform:rotate(0deg);
+}
+
+
 .screen_reset,.screen_submit{
   display: inline-block;
   position: absolute;
@@ -141,7 +165,19 @@ button::after{
   right: 0;
 }
 .back{
-  width: 10%;
+  width: 8%;
+  position: relative;
+  height: 30px;
+}
+.image_back{
+  width: 16px;
+  height: 16px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
 }
 .content{
   box-sizing: border-box;
@@ -164,14 +200,15 @@ button::after{
   bottom: 0;
   padding: 5px;
 }
-.content_container_text > image{
-  width: 20px;
-  height: 20px;
+.image_update{
+  width: 16px;
+  height: 16px;
+  padding: 5px 10px;
   float: right;
 }
 .content_container_title{
   font-size: 14px;
-  padding: 10px 5px;
+  padding: 0 5px 10px;
   word-break:keep-all;
   white-space:nowrap;
   overflow:hidden;
@@ -526,8 +563,8 @@ button::after{
   top: 65px;
   right: 0;
   background-color: #ffffff;
-  box-shadow: 0 0 3px #000000;
-  opacity: 0;
+  box-shadow: 0.5px 0.5px 3px #000000;
+  opacity: 1;
   z-index: 11;
 }
 .more_function::before{
@@ -535,7 +572,7 @@ button::after{
   width: 0;
   height: 0;
   position: fixed;
-  right: 3%;
+  right: 8px;
   top: 35px;
   border: solid #ffffff; 
   border-width: 15px 10px; 
