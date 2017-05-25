@@ -1,0 +1,9 @@
+<view class="modal2_cover" bindtap="brand_modal_close" animation="{{brand_modal_opacity}}" style="display:{{brand_modal}};"></view>
+<view class="modal2" animation="{{brand_modal_opacity}}" style="display:{{brand_modal}};">
+  <view class="modal_header">搜索图片</view>
+  <image src="../../../images/close.png" mode="aspectFit" class="image_close" />
+  <view class="search">
+    <input class="title_input" type="text" name="search" placeholder="货号" bindinput="bindKeyInput" />
+    <image mode="aspectFit" src="../../../images/search.png" class="image_search" />
+  </view>
+</view>

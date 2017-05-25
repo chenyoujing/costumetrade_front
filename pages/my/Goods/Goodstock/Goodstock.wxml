@@ -1,0 +1,32 @@
+<!--盘点库存模态框-->
+<view class="modal_cover" bindtap="modal_close" animation="{{modal_opacity}}" style="display:{{modal}};"></view>
+<view class="modal" animation="{{modal_opacity}}" style="display:{{modal}};">
+  <view class="modal_header">盘点库存</view>
+  <image src="../../../images/close.png" mode="aspectFit" class="image_close" />
+  <image src="../../../images/customer_service.png" mode="aspectFit" class="image_service" />
+  <image src="../../../images/update.png" mode="aspectFit" class="image_update" />
+  <view class="tr bg-w">
+    <view class="th th1">序号</view>
+    <view class="th th2">名称</view>
+    <view class="th th1">数量</view>
+    <view class="th th2">颜色</view>
+    <view class="th th1">尺码</view>
+    <view class="th th2">单价(元)</view>
+    <view class="th th1">编辑</view>
+  </view>
+  <scroll-view scroll-y="true">
+    <block wx:for="['1']" wx:key="id">
+      <view class="tr tr1">
+        <view class="td th1">{{index+1}}</view>
+        <view class="td th2">2{{item.name}}</view>
+        <view class="td th1">3{{item.stocknum}}</view>
+        <view class="td th2">4{{item.productcolor}}</view>
+        <view class="td th1">5{{item.productsize}}</view>
+        <view class="td th2">6{{item.productPrice}}</view>
+        <view class="td th1 change" bindtap="upload" data-id="{{item.productid}}">更改</view>
+        <view class="clear"></view>
+      </view>
+    </block>
+  </scroll-view>
+  <button class="modal_submit">保存</button>
+</view>

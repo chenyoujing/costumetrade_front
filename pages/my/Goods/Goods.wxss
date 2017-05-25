@@ -5,8 +5,8 @@
   z-index: 3;
 }
 .title_input{
-  margin-right: 20%;
-  margin-left: 2%; 
+  margin-right: 82px;
+  margin-left: 10px; 
   background-color: #ffffff;
   font-family: Microsoft YaHei;
   padding: 4px 10px;
@@ -17,7 +17,6 @@
 .image_search,.image_add,.image_more{
   position: absolute;
   top: 0;
-  right: 25%;
   bottom: 0;
   margin: auto;
   background-color: transparent;
@@ -26,11 +25,15 @@
   z-index: 3;
   padding: 10px;
 }
+.image_search{
+  right: 102px;
+}
 .image_add{
-  right: 10%;
+  right: 36px;
+  padding: 10px 20px;
 }
 .image_more{
-  right: 0%;
+  right: 0;
 }
 .title button{
   width: 50px;
@@ -267,13 +270,13 @@ button::after{
   padding: 8px;
   text-align: center;
 }
-.modal_close{
+.image_close{
   position: absolute;
   top: 0;
-  right: 10px;
-  color: #000000;
-  font-size: 32px;
-  line-height: 40px;
+  right: 0;
+  width: 16px;
+  height: 16px;
+  padding: 12px 10px;
 }
 .tr {
   display: inline-block;
@@ -357,14 +360,15 @@ button::after{
   color: #ffffff;
   text-align: center;
 }
-.upload_close{
+.image_close{
   position: absolute;
   top: 0;
-  right: 10px;
-  color: #ffffff;
-  font-size: 32px;
-  line-height: 40px;
+  right: 0;
+  width: 16px;
+  height: 16px;
+  padding: 12px 10px;
 }
+
 .upload scroll-view{
   position: absolute;
   top: 40px;

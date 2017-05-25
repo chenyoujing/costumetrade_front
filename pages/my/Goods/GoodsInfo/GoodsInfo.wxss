@@ -1,0 +1,274 @@
+/*货品详情*/
+.upload{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ffffff;
+  z-index: 9;
+  transition: all 0.5s;
+}
+.upload_title{
+  background-color: #52CAC1;
+  font-size: 16px;
+  line-height: 24px;
+  padding: 8px;
+  color: #ffffff;
+  text-align: center;
+}
+.image_close{
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 16px;
+  height: 16px;
+  padding: 12px 10px;
+}
+.upload_container{
+  position: absolute;
+  top: 40px;
+  bottom: 40px;
+}
+.upload_input{
+  padding: 0 10px 10px;
+}
+.upload_input:first-child{
+  padding-top: 15px;
+}
+.upload_input_text{
+  width: 20%;
+  float: left;
+  text-align: center;
+  font-size: 14px;
+  line-height: 30px;
+}
+.upload_input1,.upload_input2{
+  border: 1px solid #52CAC1;
+  font-size: 14px;
+  padding: 0 7px; 
+  height: 28px;
+}
+.upload_input2{
+  margin-right: 70px;
+}
+.upload_input > picker{
+  border: 1px solid #52CAC1;
+  height: 28px;
+  margin-left: 20%;
+  text-align: center;
+  width: auto;
+  font-size: 14px;
+  line-height: 28px;
+}
+.upload_input_button{
+  width: 60px;
+  float: right;
+  font-size: 16px;
+  border-radius: 0;
+  background-color: #52CAC1;
+  line-height: 30px;
+  text-align: center;
+  padding: 0;
+  color: #ffffff;
+}
+.required{
+  position: relative;
+  padding-right: 20px;
+}
+.required::after{
+  content: "*";
+  color: #ff0000;
+  position: absolute;
+  right: 10px;
+  top: 0;
+  font-size: 20px;
+  line-height: 30px;
+}
+.picker_checkbox{
+  text-align: center;
+  font-size: 14px;
+}
+.picker_title{
+  background-color: #52CAC1;
+  line-height: 33px;
+  color: #ffffff;
+}
+.picker_container{
+  box-sizing: border-box;
+  width: 100%;
+  height: 100px; 
+  border: 1px solid #52CAC1;
+}
+.picker_container picker-view-column{
+  height: 98px;
+}
+.picker_content{
+  line-height: 33px;
+}
+.picker_content_view{
+  display: inline-block;
+  width: 25%;
+  text-align: center;
+  font-size: 12px;
+}
+.image_container{
+  height: 80px;
+  padding-right: 70px;
+  width: auto;
+  white-space: nowrap;
+}
+.image_content{
+  height: 78px;
+  width: 78px;
+  margin-right: 10px;
+  border: 1px solid #52CAC1;
+  display: inline-block;
+}
+.image_search{
+  margin-top: 20px;
+}
+.radio-group{
+  margin-left: 20%;
+}
+.radio{
+  font-size: 14px;
+  width: 25%;
+  display: inline-block;
+  text-align: center;
+}
+radio,checkbox{
+  zoom: 80%;
+}
+.submit{
+  font-size: 16px;
+  border-radius: 0;
+  background-color: #52CAC1;
+  line-height: 30px;
+  text-align: center;
+  padding: 0;
+  position: absolute;
+  width: 100px;
+  bottom: 5px;
+  left: 0;
+  right: 0;
+  margin: auto;
+  color: #ffffff;
+}
+
+/*模态框2//添加种类*/
+.modal2_cover{
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.2);
+  z-index: 98;
+  opacity: 0;
+  display: none;
+}
+.modal2_title{
+  background-color: #52CAC1;
+  position: relative;
+}
+.modal2_titleText{
+  width: 25%;
+  float: left;
+}
+.modal2_title_text{
+  color: #ffffff;
+  font-size: 14px;
+  line-height: 24px;
+  height: 24px;
+  margin-top: 10px; 
+  text-align: center;
+}
+.modal2_title_text:last-child{
+  margin-bottom: 10px; 
+}
+.modal2_titleInput{
+  width: 50%;
+  float: left;
+}
+.modal2_title_input{
+  box-sizing: border-box;
+  background-color: #ffffff;
+  font-size: 14px;
+  line-height: 24px;
+  height: 24px;
+  min-height: 24px;
+  margin-top: 10px; 
+  padding-left: 8px;
+}
+.modal2_title_input:last-child{
+  margin-bottom: 10px; 
+}
+.modal2_titleButton{
+  width: 25%;
+  float: left;
+}
+.modal2_title_add{
+  width: 30px;
+  height: 30px;
+  font-size: 30px;
+  position: absolute;
+  top: 0;
+  left: 75%;
+  right: 12.5%;
+  bottom: 0;
+  margin: auto;
+  line-height:30px;
+  color: #ffffff;
+}
+.hover{
+  background-color: transparent;
+}
+.modal2_title_delete{
+  width: 30px;
+  height: 30px;
+  font-size: 30px;
+  position: absolute;
+  top: 0;
+  left: 87.5%;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  line-height:30px;
+  color: #ffffff;
+}
+.modal2_content{
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+.modal2_content_option{
+  box-sizing: border-box;
+  float: left;
+  width: 50%;
+  padding: 5px;
+  font-size: 14px;
+  word-break:keep-all;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+.modal2_content_option > radio{
+  zoom: 80%;
+  margin: 0 10px;
+  float: left;
+}
+.modal2{
+  position: absolute;
+  top: 0;
+  left: 10%;
+  right: 10%;
+  bottom: 0;
+  height: 300px;
+  margin: auto;
+  background-color: #ffffff;
+  z-index: 99;
+  opacity: 0;
+  display: none;
+}

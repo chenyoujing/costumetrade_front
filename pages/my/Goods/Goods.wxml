@@ -99,7 +99,10 @@
       <view class="content_container">
         <image src="{{item.image ? item.image : '../../../images/image_none.png'}}" mode="aspectFill" />
         <view class="content_container_text">
-          <image src="../../../images/update.png" mode="aspectFit" class="image_update" bindtap="stock" data-storeid="{{item.storeId}}" data-id="{{item.id}}"/>
+          <navigator url="../Goodstock/Goodstock?ID={{item.id}}" style="float:right;">
+            <image src="../../../images/update.png" mode="aspectFit" class="image_update" bindtap="stock" data-storeid="{{item.storeId}}" data-id="{{item.id}}" /><view class="clear">
+            </view>
+          </navigator>
           <view class="clear"></view>
           <view class="content_container_title">{{item.name}}</view>
           <view class="content_container_info">
