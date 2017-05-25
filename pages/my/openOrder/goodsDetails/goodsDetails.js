@@ -1,4 +1,4 @@
-// pages/my/Goods/GoodsBrand/GoodsBrand.js
+// pages/my/openOrder/goodsDetails/goodsDetails.js
 Page({
 
   /**

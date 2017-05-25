@@ -106,7 +106,7 @@
           <view class="clear"></view>
           <view class="content_container_title">{{item.name}}</view>
           <view class="content_container_info">
-            <navigator url="../GoodsInfo/GoodsInfo?ID={{item.id}}" hover-class="navigator-hover">
+            <navigator url="../Goods/GoodsInfo/GoodsInfo?ID={{item.id}}" hover-class="navigator-hover">
               <view class="price">{{item.price}}</view>
             </navigator>
             <view class="info_other">

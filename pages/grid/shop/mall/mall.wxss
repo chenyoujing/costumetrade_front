@@ -1,0 +1,216 @@
+.title{
+  background-color: #52CAC1;
+  padding: 15px 20px;
+  position: relative;
+  z-index: 3;
+}
+.title_input{
+  margin-right: 10%;
+  margin-left: 2%; 
+  background-color: #ffffff;
+  font-family: Microsoft YaHei;
+  padding: 4px 10px;
+  font-size: 14px;
+  height:27px;
+  min-height:27px;
+}
+icon,.title button{
+  position: absolute;
+  top: 0;
+  right: 15%;
+  bottom: 0;
+  margin: auto;
+  background-color: transparent;
+  width: 16px;
+  height: 16px;
+  z-index: 3;
+  padding: 15px;
+}
+.title button{
+  width: 50px;
+  height: 50px;
+  padding: 0;
+}
+.title button icon{
+  left: 0;
+  right: 0;
+  padding: 15px;
+}
+button::after{
+  content: none;
+}
+.client_add{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ffffff;
+  z-index: 9;
+  transition: all 0.5s;
+}
+.client_add_title{
+  background-color: #52CAC1;
+  font-size: 16px;
+  line-height: 24px;
+  padding: 8px;
+  color: #ffffff;
+  text-align: center;
+}
+.client_add_close{
+  position: absolute;
+  top: 0;
+  right: 10px;
+  color: #ffffff;
+  font-size: 32px;
+  line-height: 40px;
+  height: 40px;
+}
+.client_add scroll-view{
+  position: absolute;
+  top: 40px;
+  bottom: 40px;
+}
+.client_add_input{
+  padding: 10px 30px 0;
+}
+.client_add_city{
+  box-sizing: border-box;
+  border: 1px solid #52CAC1;
+  font-size: 14px;
+  padding-left: 7px; 
+  height: 28px;
+  width: 33.33333333%;
+  float: left;
+}
+.client_add_input:last-child{
+  padding-bottom: 10px;
+}
+.client_add_input:first-child{
+  padding-top: 40px;
+}
+.client_add_input_text{
+  width: 30%;
+  float: left;
+  text-align: center;
+  font-size: 14px;
+  line-height: 30px;
+}
+.client_add_input1,.client_add_input2{
+  border: 1px solid #52CAC1;
+  font-size: 14px;
+  padding-left: 7px; 
+  height: 28px;
+}
+.client_add_input2{
+  margin-right: 70px;
+}
+.client_add_input > picker{
+  border: 1px solid #52CAC1;
+  height: 28px;
+  margin-right: 70px;
+  margin-left: 30%;
+  text-align: center;
+  width: auto;
+  font-size: 14px;
+  line-height: 28px;
+}
+.client_add_input_button{
+  width: 60px;
+  float: right;
+  font-size: 16px;
+  border-radius: 0;
+  background-color: #52CAC1;
+  line-height: 30px;
+  text-align: center;
+  padding: 0;
+  color: #ffffff;
+}
+.submit{
+  font-size: 16px;
+  border-radius: 0;
+  background-color: #52CAC1;
+  line-height: 30px;
+  text-align: center;
+  padding: 0;
+  position: absolute;
+  width: 100px;
+  bottom: 5px;
+  left: 0;
+  right: 0;
+  margin: auto;
+  color: #ffffff;
+}
+
+.container{
+  float: left;
+  padding: 10px;
+  box-sizing:border-box;
+}
+.content_container{
+  box-shadow: 0.5px 0.5px 2px #000000;
+  position: relative;
+  border-radius: 3px;
+}
+.content_container > image{
+  width: 115px;
+  height: 115px;
+  float: left;
+}
+.content_container_text{
+  position: absolute;
+  top: 0;
+  left: 115px;
+  right: 0;
+  bottom: 0;
+  padding: 5px;
+}
+.content_container_text > image{
+  width: 20px;
+  height: 20px;
+  float: right;
+}
+.content_container_title{
+  font-size: 16px;
+  line-height: 20px;
+  padding: 15px 5px;
+  word-break:keep-all;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+.content_container_info{
+  border-top: 1px solid #000000;
+  padding: 10px 5px 10px 0;
+}
+.price{
+  color: #ff0000;
+  font-size: 20px;
+  line-height: 32px;
+  float: left;
+ }
+.price::before{
+  content: "￥"
+}
+.info_other{
+  float: right;
+}
+.volume,.date{
+  font-size: 12px;
+  line-height: 16px;
+  text-align: right;
+}
+.volume::before{
+  content: "销量："
+}
+
+.title_text{
+  color: #ffffff;
+  float: left;
+  width: 10%;
+  font-size: 16px;
+  line-height: 35px;
+  height: 35px;
+}
+
+

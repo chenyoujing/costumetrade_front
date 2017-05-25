@@ -1,20 +1,7 @@
-var util = require('../../../utils/util.js')
+var util = require('../../../../utils/util.js')
 var app = getApp()
 Page({
   data:{
-    picker_view: [
-      { name: '名字', price: '价格', discount: '折扣', profit: '毛利' },
-      { name: '名字', price: '价格', discount: '折扣', profit: '毛利' },
-      { name: '名字', price: '价格', discount: '折扣', profit: '毛利' },
-      { name: '名字', price: '价格', discount: '折扣', profit: '毛利' },
-      { name: '名字', price: '价格', discount: '折扣', profit: '毛利' },
-    ],
-    screen_content3: [
-      { name: 'SEASON_SPRING', value: '春' },
-      { name: 'SEASON_SUMMER', value: '夏' },
-      { name: 'SEASON_AUTUMN', value: '秋' },
-      { name: 'SEASON_WINTER', value: '冬' },
-    ],
     id:'',
     name:'',
     code:'',

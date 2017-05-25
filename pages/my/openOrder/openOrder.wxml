@@ -61,7 +61,9 @@
     {{id}}
   </scroll-view>
   <view class="openorder_input" style="bottom:{{keyboard_height*3 + 20}}px">
-    <view class="input_text" bindtap="order">买单</view>
+  <navigator url="url">
+   <view class="input_text" bindtap="order">买单</view>
+  </navigator>
     <input type="{{input_type}}" placeholder="货号" cursor-spacing="20" focus="{{input_foucs}}" confirm-hold  bindinput="input_change"/>
     <view class="input_text" bindtap="input_type_change">/</view>
     <view class="input_text">+</view>

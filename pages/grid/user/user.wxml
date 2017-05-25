@@ -1,0 +1,15 @@
+<navigator url="../../my/Goods/Goods">
+    <view class="classname">我的货品</view>
+</navigator>
+<navigator url="../../my/openOrder/openOrder">
+  <view class="classname">开单</view>
+</navigator>
+<navigator url="../../my/report/report">
+<view class="classname">报表</view>
+</navigator>
+<navigator url="../../my/client/client">
+<view class="classname">客户</view>
+</navigator>
+<navigator url="dictionary/dictionary">
+<view class="classname">设置</view>
+</navigator>

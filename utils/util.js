@@ -51,11 +51,11 @@ var api = {
         wx.hideNavigationBarLoading();
         app.screen_content1 = res.data.brandList;
         app.screen_content2 = res.data.productTypeList;
-        app.screen_content3 = that.data.screen_content3;
-        app.screen_content4 = that.data.screen_content4;
+        app.screen_content3 = res.data.screen_content3;
+        app.screen_content4 = res.data.screen_content4;
         app.screen_content5 = res.data.productSize,
         app.screen_content6 = res.data.priceNameList,
-        app.getProductInit = ture
+        app.getProductInit = true
         
       }
     })
