@@ -1,0 +1,260 @@
+.section{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+.openorder_title{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: #52CAC1;
+  padding: 15px 10px;
+  z-index: 1;
+}
+.title_number{
+  float: left;
+  font-size: 16px;
+  line-height: 24px;
+  height: 24px;
+  width: 20%;
+  text-align: center;
+}
+.title_number::before{
+  content: "数量:";
+  color: #ffffff;
+  font-size: 14px;
+  line-height: 24px;
+}
+.title_price{
+  float: left;
+  font-size: 16px;
+  line-height: 24px;
+  height: 24px;
+  width: 45%;
+  text-align: center;
+}
+.title_price::before{
+  content: "合计金额:";
+  color: #ffffff;
+  font-size: 14px;
+  line-height: 24px;
+}
+.title_supplier{
+  float: left;
+  font-size: 14px;
+  line-height: 24px;
+  height: 24px;
+  width: 30%;
+  text-align: center;
+  word-break:keep-all;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+.title_supplier > image{
+  float: left;
+  width: 24px;
+  height: 24px;
+  border-radius: 12px;
+}
+.title_more{
+  float: left;
+  font-size: 14px;
+  line-height: 24px;
+  height: 24px;
+  width: 5%;
+}
+.scroll_title{
+  position: fixed;
+  top: 54px;
+  left: 0;
+  right: 0;
+  background-color: #565157;
+  color: #ffffff;
+  height: 20px;
+  z-index: 1;
+  padding: 0;
+}
+.scroll_title view{
+  float: left;
+  font-size: 11px;
+  text-align: center;
+  line-height: 20px;
+  height: 20px;
+}
+scroll-view{
+  position: absolute;
+  top: 74px;
+  left: 0;
+  right: 0;
+}
+.order_view{
+  color: #ffffff;
+  border-bottom: 1px solid #ffffff;
+}
+.order_view view{
+  float: left;
+  font-size: 12px;
+  text-align: center;
+  line-height: 30px;
+  height: 30px;
+}
+.order_view .clear{
+  float: none;
+  height: 0;
+}
+
+.openorder_input{
+  box-sizing: border-box;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #DE8728;
+  padding: 10px;
+}
+input{
+  box-sizing: border-box;
+  width: 40%;
+  float: left;
+  background-color: #ffffff;
+  padding: 10px;
+  height: 44px;
+}
+.input_text{
+  box-sizing: border-box;
+  width: 20%;
+  float: left;
+  color: #ffffff;
+  padding: 10px;
+}
+
+.products_info{
+  height: 70px;
+  border-bottom: 1px solid #E5E5E5;
+  border-top: 1px solid #E5E5E5;
+  position: relative;
+}
+.products_info_image{
+  width: 70px;
+  height: 70px;
+  float: left;
+}
+.products_info_name{
+  float: left;
+  line-height: 70px;
+  padding-left: 10px;
+  font-size: 18px;
+}
+.products_info_price{
+  float: right;
+  line-height: 60px;
+  padding-right: 18px;
+  font-size: 18px;
+  color: #ff0000;
+}
+.products_info_price::after{
+  content: "元";
+  color: #000000;
+}
+.products_info_time{
+  position: absolute;
+  bottom: 8px;
+  right: 20px;
+  font-size: 12px;
+
+}
+
+.goods_buy{
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ffffff;
+}
+.goods_image{
+  float: left;
+}
+.goods_title{
+  background-color: #E5E5E5;
+  text-align: center;
+  font-size: 16px;
+  line-height: 20px;
+  padding: 10px 0;
+}
+.goods_check{
+  float: left;
+  position: absolute;
+  top: 40px;
+  left: 50%;
+  right: 0;
+  bottom: 0;
+  width: auto;
+}
+.goods_checkbox{
+  display: block;
+  padding: 10px 0;
+  text-align: center;
+  font-size: 16px;
+}
+.goods_checkbox checkbox{
+  position: absolute;
+  left: 15px;
+}
+
+
+/*键盘*/
+.keyboard{
+  padding: 4px;
+  background-color: #E5E5E5;
+  position: fixed;
+  bottom: 0;
+}
+.keyboard_view{
+  background-color: #ffffff;
+  box-shadow: 0 0 2px #999999;
+  float: left;
+  margin: 2px;
+  text-align: center;
+  font-size: 40px;
+}
+.keyboard_name{
+  box-sizing: border-box;
+  width: 50%;
+  float: left;
+  text-align: center;
+  font-size: 18px;
+  padding: 10px 0;
+  word-break:keep-all;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+.keyboard_join{
+  box-sizing: border-box;
+  width: 50%;
+  float: left;
+  text-align: center;
+  font-size: 18px;
+  background-color: #52CAC1;
+  margin: 5px 0;
+  padding: 5px 0;
+  color: #ffffff;
+}
+.keyboard_top{
+  background-color: #ffffff;
+  float: left;
+  margin: 2px;
+  margin-bottom: 4px;
+  padding: 10px 0;
+  text-align: center;
+  font-size: 18px;
+  word-break:keep-all;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}

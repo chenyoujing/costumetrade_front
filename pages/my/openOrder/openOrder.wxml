@@ -1,0 +1,131 @@
+<view class="section" hidden="{{orderid}}">
+  <view class="openorder_title" hidden="{{products_info}}">
+    <view class="title_number">12</view>
+    <view class="title_price">￥12443</view>
+    <view class="title_supplier">
+      <image src="../../../images/image_none.png"  mode="aspectFill" />
+      供货商
+    </view>
+    <view class="title_more">┆</view>
+    <view class="clear"></view>
+  </view>
+  <view class="scroll_title" hidden="{{products_info}}">
+    <view style="width:88%;">
+      <view style="width:9%;">序号</view>
+      <view style="width:29%;">名称</view>
+      <view style="width:9%;">数量</view>
+      <view style="width:17%;">颜色</view>
+      <view style="width:17%;">尺码</view>
+      <view style="width:19%;">单价(元)</view>
+    </view>
+    <view style="width:12%;">编辑</view>
+    <view class="clear"></view>
+  </view>
+  <scroll-view scroll-y="true" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}" style="bottom: {{keyboard_height*3 + 84}}px; background-color: #313131;" hidden="{{products_info}}">
+    <view class="order_view">
+      <view bindtap="order_buy" data-orderid="1" style="width:88%;">
+        <view style="width:9%;" data-orderid="1">1</view>
+        <view style="width:29%;" data-orderid="1">621报喜鸟11</view>
+        <view style="width:9%;" data-orderid="1">1</view>
+        <view style="width:17%;" data-orderid="1">蓝</view>
+        <view style="width:17%;" data-orderid="1">S</view>
+        <view style="width:19%;" data-orderid="1">323</view>
+      </view>
+      <view style="width:12%;" bindtap="order_delete">删除</view>
+      <view class="clear"></view>
+    </view>
+    <view class="order_view">
+      <view bindtap="order_buy" data-orderid="1" style="width:88%;">
+        <view style="width:9%;" data-orderid="1">1</view>
+        <view style="width:29%;" data-orderid="1">621报喜鸟11</view>
+        <view style="width:9%;" data-orderid="1">1</view>
+        <view style="width:17%;" data-orderid="1">蓝</view>
+        <view style="width:17%;" data-orderid="1">S</view>
+        <view style="width:19%;" data-orderid="1">323</view>
+      </view>
+      <view style="width:12%;">删除</view>
+      <view class="clear"></view>
+    </view>
+  </scroll-view>
+  <scroll-view scroll-y="true" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}" style="height: {{scroll_height + 74}}px; margin:0; background-color: #ffffff;" hidden="{{!products_info}}">
+    <block wx:for="{{products_info}}" wx:key="id">
+      <view class="products_info" bindtap="products_add" data-id="{{item.id}}" style="position: absolute;left: 0;right: 0;">
+        <image src="{{item.image ? item.image : '../../../images/image_none.png'}}" mode="aspectFill" class="products_info_image" />
+        <view class="products_info_name">{{item.code}} {{item.name}}</view>
+        <view class="products_info_price">{{item.price}}</view>
+        <view class="products_info_time">{{item.timeUp}}</view>
+        <view class="clear"></view>
+      </view>
+      <view class="products_info" bindtap="products_add" data-id="{{item.id}}"></view>
+    </block>
+    {{id}}
+  </scroll-view>
+  <view class="openorder_input" style="bottom:{{keyboard_height*3 + 20}}px">
+  <navigator url="url">
+   <view class="input_text" bindtap="order">买单</view>
+  </navigator>
+    <input type="{{input_type}}" placeholder="货号" cursor-spacing="20" focus="{{input_foucs}}" confirm-hold  bindinput="input_change"/>
+    <view class="input_text" bindtap="input_type_change">/</view>
+    <view class="input_text">+</view>
+    <view class="clear"></view>
+  </view>
+  <view class="keyboard">
+    <view class="keyboard_view" style="width:{{keyboard_width}}px;height:{{keyboard_height}}px;line-height:{{keyboard_height}}px;">1</view>
+    <view class="keyboard_view" style="width:{{keyboard_width}}px;height:{{keyboard_height}}px;line-height:{{keyboard_height}}px;">2</view>
+    <view class="keyboard_view" style="width:{{keyboard_width}}px;height:{{keyboard_height}}px;line-height:{{keyboard_height}}px;">3</view>
+    <view class="keyboard_view" style="width:{{keyboard_width}}px;height:{{keyboard_height}}px;line-height:{{keyboard_height}}px;">←</view>
+    <view class="keyboard_view" style="width:{{keyboard_width}}px;height:{{keyboard_height}}px;line-height:{{keyboard_height}}px;">4</view>
+    <view class="keyboard_view" style="width:{{keyboard_width}}px;height:{{keyboard_height}}px;line-height:{{keyboard_height}}px;">5</view>
+    <view class="keyboard_view" style="width:{{keyboard_width}}px;height:{{keyboard_height}}px;line-height:{{keyboard_height}}px;">6</view>
+    <view class="keyboard_view" style="width:{{keyboard_width}}px;height:{{keyboard_height}}px;line-height:{{keyboard_height}}px;">-</view>
+    <view class="keyboard_view" style="width:{{keyboard_width}}px;height:{{keyboard_height}}px;line-height:{{keyboard_height}}px;">7</view>
+    <view class="keyboard_view" style="width:{{keyboard_width}}px;height:{{keyboard_height}}px;line-height:{{keyboard_height}}px;">8</view>
+    <view class="keyboard_view" style="width:{{keyboard_width}}px;height:{{keyboard_height}}px;line-height:{{keyboard_height}}px;">9</view>
+    <view class="keyboard_view" style="width:{{keyboard_width}}px;height:{{keyboard_height}}px;line-height:{{keyboard_height}}px;">0</view>
+    <view class="clear:both;"></view>
+  </view>
+
+</view>
+
+<view class="goods_buy" hidden="{{!orderid}}">
+  <view style="position: relative;">
+    <image src="{{item.image ? item.image : '../../../images/image_none.png'}}" mode="aspectFill" class="goods_image" style="width:{{keyboard_width*2+12}}px;height:{{keyboard_width*2+12}}px;" />
+    <view class="goods_title">总库存：10</view>
+    <scroll-view scroll-y class="goods_check">
+      <checkbox-group>
+        <label class="goods_checkbox" wx:for="{{color}}" wx:key="id">
+          <checkbox value="{{item}}"/>
+          {{item}}
+        </label>
+      </checkbox-group>
+      <checkbox-group>
+        <label class="goods_checkbox" wx:for="{{size}}" wx:key="id">
+          <checkbox value="{{item}}"/>
+          {{item}}
+        </label>
+      </checkbox-group>
+    </scroll-view>
+    <view class="clear"></view>
+  </view>
+  <view class="keyboard">
+    <view class="keyboard_name">小雨家服装店</view>
+    <view class="keyboard_join">加入</view>
+    <view class="keyboard_top" style="width:{{keyboard_width}}px;">500</view>
+    <view class="keyboard_top" style="width:{{keyboard_width}}px;">元/批</view>
+    <view class="keyboard_top" style="width:{{keyboard_width}}px;">555手/55件</view>
+    <view class="keyboard_top" style="width:{{keyboard_width}}px;" bindtap="order_back">返回</view>
+    <view class="keyboard_view" style="width:{{keyboard_width}}px;height:{{keyboard_height}}px;line-height:{{keyboard_height}}px;">1</view>
+    <view class="keyboard_view" style="width:{{keyboard_width}}px;height:{{keyboard_height}}px;line-height:{{keyboard_height}}px;">2</view>
+    <view class="keyboard_view" style="width:{{keyboard_width}}px;height:{{keyboard_height}}px;line-height:{{keyboard_height}}px;">3</view>
+    <view class="keyboard_view" style="width:{{keyboard_width}}px;height:{{keyboard_height}}px;line-height:{{keyboard_height}}px;">←</view>
+    <view class="keyboard_view" style="width:{{keyboard_width}}px;height:{{keyboard_height}}px;line-height:{{keyboard_height}}px;">4</view>
+    <view class="keyboard_view" style="width:{{keyboard_width}}px;height:{{keyboard_height}}px;line-height:{{keyboard_height}}px;">5</view>
+    <view class="keyboard_view" style="width:{{keyboard_width}}px;height:{{keyboard_height}}px;line-height:{{keyboard_height}}px;">6</view>
+    <view class="keyboard_view" style="width:{{keyboard_width}}px;height:{{keyboard_height}}px;line-height:{{keyboard_height}}px;">-</view>
+    <view class="keyboard_view" style="width:{{keyboard_width}}px;height:{{keyboard_height}}px;line-height:{{keyboard_height}}px;">7</view>
+    <view class="keyboard_view" style="width:{{keyboard_width}}px;height:{{keyboard_height}}px;line-height:{{keyboard_height}}px;">8</view>
+    <view class="keyboard_view" style="width:{{keyboard_width}}px;height:{{keyboard_height}}px;line-height:{{keyboard_height}}px;">9</view>
+    <view class="keyboard_view" style="width:{{keyboard_width}}px;height:{{keyboard_height}}px;line-height:{{keyboard_height}}px;">0</view>
+    <view class="clear:both;"></view>
+  </view>
+</view>

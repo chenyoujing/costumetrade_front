@@ -1,0 +1,130 @@
+<!--pages/my/Goods/Goods.wxml-->
+<view style="overflow:hidden; min-height:100vh;">
+  <view class="title">
+    <input class="title_input" type="text" name="search" placeholder="货号" bindinput="bindKeyInput" />
+    <image bindtap="packPageFilterCode" mode="aspectFit" src="../../../images/search.png" class="image_search" />
+    <image src="../../../images/add.png" mode="aspectFit" class="image_add" />
+    <image src="../../../images/more.png" mode="aspectFit" class="image_more" />
+    <view class="clear"></view>
+  </view>
+  <view class="screen_cover" bindtap="screen_close" animation="{{screen_opacity}}" style="display:{{screen_display}};"></view>
+  <view class="condition">
+    <view class="screen_content" style="top:{{state == 'classify' ? screen_content_height : '-270px'}}">
+      <form bindsubmit="packPageFilterRule" data-screen="productTypeArray">
+        <checkbox-group name="screen">
+          <label class="screen_checkbox" wx:for="{{screen_content2}}">
+            <checkbox value="{{item.catename}}"/>
+            {{item.catename}}
+          </label>
+        </checkbox-group>
+        <button form-type="reset" class="screen_reset" bindtap="resetting" data-screen="productTypeArray">重置</button>
+        <button form-type="submit" class="screen_submit">确定</button>
+      </form>
+    </view>
+    <view class="screen_content" style="top:{{state == 'brand' ? screen_content_height : '-270px'}}">
+      <form bindsubmit="packPageFilterRule" data-screen="productBrandArray">
+        <checkbox-group name="screen">
+          <label class="screen_checkbox" wx:for="{{screen_content1}}" >
+            <checkbox value="{{item.brandname}}"/>
+            {{item.brandname}}
+          </label>
+        </checkbox-group>
+        <button form-type="reset" class="screen_reset" bindtap="resetting" data-screen="productBrandArray">重置</button>
+        <button form-type="submit" class="screen_submit">确定</button>
+      </form>
+    </view>
+    <view class="screen_content" style="top:{{state == 'season' ? screen_content_height : '-270px'}}">
+      <form bindsubmit="packPageFilterRule" data-screen="productSeasonArray">
+        <checkbox-group name="screen">
+          <label class="screen_checkbox" wx:for="{{screen_content3}}">
+            <checkbox value="{{item.value}}" checked="{{item.checked}}"/>
+            {{item.value}}
+          </label>
+        </checkbox-group>
+        <button form-type="reset" class="screen_reset" bindtap="resetting" data-screen="productSeasonArray">重置</button>
+        <button form-type="submit" class="screen_submit">确定</button>
+      </form>
+    </view>
+    <view class="screen_content" style="top:{{state == 'state' ? screen_content_height : '-270px'}}">
+      <form bindsubmit="packPageFilterRule" data-screen="status">
+        <radio-group name="screen">
+          <label class="screen_checkbox" wx:for="{{screen_content4}}">
+            <radio value="{{item.name}}" checked="{{item.checked}}"/>{{item.value}}
+          </label>
+        </radio-group>
+        <button form-type="reset" class="screen_reset" bindtap="resetting" data-screen="status">重置</button>
+        <button form-type="submit" class="screen_submit">确定</button>
+      </form>
+    </view>
+    <view class="sort">
+      <view class="sort_text {{state=='timeUpOp' ? 'screen_active' : ''}}" bindtap="changeSortData" data-sort="timeUpOp">
+        上架时间
+        <image src="../../../images/down.png" mode="aspectFit" class="image_down {{Op=='asc' ? 'sort_up' : ''}}" />
+      </view>
+      <view class="sort_text {{state=='priceOp' ? 'screen_active' : ''}}" bindtap="changeSortData" data-sort="priceOp" >
+        价格排序
+        <image src="../../../images/down.png" mode="aspectFit" class="image_down {{Op=='asc' ? 'sort_up' : ''}}" />
+      </view>
+      <view class="sort_text {{state=='saleOp' ? 'screen_active' : ''}}" bindtap="changeSortData" data-sort="saleOp" >
+        销售排序
+        <image src="../../../images/down.png" mode="aspectFit" class="image_down {{Op=='asc' ? 'sort_up' : ''}}" />
+      </view>
+      <view class="more" bindtap="more">更多</view>
+      <view class="clear"></view>
+    </view>
+    <view class="screen" style="left:{{condition}};right:-{{condition}}">
+      <view class="back" bindtap="back">
+        <image src="../../../images/back.png" mode="aspectFit" class="image_back" />
+      </view>
+      <view class="screen_text {{state=='classify' ? 'screen_active' : ''}}" bindtap="screen" data-name="classify">
+        类别
+        <image src="../../../images/down.png" mode="aspectFit" class="image_down screen_image" />
+      </view>
+      <view class="screen_text {{state=='brand' ? 'screen_active' : ''}}" bindtap="screen" data-name="brand">
+        品牌
+        <image src="../../../images/down.png" mode="aspectFit" class="image_down screen_image" />
+      </view>
+      <view class="screen_text {{state=='season' ? 'screen_active' : ''}}" bindtap="screen" data-name="season">
+        季节
+        <image src="../../../images/down.png" mode="aspectFit" class="image_down screen_image" />
+      </view>
+      <view class="screen_text {{state=='state' ? 'screen_active' : ''}}" bindtap="screen" data-name="state">
+        状态
+        <image src="../../../images/down.png" mode="aspectFit" class="image_down screen_image" />
+      </view>
+    </view>
+  </view>
+  <scroll-view scroll-y style="max-height:{{scroll_height}}px" class="content">
+    <view style="padding:10px;" wx:for="{{product}}" wx:key="{{id}}">
+      <view class="content_container">
+        <image src="{{item.image ? item.image : '../../../images/image_none.png'}}" mode="aspectFill" />
+        <view class="content_container_text">
+          <image src="../../../images/update.png" mode="aspectFit" class="image_update" bindtap="stock" data-storeid="{{item.storeId}}" data-id="{{item.id}}"/>
+          <view class="clear"></view>
+          <view class="content_container_title">{{item.name}}</view>
+          <view class="content_container_info">
+            <navigator url="../Goods/GoodsInfo/GoodsInfo?ID={{item.id}}" hover-class="navigator-hover">
+              <view class="price">{{item.price}}</view>
+            </navigator>
+            <view class="info_other">
+              <view class="volume" wx:if="{{!item.volume}}">0</view>
+              <view class="volume" wx:if="{{item.volume}}">{{item.volume}}</view>
+              <view class="date">{{item.timeUp}}</view>
+            </view>
+            <view class="clear"></view>
+          </view>
+        </view>
+        <view class="clear"></view>
+      </view>
+    </view>
+  </scroll-view>
+</view>
+
+
+<!--更多功能-->
+<view class="more_function_cover" bindtap="more_function_close" style="display:none;"></view>
+<view class="more_function" animation="{{more_function_opacity}}" style="display:none;">
+  <view class="more_function_view">批量删除</view>
+  <view class="more_function_view">分享图片</view>
+  <view class="more_function_view">推广新品</view>
+</view>
