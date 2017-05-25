@@ -1,14 +1,10 @@
 <!--pages/my/Goods/Goods.wxml-->
 <view style="overflow:hidden; min-height:100vh;">
   <view class="title">
-    <form bindsubmit="search">
-      <input class="title_input" type="text" name="search" placeholder="货号" bindinput="bindKeyInput" />
-      <button form-type="submit" bindtap="packPageFilterCode">
-        <icon type="search" size="16" color="#000000"  />
-      </button>
-    </form>
-    <icon style="right:10%;" type="search" size="16" color="#000000" bindtap="upload" />
-    <icon style="right:0;" type="search" size="16" color="#000000" bindtap="more_function" />
+    <input class="title_input" type="text" name="search" placeholder="货号" bindinput="bindKeyInput" />
+    <image bindtap="packPageFilterCode" mode="aspectFit" src="../../../images/search.png" class="image_search" />
+    <image src="../../../images/add.png" mode="aspectFit" class="image_add" />
+    <image src="../../../images/more.png" mode="aspectFit" class="image_more" />
     <view class="clear"></view>
   </view>
   <view class="screen_cover" bindtap="screen_close" animation="{{screen_opacity}}" style="display:{{screen_display}};"></view>
@@ -61,18 +57,41 @@
       </form>
     </view>
     <view class="sort">
-      <view class="sort_text {{state=='timeUpOp' ? 'screen_active' : ''}}" bindtap="changeSortData" data-sort="timeUpOp">上架时间∨</view>
-      <view class="sort_text {{state=='priceOp' ? 'screen_active' : ''}}" bindtap="changeSortData" data-sort="priceOp" >价格排序∨</view>
-      <view class="sort_text {{state=='saleOp' ? 'screen_active' : ''}}" bindtap="changeSortData" data-sort="saleOp" >销售排序∨</view>
+      <view class="sort_text {{state=='timeUpOp' ? 'screen_active' : ''}}" bindtap="changeSortData" data-sort="timeUpOp">
+        上架时间
+        <image src="../../../images/down.png" mode="aspectFit" class="image_down {{Op=='asc' ? 'sort_up' : ''}}" />
+      </view>
+      <view class="sort_text {{state=='priceOp' ? 'screen_active' : ''}}" bindtap="changeSortData" data-sort="priceOp" >
+        价格排序
+        <image src="../../../images/down.png" mode="aspectFit" class="image_down {{Op=='asc' ? 'sort_up' : ''}}" />
+      </view>
+      <view class="sort_text {{state=='saleOp' ? 'screen_active' : ''}}" bindtap="changeSortData" data-sort="saleOp" >
+        销售排序
+        <image src="../../../images/down.png" mode="aspectFit" class="image_down {{Op=='asc' ? 'sort_up' : ''}}" />
+      </view>
       <view class="more" bindtap="more">更多</view>
       <view class="clear"></view>
     </view>
     <view class="screen" style="left:{{condition}};right:-{{condition}}">
-      <view class="back" bindtap="back">返回</view>
-      <view class="screen_text {{state=='classify' ? 'screen_active' : ''}}" bindtap="screen" data-name="classify">类别></view>
-      <view class="screen_text {{state=='brand' ? 'screen_active' : ''}}" bindtap="screen" data-name="brand">品牌></view>
-      <view class="screen_text {{state=='season' ? 'screen_active' : ''}}" bindtap="screen" data-name="season">季节></view>
-      <view class="screen_text {{state=='state' ? 'screen_active' : ''}}" bindtap="screen" data-name="state">状态></view>
+      <view class="back" bindtap="back">
+        <image src="../../../images/back.png" mode="aspectFit" class="image_back" />
+      </view>
+      <view class="screen_text {{state=='classify' ? 'screen_active' : ''}}" bindtap="screen" data-name="classify">
+        类别
+        <image src="../../../images/down.png" mode="aspectFit" class="image_down screen_image" />
+      </view>
+      <view class="screen_text {{state=='brand' ? 'screen_active' : ''}}" bindtap="screen" data-name="brand">
+        品牌
+        <image src="../../../images/down.png" mode="aspectFit" class="image_down screen_image" />
+      </view>
+      <view class="screen_text {{state=='season' ? 'screen_active' : ''}}" bindtap="screen" data-name="season">
+        季节
+        <image src="../../../images/down.png" mode="aspectFit" class="image_down screen_image" />
+      </view>
+      <view class="screen_text {{state=='state' ? 'screen_active' : ''}}" bindtap="screen" data-name="state">
+        状态
+        <image src="../../../images/down.png" mode="aspectFit" class="image_down screen_image" />
+      </view>
     </view>
   </view>
   <scroll-view scroll-y style="max-height:{{scroll_height}}px" class="content">
@@ -80,7 +99,7 @@
       <view class="content_container">
         <image src="{{item.image ? item.image : '../../../images/image_none.png'}}" mode="aspectFill" />
         <view class="content_container_text">
-          <image src="" mode="aspectFit" bindtap="stock" data-storeid="{{item.storeId}}" data-id="{{item.id}}"/>
+          <image src="../../../images/update.png" mode="aspectFit" class="image_update" bindtap="stock" data-storeid="{{item.storeId}}" data-id="{{item.id}}"/>
           <view class="clear"></view>
           <view class="content_container_title">{{item.name}}</view>
           <view class="content_container_info">
@@ -102,3 +121,10 @@
 </view>
 
 
+<!--更多功能-->
+<view class="more_function_cover" bindtap="more_function_close" style="display:none;"></view>
+<view class="more_function" animation="{{more_function_opacity}}" style="display:none;">
+  <view class="more_function_view">批量删除</view>
+  <view class="more_function_view">分享图片</view>
+  <view class="more_function_view">推广新品</view>
+</view>
