@@ -18,9 +18,9 @@
 }
 .search_image{
   float: right;
-  width: 18px;
-  height: 18px;
-  padding: 11px;
+  width: 16px;
+  height: 16px;
+  padding: 12px;
   margin-left: -34px;
   z-index: 9;
 }
