@@ -55,8 +55,10 @@
     </view>
   </view>
 </view>
+
+<!--底部浮动-->
 <view class="shopping_cart_container">
-  <navigator url="shoppingcard/shoppingcard" class="shopping_cart">购物车</navigator>
+  <navigator url="../shoppingcard/shoppingcard" class="shopping_cart">购物车</navigator>
   <view class="shopping_cart active_red" bindtap="join">加入购物车</view>
 </view>
 

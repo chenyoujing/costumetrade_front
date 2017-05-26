@@ -1,3 +1,10 @@
 <view class="shoppingcard_container">
-  <image class="shoppingcard_container" src="../../../images/image_none.png"></image>
+  <image class="shoppingcard_container" src="../../../../images/image_none.png"></image>
+</view>
+
+<!--底部浮动-->
+<view class="shoppingcard_bottom">
+  <view class="bottom_button">下单</view>
+  <view class="bottom_info"></view>
+  <view class="clear"></view>
 </view>
