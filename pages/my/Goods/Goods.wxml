@@ -99,13 +99,13 @@
       <view class="content_container">
         <image src="{{item.image ? item.image : '../../../images/image_none.png'}}" mode="aspectFill" />
         <view class="content_container_text">
+        <navigator url="../Goods/GoodsInfo/GoodsInfo?ID={{item.id}}" hover-class="navigator-hover">
           <image src="../../../images/update.png" mode="aspectFit" class="image_update" bindtap="stock" data-storeid="{{item.storeId}}" data-id="{{item.id}}"/>
+        </navigator>
           <view class="clear"></view>
           <view class="content_container_title">{{item.name}}</view>
           <view class="content_container_info">
-            <navigator url="../Goods/GoodsInfo/GoodsInfo?ID={{item.id}}" hover-class="navigator-hover">
-              <view class="price">{{item.price}}</view>
-            </navigator>
+            <view class="price">{{item.price}}</view>
             <view class="info_other">
               <view class="volume" wx:if="{{!item.volume}}">0</view>
               <view class="volume" wx:if="{{item.volume}}">{{item.volume}}</view>
