@@ -1,8 +1,8 @@
 {
   "pages": [
+    "pages/grid/user/user",
     "pages/grid/shop/shop",
     "pages/grid/order/order",
-    "pages/grid/user/user",
     "pages/grid/user/dictionary/dictionary",
     "pages/my/Goods/Goods",
     "pages/my/openOrder/openOrder",
@@ -33,22 +33,22 @@
       {
         "pagePath": "pages/grid/shop/shop",
         "text": "点艺商城",
-        "iconPath": "images/order.png",
-        "selectedIconPath": "images/order.png"
+        "iconPath": "images/home-page2.png",
+        "selectedIconPath": "images/home-page.png"
       },
       {
         "pagePath": "pages/grid/order/order",
         "text": "我的订单",
-        "iconPath": "images/order.png",
-        "selectedIconPath": "images/order.png"
+        "iconPath": "images/order-form2.png",
+        "selectedIconPath": "images/order-for-goods.png"
       },
       {
         "pagePath": "pages/grid/user/user",
         "text": "我的",
-        "iconPath": "images/customer.png",
-        "selectedIconPath": "images/customer.png"
+        "iconPath": "images/my.png",
+        "selectedIconPath": "images/myself.png"
       }
     ],
-    "selectedColor": "#52CAC1"
+    "selectedColor": "#286561"
   }
 }
