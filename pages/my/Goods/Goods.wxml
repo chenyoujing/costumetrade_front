@@ -98,10 +98,11 @@
   </view>
   <scroll-view scroll-y style="max-height:{{scroll_height}}px" class="content">
     <view style="padding:10px;" wx:for="{{product}}" wx:key="{{id}}">
+    <navigator  url="../Goods/Goodstock/Goodstock?ID=null" hover-class="navigator-hover">
       <view class="content_container">
         <image src="{{item.image ? item.image : '../../../images/image_none.png'}}" mode="aspectFill" />
         <view class="content_container_text">
-        <navigator url="../Goods/GoodsInfo/GoodsInfo?ID={{item.id}}" hover-class="navigator-hover">
+        <navigator url="../Goods/GoodsInfo/GoodsInfo?ID={{item.id}}&name={{item.name}}" hover-class="navigator-hover">
           <image src="../../../images/update.png" mode="aspectFit" class="image_update" bindtap="stock" data-storeid="{{item.storeId}}" data-id="{{item.id}}"/>
         </navigator>
           <view class="clear"></view>
@@ -118,6 +119,7 @@
         </view>
         <view class="clear"></view>
       </view>
+    </navigator>
     </view>
   </scroll-view>
 </view>

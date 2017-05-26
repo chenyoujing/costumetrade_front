@@ -79,8 +79,8 @@ Page({
 // 点击更多执行方法
   more:function () {
     this.setData({
-      screen_content1: app.screen_content1,
-      screen_content2: app.screen_content2,
+      screen_content1: app.screen_brandList,
+      screen_content2: app.screen_productTypeList,
       condition: "0"
     })
   },

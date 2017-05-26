@@ -6,8 +6,6 @@ function formatTime(date) {
   var hour = date.getHours()
   var minute = date.getMinutes()
   var second = date.getSeconds()
-
-
   return [year, month, day].map(formatNumber).join('-')
   //  + ' ' + [hour, minute, second].map(formatNumber).join(':')
 }
@@ -49,14 +47,13 @@ var api = {
       },
       success: function (res) {
         wx.hideNavigationBarLoading();
-        app.screen_content1 = res.data.brandList;
-        app.screen_content2 = res.data.productTypeList;
-        app.screen_content3 = res.data.screen_content3;
-        app.screen_content4 = res.data.screen_content4;
-        app.screen_content5 = res.data.productSize,
-        app.screen_content6 = res.data.priceNameList,
+        app.screen_brandList = res.data.brandList;
+        app.screen_productTypeList = res.data.productTypeList;
+        app.screen_productSize = res.data.productSize,
+        app.screen_priceNameList = res.data.priceNameList,
+        app.screen_gradeList = res.data.gradeList,
+        app.screen_unitList = res.data.unitList,
         app.getProductInit = true
-        
       }
     })
   },
