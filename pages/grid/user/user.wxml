@@ -1,3 +1,35 @@
+<view class="my_container">
+  <view class="my_title">
+    <image src="../../../images/image_none.png" mode="aspectFill" class="my_tx" />
+    <view class="my_info">
+      <view class="my_name">个人名称</view>
+      <view class="my_fans">200</view>
+      <view class="my_share">分享</view>
+      <view class="clear"></view>
+    </view>
+    <view class="my_code">
+      <image src="../../../images/image_none.png" mode="aspectFill" />
+      <view class="my_code_text">+粉</view>
+    </view>
+    <view class="clear"></view>
+  </view>
+  <view class="operation">
+  <navigator url="../../my/openOrder/openOrder">
+    <view class="classname">开单</view>
+  </navigator>
+  <navigator url="../../my/Goods/Goods">
+    <view class="classname">货品</view>
+  </navigator>
+  <navigator url="../../my/client/client">
+    <view class="classname">客户</view>
+  </navigator>
+  <navigator url="../../my/report/report">
+    <view class="classname">报表</view>
+  </navigator>
+  </view>
+</view>
+
+
 <navigator url="../../my/Goods/Goods">
     <view class="classname">我的货品</view>
 </navigator>
