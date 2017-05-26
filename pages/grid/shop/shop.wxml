@@ -26,7 +26,8 @@
 
 <!--店铺-->
 <view class="shop_content">
-  <navigator url="mall/mall" class="shop_content_view">
+<view class="shop_content_view">
+  <navigator url="mall/mall">
     <view class="shop_content_title">
       <image src="../../../images/image_none.png" mode="aspectFill" class="shop_content_tx" />
       <view class="shop_content_info">
@@ -36,7 +37,6 @@
           地址：杭州市萧山区建设一路裘皮城2楼
         </view>
       </view>
-      <image src="../../../images/custom-service.png" mode="aspectFit" class="shop_content_service" />
       <view class="clear"></view>
     </view>
     <view class="shop_picture">
@@ -50,6 +50,8 @@
     </view>
     <view class="clear"></view>
   </navigator>
+  <image src="../../../images/custom-service.png" mode="aspectFit" class="shop_content_service" />
+</view>
 </view>
 
 <view class="shop_content">
