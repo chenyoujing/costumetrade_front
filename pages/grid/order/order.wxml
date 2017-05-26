@@ -1,0 +1,47 @@
+<view class="order_container">
+  <!--订单头部-->
+  <view class="order_title">
+    <image src="../../../images/head-portrait.png" mode="aspectFill" class="order_title_image" />
+    <view class="name">NICK</view>
+    <image src="../../../images/image_none.png" mode="aspectFill" class="tx" />
+    <image src="../../../images/order-form.png" mode="aspectFit" class="order_title_image" >
+      <view class="prompt">3</view>
+    </image>
+    <image src="../../../images/message.png" mode="aspectFit" class="order_title_image" >
+      <view class="prompt" style="left:10px;">3</view>
+    </image>
+    <image src="../../../images/notice.png" mode="aspectFit" class="order_title_image" style="margin-left:10px;" >
+      <view class="prompt">3</view>
+    </image>
+    <image mode="aspectFit" src="../../../images/search.png" class="search_image" />
+    <input type="number" class="order_title_input" placeholder="单号查询..." />
+    <view class="clear"></view>
+  </view>
+
+  <!--订单类型分类-->
+  <view class="ordertype">
+    <view class="ordertype_text {{ordertype=='0' ? 'ordertype_active' : ''}}" bindtap="ordertype" data-ordertype="0">采购</view>
+    <view class="ordertype_text {{ordertype=='1' ? 'ordertype_active' : ''}}" bindtap="ordertype" data-ordertype="1">销售</view>
+    <view class="clear"></view>
+  </view>
+
+  <!--二级分类-->
+  <view class="ordertype2">
+    <view class="ordertype2_text {{0=='0' ? 'ordertype2_active' : ''}}" bindtap="ordertype2" data-ordertype="0">
+        待付款<view class="ordertype2_prompt">3</view>
+      </view>
+    <view class="ordertype2_text {{ordertype2=='1' ? 'ordertype2_active' : ''}}" bindtap="ordertype2" data-ordertype="1">
+        待审核<view class="ordertype2_prompt">3</view>
+    </view>
+    <view class="ordertype2_text {{ordertype2=='2' ? 'ordertype2_active' : ''}}" bindtap="ordertype2" data-ordertype="2">
+        待发货<view class="ordertype2_prompt">3</view>
+    </view>
+    <view class="ordertype2_text {{ordertype2=='3' ? 'ordertype2_active' : ''}}" bindtap="ordertype2" data-ordertype="3">
+        全部<view class="ordertype2_prompt">3</view>
+    </view>
+    <view class="clear"></view>
+  </view>
+
+  <scroll-view scroll-y class="order_scroll">
+  </scroll-view>
+</view>

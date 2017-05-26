@@ -1,4 +1,5 @@
 <view class="my_container">
+  <!--头部-->
   <view class="my_title">
     <image src="../../../images/image_none.png" mode="aspectFill" class="my_tx" />
     <view class="my_info">
@@ -13,35 +14,87 @@
     </view>
     <view class="clear"></view>
   </view>
+  <!--店铺功能-->
   <view class="operation">
-  <navigator url="../../my/openOrder/openOrder">
-    <view class="classname">开单</view>
-  </navigator>
-  <navigator url="../../my/Goods/Goods">
-    <view class="classname">货品</view>
-  </navigator>
-  <navigator url="../../my/client/client">
-    <view class="classname">客户</view>
-  </navigator>
-  <navigator url="../../my/report/report">
-    <view class="classname">报表</view>
-  </navigator>
+    <navigator url="../../my/openOrder/openOrder">
+      <image src="../../../images/My-orders.png" mode="aspectFit" class="operation_image" />
+      <view class="operation_text">开单</view>
+    </navigator>
+    <navigator url="../../my/Goods/Goods">
+      <image src="../../../images/My-goods.png" mode="aspectFit" class="operation_image" />
+      <view class="operation_text">货品</view>
+    </navigator>
+    <navigator url="../../my/client/client">
+      <image src="../../../images/consumer.png" mode="aspectFit" class="operation_image" />
+      <view class="operation_text">客户</view>
+    </navigator>
+    <navigator url="../../my/report/report">
+      <image src="../../../images/report-forms.png" mode="aspectFit" class="operation_image" />
+      <view class="operation_text">报表</view>
+    </navigator>
+    <view class="clear"></view>
   </view>
+  <!--内容-->
+  <scroll-view scroll-y class="my_content">
+    <view style="padding-top:10px;"></view>
+    <view class="my_content_view">
+      <navigator url="client/client">
+        <image src="../../../images/custom-service.png" mode="aspectFit" class="my_content_image" />
+        <view class="my_content_text">客户</view>
+        <image src="../../../images/right-thrust.png" mode="aspectFit" class="my_content_right" />
+        <view class="clear"></view>
+      </navigator>
+      <navigator url="dictionary/dictionary">
+        <image src="../../../images/order-form3.png" mode="aspectFit" class="my_content_image" />
+        <view class="my_content_text">订单</view>
+        <image src="../../../images/right-thrust.png" mode="aspectFit" class="my_content_right" />
+        <view class="clear"></view>
+      </navigator>
+      <navigator url="dictionary/dictionary">
+        <image src="../../../images/notice2.png" mode="aspectFit" class="my_content_image" />
+        <view class="my_content_text">公告</view>
+        <image src="../../../images/right-thrust.png" mode="aspectFit" class="my_content_right" />
+        <view class="clear"></view>
+      </navigator>
+    </view>
+
+    <view class="my_content_view">
+      <navigator url="dictionary/dictionary">
+        <image src="../../../images/notecase.png" mode="aspectFit" class="my_content_image" />
+        <view class="my_content_text">钱包管理</view>
+        <image src="../../../images/right-thrust.png" mode="aspectFit" class="my_content_right" />
+        <view class="clear"></view>
+      </navigator>
+      <navigator url="dictionary/dictionary">
+        <image src="../../../images/localization.png" mode="aspectFit" class="my_content_image" />
+        <view class="my_content_text">收货地址</view>
+        <image src="../../../images/right-thrust.png" mode="aspectFit" class="my_content_right" />
+        <view class="clear"></view>
+      </navigator>
+      <navigator url="dictionary/dictionary">
+        <image src="../../../images/assist.png" mode="aspectFit" class="my_content_image" />
+        <view class="my_content_text">帮助</view>
+        <image src="../../../images/right-thrust.png" mode="aspectFit" class="my_content_right" />
+        <view class="clear"></view>
+      </navigator>
+      <navigator url="dictionary/dictionary">
+        <image src="../../../images/Suggestions.png" mode="aspectFit" class="my_content_image" />
+        <view class="my_content_text">意见反馈</view>
+        <image src="../../../images/right-thrust.png" mode="aspectFit" class="my_content_right" />
+        <view class="clear"></view>
+      </navigator>
+      <navigator url="dictionary/dictionary">
+        <image src="../../../images/vip.png" mode="aspectFit" class="my_content_image" />
+        <view class="my_content_text">升级</view>
+        <image src="../../../images/right-thrust.png" mode="aspectFit" class="my_content_right" />
+        <view class="clear"></view>
+      </navigator>
+      <navigator url="dictionary/dictionary">
+        <image src="../../../images/set.png" mode="aspectFit" class="my_content_image" />
+        <view class="my_content_text">设置</view>
+        <image src="../../../images/right-thrust.png" mode="aspectFit" class="my_content_right" />
+        <view class="clear"></view>
+      </navigator>
+    </view>
+  </scroll-view>
 </view>
-
-
-<navigator url="../../my/Goods/Goods">
-    <view class="classname">我的货品</view>
-</navigator>
-<navigator url="../../my/openOrder/openOrder">
-  <view class="classname">开单</view>
-</navigator>
-<navigator url="../../my/report/report">
-<view class="classname">报表</view>
-</navigator>
-<navigator url="../../my/client/client">
-<view class="classname">客户</view>
-</navigator>
-<navigator url="dictionary/dictionary">
-<view class="classname">设置</view>
-</navigator>
