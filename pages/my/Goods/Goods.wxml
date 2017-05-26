@@ -3,7 +3,9 @@
   <view class="title">
     <input class="title_input" type="text" name="search" placeholder="货号" bindinput="bindKeyInput" />
     <image bindtap="packPageFilterCode" mode="aspectFit" src="../../../images/search.png" class="image_search" />
-    <image src="../../../images/add.png" mode="aspectFit" class="image_add" />
+    <navigator url="../Goods/GoodsInfo/GoodsInfo?ID=null" hover-class="navigator-hover">
+      <image src="../../../images/add.png" mode="aspectFit" class="image_add" />
+    </navigator>
     <image src="../../../images/more.png" mode="aspectFit" class="image_more" />
     <view class="clear"></view>
   </view>

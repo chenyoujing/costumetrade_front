@@ -1,13 +1,13 @@
 
 <!--货品详情-->
 <view class="upload" style="top:{{upload}}; bottom:-{{upload}};">
-  <view class="upload_title">货品详情</view>
-  <image src="../../../../images/amputate.png" mode="aspectFit" class="image_close" />
+  <view class="upload_title">{{title}}</view>
+  <image src="../../../../images/close.png" mode="aspectFit" class="image_close" />
   <form class="upload_content" bindsubmit="upload_submit" data-id="{{id}}">
     <scroll-view scroll-y="true" class="upload_container">
       <view class="upload_input">
         <view class="upload_input_text">名称:</view>
-        <input type="text" class="upload_input1" name="name0" value="{{updata_name}}" placeholder="*" placeholder-class="required" />
+        <input type="text" class="upload_input1 required" name="name0" value="{{updata_name}}" />
         <view class="clear"></view>
       </view>
       <view class="upload_input">
@@ -19,21 +19,12 @@
         <view class="upload_input_text">品牌:</view>
         <picker bindchange="brandPicker" value="{{brand_index}}" range="{{screen_content2}}" range-key="brandname">
             <text>{{screen_content2[brand_index].brandname}}</text>
-            <image src="../../../../images/down.png" mode="aspectFit" class="picker_image" />
-        </picker>
-        <view class="clear"></view>
-      </view>
-      <view class="upload_input">
-        <view class="upload_input_text">等级:</view>
-        <picker style="margin-right:0" bindchange="gradePicker" value="{{grade_index}}" range="{{grade}}" name="grade">
-            {{grade[grade_index]}}
-            <image src="../../../../images/down.png" mode="aspectFit" class="picker_image" />
         </picker>
         <view class="clear"></view>
       </view>
       <view class="upload_input">
         <view class="upload_input_text">吊牌价:</view>
-        <input type="digit" class="upload_input1" name="wholeprice" value="{{updata_wholeprice}}" placeholder="*" placeholder-class="required" />
+        <input type="digit" class="upload_input1 required" name="wholeprice" value="{{updata_wholeprice}}" />
         <view class="clear"></view>
       </view>
       <view class="upload_input">
@@ -50,10 +41,10 @@
         </checkbox-group>
         <view class="clear"></view>
         <view class="picker_title">
-          <view class="picker_content_view">客户种类</view>
-          <view class="picker_content_view">销售价</view>
-          <view class="picker_content_view">折扣率</view>
-          <view class="picker_content_view">毛利率</view>
+          <view class="picker_content_view">名称</view>
+          <view class="picker_content_view">价格</view>
+          <view class="picker_content_view">折扣</view>
+          <view class="picker_content_view">毛利</view>
         </view>
         <picker-view class="picker_container" indicator-style="height: 33px;" value="{{value}}" bindchange="bindChange">
             <picker-view-column>
@@ -68,8 +59,11 @@
       </view>
       <view class="upload_input">
         <view class="upload_input_text">图片:</view>
-        <scroll-view scroll-x="true" class="image_container">
-          <view class="image_content"></view>
+        <view style="width:60px; float:right">
+          <button class="upload_input_button" bindtap="image_add">添加</button>
+          <button class="upload_input_button image_search" bindtap="image_search">搜索</button>
+        </view>
+        <scroll-view scroll-x="true" class="image_container" bindscrolltoupper="upper" bindscrolltolower="lower" bindscroll="scroll" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}">
           <view class="image_content"></view>
           <view class="image_content"></view>
           <view class="image_content"></view>
@@ -78,69 +72,62 @@
         <view class="clear"></view>
       </view>
       <view class="upload_input">
-        <view class="upload_input_text">视频:</view>
-        <scroll-view scroll-x="true" class="image_container">
-          <view class="image_content"></view>
-          <view class="image_content"></view>
-          <view class="image_content"></view>
-        </scroll-view>
-        <view class="clear"></view>
-      </view>
-      <view class="upload_input">
-        <view class="upload_input_text">商品种类:</view>
+        <view class="upload_input_text">*商品种类:</view>
+        <button class="upload_input_button" bindtap="producttype">添加</button>
         <picker bindchange="producttypePicker" value="{{producttype_index}}" range="{{screen_content1}}" range-key="catename">
             {{screen_content1[producttype_index].catename}}
-            <image src="../../../../images/down.png" mode="aspectFit" class="picker_image" />
+        </picker>
+        <view class="clear"></view>
+      </view>
+      <view class="upload_input">
+        <view class="upload_input_text">单位:</view>
+        <button class="upload_input_button">添加</button>
+        <picker bindchange="unitPicker" value="{{unit[unit_index]}}" range="{{unit}}" name="unit">
+            {{unit[unit_index]}}
+        </picker>
+        <view class="clear"></view>
+      </view>
+      <view class="upload_input">
+        <view class="upload_input_text">颜色:</view>
+        <button class="upload_input_button" bindtap="color">选色</button>
+        <input disabled='true' type="text" class="upload_input2" name="colors" value="{{color}}" />
+        <view class="clear"></view>
+      </view>
+      <view class="upload_input">
+        <view class="upload_input_text">尺码:</view>
+        <button class="upload_input_button" bindtap="size">尺码组</button>
+        <input disabled='true' type="text" class="upload_input2" name="sizes" value="{{size}}" />
+        <view class="clear"></view>
+      </view>
+      <view class="upload_input">
+        <view class="upload_input_text">主条码:</view>
+        <button class="upload_input_button">扫码</button>
+        <input type="number" class="upload_input2" name="name" />
+        <view class="clear"></view>
+      </view>
+      <view class="upload_input">
+        <view class="upload_input_text">分条码:</view>
+        <button class="upload_input_button">编辑</button>
+        <input type="number" class="upload_input2" name="name" />
+        <view class="clear"></view>
+      </view>
+      <view class="upload_input">
+        <view class="upload_input_text">年份:</view>
+        <picker style="margin-right:0" mode="date" bindchange="year" value="{{year}}" end="{{year}}" name="year" fields="year" value="{{year}}">
+            {{year}}年
+        </picker>
+        <view class="clear"></view>
+      </view>
+      <view class="upload_input">
+        <view class="upload_input_text">等级:</view>
+        <picker style="margin-right:0" bindchange="gradePicker" value="{{grade_index}}" range="{{grade}}" name="grade">
+            {{grade[grade_index]}}
         </picker>
         <view class="clear"></view>
       </view>
       <view class="upload_input">
         <view class="upload_input_text">一手件数:</view>
         <input type="number" class="upload_input1" name="handcount" value="{{updata_handcount}}" />
-        <view class="clear"></view>
-      </view>
-      <view class="upload_input">
-        <view class="upload_input_text">单位:</view>
-        <picker bindchange="unitPicker" value="{{unit[unit_index]}}" range="{{unit}}" name="unit">
-            {{unit[unit_index]}}
-            <image src="../../../../images/down.png" mode="aspectFit" class="picker_image" />
-        </picker>
-        <view class="clear"></view>
-      </view>
-      <view class="upload_input">
-        <view class="upload_input_text">颜色:</view>
-        <picker>
-            1
-            <image src="../../../../images/down.png" mode="aspectFit" class="picker_image" />
-        </picker>
-        <view class="clear"></view>
-      </view>
-      <view class="upload_input">
-        <view class="upload_input_text">尺码:</view>
-        <picker>
-            2
-            <image src="../../../../images/down.png" mode="aspectFit" class="picker_image" />
-        </picker>
-        <view class="clear"></view>
-      </view>
-      <view class="upload_input">
-        <view class="upload_input_text">主条码:</view>
-        <input type="number" class="upload_input2" name="name" style="padding-right:30px;" />
-        <image src="../../../../images/scan_black.png" mode="aspectFit" class="code_image" />
-        <view class="clear"></view>
-      </view>
-      <view class="upload_input">
-        <view class="upload_input_text">分条码:</view>
-        <input type="number" class="upload_input2" name="name" style="padding-right:30px;" />
-        <image src="../../../../images/update.png" mode="aspectFit" class="update_image" />
-        <view class="clear"></view>
-      </view>
-      <view class="upload_input">
-        <view class="upload_input_text">年份:</view>
-        <picker style="margin-right:0" mode="date" bindchange="year" end="{{year}}" name="year" fields="year" value="{{year}}">
-            {{year}}年
-            <image src="../../../../images/down.png" mode="aspectFit" class="picker_image" />
-        </picker>
         <view class="clear"></view>
       </view>
       <view class="upload_input">
@@ -153,20 +140,27 @@
         <view class="clear"></view>
       </view>
       <view class="upload_input">
-        <view class="upload_date">
-          <view class="upload_date_text">上架时间:</view>
-            <picker style="margin-right:0;" mode="date" value="{{date_up}}"start="1970-1-1" end="{{date_down}}" bindchange="bindDateChange_up" name="timeUp">
-              2017-05-03
-            </picker>
-          <view class="clear"></view>
-        </view>
-        <view class="upload_date">
-          <view class="upload_date_text">下架时间:</view>
-            <picker style="margin-right:0;" mode="date" value="{{date_down}}" start="{{date_up}}" bindchange="bindDateChange_down" name="timeDown">
-              2017-05-03
-            </picker>
-          <view class="clear"></view>
-        </view>
+        <view class="upload_input_text">预警下限:</view>
+        <input type="number" class="upload_input1" name="warnLow" value="{{warnLow}}" />
+        <view class="clear"></view>
+      </view>
+      <view class="upload_input">
+        <view class="upload_input_text">预警上限:</view>
+        <input type="number" class="upload_input1" name="warnHigh" value="{{warnHigh}}" />
+        <view class="clear"></view>
+      </view>
+      <view class="upload_input">
+        <view class="upload_input_text">*上架时间:</view>
+          <picker style="margin-right:0;" mode="date" value="{{date_up}}"start="1970-1-1" end="{{date_down}}" bindchange="bindDateChange_up" name="timeUp">
+            {{date_up}}
+          </picker>
+        <view class="clear"></view>
+      </view>
+      <view class="upload_input">
+        <view class="upload_input_text">*下架时间:</view>
+          <picker style="margin-right:0;" mode="date" value="{{date_down}}" start="{{date_up}}" bindchange="bindDateChange_down" name="timeDown">
+            {{date_down}}
+          </picker>
         <view class="clear"></view>
       </view>
     </scroll-view>

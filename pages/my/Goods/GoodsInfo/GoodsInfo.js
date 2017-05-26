@@ -2,6 +2,7 @@ var util = require('../../../../utils/util.js')
 var app = getApp()
 Page({
   data:{
+    title:'新增货品',
     picker_view: [
       { name: '名字', price: '价格', discount: '折扣', profit: '毛利' },
       { name: '名字', price: '价格', discount: '折扣', profit: '毛利' },
@@ -52,19 +53,18 @@ Page({
       success: function (res) {
         wx.hideNavigationBarLoading();
         console.log(res)
-      
       }
     })
   },
   
   onLoad: function (options) {
-    this.setData({
-      id: options.ID
-    });
-    if (app.getProductInit){
-
-    }
     console.log(app)
-    this.showGoodsInfo()
+    if (options.ID !== 'null'){
+      this.setData({
+        id: options.ID,
+        title: '货品详情'
+      });
+      this.showGoodsInfo()
+    } 
   }
 })
