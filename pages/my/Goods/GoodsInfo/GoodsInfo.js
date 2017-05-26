@@ -25,10 +25,7 @@ Page({
     name:'',
     code:'',
     colors:'',
-    description:'',
     handcount:'',
-    originalPrice:'',
-    prducttype:"",
     tagprice:'',
     purchaseprice:"",
     grade:"",
@@ -121,6 +118,31 @@ Page({
       },
       success: function (res) {
         wx.hideNavigationBarLoading();
+        var answerData = res.data;
+        answerData.timeDown = util.toDate(answerData.timeDown);
+        answerData.timeUp = util.toDate(answerData.timeUp);
+        that.setData({
+          id: answerData.id,
+          name: answerData.name,
+          code: answerData.code,
+          colors: answerData.colors,
+          handcount: answerData.handcount,
+          tagprice: answerData.tagprice,
+          purchaseprice: answerData.purchaseprice,
+          grade: answerData.grade,
+          season: answerData.season,
+          sizes: answerData.sizes,
+          year: answerData.year,
+          timeDown: answerData.timeDown,
+          timeUp: answerData.timeUp,
+          producttype: answerData.producttype,
+          producttype_index: answerData.producttype,
+          brandid: answerData.brandid,
+          brand_index: answerData.brandid,
+          barcodes: answerData.barcodes,
+          barcode: answerData.barcode,
+          unit: answerData.unit
+        });
         console.log(res)
       }
     })
@@ -146,7 +168,7 @@ Page({
           delta: 1
         })
         wx.showToast({
-          title: '成功',
+          title: '保存成功',
           mask: true,
           duration: 2000
         })

@@ -102,7 +102,7 @@
       <view class="upload_input">
         <view class="upload_input_text">单位:</view>
         <picker bindchange="bindSelectorChange" range-key="unit" value="{{unit}}" range="{{screen_unitList}}" name="unit" data-style = 'unit_index'>
-            {{screen_unitList[unit_index].unit}}
+           {{unit}}
             <image src="../../../../images/down.png" mode="aspectFit" class="picker_image" />
         </picker>
         <view class="clear"></view>
@@ -118,7 +118,7 @@
       <view class="upload_input">
         <view class="upload_input_text">尺码:</view>
           <picker bindchange="bindSelectorChange" range-key="value"  value="{{sizes}}" range="{{screen_productSize}}" name="sizes" data-style = 'size_index'>
-            {{screen_productSize[size_index].value}}
+            {{sizes}}
             <image src="../../../../images/down.png" mode="aspectFit" class="picker_image" />
         </picker>
         <view class="clear"></view>

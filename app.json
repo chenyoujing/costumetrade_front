@@ -1,7 +1,7 @@
 {
   "pages": [
-    "pages/grid/user/user",
     "pages/grid/shop/shop",
+    "pages/grid/user/user",  
     "pages/grid/order/order",
     "pages/grid/user/dictionary/dictionary",
     "pages/my/Goods/Goods",
@@ -20,7 +20,10 @@
     "pages/my/Goods/Goodstock/Goodstock",
     "pages/grid/shop/mall/mall",
     "pages/grid/shop/shoppingcard/shoppingcard",
-    "pages/grid/shop/goods_detail/goods_detail"
+    "pages/grid/shop/goods_detail/goods_detail",
+    "pages/grid/shop/storeDetails/storeDetails",
+    "pages/grid/shop/orderSure/orderSure",
+    "pages/grid/shop/payOrder/payOrder"
   ],
   "window": {
     "backgroundTextStyle": "light",
