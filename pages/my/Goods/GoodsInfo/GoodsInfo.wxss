@@ -32,6 +32,7 @@
 }
 .upload_input{
   padding: 0 10px 10px;
+  position: relative;
 }
 .upload_input:first-child{
   padding-top: 15px;
@@ -46,20 +47,61 @@
 .upload_input1,.upload_input2{
   border: 1px solid #52CAC1;
   font-size: 14px;
-  padding: 0 7px; 
+  padding: 0 16px; 
   height: 28px;
-}
-.upload_input2{
-  margin-right: 70px;
 }
 .upload_input > picker{
   border: 1px solid #52CAC1;
   height: 28px;
   margin-left: 20%;
-  text-align: center;
   width: auto;
   font-size: 14px;
   line-height: 28px;
+  position: relative;
+  padding-left: 16px;
+  padding-right: 30px;
+}
+.picker_image,.code_image,.update_image{
+  width: 10px;
+  height: 10px;
+  position: absolute;
+  right: 10px;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+}
+.code_image{
+  width: 16px;
+  height: 16px;
+  padding: 7px;
+  bottom: unset;
+}
+.update_image{
+  width: 12px;
+  height: 12px;
+  padding: 9px;
+  bottom: unset;
+}
+.upload_date{
+  width: 50%;
+  float: left;
+}
+.upload_date_text{
+  width: 50%;
+  font-size: 13px;
+  float: left;
+  line-height: 30px;
+  text-align: center;
+}
+.upload_date picker{
+  border: 1px solid #52CAC1;
+  height: 28px;
+  margin-left: 50%;
+  text-align: center;
+  width: auto;
+  font-size: 13px;
+  line-height: 28px;
+  position: relative;
 }
 .upload_input_button{
   width: 60px;
@@ -73,21 +115,15 @@
   color: #ffffff;
 }
 .required{
-  position: relative;
-  padding-right: 20px;
-}
-.required::after{
   content: "*";
   color: #ff0000;
-  position: absolute;
-  right: 10px;
-  top: 0;
-  font-size: 20px;
-  line-height: 30px;
 }
 .picker_checkbox{
   text-align: center;
   font-size: 14px;
+}
+.picker_checkbox checkbox{
+  margin-right: 20px;
 }
 .picker_title{
   background-color: #52CAC1;
@@ -108,20 +144,20 @@
 }
 .picker_content_view{
   display: inline-block;
-  width: 25%;
+  width: 20%;
   text-align: center;
   font-size: 12px;
 }
 .image_container{
-  height: 80px;
-  padding-right: 70px;
+  height: 66px;
+  padding-right: 10px;
   width: auto;
   white-space: nowrap;
 }
 .image_content{
-  height: 78px;
-  width: 78px;
-  margin-right: 10px;
+  height: 64px;
+  width: 64px;
+  margin-right: 25px;
   border: 1px solid #52CAC1;
   display: inline-block;
 }
