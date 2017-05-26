@@ -1,6 +1,4 @@
-.order_container{
-  position: relative;
-}
+
 .order_title{
   background-color: #52CAC1;
   color: #ffffff;
@@ -114,4 +112,70 @@
   left: 0;
   right: 0;
   bottom: 0;
+}
+.order_container_view{
+  margin: 0 10px 15px;
+  box-shadow: 1px 1px 4px #000000;
+}
+.order_container_title{
+  border-bottom: 3px solid #DBF4F1;
+  padding: 10px;
+  position: relative;
+}
+.order_container_name{
+  font-size: 12px;
+  color: #286561;
+  line-height: 20px;
+  float: left;
+  width: 65%;
+}
+.order_container_Bill{
+  color:#ff0000;
+  font-size: 14px;
+  line-height: 20px;
+  text-align: center;
+}
+.order_content_right{
+  height: 10px;
+  width: 10px;
+  padding: 10px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  margin: auto;
+}
+.order_container_content_left{
+  box-sizing: border-box;
+  padding: 15px 0 10px 15px;
+  float: left;
+  width: 65%;
+}
+.order_container_number{
+  font-size: 14px;
+  line-height: 24px;
+}
+.order_container_text{
+  font-size: 12px;
+  line-height: 24px;
+}
+.order_container_content_right{
+  box-sizing: border-box;
+  padding: 15px 0 10px;
+  float: left;
+  width: 35%;
+  text-align: center;
+}
+.order_container_button{
+  float: right;
+  width: 240rpx;
+  height: 35px;
+  font-size: 14px;
+  color: #ffffff;
+  background-color: #FE2D04;
+  text-align: center;
+  line-height: 35px;
+}
+.btn_2{
+  background-color: #52CAC1;
 }
