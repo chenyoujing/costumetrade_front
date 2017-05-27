@@ -2,9 +2,9 @@
 <view class="modal_cover" bindtap="modal_close" animation="{{modal_opacity}}" style="display:{{modal}};"></view>
 <view class="modal" animation="{{modal_opacity}}" style="display:{{modal}};">
   <view class="modal_header">盘点库存</view>
-  <image src="../../../../images/close.png" mode="aspectFit" class="image_close" />
+  <image src="../../../../images/close.png" bindtap="backdelta" mode="aspectFit" class="image_close" />
   <image src="../../../../images/customer_service.png" mode="aspectFit" class="image_service" />
-  <image src="../../../../images/update.png" mode="aspectFit" class="image_update" />
+  <image src="../../../../images/update.png"  mode="aspectFit" class="image_update" />
   <view class="tr bg-w">
     <view class="th th1">序号</view>
     <view class="th th2">名称</view>

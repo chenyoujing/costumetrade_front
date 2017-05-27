@@ -57,6 +57,26 @@ var api = {
       }
     })
   },
+  // 克隆对象
+  Clone:function (name) {
+    var obj = {};
+    for (var key in name) {
+      obj[key] = name[key];
+    }
+    return obj;
+  },
+  //对比两个对象之间的变化
+  getEntityModified: function (source,target) {
+    var updated = {};
+    for (var p in target) {
+      console.log(target[p] )
+      console.log(source[p])
+      if (target[p] != source[p] || source[p] == undefined) {
+        updated[p] = target[p];
+      }
+    }
+    return updated;
+  },
   request: function (para) {
     para.url = api.host + para.url ;
     para.oldSuccess = para.success;
@@ -64,7 +84,6 @@ var api = {
     para.success = function (data) {
       var dataResponest = data.data;
       if (dataResponest.code === 0) {
-        console.log(dataResponest)
         para.oldSuccess(dataResponest);
       } else {
         api.fail(data);

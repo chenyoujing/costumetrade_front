@@ -7,17 +7,17 @@
     <scroll-view scroll-y="true" class="upload_container">
       <view class="upload_input">
         <view class="upload_input_text">名称:</view>
-        <input type="text" class="upload_input1" name="name" value="{{name}}" placeholder="*" placeholder-class="required" />
+        <input type="text" class="upload_input1" name="name" value="{{GoodsInfoData.name}}" placeholder="*" placeholder-class="required" />
         <view class="clear"></view>
       </view>
       <view class="upload_input">
         <view class="upload_input_text">货号:</view>
-        <input type="number" class="upload_input1" name="code"  value="{{code}}"/>
+        <input type="number" class="upload_input1" name="code"  value="{{GoodsInfoData.code}}"/>
         <view class="clear"></view>
       </view>
       <view class="upload_input">
         <view class="upload_input_text">品牌:</view>
-        <picker bindchange="bindSelectorChange" data-style = 'brand_index' range="{{screen_brandList}}" value="{{brandid}}" range-key="brandname" name="brandid" mode="selector" >
+        <picker bindchange="bindSelectorChange" data-style = 'brand_index' range="{{screen_brandList}}" value="{{GoodsInfoData.brandid}}" range-key="brandname" name="brandid" mode="selector" >
             <text>{{screen_brandList[brand_index].brandname}}</text>
             <image src="../../../../images/down.png" mode="aspectFit" class="picker_image" />
         </picker>
@@ -25,7 +25,7 @@
       </view>
       <view class="upload_input">
         <view class="upload_input_text">等级:</view>
-        <picker style="margin-right:0" data-style = 'grade_index' bindchange="bindSelectorChange" value="{{grade}}" range="{{screen_gradeList}}" name="grade">
+        <picker style="margin-right:0" data-style = 'grade_index' bindchange="bindSelectorChange" value="{{GoodsInfoData.grade}}" range="{{screen_gradeList}}" name="grade">
             {{screen_gradeList[grade_index]}}
             <image src="../../../../images/down.png" mode="aspectFit" class="picker_image" />
         </picker>
@@ -33,12 +33,12 @@
       </view>
       <view class="upload_input">
         <view class="upload_input_text">吊牌价:</view>
-        <input type="digit" class="upload_input1" name="tagprice" value="{{tagprice}}" placeholder="*" placeholder-class="required" />
+        <input type="digit" class="upload_input1" name="tagprice" value="{{GoodsInfoData.tagprice}}" placeholder="*" placeholder-class="required" />
         <view class="clear"></view>
       </view>
       <view class="upload_input">
         <view class="upload_input_text">进货价:</view>
-        <input type="digit" class="upload_input1" name="purchaseprice" value="{{purchaseprice}}" />
+        <input type="digit" class="upload_input1" name="purchaseprice" value="{{GoodsInfoData.purchaseprice}}" />
         <view class="clear"></view>
       </view>
       <view class="upload_input">
@@ -88,7 +88,7 @@
       </view>
       <view class="upload_input">
         <view class="upload_input_text">商品种类:</view>
-        <picker bindchange="bindSelectorChange" data-style = 'producttype_index'  value="{{prducttype}}" name="prducttype" range="{{screen_productTypeList}}" range-key="catename">
+        <picker bindchange="bindSelectorChange" data-style = 'producttype_index'  value="{{GoodsInfoData.producttype}}" name="producttype" range="{{screen_productTypeList}}" range-key="catename">
             {{screen_productTypeList[producttype_index].catename}}
             <image src="../../../../images/down.png" mode="aspectFit" class="picker_image" />
         </picker>
@@ -96,42 +96,43 @@
       </view>
       <view class="upload_input">
         <view class="upload_input_text">一手件数:</view>
-        <input type="number" class="upload_input1" name="handcount" value="{{handcount}}" />
+        <input type="number" class="upload_input1" name="handcount" value="{{GoodsInfoData.handcount}}" />
         <view class="clear"></view>
       </view>
       <view class="upload_input">
         <view class="upload_input_text">单位:</view>
-        <picker bindchange="bindSelectorChange" range-key="unit" value="{{unit}}" range="{{screen_unitList}}" name="unit" data-style = 'unit_index'>
-           {{unit}}
+        <picker bindchange="bindSelectorChange" range-key="unit" value="{{GoodsInfoData.unit}}" range="{{screen_unitList}}" name="unit" data-style = 'unit_index'>
+           {{GoodsInfoData.unit}}
             <image src="../../../../images/down.png" mode="aspectFit" class="picker_image" />
         </picker>
         <view class="clear"></view>
       </view>
       <view class="upload_input">
         <view class="upload_input_text">颜色:</view>
-        <picker>
-            1
-            <image src="../../../../images/down.png" mode="aspectFit" class="picker_image" />
-        </picker>
+        <input type="number" class="upload_input2" name="colors" style="padding-right:30px;" value="{{GoodsInfoData.colors}}"/>
+        <navigator  url="../GoodsColor/GoodsColor" hover-class="navigator-hover">
+        <image src="../../../../images/update.png" mode="aspectFit" class="update_image" />
+        </navigator>
         <view class="clear"></view>
-      </view>
+      </view> 
+      
       <view class="upload_input">
         <view class="upload_input_text">尺码:</view>
-          <picker bindchange="bindSelectorChange" range-key="value"  value="{{sizes}}" range="{{screen_productSize}}" name="sizes" data-style = 'size_index'>
-            {{sizes}}
+          <picker bindchange="bindSelectorChange" range-key="value"  value="{{GoodsInfoData.sizes}}" range="{{screen_productSize}}" name="sizes" data-style = 'size_index'>
+            {{GoodsInfoData.sizes}}
             <image src="../../../../images/down.png" mode="aspectFit" class="picker_image" />
         </picker>
         <view class="clear"></view>
       </view>
       <view class="upload_input">
         <view class="upload_input_text">主条码:</view>
-        <input type="number" class="upload_input2" name="barcode" value = "{{barcode}}" style="padding-right:30px;" />
+        <input type="number" class="upload_input2" name="barcode" value = "{{GoodsInfoData.barcode}}" style="padding-right:30px;" />
         <image src="../../../../images/scan_black.png" mode="aspectFit" class="code_image" />
         <view class="clear"></view>
       </view>
       <view class="upload_input">
         <view class="upload_input_text">分条码:</view>
-        <input type="number" class="upload_input2" name="barcodes" style="padding-right:30px;" />
+        <input type="number" class="upload_input2" value="{{GoodsInfoData.barcodes}}" name="barcodes" style="padding-right:30px;" />
         <navigator  url="../Goodscodes/Goodscodes" hover-class="navigator-hover">
         <image src="../../../../images/update.png" mode="aspectFit" class="update_image" />
         </navigator>
@@ -139,8 +140,8 @@
       </view>
       <view class="upload_input">
         <view class="upload_input_text">年份:</view>
-        <picker style="margin-right:0" mode="date" bindchange="year" end="{{year}}" name="year" fields="year">
-        {{year}}
+        <picker style="margin-right:0" mode="date" bindchange="year" end="{{GoodsInfoData.year}}" name="year" fields="year" value=" {{GoodsInfoData.year}}">
+        {{GoodsInfoData.year}}
             <image src="../../../../images/down.png" mode="aspectFit" class="picker_image" />
         </picker>
         <view class="clear"></view>
@@ -149,7 +150,7 @@
         <view class="upload_input_text">季节:</view>
         <radio-group class="radio-group" name="season">
           <label class="radio" wx:for="{{screen_content3}}" wx:key="id">
-            <radio value="{{item.name}}" checked="{{season == item.value ? 'true' : ''}}"/>{{item.value}}
+            <radio value="{{item.name}}" checked="{{GoodsInfoData.season == item.value ? 'true' : ''}}"/>{{item.value}}
           </label>
         </radio-group>
         <view class="clear"></view>
@@ -157,15 +158,15 @@
       <view class="upload_input">
         <view class="upload_date">
           <view class="upload_date_text">上架时间:</view>
-            <picker style="margin-right:0;" mode="date" bindchange="bindDateChange" data-style = 'timeUp' value="{{timeUp}}" name="timeUp">
-             <view class="picker">{{timeUp}}</view>
+            <picker style="margin-right:0;" mode="date" bindchange="bindDateChange" data-style = 'timeUp' value="{{GoodsInfoData.timeUp}}" name="timeUp">
+             <view class="picker">{{GoodsInfoData.timeUp}}</view>
             </picker>
           <view class="clear"></view>
         </view>
         <view class="upload_date">
           <view class="upload_date_text">下架时间:</view>
-            <picker style="margin-right:0;" data-style = 'timeDown' bindchange="bindDateChange" mode="date" name="timeDown" value="{{timeUp}}">
-            <view class="picker"> {{timeDown}}</view>
+            <picker style="margin-right:0;" data-style = 'timeDown' bindchange="bindDateChange" mode="date" name="timeDown" value="{{GoodsInfoData.timeDown}}">
+            <view class="picker"> {{GoodsInfoData.timeDown}}</view>
             </picker>
           <view class="clear"></view>
         </view>

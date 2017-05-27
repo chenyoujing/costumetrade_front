@@ -182,5 +182,25 @@ Page({
   onLoad() {
     this.page_request();
     util.api.getProductInit();
+  },
+  onShow(){
+    var newProduct = this.data.product;
+    console.log(app)
+    if (app.newid){
+      this.page_request();
+      app.newid="";
+    }else{
+      for (var p in newProduct){
+        if (newProduct[p].id == app.updataGoodsInfo.id){
+          newProduct[p].name = app.updataGoodsInfo.name;
+          break;
+        }
+      }
+      this.setData({
+        product: newProduct
+      })
+      app.updataGoodsInfo = {};
+    }
+    console.log('back')
   }
 });
