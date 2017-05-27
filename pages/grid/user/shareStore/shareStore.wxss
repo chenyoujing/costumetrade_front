@@ -1,0 +1,53 @@
+.shareStore_title{
+  background-color: #52CAC1;
+  color: #ffffff;
+  text-align: center;
+  font-size: 16px;
+  line-height: 50px;
+  height: 50px;
+  position: relative;
+}
+.shareStore_title image{
+  width: 16px;
+  height: 16px;
+  padding: 17px 10px;
+  position: absolute;
+  left: 0;
+  transform: rotate(180deg);
+}
+.store_info{
+  margin: 0 15px;
+  padding-top: 20px;
+  border-bottom: 1px solid #286561;
+}
+.store_tx{
+  width: 70px;
+  height: 70px;
+  border-radius: 35px;
+  margin-right: 15px;
+  float: left;
+}
+.store_name{
+  padding-left: 95px;
+  font-size: 16px;
+  line-height: 24px;
+}
+.store_content{
+  padding-left: 85px;
+  font-size: 12px;
+  line-height: 16px;
+}
+.image_view{
+  width: 33.33333333%;
+  height: 200rpx;
+  float: left;
+  position: relative;
+}
+.store_image{
+  width: 200rpx;
+  height: 200rpx;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
+}

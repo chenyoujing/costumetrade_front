@@ -3,9 +3,9 @@
   <view class="my_title">
     <image src="../../../images/image_none.png" mode="aspectFill" class="my_tx" />
     <view class="my_info">
-      <view class="my_name">个人名称</view>
+      <navigator url="storeUpdate/storeUpdate" class="my_name">个人名称</navigator>
       <view class="my_fans">200</view>
-      <view class="my_share">分享</view>
+      <navigator url="shareStore/shareStore" class="my_share">分享</navigator>
       <view class="clear"></view>
     </view>
     <view class="my_code">
@@ -37,7 +37,7 @@
   <!--内容-->
   <view class="my_content">
     <view class="my_content_view">
-      <navigator url="client/client">
+      <navigator url="../../my/client/client">
         <image src="../../../images/custom-service.png" mode="aspectFit" class="my_content_image" />
         <view class="my_content_text">客户</view>
         <image src="../../../images/right-thrust.png" mode="aspectFit" class="my_content_right" />
@@ -82,7 +82,7 @@
         <image src="../../../images/right-thrust.png" mode="aspectFit" class="my_content_right" />
         <view class="clear"></view>
       </navigator>
-      <navigator url="dictionary/dictionary">
+      <navigator url="vipPlus/vipPlus">
         <image src="../../../images/vip.png" mode="aspectFit" class="my_content_image" />
         <view class="my_content_text">升级</view>
         <image src="../../../images/right-thrust.png" mode="aspectFit" class="my_content_right" />

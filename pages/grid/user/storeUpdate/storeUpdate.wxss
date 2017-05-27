@@ -1,0 +1,17 @@
+.storeUpdate_title{
+  background-color: #52CAC1;
+  color: #ffffff;
+  text-align: center;
+  font-size: 16px;
+  line-height: 50px;
+  height: 50px;
+  position: relative;
+}
+.storeUpdate_title image{
+  width: 16px;
+  height: 16px;
+  padding: 17px 10px;
+  position: absolute;
+  left: 0;
+  transform: rotate(180deg);
+}

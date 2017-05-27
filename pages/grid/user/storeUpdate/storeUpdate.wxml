@@ -1,0 +1,5 @@
+<view class="storeUpdate_title">
+  <image src="../../../../images/right-thrust.png" mode="aspectFit"></image>
+  商铺信息
+</view>
+<image src="../../../../images/image_none.png" class="store_image" />

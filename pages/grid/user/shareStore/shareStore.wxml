@@ -1,0 +1,25 @@
+<view class="shareStore_title">
+  <image src="../../../../images/right-thrust.png" mode="aspectFit"></image>
+  分享
+</view>
+<view class="store_info">
+  <view style="padding-bottom: 20px;">
+    <image src="../../../../images/image_none.png" class="store_tx" />
+    <view class="store_name">点艺信息科技</view>
+    <view class="store_content">不想打字不想打字不想打字不想打字不想打字不想打字不想打字不想打字不想打字</view>
+    <view class="clear"></view>
+  </view>
+  <view class="image_view">
+    <image src="../../../../images/image_none.png" class="store_image" />
+  </view>
+  <view class="image_view">
+    <image src="../../../../images/image_none.png" class="store_image" />
+  </view>
+  <view class="image_view">
+    <image src="../../../../images/image_none.png" class="store_image" />
+  </view>
+  <view class="clear"></view>
+  <view class="store_address">
+    <image src="../../../../images/localization.png"></image>
+  </view>
+</view>
