@@ -1,2 +1,40 @@
-<!--pages/grid/shop/storeDetails/storeDetails.wxml-->
-<text>pages/grid/shop/storeDetails/storeDetails.wxml</text>
+<image src="../../../../images/image_none.png" class="store_bg" mode="aspectFill" />
+<view class="store_content">
+  <image src="../../../../images/image_none.png" mode="aspectFill" class="store_image" />
+  <view class="store_name">小雨家服装</view>
+  <view class="store_info">
+    <view class="info1">联系人:</view>
+    <view class="info2">小雨</view>
+    <view class="clear"></view>
+  </view>
+  <view class="store_info">
+    <view class="info1">固定电话:</view>
+    <view class="info2">8393743947</view>
+    <view class="clear"></view>
+  </view>
+  <view class="store_info">
+    <view class="info1">移动电话:</view>
+    <view class="info2">13333333333</view>
+    <view class="clear"></view>
+  </view>
+  <view class="store_info">
+    <view class="info1">邮箱:</view>
+    <view class="info2">1000000000@qq.com</view>
+    <view class="clear"></view>
+  </view>
+  <view class="store_info">
+    <view class="info1">地址:</view>
+    <view class="info2">杭州市萧山区建设一路76号</view>
+    <view class="clear"></view>
+  </view>
+  <view class="store_info">
+    <view class="info1">银行账号:</view>
+    <view class="info2"><view>中国银行:</view>3382373865874529518</view>
+    <view class="clear"></view>
+  </view>
+  <view class="store_info">
+    <view class="info1">店铺介绍:</view>
+    <view class="info2">字太长了不想打字太长了不想打字太长了不想打字太长了不想打字太长了不想打字太长了不想打</view>
+    <view class="clear"></view>
+  </view>
+</view>

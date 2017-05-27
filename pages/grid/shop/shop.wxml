@@ -28,8 +28,8 @@
 
   <!--店铺-->
   <view class="shop_content">
-    <navigator url="mall/mall" class="shop_content_view">
-      <view class="shop_content_title">
+    <view url="mall/mall" class="shop_content_view">
+      <navigator url="storeDetails/storeDetails" class="shop_content_title">
         <image src="../../../images/image_none.png" mode="aspectFill" class="shop_content_tx" />
         <view class="shop_content_info">
           <view class="shop_content_name">向日宠物</view>
@@ -39,23 +39,25 @@
           </view>
         </view>
         <view class="clear"></view>
-      </view>
-      <view class="shop_picture">
-        <image src="../../../images/image_none.png" mode="aspectFill"></image>
-      </view>
-      <view class="shop_picture">
-        <image src="../../../images/image_none.png" mode="aspectFill"></image>
-      </view>
-      <view class="shop_picture">
-        <image src="../../../images/image_none.png" mode="aspectFill"></image>
-      </view>
-      <view class="clear"></view>
-    </navigator>
+      </navigator>
+      <navigator url="mall/mall" class="shop_goods">
+        <view class="shop_picture">
+          <image src="../../../images/image_none.png" mode="aspectFill"></image>
+        </view>
+        <view class="shop_picture">
+          <image src="../../../images/image_none.png" mode="aspectFill"></image>
+        </view>
+        <view class="shop_picture">
+          <image src="../../../images/image_none.png" mode="aspectFill"></image>
+        </view>
+        <view class="clear"></view>
+      </navigator>
+    </view>
     <image src="../../../images/custom-service.png" mode="aspectFit" class="shop_content_service" />
   </view>
 
   <view class="shop_content">
-    <navigator url="mall/mall" class="shop_content_view">
+    <view url="mall/mall" class="shop_content_view">
       <view class="shop_content_title">
         <image src="../../../images/image_none.png" mode="aspectFill" class="shop_content_tx" />
         <view class="shop_content_info">
@@ -67,17 +69,19 @@
         </view>
         <view class="clear"></view>
       </view>
-      <view class="shop_picture">
-        <image src="../../../images/image_none.png" mode="aspectFill"></image>
-      </view>
-      <view class="shop_picture">
-        <image src="../../../images/image_none.png" mode="aspectFill"></image>
-      </view>
-      <view class="shop_picture">
-        <image src="../../../images/image_none.png" mode="aspectFill"></image>
-      </view>
-      <view class="clear"></view>
-    </navigator>
+      <navigator url="mall/mall">
+        <view class="shop_picture">
+          <image src="../../../images/image_none.png" mode="aspectFill"></image>
+        </view>
+        <view class="shop_picture">
+          <image src="../../../images/image_none.png" mode="aspectFill"></image>
+        </view>
+        <view class="shop_picture">
+          <image src="../../../images/image_none.png" mode="aspectFill"></image>
+        </view>
+        <view class="clear"></view>
+      </navigator>
+    </view>
     <image src="../../../images/custom-service.png" mode="aspectFit" class="shop_content_service" />
   </view>
 </scroll-view>

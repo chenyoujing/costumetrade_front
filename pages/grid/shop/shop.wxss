@@ -66,12 +66,11 @@
   box-shadow: 1px 1px 4px #000000;
   position: relative;
 }
-.shop_content_view navigator{
-  padding: 10px 20px;
+.shop_goods{
+  padding-top: 20px;
 }
 .shop_content_title{
   position: relative;
-  margin-bottom: 20px;
 }
 .shop_content_tx{
   position: absolute;
