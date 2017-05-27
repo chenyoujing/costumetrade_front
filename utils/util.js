@@ -35,7 +35,7 @@ var api = {
   },
   getProductInit:function(){
     var that = this;
-    wx.showNavigationBarLoading()
+    wx.showNavigationBarLoading();
    this.request({
       url: 'product/getProductInit',
       data: {
@@ -50,7 +50,6 @@ var api = {
         app.screen_brandList = res.data.brandList;
         app.screen_productTypeList = res.data.productTypeList;
         app.screen_productSize = res.data.productSize,
-        app.screen_priceNameList = res.data.priceNameList,
         app.screen_gradeList = res.data.gradeList,
         app.screen_unitList = res.data.unitList,
         app.getProductInit = true

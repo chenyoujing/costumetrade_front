@@ -1,20 +1,2 @@
-<view class="vipPlus_title">
-  <image src="../../../../images/right-thrust.png" mode="aspectFit"></image>
-  升级
-</view>
-
-
-<!--底部浮动-->
-<view class="vip_bottom">
-  <navigator url="../orderSure/orderSure" class="bottom_button">确认支付</navigator>
-  <view class="bottom_info">
-    <checkbox-group class="bottom_check" bindchange="allcheck">
-      <label>
-        <checkbox value="" checked=""/>全选
-      </label>
-    </checkbox-group>
-    <view class="bottom_price">￥1250.60</view>
-    <view class="clear"></view>
-  </view>
-  <view class="clear"></view>
-</view>
+<!--pages/grid/user/vipPlus/vipPlus.wxml-->
+<text>pages/grid/user/vipPlus/vipPlus.wxml</text>

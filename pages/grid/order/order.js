@@ -9,9 +9,8 @@ Page({
     var num = e.target.dataset.ordertype;
     this.setData({
       ordertype : num,
-      ordertype2: 0,
+      ordertype2: 0
     })
-    console.log(num)
   },
   ordertype2:function(e){
     var num = e.target.dataset.ordertypetwo;

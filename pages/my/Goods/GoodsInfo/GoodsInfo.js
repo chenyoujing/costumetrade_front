@@ -168,7 +168,7 @@ Page({
           duration: 2000
         })
         app.newid = that.data.id == "" ? res.data:null;
-        if(that.data.id){
+        if (that.data.id && objectSubmit.name){
           app.updataGoodsInfo = objectSubmit;  
         }
         wx.navigateBack({
@@ -197,6 +197,7 @@ Page({
         year: new Date().getFullYear()
       }
     });
+    console.log(options)
     if (options.ID !== 'null'){
       this.setData({
         id: options.ID,

@@ -15,14 +15,14 @@
     <view class="th th1">编辑</view>
   </view>
   <scroll-view scroll-y="true">
-    <block wx:for="['1']" wx:key="id">
+    <block wx:for="{{product}}" wx:key="id">
       <view class="tr tr1">
         <view class="td th1">{{index+1}}</view>
-        <view class="td th2">2{{item.name}}</view>
-        <view class="td th1">3{{item.stocknum}}</view>
-        <view class="td th2">4{{item.productcolor}}</view>
-        <view class="td th1">5{{item.productsize}}</view>
-        <view class="td th2">6{{item.productPrice}}</view>
+        <view class="td th2">{{item.name}}</view>
+        <view class="td th1">{{item.stocknum}}</view>
+        <view class="td th2">{{item.productcolor}}</view>
+        <view class="td th1">{{item.productsize}}</view>
+        <view class="td th2">{{item.productPrice}}</view>
         <view class="td th1 change" bindtap="upload" data-id="{{item.productid}}">更改</view>
         <view class="clear"></view>
       </view>
