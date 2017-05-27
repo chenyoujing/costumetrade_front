@@ -59,30 +59,30 @@
     </view>
   </view>
 
-    <view class="content_title">货品信息</view>
-  <view class="express_content">
+  <view class="content_title" style="padding-left:30px;">货品信息</view>
+  <view class="express_content bg_2">
     <view class="content_input">
-      <view class="content_input_text">寄件<text>单位名称:</text></view>
+      <view class="content_input_text">货品名称:</view>
       <input type="text" class="content_input1" name="name" value="{{name}}" />
       <view class="clear"></view>
     </view>
     <view class="content_input">
-      <view class="content_input_text">联系人:</view>
+      <view class="content_input_text">订单号:</view>
       <input type="text" class="content_input1" name="name" value="{{name}}" />
       <view class="clear"></view>
     </view>
     <view class="content_input">
-      <view class="content_input_text">联系电话:</view>
+      <view class="content_input_text">付款方式:</view>
       <input type="text" class="content_input1" name="name" value="{{name}}" />
       <view class="clear"></view>
     </view>
     <view class="content_input">
-      <view class="content_input_text">地址:</view>
+      <view class="content_input_text">月结卡号:</view>
       <input type="text" class="content_input1" name="name" value="{{name}}" />
       <view class="clear"></view>
     </view>
     <view class="content_input">
-      <view class="content_input_text">详细地址:</view>
+      <view class="content_input_text">物流公司:</view>
       <input type="text" class="content_input1" name="name" value="{{name}}" />
       <view class="clear"></view>
     </view>
