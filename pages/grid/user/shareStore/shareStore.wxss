@@ -34,7 +34,7 @@
 }
 .store_content{
   padding-left: 85px;
-  font-size: 12px;
+  font-size: 13px;
   line-height: 16px;
 }
 .image_view{
@@ -50,4 +50,46 @@
   left: 0;
   right: 0;
   margin: auto;
+}
+.store_address{
+  padding-top: 10px;
+}
+.address_image{
+  width: 20px;
+  height: 20px;
+  padding: 10px;
+  float: left;
+}
+.address_text{
+  float: left;
+  padding-left: 10px;
+  font-size: 13px;
+  line-height: 40px;
+}
+.store_trait{
+  float: left;
+  text-align: center;
+  width: 33.33333333%;
+  font-size: 13px;
+  line-height: 40px;
+}
+.scan_info{
+  text-align: center;
+  padding: 20px 0;
+}
+.scan_info_title{
+  color: #ff0000;
+  font-size: 14px;
+  line-height: 30px;
+}
+.scan_info_text{
+  font-size: 10px;
+  line-height: 20px;
+  color: #8b8b8b;
+}
+.scan_info_image{
+  width: 100px;
+  height: 100px;
+  display: block;
+  margin: 15px auto 5px;
 }

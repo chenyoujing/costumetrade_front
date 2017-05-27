@@ -1,7 +1,10 @@
+<!--头部-->
 <view class="shareStore_title">
   <image src="../../../../images/right-thrust.png" mode="aspectFit"></image>
   分享
 </view>
+
+<!--店铺信息-->
 <view class="store_info">
   <view style="padding-bottom: 20px;">
     <image src="../../../../images/image_none.png" class="store_tx" />
@@ -20,6 +23,21 @@
   </view>
   <view class="clear"></view>
   <view class="store_address">
-    <image src="../../../../images/localization.png"></image>
+    <image src="../../../../images/localization.png" mode="aspectFit" class="address_image" />
+    <view class="address_text">浙江省杭州市萧山区建设一路</view>
+    <view class="clear"></view>
   </view>
+</view>
+
+<view class="store_trait">敏捷经营</view>
+<view class="store_trait">高效经营</view>
+<view class="store_trait">实时掌控</view>
+<view class="clear"></view>
+
+<view class="scan_info">
+  <view class="scan_info_title">扫码立刻成为本店会员</view>
+  <view class="scan_info_text">快捷订货补货</view>
+  <view class="scan_info_text">查看最新上架货品</view>
+  <image src="../../../../images/image_none.png" mode="aspectFit" class="scan_info_image" />
+  <view class="scan_info_text">长按二维码关注</view>
 </view>
