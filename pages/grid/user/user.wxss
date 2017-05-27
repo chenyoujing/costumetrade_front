@@ -88,14 +88,10 @@
   color: #286561;
 }
 .my_content{
-  position: absolute;
-  top: 175px;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  padding: 0 10px 15px;
 }
 .my_content_view{
-  margin: 0 10px 15px;
+  margin-top: 15px;
   box-shadow: 1px 1px 4px #000000;
 }
 .my_content_view navigator{

@@ -2,7 +2,7 @@
   background-color: #52CAC1;
   color: #ffffff;
   height: 40px;
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   right: 0;
@@ -40,16 +40,29 @@
   line-height: 40px;
   padding: 0 4px;
 }
+.shop_scroll{
+  position: absolute;
+  top: 40px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
 .shop_swiper{
-  margin-top: 34px;
   height: 360rpx;
 }
 .shop_swiper_image{
   height: 360rpx;
   width: 100%;
 }
+.shop_content{
+  padding: 15px 10px 0;
+  position: relative;
+}
+.shop_content:last-child{
+  padding-bottom: 15px;
+}
 .shop_content_view{
-  margin: 15px 10px;
+  padding: 10px 0;
   box-shadow: 1px 1px 4px #000000;
   position: relative;
 }
@@ -101,8 +114,8 @@
   width: 20px;
   height: 20px;
   padding: 10px;
-  top: 0;
-  right: 10px;
+  top: 15px;
+  right: 20px;
 }
 .shop_picture{
   width: 33.33333333%;

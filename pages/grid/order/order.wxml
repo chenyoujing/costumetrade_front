@@ -62,7 +62,7 @@
     </view>
     <view class="clear"></view>
     <view class="order_container_button">发货</view>
-    <view class="order_container_button btn_2">选物流</view>
+    <navigator url="express/express" class="order_container_button btn_2">选物流</navigator>
     <view class="clear"></view>
   </view>
 </scroll-view>

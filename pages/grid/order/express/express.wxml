@@ -1,0 +1,3 @@
+<view class="express_title">{{title}}</view>
+  <image src="../../../../images/amputate.png" mode="aspectFit" class="image_close" />
+<scroll-view scroll-y class="express_container"></scroll-view>

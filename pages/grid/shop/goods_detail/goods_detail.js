@@ -65,7 +65,7 @@ Page({
     animation.opacity(1).step()
     this.setData({
       modal_opacity: animation.export(),
-      modal_top: "100px",
+      modal_top: "120rpx",
       modal_bottom: "0",
     })
   },

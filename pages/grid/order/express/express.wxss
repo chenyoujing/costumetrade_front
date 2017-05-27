@@ -1,0 +1,25 @@
+.express_title{
+  background-color: #52CAC1;
+  font-size: 16px;
+  line-height: 24px;
+  padding: 8px;
+  color: #ffffff;
+  text-align: center;
+}
+.image_close{
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 16px;
+  height: 16px;
+  padding: 12px 10px;
+}
+
+.express_container{
+  position: absolute;
+  top: 40px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 10px 20px;
+}

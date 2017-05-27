@@ -1,8 +1,69 @@
+.shoppingcard{
+  padding-bottom: 60px;
+  border-top: 1px solid #286561;
+}
 .shoppingcard_container{
   padding: 10px 20px;
+  border-bottom: 2px solid #DBF4F1;
+}
+.container_image{
+  width: 95px;
+  height: 95px;
+  float: left
+}
+.container_info{
+  margin-left: 110px;
+}
+.container_name{
+  font-size: 18px;
+  line-height: 20px;
+}
+.container_check{
+  font-size: 12px;
+  height: 45px;
+  padding-bottom: 5px;
+  display: table-cell;
+  vertical-align: middle;
+}
+.container_check checkbox{
+  margin-right: 10px;
+  zoom: 70%;
+}
+.container_price{
+  float: left;
+  font-size: 14px;
+  line-height: 25px;
+  color: #ff0000;
+}
+.container_delete{
+  float: left;
+  font-size: 12px;
+  line-height: 25px;
+  color: #286561;
+  margin-right: 10px;
+}
+.container_number{
+  float: right;
+}
+.ontainer_number_view{
+  float: left;
+  font-size: 14px;
+  line-height: 23px;
+  border: 1px solid #286561;
+  min-width: 70rpx;
+  text-align: center;
+}
+.number{
+  border-width: 1px 0;
+}
+.subtract,.add{
+  font-size: 24px;
 }
 
+
+
 .shoppingcard_bottom{
+  background-color: #ffffff;
   position: fixed;
   left: 0;
   right: 0;
@@ -10,9 +71,33 @@
   height: 50px;
 }
 .bottom_info{
-  border: 1px solid #286561;
+  border: 1px solid #B9CDCB;
   height: 48px;
   margin-right: 100px;
+}
+.bottom_check{
+  float: left;
+  font-size: 16px;
+  width: 35%;
+  height: 48px;
+  line-height: 48px;
+  text-align: center;
+}
+.bottom_check checkbox{
+  margin-right: 10px;
+}
+.bottom_price{
+  color: #ff0000;
+  font-size: 16px;
+  width: 65%;
+  height: 48px;
+  text-align: center;
+  display: table-cell;
+  vertical-align: middle;
+}
+.bottom_price::before{
+  content: "总金额:";
+  color: #000000;
 }
 .bottom_button{
   background-color: #FE2D04;

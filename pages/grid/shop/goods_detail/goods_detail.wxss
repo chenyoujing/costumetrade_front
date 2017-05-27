@@ -71,14 +71,15 @@ swiper image{
 }
 .shop{
   padding: 10px 15px;
+  position: relative;
 }
-.shop image{
+.shop_image{
   width: 65px;
   height: 65px;
   float: left;
 }
 .shop_name{
-  font-size: 20px;
+  font-size: 18px;
   line-height: 40px;
   padding-left: 95px;
 }
@@ -87,6 +88,28 @@ swiper image{
   line-height: 20px;
   padding-left: 85px;
 }
+.shop_service{
+  width: 18px;
+  height: 18px;
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  padding: 11px 8px;
+}
+.prompt{
+  position: absolute;
+  top: 8px;
+  right: 4px;
+  height: 8px;
+  min-width: 8px;
+  border-radius: 4px;
+  background-color: #ff0000;
+  font-size: 8px;
+  line-height: 8px;
+  text-align: center;
+  color: #ffffff;
+}
+
 .evaluate_button{
   width: 100%;
   background-color: #52CAC1;
@@ -127,31 +150,6 @@ swiper image{
   padding-top: 10px;
 }
 
-
-.shopping_cart_container{
-  position: fixed;
-  left: 0;
-  right: 0;
-  bottom: 0;
-}
-.shopping_cart{
-  box-sizing: border-box;
-  border: 1px solid #286561;
-  background-color: #ffffff;
-  color: #286561;
-  font-size: 16px;
-  line-height: 40px;
-  height: 40px;
-  text-align: center;
-  width: 50%;
-  display: inline-block;
-}
-.active_red{
-  border-color: #FE2D04;
-  background-color: #FE2D04;
-  color: #ffffff;
-}
-
 .modal_cover{
   position: fixed;
   top: 0;
@@ -186,7 +184,7 @@ swiper image{
   left: 0;
   right: 0;
   bottom: 50px;
-  padding: 0;
+  padding: 15px 0;
   width: auto;
 }
 .modal_submit{
@@ -261,4 +259,29 @@ swiper image{
 .goods_number_text{
   float: left;
   padding-left: 30px;
+}
+
+
+.shopping_cart_container{
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+.shopping_cart{
+  box-sizing: border-box;
+  border: 1px solid #286561;
+  background-color: #ffffff;
+  color: #286561;
+  font-size: 16px;
+  line-height: 40px;
+  height: 40px;
+  text-align: center;
+  width: 50%;
+  display: inline-block;
+}
+.active_red{
+  border-color: #FE2D04;
+  background-color: #FE2D04;
+  color: #ffffff;
 }

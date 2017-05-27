@@ -27,10 +27,13 @@
     </swiper-item>
   </swiper>
   <view class="shop">
-    <image src="../../../../images/image_none.png" mode="aspectFill"></image>
+    <image src="../../../../images/image_none.png" mode="aspectFill" class="shop_image"></image>
     <view class="shop_name">店铺名称</view>
     <view class="shop_goods">全部货品：105件</view>
     <view class="clear"></view>
+    <image src="../../../../images/customer_service.png" mode="aspectFit" class="shop_service" >
+      <view class="prompt">3</view>
+    </image>
   </view>
   <view class="evaluate_button">评价</view>
   <view class="evaluate_container">
@@ -56,22 +59,17 @@
   </view>
 </view>
 
-<!--底部浮动-->
-<view class="shopping_cart_container">
-  <navigator url="../shoppingcard/shoppingcard" class="shopping_cart">购物车</navigator>
-  <view class="shopping_cart active_red" bindtap="join">加入购物车</view>
-</view>
 
 <!--加入购物车-->
-<view class="join"></view>
 <view class="modal_cover" bindtap="modal_close" animation="{{modal_opacity}}" style="display:{{modal}};"></view>
 <view class="modal" style="top:{{modal_top}};bottom:{{modal_bottom}};">
   <scroll-view scroll-y="true">
-    <view style="padding:10px;">
+    <view style="padding:10px; overflow:hidden;">
       <view class="goods_container">
         <image src="../../../../images/image_none.png" mode="aspectFill" class="goods_image" />
         <view class="goods_name">621报喜鸟11 2017春 打底裤 适中紫</view>
         <view class="clear"></view>
+        <view class="modal_close" bindtap="modal_close">×</view>
       </view>
       <view class="goods_container">
         <view class="goods_title">尺码类型</view>
@@ -103,6 +101,12 @@
       </view>
     </view>
   </scroll-view>
-  <view class="modal_close" bindtap="modal_close">×</view>
   <button class="modal_submit">确定</button>
+</view>
+
+
+<!--底部浮动-->
+<view class="shopping_cart_container">
+  <navigator url="../shoppingcard/shoppingcard" open-type="redirect" class="shopping_cart">购物车</navigator>
+  <view class="shopping_cart active_red" bindtap="join">加入购物车</view>
 </view>

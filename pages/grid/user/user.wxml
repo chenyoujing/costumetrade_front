@@ -35,8 +35,7 @@
     <view class="clear"></view>
   </view>
   <!--内容-->
-  <scroll-view scroll-y class="my_content">
-    <view style="padding-top:10px;"></view>
+  <view class="my_content">
     <view class="my_content_view">
       <navigator url="client/client">
         <image src="../../../images/custom-service.png" mode="aspectFit" class="my_content_image" />
@@ -96,5 +95,5 @@
         <view class="clear"></view>
       </navigator>
     </view>
-  </scroll-view>
+  </view>
 </view>
