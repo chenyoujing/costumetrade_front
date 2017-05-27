@@ -3,6 +3,7 @@
     "pages/grid/shop/shop",
     "pages/grid/user/user",  
     "pages/grid/order/order",
+    "pages/grid/order/express/express",
     "pages/grid/user/dictionary/dictionary",
     "pages/my/Goods/Goods",
     "pages/my/openOrder/openOrder",
@@ -53,5 +54,6 @@
       }
     ],
     "selectedColor": "#286561"
-  }
+  },
+  "enablePullDownRefresh": true
 }
