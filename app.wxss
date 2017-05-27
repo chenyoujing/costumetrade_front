@@ -14,6 +14,18 @@ button{
 button::after {
   content: none;
 }
+radio,checkbox{
+  zoom: 80%;
+  position:relative;
+  top:-2px;
+}
+.one_line{
+  word-break:keep-all;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+
+}
 
 .clear{
   clear: both;
