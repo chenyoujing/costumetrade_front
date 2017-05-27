@@ -21,5 +21,35 @@
   left: 0;
   right: 0;
   bottom: 0;
-  padding: 10px 20px;
+  padding-top: 15px;
+  width: unset;
+}
+.express_content{
+  background-color: #DBF4F1;
+  margin: 0 20px 15px;
+  box-shadow: 0.5px 0.5px 1px #999999;
+  padding: 5px;
+}
+.content_title{
+  font-size: 18px;
+  line-height: 30px;
+}
+.content_input{
+  position: relative;
+  padding-bottom: 5px;
+}
+.content_input_text{
+  width: 35%;
+  float: left;
+  font-size: 16px;
+  line-height: 30px;
+}
+.content_input_text text{
+  font-size: 14px;
+}
+.content_input1{
+  background-color: #ffffff;
+  font-size: 14px;
+  padding: 0 8px; 
+  height: 28px;
 }

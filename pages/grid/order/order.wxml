@@ -47,7 +47,7 @@
       待付款<view class="ordertype2_prompt">3</view>
     </view>
   <view class="ordertype2_text {{ordertype2=='1' ? 'ordertype2_active' : ''}}" bindtap="ordertype2" data-ordertypetwo="1">
-      待发货<view class="ordertype2_prompt">3</view>
+      待收货<view class="ordertype2_prompt">3</view>
   </view>
   <view class="ordertype2_text {{ordertype2=='2' ? 'ordertype2_active' : ''}}" bindtap="ordertype2" data-ordertypetwo="2">
       确认收货<view class="ordertype2_prompt">3</view>
@@ -198,8 +198,7 @@
       <view class="order_container_text" style="margin-top:10px;">经手人：000</view>
     </view>
     <view class="clear"></view>
-    <view class="order_container_button">发货</view>
-    <navigator url="express/express" class="order_container_button btn_2">选物流</navigator>
+    <view class="order_container_button">催单</view>
     <view class="clear"></view>
   </view>
 
@@ -222,8 +221,8 @@
       <view class="order_container_text" style="margin-top:10px;">经手人：000</view>
     </view>
     <view class="clear"></view>
-    <view class="order_container_button">发货</view>
-    <navigator url="express/express" class="order_container_button btn_2">选物流</navigator>
+    <view class="order_container_button">确认收货</view>
+    <view class="order_container_button btn_2">查看物流</view>
     <view class="clear"></view>
   </view>
 

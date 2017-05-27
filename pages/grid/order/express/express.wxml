@@ -1,3 +1,90 @@
 <view class="express_title">{{title}}</view>
   <image src="../../../../images/amputate.png" mode="aspectFit" class="image_close" />
-<scroll-view scroll-y class="express_container"></scroll-view>
+<scroll-view scroll-y class="express_container">
+  <view class="express_content">
+    <view class="content_title">寄信人信息</view>
+    <view class="content_input">
+      <view class="content_input_text">寄件<text>单位名称:</text></view>
+      <input type="text" class="content_input1" name="name" value="{{name}}" />
+      <view class="clear"></view>
+    </view>
+    <view class="content_input">
+      <view class="content_input_text">联系人:</view>
+      <input type="text" class="content_input1" name="name" value="{{name}}" />
+      <view class="clear"></view>
+    </view>
+    <view class="content_input">
+      <view class="content_input_text">联系电话:</view>
+      <input type="text" class="content_input1" name="name" value="{{name}}" />
+      <view class="clear"></view>
+    </view>
+    <view class="content_input">
+      <view class="content_input_text">地址:</view>
+      <input type="text" class="content_input1" name="name" value="{{name}}" />
+      <view class="clear"></view>
+    </view>
+    <view class="content_input">
+      <view class="content_input_text">详细地址:</view>
+      <input type="text" class="content_input1" name="name" value="{{name}}" />
+      <view class="clear"></view>
+    </view>
+  </view>
+
+  <view class="express_content">
+    <view class="content_title">收件人信息</view>
+    <view class="content_input">
+      <view class="content_input_text">寄件<text>单位名称:</text></view>
+      <input type="text" class="content_input1" name="name" value="{{name}}" />
+      <view class="clear"></view>
+    </view>
+    <view class="content_input">
+      <view class="content_input_text">联系人:</view>
+      <input type="text" class="content_input1" name="name" value="{{name}}" />
+      <view class="clear"></view>
+    </view>
+    <view class="content_input">
+      <view class="content_input_text">联系电话:</view>
+      <input type="text" class="content_input1" name="name" value="{{name}}" />
+      <view class="clear"></view>
+    </view>
+    <view class="content_input">
+      <view class="content_input_text">地址:</view>
+      <input type="text" class="content_input1" name="name" value="{{name}}" />
+      <view class="clear"></view>
+    </view>
+    <view class="content_input">
+      <view class="content_input_text">详细地址:</view>
+      <input type="text" class="content_input1" name="name" value="{{name}}" />
+      <view class="clear"></view>
+    </view>
+  </view>
+
+    <view class="content_title">货品信息</view>
+  <view class="express_content">
+    <view class="content_input">
+      <view class="content_input_text">寄件<text>单位名称:</text></view>
+      <input type="text" class="content_input1" name="name" value="{{name}}" />
+      <view class="clear"></view>
+    </view>
+    <view class="content_input">
+      <view class="content_input_text">联系人:</view>
+      <input type="text" class="content_input1" name="name" value="{{name}}" />
+      <view class="clear"></view>
+    </view>
+    <view class="content_input">
+      <view class="content_input_text">联系电话:</view>
+      <input type="text" class="content_input1" name="name" value="{{name}}" />
+      <view class="clear"></view>
+    </view>
+    <view class="content_input">
+      <view class="content_input_text">地址:</view>
+      <input type="text" class="content_input1" name="name" value="{{name}}" />
+      <view class="clear"></view>
+    </view>
+    <view class="content_input">
+      <view class="content_input_text">详细地址:</view>
+      <input type="text" class="content_input1" name="name" value="{{name}}" />
+      <view class="clear"></view>
+    </view>
+  </view>
+</scroll-view>
