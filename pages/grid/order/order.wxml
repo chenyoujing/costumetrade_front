@@ -79,8 +79,7 @@
       <view class="order_container_text" style="margin-top:10px;">经手人：000</view>
     </view>
     <view class="clear"></view>
-    <view class="order_container_button">发货</view>
-    <navigator url="express/express" class="order_container_button btn_2">选物流</navigator>
+    <view class="order_container_button btn_2">付款</view>
     <view class="clear"></view>
   </view>
   <!--采购待审核-->
@@ -102,8 +101,7 @@
       <view class="order_container_text" style="margin-top:10px;">经手人：000</view>
     </view>
     <view class="clear"></view>
-    <view class="order_container_button">发货</view>
-    <navigator url="express/express" class="order_container_button btn_2">选物流</navigator>
+    <view class="order_container_button btn_2">配货</view>
     <view class="clear"></view>
   </view>
 
@@ -150,9 +148,6 @@
       <view class="order_container_text" style="margin-top:10px;">经手人：000</view>
     </view>
     <view class="clear"></view>
-    <view class="order_container_button">发货</view>
-    <navigator url="express/express" class="order_container_button btn_2">选物流</navigator>
-    <view class="clear"></view>
   </view>
 
   <!--销售待付款-->
@@ -174,8 +169,7 @@
       <view class="order_container_text" style="margin-top:10px;">经手人：000</view>
     </view>
     <view class="clear"></view>
-    <view class="order_container_button">发货</view>
-    <navigator url="express/express" class="order_container_button btn_2">选物流</navigator>
+    <view class="order_container_button">付款</view>
     <view class="clear"></view>
   </view>
 
@@ -245,8 +239,7 @@
       <view class="order_container_text" style="margin-top:10px;">经手人：000</view>
     </view>
     <view class="clear"></view>
-    <view class="order_container_button">发货</view>
-    <navigator url="express/express" class="order_container_button btn_2">选物流</navigator>
+    <view class="order_container_button btn_2">评价</view>
     <view class="clear"></view>
   </view>
 </scroll-view>
