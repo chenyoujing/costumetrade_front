@@ -45,14 +45,14 @@
 }
 .name{
   float: right;
-  font-size: 10px;
+  font-size: 9px;
   line-height: 40px;
   padding: 0 4px;
 }
 .order_title_input{
   background-color: #ffffff;
   color: #000000;
-  font-size: 14px;
+  font-size: 12px;
   line-height: 24px;
   padding: 0 34px 0 8px;
   height: 24px;
@@ -63,8 +63,9 @@
   margin-top: 40px;
 }
 .ordertype_text{
+  color: #202020;
   text-align: center;
-  background-color: #E3E3E3;
+  background-color: #DCDCDC;
   float: left;
   font-size: 18px;
   line-height: 40px;
@@ -79,6 +80,7 @@
   border-width: 1px 0;
 }
 .ordertype2_text{
+  color: #353535;
   text-align: center;
   background-color: #ffffff;
   float: left;
@@ -103,7 +105,8 @@
   color: #ffffff;
 }
 .ordertype2_active{
-  border-bottom: 2px solid #286561;
+  color: #33736e;
+  border-bottom: 2px solid #33736e;
 }
 
 .order_scroll{
@@ -124,13 +127,13 @@
 }
 .order_container_name{
   font-size: 12px;
-  color: #286561;
+  color: #004742;
   line-height: 20px;
   float: left;
   width: 65%;
 }
 .order_container_Bill{
-  color:#ff0000;
+  color:#ff011f;
   font-size: 14px;
   line-height: 20px;
   text-align: center;
@@ -147,24 +150,33 @@
 }
 .order_container_content_left{
   box-sizing: border-box;
-  padding: 15px 0 10px 15px;
+  padding: 10px 0 10px 15px;
   float: left;
   width: 65%;
 }
 .order_container_number{
-  font-size: 14px;
+  font-size: 15px;
   line-height: 24px;
+  padding-bottom: 5px;
 }
 .order_container_text{
+  color: #353535;
   font-size: 12px;
   line-height: 24px;
 }
+.order_container_text:first-child{
+  padding-bottom: 5px;
+}
 .order_container_content_right{
   box-sizing: border-box;
-  padding: 15px 0 10px;
+  padding: 10px 0;
   float: left;
   width: 35%;
   text-align: center;
+}
+.order_container_person{
+  margin-top:10px;
+  font-size: 10px;
 }
 .order_container_button{
   float: right;
@@ -172,7 +184,7 @@
   height: 35px;
   font-size: 14px;
   color: #ffffff;
-  background-color: #FE2D04;
+  background-color: #FF2D04;
   text-align: center;
   line-height: 35px;
 }
