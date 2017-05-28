@@ -2,11 +2,11 @@
 <!--货品详情-->
 <view class="upload" style="top:{{upload}}; bottom:-{{upload}};">
   <view class="upload_title">{{title}}</view>
-  <image src="../../../../images/amputate.png" mode="aspectFit" class="image_close" />
+  <image bindtap="backdelta" src="../../../../images/amputate.png" mode="aspectFit" class="image_close" />
   <form class="upload_content" bindsubmit="submitGoodsInfo" data-id="{{id}}">
     <scroll-view scroll-y="true" class="upload_container">
       <view class="upload_input">
-        <input type="text"  class="hidden" name="id" value="{{GoodsInfoData.id}}" />
+        <input type="text"  hidden="true" name="id" value="{{GoodsInfoData.id}}" />
       </view>
       <view class="upload_input">
         <view class="upload_input_text">名称:</view>
@@ -28,27 +28,27 @@
       </view>
       <view class="upload_input">
         <view class="upload_input_text">等级:</view>
-        <picker style="margin-right:0" data-style = 'grade_index' bindchange="bindSelectorChange" value="{{GoodsInfoData.grade}}" range="{{screen_gradeList}}" name="grade">
-            {{screen_gradeList[grade_index]}}
+        <picker style="margin-right:0" data-style = 'grade_index' bindchange="bindSelectorChange" value="{{GoodsInfoData.grade}}" range="{{screen_gradeList}}" name="grade" mode="selector" range-key="custtypename" >
+            {{screen_gradeList[grade_index].custtypename}}
             <image src="../../../../images/down.png" mode="aspectFit" class="picker_image" />
         </picker>
         <view class="clear"></view>
       </view>
       <view class="upload_input">
         <view class="upload_input_text">吊牌价:</view>
-        <input type="digit" bindblur="blurInput" data-name="tagprice" class="upload_input1" name="tagprice" value="{{GoodsInfoData.tagprice}}" placeholder="*" placeholder-class="required" />
+        <input type="digit" bindinput="blurInput" data-name="tagprice" class="upload_input1" name="tagprice" value="{{GoodsInfoData.tagprice}}" placeholder="*" placeholder-class="required" />
         <view class="clear"></view>
       </view>
       <view class="upload_input">
         <view class="upload_input_text">进货价:</view>
-        <input type="digit" bindblur="blurInput" data-name="purchaseprice"  class="upload_input1" name="purchaseprice" value="{{GoodsInfoData.purchaseprice}}" />
+        <input type="digit" bindinput="blurInput" data-name="purchaseprice"  class="upload_input1" name="purchaseprice" value="{{GoodsInfoData.purchaseprice}}" />
         <view class="clear"></view>
       </view>
       <view class="upload_input">
         <view class="upload_input_text">销售价:</view>
-        <checkbox-group class="picker_checkbox">
+        <checkbox-group class="picker_checkbox"  bindchange="checkboxChange">
           <label>
-            <checkbox value="{{item.name}}" checked="{{item.checked}}"/>手动修改销售价
+            <checkbox value="{{updataAut}}" checked="{{item.checked}}"/>手动修改销售价
           </label>
         </checkbox-group>
         <view class="clear"></view>
@@ -58,11 +58,14 @@
           <view class="picker_content_view">折扣率</view>
           <view class="picker_content_view">毛利率</view>
         </view>
-        <picker-view class="picker_container" indicator-style="height: 33px;" value="{{value}}" bindchange="bindChange">
+        <picker-view class="picker_container" indicator-style="height: 33px;" value="{{value}}" bindchange="changPrice">
             <picker-view-column>
               <view class="picker_content" wx:for="{{picker_view}}">
                 <view class="picker_content_view">{{item.name}}</view>
-                <view class="picker_content_view">{{item.price}}</view>
+                <view class="picker_content_view">
+                <input focus="true" wx-if="{{changPrice_index==index && updataAut == true}}" type = "digit" data-name="{{index}}" bindinput="blurInputPrice" value="{{item.price}}"/>
+                <view wx-if="{{changPrice_index !==index || updataAut !== true}}">{{item.price}}</view>
+                </view>
                 <view class="picker_content_view">{{item.discount}}</view>
                 <view class="picker_content_view">{{item.profit}}</view>
               </view>

@@ -2,13 +2,19 @@ var util = require('../../../../utils/util.js')
 var app = getApp()
 Page({
   data:{
+    id: '',
+    producttype_index: 0,
+    unit_index: 0,
+    grade_index: 0,
+    size_index: 0,
+    brand_index: 0,
     title:'新增货品',
     picker_view: [
-      { name: '名字', price: '价格', discount: '折扣', profit: '毛利' },
-      { name: '名字', price: '价格', discount: '折扣', profit: '毛利' },
-      { name: '名字', price: '价格', discount: '折扣', profit: '毛利' },
-      { name: '名字', price: '价格', discount: '折扣', profit: '毛利' },
-      { name: '名字', price: '价格', discount: '折扣', profit: '毛利' },
+      { name: '名字', price: 0, discount: 0, profit: 0, pricename:"firsthPrice"},
+      { name: '名字', price: 0, discount: 0, profit: 0, pricename:"secondPrice"},
+      { name: '名字', price: 0, discount: 0, profit: 0, pricename:"thirdPrice"},
+      { name: '名字', price: 0, discount: 0, profit: 0, pricename:"fourthPrice"},
+      { name: '名字', price: 0, discount: 0, profit: 0, pricename:"fifthPrice"},
     ],
     screen_content3: [
       { name: '春', value: '春' },
@@ -23,12 +29,14 @@ Page({
     screen_productSize:[],
     GoodsInfoData:{},
     soruceData:{},
-    id:'',
-    producttype_index: 0,
-    unit_index: 0,
-    grade_index:0,
-    size_index:0,
-    brand_index: 0,
+    changPrice_index:0,
+    updataAut:false
+  },
+  // 返回
+  backdelta: function () {
+    wx.navigateBack({
+      delta: 1
+    })
   },
   bindDateChange: function(e) {
     var param = this.data.GoodsInfoData;
@@ -65,11 +73,12 @@ Page({
         break;
       case 'brand_index':
         param.brandid = this.data.screen_brandList[e.detail.value].id;
+       
         this.setData({
           brand_index: e.detail.value,
           GoodsInfoData: param
         })
-       
+        this.priceCalculate('tagprice', this.data.GoodsInfoData.tagprice);
         break;
       case 'producttype_index':
         param.producttype = this.data.screen_productTypeList[e.detail.value].id;
@@ -125,13 +134,21 @@ Page({
             var brandNumber = p;
           }
         }
+        var newPicker = that.data.picker_view;
+        newPicker[0].price = answerData.firsthPrice;
+        newPicker[1].price = answerData.secondPrice;
+        newPicker[2].price = answerData.thirdPrice;
+        newPicker[3].price = answerData.fourthPrice;
+        newPicker[4].price = answerData.fifthPrice;
         that.setData({
           soruceData: util.api.Clone(answerData),
           GoodsInfoData: answerData, 
           id: answerData.id,
           producttype_index: typeNumber,
-          brand_index: brandNumber
+          brand_index: brandNumber,
+          picker_view: newPicker
         });
+        that.gradeCate();
         console.log(res)
       }
     })
@@ -140,6 +157,12 @@ Page({
   submitGoodsInfo:function(e){
     var that = this;
     var target = e.detail.value;
+    target.firsthPrice = this.data.picker_view[0].price ? this.data.picker_view[0].price:0;
+    target.secondPrice = this.data.picker_view[1].price ? this.data.picker_view[1].price : 0;
+    target.thirdPrice = this.data.picker_view[2].price ? this.data.picker_view[2].price : 0;
+    target.fourthPrice = this.data.picker_view[3].price ? this.data.picker_view[3].price : 0;
+    target.fifthPrice = this.data.picker_view[4].price ? this.data.picker_view[4].price : 0;
+    console.log (e)
     target.year = target.year.substring(1, target.year.length)
     var objectSubmit = {};
     if(this.data.id !== ''){
@@ -184,26 +207,101 @@ Page({
       })
     }
   },
-  // input失去焦点
-  blurInput:function(e){
-    var style = e.currentTarget.dataset.name;
+  // 计算价格
+  priceCalculate:function(style,value){
+    console.log(value);
     var param = this.data.GoodsInfoData;
-    param[style] = e.detail.value;
+    param[style] = value;
+    if (style == 'tagprice' && value) {
+      param.purchaseprice = (value*this.data.screen_brandList[this.data.brand_index].profitD0 / 100).toFixed(2);
+    }
+    if (style == 'purchaseprice' && value) {
+      param.tagprice = (value / this.data.screen_brandList[this.data.brand_index].profitD0 * 100).toFixed(2);
+    }
     this.setData({
       GoodsInfoData: param
     })
+    this.gradeCate();
+  },
+  // input失去焦点
+  blurInput:function(e){
+    var style = e.currentTarget.dataset.name;
+    this.priceCalculate(style,e.detail.value);
   },
   // 等级、客户种类逻辑
-  gradeCate:function(){
+  gradeCate:function(type){
     var arry = [];
+    var newPicker = [];
     var name = app.custOrDiscTag == 1 ? 'custPriceJson' :'discPriceJson';
+    var pickername = app.custOrDiscTag == 1 ? 'profit' : 'discount';
     arry = app.custProdPrice[this.data.grade_index][name];
-    console.log(arry);
+    var ben = parseInt(this.data.GoodsInfoData.purchaseprice) ? parseInt(this.data.GoodsInfoData.purchaseprice) : 0;
+    var ben1 = this.data.GoodsInfoData.tagprice?this.data.GoodsInfoData.tagprice : 0;
+    console.log(ben1)
+    if (app.custOrDiscTag == 1){
+      if(type){
+        newPicker = this.data.picker_view;
+        for (var p in newPicker){
+          if (newPicker[p].price == type){
+            newPicker[p].discount = (type / ben1 * 100).toFixed(1) !== 'NaN' ? (type / ben1 * 100).toFixed(1) : 0;
+            newPicker[p].profit = ((type - ben) / type*100).toFixed(1);
+            newPicker[p].price = type;
+          }
+        }
+      }else{
+        for (var p in arry) {
+          var sale1 = (ben / (1 - arry[p].value / 100)).toFixed(2);
+          sale1 = sale1 ? sale1 : 0;
+          newPicker.push({
+            name: arry[p].name,
+            profit: arry[p].value,
+            price: sale1,
+            discount: (sale1 / ben1 * 100).toFixed(1) !== 'NaN' ? (sale1 / ben1 * 100).toFixed(1) : 0
+          })
+        }
+      }
+    }else{
+      for (var p in arry) {
+        var sale2 = (ben1 * arry[p].value / 100).toFixed(2);
+        sale2 = sale2 ? 0 : sale2;
+        newPicker.push({
+          name: arry[p].name,
+          discount: arry[p].value,
+          price: sale2 ,
+          profit: (sale2 - ben/ sale2).toFixed(1)
+        })
+      }
+    }
+    console.log(newPicker);
+    this.setData({
+      picker_view: newPicker
+    })
     
   },
+  changPrice:function(e){
+    var num = e.detail.value;
+    this.setData({
+      changPrice_index:num[0]
+    })
+  },
+  checkboxChange:function(e){
+    this.setData({
+      updataAut: !this.data.updataAut
+    })
+  },
+  blurInputPrice:function(e){
+    var num = e.currentTarget.dataset.name;
+    var arry = this.data.picker_view;
+    arry[num].price = e.detail.value;
+    this.setData({
+      picker_view: arry
+    })
+    if (e.detail.value){
+      this.gradeCate(e.detail.value);
+    }
+    console.log(arry[num].price)
+  },
   onLoad: function (options) {
-    this.gradeCate();
-    console.log(app)
     this.setData({
       screen_brandList: app.screen_brandList,
       screen_productTypeList: app.screen_productTypeList,
@@ -226,7 +324,9 @@ Page({
         id: options.ID,
         title: options.name
       });
-      this.showGoodsInfo()
-    } 
+      this.showGoodsInfo();
+    }else{
+      this.gradeCate();
+    }
   }
 })
