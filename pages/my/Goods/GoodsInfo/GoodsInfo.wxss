@@ -115,7 +115,6 @@
   color: #ffffff;
 }
 .required{
-  content: "*";
   color: #ff0000;
 }
 .picker_checkbox{
