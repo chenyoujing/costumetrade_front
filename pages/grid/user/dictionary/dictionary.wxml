@@ -8,6 +8,8 @@
     <view class="clear"></view>
   </view>
   <swiper interval="0" duration="500" current="{{current}}" bindchange="swiper_change">
+
+    <!--员工管理-->
     <swiper-item>
       <scroll-view scroll-y style="bottom:0;">
         <view style="padding:10px;">
@@ -60,6 +62,8 @@
       </scroll-view>
       <button class="submit" style="left:-{{staff_updata}};right:{{staff_updata}};" bindtap="staff_updata_close">保存</button>
     </swiper-item>
+
+    <!--打印信息-->
     <swiper-item>
       <scroll-view scroll-y>
         <view class="print_info">打印信息</view>
@@ -119,23 +123,81 @@
       </scroll-view>
       <button class="submit">保存</button>
     </swiper-item>
+
+    <!--高级设置-->
     <swiper-item>
       <scroll-view scroll-y>
-        <view class="print_info">支付管理</view>
-        <view class="image_operation">
-          <view class="image_operation_button">微信支付(二维码)</view>
-          <view class="image_operation_button">支付宝支付(二维码)</view>
+        <!--高级设置//支付管理,付款方式-->
+        <view class="setting_view" style="padding: 0 20px;">
+          <view class="setting_title">支付管理</view>
+          <view class="setting_title" style="font-size:16px;">添加手机支付二维码</view>
+          <view class="setting_operation">
+            <text>1.</text>微信支付(二维码)
+            <image src="../../../../images/update.png" mode="aspectFit" class="image_update" />
+          </view>
+          <view class="setting_operation">
+            <text>2.</text>支付宝支付(二维码)
+            <image src="../../../../images/update.png" mode="aspectFit" class="image_update" />
+          </view>
+          <view class="setting_pay">
+            <view class="pay_title">
+              付款方式
+              <image src="../../../../images/add.png" mode="aspectFit" class="image_add" />
+            </view>
+            <view class="pay_view">
+              <text>1.</text>现金
+              <image src="../../../../images/delete.png" mode="aspectFit" class="image_delete" />
+            </view>
+            <view class="pay_view">
+              <text>2.</text>刷卡
+              <image src="../../../../images/delete.png" mode="aspectFit" class="image_delete" />
+            </view>
+            <view class="pay_view">
+              <text>3.</text>微信
+              <image src="../../../../images/delete.png" mode="aspectFit" class="image_delete" />
+            </view>
+            <view class="pay_view">
+              <text>4.</text>支付宝
+              <image src="../../../../images/delete.png" mode="aspectFit" class="image_delete" />
+            </view>
+            <view class="pay_view">
+              <text>5.</text>转账
+              <image src="../../../../images/delete.png" mode="aspectFit" class="image_delete" />
+            </view>
+          </view>
+        </view>
+
+        <!--高级设置//货品售价生成方式-->
+        <view class="setting_view">
+          <view class="setting_title2">货品售价生成方式</view>
+          <view class="setting_button_view">
+            <view class="setting_button">
+              <view class="setting_button_small"></view>
+              <view class="setting_button_text1">成本价*毛利率</view>
+              <view class="setting_button_text2">吊牌价*折扣率</view>
+            </view>
+          </view>
+          <view class="clear"></view>
+          <view class="setting_name2">成本价*毛利率</view>
+          <view class="setting_text2">此种方式适合批发店，新增货品时按成本价和客户种类的毛利率计算出固定的销售价格</view>
+          <view class="setting_name2">成本价*毛利率</view>
+          <view class="setting_text2">此种方式适合零售店，在货品销售时，按吊牌价和客户种类的折扣率生成销售价格</view>
+        </view>
+
+        <!--货品级别-->
+        <view class="print_info">
+          <view class="goods_update">修改</view>
+          货品级别
+        </view>
+        <view class="goods_level">
+          <view class="goods_level_title" style="width:25%">货品名称</view>
+          <view class="goods_level_title" style="width:15%"></view>
+          <view class="goods_level_title" style="width:35%">客户种类</view>
+          <view class="goods_level_title" style="width:25%">折扣率</view>
           <view class="clear"></view>
         </view>
-        <view class="print_info" style="padding-bottom:10px; border-bottom:1px solid #52CAC1;">
-          <view class="add">
-            <image src="../../../../images/7.png" mode="aspectFit" class="add_image" />
-          </view>
-          <view class="delete">
-            <image src="../../../../images/7.png" mode="aspectFit" class="delete_image" />
-          </view>
-          支付方式
-        </view>
+
+
         <view class="print_info">
           <view class="add">
             <image src="../../../../images/7.png" mode="aspectFit" class="add_image" />

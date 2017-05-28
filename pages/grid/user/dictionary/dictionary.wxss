@@ -91,9 +91,12 @@ scroll-view{
   bottom: 40px;
 }
 .print_info{
-  padding: 20px 20px 10px;
+  padding: 20px 0 10px;
+  margin: 0 20px;
   font-size: 18px;
+  line-height: 20px;
   position: relative;
+  border-bottom:1px solid #52CAC1;
 }
 .dictionary_input{
   padding-right: 30px;
@@ -171,31 +174,164 @@ scroll-view{
   line-height: 24px;
 }
 .submit{
-  font-size: 16px;
+  font-size: 18px;
   border-radius: 0;
   background-color: #52CAC1;
-  line-height: 30px;
-  height: 30px;
+  line-height: 40px;
+  height: 40px;
   text-align: center;
   padding: 0;
   position: absolute;
-  width: 100px;
-  bottom: 5px;
+  width: 40%;
+  bottom: 0;
   left: 0;
   right: 0;
   margin: auto;
   color: #ffffff;
   transition: all 0.3s;
 }
+
+
+
 .setting_view{
   background-color: #DBF4F1;
   margin: 10px 20px;
 }
 .setting_title{
-  padding: 5px 0;
-  margin: 0 10px;
-  border-bottom: 2px solid #52CAC1;
+  font-size: 18px;
+  line-height: 30px;
+  padding-left: 10px;
 }
+.setting_operation{
+  font-size: 16px;
+  line-height: 40px;
+  position: relative;
+  padding-right: 40px;
+}
+.setting_operation text{
+  padding: 0 20px;
+}
+.image_update{
+  width: 16px;
+  height: 16px;
+  padding: 12px;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+.setting_pay{
+  border-top: 1px solid #52CAC1;
+}
+.pay_title{
+  font-size: 16px;
+  line-height: 40px;
+  position: relative;
+  padding-left: 10px;
+}
+.image_add{
+  width: 16px;
+  height: 16px;
+  padding: 12px;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+.pay_view{
+  font-size: 16px;
+  line-height: 30px;
+  position: relative;
+  padding-right: 30px;
+}
+.pay_view text{
+  padding: 0 20px;
+}
+.image_delete{
+  width: 16px;
+  height: 16px;
+  padding: 7px;
+  position: absolute;
+  top: 0;
+  right: 5px;
+}
+
+
+
+.setting_title2{
+  float: left;
+  width: 40%;
+  text-align: center;
+  font-size: 32rpx;
+  line-height: 36px;
+}
+.setting_button_view{
+  float: left;
+  width: 60%;
+  height: 36px;
+  position: relative;
+  font-size: 12px;
+}
+.setting_button{
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 190px;
+  background-color: #DCDCDC;
+  height: 26px;
+  border-radius: 13px;
+  border: 1px solid #DCDCDC;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+}
+.setting_button_small{
+  width: 50%;
+  background-color: #ffffff;
+  height: 24px;
+  border-radius: 12px;
+}
+.setting_button_text1{
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 50%;
+  line-height: 24px;
+  font-size: 12px;
+  text-align: center;
+}
+.setting_button_text2{
+  position: absolute;
+  top: 0;
+  left: 50%;
+  right: 0;
+  line-height: 24px;
+  font-size: 12px;
+  text-align: center;
+}
+
+
+
+.goods_update{
+  color: #286561;
+  padding: 0 10px;
+  font-size: 16px;
+  line-height: 20px;
+  float: right;
+}
+.goods_level{
+  padding: 0 10px;
+}
+.goods_level_title{
+  float: left;
+  font-size: 14px;
+  text-align: center;
+  height: 30px;
+  line-height: 30px;
+}
+
+
+
 .setting_text{
   width: 33.33333333%;
   text-align: center;
@@ -205,6 +341,16 @@ scroll-view{
 .setting_content{
   padding: 5px 0;
   margin: 0 10px;
+}
+.setting_name2{
+  font-size: 14px;
+  line-height: 20px;
+  padding: 0 10px;
+}
+.setting_text2{
+  font-size: 12px;
+  line-height: 16px;
+  padding: 0 10px 15px;
 }
 
 
