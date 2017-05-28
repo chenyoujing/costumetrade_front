@@ -1,1 +1,172 @@
-/* pages/grid/user/vipPlus/vipPlus.wxss */
+.vipPlus_title{
+  background-color: #52CAC1;
+  color: #ffffff;
+  text-align: center;
+  font-size: 16px;
+  line-height: 50px;
+  height: 50px;
+  position: relative;
+  z-index: 9;
+}
+.vipPlus_title image{
+  width: 16px;
+  height: 16px;
+  padding: 17px 10px;
+  position: absolute;
+  left: 0;
+  transform: rotate(180deg);
+}
+
+.vipPlus_container{
+  position: absolute;
+  top: 50px;
+  left: 0;
+  right: 0;
+  bottom: 50px;
+}
+
+.vip_explain{
+  padding: 15px;
+  border-bottom: 5px solid #DBF4F1;
+}
+.explain_title{
+  text-align: center;
+  font-size: 18px;
+  line-height: 30px;
+}
+.explain_title2{
+  text-align: center;
+  font-size: 13px;
+  line-height: 30px;
+}
+.explain_text{
+  font-size: 13px;
+  line-height: 18px;
+  padding: 3px 0;
+}
+.vip_view{
+  margin-top: 10px;
+  border: 1px solid #52CAC1;
+  padding: 10px;
+  background-color: #ffffff;
+  color: #000000;
+}
+.vip_view_name{
+  float: left;
+  font-size: 16px;
+  line-height: 20px;
+  padding-right: 10px;
+}
+.vip_view_price1{
+  float: left;
+  font-size: 13px;
+  line-height: 24px;
+}
+.vip_num{
+  float: right;
+}
+.vip_num_view{
+  float: left;
+  font-size: 14px;
+  line-height: 22px;
+  border: 1px solid #000000;
+  min-width: 22px;
+  text-align: center;
+}
+.number{
+  border-width: 1px 0;
+}
+.subtract,.add{
+  font-size: 20px;
+}
+.vip_view_price2{
+  float: right; 
+  font-size: 16px;
+  line-height: 24px;
+  padding-left: 40rpx;
+}
+.vip_active{
+  background-color: #52CAC1;
+  color: #ffffff;
+}
+.vip_active .vip_num_view{
+  border-color: #ffffff;
+}
+
+.vip_pay{
+  padding-bottom: 10px;
+}
+.vip_pay_title{
+  font-size: 13px;
+  padding: 10px 15px;
+}
+.vip_prompt{
+  color: #FE2D04;
+  text-align: center;
+  font-size: 11px;
+  line-height: 30px;
+}
+.vip_price{
+  color: #FE2D04;
+  font-size: 18px;
+  line-height: 20px;
+  padding: 0 10px;
+  float: right;
+}
+.vip_price::before{
+  content: "应付金额：";
+  color: #000000;
+  font-size: 14px;
+}
+.method_view{
+  float: left;
+  width: 33.33333333%;
+}
+.method_name{
+  width: 160rpx;
+  border: 1px solid #52CAC1;
+  text-align: center;
+  font-size: 14px;
+  line-height: 24px;
+  border-radius: 12px;
+  margin: auto;
+}
+.method_active{
+  background-color: #52CAC1;
+  color: #ffffff;
+}
+
+
+.vip_bottom{
+  background-color: #ffffff;
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 50px;
+}
+.bottom_info{
+  border: 1px solid #B9CDCB;
+  margin-right: 210rpx;
+  height: 48px;
+  line-height: 48px;
+  color: #FE2D04;
+  padding-left: 20px;
+  padding-right: 10px;
+  font-size: 18px;
+}
+.bottom_info::before{
+  content: "总计：";
+  color: #000000;
+  font-size: 16px;
+}
+.bottom_button{
+  background-color: #FE2D04;
+  color: #ffffff;
+  float: right;
+  font-size: 20px;
+  line-height: 50px;
+  height: 50px;
+  width: 210rpx;
+  text-align: center;
+}

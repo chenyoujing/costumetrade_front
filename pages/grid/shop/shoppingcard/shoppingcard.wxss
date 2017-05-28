@@ -45,7 +45,7 @@
 .container_number{
   float: right;
 }
-.ontainer_number_view{
+.container_number_view{
   float: left;
   font-size: 14px;
   line-height: 23px;
@@ -91,6 +91,7 @@
   font-size: 16px;
   width: 65%;
   height: 48px;
+  line-height: 20px;
   text-align: center;
   display: table-cell;
   vertical-align: middle;

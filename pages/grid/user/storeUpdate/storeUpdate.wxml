@@ -2,4 +2,57 @@
   <image src="../../../../images/right-thrust.png" mode="aspectFit"></image>
   商铺信息
 </view>
-<image src="../../../../images/image_none.png" class="store_image" />
+
+<scroll-view scroll-y class="storeUpdate_container">
+  <image src="../../../../images/image_none.png" class="store_bg" mode="aspectFill" />
+  <view class="store_content">
+    <image src="../../../../images/image_none.png" mode="aspectFill" class="store_image" />
+    <view class="store_input">
+      <view class="store_input_text">名称：</view>
+        <input type="text" class="store_input1" placeholder="*" placeholder-class="required" />
+      <view class="clear"></view>
+    </view>
+    <view class="store_input">
+      <view class="store_input_text">移动电话：</view>
+        <input type="text" class="store_input1" placeholder="*" placeholder-class="required" />
+      <view class="clear"></view>
+    </view>
+    <view class="store_input">
+      <view class="store_input_text">固定电话：</view>
+        <input type="text" class="store_input1" />
+      <view class="clear"></view>
+    </view>
+    <view class="store_input">
+      <view class="store_input_text">企业地址：</view>
+        <input type="text" class="store_input1" placeholder="*" placeholder-class="required" />
+      <view class="clear"></view>
+    </view>
+    <view class="store_input">
+      <view class="store_input_text">微信号：</view>
+        <input type="text" class="store_input1" />
+      <view class="clear"></view>
+    </view>
+    <view class="store_input">
+      <view class="store_input_text">所属地区：</view>
+        <input type="text" class="store_input1" />
+      <view class="clear"></view>
+    </view>
+    <view class="store_input">
+      <view class="store_input_text">生日：</view>
+        <input type="text" class="store_input1" />
+      <view class="clear"></view>
+    </view>
+    <view class="store_input">
+      <view class="store_input_text">联系人：</view>
+        <input type="text" class="store_input1" />
+      <view class="clear"></view>
+    </view>
+    <view class="store_input">
+      <view class="store_input_text">店铺介绍：</view>
+        <input type="text" class="store_input1" />
+      <view class="clear"></view>
+    </view>
+  </view>
+</scroll-view>
+<navigator url="../dictionary/dictionary" class="dictionary">跳转到高级设置</navigator>
+<button class="submit" form-type="submit">提交</button>

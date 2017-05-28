@@ -67,18 +67,20 @@
       <view class="order_container_Bill">线下单据</view>
       <image src="../../../images/right-thrust.png" mode="aspectFit" class="order_content_right" />
     </view>
-    <view class="order_container_content_left">
-      <view class="order_container_number">单号：170420173016939</view>
-      <view class="order_container_text">数量：2</view>
-      <view class="order_container_text">未付：500</view>
-    </view>
-    <view class="order_container_content_right">
-      <view class="order_container_text">2017-04-20</view>
-      <view class="order_container_text">合计金额：<text style="color:#ff0000;">￥842</text></view>
-      <view class="order_container_text">现金：￥1099.6</view>
-      <view class="order_container_text" style="margin-top:10px;">经手人：000</view>
-    </view>
-    <view class="clear"></view>
+    <navigator url="orderDetails/orderDetails">
+      <view class="order_container_content_left">
+        <view class="order_container_number">单号：170420173016939</view>
+        <view class="order_container_text">数量：2</view>
+        <view class="order_container_text">未付：500</view>
+      </view>
+      <view class="order_container_content_right">
+        <view class="order_container_text">2017-04-20</view>
+        <view class="order_container_text">合计金额：<text style="color:#ff0000;">￥842</text></view>
+        <view class="order_container_text">现金：￥1099.6</view>
+        <view class="order_container_text" style="margin-top:10px;">经手人：000</view>
+      </view>
+      <view class="clear"></view>
+    </navigator>
     <view class="order_container_button btn_2">付款</view>
     <view class="clear"></view>
   </view>

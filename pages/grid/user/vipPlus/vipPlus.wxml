@@ -1,2 +1,76 @@
-<!--pages/grid/user/vipPlus/vipPlus.wxml-->
-<text>pages/grid/user/vipPlus/vipPlus.wxml</text>
+<view class="vipPlus_title">
+  <image src="../../../../images/right-thrust.png" mode="aspectFit"></image>
+  升级
+</view>
+
+<scroll-view scroll-y class="vipPlus_container">
+  <!--会员说明-->
+  <view class="vip_explain">
+    <view class="explain_title">会员说明</view>
+    <view class="explain_title2">开通会员将有很多惊喜等着你哦：</view>
+    <view class="explain_text">1.您的交易记录我们会牢牢的存在服务器哦，您就可以随时的查看了；</view>
+    <view class="explain_text">2.您的销售记录，入库记录等等...我们会以报表的形式展示给您，让您一目了然；</view>
+    <view class="explain_text">3.商城里面好多功能呢，让您的采购方便起来了；好多功能不一一列举了，开通会员试试吧!</view>
+    <view class="vip_view vip_active">
+      <view class="vip_view_name">VIP会员</view>
+      <view class="vip_view_price1">200/一年</view>
+      <view class="vip_view_price2">￥200</view>
+      <view class="vip_num">
+        <view class="vip_num_view subtract">-</view>
+        <view class="vip_num_view number">1</view>
+        <view class="vip_num_view add">+</view>
+        <view class="clear"></view>
+      </view>
+      <view class="clear"></view>
+    </view>
+    <view class="vip_view">
+      <view class="vip_view_name">VIP会员</view>
+      <view class="vip_view_price1">400/一年</view>
+      <view class="vip_view_price2">￥400</view>
+      <view class="vip_num">
+        <view class="vip_num_view subtract">-</view>
+        <view class="vip_num_view number">1</view>
+        <view class="vip_num_view add">+</view>
+        <view class="clear"></view>
+      </view>
+      <view class="clear"></view>
+    </view>
+    <view class="vip_view">
+      <view class="vip_view_name">VIP会员</view>
+      <view class="vip_view_price1">600/一年</view>
+      <view class="vip_view_price2">￥600</view>
+      <view class="vip_num">
+        <view class="vip_num_view subtract">-</view>
+        <view class="vip_num_view number">1</view>
+        <view class="vip_num_view add">+</view>
+        <view class="clear"></view>
+      </view>
+      <view class="clear"></view>
+    </view>
+    <view class="vip_prompt">检测到您的会员于2035-03-09到期，支付后延长至2036-03-09</view>
+    <view class="vip_price">￥200</view>
+    <view class="clear"></view>
+  </view>
+
+  <!--支付方式-->
+  <view class="vip_pay">
+    <view class="vip_pay_title">选择支付方式</view>
+    <view class="method_view">
+      <view class="method_name method_active">微信支付</view>
+    </view>
+    <view class="method_view">
+      <view class="method_name">钱包支付</view>
+    </view>
+
+    <view class="clear"></view>
+  </view>
+
+  <!--底部浮动-->
+  <view class="vip_bottom">
+    <view url="../orderSure/orderSure" class="bottom_button">确认支付</view>
+    <view class="bottom_info">
+      ￥200
+    </view>
+    <view class="clear"></view>
+  </view>
+</scroll-view>

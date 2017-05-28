@@ -11,9 +11,9 @@
       <view class="container_price">￥639</view>
       <view class="container_number">
         <view class="container_delete">删除</view>
-        <view class="ontainer_number_view subtract">-</view>
-        <view class="ontainer_number_view number">1</view>
-        <view class="ontainer_number_view add">+</view>
+        <view class="container_number_view subtract">-</view>
+        <view class="container_number_view number">1</view>
+        <view class="container_number_view add">+</view>
         <view class="clear"></view>
       </view>
       <view class="clear"></view>
@@ -31,9 +31,9 @@
       <view class="container_price">￥639</view>
       <view class="container_number">
         <view class="container_delete">删除</view>
-        <view class="ontainer_number_view subtract">-</view>
-        <view class="ontainer_number_view number">1</view>
-        <view class="ontainer_number_view add">+</view>
+        <view class="container_number_view subtract">-</view>
+        <view class="container_number_view number">1</view>
+        <view class="container_number_view add">+</view>
         <view class="clear"></view>
       </view>
       <view class="clear"></view>

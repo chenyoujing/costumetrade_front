@@ -6,6 +6,7 @@
   line-height: 50px;
   height: 50px;
   position: relative;
+  z-index: 9;
 }
 .storeUpdate_title image{
   width: 16px;
@@ -14,4 +15,81 @@
   position: absolute;
   left: 0;
   transform: rotate(180deg);
+}
+
+.storeUpdate_container{
+  position: absolute;
+  top: 50px;
+  left: 0;
+  right: 0;
+  bottom: 60px;
+}
+.store_bg{
+  width: 100%;
+  height: 130px;
+  filter: blur(3px);
+}
+.store_content{
+  position: relative;
+  padding: 50px 80rpx 0 40rpx;
+}
+.store_image{
+  width: 90px;
+  height: 90px;
+  border-radius: 45px;
+  position: absolute;
+  top: -50px;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+.store_input{
+  position: relative;
+  padding-bottom: 10px
+}
+.store_input:first-child{
+  padding-top: 15px;
+}
+.store_input_text{
+  width: 30%;
+  float: left;
+  text-align: center;
+  font-size: 14px;
+  line-height: 30px;
+}
+.store_input1{
+  border: 1px solid #52CAC1;
+  font-size: 14px;
+  padding: 0 8px; 
+  height: 28px;
+}
+.required{
+  color: #ff0000;
+}
+
+.dictionary{
+  text-align: center;
+  font-size: 10px;
+  color: #286561;
+  line-height: 20px;
+  height: 20px;
+  position: absolute;
+  bottom: 40px;
+  left: 0;
+  right: 0;
+}
+.submit{
+  font-size: 16px;
+  border-radius: 0;
+  background-color: #52CAC1;
+  line-height: 30px;
+  text-align: center;
+  padding: 0;
+  position: absolute;
+  width: 320rpx;
+  bottom: 5px;
+  left: 0;
+  right: 0;
+  margin: auto;
+  color: #ffffff;
 }

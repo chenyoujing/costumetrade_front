@@ -9,10 +9,10 @@
     <view class="method_name {{method == '0' ? 'method_active' : ''}}" bindtap="method" data-method="0">微信</view>
   </view>
   <view class="method_view">
-    <view class="method_name {{method == '1' ? 'method_active' : ''}}" bindtap="method" bindtap="method" data-method="1">支付宝</view>
+    <view class="method_name {{method == '1' ? 'method_active' : ''}}" bindtap="method" data-method="1">支付宝</view>
   </view>
   <view class="method_view">
-    <view class="method_name {{method == '2' ? 'method_active' : ''}}" bindtap="method" bindtap="method" data-method="2">转账</view>
+    <view class="method_name {{method == '2' ? 'method_active' : ''}}" bindtap="method" data-method="2">转账</view>
   </view>
   <view class="clear"></view>
   <view class="method_prompt" bindtap="method">

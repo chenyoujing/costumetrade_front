@@ -58,7 +58,7 @@
 
   <view class="shop_content">
     <view url="mall/mall" class="shop_content_view">
-      <view class="shop_content_title">
+      <navigator url="storeDetails/storeDetails" class="shop_content_title">
         <image src="../../../images/image_none.png" mode="aspectFill" class="shop_content_tx" />
         <view class="shop_content_info">
           <view class="shop_content_name">向日宠物</view>
@@ -68,8 +68,8 @@
           </view>
         </view>
         <view class="clear"></view>
-      </view>
-      <navigator url="mall/mall">
+      </navigator>
+      <navigator url="mall/mall" class="shop_goods">
         <view class="shop_picture">
           <image src="../../../images/image_none.png" mode="aspectFill"></image>
         </view>
