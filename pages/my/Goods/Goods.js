@@ -28,7 +28,9 @@ Page({
     scroll_height: "",
     screen_content_height: "30px",
     screen_display: "none",
-    screen_opacity: ""
+    screen_opacity: "",
+    more_function_display: "none",
+    animation: "",
   },
   // 请求数据函数
   page_request: function () {
@@ -178,6 +180,28 @@ Page({
         break;
       }
     }
+  },
+  // 打开多功能键
+  more_function:function(){
+    this.setData({
+      more_function_display: "block",
+    })
+    setTimeout(() => {
+      this.setData({
+        animation: "animation",
+      })
+    }, 1)
+  },
+  // 关闭多功能键
+  more_function_close:function(){
+    this.setData({
+      animation: "",
+    })
+    setTimeout(() => {
+      this.setData({
+        more_function_display: "none",
+      })
+    }, 300)
   },
   onLoad() {
     this.page_request();
