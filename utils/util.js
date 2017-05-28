@@ -24,7 +24,8 @@ function toDate(number) {
 }
 //请求接口公共方法
 var api = {
-  host: 'http://192.168.2.221:8088/',
+  host: 'http://192.168.2.221:8080/',
+  // 数组转化成字符串
   getFilterArray:function(array){
     var string = '';
     for(var p in array){
@@ -52,6 +53,8 @@ var api = {
         app.screen_productSize = res.data.productSize,
         app.screen_gradeList = res.data.gradeList,
         app.screen_unitList = res.data.unitList,
+        app.custOrDiscTag = res.data.custOrDiscTag,
+        app.custProdPrice = res.data.custProdPrice,
         app.getProductInit = true
       }
     })

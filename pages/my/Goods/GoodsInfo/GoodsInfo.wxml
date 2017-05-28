@@ -6,13 +6,16 @@
   <form class="upload_content" bindsubmit="submitGoodsInfo" data-id="{{id}}">
     <scroll-view scroll-y="true" class="upload_container">
       <view class="upload_input">
+        <input type="text"  class="hidden" name="id" value="{{GoodsInfoData.id}}" />
+      </view>
+      <view class="upload_input">
         <view class="upload_input_text">名称:</view>
-        <input type="text" class="upload_input1" name="name" value="{{GoodsInfoData.name}}" placeholder="*" placeholder-class="required" />
+        <input type="text" bindblur="blurInput" data-name="name" class="upload_input1" name="name" value="{{GoodsInfoData.name}}" placeholder="*" placeholder-class="required" />
         <view class="clear"></view>
       </view>
       <view class="upload_input">
         <view class="upload_input_text">货号:</view>
-        <input type="number" class="upload_input1" name="code"  value="{{GoodsInfoData.code}}"/>
+        <input type="number" bindblur="blurInput" data-name="code"  class="upload_input1" name="code"  value="{{GoodsInfoData.code}}"/>
         <view class="clear"></view>
       </view>
       <view class="upload_input">
@@ -33,12 +36,12 @@
       </view>
       <view class="upload_input">
         <view class="upload_input_text">吊牌价:</view>
-        <input type="digit" class="upload_input1" name="tagprice" value="{{GoodsInfoData.tagprice}}" placeholder="*" placeholder-class="required" />
+        <input type="digit" bindblur="blurInput" data-name="tagprice" class="upload_input1" name="tagprice" value="{{GoodsInfoData.tagprice}}" placeholder="*" placeholder-class="required" />
         <view class="clear"></view>
       </view>
       <view class="upload_input">
         <view class="upload_input_text">进货价:</view>
-        <input type="digit" class="upload_input1" name="purchaseprice" value="{{GoodsInfoData.purchaseprice}}" />
+        <input type="digit" bindblur="blurInput" data-name="purchaseprice"  class="upload_input1" name="purchaseprice" value="{{GoodsInfoData.purchaseprice}}" />
         <view class="clear"></view>
       </view>
       <view class="upload_input">
@@ -96,7 +99,7 @@
       </view>
       <view class="upload_input">
         <view class="upload_input_text">一手件数:</view>
-        <input type="number" class="upload_input1" name="handcount" value="{{GoodsInfoData.handcount}}" />
+        <input type="number" bindblur="blurInput" data-name="handcount"  class="upload_input1" name="handcount" value="{{GoodsInfoData.handcount}}" />
         <view class="clear"></view>
       </view>
       <view class="upload_input">
@@ -109,7 +112,7 @@
       </view>
       <view class="upload_input">
         <view class="upload_input_text">颜色:</view>
-        <input type="number" class="upload_input2" name="colors" style="padding-right:30px;" value="{{GoodsInfoData.colors}}"/>
+        <input type="number" bindblur="blurInput" data-name="colors"  class="upload_input2" name="colors" style="padding-right:30px;" value="{{GoodsInfoData.colors}}"/>
         <navigator  url="../GoodsColor/GoodsColor" hover-class="navigator-hover">
         <image src="../../../../images/update.png" mode="aspectFit" class="update_image" />
         </navigator>
@@ -126,13 +129,13 @@
       </view>
       <view class="upload_input">
         <view class="upload_input_text">主条码:</view>
-        <input type="number" class="upload_input2" name="barcode" value = "{{GoodsInfoData.barcode}}" style="padding-right:30px;" />
+        <input type="number" bindblur="blurInput" data-name="barcode"  class="upload_input2" name="barcode" value = "{{GoodsInfoData.barcode}}" style="padding-right:30px;" />
         <image src="../../../../images/scan_black.png" mode="aspectFit" class="code_image" />
         <view class="clear"></view>
       </view>
       <view class="upload_input">
         <view class="upload_input_text">分条码:</view>
-        <input type="number" class="upload_input2" value="{{GoodsInfoData.barcodes}}" name="barcodes" style="padding-right:30px;" />
+        <input type="number" bindblur="blurInput" data-name="barcodes"  class="upload_input2" value="{{GoodsInfoData.barcodes}}" name="barcodes" style="padding-right:30px;" />
         <navigator  url="../Goodscodes/Goodscodes" hover-class="navigator-hover">
         <image src="../../../../images/update.png" mode="aspectFit" class="update_image" />
         </navigator>

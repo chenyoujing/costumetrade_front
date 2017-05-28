@@ -1,7 +1,7 @@
 <!--盘点库存模态框-->
 <view class="modal_cover" bindtap="modal_close" animation="{{modal_opacity}}" style="display:{{modal}};"></view>
 <view class="modal" animation="{{modal_opacity}}" style="display:{{modal}};">
-  <view class="modal_header">盘点库存</view>
+  <view class="modal_header">{{title}}</view>
   <image src="../../../../images/close.png" bindtap="backdelta" mode="aspectFit" class="image_close" />
   <image src="../../../../images/customer_service.png" mode="aspectFit" class="image_service" />
   <image src="../../../../images/update.png"  mode="aspectFit" class="image_update" />
@@ -19,14 +19,17 @@
       <view class="tr tr1">
         <view class="td th1">{{index+1}}</view>
         <view class="td th2">{{item.name}}</view>
-        <view class="td th1">{{item.stocknum}}</view>
+        <view class="td th1">
+          <view wx-if="{{sequenceNum !== item.id}}">{{item.stocknum}}</view>
+          <input wx-if="{{sequenceNum == item.id}}" data-id="{{item.id}}"  bindblur="bindblurInput" focus="true" type="number" maxlength="10" />
+        </view>
         <view class="td th2">{{item.productcolor}}</view>
         <view class="td th1">{{item.productsize}}</view>
         <view class="td th2">{{item.productPrice}}</view>
-        <view class="td th1 change" bindtap="upload" data-id="{{item.productid}}">更改</view>
+        <view class="td th1 change" bindtap="uploadStock"  data-id="{{item.id}}">更改</view>
         <view class="clear"></view>
       </view>
     </block>
   </scroll-view>
-  <button class="modal_submit">保存</button>
+  <button class="modal_submit" bindtap="saveStock">保存</button>
 </view>
