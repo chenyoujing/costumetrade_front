@@ -8,11 +8,12 @@ Page({
     ],
     url:"color/getAllColors",
     selectOption:'',
-    selectOptionID: '',
+    selectOptionID: [],
     envalue:'',
     addurl:'',
     delecturl:'',
-    addname:''
+    addname:'',
+    shopColorArray:[]
   },
   request_dadta:function(){
     var that = this;
@@ -29,7 +30,8 @@ Page({
       success: function (res) {
         wx.hideNavigationBarLoading();
         that.setData({
-          product: res.data
+          product: res.data,
+          shopColorArray: res.data
         })
       }
     })
@@ -62,10 +64,26 @@ Page({
     }
    
   },
+  // 搜索颜色
+  search:function(value){
+    var arry = [];
+    if (value) {
+      for (var p in this.data.shopColorArray) {
+        var item = this.data.shopColorArray[p][this.data.addname];
+        if (item.indexOf(value) > -1) {
+          arry.push(this.data.shopColorArray[p])
+        }
+      }
+    } else {
+      arry = this.data.shopColorArray;
+    }
+    this.setData({
+      product: arry,
+      envalue: value
+    })
+  },
   EventHandle:function(e){
-     this.setData({
-       envalue: e.detail.value
-     })
+    this.search(e.detail.value);
   },
   // 添加新选项
   addOptions:function(){
@@ -82,12 +100,15 @@ Page({
           'content-type': 'application/x-www-form-urlencoded'
         },
         success: function (res) {
-          param.id = res.data.value;
-          var product = that.data.product;
+          param.id = res.data;
+          var product = that.data.shopColorArray;
           product.push(param);
           that.setData({
-            product: product
+            product: product,
+            envalue:null,
+            shopColorArray: product
           })
+          that.search('');
           wx.hideNavigationBarLoading();
           wx.showToast({
             title: '添加成功',
@@ -106,7 +127,46 @@ Page({
   },
   // 删除选项
   delectOption:function(){
-
+    var that = this;
+    if (this.data.selectOptionID.length>0) {
+      wx.showNavigationBarLoading();
+      util.api.request({
+        url: that.data.delecturl,
+        data: {
+          ids: that.data.selectOptionID
+        },
+        method: 'POST',
+        header: {
+          'content-type': 'application/x-www-form-urlencoded'
+        },
+        success: function (res) {
+          wx.hideNavigationBarLoading();
+          var product = that.data.product;
+          for (var p in product){
+            for (var j in this.data.selectOptionID){
+              if (product[p].id == this.data.selectOptionID[j]){
+                product.splice(p,1);
+              }
+            }
+          }
+          that.setData({
+            product: product,
+            shopColorArray: product
+          })
+          wx.showToast({
+            title: '成功',
+            mask: true,
+            duration: 2000
+          })
+        }
+      })
+    } else {
+      wx.showToast({
+        title: '请选择',
+        mask: true,
+        duration: 2000
+      })
+    }
   },
   back:function(){
     wx.navigateBack({
@@ -143,7 +203,8 @@ Page({
       url: options.url,
       titlename: titlename,
       addurl: addurl,
-      addname: addname
+      addname: addname,
+      delecturl: delecturl
     });
     this.request_dadta()
   }

@@ -8,11 +8,11 @@
       <view class="modal2_title_text">{{titlename}}</view>
     </view>
     <view class="modal2_titleInput">
-      <input type="text" bindblur="EventHandle" class="modal2_title_input" name="envalue" />
+      <input type="text" bindinput="EventHandle" class="modal2_title_input" name="envalue" value="{{envalue}}"/>
     </view>
     <view class="modal2_titleButton">
       <image class="image_add" bindtap="addOptions" src="../../../../images/add_small.png" mode="aspectFit" />
-      <image class="image_delete" src="../../../../images/delete.png" mode="aspectFit" />
+      <image class="image_delete" bindtap="delectOption" src="../../../../images/delete.png" mode="aspectFit" />
     </view>
     <view class="clear"></view>
   </view>

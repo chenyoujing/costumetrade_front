@@ -60,8 +60,14 @@ var api = {
           value:'添加',
           customname:"添加选项"
         }),
+          app.screen_productTypeList.push({
+          catename: '添加'
+          }),
           app.screen_unitList.push({
             unit: '添加'
+          }),
+          app.screen_brandList.push({
+          brandname: '添加'
           })
       }
     })
