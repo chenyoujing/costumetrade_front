@@ -19,7 +19,7 @@
   <scroll-view scroll-y="true" class="modal2_content">
     <radio-group bindchange="brand_radio">
       <label class="modal2_content_option" wx:for="{{screen_content2}}" wx:key="id">
-        <radio value="{{item.id}}" />{{item.brandname}}
+        <radio value="{{item.id}}" />{{item.colorname}}
       </label>
     </radio-group>
   </scroll-view>

@@ -55,7 +55,14 @@ var api = {
         app.screen_unitList = res.data.unitList,
         app.custOrDiscTag = res.data.custOrDiscTag,
         app.custProdPrice = res.data.custProdPrice,
-        app.getProductInit = true
+        app.getProductInit = true,
+        app.screen_productSize.push({
+          value:'添加',
+          customname:"添加选项"
+        }),
+          app.screen_unitList.push({
+            unit: '添加'
+          })
       }
     })
   },

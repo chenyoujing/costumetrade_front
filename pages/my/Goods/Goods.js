@@ -31,6 +31,9 @@ Page({
     screen_opacity: "",
     more_function_display: "none",
     animation: "",
+    pageNum:1,
+    loadMore: true,
+    requestSwitch: true
   },
   // 请求数据函数
   page_request: function () {
@@ -42,7 +45,8 @@ Page({
         storeId: 1,
         sort: that.data.getSortData,
         rules: that.data.getFilterData,
-        code: that.data.code
+        code: that.data.code,
+        pageNum:that.data.pageNum,
       },
       method: 'POST',
       header: {
@@ -50,11 +54,28 @@ Page({
       },
       success: function (res) {
         wx.hideNavigationBarLoading();
+        var data = that.data.product;
+        var booleanre = that.data.requestSwitch;
         for (var p in res.data){
           res.data[p].timeUp = util.toDate(res.data[p].timeUp)
         }
+       
+        if(that.data.pageNum==1){
+          data = res.data;
+        }else{
+          for (var p in res.data){
+            data.push(res.data[p])
+          }
+        }
+        if (res.data.length < 10){
+          booleanre = false;
+        }else{
+          booleanre = true;
+        }
         that.setData({
-          product: res.data
+          product: data,
+          loadMore: true,
+          requestSwitch: booleanre
         })
       }
     })
@@ -74,7 +95,10 @@ Page({
       getSortData: {
         value: status,
         op: op
-      }
+      },
+      pageNum: 1,
+      product: [],
+      requestSwitch: true
     });
     this.page_request();
   },
@@ -156,7 +180,10 @@ Page({
       if (boolean) {
         this.data.getFilterData.push({
           filed: data,
-          value: screen
+          value: screen,
+          pageNum:1,
+          product:[],
+          requestSwitch:true
         })
       }
       this.page_request();
@@ -169,6 +196,11 @@ Page({
   },
   //搜索货号
   packPageFilterCode:function(){
+    this.setData({
+      pageNum:1,
+      product:[],
+      requestSwitch: true
+    });
     this.page_request();
   },
   //重置
@@ -203,6 +235,18 @@ Page({
       })
     }, 300)
   },
+  //滚动到底部触发事件  
+  onReachBottom: function () {
+    console.log('到底不了')
+    this.setData({
+      pageNum: this.data.pageNum + 1 ,
+      loadMore:false
+    });
+    console.log(this.data.pageNum)
+    if (this.data.requestSwitch){
+      this.page_request();
+    }
+  },
   onLoad() {
     this.page_request();
     util.api.getProductInit();
@@ -225,6 +269,5 @@ Page({
       })
       app.updataGoodsInfo = {};
     }
-    console.log('back')
   }
 });

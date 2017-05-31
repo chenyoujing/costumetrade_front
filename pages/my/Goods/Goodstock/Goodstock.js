@@ -47,6 +47,7 @@ Page({
   // 请求库存
   stock_request:function(){
     var that = this;
+    wx.showNavigationBarLoading()
     util.api.request({
       url: 'product/takingStock',
       data: {
