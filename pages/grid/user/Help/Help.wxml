@@ -1,2 +1,32 @@
-<!--pages/grid/user/Help/Help.wxml-->
-<text>pages/grid/user/Help/Help.wxml</text>
+<!--头部-->
+<view class="Help_title">
+  <image src="../../../../images/right-thrust.png" mode="aspectFit" />
+  帮助
+</view>
+
+
+<scroll-view scroll-y class="Help_container">
+  <view class="help_content">
+    <view class="content_title">客户</view>
+    <navigator url="../helpInfo/helpInfo" class="content_text">
+      1. 怎样添加新货品
+      <image src="../../../../images/right-thrust.png" mode="aspectFit" />
+    </navigator>
+    <navigator url="../helpInfo/helpInfo" class="content_text">
+      2. 怎样货品入库
+      <image src="../../../../images/right-thrust.png" mode="aspectFit" />
+    </navigator>
+    <navigator url="../helpInfo/helpInfo" class="content_text">
+      3. 怎样添加新客户
+      <image src="../../../../images/right-thrust.png" mode="aspectFit" />
+    </navigator>
+    <navigator url="../helpInfo/helpInfo" class="content_text">
+      4. 怎样联系店家客户
+      <image src="../../../../images/right-thrust.png" mode="aspectFit" />
+    </navigator>
+    <navigator url="../helpInfo/helpInfo" class="content_text">
+      5. 怎样补货
+      <image src="../../../../images/right-thrust.png" mode="aspectFit" />
+    </navigator>
+  </view>
+</scroll-view>

@@ -1,0 +1,18 @@
+<view class="level_title">设置货品级别折扣率</view>
+<view class="table">
+  <view class="table_title">货品级别</view>
+  <view class="table_title">普通会员</view>
+  <view class="table_title">银卡会员</view>
+  <view class="table_title">金卡会员</view>
+  <view class="table_title">白金会员</view>
+  <view class="table_title">钻石会员</view>
+  <block wx:for="{{array}}">
+    <view class="table_text">{{item.name}}</view>
+    <view class="table_text">{{item.value[0]}}</view>
+    <view class="table_text">{{item.value[1]}}</view>
+    <view class="table_text">{{item.value[2]}}</view>
+    <view class="table_text">{{item.value[3]}}</view>
+    <view class="table_text">{{item.value[4]}}</view>
+  </block>
+  <view class="clear"></view>
+</view>

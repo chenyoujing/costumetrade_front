@@ -70,7 +70,7 @@
         <image src="../../../images/right-thrust.png" mode="aspectFit" class="my_content_right" />
         <view class="clear"></view>
       </navigator>
-      <navigator url="dictionary/dictionary">
+      <navigator url="Help/Help">
         <image src="../../../images/assist.png" mode="aspectFit" class="my_content_image" />
         <view class="my_content_text">帮助</view>
         <image src="../../../images/right-thrust.png" mode="aspectFit" class="my_content_right" />

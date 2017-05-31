@@ -1,2 +1,47 @@
-<!--pages/my/openOrder/unitSelect/unitSelect.wxml-->
-<text>pages/my/openOrder/unitSelect/unitSelect.wxml</text>
+<!--头部-->
+<view class="unitSelect_title">
+  <view class="title_text">供货商</view>
+  <input type="text" class="title_input" />
+  <image src="../../../../images/search.png" class="title_search" mode="aspectFit" />
+  <image src="../../../../images/add.png" class="title_add" mode="aspectFit" />
+  <view class="claer"></view>
+</view>
+
+<scroll-view scroll-y class="unitSelect_sceoll">
+  <!--供应商内容-->
+  <view class="supplier_container">
+    <view class="supplier_tx">
+      <image src="../../../../images/image_none.png" mode="aspectFill"></image>
+    </view>
+    <view class="supplier_name">小雨</view>
+    <view class="supplier_info">
+      <view>昵称：煎饼侠</view>
+      <view>电话：13333333333</view>
+    </view>
+  </view>
+  <view class="supplier_container">
+    <view class="supplier_tx">
+      <image src="../../../../images/image_none.png" mode="aspectFill"></image>
+    </view>
+    <view class="supplier_name">小何</view>
+    <view class="supplier_info">
+      <view>昵称：煎饼侠</view>
+      <view>电话：13333333333</view>
+    </view>
+  </view>
+  <view class="supplier_container">
+    <view class="supplier_tx">
+      <image src="../../../../images/image_none.png" mode="aspectFill"></image>
+    </view>
+    <view class="supplier_name">小王</view>
+    <view class="supplier_info">
+      <view>昵称：煎饼侠</view>
+      <view>电话：13333333333</view>
+    </view>
+  </view>
+
+  <!--右边的导航栏-->
+  <view class="nav_right">
+    <view wx:for="{{nav_right}}" class="nav_text">{{item}}</view>
+  </view>
+</scroll-view>

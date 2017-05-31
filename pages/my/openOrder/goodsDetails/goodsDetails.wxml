@@ -1,2 +1,42 @@
-<!--pages/my/openOrder/goodsDetails/goodsDetails.wxml-->
-<text>pages/my/openOrder/goodsDetails/goodsDetails.wxml</text>
+<view class="goods_buy">
+  <view style="position: relative;">
+    <image src="{{item.image ? item.image : '../../../../images/image_none.png'}}" mode="aspectFill" class="goods_image" style="width:{{keyboard_width*2+12}}px;height:{{keyboard_width*2+12}}px;" />
+    <view class="goods_title">总库存：10</view>
+    <scroll-view scroll-y class="goods_check">
+      <checkbox-group>
+        <label class="goods_checkbox" wx:for="{{color}}" wx:key="id">
+          <checkbox value="{{item}}"/>
+          {{item}}
+        </label>
+      </checkbox-group>
+      <checkbox-group>
+        <label class="goods_checkbox" wx:for="{{size}}" wx:key="id">
+          <checkbox value="{{item}}"/>
+          {{item}}
+        </label>
+      </checkbox-group>
+    </scroll-view>
+    <view class="clear"></view>
+  </view>
+  <view class="keyboard">
+    <view class="keyboard_name">小雨家服装店</view>
+    <view class="keyboard_join">加入</view>
+    <view class="keyboard_top" style="width:{{keyboard_width}}px;">500</view>
+    <view class="keyboard_top" style="width:{{keyboard_width}}px;">元/批</view>
+    <view class="keyboard_top" style="width:{{keyboard_width}}px;">555手/55件</view>
+    <view class="keyboard_top" style="width:{{keyboard_width}}px;" bindtap="order_back">返回</view>
+    <view class="keyboard_view" style="width:{{keyboard_width}}px;height:{{keyboard_height}}px;line-height:{{keyboard_height}}px;">1</view>
+    <view class="keyboard_view" style="width:{{keyboard_width}}px;height:{{keyboard_height}}px;line-height:{{keyboard_height}}px;">2</view>
+    <view class="keyboard_view" style="width:{{keyboard_width}}px;height:{{keyboard_height}}px;line-height:{{keyboard_height}}px;">3</view>
+    <view class="keyboard_view" style="width:{{keyboard_width}}px;height:{{keyboard_height}}px;line-height:{{keyboard_height}}px;">←</view>
+    <view class="keyboard_view" style="width:{{keyboard_width}}px;height:{{keyboard_height}}px;line-height:{{keyboard_height}}px;">4</view>
+    <view class="keyboard_view" style="width:{{keyboard_width}}px;height:{{keyboard_height}}px;line-height:{{keyboard_height}}px;">5</view>
+    <view class="keyboard_view" style="width:{{keyboard_width}}px;height:{{keyboard_height}}px;line-height:{{keyboard_height}}px;">6</view>
+    <view class="keyboard_view" style="width:{{keyboard_width}}px;height:{{keyboard_height}}px;line-height:{{keyboard_height}}px;">-</view>
+    <view class="keyboard_view" style="width:{{keyboard_width}}px;height:{{keyboard_height}}px;line-height:{{keyboard_height}}px;">7</view>
+    <view class="keyboard_view" style="width:{{keyboard_width}}px;height:{{keyboard_height}}px;line-height:{{keyboard_height}}px;">8</view>
+    <view class="keyboard_view" style="width:{{keyboard_width}}px;height:{{keyboard_height}}px;line-height:{{keyboard_height}}px;">9</view>
+    <view class="keyboard_view" style="width:{{keyboard_width}}px;height:{{keyboard_height}}px;line-height:{{keyboard_height}}px;">0</view>
+    <view class="clear:both;"></view>
+  </view>
+</view>

@@ -1,0 +1,38 @@
+<!--头部-->
+<view class="Help_title">
+  <image src="../../../../images/right-thrust.png" mode="aspectFit" />
+  帮助
+</view>
+
+<swiper class="Help_container">
+  <swiper-item>
+    <view class="content_title">补货</view>
+    <scroll-view scroll-y class="Help_container">
+      <view class="help_content">
+        <view class="help_number">1</view>
+        <view class="help_text">点击我的页面的开单图标</view>
+        <view class="clear"></view>
+      </view>
+      <image src="../../../../images/image_none.png" mode="widthFix" class="help_image" />
+      <view class="help_content">
+        <view class="help_number">2</view>
+        <view class="help_text">进入开单页面</view>
+        <view class="clear"></view>
+      </view>    </scroll-view>
+  </swiper-item>
+  <swiper-item>
+    <view class="content_title">货品入库</view>
+    <scroll-view scroll-y class="Help_container">
+      <view class="help_content">
+        <view class="help_number">1</view>
+        <view class="help_text">点击我的页面的开单图标</view>
+        <view class="clear"></view>
+      </view>
+      <image src="../../../../images/image_none.png" mode="widthFix" class="help_image" />
+      <view class="help_content">
+        <view class="help_number">2</view>
+        <view class="help_text">进入开单页面</view>
+        <view class="clear"></view>
+      </view>    </scroll-view>
+  </swiper-item>
+</swiper>

@@ -1,1 +1,90 @@
-/* pages/my/openOrder/unitSelect/unitSelect.wxss */
+.unitSelect_title{
+  height: 40px;
+  background-color: #52CAC1;
+  position: relative;
+}
+.title_text{
+  float: left;
+  width: 25%;
+  color: #ffffff;
+  text-align: center;
+  font-size: 12px;
+  line-height: 40px;
+}
+.title_input{
+  box-sizing: border-box;
+  float: left;
+  width: 50%;
+  background-color: #ffffff;
+  font-size: 14px;
+  padding-left: 7px;
+  padding-right: 40px;
+  line-height: 30px;
+  height: 30px;
+  margin: 5px 0;
+}
+.title_search{
+  width: 16px;
+  height: 16px;
+  padding: 12px;
+  position: absolute;
+  right: 25%;
+}
+.title_add{
+  width: 25%;
+  height: 16px;
+  padding: 12px 0;
+  float: left;
+}
+
+
+.unitSelect_sceoll{
+  position: absolute;
+  top: 40px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+.supplier_container{
+  height: 48px;
+  border-bottom: 2px solid #DBF4F1;
+}
+.supplier_tx{
+  float: left;
+  width: 20%;
+}
+.supplier_tx image{
+  display: block;
+  width: 30px;
+  height: 30px;
+  border-radius: 15px;
+  margin: 10px auto;
+}
+.supplier_name{
+  float: left;
+  font-size: 18px;
+  line-height: 48px;
+  width: 40%;
+}
+.supplier_info{
+  float: left;
+  width: 35%;
+  font-size: 10px;
+  line-height: 14px;
+  text-align: center;
+  padding: 10px 0;
+}
+
+
+.nav_right{
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 5%;
+}
+.nav_text{
+  height: 3.57142857%;
+  text-align: center;
+  font-size: 10px;
+}

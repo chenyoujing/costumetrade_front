@@ -8,11 +8,30 @@ Page({
       { name: 'BRA', value: '供应商' },
       { name: 'JPN', value: '报表' },
     ],
+    goods_level: [
+      { name: 'USA', value: '处理' },
+      { name: 'CHN', value: '促销' },
+      { name: 'BRA', value: '在销' },
+      { name: 'JPN', value: '热销' },
+      { name: 'USA', value: '最新' },
+    ],
+    goods_level2: [
+      { name: 'USA', value: '普通会员' },
+      { name: 'CHN', value: '银卡会员' },
+      { name: 'BRA', value: '金卡会员' },
+      { name: 'JPN', value: '白金会员' },
+      { name: 'USA', value: '钻石会员' },
+    ],
+    goods_level3: [
+      { name: 'USA', value: '90%' },
+      { name: 'CHN', value: '80%' },
+      { name: 'BRA', value: '70%' },
+      { name: 'JPN', value: '60%' },
+      { name: 'USA', value: '50%' },
+    ],
     current: "0",
     dictionary: "1",
     staff_updata: "100%",
-    customer: "none",
-    customer_opacity: "",
   },
   onLoad: function() {
     var that = this
@@ -39,33 +58,4 @@ Page({
       staff_updata: "100%"
     })
   },
-  customer: function (e) {
-    var that = this
-    let data = e.target.dataset
-    this.setData({
-      customer: "block",
-    })
-    var animation = wx.createAnimation({
-      duration: 300,
-      timingFunction: 'ease',
-    })
-    animation.opacity(1).step()
-    this.setData({
-      customer_opacity: animation.export()
-    })
-  },
-  customer_close: function () {
-    var animation = wx.createAnimation({
-      duration: 300,
-      timingFunction: 'ease',
-    })
-    animation.opacity(0).step()
-    this.setData({
-      customer_opacity: animation.export()
-    })
-    setTimeout(() => {
-      this.setData({
-        customer: "none",
-      })
-    }, 300)
-  },})
+})

@@ -14,30 +14,99 @@
   height:27px;
   min-height:27px;
 }
-icon,.title button{
+.mall_title{
+  height: 90px;
+  position: relative;
+}
+.mall_title_bg{
   position: absolute;
   top: 0;
-  right: 15%;
-  bottom: 0;
-  margin: auto;
-  background-color: transparent;
-  width: 16px;
-  height: 16px;
-  z-index: 3;
-  padding: 15px;
-}
-.title button{
-  width: 50px;
-  height: 50px;
-  padding: 0;
-}
-.title button icon{
   left: 0;
   right: 0;
-  padding: 15px;
+  bottom: 0;
+  width: unset;
+  height: unset;
+  z-index:-1;
 }
-button::after{
-  content: none;
+.shop_info{
+  text-align: center;
+  font-size: 15px;
+  padding: 2.5px 20%;
+}
+.shop_tx{
+  float: left;
+  width: 40%;
+  height: 50px;
+  position: relative;
+}
+.shop_tx image{
+  width: 50px;
+  height: 50px;
+  border-radius: 25px;
+  border: 1px solid #000000;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+.shop_name{
+  height: 50px;
+  line-height: 50px;
+  float: left;
+  width: 60%;
+  text-align: left;
+}
+.shop_input{
+  box-sizing: border-box;
+  font-size: 14px;
+  line-height: 30px;
+  height: 30px;
+  border-radius: 15px;
+  padding-left: 20px;
+  padding-right: 35px;
+  background-color: rgba(255, 255, 255, 0.3);
+  width: 525rpx;
+  margin-left: 5%;
+}
+.search_image{
+  width: 16px;
+  height: 16px;
+  padding: 7px;
+  position: absolute;
+  top: 0;
+  right: 26%;
+}
+
+
+.sort{
+  position: absolute;
+  left: 0;
+  right: 0;
+}
+.sort_text,.more{
+  text-align: center;
+  background-color: #75D4CC;
+  color: #ffffff;
+  float: left;
+  font-size: 14px;
+  line-height: 30px;
+}
+.sort_text{
+  width: 25%;
+}
+.sort_text .image_down{
+  width: 10px;
+  height: 10px;
+}
+.screen_active .sort_up{
+  transform:rotate(180deg);
+}
+
+
+.mall_scroll{
+  position: absolute;
+  top: 120px;
+  bottom: 0;
 }
 .client_add{
   position: fixed;

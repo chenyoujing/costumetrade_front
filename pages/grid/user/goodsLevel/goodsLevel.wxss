@@ -1,0 +1,30 @@
+.level_title{
+  font-size: 18px;
+  line-height: 30px;
+  text-align: center;
+}
+.table{
+  display: table;
+  padding: 10px;
+}
+.table_title{
+  box-sizing: border-box;
+  background-color: #52CAC1;
+  float: left;
+  width: 16.6666666%;
+  color: #ffffff;
+  text-align: center;
+  font-size: 14px;
+  line-height: 30px;
+  border: 1px solid #E3E3E3;
+}
+.table_text{
+  box-sizing: border-box;
+  float: left;
+  width: 16.6666666%;
+  color: #000000;
+  text-align: center;
+  font-size: 14px;
+  line-height: 30px;
+  border: 1px solid #E3E3E3;
+}

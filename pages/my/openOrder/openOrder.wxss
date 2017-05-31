@@ -168,44 +168,6 @@ input{
 
 }
 
-.goods_buy{
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: #ffffff;
-}
-.goods_image{
-  float: left;
-}
-.goods_title{
-  background-color: #E5E5E5;
-  text-align: center;
-  font-size: 16px;
-  line-height: 20px;
-  padding: 10px 0;
-}
-.goods_check{
-  float: left;
-  position: absolute;
-  top: 40px;
-  left: 50%;
-  right: 0;
-  bottom: 0;
-  width: auto;
-}
-.goods_checkbox{
-  display: block;
-  padding: 10px 0;
-  text-align: center;
-  font-size: 16px;
-}
-.goods_checkbox checkbox{
-  position: absolute;
-  left: 15px;
-}
-
 
 /*键盘*/
 .keyboard{

@@ -1,16 +1,43 @@
-<view class="client_add">
-  <view class="title">
-    <view class="title_text">＜</view>
-    <form bindsubmit="search">
-      <input class="title_input" type="number" name="search" placeholder="货号" confirm-type="search" style="width:65%;" />
-      <button form-type="submit" style="right:20%;">
-        <icon type="search" size="16" color="#000000" />
-      </button>
-    </form>
-    <icon style="right:10%;" type="search" size="16" color="#000000" bindtap="rank" />
+<view class="mall">
+  <view class="mall_title">
+    <image src="../../../../images/image_none.png" mode="aspectFill" class="mall_title_bg" />
+    <view class="shop_info">
+      <view class="shop_tx"><image src="../../../../images/image_none.png" mode="scaleToFill" class="shop_tx" /></view>
+      <view class="shop_name">小雨服装店</view>
+      <view class="clear"></view>
+    </view>
+    <view style="position:relative;margin: 2.5px 0;">
+      <input class="shop_input" type="text" placeholder="请输入货号搜索货品..." />
+      <image src="../../../../images/search.png" mode="aspectFill" class="search_image" />
+      <image src="../../../../images/search.png" mode="aspectFill" class="search_image" style="right:15%;" />
+      <image src="../../../../images/search.png" mode="aspectFill" class="search_image" style="right:5%;" bindtap="rank" />
+    </view>
+  </view>
+
+
+  <view class="sort">
+    <view class="sort_text {{state=='priceOp' ? 'screen_active' : ''}}" bindtap="changeSortData" data-sort="priceOp" >
+      推荐
+      <image src="../../../../images/down.png" mode="aspectFit" class="image_down {{Op=='asc' ? 'sort_up' : ''}}" />
+    </view>
+    <view class="sort_text {{state=='timeUpOp' ? 'screen_active' : ''}}" bindtap="changeSortData" data-sort="timeUpOp">
+      上架
+      <image src="../../../../images/down.png" mode="aspectFit" class="image_down {{Op=='asc' ? 'sort_up' : ''}}" />
+    </view>
+    <view class="sort_text {{state=='saleOp' ? 'screen_active' : ''}}" bindtap="changeSortData" data-sort="saleOp" >
+      销售
+      <image src="../../../../images/down.png" mode="aspectFit" class="image_down {{Op=='asc' ? 'sort_up' : ''}}" />
+    </view>
+    <view class="sort_text {{state=='priceOp' ? 'screen_active' : ''}}" bindtap="changeSortData" data-sort="priceOp" >
+      价格
+      <image src="../../../../images/down.png" mode="aspectFit" class="image_down {{Op=='asc' ? 'sort_up' : ''}}" />
+    </view>
     <view class="clear"></view>
   </view>
-  <scroll-view scroll-y="true" style="top:65px;bottom:0;">
+
+
+
+  <scroll-view scroll-y="true" class="mall_scroll" style="top:120px;bottom:0;">
     <view class="container" style="width:{{container_width}};">
       <navigator url="../goods_detail/goods_detail?orderid=1" class="content_container">
         <image src="{{item.image ? item.image : '../../../../images/image_none.png'}}" mode="aspectFill" style="width:{{image_width}}px;height:{{image_width}}px;" />

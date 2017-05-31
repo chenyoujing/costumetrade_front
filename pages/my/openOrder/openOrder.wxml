@@ -1,11 +1,11 @@
-<view class="section" hidden="{{orderid}}">
+<view class="section">
   <view class="openorder_title" hidden="{{products_info}}">
     <view class="title_number">12</view>
     <view class="title_price">￥12443</view>
-    <view class="title_supplier">
+    <navigator url="unitSelect/unitSelect" class="title_supplier">
       <image src="../../../images/image_none.png"  mode="aspectFill" />
       供货商
-    </view>
+    </navigator>
     <view class="title_more">┆</view>
     <view class="clear"></view>
   </view>
@@ -23,26 +23,26 @@
   </view>
   <scroll-view scroll-y="true" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}" style="bottom: {{keyboard_height*3 + 84}}px; background-color: #313131;" hidden="{{products_info}}">
     <view class="order_view">
-      <view bindtap="order_buy" data-orderid="1" style="width:88%;">
+      <navigator url="goodsDetails/goodsDetails" style="width:88%;">
         <view style="width:9%;" data-orderid="1">1</view>
         <view style="width:29%;" data-orderid="1">621报喜鸟11</view>
         <view style="width:9%;" data-orderid="1">1</view>
         <view style="width:17%;" data-orderid="1">蓝</view>
         <view style="width:17%;" data-orderid="1">S</view>
         <view style="width:19%;" data-orderid="1">323</view>
-      </view>
+      </navigator>
       <view style="width:12%;" bindtap="order_delete">删除</view>
       <view class="clear"></view>
     </view>
     <view class="order_view">
-      <view bindtap="order_buy" data-orderid="1" style="width:88%;">
+      <navigator url="goodsDetails/goodsDetails" style="width:88%;">
         <view style="width:9%;" data-orderid="1">1</view>
         <view style="width:29%;" data-orderid="1">621报喜鸟11</view>
         <view style="width:9%;" data-orderid="1">1</view>
         <view style="width:17%;" data-orderid="1">蓝</view>
         <view style="width:17%;" data-orderid="1">S</view>
         <view style="width:19%;" data-orderid="1">323</view>
-      </view>
+      </navigator>
       <view style="width:12%;">删除</view>
       <view class="clear"></view>
     </view>
@@ -87,45 +87,3 @@
 
 </view>
 
-<view class="goods_buy" hidden="{{!orderid}}">
-  <view style="position: relative;">
-    <image src="{{item.image ? item.image : '../../../images/image_none.png'}}" mode="aspectFill" class="goods_image" style="width:{{keyboard_width*2+12}}px;height:{{keyboard_width*2+12}}px;" />
-    <view class="goods_title">总库存：10</view>
-    <scroll-view scroll-y class="goods_check">
-      <checkbox-group>
-        <label class="goods_checkbox" wx:for="{{color}}" wx:key="id">
-          <checkbox value="{{item}}"/>
-          {{item}}
-        </label>
-      </checkbox-group>
-      <checkbox-group>
-        <label class="goods_checkbox" wx:for="{{size}}" wx:key="id">
-          <checkbox value="{{item}}"/>
-          {{item}}
-        </label>
-      </checkbox-group>
-    </scroll-view>
-    <view class="clear"></view>
-  </view>
-  <view class="keyboard">
-    <view class="keyboard_name">小雨家服装店</view>
-    <view class="keyboard_join">加入</view>
-    <view class="keyboard_top" style="width:{{keyboard_width}}px;">500</view>
-    <view class="keyboard_top" style="width:{{keyboard_width}}px;">元/批</view>
-    <view class="keyboard_top" style="width:{{keyboard_width}}px;">555手/55件</view>
-    <view class="keyboard_top" style="width:{{keyboard_width}}px;" bindtap="order_back">返回</view>
-    <view class="keyboard_view" style="width:{{keyboard_width}}px;height:{{keyboard_height}}px;line-height:{{keyboard_height}}px;">1</view>
-    <view class="keyboard_view" style="width:{{keyboard_width}}px;height:{{keyboard_height}}px;line-height:{{keyboard_height}}px;">2</view>
-    <view class="keyboard_view" style="width:{{keyboard_width}}px;height:{{keyboard_height}}px;line-height:{{keyboard_height}}px;">3</view>
-    <view class="keyboard_view" style="width:{{keyboard_width}}px;height:{{keyboard_height}}px;line-height:{{keyboard_height}}px;">←</view>
-    <view class="keyboard_view" style="width:{{keyboard_width}}px;height:{{keyboard_height}}px;line-height:{{keyboard_height}}px;">4</view>
-    <view class="keyboard_view" style="width:{{keyboard_width}}px;height:{{keyboard_height}}px;line-height:{{keyboard_height}}px;">5</view>
-    <view class="keyboard_view" style="width:{{keyboard_width}}px;height:{{keyboard_height}}px;line-height:{{keyboard_height}}px;">6</view>
-    <view class="keyboard_view" style="width:{{keyboard_width}}px;height:{{keyboard_height}}px;line-height:{{keyboard_height}}px;">-</view>
-    <view class="keyboard_view" style="width:{{keyboard_width}}px;height:{{keyboard_height}}px;line-height:{{keyboard_height}}px;">7</view>
-    <view class="keyboard_view" style="width:{{keyboard_width}}px;height:{{keyboard_height}}px;line-height:{{keyboard_height}}px;">8</view>
-    <view class="keyboard_view" style="width:{{keyboard_width}}px;height:{{keyboard_height}}px;line-height:{{keyboard_height}}px;">9</view>
-    <view class="keyboard_view" style="width:{{keyboard_width}}px;height:{{keyboard_height}}px;line-height:{{keyboard_height}}px;">0</view>
-    <view class="clear:both;"></view>
-  </view>
-</view>
