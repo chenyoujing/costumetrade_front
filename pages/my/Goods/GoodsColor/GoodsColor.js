@@ -39,10 +39,19 @@ Page({
   checkboxChange:function(e){
     var arryname = [];
     var arryid = [];
-    for (var p in e.detail.value){
-      arryname.push(e.detail.value[p].split('|')[0]);
-      arryid.push(e.detail.value[p].split('|')[1])
+    var arryvalue = []
+    if (this.data.title == '添加单位'){
+      arryvalue.push(e.detail.value);
+    }else{
+      arryvalue = e.detail.value
     }
+    for (var p in arryvalue){
+      arryname.push(arryvalue[p].split('|')[0]);
+      arryid.push(arryvalue[p].split('|')[1])
+    }
+    console.log(arryname)
+    console.log(e.detail.value)
+    console.log(arryid)
     this.setData({
       selectOption: arryname,
       selectOptionID: arryid
@@ -128,7 +137,6 @@ Page({
   // 删除选项
   delectOption:function(){
     var that = this;
-    if (this.data.selectOptionID.length>0) {
       wx.showNavigationBarLoading();
       util.api.request({
         url: that.data.delecturl,
@@ -160,6 +168,21 @@ Page({
           })
         }
       })
+   
+  },
+  // 删除询问
+  delectQuery:function(){
+    var that = this;
+    if (this.data.selectOptionID.length > 0) {
+    wx.showModal({
+      title: '提示',
+      content: '是否删除您所有的选择',
+      success: function (res) {
+        if (res.confirm) {
+          that.delectOption()
+        }
+      }
+    })
     } else {
       wx.showToast({
         title: '请选择',
