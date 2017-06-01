@@ -19,17 +19,17 @@
 
 
 
-.dictionary{
+.notecase{
   width: 100%;
 }
-.dictionary_text{
+.notecase_text{
   text-align: center;
   background-color: #E3E3E3;
   float: left;
   font-size: 16px;
   line-height: 40px;
 }
-.dictionary_text{
+.notecase_text{
   width: 50%;
 }
 .image_down{
@@ -43,6 +43,26 @@
 }
 .active .image_down{
   transform: rotate(0);
+  font-size: 20px;
+  line-height: 40px;
+}
+
+
+.account{
+  padding: 20px 40px 10px;
+  box-shadow: 0 0 5px #cccccc;
+}
+.account_view{
+  border-bottom: 2px solid #DBF4F1;
+  font-size: 16px;
+  line-height: 40px;
+}
+.account_image{
+  width: 16px;
+  height: 16px;
+  padding: 12px 10px;
+  float: right;
+  transform: rotate(-90deg);
 }
 
 
