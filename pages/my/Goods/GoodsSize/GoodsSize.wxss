@@ -116,7 +116,7 @@
   top: 84px;
   left: 0;
   right: 0;
-  bottom: 0;
+  bottom: 40px;
 }
 .modal2_content_option{
   box-sizing: border-box;

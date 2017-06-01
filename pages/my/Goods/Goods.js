@@ -33,7 +33,9 @@ Page({
     animation: "",
     pageNum:1,
     loadMore: true,
-    requestSwitch: true
+    requestSwitch: true,
+    delete_checkbox:'0',
+    delete_button: '0'
   },
   // 请求数据函数
   page_request: function () {
@@ -222,7 +224,7 @@ Page({
       this.setData({
         animation: "animation",
       })
-    }, 1)
+    }, 100)
   },
   // 关闭多功能键
   more_function_close:function(){
@@ -246,6 +248,21 @@ Page({
     if (this.data.requestSwitch){
       this.page_request();
     }
+  },
+  // 批量删除
+  batch_delete:function(){
+    this.setData({
+      delete_checkbox:'50',
+      delete_button:'40'
+    })
+    this.more_function_close();
+  },
+  // 完成批量删除
+  batch_delete_ok:function(){
+    this.setData({
+      delete_checkbox: '0',
+      delete_button: '0'
+    })
   },
   onLoad() {
     this.page_request();

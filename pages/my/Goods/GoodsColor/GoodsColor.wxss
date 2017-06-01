@@ -117,7 +117,7 @@
   top: 84px;
   left: 0;
   right: 0;
-  bottom: 0;
+  bottom: 40px;
 }
 .modal2_content_option{
   box-sizing: border-box;
@@ -159,3 +159,51 @@
   color: #ffffff;
 }
 
+.size_group{
+  padding: 5px;
+  margin-top: 20px;
+}
+.size_group_input{
+  border: 1px solid #DCDCDC;
+  border-radius: 3px;
+  font-size: 14px;
+  line-height: 30px;
+  height: 30px;
+  padding: 0 8px;
+}
+.size_group_button{
+  float: right;
+  font-size: 16px;
+  line-height: 32px;
+  color: #ffffff;
+  background-color: #52CAC1;
+  border-radius: 3px;
+  padding: 0 8px;
+  margin-left: 25%;
+}
+.size_group_scroll{
+  height: 120px;
+  border: 1px solid #52CAC1;
+  border-radius: 5px;
+  margin-top: 20px;
+}
+.size_group_view{
+  margin: 5px 0;
+  padding: 0 5%;
+  background-color: #E9E9E9;
+}
+.size_group_name,.size_group_size{
+  float: left;
+  font-size: 14px;
+  line-height: 30px;
+  width: 40%;
+}
+.size_group_size{
+  width: 50%;
+}
+.size_group_delete{
+  width: 10%;
+  height: 16px;
+  padding: 7px 0;
+  float: right;
+}

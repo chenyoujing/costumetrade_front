@@ -146,7 +146,7 @@
       </view>
       <view class="upload_input">
         <view class="upload_input_text">年份:</view>
-        <picker style="margin-right:0" mode="date" bindchange="year" end="{{GoodsInfoData.year}}" name="year" fields="year" value=" {{GoodsInfoData.year}}">
+        <picker style="margin-right:0" mode="date" bindchange="year" end="{{GoodsInfoData.year}}" name="year" fields="year" value="{{GoodsInfoData.year}}">
         {{GoodsInfoData.year}}
             <image src="../../../../images/down.png" mode="aspectFit" class="picker_image" />
         </picker>

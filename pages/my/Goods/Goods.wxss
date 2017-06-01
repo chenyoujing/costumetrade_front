@@ -186,10 +186,49 @@ button::after{
   right: 0;
   bottom: 0;
 }
+.content_view{
+  padding: 10px; 
+  position: relative;
+}
+/*批量删除*/
+.delete_container{
+  text-align: center;
+  width: 50px;
+  line-height: 115px;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  bottom: 10px;
+}
+.delete_container checkbox{
+  width: 100%;
+}
+.batch_delete,.batch_delete_ok{
+  position: absolute;
+  left: 50%;
+  right: 0;
+  bottom: 0;
+  text-align: center;
+  background-color: #DBDBDB;
+  font-size: 20px;
+  line-height: 40px;
+  height: 40px;
+  overflow: hidden;
+  transition: all 0.3s;
+}
+.batch_delete_ok{
+  left: 0;
+  right: 50%;
+  border-right: 2px solid #ffffff;
+}
+
+
 .content_container{
   box-shadow: 0.5px 0.5px 2px #000000;
   position: relative;
   border-radius: 3px;
+  transition: all 0.3s;
+  left: 0;
 }
 .content_container > image{
   width: 115px;
