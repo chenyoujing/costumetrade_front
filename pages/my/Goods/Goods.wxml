@@ -96,14 +96,10 @@
       </view>
     </view>
   </view>
-  <scroll-view scroll-y="true" class="content" lower-threshold="10" bindscrolltolower="{{loadMore?'onReachBottom':''}}" style="bottom:{{delete_button}}px;">
-    <view class="content_view" wx:for="{{product}}" wx:key="{{id}}">
-      <checkbox-group class="delete_container" >
-        <label class="checkbox">
-          <checkbox value="" checked=""/>
-        </label>
-      </checkbox-group>
-      <navigator url="../Goods/Goodstock/Goodstock?ID={{item.id}}&title={{item.name}}" hover-class="navigator-hover" class="content_container" style="left:{{delete_checkbox}}px;">
+  <scroll-view scroll-y="true" class="content" lower-threshold="10" bindscrolltolower="{{loadMore?'onReachBottom':''}}">
+    <view style="padding:10px;" wx:for="{{product}}" wx:key="{{id}}">
+    <navigator  url="../Goods/Goodstock/Goodstock?ID={{item.id}}&title={{item.name}}" hover-class="navigator-hover">
+      <view class="content_container">
         <image src="{{item.image ? item.image : '../../../images/image_none.png'}}" mode="aspectFill" />
         <view class="content_container_text">
         <navigator url="../Goods/GoodsInfo/GoodsInfo?ID={{item.id}}&name={{item.name}}" hover-class="navigator-hover">
@@ -122,18 +118,17 @@
           </view>
         </view>
         <view class="clear"></view>
-      </navigator>
+      </view>
+    </navigator>
     </view>
   </scroll-view>
-  <view class="batch_delete_ok" bindtap="batch_delete_ok" style="height:{{delete_button}}px;">完成</view>
-  <view class="batch_delete" style="height:{{delete_button}}px;">删除</view>
 </view>
 
 
 <!--更多功能-->
 <view class="more_function_cover {{animation}}" bindtap="more_function_close" style="display:{{more_function_display}};"></view>
 <view class="more_function {{animation}}" style="display:{{more_function_display}};">
-  <view class="more_function_view" bindtap="batch_delete">批量删除</view>
+  <view class="more_function_view">批量删除</view>
   <view class="more_function_view">分享图片</view>
   <view class="more_function_view">推广新品</view>
 </view>
