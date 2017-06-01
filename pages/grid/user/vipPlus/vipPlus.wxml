@@ -1,5 +1,5 @@
 <view class="vipPlus_title">
-  <image src="../../../../images/right-thrust.png" mode="aspectFit"></image>
+  <image src="../../../../images/back-away.png" mode="aspectFit" />
   升级
 </view>
 

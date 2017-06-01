@@ -2,9 +2,15 @@
   <view class="title">设置</view>
 
   <view class="dictionary">
-    <view class="dictionary_text {{current=='0' ? 'active' : ''}}" bindtap="dictionarytype" data-dictionary="0">员工管理∨</view>
-    <view class="dictionary_text {{current=='1' ? 'active' : ''}}" bindtap="dictionarytype" data-dictionary="1">打印信息∨</view>
-    <view class="dictionary_text {{current=='2' ? 'active' : ''}}" bindtap="dictionarytype" data-dictionary="2">高级设置∨</view>
+    <view class="dictionary_text {{current=='0' ? 'active' : ''}}" bindtap="dictionarytype" data-dictionary="0">员工管理
+      <image src="../../../../images/down.png" mode="aspectFit" class="image_down " />
+    </view>
+    <view class="dictionary_text {{current=='1' ? 'active' : ''}}" bindtap="dictionarytype" data-dictionary="1">打印信息
+      <image src="../../../../images/down.png" mode="aspectFit" class="image_down " />
+    </view>
+    <view class="dictionary_text {{current=='2' ? 'active' : ''}}" bindtap="dictionarytype" data-dictionary="2">高级设置
+      <image src="../../../../images/down.png" mode="aspectFit" class="image_down " />
+    </view>
     <view class="clear"></view>
   </view>
   <swiper interval="0" duration="500" current="{{current}}" bindchange="swiper_change">
@@ -21,7 +27,7 @@
               <view class="staff_info_state">在职状态：在职</view>
               <view class="clear"></view>
             </view>
-            <image src="../../../../images/7.png" mode="aspectFit" class="staff_modify" bindtap="staff_updata" />
+            <image src="../../../../images/update.png" mode="aspectFit" class="staff_modify" bindtap="staff_updata" />
           </view>
         </view>
       </scroll-view>
@@ -236,6 +242,10 @@
             <view class="clear"></view>
           </view>
         </view>
+        <navigator url="../notecase/notecase" class="notecase">
+          <image src="../../../../images/notecase.png" mode="aspectFit" class="notecase_image" />
+          <view class="notecase_text">钱包管理</view>
+        </navigator>
       </scroll-view>
       <button class="submit">保存</button>
     </swiper-item>

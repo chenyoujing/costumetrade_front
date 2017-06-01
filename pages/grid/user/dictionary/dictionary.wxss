@@ -6,7 +6,8 @@
   z-index: 3;
   text-align: center;
   color: #ffffff;
-  line-height: 21px;
+  font-size: 16px;
+  line-height: 20px;
 }
 
 .dictionary{
@@ -16,21 +17,30 @@
   text-align: center;
   background-color: #E3E3E3;
   float: left;
-  font-size: 14px;
-  line-height: 30px;
+  font-size: 16px;
+  line-height: 40px;
 }
 .dictionary_text{
   width: 33.33333333%;
 }
+.image_down{
+  width: 10px;
+  height: 10px;
+  transform:rotate(-90deg);
+  transition: all 0.3s;
+}
 .active{
   background: #ffffff;
+}
+.active .image_down{
+  transform: rotate(0);
 }
 .content{
    box-sizing:border-box;
 }
 swiper{
   position: absolute;
-  top: 71px;
+  top: 80px;
   left: 0;
   right: 0;
   bottom: 0;
@@ -460,4 +470,21 @@ scroll-view{
   font-size: 14px;
   padding-left: 7px; 
   height: 28px;
+}
+
+
+/*钱包*/
+.notecase{
+  font-size: 12px;
+  line-height: 30px;
+  text-align: center;
+}
+.notecase_text{
+  display: inline-block;
+  vertical-align: top;
+}
+.notecase_image{
+  width: 16px;
+  height: 16px;
+  padding: 7px;
 }

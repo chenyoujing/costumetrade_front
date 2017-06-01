@@ -31,3 +31,8 @@ radio,checkbox{
 .clear{
   clear: both;
 }
+
+.image_down{
+  width: 10px;
+  height: 10px;
+}

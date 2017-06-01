@@ -1,6 +1,6 @@
 <!--头部-->
 <view class="shareStore_title">
-  <image src="../../../../images/right-thrust.png" mode="aspectFit"></image>
+  <image src="../../../../images/back-away.png" mode="aspectFit"></image>
   分享
 </view>
 

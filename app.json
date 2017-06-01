@@ -13,6 +13,7 @@
     "pages/grid/user/storeUpdate/storeUpdate",
     "pages/grid/user/Help/Help",
     "pages/grid/user/helpInfo/helpInfo",
+    "pages/grid/user/notecase/notecase",
     "pages/my/openOrder/openOrder",
     "pages/my/openOrder/goodsDetails/goodsDetails",
     "pages/my/openOrder/Billing/Billing",

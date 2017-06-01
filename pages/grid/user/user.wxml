@@ -58,7 +58,7 @@
     </view>
 
     <view class="my_content_view">
-      <navigator url="dictionary/dictionary">
+      <navigator url="notecase/notecase">
         <image src="../../../images/notecase.png" mode="aspectFit" class="my_content_image" />
         <view class="my_content_text">钱包管理</view>
         <image src="../../../images/right-thrust.png" mode="aspectFit" class="my_content_right" />

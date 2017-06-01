@@ -73,6 +73,10 @@
           </picker-view>
       </view>
       <view class="upload_input">
+        <navigator url="../GoodsImage/GoodsImage" class="imagesearch">
+          <image src="../../../../images/search.png" mode="aspectFit" class="imagesearch_image" />
+          <view class="imagesearch_text">网上搜索</view>
+        </navigator>
         <view class="upload_input_text">图片:</view>
         <scroll-view scroll-x="true" class="image_container">
           <view class="image_content"></view>
@@ -84,6 +88,10 @@
         <view class="clear"></view>
       </view>
       <view class="upload_input">
+        <view class="imagesearch">
+          <image src="../../../../images/search.png" mode="aspectFit" class="imagesearch_image" />
+          <view class="imagesearch_text">网上搜索</view>
+        </view>
         <view class="upload_input_text">视频:</view>
         <scroll-view scroll-x="true" class="image_container">
           <view class="image_content"></view>

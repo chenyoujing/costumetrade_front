@@ -8,9 +8,9 @@
     </view>
     <view style="position:relative;margin: 2.5px 0;">
       <input class="shop_input" type="text" placeholder="请输入货号搜索货品..." />
-      <image src="../../../../images/search.png" mode="aspectFill" class="search_image" />
-      <image src="../../../../images/search.png" mode="aspectFill" class="search_image" style="right:15%;" />
-      <image src="../../../../images/search.png" mode="aspectFill" class="search_image" style="right:5%;" bindtap="rank" />
+      <image src="../../../../images/search.png" mode="aspectFit" class="search_image" />
+      <image src="../../../../images/preparation.png" mode="aspectFit" class="search_image" style="right:15%;" />
+      <image src="../../../../images/pane.png" mode="aspectFit" class="search_image" style="right:5%;" bindtap="rank" />
     </view>
   </view>
 

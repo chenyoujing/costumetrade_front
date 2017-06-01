@@ -1,19 +1,21 @@
 <view style="overflow:hidden; min-height:100vh;">
   <view class="title">
-    <form bindsubmit="search">
-      <input class="title_input" type="text" name="search" placeholder="输入名字..." confirm-type="search" />
-      <button form-type="submit">
-        <icon type="search" size="16" color="#000000" />
-      </button>
-    </form>
-    <icon style="right:0;" type="search" size="16" color="#000000" bindtap="client_add" />
+    <input class="title_input" type="text" name="search" placeholder="输入名字..." confirm-type="search" />
+    <image src="../../../images/search.png" mode="aspectFit" class="image_search" />
+    <image src="../../../images/add.png" mode="aspectFit" class="image_add" bindtap="client_add" />
     <view class="clear"></view>
   </view>
 
   <view class="client">
-    <view class="client_text {{client=='1' ? 'active' : ''}}" bindtap="clienttype" data-client="1">客户∨</view>
-    <view class="client_text {{client=='2' ? 'active' : ''}}" bindtap="clienttype" data-client="2">供货商∨</view>
-    <view class="client_text {{client=='3' ? 'active' : ''}}" bindtap="clienttype" data-client="3">朋友∨</view>
+    <view class="client_text {{client=='1' ? 'active' : ''}}" bindtap="clienttype" data-client="1">客户
+      <image src="../../../images/down.png" mode="aspectFit" class="image_down" />
+    </view>
+    <view class="client_text {{client=='2' ? 'active' : ''}}" bindtap="clienttype" data-client="2">供货商
+      <image src="../../../images/down.png" mode="aspectFit" class="image_down" />
+    </view>
+    <view class="client_text {{client=='3' ? 'active' : ''}}" bindtap="clienttype" data-client="3">朋友
+      <image src="../../../images/down.png" mode="aspectFit" class="image_down" />
+    </view>
     <view class="clear"></view>
   </view>
   <scroll-view class="content" scroll-y>
@@ -21,8 +23,8 @@
       <view class="client_content_top">
         <image image src="{{item.image ? item.image : '../../../images/image_none.png'}}" mode="aspectFill" class="client_tx" />
         <view class="client_name">小雨</view>
-        <image image src="../../../images/7.png" mode="aspectFill" class="client_updata" bindtap="client_add" data-clientid="clientid" />
-        <image image src="../../../images/7.png" mode="aspectFill" class="client_delete" bindtap="client_delete" data-clientid="clientid" />
+        <image image src="../../../images/update.png" mode="aspectFill" class="client_updata" bindtap="client_add" data-clientid="clientid" />
+        <image image src="../../../images/delete.png" mode="aspectFill" class="client_delete" bindtap="client_delete" data-clientid="clientid" />
         <view class="clear"></view>
       </view>
       <view class="client_content_bottom">
@@ -37,7 +39,7 @@
 <!--上传资料详情-->
 <view class="client_add" style="top:{{client_add}}; bottom:-{{client_add}};">
   <view class="client_add_title">{{client=='1' ? '客户' : ''}}{{client=='2' ? '供货商' : ''}}{{client=='3' ? '朋友' : ''}}</view>
-  <view class="client_add_close" bindtap="close">×</view>
+  <image src="../../../images/amputate.png" mode="aspectFit" class="client_add_close" bindtap="close" />
   <form class="client_add_content" bindsubmit="client_add_submit" data-clientid="{{clientid}}">
     <scroll-view scroll-y="true" style="top:">
       <view class="client_add_input">
@@ -89,7 +91,7 @@
 <!--对账-->
 <view class="client_add" style="top:{{account}}; bottom:-{{account}};">
   <view class="client_add_title">{{client=='1' ? '客户' : ''}}{{client=='2' ? '供货商' : ''}}{{client=='3' ? '朋友' : ''}}对账</view>
-  <view class="client_add_close" bindtap="account_close">×</view>
+  <image src="../../../images/amputate.png" mode="aspectFit" class="client_add_close" bindtap="account_close" />
   <view class="client">
     <view class="client_text {{accounttype=='0' ? 'active' : ''}}" bindtap="accounttype" data-accounttype="0" style="width:50%;">明细</view>
     <view class="client_text {{accounttype=='1' ? 'active' : ''}}" bindtap="accounttype" data-accounttype="1" style="width:50%;">还款</view>
@@ -224,14 +226,10 @@
 <view class="client_add" style="top:{{goods}}; bottom:-{{goods}};">
   <view class="title">
     <view class="title_text">客户补货</view>
-    <form bindsubmit="search">
-      <input class="title_input" type="number" name="search" placeholder="货号" confirm-type="search" style="width:50%;" />
-      <button form-type="submit" style="right:20%;">
-        <icon type="search" size="16" color="#000000" />
-      </button>
-    </form>
-    <icon style="right:10%;" type="search" size="16" color="#000000" bindtap="rank" />
-    <view class="client_add_close" bindtap="goods_close" style="top:0;right:10px;bottom:0;margin:auto;">×</view>
+    <input class="title_input" type="number" name="search" placeholder="货号" confirm-type="search" style="width:50%;" />
+    <image src="../../../images/search.png" mode="aspectFit" class="image_search" style="right:22%;" />
+    <image src="../../../images/pane.png" mode="aspectFit" class="image_add" style="right:12%;" bindtap="rank" />
+    <image src="../../../images/amputate.png" mode="aspectFit" class="client_add_close" bindtap="goods_close" style="bottom:0;margin:auto;" />
     <view class="clear"></view>
   </view>
   <scroll-view scroll-y="true" style="top:65px;bottom:0;">

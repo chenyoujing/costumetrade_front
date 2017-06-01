@@ -1,0 +1,16 @@
+  <view class="title">
+    <image src="../../../../images/back-away.png" mode="aspectFit"></image>
+    钱包
+  </view>
+
+  <view class="dictionary">
+    <view class="dictionary_text {{current=='0' ? 'active' : ''}}" bindtap="dictionarytype" data-dictionary="0">我的账户
+      <image src="../../../../images/down.png" mode="aspectFit" class="image_down " />
+    </view>
+    <view class="dictionary_text {{current=='1' ? 'active' : ''}}" bindtap="dictionarytype" data-dictionary="1">银行卡管理
+      <image src="../../../../images/down.png" mode="aspectFit" class="image_down " />
+    </view>
+    <view class="clear"></view>
+  </view>
+
+  <button class="submit">保存</button>

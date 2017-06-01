@@ -6,4 +6,22 @@
     <input class="title_input" type="text" name="search" placeholder="输入文件名" bindinput="bindKeyInput" />
     <image mode="aspectFit" src="../../../../images/search.png" class="image_search" />
   </view>
+
+  <checkbox-group class="image_content" bindchange="checkboxChange">
+
+    <label class="image_container">
+      <image src=""></image>
+      <checkbox value="" checked=""/>
+    </label>
+    <label class="image_container">
+      <image src=""></image>
+      <checkbox value="" checked=""/>
+    </label>
+    <label class="image_container">
+      <image src=""></image>
+      <checkbox value="" checked=""/>
+    </label>
+
+  </checkbox-group>
+  <button class="image_submit">确定</button>
 </view>

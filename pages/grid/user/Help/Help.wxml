@@ -1,6 +1,6 @@
 <!--头部-->
 <view class="Help_title">
-  <image src="../../../../images/right-thrust.png" mode="aspectFit" />
+  <image src="../../../../images/back-away.png" mode="aspectFit" />
   帮助
 </view>
 

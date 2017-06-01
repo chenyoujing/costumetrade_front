@@ -3,6 +3,7 @@
   padding: 15px 20px;
   position: relative;
   z-index: 3;
+  box-sizing: border-box;
 }
 .title_input{
   margin-right: 10%;
@@ -14,7 +15,7 @@
   height:27px;
   min-height:27px;
 }
-icon,.title button{
+.image_search,.image_add{
   position: absolute;
   top: 0;
   right: 15%;
@@ -24,20 +25,10 @@ icon,.title button{
   width: 16px;
   height: 16px;
   z-index: 3;
-  padding: 15px;
+  padding: 10px;
 }
-.title button{
-  width: 50px;
-  height: 50px;
-  padding: 0;
-}
-.title button icon{
-  left: 0;
-  right: 0;
-  padding: 15px;
-}
-button::after{
-  content: none;
+.image_add{
+  right: 5%;
 }
 .condition{
   width: 100%;
@@ -61,6 +52,16 @@ button::after{
 .active{
   background: #ffffff;
 }
+.image_down{
+  width: 10px;
+  height: 10px;
+  transform:rotate(-90deg);
+  transition: all 0.3s;
+}
+.active .image_down{
+  transform:rotate(0deg);
+}
+
 .content{
    box-sizing:border-box;
 }
@@ -89,18 +90,20 @@ button::after{
   position: absolute;
   top: 0;
   bottom: 0;
-  right: 60px;
-  width: 20px;
-  height: 20px;
+  right: 45px;
+  width: 16px;
+  height: 16px;
+  padding: 7px;
   margin: auto;
 }
 .client_delete{
   position: absolute;
   top: 0;
   bottom: 0;
-  right: 20px;
-  width: 20px;
-  height: 20px;
+  right: 15px;
+  width: 16px;
+  height: 16px;
+  padding: 7px;
   margin: auto;
 }
 .client_content_bottom{
@@ -150,12 +153,11 @@ button::after{
 }
 .client_add_close{
   position: absolute;
+  width: 16px;
+  height: 16px;
+  padding: 12px;
   top: 0;
   right: 10px;
-  color: #ffffff;
-  font-size: 32px;
-  line-height: 40px;
-  height: 40px;
 }
 .client_add scroll-view{
   position: absolute;

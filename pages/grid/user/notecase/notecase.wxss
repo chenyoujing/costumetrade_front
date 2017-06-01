@@ -1,0 +1,65 @@
+.title{
+  background-color: #52CAC1;
+  padding: 10px;
+  position: relative;
+  z-index: 3;
+  text-align: center;
+  color: #ffffff;
+  font-size: 16px;
+  line-height: 20px;
+}
+.title image{
+  width: 16px;
+  height: 16px;
+  padding: 12px 10px;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+
+
+.dictionary{
+  width: 100%;
+}
+.dictionary_text{
+  text-align: center;
+  background-color: #E3E3E3;
+  float: left;
+  font-size: 16px;
+  line-height: 40px;
+}
+.dictionary_text{
+  width: 50%;
+}
+.image_down{
+  width: 12px;
+  height: 12px;
+  transform:rotate(-90deg);
+  transition: all 0.3s;
+}
+.active{
+  background: #ffffff;
+}
+.active .image_down{
+  transform: rotate(0);
+}
+
+
+.submit{
+  font-size: 18px;
+  border-radius: 0;
+  background-color: #52CAC1;
+  line-height: 40px;
+  height: 40px;
+  text-align: center;
+  padding: 0;
+  position: absolute;
+  width: 40%;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  color: #ffffff;
+  transition: all 0.3s;
+}

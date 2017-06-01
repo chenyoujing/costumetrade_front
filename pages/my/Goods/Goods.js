@@ -223,7 +223,7 @@ Page({
       this.setData({
         animation: "animation",
       })
-    }, 100)
+    }, 10)
   },
   // 关闭多功能键
   more_function_close:function(){
