@@ -1,66 +1,52 @@
-// pages/grid/order/orderDetails/orderDetails.js
+var util = require('../../../../utils/util.js')
+var app = getApp()
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
-  
+    payorderno:'',
+    ordertype:'',
+    detailUrl:"order/getOrder",
+    openid:1,
+    product:{}
   },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
+  // ajax请求数据
+  orderDetail_request:function(){
+    var that = this;
+    wx.showNavigationBarLoading();
+    util.api.request({
+      url: this.data.detailUrl,
+      data: {
+        openid: this.data.openid,
+        ordertype: this.data.ordertype,
+        payorderno: this.data.payorderno
+      },
+      method: 'POST',
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      success: function (res) {
+        wx.hideNavigationBarLoading();
+        for (var p in res.data.ssStoDetail){
+          res.data.ssStoDetail[p].createtime = util.toDate(res.data.ssStoDetail[p].createtime);
+          res.data.ssStoDetail[p].totalPrice = (res.data.ssStoDetail[p].count * res.data.ssStoDetail[p].price).toFixed(2)
+        }
+       
+        that.setData({
+          product: res.data
+        })
+      }
+    })
+  }, 
+  // 返回
+  backdelta: function () {
+    wx.navigateBack({
+      delta: 1
+    })
+  },
   onLoad: function (options) {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-  
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-  
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-  
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-  
+     this.setData({
+       payorderno: options.payorderno,
+       ordertype: options.ordertype
+     })
+     this.orderDetail_request();
   }
 })

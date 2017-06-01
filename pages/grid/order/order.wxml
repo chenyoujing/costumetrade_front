@@ -19,243 +19,254 @@
 
 <!--订单类型分类-->
 <view class="ordertype">
-  <view class="ordertype_text {{ordertype=='0' ? 'ordertype_active' : ''}}" bindtap="ordertype" data-ordertype="0">采购</view>
-  <view class="ordertype_text {{ordertype=='1' ? 'ordertype_active' : ''}}" bindtap="ordertype" data-ordertype="1">销售</view>
+  <view class="ordertype_text {{ordertype=='1' ? 'ordertype_active' : ''}}" bindtap="ordertype" data-ordertype="1">采购</view>
+  <view class="ordertype_text {{ordertype=='2' ? 'ordertype_active' : ''}}" bindtap="ordertype" data-ordertype="2">销售</view>
   <view class="clear"></view>
 </view>
 
 <!--二级分类 采购-->
-<view class="ordertype2" wx-if="{{ordertype==0}}">
-  <view class="ordertype2_text {{ordertype2=='0' ? 'ordertype2_active' : ''}}" bindtap="ordertype2" data-ordertypetwo="0">
+<view class="ordertype2" wx-if="{{ordertype==2}}">
+  <view class="ordertype2_text {{ordertype2=='1' ? 'ordertype2_active' : ''}}" bindtap="ordertype2" data-ordertypetwo="1">
       待付款<view class="ordertype2_prompt">3</view>
     </view>
-  <view class="ordertype2_text {{ordertype2=='1' ? 'ordertype2_active' : ''}}" bindtap="ordertype2" data-ordertypetwo="1">
-      待审核<view class="ordertype2_prompt">3</view>
+  <view class="ordertype2_text {{ordertype2=='4' ? 'ordertype2_active' : ''}}" bindtap="ordertype2" data-ordertypetwo="4">
+     待审核<view class="ordertype2_prompt">3</view>
   </view>
   <view class="ordertype2_text {{ordertype2=='2' ? 'ordertype2_active' : ''}}" bindtap="ordertype2" data-ordertypetwo="2">
-      待发货<view class="ordertype2_prompt">3</view>
+     待发货<view class="ordertype2_prompt">3</view>
   </view>
-  <view class="ordertype2_text {{ordertype2=='3' ? 'ordertype2_active' : ''}}" bindtap="ordertype2" data-ordertypetwo="3">
-      全部<view class="ordertype2_prompt">3</view>
+  <view class="ordertype2_text {{ordertype2=='5' ? 'ordertype2_active' : ''}}" bindtap="ordertype2" data-ordertypetwo="5">
+      全部
   </view>
   <view class="clear"></view>
 </view>
 
 <!--二级分类 销售-->
 <view class="ordertype2"  wx-if="{{ordertype==1}}">
-  <view class="ordertype2_text {{ordertype2=='0' ? 'ordertype2_active' : ''}}" bindtap="ordertype2" data-ordertypetwo="0">
+  <view class="ordertype2_text {{ordertype2=='1' ? 'ordertype2_active' : ''}}" bindtap="ordertype2" data-ordertypetwo="1">
       待付款<view class="ordertype2_prompt">3</view>
     </view>
-  <view class="ordertype2_text {{ordertype2=='1' ? 'ordertype2_active' : ''}}" bindtap="ordertype2" data-ordertypetwo="1">
-      待收货<view class="ordertype2_prompt">3</view>
-  </view>
   <view class="ordertype2_text {{ordertype2=='2' ? 'ordertype2_active' : ''}}" bindtap="ordertype2" data-ordertypetwo="2">
-      确认收货<view class="ordertype2_prompt">3</view>
+      待发货<view class="ordertype2_prompt">3</view>
   </view>
   <view class="ordertype2_text {{ordertype2=='3' ? 'ordertype2_active' : ''}}" bindtap="ordertype2" data-ordertypetwo="3">
-      全部<view class="ordertype2_prompt">3</view>
+      确认收货<view class="ordertype2_prompt">3</view>
+  </view>
+  <view class="ordertype2_text {{ordertype2=='5' ? 'ordertype2_active' : ''}}" bindtap="ordertype2" data-ordertypetwo="5">
+      全部
   </view>
   <view class="clear"></view>
 </view>
 
-<scroll-view scroll-y class="order_scroll">
-  <view style="padding-top:15px;"></view>
+<scroll-view scroll-y class="order_scroll" lower-threshold="10" bindscrolltolower="{{loadMore?'onReachBottom':''}}">
+
   <!--采购待付款-->
-  <view wx-if="{{ordertype==0 && ordertype2==0}}" class="order_container_view">
-    <view class="order_container_title">
-      <view class="order_container_name">供应商1：点艺信息科技-1000001</view>
-      <view class="order_container_Bill">线下单据</view>
+  <view wx-if="{{ordertype==1 && ordertype2==1}}" wx:for="{{product}}" class="order_container_view">
+    <navigator url="orderDetails/orderDetails?ordertype={{ordertype}}&payorderno={{item.payorderno}}">
+    <view class="order_container_title" >
+      <view class="order_container_name">供应商：{{item.seller}}</view>
+      <view class="order_container_Bill">商城单据</view>
       <image src="../../../images/right-thrust.png" mode="aspectFit" class="order_content_right" />
     </view>
-    <navigator url="orderDetails/orderDetails">
+   </navigator>
       <view class="order_container_content_left">
-        <view class="order_container_number">单号：170420173016939</view>
-        <view class="order_container_text">数量：2</view>
-        <view class="order_container_text">未付：500</view>
+        <view class="order_container_number">单号：{{item.payorderno}}</view>
+        <view class="order_container_text">数量：{{item.totalnum}}</view>
+        <view class="order_container_text">未付：￥{{item.unPay}}</view>
       </view>
       <view class="order_container_content_right">
-        <view class="order_container_text">2017-04-20</view>
-        <view class="order_container_text">合计金额：<text style="color:#ff011f;">￥842</text></view>
-        <view class="order_container_text">现金：￥1099.6</view>
-        <view class="order_container_text order_container_person">经手人：000</view>
+        <view class="order_container_text">{{item.ordertime}}</view>
+        <view class="order_container_text">合计金额：<text style="color:#ff0000;">￥{{item.totalamt}}</text></view>
+        <view class="order_container_text" wx:if="item.paycost1>0">{{item.paycate1}}：￥{{item.paycost1}}</view>
+        <view class="order_container_text" wx:if="item.paycost2>0">{{item.paycate2}}：￥{{item.paycost2}}</view>
+        <view class="order_container_text" style="margin-top:10px;">经手人：{{item.operator}}</view>
       </view>
       <view class="clear"></view>
-    </navigator>
-    <view class="order_container_button btn_2">付款</view>
+    <view class="order_container_button" bindtap="changeOrderStatus" data-status='2' data-orderNo="{{item.payorderno}}" data-sellerstoreid="{{item.sellerstoreid}}" data-buyerstoreid="{{item.buyerstoreid}}" data-pay="{{item.unPay}}">付款</view>
     <view class="clear"></view>
   </view>
-  <!--采购待审核-->
-  <view wx-if="{{ordertype==0 && ordertype2==1}}" class="order_container_view">
-    <view class="order_container_title">
-      <view class="order_container_name">供应商2：点艺信息科技-1000001</view>
-      <view class="order_container_Bill">线下单据</view>
+  <!--采购待收货-->
+  <view wx-if="{{ordertype==1 && ordertype2==2}}" wx:for="{{product}}" class="order_container_view">
+      <navigator url="orderDetails/orderDetails?ordertype={{ordertype}}&payorderno={{item.payorderno}}">
+    <view class="order_container_title" >
+      <view class="order_container_name">供应商：{{item.seller}}</view>
+      <view class="order_container_Bill">商城单据</view>
       <image src="../../../images/right-thrust.png" mode="aspectFit" class="order_content_right" />
     </view>
-    <navigator url="orderDetails/orderDetails">
+   </navigator>
       <view class="order_container_content_left">
-        <view class="order_container_number">单号：170420173016939</view>
-        <view class="order_container_text">数量：2</view>
-        <view class="order_container_text">未付：500</view>
+        <view class="order_container_number">单号：{{item.payorderno}}</view>
+        <view class="order_container_text">数量：{{item.totalnum}}</view>
+        <view class="order_container_text">未付：￥{{item.unPay}}</view>
       </view>
       <view class="order_container_content_right">
-        <view class="order_container_text">2017-04-20</view>
-        <view class="order_container_text">合计金额：<text style="color:#ff0000;">￥842</text></view>
-        <view class="order_container_text">现金：￥1099.6</view>
-        <view class="order_container_text" style="margin-top:10px;">经手人：000</view>
+        <view class="order_container_text">{{item.ordertime}}</view>
+        <view class="order_container_text">合计金额：<text style="color:#ff0000;">￥{{item.totalamt}}</text></view>
+        <view class="order_container_text" wx:if="item.paycost1>0">{{item.paycate1}}：￥{{item.paycost1}}</view>
+        <view class="order_container_text" wx:if="item.paycost2>0">{{item.paycate2}}：￥{{item.paycost2}}</view>
+        <view class="order_container_text" style="margin-top:10px;">经手人：{{item.operator}}</view>
       </view>
       <view class="clear"></view>
-    </navigator>
-    <view class="order_container_button btn_2">配货</view>
+    <view class="order_container_button"  bindtap="changeOrderStatus" data-status='' data-orderNo="{{item.payorderno}}" data-sellerstoreid="{{item.sellerstoreid}}" data-buyerstoreid="{{item.buyerstoreid}}">催单</view>
     <view class="clear"></view>
   </view>
 
-  <!--采购待发货-->
-  <view wx-if="{{ordertype==0 && ordertype2==2}}" class="order_container_view">
-    <view class="order_container_title">
-      <view class="order_container_name">供应商3：点艺信息科技-1000001</view>
-      <view class="order_container_Bill">线下单据</view>
+  <!--采购确认收货-->
+  <view wx-if="{{ordertype==1 && ordertype2==3}}" wx:for="{{product}}" class="order_container_view">
+   <navigator url="orderDetails/orderDetails?ordertype={{ordertype}}&payorderno={{item.payorderno}}">
+    <view class="order_container_title" >
+      <view class="order_container_name">供应商：{{item.seller}}</view>
+      <view class="order_container_Bill">商城单据</view>
       <image src="../../../images/right-thrust.png" mode="aspectFit" class="order_content_right" />
     </view>
-    <navigator url="orderDetails/orderDetails">
+   </navigator>
       <view class="order_container_content_left">
-        <view class="order_container_number">单号：170420173016939</view>
-        <view class="order_container_text">数量：2</view>
-        <view class="order_container_text">未付：500</view>
+        <view class="order_container_number">单号：{{item.payorderno}}</view>
+        <view class="order_container_text">数量：{{item.totalnum}}</view>
+        <view class="order_container_text">未付：￥{{item.unPay}}</view>
       </view>
       <view class="order_container_content_right">
-        <view class="order_container_text">2017-04-20</view>
-        <view class="order_container_text">合计金额：<text style="color:#ff0000;">￥842</text></view>
-        <view class="order_container_text">现金：￥1099.6</view>
-        <view class="order_container_text" style="margin-top:10px;">经手人：000</view>
+        <view class="order_container_text">{{item.ordertime}}</view>
+        <view class="order_container_text">合计金额：<text style="color:#ff0000;">￥{{item.totalamt}}</text></view>
+        <view class="order_container_text" wx:if="item.paycost1>0">{{item.paycate1}}：￥{{item.paycost1}}</view>
+        <view class="order_container_text" wx:if="item.paycost2>0">{{item.paycate2}}：￥{{item.paycost2}}</view>
+        <view class="order_container_text" style="margin-top:10px;">经手人：{{item.operator}}</view>
       </view>
       <view class="clear"></view>
-    </navigator>
-    <view class="order_container_button">发货</view>
-    <navigator url="express/express" class="order_container_button btn_2">选物流</navigator>
+    <view class="order_container_button"  bindtap="changeOrderStatus" data-status='5' data-orderNo="{{item.payorderno}}" data-sellerstoreid="{{item.sellerstoreid}}" data-buyerstoreid="{{item.buyerstoreid}}">确认收货</view>
+    <view class="order_container_button btn_2" >查看物流</view>
     <view class="clear"></view>
   </view>
 
   <!--采购全部-->
-  <view wx-if="{{ordertype==0 && ordertype2==3}}" class="order_container_view">
-    <view class="order_container_title">
-      <view class="order_container_name">供应商4：点艺信息科技-1000001</view>
-      <view class="order_container_Bill">线下单据</view>
+  <view wx-if="{{ordertype==1 && ordertype2==5}}" wx:for="{{product}}" class="order_container_view">
+     <navigator url="orderDetails/orderDetails?ordertype={{ordertype}}&payorderno={{item.payorderno}}">
+    <view class="order_container_title" >
+      <view class="order_container_name">供应商：{{item.seller}}</view>
+      <view class="order_container_Bill" wx:if="{{item.ordertype==1}}">商城单据</view>
+       <view class="order_container_Bill" wx:if="{{item.ordertype==2}}">线下单据</view>
       <image src="../../../images/right-thrust.png" mode="aspectFit" class="order_content_right" />
     </view>
-    <navigator url="orderDetails/orderDetails">
+   </navigator>
       <view class="order_container_content_left">
-        <view class="order_container_number">单号：170420173016939</view>
-        <view class="order_container_text">数量：2</view>
-        <view class="order_container_text">未付：500</view>
+        <view class="order_container_number">单号：{{item.payorderno}}</view>
+        <view class="order_container_text">数量：{{item.totalnum}}</view>
+        <view class="order_container_text">未付：￥{{item.unPay}}</view>
       </view>
       <view class="order_container_content_right">
-        <view class="order_container_text">2017-04-20</view>
-        <view class="order_container_text">合计金额：<text style="color:#ff0000;">￥842</text></view>
-        <view class="order_container_text">现金：￥1099.6</view>
-        <view class="order_container_text" style="margin-top:10px;">经手人：000</view>
+        <view class="order_container_text">{{item.ordertime}}</view>
+        <view class="order_container_text">合计金额：<text style="color:#ff0000;">￥{{item.totalamt}}</text></view>
+        <view class="order_container_text" wx:if="item.paycost1>0">{{item.paycate1}}：￥{{item.paycost1}}</view>
+        <view class="order_container_text" wx:if="item.paycost2>0">{{item.paycate2}}：￥{{item.paycost2}}</view>
+        <view class="order_container_text" style="margin-top:10px;">经手人：{{item.operator}}</view>
       </view>
       <view class="clear"></view>
-    </navigator>
+    <view class="order_container_button btn_2" >评价</view>
+    <view class="clear"></view>
   </view>
-
+   <view style="padding-top:15px;"></view>
   <!--销售待付款-->
-  <view wx-if="{{ordertype==1 && ordertype2==0}}" class="order_container_view">
-    <view class="order_container_title">
-      <view class="order_container_name">供应商5：点艺信息科技-1000001</view>
-      <view class="order_container_Bill">线下单据</view>
+  <view wx-if="{{ordertype==2 && ordertype2==1}}" wx:for="{{product}}" class="order_container_view">
+    <navigator url="orderDetails/orderDetails?ordertype={{ordertype}}&payorderno={{item.payorderno}}">
+    <view class="order_container_title" >
+      <view class="order_container_name">客户：{{item.buyer}}</view>
+      <view class="order_container_Bill">商城单据</view>
       <image src="../../../images/right-thrust.png" mode="aspectFit" class="order_content_right" />
     </view>
-    <navigator url="orderDetails/orderDetails">
+   </navigator>
       <view class="order_container_content_left">
-        <view class="order_container_number">单号：170420173016939</view>
-        <view class="order_container_text">数量：2</view>
-        <view class="order_container_text">未付：500</view>
+        <view class="order_container_number">单号：{{item.payorderno}}</view>
+        <view class="order_container_text">数量：{{item.totalnum}}</view>
+        <view class="order_container_text">未付：￥{{item.unPay}}</view>
       </view>
       <view class="order_container_content_right">
-        <view class="order_container_text">2017-04-20</view>
-        <view class="order_container_text">合计金额：<text style="color:#ff0000;">￥842</text></view>
-        <view class="order_container_text">现金：￥1099.6</view>
-        <view class="order_container_text" style="margin-top:10px;">经手人：000</view>
+        <view class="order_container_text">{{item.ordertime}}</view>
+        <view class="order_container_text">合计金额：<text style="color:#ff0000;">￥{{item.totalamt}}</text></view>
+        <view class="order_container_text" wx:if="item.paycost1>0">{{item.paycate1}}：￥{{item.paycost1}}</view>
+        <view class="order_container_text" wx:if="item.paycost2>0">{{item.paycate2}}：￥{{item.paycost2}}</view>
+        <view class="order_container_text" style="margin-top:10px;">经手人：{{item.operator}}</view>
       </view>
       <view class="clear"></view>
-    </navigator>
-    <view class="order_container_button">付款</view>
+   
+    <view class="order_container_button btn_2" bindtap="changeOrderStatus" data-status='2' data-orderNo="{{item.payorderno}}" data-sellerstoreid="{{item.sellerstoreid}}" data-buyerstoreid="{{item.buyerstoreid}}">付款</view>
+    <view class="clear"></view>
+  </view>
+  <!--销售待审核-->
+  <view wx-if="{{ordertype==2 && ordertype2==4}}" wx:for="{{product}}" class="order_container_view">
+   <navigator url="orderDetails/orderDetails?ordertype={{ordertype}}&payorderno={{item.payorderno}}">
+    <view class="order_container_title" >
+      <view class="order_container_name">客户：{{item.buyer}}</view>
+      <view class="order_container_Bill">商城单据</view>
+      <image src="../../../images/right-thrust.png" mode="aspectFit" class="order_content_right" />
+    </view>
+   </navigator>
+      <view class="order_container_content_left">
+        <view class="order_container_number">单号：{{item.payorderno}}</view>
+        <view class="order_container_text">数量：{{item.totalnum}}</view>
+        <view class="order_container_text">未付：￥{{item.unPay}}</view>
+      </view>
+      <view class="order_container_content_right">
+        <view class="order_container_text">{{item.ordertime}}</view>
+        <view class="order_container_text">合计金额：<text style="color:#ff0000;">￥{{item.totalamt}}</text></view>
+        <view class="order_container_text" wx:if="item.paycost1>0">{{item.paycate1}}：￥{{item.paycost1}}</view>
+        <view class="order_container_text" wx:if="item.paycost2>0">{{item.paycate2}}：￥{{item.paycost2}}</view>
+        <view class="order_container_text" style="margin-top:10px;">经手人：{{item.operator}}</view>
+      </view>
+      <view class="clear"></view>
+    <view class="order_container_button btn_2"  bindtap="changeOrderStatus" data-status='3' data-orderNo="{{item.payorderno}}" data-sellerstoreid="{{item.sellerstoreid}}" data-buyerstoreid="{{item.buyerstoreid}}">配货</view>
     <view class="clear"></view>
   </view>
 
-  <!--销售待收货-->
-  <view wx-if="{{ordertype==1 && ordertype2==1}}" class="order_container_view">
-    <view class="order_container_title">
-      <view class="order_container_name">供应商6：点艺信息科技-1000001</view>
-      <view class="order_container_Bill">线下单据</view>
+  <!--销售待发货-->
+  <view wx-if="{{ordertype==2 && ordertype2==2}}" wx:for="{{product}}" class="order_container_view">
+   <navigator url="orderDetails/orderDetails?ordertype={{ordertype}}&payorderno={{item.payorderno}}">
+    <view class="order_container_title" >
+      <view class="order_container_name">客户：{{item.buyer}}</view>
+      <view class="order_container_Bill">商城单据</view>
       <image src="../../../images/right-thrust.png" mode="aspectFit" class="order_content_right" />
     </view>
-    <navigator url="orderDetails/orderDetails">
+   </navigator>
       <view class="order_container_content_left">
-        <view class="order_container_number">单号：170420173016939</view>
-        <view class="order_container_text">数量：2</view>
-        <view class="order_container_text">未付：500</view>
+        <view class="order_container_number">单号：{{item.payorderno}}</view>
+        <view class="order_container_text">数量：{{item.totalnum}}</view>
+        <view class="order_container_text">未付：￥{{item.unPay}}</view>
       </view>
       <view class="order_container_content_right">
-        <view class="order_container_text">2017-04-20</view>
-        <view class="order_container_text">合计金额：<text style="color:#ff0000;">￥842</text></view>
-        <view class="order_container_text">现金：￥1099.6</view>
-        <view class="order_container_text" style="margin-top:10px;">经手人：000</view>
+        <view class="order_container_text">{{item.ordertime}}</view>
+        <view class="order_container_text">合计金额：<text style="color:#ff0000;">￥{{item.totalamt}}</text></view>
+        <view class="order_container_text" wx:if="item.paycost1>0">{{item.paycate1}}：￥{{item.paycost1}}</view>
+        <view class="order_container_text" wx:if="item.paycost2>0">{{item.paycate2}}：￥{{item.paycost2}}</view>
+        <view class="order_container_text" style="margin-top:10px;">经手人：{{item.operator}}</view>
       </view>
       <view class="clear"></view>
-    </navigator>
-    <view class="order_container_button">催单</view>
-    <view class="clear"></view>
-  </view>
-
-  <!--销售确认收货-->
-  <view wx-if="{{ordertype==1 && ordertype2==2}}" class="order_container_view">
-    <view class="order_container_title">
-      <view class="order_container_name">供应商7：点艺信息科技-1000001</view>
-      <view class="order_container_Bill">线下单据</view>
-      <image src="../../../images/right-thrust.png" mode="aspectFit" class="order_content_right" />
-    </view>
-    <navigator url="orderDetails/orderDetails">
-      <view class="order_container_content_left">
-        <view class="order_container_number">单号：170420173016939</view>
-        <view class="order_container_text">数量：2</view>
-        <view class="order_container_text">未付：500</view>
-      </view>
-      <view class="order_container_content_right">
-        <view class="order_container_text">2017-04-20</view>
-        <view class="order_container_text">合计金额：<text style="color:#ff0000;">￥842</text></view>
-        <view class="order_container_text">现金：￥1099.6</view>
-        <view class="order_container_text" style="margin-top:10px;">经手人：000</view>
-      </view>
-      <view class="clear"></view>
-    </navigator>
-    <view class="order_container_button">确认收货</view>
-    <view class="order_container_button btn_2">查看物流</view>
+    <view class="order_container_button"  bindtap="changeOrderStatus" data-status='4' data-orderNo="{{item.payorderno}}" data-sellerstoreid="{{item.sellerstoreid}}" data-buyerstoreid="{{item.buyerstoreid}}">发货</view>
+    <navigator url="express/express" class="order_container_button btn_2">选物流</navigator>
     <view class="clear"></view>
   </view>
 
   <!--销售全部-->
-  <view wx-if="{{ordertype==1 && ordertype2==3}}" class="order_container_view">
-    <view class="order_container_title">
-      <view class="order_container_name">供应商8：点艺信息科技-1000001</view>
-      <view class="order_container_Bill">线下单据</view>
+  <view wx-if="{{ordertype==2 && ordertype2==5}}" wx:for="{{product}}" class="order_container_view">
+    <navigator url="orderDetails/orderDetails?ordertype={{ordertype}}&payorderno={{item.payorderno}}">
+    <view class="order_container_title" >
+      <view class="order_container_name">客户：{{item.buyer}}</view>
+      <view class="order_container_Bill" wx:if="{{item.ordertype==1}}">商城单据</view>
+       <view class="order_container_Bill" wx:if="{{item.ordertype==2}}">线下单据</view>
       <image src="../../../images/right-thrust.png" mode="aspectFit" class="order_content_right" />
     </view>
-    <navigator url="orderDetails/orderDetails">
+   </navigator>
       <view class="order_container_content_left">
-        <view class="order_container_number">单号：170420173016939</view>
-        <view class="order_container_text">数量：2</view>
-        <view class="order_container_text">未付：500</view>
+        <view class="order_container_number">单号：{{item.payorderno}}</view>
+        <view class="order_container_text">数量：{{item.totalnum}}</view>
+        <view class="order_container_text">未付：￥{{item.unPay}}</view>
       </view>
       <view class="order_container_content_right">
-        <view class="order_container_text">2017-04-20</view>
-        <view class="order_container_text">合计金额：<text style="color:#ff0000;">￥842</text></view>
-        <view class="order_container_text">现金：￥1099.6</view>
-        <view class="order_container_text" style="margin-top:10px;">经手人：000</view>
+        <view class="order_container_text">{{item.ordertime}}</view>
+        <view class="order_container_text">合计金额：<text style="color:#ff0000;">￥{{item.totalamt}}</text></view>
+        <view class="order_container_text" wx:if="item.paycost1>0">{{item.paycate1}}：￥{{item.paycost1}}</view>
+        <view class="order_container_text" wx:if="item.paycost2>0">{{item.paycate2}}：￥{{item.paycost2}}</view>
+        <view class="order_container_text" style="margin-top:10px;">经手人：{{item.operator}}</view>
       </view>
       <view class="clear"></view>
-    </navigator>
-    <view class="order_container_button btn_2">评价</view>
-    <view class="clear"></view>
+
   </view>
 </scroll-view>

@@ -1,48 +1,33 @@
 <view class="orderDetaile_container">
   <view class="orderDetaile_title">
     订单详情
-    <image src="../../../../images/close.png" mode="aspectFit" class="orderDetaile_title_image" />
+    <image bindtap="backdelta" src="../../../../images/close.png" mode="aspectFit" class="orderDetaile_title_image" />
   </view>
   <view class="order_info">
-    <view class="info_title">订单详情</view>
-    <view class="info_text">订单号：170420173016939</view>
-    <view class="info_text">下单时间：2017-04-20</view>
-    <view class="info_text">合计金额：842元</view>
-    <view class="info_text">未付：500元</view>
-    <view class="info_text info_price">1099.6元</view>
+   <view class="info_text" wx:if="{{ordertype==1}}">供应商：{{product.ssStoOrder.seller}}</view>
+    <view class="info_text" wx:if="{{ordertype==2}}">客户：{{product.ssStoOrder.buyer}}</view>
+    <view class="info_text">订单号：{{product.ssStoOrder.payorderno}}</view>
+    <view class="info_text">下单时间：{{product.ssStoOrder.ordertime}}</view>
+    <view class="info_text">合计金额：{{product.ssStoOrder.totalamt}}元</view>
+     <view class="info_text" wx:if="{{product.ssStoOrder.paycost1>0}}">{{product.ssStoOrder.paycate1}}：{{product.ssStoOrder.paycost1}}元</view>
+     <view class="info_text" wx:if="{{product.ssStoOrder.paycost2>0}}">{{product.ssStoOrder.paycate2}}：{{product.ssStoOrder.paycost2}}元</view>
+    <view class="info_text">未付：{{product.ssStoOrder.unPay}}元</view>
+    <!--<view class="info_text info_price">1099.6元</view>-->
   </view>
-  <view class="order_view">
+  <view class="order_view" wx:for="{{product.ssStoDetail}}">
     <image src="../../../../images/image_none.png" mode="aspectFill" class="order_image" />
     <view class="order_view_info">
-      <view class="order_view_title">供应商:点艺信息技术-10000001
-        <view class="order_view_date">2017-04-20</view>
+      <view class="order_view_title">名称：{{item.productname}}
+        <view class="order_view_date">{{item.createtime}}</view>
       </view>
       <view class="order_view_content">
         <view class="order_view_text">
-          <text>颜色：皇家蓝</text>
-          <text>尺码：45</text>
-          <text>数量1件</text>
+          <text>颜色：{{item.productcolor}}</text>
+          <text>尺码：{{item.productsize}}</text>
+          <text>数量：{{item.count}}{{item.productunit}}</text>
         </view>
-        <view class="order_unit_price">单价：32</view>
-        <view class="order_view_price">32.00</view>
-        <view class="order_view_button">评价</view>
-      </view>
-    </view>
-  </view>
-  <view class="order_view">
-    <image src="../../../../images/image_none.png" mode="aspectFill" class="order_image" />
-    <view class="order_view_info">
-      <view class="order_view_title">供应商:点艺信息技术-10000001
-        <view class="order_view_date">2017-04-20</view>
-      </view>
-      <view class="order_view_content">
-        <view class="order_view_text">
-          <text>颜色：皇家蓝</text>
-          <text>尺码：45</text>
-          <text>数量1件</text>
-        </view>
-        <view class="order_unit_price">单价：32</view>
-        <view class="order_view_price">32.00</view>
+        <view class="order_unit_price">单价：{{item.price}}</view>
+        <view class="order_view_price">{{item.totalPrice}}</view>
         <view class="order_view_button">评价</view>
       </view>
     </view>

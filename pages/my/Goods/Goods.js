@@ -61,7 +61,6 @@ Page({
         for (var p in res.data){
           res.data[p].timeUp = util.toDate(res.data[p].timeUp)
         }
-       
         if(that.data.pageNum==1){
           data = res.data;
         }else{
