@@ -1,66 +1,61 @@
-// pages/my/Goods/GoodsBrandAdd/GoodsBrandAdd.js
+var util = require('../../../../utils/util.js')
+var app = getApp()
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
-  
+    url:'',
+    name:'',
+    envalue:'',
+    addname:''
   },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
+  back:function(){
+    wx.navigateBack({
+      delta: 1
+    })
+  },
+  EventHandle: function (e) {
+    this.setData({
+      envalue:e.detail.value
+    })
+  },
+  // 添加新选项
+  addOptions: function () {
+    var that = this;
+    if (this.data.envalue) {
+      wx.showNavigationBarLoading();
+      var param = { storeId: 1 };
+      param[this.data.addname] = this.data.envalue;
+      util.api.request({
+        url: this.data.url,
+        data: param,
+        method: 'POST',
+        header: {
+          'content-type': 'application/x-www-form-urlencoded'
+        },
+        success: function (res) {
+          app.changeData = that.data.envalue;
+          app.changeId = res.data;
+          wx.hideNavigationBarLoading();
+          wx.showToast({
+            title: '添加成功',
+            mask: true,
+            duration: 2000
+          })
+          that.back();
+        }
+      })
+    } else {
+      wx.showToast({
+        title: '请填写内容',
+        mask: true,
+        duration: 2000
+      })
+    }
+  },
   onLoad: function (options) {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-  
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-  
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-  
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-  
+     this.setData({
+       url: options.url,
+       name: options.name,
+       addname: options.addname
+     })
   }
 })

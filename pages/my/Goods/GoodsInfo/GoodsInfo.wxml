@@ -20,10 +20,10 @@
       </view>
       <view class="upload_input">
         <view class="upload_input_text">品牌:</view>
-        <picker bindchange="bindSelectorChange" data-style = 'brand_index' range="{{screen_brandList}}" value="{{GoodsInfoData.brandid}}" range-key="brandname" name="brandid" mode="selector" >
-            <text>{{screen_brandList[brand_index].brandname}}</text>
-            <image src="../../../../images/down.png" mode="aspectFit" class="picker_image" />
-        </picker>
+        <input type="number" disabled="true" data-name="brand"  class="upload_input2" name="brandid" style="padding-right:30px;" value="{{brand}}"/>
+        <navigator  url="../GoodsBrand/GoodsBrand?url=brand/getAllBrands&title=品牌" hover-class="navigator-hover">
+        <image src="../../../../images/update.png" mode="aspectFit" class="update_image" />
+        </navigator>  
         <view class="clear"></view>
       </view>
       <view class="upload_input">
@@ -101,11 +101,11 @@
         <view class="clear"></view>
       </view>
       <view class="upload_input">
-        <view class="upload_input_text">商品种类:</view>
-        <picker bindchange="bindSelectorChange" data-style = 'producttype_index'  value="{{GoodsInfoData.producttype}}" name="producttype" range="{{screen_productTypeList}}" range-key="catename">
-            {{screen_productTypeList[producttype_index].catename}}
-            <image src="../../../../images/down.png" mode="aspectFit" class="picker_image" />
-        </picker>
+      <view class="upload_input_text">商品种类:</view>
+        <input type="number" disabled="true" data-name="producttype"  class="upload_input2" name="producttype" style="padding-right:30px;" value="{{producttype}}"/>
+        <navigator  url="../GoodsBrand/GoodsBrand?url=cate/getAllCates&title=商品种类" hover-class="navigator-hover">
+        <image src="../../../../images/update.png" mode="aspectFit" class="update_image" />
+        </navigator>  
         <view class="clear"></view>
       </view>
       <view class="upload_input">
@@ -115,16 +115,16 @@
       </view>
       <view class="upload_input">
         <view class="upload_input_text">单位:</view>
-        <picker bindchange="bindSelectorChange" range-key="unit" value="{{GoodsInfoData.unit}}" range="{{screen_unitList}}" name="unit" data-style = 'unit_index'>
-           {{GoodsInfoData.unit}}
-            <image src="../../../../images/down.png" mode="aspectFit" class="picker_image" />
-        </picker>
+        <input type="number" disabled="true" data-name="unit"  class="upload_input2" name="unit" style="padding-right:30px;" value="{{unit}}"/>
+        <navigator  url="../GoodsBrand/GoodsBrand?url=unit/getAllUnits&title=单位" hover-class="navigator-hover">
+        <image src="../../../../images/update.png" mode="aspectFit" class="update_image" />
+        </navigator>      
         <view class="clear"></view>
       </view>
       <view class="upload_input">
         <view class="upload_input_text">颜色:</view>
         <input type="number" bindblur="blurInput" data-name="colors"  class="upload_input2" name="colors" style="padding-right:30px;" value="{{GoodsInfoData.colors}}"/>
-        <navigator  url="../GoodsBrand/GoodsBrand?url=color/getAllColors&title=选色" hover-class="navigator-hover">
+        <navigator  url="../GoodsBrand/GoodsBrand?url=color/getAllColors&title=颜色选择" hover-class="navigator-hover">
         <image src="../../../../images/update.png" mode="aspectFit" class="update_image" />
         </navigator>
         <view class="clear"></view>
@@ -154,7 +154,7 @@
       </view>
       <view class="upload_input">
         <view class="upload_input_text">年份:</view>
-        <picker style="margin-right:0" mode="date" bindchange="year" end="{{GoodsInfoData.year}}" name="year" fields="year" value="{{GoodsInfoData.year}}">
+        <picker style="margin-right:0" mode="date" bindchange="year" name="year" fields="year" value="{{GoodsInfoData.year}}">
         {{GoodsInfoData.year}}
             <image src="../../../../images/down.png" mode="aspectFit" class="picker_image" />
         </picker>

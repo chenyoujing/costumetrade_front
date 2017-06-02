@@ -3,11 +3,7 @@ var app = getApp()
 Page({
   data:{
     id: '',
-    producttype_index: 0,
-    unit_index: 0,
     grade_index: 0,
-    size_index: 0,
-    brand_index: 0,
     title:'新增货品',
     picker_view: [
       { name: '名字', price: 0, discount: 0, profit: 0, pricename:"firsthPrice"},
@@ -27,6 +23,10 @@ Page({
     screen_gradeList:[],
     screen_unitList:[],
     screen_productSize:[],
+    brand:'',
+    producttype:'',
+    unit:'',
+    brand_index:'',
     GoodsInfoData:{},
     soruceData:{},
     changPrice_index:0,
@@ -58,16 +58,6 @@ Page({
     var style = e.currentTarget.dataset.style;
     var param = this.data.GoodsInfoData;
     switch (style) {
-      case 'unit_index':
-        param.unit=this.data.screen_unitList[e.detail.value].unit;
-        this.setData({
-          unit_index: e.detail.value,
-          GoodsInfoData: param
-        });
-        if (param.unit == '添加') {
-          this.sizeAdd('unit');
-        }
-        break;
       case 'grade_index':
         param.grade = this.data.screen_gradeList[e.detail.value].id;
         this.setData({
@@ -75,35 +65,11 @@ Page({
           GoodsInfoData: param
         })
         break;
-      case 'brand_index':
-        param.brandid = this.data.screen_brandList[e.detail.value].id;
-        this.setData({
-          brand_index: e.detail.value,
-          GoodsInfoData: param
-        })
-        this.priceCalculate('tagprice', this.data.GoodsInfoData.tagprice);
-        break;
-      case 'producttype_index':
-        param.producttype = this.data.screen_productTypeList[e.detail.value].id;
-        this.setData({
-          producttype_index: e.detail.value,
-          GoodsInfoData: param         
-        })
-        break;
-      case 'size_index':
-        param.sizes = this.data.screen_productSize[e.detail.value].value;
-        this.setData({
-          size_index: e.detail.value,
-          GoodsInfoData: param
-        });
-        if (param.sizes=='添加'){
-          this.sizeAdd('sizes');
-        }
-        break;
     }
     
   },
   year: function (e) {
+    console.log(e)
     const val = e.detail.value
     var param = this.data.GoodsInfoData;
     param.year = e.detail.value;
@@ -127,17 +93,33 @@ Page({
       },
       success: function (res) {
         wx.hideNavigationBarLoading();
+        var typeName = '';
+        var unitName = "";
+        var brandName = "";
+        var gradeNumber = ""
+        var brandNumber = ""
         var answerData = res.data;
         answerData.timeDown = util.toDate(answerData.timeDown);
         answerData.timeUp = util.toDate(answerData.timeUp);
         for (var p in app.screen_productTypeList){
           if (app.screen_productTypeList[p].id == answerData.producttype){
-            var typeNumber = p;
+            typeName = app.screen_productTypeList[p].catename;
           }
         }
         for (var p in app.screen_brandList) {
           if (app.screen_brandList[p].id == answerData.brandid) {
-            var brandNumber = p;
+            brandName = app.screen_brandList[p].brandname;
+            brandNumber = p;
+          }
+        }
+        for (var p in app.screen_unitList) {
+          if (app.screen_unitList[p].id == answerData.unit) {
+            unitName = app.screen_unitList[p].unit;
+          }
+        }
+        for (var p in app.screen_gradeList) {
+          if (app.screen_gradeList[p].id == answerData.grade) {
+            gradeNumber = p;
           }
         }
         var newPicker = that.data.picker_view;
@@ -150,9 +132,12 @@ Page({
           soruceData: util.api.Clone(answerData),
           GoodsInfoData: answerData, 
           id: answerData.id,
-          producttype_index: typeNumber,
-          brand_index: brandNumber,
-          picker_view: newPicker
+          producttype: typeName,
+          brand: brandName,
+          unit: unitName,
+          grade_index: gradeNumber,
+          picker_view: newPicker,
+          brand_index: brandNumber
         });
        
         that.gradeCate();
@@ -169,8 +154,21 @@ Page({
     target.thirdPrice = this.data.picker_view[2].price ? this.data.picker_view[2].price : 0;
     target.fourthPrice = this.data.picker_view[3].price ? this.data.picker_view[3].price : 0;
     target.fifthPrice = this.data.picker_view[4].price ? this.data.picker_view[4].price : 0;
-    console.log (e)
-    target.year = target.year.substring(1, target.year.length)
+    for (var p in app.screen_productTypeList) {
+      if (app.screen_productTypeList[p].catename == target.producttype) {
+        target.producttype = app.screen_productTypeList[p].id;
+      }
+    }
+    for (var p in app.screen_brandList) {
+      if (app.screen_brandList[p].brandname == target.brandid) {
+        target.brandid = app.screen_brandList[p].id;
+      }
+    }
+    for (var p in app.screen_unitList) {
+      if (app.screen_unitList[p].unit == target.unit) {
+        target.unit = app.screen_unitList[p].id;
+      }
+    }
     var objectSubmit = {};
     if(this.data.id !== ''){
       objectSubmit = util.api.getEntityModified(this.data.soruceData,target);
@@ -245,6 +243,7 @@ Page({
     var newPicker = [];
     var name = app.custOrDiscTag == 1 ? 'custPriceJson' :'discPriceJson';
     var pickername = app.custOrDiscTag == 1 ? 'profit' : 'discount';
+    console.log(this.data.grade_index)
     arry = app.custProdPrice[this.data.grade_index][name];
     var ben = parseInt(this.data.GoodsInfoData.purchaseprice) ? parseInt(this.data.GoodsInfoData.purchaseprice) : 0;
     var ben1 = this.data.GoodsInfoData.tagprice?this.data.GoodsInfoData.tagprice : 0;
@@ -352,36 +351,42 @@ Page({
   onShow() {
     if (app.changeData) {
       var param = this.data.GoodsInfoData;
-      if (app.nameChange == '颜色名称'){
-        param.colors = util.api.getFilterArray(app.changeData);
-        console.log(param.colors)
+      if (app.nameChange == '商品种类'){
+        param.producttype = util.api.getFilterArray(app.changeData);
         this.setData({
+          producttype: app.changeData,
+          GoodsInfoData: param
+        });  
+        console.log(param.colors)
+      } else if (app.nameChange == '品牌名称'){
+        param.brandid = util.api.getFilterArray(app.changeData);   
+        console.log(app.changeData)
+        var num = 0;
+        for (var p in app.screen_brandList) {
+          if (app.screen_brandList[p].brandname == app.changeData) {
+            num = p;
+          }
+        }
+        this.priceCalculate('tagprice', this.data.GoodsInfoData.tagprice);
+        this.setData({
+          brand_index: num,
+          brand: app.changeData,
           GoodsInfoData: param
         });
-        app.changeData = "";
-      } else if (app.nameChange == '尺码名称'){
-        param.sizes = util.api.getFilterArray(app.changeData);
-        app.screen_productSize.unshift({
-          value: '新增',
-          customname: param.sizes
-        })
-        this.setData({
-          GoodsInfoData: param,
-          size_index:0
-        });
-        app.changeData = "";
+         
       } else if (app.nameChange == '单位名称') {
         param.unit = util.api.getFilterArray(app.changeData);
-        app.screen_productSize.unshift({
-          value: '新增',
-          customname: param.unit
-        })
         this.setData({
-          GoodsInfoData: param,
-          unit_index: 0
-        });
-        app.changeData = "";
+          unit: app.changeData,
+          GoodsInfoData: param
+        }); 
+      } else if (app.nameChange == '颜色名称') {
+        param.colors = util.api.getFilterArray(app.changeData);
+        this.setData({
+          GoodsInfoData: param
+        }); 
       }
+      app.changeData = "";
     }
   }
 })

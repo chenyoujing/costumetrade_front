@@ -1,13 +1,13 @@
 <!--添加商品品牌-->
 <view class="modal">
-  <view class="modal_header">{{title}}11</view>
-  <image src="../../../../images/amputate.png" mode="aspectFit" class="image_close" />
+  <view class="modal_header">{{name}}</view>
+  <image src="../../../../images/amputate.png" mode="aspectFit"  bindtap="back" class="image_close" />
   <scroll-view scroll-y="true" class="modal_content">
     <view class="add_content">
-      <view class="add_text">新增颜色</view>
-      <input type="text" class="add_input" />
+      <view class="add_text">{{name}}</view>
+      <input type="text" bindblur="EventHandle" name="envalue" value="{{envalue}}"/>
     </view>
   </scroll-view>
-  <button class="modal_reset">取消</button>
-  <button class="modal_submit">确定</button>
+  <button class="modal_reset" bindtap="back">取消</button>
+  <button class="modal_submit"  bindtap="addOptions">确定</button>
 </view>

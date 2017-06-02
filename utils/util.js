@@ -26,6 +26,11 @@ function toDate(number) {
 var api = {
   host: 'http://192.168.2.221:8088/',
   // 数组转化成字符串
+  back: function () {
+    wx.navigateBack({
+      delta: 1
+    })
+  },
   getFilterArray:function(array){
     var string = '';
     for(var p in array){
@@ -55,20 +60,7 @@ var api = {
         app.screen_unitList = res.data.unitList,
         app.custOrDiscTag = res.data.custOrDiscTag,
         app.custProdPrice = res.data.custProdPrice,
-        app.getProductInit = true,
-        app.screen_productSize.push({
-          value:'添加',
-          customname:"添加选项"
-        }),
-          app.screen_productTypeList.push({
-          catename: '添加'
-          }),
-          app.screen_unitList.push({
-            unit: '添加'
-          }),
-          app.screen_brandList.push({
-          brandname: '添加'
-          })
+        app.getProductInit = true
       }
     })
   },
