@@ -6,6 +6,7 @@ Page({
     ordertype:'',
     detailUrl:"order/getOrder",
     openid:1,
+    ordertype2:'',
     product:{}
   },
   // ajax请求数据
@@ -45,7 +46,8 @@ Page({
   onLoad: function (options) {
      this.setData({
        payorderno: options.payorderno,
-       ordertype: options.ordertype
+       ordertype: options.ordertype,
+       ordertype2: options.ordertype2
      })
      this.orderDetail_request();
   }

@@ -50,7 +50,7 @@
       待发货<view class="ordertype2_prompt">3</view>
   </view>
   <view class="ordertype2_text {{ordertype2=='3' ? 'ordertype2_active' : ''}}" bindtap="ordertype2" data-ordertypetwo="3">
-      确认收货<view class="ordertype2_prompt">3</view>
+      待收货<view class="ordertype2_prompt">3</view>
   </view>
   <view class="ordertype2_text {{ordertype2=='5' ? 'ordertype2_active' : ''}}" bindtap="ordertype2" data-ordertypetwo="5">
       全部
@@ -62,7 +62,7 @@
 
   <!--采购待付款-->
   <view wx-if="{{ordertype==1 && ordertype2==1}}" wx:for="{{product}}" class="order_container_view">
-    <navigator url="orderDetails/orderDetails?ordertype={{ordertype}}&payorderno={{item.payorderno}}">
+    <navigator url="orderDetails/orderDetails?ordertype={{ordertype}}&payorderno={{item.payorderno}}&ordertype2=1">
     <view class="order_container_title" >
       <view class="order_container_name">供应商：{{item.seller}}</view>
       <view class="order_container_Bill">商城单据</view>
@@ -77,8 +77,8 @@
       <view class="order_container_content_right">
         <view class="order_container_text">{{item.ordertime}}</view>
         <view class="order_container_text">合计金额：<text style="color:#ff0000;">￥{{item.totalamt}}</text></view>
-        <view class="order_container_text" wx:if="item.paycost1>0">{{item.paycate1}}：￥{{item.paycost1}}</view>
-        <view class="order_container_text" wx:if="item.paycost2>0">{{item.paycate2}}：￥{{item.paycost2}}</view>
+        <view class="order_container_text" wx:if="{{item.paycost1>0}}">{{item.paycate1}}：￥{{item.paycost1}}</view>
+        <view class="order_container_text" wx:if="{{item.paycost2>0}}">{{item.paycate2}}：￥{{item.paycost2}}</view>
         <view class="order_container_text" style="margin-top:10px;">经手人：{{item.operator}}</view>
       </view>
       <view class="clear"></view>
@@ -87,7 +87,7 @@
   </view>
   <!--采购待收货-->
   <view wx-if="{{ordertype==1 && ordertype2==2}}" wx:for="{{product}}" class="order_container_view">
-      <navigator url="orderDetails/orderDetails?ordertype={{ordertype}}&payorderno={{item.payorderno}}">
+      <navigator url="orderDetails/orderDetails?ordertype={{ordertype}}&payorderno={{item.payorderno}}& ordertype2=2">
     <view class="order_container_title" >
       <view class="order_container_name">供应商：{{item.seller}}</view>
       <view class="order_container_Bill">商城单据</view>
@@ -102,8 +102,8 @@
       <view class="order_container_content_right">
         <view class="order_container_text">{{item.ordertime}}</view>
         <view class="order_container_text">合计金额：<text style="color:#ff0000;">￥{{item.totalamt}}</text></view>
-        <view class="order_container_text" wx:if="item.paycost1>0">{{item.paycate1}}：￥{{item.paycost1}}</view>
-        <view class="order_container_text" wx:if="item.paycost2>0">{{item.paycate2}}：￥{{item.paycost2}}</view>
+        <view class="order_container_text" wx:if="{{item.paycost1>0}}">{{item.paycate1}}：￥{{item.paycost1}}</view>
+        <view class="order_container_text" wx:if="{{item.paycost2>0}}">{{item.paycate2}}：￥{{item.paycost2}}</view>
         <view class="order_container_text" style="margin-top:10px;">经手人：{{item.operator}}</view>
       </view>
       <view class="clear"></view>
@@ -113,7 +113,7 @@
 
   <!--采购确认收货-->
   <view wx-if="{{ordertype==1 && ordertype2==3}}" wx:for="{{product}}" class="order_container_view">
-   <navigator url="orderDetails/orderDetails?ordertype={{ordertype}}&payorderno={{item.payorderno}}">
+   <navigator url="orderDetails/orderDetails?ordertype={{ordertype}}&payorderno={{item.payorderno}}& ordertype2=3">
     <view class="order_container_title" >
       <view class="order_container_name">供应商：{{item.seller}}</view>
       <view class="order_container_Bill">商城单据</view>
@@ -128,8 +128,8 @@
       <view class="order_container_content_right">
         <view class="order_container_text">{{item.ordertime}}</view>
         <view class="order_container_text">合计金额：<text style="color:#ff0000;">￥{{item.totalamt}}</text></view>
-        <view class="order_container_text" wx:if="item.paycost1>0">{{item.paycate1}}：￥{{item.paycost1}}</view>
-        <view class="order_container_text" wx:if="item.paycost2>0">{{item.paycate2}}：￥{{item.paycost2}}</view>
+        <view class="order_container_text" wx:if="{{item.paycost1>0}}">{{item.paycate1}}：￥{{item.paycost1}}</view>
+        <view class="order_container_text" wx:if="{{item.paycost2>0}}">{{item.paycate2}}：￥{{item.paycost2}}</view>
         <view class="order_container_text" style="margin-top:10px;">经手人：{{item.operator}}</view>
       </view>
       <view class="clear"></view>
@@ -140,7 +140,7 @@
 
   <!--采购全部-->
   <view wx-if="{{ordertype==1 && ordertype2==5}}" wx:for="{{product}}" class="order_container_view">
-     <navigator url="orderDetails/orderDetails?ordertype={{ordertype}}&payorderno={{item.payorderno}}">
+     <navigator url="orderDetails/orderDetails?ordertype={{ordertype}}&payorderno={{item.payorderno}}&ordertype2=5">
     <view class="order_container_title" >
       <view class="order_container_name">供应商：{{item.seller}}</view>
       <view class="order_container_Bill" wx:if="{{item.ordertype==1}}">商城单据</view>
@@ -156,8 +156,8 @@
       <view class="order_container_content_right">
         <view class="order_container_text">{{item.ordertime}}</view>
         <view class="order_container_text">合计金额：<text style="color:#ff0000;">￥{{item.totalamt}}</text></view>
-        <view class="order_container_text" wx:if="item.paycost1>0">{{item.paycate1}}：￥{{item.paycost1}}</view>
-        <view class="order_container_text" wx:if="item.paycost2>0">{{item.paycate2}}：￥{{item.paycost2}}</view>
+        <view class="order_container_text" wx:if="{{item.paycost1>0}}">{{item.paycate1}}：￥{{item.paycost1}}</view>
+        <view class="order_container_text" wx:if="{{item.paycost2>0}}">{{item.paycate2}}：￥{{item.paycost2}}</view>
         <view class="order_container_text" style="margin-top:10px;">经手人：{{item.operator}}</view>
       </view>
       <view class="clear"></view>
@@ -167,7 +167,7 @@
    <view style="padding-top:15px;"></view>
   <!--销售待付款-->
   <view wx-if="{{ordertype==2 && ordertype2==1}}" wx:for="{{product}}" class="order_container_view">
-    <navigator url="orderDetails/orderDetails?ordertype={{ordertype}}&payorderno={{item.payorderno}}">
+    <navigator url="orderDetails/orderDetails?ordertype={{ordertype}}&payorderno={{item.payorderno}}& ordertype2=1">
     <view class="order_container_title" >
       <view class="order_container_name">客户：{{item.buyer}}</view>
       <view class="order_container_Bill">商城单据</view>
@@ -182,8 +182,8 @@
       <view class="order_container_content_right">
         <view class="order_container_text">{{item.ordertime}}</view>
         <view class="order_container_text">合计金额：<text style="color:#ff0000;">￥{{item.totalamt}}</text></view>
-        <view class="order_container_text" wx:if="item.paycost1>0">{{item.paycate1}}：￥{{item.paycost1}}</view>
-        <view class="order_container_text" wx:if="item.paycost2>0">{{item.paycate2}}：￥{{item.paycost2}}</view>
+        <view class="order_container_text" wx:if="{{item.paycost1>0}}">{{item.paycate1}}：￥{{item.paycost1}}</view>
+        <view class="order_container_text" wx:if="{{item.paycost2>0}}">{{item.paycate2}}：￥{{item.paycost2}}</view>
         <view class="order_container_text" style="margin-top:10px;">经手人：{{item.operator}}</view>
       </view>
       <view class="clear"></view>
@@ -193,7 +193,7 @@
   </view>
   <!--销售待审核-->
   <view wx-if="{{ordertype==2 && ordertype2==4}}" wx:for="{{product}}" class="order_container_view">
-   <navigator url="orderDetails/orderDetails?ordertype={{ordertype}}&payorderno={{item.payorderno}}">
+   <navigator url="orderDetails/orderDetails?ordertype={{ordertype}}&payorderno={{item.payorderno}}& ordertype2=4">
     <view class="order_container_title" >
       <view class="order_container_name">客户：{{item.buyer}}</view>
       <view class="order_container_Bill">商城单据</view>
@@ -208,8 +208,8 @@
       <view class="order_container_content_right">
         <view class="order_container_text">{{item.ordertime}}</view>
         <view class="order_container_text">合计金额：<text style="color:#ff0000;">￥{{item.totalamt}}</text></view>
-        <view class="order_container_text" wx:if="item.paycost1>0">{{item.paycate1}}：￥{{item.paycost1}}</view>
-        <view class="order_container_text" wx:if="item.paycost2>0">{{item.paycate2}}：￥{{item.paycost2}}</view>
+        <view class="order_container_text" wx:if="{{item.paycost1>0}}">{{item.paycate1}}：￥{{item.paycost1}}</view>
+        <view class="order_container_text" wx:if="{{item.paycost2>0}}">{{item.paycate2}}：￥{{item.paycost2}}</view>
         <view class="order_container_text" style="margin-top:10px;">经手人：{{item.operator}}</view>
       </view>
       <view class="clear"></view>
@@ -219,7 +219,7 @@
 
   <!--销售待发货-->
   <view wx-if="{{ordertype==2 && ordertype2==2}}" wx:for="{{product}}" class="order_container_view">
-   <navigator url="orderDetails/orderDetails?ordertype={{ordertype}}&payorderno={{item.payorderno}}">
+   <navigator url="orderDetails/orderDetails?ordertype={{ordertype}}&payorderno={{item.payorderno}}& ordertype2=2">
     <view class="order_container_title" >
       <view class="order_container_name">客户：{{item.buyer}}</view>
       <view class="order_container_Bill">商城单据</view>
@@ -234,8 +234,8 @@
       <view class="order_container_content_right">
         <view class="order_container_text">{{item.ordertime}}</view>
         <view class="order_container_text">合计金额：<text style="color:#ff0000;">￥{{item.totalamt}}</text></view>
-        <view class="order_container_text" wx:if="item.paycost1>0">{{item.paycate1}}：￥{{item.paycost1}}</view>
-        <view class="order_container_text" wx:if="item.paycost2>0">{{item.paycate2}}：￥{{item.paycost2}}</view>
+        <view class="order_container_text" wx:if="{{item.paycost1>0}}">{{item.paycate1}}：￥{{item.paycost1}}</view>
+        <view class="order_container_text" wx:if="{{item.paycost2>0}}">{{item.paycate2}}：￥{{item.paycost2}}</view>
         <view class="order_container_text" style="margin-top:10px;">经手人：{{item.operator}}</view>
       </view>
       <view class="clear"></view>
@@ -246,7 +246,7 @@
 
   <!--销售全部-->
   <view wx-if="{{ordertype==2 && ordertype2==5}}" wx:for="{{product}}" class="order_container_view">
-    <navigator url="orderDetails/orderDetails?ordertype={{ordertype}}&payorderno={{item.payorderno}}">
+    <navigator url="orderDetails/orderDetails?ordertype={{ordertype}}&payorderno={{item.payorderno}}& ordertype2=5">
     <view class="order_container_title" >
       <view class="order_container_name">客户：{{item.buyer}}</view>
       <view class="order_container_Bill" wx:if="{{item.ordertype==1}}">商城单据</view>
@@ -262,8 +262,8 @@
       <view class="order_container_content_right">
         <view class="order_container_text">{{item.ordertime}}</view>
         <view class="order_container_text">合计金额：<text style="color:#ff0000;">￥{{item.totalamt}}</text></view>
-        <view class="order_container_text" wx:if="item.paycost1>0">{{item.paycate1}}：￥{{item.paycost1}}</view>
-        <view class="order_container_text" wx:if="item.paycost2>0">{{item.paycate2}}：￥{{item.paycost2}}</view>
+        <view class="order_container_text" wx:if="{{item.paycost1>0}}">{{item.paycate1}}：￥{{item.paycost1}}</view>
+        <view class="order_container_text" wx:if="{{item.paycost2>0}}">{{item.paycate2}}：￥{{item.paycost2}}</view>
         <view class="order_container_text" style="margin-top:10px;">经手人：{{item.operator}}</view>
       </view>
       <view class="clear"></view>

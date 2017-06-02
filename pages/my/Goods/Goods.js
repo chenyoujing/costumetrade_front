@@ -17,13 +17,13 @@ Page({
       { name: '2', value: '报废' },
     ],
     state: 'timeUpOp',
-    Op:'desc',
+    Op: 'desc',
     getSortData: {
       value: 'timeUpOp',
       op: 'desc'
     },
-    code:'',
-    getFilterData:[],
+    code: '',
+    getFilterData: [],
     condition: "100%",
     scroll_height: "",
     screen_content_height: "30px",
@@ -31,10 +31,10 @@ Page({
     screen_opacity: "",
     more_function_display: "none",
     animation: "",
-    pageNum:1,
+    pageNum: 1,
     loadMore: true,
     requestSwitch: true,
-    delete_checkbox:'0',
+    delete_checkbox: '0',
     delete_button: '0'
   },
   // 请求数据函数
@@ -48,7 +48,7 @@ Page({
         sort: that.data.getSortData,
         rules: that.data.getFilterData,
         code: that.data.code,
-        pageNum:that.data.pageNum,
+        pageNum: that.data.pageNum,
       },
       method: 'POST',
       header: {
@@ -58,19 +58,19 @@ Page({
         wx.hideNavigationBarLoading();
         var data = that.data.product;
         var booleanre = that.data.requestSwitch;
-        for (var p in res.data){
+        for (var p in res.data) {
           res.data[p].timeUp = util.toDate(res.data[p].timeUp)
         }
-        if(that.data.pageNum==1){
+        if (that.data.pageNum == 1) {
           data = res.data;
-        }else{
-          for (var p in res.data){
+        } else {
+          for (var p in res.data) {
             data.push(res.data[p])
           }
         }
-        if (res.data.length < 10){
+        if (res.data.length < 10) {
           booleanre = false;
-        }else{
+        } else {
           booleanre = true;
         }
         that.setData({
@@ -82,12 +82,12 @@ Page({
     })
   },
   // 三种排序效果切换
-  changeSortData:function(e){
+  changeSortData: function (e) {
     var status = e.currentTarget.dataset.sort;
-    var op = this.data.Op ? this.data.Op:'desc';
-    if (op == 'desc'){
-        op = 'asc'
-    }else{
+    var op = this.data.Op ? this.data.Op : 'desc';
+    if (op == 'desc') {
+      op = 'asc'
+    } else {
       op = 'desc'
     }
     this.setData({
@@ -103,8 +103,8 @@ Page({
     });
     this.page_request();
   },
-// 点击更多执行方法
-  more:function () {
+  // 点击更多执行方法
+  more: function () {
     this.setData({
       screen_content1: app.screen_brandList,
       screen_content2: app.screen_productTypeList,
@@ -133,7 +133,7 @@ Page({
     }, 300)
   },
   //隐藏代码
-  hideCheckbox:function(){
+  hideCheckbox: function () {
     var animation = wx.createAnimation({
       duration: 300,
       timingFunction: 'ease',
@@ -151,24 +151,24 @@ Page({
     }, 300)
   },
   //过滤字段切换
-  screen:function(e){
+  screen: function (e) {
     var status = e.currentTarget.dataset.name;
     if (status == this.data.state) {
-       //判断第二次点击隐藏
+      //判断第二次点击隐藏
       this.hideCheckbox();
-    }else{
+    } else {
       //点击展示过滤条件
       this.setData({
         state: status,
         screen_content_height: "30px"
       });
-    }  
+    }
   },
   //点击确定加载数据
-  packPageFilterRule:function(e){
+  packPageFilterRule: function (e) {
     var boolean = true;
     this.hideCheckbox();
-    if (e.target.dataset.screen.length !== 0){
+    if (e.target.dataset.screen.length !== 0) {
       let data = e.target.dataset.screen;
       var screen = e.detail.value.screen;
       for (var p in this.data.getFilterData) {
@@ -182,9 +182,9 @@ Page({
         this.data.getFilterData.push({
           filed: data,
           value: screen,
-          pageNum:1,
-          product:[],
-          requestSwitch:true
+          pageNum: 1,
+          product: [],
+          requestSwitch: true
         })
       }
       this.page_request();
@@ -196,26 +196,26 @@ Page({
     })
   },
   //搜索货号
-  packPageFilterCode:function(){
+  packPageFilterCode: function () {
     this.setData({
-      pageNum:1,
-      product:[],
+      pageNum: 1,
+      product: [],
       requestSwitch: true
     });
     this.page_request();
   },
   //重置
-  resetting:function(e){
+  resetting: function (e) {
     var state = e.target.dataset.screen;
     for (var p in this.data.getFilterData) {
-      if(this.data.getFilterData[p].filed == state) {
+      if (this.data.getFilterData[p].filed == state) {
         this.data.getFilterData[p].value = '';
         break;
       }
     }
   },
   // 打开多功能键
-  more_function:function(){
+  more_function: function () {
     this.setData({
       more_function_display: "block",
     })
@@ -226,7 +226,7 @@ Page({
     }, 10)
   },
   // 关闭多功能键
-  more_function_close:function(){
+  more_function_close: function () {
     this.setData({
       animation: "",
     })
@@ -240,24 +240,24 @@ Page({
   onReachBottom: function () {
     console.log('到底不了')
     this.setData({
-      pageNum: this.data.pageNum + 1 ,
-      loadMore:false
+      pageNum: this.data.pageNum + 1,
+      loadMore: false
     });
     console.log(this.data.pageNum)
-    if (this.data.requestSwitch){
+    if (this.data.requestSwitch) {
       this.page_request();
     }
   },
   // 批量删除
-  batch_delete:function(){
+  batch_delete: function () {
     this.setData({
-      delete_checkbox:'50',
-      delete_button:'40'
+      delete_checkbox: '50',
+      delete_button: '40'
     })
     this.more_function_close();
   },
   // 完成批量删除
-  batch_delete_ok:function(){
+  batch_delete_ok: function () {
     this.setData({
       delete_checkbox: '0',
       delete_button: '0'
@@ -267,15 +267,15 @@ Page({
     this.page_request();
     util.api.getProductInit();
   },
-  onShow(){
+  onShow() {
     var newProduct = this.data.product;
     console.log(app)
-    if (app.newid){
+    if (app.newid) {
       this.page_request();
-      app.newid="";
-    }else{
-      for (var p in newProduct){
-        if (newProduct[p].id == app.updataGoodsInfo.id){
+      app.newid = "";
+    } else {
+      for (var p in newProduct) {
+        if (newProduct[p].id == app.updataGoodsInfo.id) {
           newProduct[p].name = app.updataGoodsInfo.name;
           break;
         }
