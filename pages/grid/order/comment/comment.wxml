@@ -1,0 +1,22 @@
+  <view class="title">
+    <image src="../../../../images/back-away.png" mode="aspectFit"></image>
+    <view class="title_text">发表评论</view>
+    <view class="title_submit">发布</view>
+    <view class="clear"></view>
+  </view>
+
+  <view class="comment_content">
+    <textarea class="comment_container" placeholder="产品满足你的期待吗？说说你的心得，分享给他们把..." />
+    <view class="add_image_view" style="text-align:left;">
+      <view class="image">
+        <image src="" class="image_camera" mode="aspectFit" />
+        <view class="camera_text">添加图片</view>
+      </view>
+    </view>
+    <view class="add_image_view" style="text-align:center;">
+      <image src="" mode="aspectFill" class="image" />
+    </view>
+    <view class="add_image_view" style="text-align:right;">
+      <image src="" mode="aspectFill" class="image" />
+    </view>
+  </view>

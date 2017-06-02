@@ -24,10 +24,10 @@
   <view class="clear"></view>
 </view>
 
-<!--二级分类 采购-->
+<!--二级分类 销售-->
 <view class="ordertype2" wx-if="{{ordertype==2}}">
   <view class="ordertype2_text {{ordertype2=='1' ? 'ordertype2_active' : ''}}" bindtap="ordertype2" data-ordertypetwo="1">
-      待付款<view class="ordertype2_prompt">3</view>
+      待收款<view class="ordertype2_prompt">3</view>
     </view>
   <view class="ordertype2_text {{ordertype2=='4' ? 'ordertype2_active' : ''}}" bindtap="ordertype2" data-ordertypetwo="4">
      待审核<view class="ordertype2_prompt">3</view>
@@ -41,7 +41,7 @@
   <view class="clear"></view>
 </view>
 
-<!--二级分类 销售-->
+<!--二级分类 采购-->
 <view class="ordertype2"  wx-if="{{ordertype==1}}">
   <view class="ordertype2_text {{ordertype2=='1' ? 'ordertype2_active' : ''}}" bindtap="ordertype2" data-ordertypetwo="1">
       待付款<view class="ordertype2_prompt">3</view>
@@ -59,6 +59,7 @@
 </view>
 
 <scroll-view scroll-y class="order_scroll" lower-threshold="10" bindscrolltolower="{{loadMore?'onReachBottom':''}}">
+  <view style="padding-top:10px;"></view>
 
   <!--采购待付款-->
   <view wx-if="{{ordertype==1 && ordertype2==1}}" wx:for="{{product}}" class="order_container_view">
@@ -161,10 +162,9 @@
         <view class="order_container_text" style="margin-top:10px;">经手人：{{item.operator}}</view>
       </view>
       <view class="clear"></view>
-    <view class="order_container_button btn_2" >评价</view>
+    <navigator url="comment/comment" class="order_container_button btn_2" >评价</navigator>
     <view class="clear"></view>
   </view>
-   <view style="padding-top:15px;"></view>
   <!--销售待付款-->
   <view wx-if="{{ordertype==2 && ordertype2==1}}" wx:for="{{product}}" class="order_container_view">
     <navigator url="orderDetails/orderDetails?ordertype={{ordertype}}&payorderno={{item.payorderno}}& ordertype2=1">
@@ -240,7 +240,7 @@
       </view>
       <view class="clear"></view>
     <view class="order_container_button"  bindtap="changeOrderStatus" data-status='4' data-orderNo="{{item.payorderno}}" data-sellerstoreid="{{item.sellerstoreid}}" data-buyerstoreid="{{item.buyerstoreid}}">发货</view>
-    <navigator url="express/express" class="order_container_button btn_2">选物流</navigator>
+    <view class="order_container_button btn_2" bindtap="logistics">选物流</view>
     <view class="clear"></view>
   </view>
 
@@ -270,3 +270,21 @@
 
   </view>
 </scroll-view>
+
+<!--选物流-->
+<modal title="选物流" hidden="{{hiddenModal}}" confirm-text="确定" cancel-text="取消" bindconfirm="confirm" bindcancel="cancel" >
+  <view class="logistics_title" style="width:30%;">物流公司</view>
+  <view class="logistics_title" style="width:45%;">单号</view>
+  <view class="logistics_title" style="width:25%;">打印快递单</view>
+  <view class="clear"></view>
+  <picker class="logistics_picker" range="">
+    <view class="picker">
+      顺丰
+      <image src="../../../../images/down.png" mode="aspectFit" class="picker_image" />
+    </view>
+  </picker>
+  <view class="logistics_print">
+    <navigator url="express/express" class="print_view">打印</navigator>
+  </view>
+  <input class="logistics_number" placeholder="单号" />
+</modal>

@@ -1,0 +1,56 @@
+.title{
+  background-color: #52CAC1;
+  position: relative;
+  z-index: 3;
+  text-align: center;
+  color: #ffffff;
+  font-size: 14px;
+  line-height: 40px;
+}
+.title image{
+  width: 12px;
+  height: 12px;
+  padding: 14px 10px;
+  float: left;
+}
+.title_text{
+  float: left;
+  margin-left: 15px;
+}
+.title_submit{
+  float: right;
+  margin-right: 10px;
+}
+
+.comment_content{
+  padding: 10px 15px;
+}
+.comment_container{
+  border: 1px solid #DCDCDC;
+  width: auto;
+  font-size: 12px;
+  line-height: 18px;
+  padding: 8px;
+  margin-bottom: 15px;
+}
+.add_image_view{
+  float: left;
+  width: 33.33333333%;
+}
+.image{
+  width: 200rpx;
+  height: 200rpx;
+  border: 1px dotted #999999;
+  text-align: center;
+}
+.image_camera{
+  width: 100rpx;
+  height: 120rpx;
+  display: block;
+  margin: auto;
+}
+.camera_text{
+  color: #A0A0A0;
+  font-size: 14px;
+  line-height: 80rpx;
+}

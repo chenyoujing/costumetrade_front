@@ -148,27 +148,27 @@
           <view class="setting_pay">
             <view class="pay_title">
               付款方式
-              <image src="../../../../images/add.png" mode="aspectFit" class="image_add" />
+              <image src="../../../../images/append.png" mode="aspectFit" class="image_add" />
             </view>
             <view class="pay_view">
               <text>1.</text>现金
-              <image src="../../../../images/delete.png" mode="aspectFit" class="image_delete" />
+              <image src="../../../../images/delete_2.png" mode="aspectFit" class="image_delete" />
             </view>
             <view class="pay_view">
               <text>2.</text>刷卡
-              <image src="../../../../images/delete.png" mode="aspectFit" class="image_delete" />
+              <image src="../../../../images/delete_2.png" mode="aspectFit" class="image_delete" />
             </view>
             <view class="pay_view">
               <text>3.</text>微信
-              <image src="../../../../images/delete.png" mode="aspectFit" class="image_delete" />
+              <image src="../../../../images/delete_2.png" mode="aspectFit" class="image_delete" />
             </view>
             <view class="pay_view">
               <text>4.</text>支付宝
-              <image src="../../../../images/delete.png" mode="aspectFit" class="image_delete" />
+              <image src="../../../../images/delete_2.png" mode="aspectFit" class="image_delete" />
             </view>
             <view class="pay_view">
               <text>5.</text>转账
-              <image src="../../../../images/delete.png" mode="aspectFit" class="image_delete" />
+              <image src="../../../../images/delete_2.png" mode="aspectFit" class="image_delete" />
             </view>
           </view>
         </view>
@@ -205,7 +205,7 @@
               <view wx:for="{{goods_level}}" class="picker_text">{{item.value}}</view>
             </picker-view-column>
           </picker-view>
-          <image src="" class="goods_level_image" />
+          <image src="../../../../images/retreat.png" mode="aspectFit" class="goods_level_image" />
           <view class="goods_level_text" style="width:35%;">
             <view wx:for="{{goods_level2}}" class="goods_level_view">{{item.value}}</view>
           </view>

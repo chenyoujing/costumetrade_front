@@ -11,7 +11,8 @@ Page({
     statusUrl:'order/orderOperate',
     payurl:"order/getOrders",
     loadMore: true,
-    requestSwitch: true
+    requestSwitch: true,
+    hiddenModal: true,
   },
   // 一级标签切换
   ordertype:function(e){
@@ -124,6 +125,24 @@ Page({
        }
      })
     
+  },
+  // 选物流模态框
+  logistics:function(){
+    this.setData({
+      hiddenModal:false,
+    })
+  },
+  // 模态框取消
+  cancel: function () {
+    this.setData({
+      hiddenModal: true,
+    })
+  },
+  // 模态框确认
+  confirm: function () {
+    this.setData({
+      hiddenModal: true,
+    })
   },
   //滚动到底部触发事件  
   onReachBottom: function () {

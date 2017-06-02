@@ -104,4 +104,16 @@ Page({
       size: data.size,
     })
   },
+  onShareAppMessage: function () {
+    return {
+      title: '我的转发',
+      success: function (res) {
+        // 转发成功
+      },
+      fail: function (res) {
+        // 转发失败
+      }
+    }
+  }
+
 })
