@@ -1,30 +1,15 @@
 <!--添加商品品牌-->
-<view class="modal2_cover" bindtap="brand_modal_close" animation="{{brand_modal_opacity}}" style="display:{{brand_modal}};"></view>
-<view class="modal2" animation="{{brand_modal_opacity}}" style="display:{{brand_modal}};">
-  <view class="modal_header">商品品牌</view>
-  <image src="../../../../images/close.png" mode="aspectFit" class="image_close" />
-  <view class="modal2_title">
-    <view class="modal2_titleText">
-      <view class="modal2_title_text">品牌名称</view>
-      <view class="modal2_title_text">助记简码</view>
-      <view class="modal2_title_text">商品利润</view>
-    </view>
-    <view class="modal2_titleInput">
-      <input type="text" class="modal2_title_input" name="brandname" />
-      <input type="text" class="modal2_title_input" name="fastcode" />
-      <input type="text" class="modal2_title_input" name="" />
-    </view>
-    <view class="modal2_titleButton">
-      <image class="image_add" src="../../../../images/add_small.png" mode="aspectFit" />
-      <image class="image_delete" src="../../../../images/delete.png" mode="aspectFit" />
-    </view>
-    <view class="clear"></view>
-  </view>
-  <scroll-view scroll-y="true" class="modal2_content" style="top:152px;">
+<view class="modal">
+  <view class="modal_header">{{titlename}}11</view>
+  <image src="../../../../images/amputate.png" mode="aspectFit" class="image_close" />
+  <navigator url="../GoodsBrandAdd/GoodsBrandAdd"><image class="image_add" src="../../../../images/add_small.png" mode="aspectFit" /></navigator>
+  <scroll-view scroll-y="true" class="modal_content">
     <radio-group bindchange="brand_radio">
-      <label class="modal2_content_option" wx:for="{{screen_content2}}" wx:key="id">
+      <label class="modal_content_option" wx:for="{{content}}" wx:key="id">
         <radio value="{{item.id}}" />{{item.brandname}}
       </label>
+      <view class="clear"></view>
     </radio-group>
   </scroll-view>
+  <button class="modal_submit" bindtap="saveOptions">确定</button>
 </view>

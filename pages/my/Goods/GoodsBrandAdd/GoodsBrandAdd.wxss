@@ -36,32 +36,24 @@
   margin: auto;
 }
 
-.modal_content{
-  position: absolute;
-  top: 40px;
-  left: 0;
-  right: 0;
-  bottom: 40px;
+.add_content{
+  padding: 10px 15px;
 }
-.modal_content radio-group{
-  padding: 10px 0;
-}
-.modal_content_option{
-  box-sizing: border-box;
+.add_text{
   float: left;
-  width: 50%;
-  padding: 5px;
-  font-size: 14px;
-  word-break:keep-all;
-  white-space:nowrap;
-  overflow:hidden;
-  text-overflow:ellipsis;
+  font-size: 16px;
+  line-height: 30px;
+  padding-right: 10px;
 }
-.modal_content_option > radio{
-  margin: 0 10px;
+.add_input{
+  border: 1px solid #CACACA;
+  height: 28px;
+  line-height: 28px;
+  font: 16px;
+  padding: 0 8px;
 }
 
-.modal_submit{
+.modal_submit,.modal_reset{
   font-size: 16px;
   border-radius: 0;
   background-color: #52CAC1;
@@ -73,4 +65,12 @@
   left: 0;
   right: 0;
   color: #ffffff;
+}
+.modal_reset{
+  right: 50%;
+  background-color: #DCDCDC;
+  color: #353535;
+}
+.modal_submit{
+  left: 50%;
 }

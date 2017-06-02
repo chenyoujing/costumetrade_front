@@ -313,9 +313,9 @@ Page({
   sizeAdd:function(type){
     var url = '';
     if(type == 'sizes'){
-      url = '../GoodsColor/GoodsColor?url=size/getAllSizes&title=选尺码'
+      url = '../GoodsBrand/GoodsBrand?url=size/getAllSizes&title=选尺码'
     } else if (type == 'unit'){
-      url = '../GoodsColor/GoodsColor?url=unit/getAllUnits&title=添加单位'
+      url = '../GoodsBrand/GoodsBrand?url=unit/getAllUnits&title=添加单位'
     }
     wx.navigateTo({
       url: url

@@ -124,7 +124,7 @@
       <view class="upload_input">
         <view class="upload_input_text">颜色:</view>
         <input type="number" bindblur="blurInput" data-name="colors"  class="upload_input2" name="colors" style="padding-right:30px;" value="{{GoodsInfoData.colors}}"/>
-        <navigator  url="../GoodsColor/GoodsColor?url=color/getAllColors&title=选色" hover-class="navigator-hover">
+        <navigator  url="../GoodsBrand/GoodsBrand?url=color/getAllColors&title=选色" hover-class="navigator-hover">
         <image src="../../../../images/update.png" mode="aspectFit" class="update_image" />
         </navigator>
         <view class="clear"></view>
