@@ -43,7 +43,7 @@
   float: left;
   font-size: 16px;
   line-height: 30px;
-  width: 16%;
+  width: 20%;
   text-align: center;
   padding-right: 10px;
 }
@@ -82,7 +82,7 @@
 .size_container{
   padding-left: 20px;
   padding-right: 10px;
-  margin-left: 16%;
+  margin-left: 20%;
 }
 .size_content{
   text-align: center;
