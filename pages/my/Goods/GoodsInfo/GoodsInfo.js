@@ -352,7 +352,7 @@ Page({
       this.gradeCate();
     }
   },
-  onShow() {
+  onShow:function() {
     if (app.changeData) {
       var param = this.data.GoodsInfoData;
       if (app.nameChange == '商品种类'){
@@ -389,6 +389,13 @@ Page({
         this.setData({
           GoodsInfoData: param
         }); 
+      } else if (app.nameChange == "分条码"){
+        console.log(1)
+        param.barcodes = app.changeData !==1 ? app.changeData:'';
+        console.log(app.changeData ? app.changeData : '')
+          this.setData({
+            GoodsInfoData: param
+          }); 
       }
       app.changeData = "";
     }

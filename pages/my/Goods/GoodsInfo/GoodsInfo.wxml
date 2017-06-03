@@ -146,8 +146,8 @@
       </view>
       <view class="upload_input">
         <view class="upload_input_text">分条码:</view>
-        <input type="number" bindblur="blurInput" data-name="barcodes"  class="upload_input2" value="{{GoodsInfoData.barcodes}}" name="barcodes" style="padding-right:30px;" />
-        <navigator  url="../Goodscodes/Goodscodes" hover-class="navigator-hover">
+        <input type="number" disabled="true" data-name="barcodes"  class="upload_input2" value="{{GoodsInfoData.barcodes}}" name="barcodes" style="padding-right:30px;" />
+        <navigator  url="../Goodscodes/Goodscodes?barcodes={{GoodsInfoData.barcodes}}&color={{GoodsInfoData.colors}}&size={{GoodsInfoData.sizes}}" hover-class="navigator-hover">
         <image src="../../../../images/update.png" mode="aspectFit" class="update_image" />
         </navigator>
         <view class="clear"></view>
