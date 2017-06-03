@@ -8,8 +8,10 @@ Page({
     ],
     nav_right: ['↑', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '#',]
   },
+  aa: function(e){
+    console.log(e.target.dataset)
+  },
   scroll: function (e) {
-    console.log(e.detail)
     if (e.detail.scrollTop >= 180){
       this.setData({
         nav_position: 'fixed',

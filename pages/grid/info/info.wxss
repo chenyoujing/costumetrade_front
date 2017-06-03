@@ -24,6 +24,7 @@
   width: 33.33333333%;
   float: left;
   text-align: center;
+  z-index: 1
 }
 .nav_view image{
   width: 100%;
