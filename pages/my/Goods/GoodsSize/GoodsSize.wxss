@@ -1,138 +1,116 @@
-.modal_header{
-  box-sizing: border-box;
-  font-size: 16px;
-  line-height: 24px;
-  height: 40px;
-  padding: 8px;
-  text-align: center;
-  position: fixed;
-  top: 0;
-}
-.image_close{
-  position: fixed;
-  top: 0;
-  right: 0;
-  width: 16px;
-  height: 16px;
-  padding: 12px 10px;
-}
-
-/*顶上的列表*/
-.list_title{
+.size_title{
+  padding: 5px 0;
   background-color: #52CAC1;
-  margin-top: 40px;
 }
-.list_title_text,.list_text{
-  float: left;
-  color: #ffffff;
-  font-size: 12px;
-  line-height: 30px;
-  text-align: center;
-}
-.list_content{
-  max-height: 96px;
-}
-.list_text{
-  color: #000000;
-  border-bottom: 2px solid #E4E4E4;
-}
-.list_delete{
-  width: 12px;
-  height: 12px;
-  padding: 9px;
-  display: block;
-  margin: auto;
-}
-
-/*条码，加入*/
-.size_code{
-  background-color: #DCF5F3;
-  padding-top: 15px;
-}
-.size_code_view{
-  padding-bottom: 10px;
-}
-.size_code_text{
+.size_title_text{
   float: left;
   font-size: 14px;
   line-height: 30px;
   height: 30px;
   text-align: center;
   width: 20%;
+  color: #ffffff;
 }
-.size_code_button{
+.size_title_button{
   float: right;
   width: 25%;
   height: 30px;
 }
-.image_scan{
-  width: 20px;
-  height: 20px;
-  padding: 5px;
-  display: block;
-  margin: auto;
+.image_add{
+  height: 16px;
+  padding: 7px 0;
+  float: left;
+  width: 50%;
 }
-.size_code_input{
+.image_close{
+  height: 16px;
+  padding: 7px 0;
+  float: left;
+  width: 50%;
+}
+.size_title_input{
   border: 1px solid #AEB8B8;
   height: 28px;
   line-height: 28px;
   background-color: #ffffff;
   font-size: 12px;
   padding: 0 8px;
+  color: #000000;
 }
-.button{
-  width: 54px;
-  height: 30px;
-  font-size: 12px;
-  line-height: 30px;
-  margin: auto;
-  text-align: center;
-  color: #ffffff;
-  background-color: #52CAC1;
+
+
+.container{
+  position: absolute;
+  top: 40px;
+  left: 0;
+  right: 0;
+  bottom: 40px;
 }
 
 /*添加颜色，尺码*/
-.color_title{
+.size_container{
   padding: 10px;
-  background-color: #DCDCDC;
+}
+.size_content{
+  text-align: center;
+  font-size: 16px;
+  line-height: 40px;
+  float: left;
+  width: 33.33333333%;
+}
+.size_title2{
+  padding: 5px;
+  height: 30px;
+  line-height: 30px;
+  background-color: #52CAC1;
   font-size: 14px;
   text-align: center;
   position: relative;
+  margin-bottom: 10px;
+  color: #ffffff;
 }
-.image_add{
+.image_add2{
+  position: absolute;
+  right: 10px;
+  top: 0;
   width: 16px;
   height: 16px;
   padding: 12px;
-  position: absolute;
-  top: 0;
-  left: 75%;
-  right: 0;
-  bottom: 0;
-  margin: auto;
 }
 .image_down2{
   width: 100%;
   height: 16px;
   padding: 5px 0;
 }
-.modal2_content{
-  position: absolute;
-  top: 84px;
-  left: 0;
-  right: 0;
-  bottom: 0;
-}
-.modal2_content_option{
+.sizes_option{
   box-sizing: border-box;
   float: left;
-  width: 50%;
+  width: 100%;
   padding: 5px;
-  font-size: 14px;
+  font-size: 16px;
   word-break:keep-all;
   white-space:nowrap;
   overflow:hidden;
   text-overflow:ellipsis;
 }
-.modal2_content_option > radio{
+.sizes_option > radio{
   margin: 0 10px;
+}
+.sizes_text{
+  float: right;
+  width: 40%;
+}
+
+.submit{
+  font-size: 16px;
+  border-radius: 0;
+  background-color: #52CAC1;
+  line-height: 40px;
+  text-align: center;
+  padding: 0;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  color: #ffffff;
 }

@@ -8,6 +8,28 @@
       <input type="text" bindblur="EventHandle" name="envalue" value="{{envalue}}" class="add_input" />
     </view>
   </scroll-view>
+
+  <!--尺码组-->
+  <!--<scroll-view scroll-y="true" class="modal_content">
+    <view class="add_content">
+      <view class="add_text">组名</view>
+      <input type="text" bindblur="EventHandle" name="envalue" value="{{envalue}}" class="add_input" />
+    </view>
+    <view class="add_content">
+      <view class="add_text">尺码</view>
+      <input type="text" bindblur="EventHandle" name="envalue" value="{{envalue}}" class="add_input" />
+    </view>
+    <view class="size_container">
+      <view class="size_content">145</view>
+      <view class="size_content">145</view>
+      <view class="size_content">145</view>
+      <view class="size_content">L</view>
+      <view class="size_content">S</view>
+      <view class="size_content">M</view>
+      <view class="clear"></view>
+    </view>
+  </scroll-view>-->
+
   <button class="modal_reset" bindtap="back">取消</button>
   <button class="modal_submit"  bindtap="addOptions">确定</button>
 </view>
