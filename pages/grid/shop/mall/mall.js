@@ -3,12 +3,6 @@ Page({
   data: {
     container_width: "100%",
     image_width: "115",
-    height: "",
-    imgUrls: [
-      'http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg',
-      '',
-      'http://img06.tooopen.com/images/20160818/tooopen_sy_175833047715.jpg'
-    ],
   },
   //事件处理函数
   bindViewTap: function () {
@@ -18,13 +12,6 @@ Page({
   },
   onLoad: function () {
     var that = this
-    wx.getSystemInfo({
-      success: function (res) {
-        that.setData({
-          'height.aa': res.windowHeight
-        })
-      }
-    })
   },
   rank: function () {
     var that = this
@@ -59,5 +46,11 @@ Page({
   goods_detail: function (e) {
     let data = e.target.dataset
     console.log(data.orderid)
+  },
+  onShareAppMessage: function () {
+    return {
+      title: 'XXX店铺的推荐',
+    }
   }
+
 })

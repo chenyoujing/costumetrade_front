@@ -1,0 +1,141 @@
+<scroll-view scroll-y class="info_scroll" bindscroll="scroll">
+
+  <!--轮播图-->
+  <swiper indicator-dots autoplay circular class="info_swiper">
+    <block wx:for="{{imgUrls}}" wx:key="id">
+      <swiper-item>
+        <image src="{{item ? item : '../../../images/image_none.png'}}" class="info_swiper_image" mode="aspectFill"/>
+      </swiper-item>
+    </block>
+  </swiper>
+
+  <!--导航栏-->
+  <view class="info_nav clearfix" style="position:{{nav_position}}; top:0;">
+    <view class="nav_view">
+      <image src="../../../../images/info.png" mode="aspectFit" />
+      <view class="nav_view_text">信息</view>
+    </view>
+    <view class="nav_view">
+      <image src="../../../../images/address-list.png" mode="aspectFit" />
+      <view class="nav_view_text">通讯录</view>
+    </view>
+    <view class="nav_view">
+      <image src="../../../../images/bell.png" mode="aspectFit" />
+      <view class="nav_view_text">公告</view>
+    </view>
+  </view>
+
+
+<!--内容-->
+
+  <!--信息-->
+  <view class="info">
+    <view class="info_container clearfix">
+      <image src="../../../../images/image_none.png" mode="aspectFill" class="info_tx"><view class="prompt">3</view></image>
+      <view class="info_content">
+        <view class="info_name">小鱼</view>
+        <view class="info_text">你的衣服质量很不错</view>
+      </view>
+      <view class="info_time">19:28</view>
+    </view>
+    <view class="info_container clearfix">
+      <image src="../../../../images/image_none.png" mode="aspectFill" class="info_tx" ><view class="prompt">3</view></image>
+      <view class="info_content">
+        <view class="info_name">小鱼</view>
+        <view class="info_text">你的衣服质量很不错</view>
+      </view>
+      <view class="info_time">19:28</view>
+    </view>
+  </view>
+
+  <!--通讯录-->
+  <!--<view class="unitSelect_sceoll" style="padding-top:{{nav_position=='fixed'?'21px':''}}">
+    <view class="supplier_container">
+      <view class="supplier_tx">
+        <image src="../../../../images/image_none.png" mode="aspectFill" />
+      </view>
+      <view class="supplier_name">小雨</view>
+      <view class="supplier_info">
+        <view>昵称：煎饼侠</view>
+        <view>电话：13333333333</view>
+      </view>
+    </view>
+    <view class="supplier_container">
+      <view class="supplier_tx">
+        <image src="../../../../images/image_none.png" mode="aspectFill" />
+      </view>
+      <view class="supplier_name">小何</view>
+      <view class="supplier_info">
+        <view>昵称：煎饼侠</view>
+        <view>电话：13333333333</view>
+      </view>
+    </view>
+    <view class="supplier_container">
+      <view class="supplier_tx">
+        <image src="../../../../images/image_none.png" mode="aspectFill" />
+      </view>
+      <view class="supplier_name">小王</view>
+      <view class="supplier_info">
+        <view>昵称：煎饼侠</view>
+        <view>电话：13333333333</view>
+      </view>
+    </view>
+
+    <view class="nav_right" style="top:{{nav_position=='fixed'?'21px':''}};">
+      <view wx:for="{{nav_right}}" class="nav_text">{{item}}</view>
+    </view>
+  </view>-->
+
+  <!--公告-->
+  <!--<view class="notice" style="margin-top:{{nav_position=='fixed'?'21px':''}}">
+    <view class="notice_view">
+      <view class="notice_title clearfix" wx:if="{{0 == 0}}">
+        <image src="../../../images/image_none.png" mode="aspectFill" class="notice_tx" />
+        <view class="notice_text">公告</view>
+        <view class="notice_name">点艺公司</view>
+      </view>
+      <view class="notice_content clearfix">
+        <view class="notice_content_text">欢迎光临本店！欢迎光临本店！欢迎光临本店！欢迎光临本店！欢迎光临本店！欢迎光临本店！欢迎光临本店！欢迎光临本店！欢迎光临本店！欢迎光临本店！欢迎光临本店！欢迎光临本店！</view>
+        <view class="notice_picture">
+          <image src="../../../images/image_none.png" mode="aspectFill" style="margin-left:0;" />
+        </view>
+        <view class="notice_picture">
+          <image src="../../../images/image_none.png" mode="aspectFill" />
+        </view>
+        <view class="notice_picture">
+          <image src="../../../images/image_none.png" mode="aspectFill" style="margin-right:0;" />
+        </view>
+        <view class="notice_video" wx:if="{{0 == 1}}">
+          <video src="" />
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="notice">
+    <view class="notice_view">
+      <view class="notice_title" wx:if="{{1 == 0}}">
+        <image src="../../../images/image_none.png" mode="aspectFill" class="notice_tx" />
+        <view class="notice_text">公告</view>
+        <view class="notice_name">点艺公司</view>
+        <view class="clear"></view>
+      </view>
+      <view class="notice_content">
+        <view class="notice_content_text">欢迎光临本店！欢迎光临本店！欢迎光临本店！欢迎光临本店！欢迎光临本店！欢迎光临本店！欢迎光临本店！欢迎光临本店！欢迎光临本店！欢迎光临本店！欢迎光临本店！欢迎光临本店！</view>
+        <view class="notice_picture">
+          <image src="../../../images/image_none.png" mode="aspectFill" style="margin-left:0;" />
+        </view>
+        <view class="notice_picture">
+          <image src="../../../images/image_none.png" mode="aspectFill" />
+        </view>
+        <view class="notice_picture">
+          <image src="../../../images/image_none.png" mode="aspectFill" style="margin-right:0;" />
+        </view>
+        <view class="clear"></view>
+        <view class="notice_video" wx:if="{{1 == 1}}">
+          <video src="" />
+        </view>
+      </view>
+    </view>
+  </view>-->
+
+</scroll-view>

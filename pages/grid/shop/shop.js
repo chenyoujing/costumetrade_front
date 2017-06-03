@@ -9,35 +9,56 @@ Page({
     ],
   },
   onLoad:function(){
+    wx.updateShareMenu({
+      withShareTicket: true,
+      success() {
+      }
+    })
+
+    // 获取openid
+    // var appid = 'wxf9f73f2b24fc98e3'; //填写微信小程序appid
+    // var secret = 'c7bdb63caecd8bfbdb6c5f9e1c7a2c6d'; //填写微信小程序secret
+    var that = this
     var appid ='wx82428b2ac752c6a3'
     var secret ='ed8c5aa16cf56f66339fcb4be3377e30'
-    wx.request({
-      url: 'https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=' + appid + '&secret=' + secret,
-      data: {
-      },
-      header: {
-        'content-type': 'application/json'
-      },
-      success: function (res) {
-        console.log(res.data.access_token)
+    wx.login({
+      success: function (loginCode) {
+        console.log(loginCode.code)
         wx.request({
-          url: 'http://api.weixin.qq.com/wxa/getwxacodeunlimit?access_token=' + res.data.access_token,
-          data: {
-            scene:'123',
+          url: 'http://192.168.2.221:8080/user/login',
+          header: {
+            'content-type': 'application/x-www-form-urlencoded'
+          },
+          data:{
+            code: loginCode.code,
+            appId: appid,
+            appSecret: secret,
           },
           method: 'POST',
-          header: {
-            'content-type': 'application/json'
-          },
           success: function (res) {
-            console.log(res.data)
-
+            console.log(res)
+          },
+          fail: function () {
+            that.setData({
+              openid: "openid获取失败"
+            })
           }
         })
+
+        //调用request请求api转换登录凭证
       }
     })
   },
   onShareAppMessage: function () {
-  
+    return {
+      title: '自定义转发标题\n自定义内容',
+      path: '/pages/index/index?id=我传的东西',
+      success: function (res) {
+        // 转发成功
+      },
+      fail: function (res) {
+        // 转发失败
+      }
+    }
   }
 })
