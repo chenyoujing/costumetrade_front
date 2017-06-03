@@ -1,7 +1,8 @@
 {
   "pages": [
     "pages/grid/shop/shop",
-    "pages/grid/user/user",  
+    "pages/grid/user/user",
+    "pages/grid/info/info",
     "pages/grid/order/order",
     "pages/grid/order/express/express",
     "pages/grid/order/comment/comment",
@@ -60,6 +61,12 @@
         "selectedIconPath": "images/order-for-goods.png"
       },
       {
+        "pagePath": "pages/grid/info/info",
+        "text": "信息",
+        "iconPath": "images/info.png",
+        "selectedIconPath": "images/info2.png"
+      },
+      {
         "pagePath": "pages/grid/user/user",
         "text": "我的",
         "iconPath": "images/my.png",
@@ -67,6 +74,5 @@
       }
     ],
     "selectedColor": "#286561"
-  },
-  "enablePullDownRefresh": true
+  }
 }
