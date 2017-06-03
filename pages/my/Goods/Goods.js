@@ -35,7 +35,8 @@ Page({
     loadMore: true,
     requestSwitch: true,
     delete_checkbox: '0',
-    delete_button: '0'
+    delete_button: '0',
+    ids:[]
   },
   // 请求数据函数
   page_request: function () {
@@ -261,6 +262,63 @@ Page({
     this.setData({
       delete_checkbox: '0',
       delete_button: '0'
+    })
+  },
+  batch_delete_sure:function(){
+    this.delectRequest()
+  },
+  delete_container:function(e){
+    var ids = e.target.dataset.id;
+    var boolean2 = true;
+    var idsArray = this.data.ids;
+    for (var p in idsArray){
+      if(idsArray[p] == ids){
+        idsArray.splice(p,1);
+        boolean2 = false;
+        break;
+      }
+    }
+    if (boolean2){
+      idsArray.push(ids)
+    }
+    this.setData({
+      ids: idsArray
+    })
+   
+    console.log(idsArray)
+  },
+  delectRequest:function(){
+    var that = this;
+    wx.showNavigationBarLoading()
+    util.api.request({
+      url: 'product/updateProducts',
+      data: {
+        openid: app.globalData.openid,
+        idArray: that.data.ids
+      },
+      method: 'POST',
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      success: function (res) {
+        wx.hideNavigationBarLoading();
+        var product = that.data.product;
+        for (var p in ids) {
+          for (var j in product) {
+            if (ids[p] = product[j].id) {
+              product[j].splice(j, 1)
+            }
+          }
+        }
+        that.setData({
+          product: product
+        })
+        wx.showToast({
+          title: '成功',
+          mask: true,
+          duration: 2000
+        })
+      }
     })
   },
   onLoad() {

@@ -98,9 +98,9 @@
   </view>
   <scroll-view scroll-y="true" class="content" lower-threshold="10" bindscrolltolower="{{loadMore?'onReachBottom':''}}" style="bottom:{{delete_button}}px;">
     <view class="content_view" wx:for="{{product}}" wx:key="{{id}}">
-      <checkbox-group class="delete_container" >
+      <checkbox-group class="delete_container" bindchange="delete_container" data-id ="{{item.id}}" >
         <label class="checkbox">
-          <checkbox value="" checked=""/>
+          <checkbox value="{{item.id}}"/>
         </label>
       </checkbox-group>
       <navigator url="../Goods/Goodstock/Goodstock?ID={{item.id}}&title={{item.name}}" hover-class="navigator-hover" class="content_container" style="left:{{delete_checkbox}}px;">
@@ -126,7 +126,7 @@
     </view>
   </scroll-view>
   <view class="batch_delete_ok" bindtap="batch_delete_ok" style="height:{{delete_button}}px;">完成</view>
-  <view class="batch_delete" style="height:{{delete_button}}px;">删除</view>
+  <view class="batch_delete" bindtap="batch_delete_sure" style="height:{{delete_button}}px;">删除</view>
 </view>
 
 
