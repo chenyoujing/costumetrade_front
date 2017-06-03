@@ -26,7 +26,7 @@ Page({
     brand:'',
     producttype:'',
     unit:'',
-    brand_index:'',
+    brand_index:0,
     GoodsInfoData:{},
     soruceData:{},
     changPrice_index:0,
@@ -336,7 +336,11 @@ Page({
         timeDown: util.formatTime(new Date),
         timeUp: util.formatTime(new Date),
         year: new Date().getFullYear()
-      }
+      },
+      brand: app.screen_brandList[0].brandname,
+      // sizes: app.screen_productSize[0].value,
+      unit: app.screen_unitList[0].unit,
+      producttype: app.screen_productTypeList[0].catename,
     });
     if (options.ID !== 'null'){
       this.setData({

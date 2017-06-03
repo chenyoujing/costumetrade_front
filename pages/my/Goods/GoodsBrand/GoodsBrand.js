@@ -104,7 +104,7 @@ Page({
         titlename = '颜色名称';
         geturl = options.url;
         addname = 'colorname';
-        addurl = 'color/getAllColors'
+        addurl = 'color/saveColor'
         break;
     }
     this.setData({
@@ -125,6 +125,9 @@ Page({
       };
       object[this.data.addname] = app.changeData;
       arry.push(object)
+      this.setData({
+        product: arry
+      })
     }
   }
 })

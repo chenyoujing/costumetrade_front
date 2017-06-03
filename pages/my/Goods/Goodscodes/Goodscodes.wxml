@@ -1,41 +1,87 @@
-<!--条码编辑-->
-<view class="modal2" animation="{{brand_modal_opacity}}" style="display:{{brand_modal}};">
-  <view class="modal_header">条码编辑</view>
+
+<view class="modal2">
+  <view class="modal_header"></view>
   <image src="../../../../images/close.png" mode="aspectFit" class="image_close" />
-  <view class="modal2_title">
-    <view class="modal2_titleText">
-      <view class="modal2_title_text">条码</view>
-    </view>
-    <view class="modal2_titleInput">
-      <input type="text" class="modal2_title_input" name="" />
-    </view>
-    <view class="modal2_titleButton">
-      <image class="image_scan" src="../../../../images/scan.png" mode="aspectFit" />
-    </view>
+
+  <!--顶上的列表-->
+  <view class="list_title">
+    <view class="list_title_text" style="width:40%;">条码</view>
+    <view class="list_title_text" style="width:30%;">颜色</view>
+    <view class="list_title_text" style="width:15%;">尺码</view>
+    <view class="list_title_text" style="width:15%;">删除</view>
     <view class="clear"></view>
   </view>
-  <scroll-view scroll-y="true" class="modal2_content">
-    <view class="color_title">
-      <view class="color_title_text">进货价:</view>
-      <input type="number" class="color_input" name="packprice" value="{{updata_packprice}}" />
+  <scroll-view scroll-y="true" class="list_content">
+    <view class="list">
+      <view class="list_text" style="width:40%;">69125723412341</view>
+      <view class="list_text" style="width:30%;">高贵紫</view>
+      <view class="list_text" style="width:15%;">L</view>
+      <view class="list_text" style="width:15%;">
+        <image src="../../../../images/delete_2.png" mode="aspectFit" class="list_delete" />
+      </view>
       <view class="clear"></view>
     </view>
-    <radio-group bindchange="brand_radio">
-      <label class="modal2_content_option" wx:for="{{screen_content2}}" wx:key="id">
-        <radio value="{{item.id}}" />{{item.brandname}}
-      </label>
-    </radio-group>
-    <image class="image_down2" src="../../../../images/down2.png" mode="aspectFit"></image>
-    <view class="color_title">
-      <view class="color_title_text">进货价:</view>
-      <input type="number" class="color_input" name="packprice" value="{{updata_packprice}}" />
+    <view class="list">
+      <view class="list_text" style="width:40%;">69125723412341</view>
+      <view class="list_text" style="width:30%;">高贵紫</view>
+      <view class="list_text" style="width:15%;">L</view>
+      <view class="list_text" style="width:15%;">
+        <image src="../../../../images/delete_2.png" mode="aspectFit" class="list_delete" />
+      </view>
       <view class="clear"></view>
     </view>
-    <radio-group bindchange="brand_radio">
-      <label class="modal2_content_option" wx:for="{{screen_content2}}" wx:key="id">
-        <radio value="{{item.id}}" />{{item.brandname}}
-      </label>
-    </radio-group>
-    <image class="image_down2" src="../../../../images/down2.png" mode="aspectFit"></image>
+    <view class="list">
+      <view class="list_text" style="width:40%;">69125723412341</view>
+      <view class="list_text" style="width:30%;">高贵紫</view>
+      <view class="list_text" style="width:15%;">L</view>
+      <view class="list_text" style="width:15%;">
+        <image src="../../../../images/delete_2.png" mode="aspectFit" class="list_delete" />
+      </view>
+      <view class="clear"></view>
+    </view>
   </scroll-view>
+
+  <!--条码，加入-->
+  <view class="size_code">
+    <view class="size_code_view">
+      <view class="size_code_text">条码</view>
+      <view class="size_code_button">
+        <image src="../../../../images/scan_black.png" mode="aspectFit" class="image_scan" />
+      </view>
+      <input type="text" class="size_code_input" />
+      <view class="clear"></view>
+    </view>
+    <view class="size_code_view">
+      <view class="size_code_text"></view>
+      <view class="size_code_button">
+        <view class="button">加入</view>
+      </view>
+      <input type="text" class="size_code_input" />
+      <view class="clear"></view>
+    </view>
+  </view>
+  
+  <!--选择颜色，尺码-->
+  <view class="color_title">
+    选择颜色
+    <image src="../../../../images/append.png" mode="aspectFit" class="image_add"/>
+  </view>
+  <radio-group bindchange="brand_radio">
+    <label class="modal2_content_option" wx:for="{{screen_content2}}" wx:key="id">
+      <radio value="{{item.id}}" />{{item.brandname}}
+    </label>
+  </radio-group>
+  <image class="image_down2" src="../../../../images/down2.png" mode="aspectFit"></image>
+  <view class="color_title">
+    选择尺码
+    <image src="../../../../images/append.png" mode="aspectFit" class="image_add"/>
+</view>
+  <radio-group bindchange="brand_radio">
+    <label class="modal2_content_option" wx:for="{{screen_content2}}" wx:key="id">
+      <radio value="{{item.id}}" />{{item.brandname}}
+    </label>
+  </radio-group>
+  <image class="image_down2" src="../../../../images/down2.png" mode="aspectFit"></image>
+
+
 </view>
