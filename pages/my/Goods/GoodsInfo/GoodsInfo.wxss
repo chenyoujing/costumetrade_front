@@ -182,6 +182,14 @@
   border: 1px solid #52CAC1;
   display: inline-block;
 }
+.image_content image{
+  width: 100%;
+  height: 100%;
+}
+.image_content video{
+  width: 100%;
+  height: 100%;
+}
 .image_search{
   margin-top: 20px;
 }
