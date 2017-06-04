@@ -6,10 +6,13 @@ Page({
       '',
       'http://img06.tooopen.com/images/20160818/tooopen_sy_175833047715.jpg'
     ],
-    nav_right: ['↑', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '#',]
+    nav_right: ['↑', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '#',],
+    infotype:'0',
   },
-  aa: function(e){
-    console.log(e.target.dataset)
+  infotype: function(e){
+    this.setData({
+      infotype: e.target.dataset.infotype
+    })
   },
   scroll: function (e) {
     if (e.detail.scrollTop >= 180){
@@ -24,5 +27,8 @@ Page({
   },
   onShareAppMessage: function () {
   
+  },
+  onLoad:function(){
+    
   }
 })
