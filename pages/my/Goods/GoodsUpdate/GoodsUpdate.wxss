@@ -1,0 +1,54 @@
+.title{
+  background-color: #52CAC1;
+  padding: 10px;
+  position: relative;
+  z-index: 3;
+  text-align: center;
+  color: #ffffff;
+  font-size: 16px;
+  line-height: 20px;
+}
+.title image{
+  width: 16px;
+  height: 16px;
+  padding: 12px 10px;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+
+.upload_input{
+  padding: 0 10px 10px;
+  position: relative;
+}
+.upload_input:first-child{
+  padding-top: 15px;
+}
+.upload_input_text{
+  width: 20%;
+  float: left;
+  text-align: center;
+  font-size: 14px;
+  line-height: 30px;
+}
+.upload_input > picker{
+  border: 1px solid #52CAC1;
+  height: 28px;
+  margin-left: 20%;
+  width: auto;
+  font-size: 14px;
+  line-height: 28px;
+  position: relative;
+  padding-left: 16px;
+  padding-right: 30px;
+}
+.picker_image,.code_image,.update_image{
+  width: 10px;
+  height: 10px;
+  position: absolute;
+  right: 10px;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+}
