@@ -1,5 +1,5 @@
 
-<view class="modal2">
+<scroll-view scroll-y class="codes_container">
   <!--<view class="modal_header"></view>-->
   <!--<image src="../../../../images/close.png" bindtap="back" mode="aspectFit" class="image_close" />-->
 
@@ -50,11 +50,13 @@
   <image src="../../../../images/append.png" mode="aspectFit" class="image_add"/>
     </navigator>-->
   </view>
-  <radio-group bindchange="changeBoxBind" data-index="0">
-    <label class="modal2_content_option" wx:for="{{colorProduct}}" wx:key="id">
-      <radio value="{{item}}" checked='{{aa}}' />{{item}}
-    </label>
-  </radio-group>
+  <scroll-view scroll-y class="list_content">
+    <radio-group bindchange="changeBoxBind" data-index="0">
+      <label class="modal2_content_option" wx:for="{{colorProduct}}" wx:key="id">
+        <radio value="{{item}}" checked='{{aa}}' />{{item}}
+      </label>
+    </radio-group>
+  </scroll-view>
   <image class="image_down2" src="../../../../images/down2.png" mode="aspectFit"></image>
   <view class="color_title">
     选择尺码
@@ -62,11 +64,13 @@
   <image src="../../../../images/append.png" mode="aspectFit" class="image_add"/>
     </navigator>-->
 </view>
-  <radio-group bindchange="changeBoxBind" data-index="1">
-    <label class="modal2_content_option" wx:for="{{sizeProduct}}" wx:key="id">
-      <radio value="{{item}}" checked='{{aa}}'/>{{item}}
-    </label>
-  </radio-group>
+  <scroll-view scroll-y class="list_content">
+    <radio-group bindchange="changeBoxBind" data-index="1">
+      <label class="modal2_content_option" wx:for="{{sizeProduct}}" wx:key="id">
+        <radio value="{{item}}" checked='{{aa}}'/>{{item}}
+      </label>
+    </radio-group>
+  </scroll-view>
   <image class="image_down2" src="../../../../images/down2.png" mode="aspectFit"></image>
- <button class="modal_submit" bindtap="saveData">确定</button>
-</view>
+</scroll-view>
+<button class="modal_submit" bindtap="saveData">确定</button>

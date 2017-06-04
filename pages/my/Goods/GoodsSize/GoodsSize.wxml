@@ -1,46 +1,49 @@
 
-<block wx:for="{{selected}}">
-        <view class="" bindtap="reduce" data-size="{{item}}">
-          {{item}}
-        </view>
-    </block>
+
+<scroll-view scroll-y class="container">
   <!--头部-->
-  <view class="size_title">
+  <view class="size_title clearfix">
     <view class="size_title_text">尺码</view>
     <view class="size_title_button">
-  <navigator url="../GoodsBrandAdd/GoodsBrandAdd?url=size/saveSize&name=尺码&addname=尺码名称">
-    <image class="image_add" src="../../../../images/add_small.png"      mode="aspectFit" />
-  </navigator>
+    <navigator url="../GoodsBrandAdd/GoodsBrandAdd?url=size/saveSize&name=尺码&addname=尺码名称">
+      <image class="image_add" src="../../../../images/add_small.png"      mode="aspectFit" />
+    </navigator>
     <image src="../../../../images/amputate.png" bindtap="back" mode="aspectFit" class="image_close" />
     </view>
-    <input type="text" value = "{{sizes}}" disabled="true" class="size_title_input" />
+    <scroll-view scroll-x class="size_title_selected" >
+      <block wx:for="{{selected}}">
+        <view class="" bindtap="reduce" data-size="{{item}}" class="selected_view">
+          {{item}}
+        </view>,
+      </block>
+    </scroll-view>
     
   </view>
 
 
   
   <!--选择尺码，尺码组-->
-  <scroll-view scroll-y class="container">
-    <view class="size_container">
+    <scroll-view scroll-y class="size_container clearfix">
     <block wx:for="{{size}}">
        <view class="size_content" bindtap="add" data-size="{{item.sizename}}">{{item.sizename}}</view>
     </block>
-      <view class="clear"></view>
-    </view>
+    </scroll-view>
        <image class="image_down2" src="../../../../images/down2.png" mode="aspectFit" />
 
     <view class="size_title2">
       选择尺码组
       <navigator url="../GoodsBrandAdd/GoodsBrandAdd?url=size/saveSizeCustom&name=尺码组&addname=尺码组">
-   <image class="image_add" src="../../../../images/add_small.png"      mode="aspectFit" />
+   <image class="image_add2" src="../../../../images/add_small.png"      mode="aspectFit" />
   </navigator>
     </view>
-    <radio-group bindchange="brand_radio">
-      <label class="sizes_option" wx:for="{{sizeProduct}}" wx:key="id">
-        <radio value="{{item.id}}" />{{item.customname}}
-        <view class="sizes_text">{{item.value}}</view>
-      </label>
-    </radio-group>
+    <scroll-view scroll-y class="sizes_container">
+      <radio-group bindchange="brand_radio">
+        <label class="sizes_option" wx:for="{{sizeProduct}}" wx:key="id">
+          <radio value="{{item.id}}" />{{item.customname}}
+          <view class="sizes_text">{{item.value}}</view>
+        </label>
+      </radio-group>
+    </scroll-view>
     <image class="image_down2" src="../../../../images/down2.png" mode="aspectFit" />
   </scroll-view>
 

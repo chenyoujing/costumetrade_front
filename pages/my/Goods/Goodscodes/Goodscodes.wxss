@@ -1,32 +1,21 @@
-.modal_header{
-  box-sizing: border-box;
-  font-size: 16px;
-  line-height: 24px;
-  height: 40px;
-  padding: 8px;
-  text-align: center;
-  position: fixed;
+.codes_container{
+  position: absolute;
   top: 0;
-}
-.image_close{
-  position: fixed;
-  top: 0;
+  left: 0;
   right: 0;
-  width: 16px;
-  height: 16px;
-  padding: 12px 10px;
+  bottom: 40px;
 }
 
 /*顶上的列表*/
 .list_title{
   background-color: #52CAC1;
-  margin-top: 40px;
 }
 .list_title_text,.list_text{
   float: left;
   color: #ffffff;
   font-size: 12px;
   line-height: 30px;
+  height: 30px;
   text-align: center;
 }
 .list_content{
