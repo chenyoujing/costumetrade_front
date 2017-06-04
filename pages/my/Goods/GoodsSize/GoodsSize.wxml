@@ -24,11 +24,11 @@
   
   <!--选择尺码，尺码组-->
     <scroll-view scroll-y class="size_container clearfix">
-    <block wx:for="{{size}}">
-       <view class="size_content" bindtap="add" data-size="{{item.sizename}}">{{item.sizename}}</view>
-    </block>
+      <block wx:for="{{size}}">
+        <view class="size_content" bindtap="add" data-size="{{item.sizename}}">{{item.sizename}}</view>
+      </block>
     </scroll-view>
-       <image class="image_down2" src="../../../../images/down2.png" mode="aspectFit" />
+    <image class="image_down2" src="../../../../images/down2.png" mode="aspectFit" />
 
     <view class="size_title2">
       选择尺码组
