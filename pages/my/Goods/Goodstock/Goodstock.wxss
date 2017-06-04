@@ -37,7 +37,9 @@
 .image_service{
   position: absolute;
   top: 0;
-  right: 36px;
+  left: 50%;
+  right: 0;
+  margin: auto;
   width: 16px;
   height: 16px;
   padding: 12px 10px;
@@ -111,7 +113,13 @@
   padding: 0;
   position: absolute;
   bottom: 0;
-  left: 0;
+  left: 50%;
   right: 0;
   color: #ffffff;
+}
+.submit2{
+  left: 0;
+  right: 50%;
+  background-color: #DCDCDC;
+  color: #000000;
 }

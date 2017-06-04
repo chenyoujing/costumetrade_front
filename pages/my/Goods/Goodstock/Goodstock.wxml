@@ -4,7 +4,6 @@
   <view class="modal_header">{{title}}</view>
   <image src="../../../../images/close.png" bindtap="backdelta" mode="aspectFit" class="image_close" />
   <image src="../../../../images/customer_service.png" mode="aspectFit" class="image_service" />
-  <image src="../../../../images/update.png"  mode="aspectFit" class="image_update" />
   <view class="tr bg-w">
     <view class="th th1">序号</view>
     <view class="th th2">名称</view>
@@ -32,4 +31,5 @@
     </block>
   </scroll-view>
   <button class="modal_submit" bindtap="saveStock">保存</button>
+  <button class="modal_submit submit2">补货</button>
 </view>
