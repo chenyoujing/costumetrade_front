@@ -86,38 +86,56 @@ Page({
       filePath: file[i],
       name: 'file',
       success: function (res) {
-        console.log(JSON.stringify(res))
-        console.log(res.data)
-        console.log(JSON.parse(res.data).data.url)
+        console.log(JSON.stringify(res));
         var url = "http://117.149.24.42:8788" + JSON.parse(res.data).data.url;
         var param = that.data.GoodsInfoData;
+        console.log(url);
         param[that.data.perImgSrc] = url;
-        console.log(that.data.perImgSrc)
         that.setData({
           GoodsInfoData:param
         }) 
-        console.log(that.data.GoodsInfoData)
+        console.log(param);
       }
     })
   },
+
   // 选择图片
   chooseImg: function (e) {
     var that = this;
     wx.chooseImage({
       count: 1, // 默认9
       sizeType: ['original'], // 可以指定是原图还是压缩图，默认二者都有
-      sourceType: ['album'], // 可以指定来源是相册还是相机，默认二者都有
+      sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
       success: function (res) {
         // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
         var tempFilePaths = res.tempFilePaths;
-        console.info(res.tempFilePaths.length);
         that.photoSubmit(tempFilePaths, 0);
         that.setData({
           perImgSrc:e.target.dataset.index
         })
+       
       }
     })
   }, 
+  // 选择视频
+  chooseVideo:function(e){
+    var that = this;
+    wx.chooseVideo({
+      count: 1, // 默认9
+      sizeType: ['original'], // 可以指定是原图还是压缩图，默认二者都有
+      sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
+      success: function (res) {
+        // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
+        var tempFilePaths = [];
+        tempFilePaths.push(res.tempFilePath);
+        that.photoSubmit(tempFilePaths, 0);
+        that.setData({
+          perImgSrc: e.target.dataset.index
+        })
+        console.log(e.target.dataset.index)
+      }
+    })
+  },
   //请求并显示货品详情
   showGoodsInfo:function(){
     var that = this;

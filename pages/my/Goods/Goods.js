@@ -337,6 +337,7 @@ Page({
       for (var p in newProduct) {
         if (newProduct[p].id == app.updataGoodsInfo.id) {
           newProduct[p].name = app.updataGoodsInfo.name;
+          newProduct[p].image = app.updataGoodsInfo.image;
           break;
         }
       }
