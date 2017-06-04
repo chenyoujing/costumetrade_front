@@ -31,7 +31,8 @@ Page({
     soruceData:{},
     changPrice_index:0,
     updataAut:false,
-    firstBoolean:true
+    firstBoolean:true,
+    perImgSrc:'image'
   },
   // 返回
   backdelta: function () {
@@ -77,6 +78,46 @@ Page({
       GoodsInfoData: param   
     })
   },
+  // 上传图片
+  photoSubmit: function (file, i){
+    var that = this;
+    wx.uploadFile({
+      url: 'http://192.168.2.221:8088/product/uploadImage', 
+      filePath: file[i],
+      name: 'file',
+      success: function (res) {
+        console.log(JSON.stringify(res))
+        console.log(res.data)
+        console.log(JSON.parse(res.data).data.url)
+        var url = "http://117.149.24.42:8788" + JSON.parse(res.data).data.url;
+        var param = that.data.GoodsInfoData;
+        param[that.data.perImgSrc] = url;
+        console.log(that.data.perImgSrc)
+        that.setData({
+          GoodsInfoData:param
+        }) 
+        console.log(that.data.GoodsInfoData)
+      }
+    })
+  },
+  // 选择图片
+  chooseImg: function (e) {
+    var that = this;
+    wx.chooseImage({
+      count: 1, // 默认9
+      sizeType: ['original'], // 可以指定是原图还是压缩图，默认二者都有
+      sourceType: ['album'], // 可以指定来源是相册还是相机，默认二者都有
+      success: function (res) {
+        // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
+        var tempFilePaths = res.tempFilePaths;
+        console.info(res.tempFilePaths.length);
+        that.photoSubmit(tempFilePaths, 0);
+        that.setData({
+          perImgSrc:e.target.dataset.index
+        })
+      }
+    })
+  }, 
   //请求并显示货品详情
   showGoodsInfo:function(){
     var that = this;
@@ -154,6 +195,11 @@ Page({
     target.thirdPrice = this.data.picker_view[2].price ? this.data.picker_view[2].price : 0;
     target.fourthPrice = this.data.picker_view[3].price ? this.data.picker_view[3].price : 0;
     target.fifthPrice = this.data.picker_view[4].price ? this.data.picker_view[4].price : 0;
+    target.image = this.data.GoodsInfoData.image;
+    target.Image1 = this.data.GoodsInfoData.Image1;
+    target.Image2 = this.data.GoodsInfoData.Image2;
+    target.Image3 = this.data.GoodsInfoData.Image3;
+    target.Image4 = this.data.GoodsInfoData.Image4;
     for (var p in app.screen_productTypeList) {
       if (app.screen_productTypeList[p].catename == target.producttype) {
         target.producttype = app.screen_productTypeList[p].id;

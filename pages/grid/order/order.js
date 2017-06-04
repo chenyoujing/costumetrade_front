@@ -156,6 +156,11 @@ Page({
       this.order_request();
     }
   },
+  logisticsView:function(){
+    this.setData({
+      hiddenModal:false
+    })
+  },
   onLoad:function(){
     this.order_request()
   }

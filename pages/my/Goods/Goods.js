@@ -36,7 +36,8 @@ Page({
     requestSwitch: true,
     delete_checkbox: '0',
     delete_button: '0',
-    ids:[]
+    ids:[],
+    aa:''
   },
   // 请求数据函数
   page_request: function () {
@@ -293,7 +294,7 @@ Page({
     util.api.request({
       url: 'product/updateProducts',
       data: {
-        openid: app.globalData.openid,
+        storeId: 1,
         idArray: that.data.ids
       },
       method: 'POST',
@@ -303,15 +304,16 @@ Page({
       success: function (res) {
         wx.hideNavigationBarLoading();
         var product = that.data.product;
-        for (var p in ids) {
+        for (var p in that.data.ids) {
           for (var j in product) {
-            if (ids[p] = product[j].id) {
-              product[j].splice(j, 1)
+            if (that.data.ids[p] == product[j].id) {
+              product.splice(j, 1)
             }
           }
         }
         that.setData({
-          product: product
+          product: product,
+          aa:false
         })
         wx.showToast({
           title: '成功',

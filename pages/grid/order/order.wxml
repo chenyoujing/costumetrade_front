@@ -135,7 +135,7 @@
       </view>
       <view class="clear"></view>
     <view class="order_container_button"  bindtap="changeOrderStatus" data-status='5' data-orderNo="{{item.payorderno}}" data-sellerstoreid="{{item.sellerstoreid}}" data-buyerstoreid="{{item.buyerstoreid}}">确认收货</view>
-    <view class="order_container_button btn_2" >查看物流</view>
+    <view class="order_container_button btn_2" bindtap="logisticsView">查看物流</view>
     <view class="clear"></view>
   </view>
 

@@ -79,11 +79,21 @@
         </navigator>
         <view class="upload_input_text">图片:</view>
         <scroll-view scroll-x="true" class="image_container">
-          <view class="image_content"></view>
-          <view class="image_content"></view>
-          <view class="image_content"></view>
-          <view class="image_content"></view>
-          <view class="image_content"></view>
+          <view class="image_content" bindtap="chooseImg">
+           <image src="{{GoodsInfoData.image}}" mode="aspectFit" data-index="image" class="" />
+          </view>
+          <view class="image_content" bindtap="chooseImg">
+           <image src="{{GoodsInfoData.Image1}}" mode="aspectFit" data-index="Image1" class="" />
+          </view>
+          <view class="image_content" bindtap="chooseImg">
+          <image src="{{GoodsInfoData.Image2}}" mode="aspectFit" data-index="Image2" class="" />
+          </view>
+          <view class="image_content" bindtap="chooseImg">
+          <image src="{{GoodsInfoData.Image3}}" mode="aspectFit" data-index="Image3" class="" />
+          </view>
+          <view class="image_content" bindtap="chooseImg">
+          <image src="{{GoodsInfoData.Image4}}" mode="aspectFit" data-index="Image4" class="" />
+          </view>
         </scroll-view>
         <view class="clear"></view>
       </view>
