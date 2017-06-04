@@ -112,7 +112,7 @@
           <view class="clear"></view>
           <view class="content_container_title">{{item.name}}</view>
           <view class="content_container_info">
-            <view class="price">{{item.price}}</view>
+            <view class="price">{{item.tagprice}}</view>
             <view class="info_other">
               <view class="volume" wx:if="{{!item.volume}}">0</view>
               <view class="volume" wx:if="{{item.volume}}">{{item.volume}}</view>

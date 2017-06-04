@@ -14,6 +14,9 @@ Page({
     })
   },
   changeBoxBind: function (e) {
+    this.setData({
+      selected:e.detail.value.split(',')
+    })
     console.log(e)
   },
   request_data: function (url,arrayName) {
@@ -31,6 +34,9 @@ Page({
       success: function (res) {
         wx.hideNavigationBarLoading();
         var param = {};
+        if (arrayName == 'size'){
+          app.sizeArray = res.data
+        }
         param[arrayName] = res.data;
         that.setData(param);
         console.log(param)
@@ -52,11 +58,17 @@ Page({
       var row = selected[index];
       if (row == size) {
         selected.splice(index,1);
+        break;
       }
     }
     this.setData({
       selected: selected
     })
+  },
+  saveData:function(){
+    app.nameChange = '尺码';
+    app.changeData = util.api.getFilterArray(this.data.selected);
+    this.back()
   },
   onLoad: function (options) {
     this.request_data(this.data.url,'size');
@@ -64,15 +76,32 @@ Page({
   },
   onShow: function () {
     if (app.changeData) {
-      var arry = this.data.product;
-      var object = {
-        id: app.changeId
-      };
-      object[this.data.addname] = app.changeData;
-      arry.push(object)
-      this.setData({
-        product: arry
-      })
+      if (app.changesizename == 'sizename'){
+        var arry = this.data.size;
+        var object = {
+          id: app.changeId
+        };
+        object[app.changesizename] = app.changeData;
+        arry.push(object);
+        this.setData({
+          size: arry
+        })
+        app.changesizename = ""
+      }else{
+        console.log(app.changeId)
+        var arry = this.data.sizeProduct;
+        var object = {
+          value: app.changeId.value
+        };
+        object[app.changesizename] = app.changeData;
+        arry.push(object);
+        console.log(object)
+        this.setData({
+          sizeProduct: arry
+        })
+        app.changeId = ''
+      } 
+      app.changeData = "" ;   
     }
   }
 })

@@ -1,36 +1,43 @@
   <view class="title">
-    <image src="../../../../images/back-away.png" mode="aspectFit"></image>
+    <image src="../../../../images/back-away.png" mode="aspectFit" bindtap="back"></image>
     批量修改
   </view>
 
 <view class="update_content">
   <view class="upload_input clearfix">
     <view class="upload_input_text">级别:</view>
-    <picker style="margin-right:0" data-style = 'grade_index' bindchange="bindSelectorChange" value="{{GoodsInfoData.grade}}" range="{{screen_gradeList}}" name="grade" mode="selector" range-key="custtypename" >
+    <picker style="margin-right:0" data-style = 'grade_index' bindchange="bindSelectorChange" value="{{grade}}" range="{{screen_gradeList}}" name="grade" mode="selector" range-key="custtypename" >
         {{screen_gradeList[grade_index].custtypename}}
-        <image src="../../../../images/down.png" mode="aspectFit" class="picker_image" />
-    </picker>
-  </view>
-  <view class="upload_input clearfix">
-    <view class="upload_input_text">年份:</view>
-    <picker style="margin-right:0" mode="date" bindchange="year" name="year" fields="year" value="{{GoodsInfoData.year}}">
-    {{GoodsInfoData.year}}
         <image src="../../../../images/down.png" mode="aspectFit" class="picker_image" />
     </picker>
   </view>
 
+  <view class="upload_input">
+        <view class="upload_input_text">年份:</view>
+        <picker style="margin-right:0" mode="date" bindchange="year" name="year" fields="year" value="{{year}}">
+        {{year}}
+            <image src="../../../../images/down.png" mode="aspectFit" class="picker_image" />
+        </picker>
+        <view class="clear"></view>
+      </view>
+
   <view class="upload_input clearfix">
     <view class="upload_input_text">状态:</view>
-    <picker style="margin-right:0" data-style = 'grade_index' bindchange="bindSelectorChange" value="{{GoodsInfoData.grade}}" range="{{screen_gradeList}}" name="grade" mode="selector" range-key="custtypename" >
-        {{screen_gradeList[grade_index].custtypename}}
+    <picker style="margin-right:0" data-style = 'status_index' bindchange="bindSelectorChange" value="{{status}}" range="{{screen_content4}}" name="status" mode="selector" range-key="value" >
+        {{screen_content4[status_index].value}}
         <image src="../../../../images/down.png" mode="aspectFit" class="picker_image" />
     </picker>
   </view>
-  <view class="upload_input clearfix">
-    <view class="upload_input_text">折扣:</view>
-    <picker style="margin-right:0" data-style = 'grade_index' bindchange="bindSelectorChange" value="{{GoodsInfoData.grade}}" range="{{screen_gradeList}}" name="grade" mode="selector" range-key="custtypename" >
-        {{screen_gradeList[grade_index].custtypename}}
-        <image src="../../../../images/down.png" mode="aspectFit" class="picker_image" />
-    </picker>
-  </view>
+
+
+  <view class="upload_input">
+    <view class="upload_input_text">是否折扣：</view>
+      <radio-group class="radio-group" name="isDiscount" bindchange="changeRadio">
+        <label class="radio" wx:for="{{screen_content3}}" wx:key="id">
+          <radio value="{{item.name}}"/>{{item.value}}
+        </label>
+      </radio-group>
+      <view class="clear"></view>
+    </view>
+    <button class="modal_submit" bindtap="saveData">确定</button>
 </view>

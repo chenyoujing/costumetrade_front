@@ -2,7 +2,7 @@
 <view class="modal">
   <view class="modal_header">{{name}}</view>
   <image src="../../../../images/amputate.png" mode="aspectFit"  bindtap="back" class="image_close" />
-  <scroll-view scroll-y="true" class="modal_content">
+  <scroll-view scroll-y="true" class="modal_content" wx:if="{{name !== '尺码组'}}">
     <view class="add_content">
       <view class="add_text">{{name}}</view>
       <input type="text" bindblur="EventHandle" name="envalue" value="{{envalue}}" class="add_input" />
@@ -10,25 +10,29 @@
   </scroll-view>
 
   <!--尺码组-->
-  <!--<scroll-view scroll-y="true" class="modal_content">
+  <scroll-view scroll-y="true" class="modal_content" wx:if="{{name == '尺码组'}}">
     <view class="add_content">
       <view class="add_text">组名</view>
-      <input type="text" bindblur="EventHandle" name="envalue" value="{{envalue}}" class="add_input" />
+      <input type="text" bindblur="EventHandle" name="groupName" value="{{groupName}}" class="add_input" />
     </view>
     <view class="add_content">
       <view class="add_text">尺码</view>
-      <input type="text" bindblur="EventHandle" name="envalue" value="{{envalue}}" class="add_input" />
+      <!--<input type="text" bindblur="EventHandle" name="envalue" value="{{envalue}}" class="add_input" />-->
+      <scroll-view scroll-x class="size_title_selected" >
+        <block wx:for="{{selected}}">
+          <view class="" bindtap="reduce" data-size="{{item}}" class="selected_view">
+            {{item}}
+          </view>,
+        </block>
+      </scroll-view>
     </view>
     <view class="size_container">
-      <view class="size_content">145</view>
-      <view class="size_content">145</view>
-      <view class="size_content">145</view>
-      <view class="size_content">L</view>
-      <view class="size_content">S</view>
-      <view class="size_content">M</view>
+     <block wx:for="{{sizeArray}}">
+        <view class="size_content" bindtap="add" data-size="{{item.sizename}}">{{item.sizename}}</view>
+      </block>
       <view class="clear"></view>
     </view>
-  </scroll-view>-->
+  </scroll-view>
 
   <button class="modal_reset" bindtap="back">取消</button>
   <button class="modal_submit"  bindtap="addOptions">确定</button>

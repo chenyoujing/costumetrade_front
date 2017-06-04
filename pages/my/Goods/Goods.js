@@ -256,7 +256,7 @@ Page({
   // 批量删除
   batch_delete: function () {
     this.setData({
-      select_checkbox: '50',
+      select_checkbox:'50',
       delete_button: '40'
     })
     this.more_function_close();
@@ -314,10 +314,15 @@ Page({
   },
   // 进入批量修改页面
   batch_update_sure: function () {
-    wx.navigateTo({
-      url: 'GoodsUpdate/GoodsUpdate',
+    this.setData({
+      select_checkbox: '0',
+      update_button: '0'
     })
-  },  delete_container:function(e){
+    wx.navigateTo({
+      url: 'GoodsUpdate/GoodsUpdate?ids='+this.data.ids,
+    })
+  },  
+  delete_container:function(e){
     var ids = e.target.dataset.id;
     var boolean2 = true;
     var idsArray = this.data.ids;
@@ -334,7 +339,6 @@ Page({
     this.setData({
       ids: idsArray
     })
-   
     console.log(idsArray)
   },
   delectRequest:function(){

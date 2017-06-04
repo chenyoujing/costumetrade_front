@@ -113,7 +113,6 @@ Page({
         that.setData({
           perImgSrc:e.target.dataset.index
         })
-       
       }
     })
   }, 
@@ -218,6 +217,9 @@ Page({
     target.Image2 = this.data.GoodsInfoData.Image2;
     target.Image3 = this.data.GoodsInfoData.Image3;
     target.Image4 = this.data.GoodsInfoData.Image4;
+    target.video1 = this.data.GoodsInfoData.video1;
+    target.video2 = this.data.GoodsInfoData.video2;
+    target.video3 = this.data.GoodsInfoData.video3;
     for (var p in app.screen_productTypeList) {
       if (app.screen_productTypeList[p].catename == target.producttype) {
         target.producttype = app.screen_productTypeList[p].id;
@@ -240,7 +242,8 @@ Page({
       objectSubmit.storeId = 1
     }else{
       objectSubmit = target;
-      objectSubmit.storeId = 1
+      objectSubmit.storeId = 1,
+      objectSubmit.id = undefined
     }
     console.log(objectSubmit);
     if (objectSubmit !== null){
@@ -260,8 +263,10 @@ Page({
             duration: 2000
           })
           app.newid = that.data.id == "" ? res.data : null;
-          if (that.data.id && objectSubmit.name) {
-            app.updataGoodsInfo = objectSubmit;
+          if (that.data.id){
+            if (objectSubmit.name || objectSubmit.image) {
+              app.updataGoodsInfo = that.data.GoodsInfoData;
+            }
           }
           wx.navigateBack({
             delta: 1
@@ -454,12 +459,16 @@ Page({
           GoodsInfoData: param
         }); 
       } else if (app.nameChange == "分条码"){
-        console.log(1)
         param.barcodes = app.changeData !==1 ? app.changeData:'';
         console.log(app.changeData ? app.changeData : '')
           this.setData({
             GoodsInfoData: param
           }); 
+      } else if (app.nameChange == "尺码") {
+        param.sizes = app.changeData;
+        this.setData({
+          GoodsInfoData: param
+        });
       }
       app.changeData = "";
     }
