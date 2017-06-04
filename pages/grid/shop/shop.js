@@ -51,7 +51,7 @@ Page({
   },
   onShareAppMessage: function () {
     return {
-      title: '自定义转发标题\n自定义内容',
+      title: '自定义转发标题\n自定义内容\n自定义内容\n自定义内容\n自定义内容\n自定义内容\n自定义内容\n自定义内容',
       path: '/pages/index/index?id=我传的东西',
       success: function (res) {
         // 转发成功

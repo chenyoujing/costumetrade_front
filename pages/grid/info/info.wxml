@@ -10,17 +10,17 @@
   </swiper>
 
   <!--导航栏-->
-  <view class="info_nav clearfix" style="position:{{nav_position}}; top:0;" bindtap="infotype">
+  <view class="info_nav" style="position:{{nav_position}}; top:0;" bindtap="infotype">
     <view class="nav_view">
-      <image src="../../../../images/info.png" mode="aspectFit" data-infotype="0" />
+      <image src="../../../images/info.png" mode="aspectFit" data-infotype="0" />
       <view class="nav_view_text" data-infotype="0">信息</view>
     </view>
     <view class="nav_view">
-      <image src="../../../../images/address-list.png" mode="aspectFit" data-infotype="1" />
+      <image src="../../../images/address-list.png" mode="aspectFit" data-infotype="1" />
       <view class="nav_view_text" data-infotype="1">通讯录</view>
     </view>
     <view class="nav_view">
-      <image src="../../../../images/bell.png" mode="aspectFit" data-infotype="2" />
+      <image src="../../../images/bell.png" mode="aspectFit" data-infotype="2" />
       <view class="nav_view_text" data-infotype="2">公告</view>
     </view>
   </view>
@@ -31,7 +31,7 @@
   <!--信息-->
   <view class="info" hidden="{{infotype!=0}}">
     <view class="info_container clearfix">
-      <image src="../../../../images/image_none.png" mode="aspectFill" class="info_tx"><view class="prompt">3</view></image>
+      <image src="../../../images/image_none.png" mode="aspectFill" class="info_tx"><view class="prompt">3</view></image>
       <view class="info_content">
         <view class="info_name">小鱼</view>
         <view class="info_text">你的衣服质量很不错</view>
@@ -39,7 +39,7 @@
       <view class="info_time">19:28</view>
     </view>
     <view class="info_container clearfix">
-      <image src="../../../../images/image_none.png" mode="aspectFill" class="info_tx" ><view class="prompt">3</view></image>
+      <image src="../../../images/image_none.png" mode="aspectFill" class="info_tx" ><view class="prompt">3</view></image>
       <view class="info_content">
         <view class="info_name">小鱼</view>
         <view class="info_text">你的衣服质量很不错</view>
@@ -49,10 +49,14 @@
   </view>
 
   <!--通讯录-->
-  <view class="unitSelect_sceoll" style="padding-top:{{nav_position=='fixed'?'50px':''}}" hidden="{{infotype!=1}}">
+  <view class="supplier_scroll" hidden="{{infotype!=1}}">
+    <view class="supplier_search_view">
+      <view class="supplier_search_text"></view>
+      <input type="text" class="supplier_search_input" />
+    </view>
     <view class="supplier_container">
       <view class="supplier_tx">
-        <image src="../../../../images/image_none.png" mode="aspectFill" />
+        <image src="../../../images/image_none.png" mode="aspectFill" />
       </view>
       <view class="supplier_name">小雨</view>
       <view class="supplier_info">
@@ -62,7 +66,7 @@
     </view>
     <view class="supplier_container">
       <view class="supplier_tx">
-        <image src="../../../../images/image_none.png" mode="aspectFill" />
+        <image src="../../../images/image_none.png" mode="aspectFill" />
       </view>
       <view class="supplier_name">小何</view>
       <view class="supplier_info">
@@ -72,7 +76,7 @@
     </view>
     <view class="supplier_container">
       <view class="supplier_tx">
-        <image src="../../../../images/image_none.png" mode="aspectFill" />
+        <image src="../../../images/image_none.png" mode="aspectFill" />
       </view>
       <view class="supplier_name">小王</view>
       <view class="supplier_info">
@@ -81,13 +85,13 @@
       </view>
     </view>
 
-    <view class="nav_right" style="top:{{nav_position=='fixed'?'50px':''}};">
+    <view class="nav_right">
       <view wx:for="{{nav_right}}" class="nav_text">{{item}}</view>
     </view>
   </view>
 
   <!--公告-->
-  <view class="notice_container" style="margin-top:{{nav_position=='fixed'?'50px':''}}" hidden="{{infotype!=2}}">
+  <view class="notice_container" hidden="{{infotype!=2}}">
 
     <view class="notice">
       <view class="notice_view">

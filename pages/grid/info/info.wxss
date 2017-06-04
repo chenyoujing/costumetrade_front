@@ -39,6 +39,9 @@
 }
 
 /*信息*/
+.info{
+  padding-top: 50px;
+}
 .info_container{
   padding: 15px 15px 10px;
   border-bottom: 2px solid #DCDCDC;
@@ -77,14 +80,24 @@
 }
 
 /*通讯录*/
-.unitSelect_sceoll{
+.supplier_scroll{
+  padding-top: 50px;
   box-sizing: border-box;
   height: 100vh;
   position: relative;
 }
+.supplier_search_view{
+  background-color: #DCDCDC;
+  height: 40px;
+}
+.supplier_search_text{
+  
+}
+.supplier_search_input{}
 .supplier_container{
   height: 48px;
   border-bottom: 2px solid #DBF4F1;
+  position: relative;
 }
 .supplier_tx{
   float: left;
@@ -115,7 +128,7 @@
 
 .nav_right{
   position: absolute;
-  top: 0;
+  top: 90px;
   right: 0;
   bottom: 0;
   width: 5%;
@@ -127,6 +140,9 @@
 }
 
 /*公告*/
+.notice_container{
+  padding-top: 50px;
+}
 .notice{
   padding: 15px 10px 0;
 }
