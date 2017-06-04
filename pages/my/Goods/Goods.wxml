@@ -37,12 +37,12 @@
     </view>
     <view class="screen_content" style="top:{{state == 'season' ? screen_content_height : '-270px'}}">
       <form bindsubmit="packPageFilterRule" data-screen="productSeasonArray">
-        <checkbox-group name="screen">
+        <radio-group name="screen">
           <label class="screen_checkbox" wx:for="{{screen_content3}}">
-            <checkbox value="{{item.value}}" checked="{{item.checked}}"/>
+            <radio value="{{item.value}}" checked="{{item.checked}}"/>
             {{item.value}}
           </label>
-        </checkbox-group>
+        </radio-group>
         <button form-type="reset" class="screen_reset" bindtap="resetting" data-screen="productSeasonArray">重置</button>
         <button form-type="submit" class="screen_submit">确定</button>
       </form>
@@ -103,7 +103,7 @@
           <checkbox value="{{item.id}}"  checked='{{aa}}'/>
         </label>
       </checkbox-group>
-      <navigator url="../Goods/Goodstock/Goodstock?ID={{item.id}}&title={{item.name}}" hover-class="navigator-hover" class="content_container" style="left:{{delete_checkbox}}px;">
+      <navigator url="../Goods/Goodstock/Goodstock?ID={{item.id}}&title={{item.name}}" hover-class="navigator-hover" class="content_container" style="left:{{select_checkbox}}px;">
         <image src="{{item.image ? item.image : '../../../images/image_none.png'}}" mode="aspectFill" />
         <view class="content_container_text">
         <navigator url="../Goods/GoodsInfo/GoodsInfo?ID={{item.id}}&name={{item.name}}" hover-class="navigator-hover">
@@ -125,8 +125,15 @@
       </navigator>
     </view>
   </scroll-view>
-  <view class="batch_delete_ok" bindtap="batch_delete_ok" style="height:{{delete_button}}px;">完成</view>
-  <view class="batch_delete" bindtap="batch_delete_sure" style="height:{{delete_button}}px;">删除</view>
+  <!--批量删除按钮-->
+  <view class="batch_button_ok" bindtap="batch_delete_ok" style="height:{{delete_button}}px;">完成</view>
+  <view class="batch_button" bindtap="batch_delete_sure" style="height:{{delete_button}}px;">删除</view>
+  <!--分析按钮-->
+  <view class="batch_button_ok" bindtap="batch_share_ok" style="height:{{share_button}}px;">取消</view>
+  <view class="batch_button" bindtap="batch_share_sure" style="height:{{share_button}}px;">分享</view>
+  <!--批量修改按钮-->
+  <view class="batch_button_ok" bindtap="batch_update_ok" style="height:{{update_button}}px;">完成</view>
+  <view class="batch_button" bindtap="batch_update_sure" style="height:{{update_button}}px;">修改</view>
 </view>
 
 
@@ -134,6 +141,6 @@
 <view class="more_function_cover {{animation}}" bindtap="more_function_close" style="display:{{more_function_display}};"></view>
 <view class="more_function {{animation}}" style="display:{{more_function_display}};">
   <view class="more_function_view" bindtap="batch_delete">批量删除</view>
-  <view class="more_function_view">分享图片</view>
-  <view class="more_function_view">推广新品</view>
+  <view class="more_function_view" bindtap="batch_share">分享图片</view>
+  <view class="more_function_view" bindtap="batch_update">批量修改</view>
 </view>

@@ -12,9 +12,10 @@ Page({
       { name: 'SEASON_WINTER', value: '冬' },
     ],
     screen_content4: [
-      { name: '0', value: '正常' },
+      { name: '0', value: '上架' },
       { name: '1', value: '待处理' },
-      { name: '2', value: '报废' },
+      { name: '2', value: '下架' },
+      { name: '3', value: '报废' },
     ],
     state: 'timeUpOp',
     Op: 'desc',
@@ -34,8 +35,10 @@ Page({
     pageNum: 1,
     loadMore: true,
     requestSwitch: true,
-    delete_checkbox: '0',
+    select_checkbox: '0',
     delete_button: '0',
+    update_button: '0',
+    share_button: '0',
     ids:[],
     aa:''
   },
@@ -253,7 +256,7 @@ Page({
   // 批量删除
   batch_delete: function () {
     this.setData({
-      delete_checkbox: '50',
+      select_checkbox: '50',
       delete_button: '40'
     })
     this.more_function_close();
@@ -261,14 +264,60 @@ Page({
   // 完成批量删除
   batch_delete_ok: function () {
     this.setData({
-      delete_checkbox: '0',
+      select_checkbox: '0',
       delete_button: '0'
     })
   },
-  batch_delete_sure:function(){
+  // 确认删除货品
+  batch_delete_sure: function () {
     this.delectRequest()
   },
-  delete_container:function(e){
+  // 分享
+  batch_share: function () {
+    this.setData({
+      select_checkbox: '50',
+      share_button: '40',
+      update_button: '0',
+      delete_button: '0'
+    })
+    this.more_function_close();
+  },
+  // 取消分享
+  batch_share_ok: function () {
+    this.setData({
+      select_checkbox: '0',
+      share_button: '0'
+    })
+  },
+  // 进入分享页面
+  batch_share_sure: function () {
+    wx.navigateTo({
+      url: '',
+    })
+  },
+  // 批量修改
+  batch_update: function () {
+    this.setData({
+      select_checkbox: '50',
+      update_button: '40',
+      delete_button: '0',
+      share_button: '0'
+    })
+    this.more_function_close();
+  },
+  // 完成批量修改
+  batch_update_ok: function () {
+    this.setData({
+      select_checkbox: '0',
+      update_button: '0'
+    })
+  },
+  // 进入批量修改页面
+  batch_update_sure: function () {
+    wx.navigateTo({
+      url: 'GoodsUpdate/GoodsUpdate',
+    })
+  },  delete_container:function(e){
     var ids = e.target.dataset.id;
     var boolean2 = true;
     var idsArray = this.data.ids;

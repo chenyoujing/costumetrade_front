@@ -28,8 +28,6 @@
     "pages/my/Goods/GoodsBrand/GoodsBrand",
     "pages/my/Goods/GoodsBrandAdd/GoodsBrandAdd",
     "pages/my/Goods/GoodsSize/GoodsSize",
-    "pages/my/Goods/GoodsColor/GoodsColor",
-    "pages/my/Goods/GoodsType/GoodsType",
     "pages/my/Goods/GoodsImage/GoodsImage",
     "pages/my/Goods/Goodscodes/Goodscodes",
     "pages/my/Goods/Goodstock/Goodstock",

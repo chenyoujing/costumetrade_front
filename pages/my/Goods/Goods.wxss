@@ -203,7 +203,7 @@ button::after{
 .delete_container checkbox{
   width: 100%;
 }
-.batch_delete,.batch_delete_ok{
+.batch_button,.batch_button_ok{
   position: absolute;
   left: 50%;
   right: 0;
@@ -216,11 +216,12 @@ button::after{
   overflow: hidden;
   transition: all 0.3s;
 }
-.batch_delete_ok{
+.batch_button_ok{
   left: 0;
   right: 50%;
   border-right: 2px solid #ffffff;
 }
+
 
 
 .content_container{
