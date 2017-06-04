@@ -51,3 +51,6 @@ radio,checkbox{
   text-align: center;
   color: #ffffff;
 }
+.style_none{
+  display: unset;
+}
