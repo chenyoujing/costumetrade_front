@@ -29,6 +29,7 @@
     "pages/my/Goods/GoodsBrandAdd/GoodsBrandAdd",
     "pages/my/Goods/GoodsSize/GoodsSize",
     "pages/my/Goods/GoodsImage/GoodsImage",
+    "pages/my/Goods/GoodsImageAdd/GoodsImageAdd",
     "pages/my/Goods/Goodscodes/Goodscodes",
     "pages/my/Goods/Goodstock/Goodstock",
     "pages/my/Goods/GoodsUpdate/GoodsUpdate",
