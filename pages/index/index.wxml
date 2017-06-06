@@ -3,7 +3,7 @@
     <image src="../../images/return.png" mode="aspectFit" class="shop_back" />
     <view class="shop_info clearfix">
       <view class="shop_tx"><image src="../../images/image_none.png" mode="scaleToFill" class="shop_tx" /></view>
-      <view class="shop_name">小雨服装店</view>
+      <view class="shop_name">{{title}}</view>
       <image src="../../images/return.png" mode="aspectFit" class="shop_into" />
     </view>
   </view>
@@ -11,43 +11,7 @@
 <!--分享的内容-->
 <view class="share_container clearfix">
 {{ids}}{{storeId}}
-  <view class="goods_container">
-    <navigator url="../grid/shop/goods_detail/goods_detail?orderid=1" class="content_container">
-      <image src="{{item.image ? item.image : '../../images/image_none.png'}}" mode="aspectFill" />
-      <view class="content_container_text">
-        <view class="content_container_title">1{{item.name}}</view>
-        <view class="content_container_info">
-          <view class="price">{{item.price}}</view>
-          <view class="info_other">
-            <view class="volume" wx:if="{{!item.volume}}">0</view>
-            <view class="volume" wx:if="{{item.volume}}">{{item.volume}}</view>
-            <view class="date">0{{item.timeUp}}</view>
-          </view>
-          <view class="clear"></view>
-        </view>
-      </view>
-      <view class="clear"></view>
-    </navigator>
-  </view>
-  <view class="goods_container">
-    <navigator url="../grid/shop/goods_detail/goods_detail?orderid=1" class="content_container">
-      <image src="{{item.image ? item.image : '../../images/image_none.png'}}" mode="aspectFill" />
-      <view class="content_container_text">
-        <view class="content_container_title">1{{item.name}}</view>
-        <view class="content_container_info">
-          <view class="price">{{item.price}}</view>
-          <view class="info_other">
-            <view class="volume" wx:if="{{!item.volume}}">0</view>
-            <view class="volume" wx:if="{{item.volume}}">{{item.volume}}</view>
-            <view class="date">0{{item.timeUp}}</view>
-          </view>
-          <view class="clear"></view>
-        </view>
-      </view>
-      <view class="clear"></view>
-    </navigator>
-  </view>
-  <view class="goods_container">
+  <view class="goods_container" wx:for="{{product}}">
     <navigator url="../grid/shop/goods_detail/goods_detail?orderid=1" class="content_container">
       <image src="{{item.image ? item.image : '../../images/image_none.png'}}" mode="aspectFill" />
       <view class="content_container_text">

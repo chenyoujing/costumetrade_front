@@ -3,24 +3,19 @@ var app = getApp()
 Page({
   data: {
     share_text:'',
-    ids:'',
     storeId:'',
+    product:[],
+    idArray:[]
   },
   // 获取选中的货品
   selected_goods:function(ids,storeId){
-    console.log(ids)
-    console.log(storeId)
-    this.setData({
-      ids: ids,
-      storeId: storeId,
-    })
     var that = this;
     wx.showNavigationBarLoading()
     util.api.request({
-      url: 'product/getProductDetail',
+      url: 'product/getShareProduct',
       data: {
         storeId: storeId,
-        id: ids
+        idArray: ids
       },
       method: 'POST',
       header: {
@@ -28,22 +23,11 @@ Page({
       },
       success: function (res) {
         wx.hideNavigationBarLoading();
-        console.log(res.data)
-        var product = that.data.product;
-        for (var p in ids) {
-          for (var j in product) {
-            if (ids[p] = product[j].id) {
-              product[j].splice(j, 1)
-            }
-          }
+        for (var p in res.data){
+          res.data[p].timeUp = util.toDate(res.data[p].timeUp)
         }
         that.setData({
-          product: product
-        })
-        wx.showToast({
-          title: '成功',
-          mask: true,
-          duration: 2000
+          product: res.data
         })
       }
     })
@@ -55,19 +39,16 @@ Page({
     })
   },
   // 分享
-  onShareAppMessage: function () {
-    var title = this.data.share_text
-    var ids = this.data.ids
-    var storeId = this.data.storeId
+  onShareAppMessage: function (e) {
+    var title = this.data.share_text;
+    var ids = this.data.idArray;
+    var storeId = this.data.storeId;
     if (!title){
       title = 'XXX店铺的分享'
     }
     return {
       title: title,
-      content:'sdfasfasdfsafsdafsadfasdf',
-      describe:'sdfasfasdfsafsdafsadfasdf',
-      bewrite:'sdfasfasdfsafsdafsadfasdf',
-      path: '/pages/index/index?ids=' + ids + '&storeId=' + storeId,
+      path: '/pages/index/index?ids=' + ids+ '&storeId=' + storeId+"&title="+title,
       success: function (res) {
         // 转发成功
       },
@@ -77,6 +58,10 @@ Page({
     }
   },
   onLoad: function (e) {
+    this.setData({
+      storeId: e.storeId,
+      idArray: e.ids
+    })
     this.selected_goods(e.ids, e.storeId)
   },
 })
