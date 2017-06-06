@@ -99,8 +99,10 @@
       </view>
       <view class="upload_input">
         <view class="imagesearch">
+        <navigator url="../GoodsImage/GoodsImage" hover-class="navigator-hover">
           <image src="../../../../images/search.png" mode="aspectFit" class="imagesearch_image" />
           <view class="imagesearch_text">网上搜索</view>
+          </navigator>
         </view>
         <view class="upload_input_text">视频:</view>
         <scroll-view scroll-x="true" class="image_container">
