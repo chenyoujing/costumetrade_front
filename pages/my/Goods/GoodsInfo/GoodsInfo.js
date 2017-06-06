@@ -82,7 +82,7 @@ Page({
   photoSubmit: function (file, i){
     var that = this;
     wx.uploadFile({
-      url: 'http://192.168.1.100:8088/product/uploadImage', 
+      url: 'http://192.168.2.221:8088/product/uploadImage', 
       filePath: file[i],
       name: 'file',
       success: function (res) {
