@@ -9,7 +9,7 @@
   float: left;
   padding: 12rpx;
   box-sizing:border-box;
-  width: 365rpx;
+  width: 375rpx;
 }
 .content_container{
   box-shadow: 0.5px 0.5px 2px #000000;
