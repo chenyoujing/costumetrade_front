@@ -272,7 +272,7 @@
 </scroll-view>
 
 <!--选物流-->
-<modal title="选物流" hidden="{{hiddenModal}}" confirm-text="确定" cancel-text="取消" bindconfirm="confirm" bindcancel="cancel" >
+<!--<modal title="选物流" hidden="{{hiddenModal}}" confirm-text="确定" no-cancel bindconfirm="confirm" bindcancel="cancel" >
   <view class="logistics_title" style="width:30%;">物流公司</view>
   <view class="logistics_title" style="width:45%;">单号</view>
   <view class="logistics_title" style="width:25%;">打印快递单</view>
@@ -287,4 +287,30 @@
     <navigator url="express/express" class="print_view">打印</navigator>
   </view>
   <input class="logistics_number" placeholder="单号" />
+</modal>-->
+
+
+<!--选物流-->
+<!--<modal title="选择物流" hidden="{{hiddenModal}}" confirm-text="确定" no-cancel bindconfirm="confirm" bindcancel="cancel" >
+  <view class="choose_container clearfix">
+    <view class="logistics_choose">
+      <view class="choose_view">打印快递面单</view>
+    </view>
+    <view class="logistics_choose">
+      <view class="choose_view">输入快递面单</view>
+    </view>
+  </view>
+</modal>-->
+
+
+<!--选物流-->
+<modal title="选择快递公司" hidden="{{hiddenModal}}" confirm-text="确定" no-cancel bindconfirm="confirm" bindcancel="cancel" >
+  <view class="choose_container clearfix">
+    <view class="logistics_choose">
+      <view class="choose_view">顺丰</view>
+    </view>
+    <view class="logistics_choose">
+      <view class="choose_view">韵达</view>
+    </view>
+  </view>
 </modal>

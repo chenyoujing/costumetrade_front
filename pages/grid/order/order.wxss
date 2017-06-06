@@ -256,3 +256,21 @@
   height: 28px;
   padding: 0 7px;
 }
+
+
+.choose_container{
+  padding: 0 -20px;
+}
+.logistics_choose{
+  width: 50%;
+  float: left;
+  text-align: center;
+}
+.choose_view{
+  background-color: #DCDCDC;
+  color: #000000;
+  font-size: 16px;
+  line-height: 40px;
+  display: inline-block;
+  padding: 0 8px;
+}
