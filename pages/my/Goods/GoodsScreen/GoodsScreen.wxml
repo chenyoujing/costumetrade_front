@@ -4,7 +4,7 @@
       <image src="../../../../images/return.png" mode="aspectFit" class="image_back" />
     </navigator>
     <view class="search_button">搜索</view>
-    <input class="title_input" type="text" name="search" placeholder="货号" bindinput="bindKeyInput" />
+    <input class="title_input" value='{{enterValue}}' type="text" name="search" placeholder="货号名称" bindinput="bindKeyInput" />
   </view>
 
 
@@ -12,25 +12,30 @@
 <view class="screen">
   <view class="screen_title">类别</view>
   <scroll-view scroll-y class="screen_container clearfix">
-    <view class="screen_view screen_checked">123</view>
-    <view class="screen_view screen_checked">123</view>
+    <block wx:for="{{screen_content2}}">
+      <view class="screen_view {{item.screen_checked?'screen_checked':''}}" data-index="{{index}}" data-type="cate" data-name="{{item.catename}}" bindtap="multipleSelect">{{item.catename}}</view>
+    </block>
   </scroll-view>
   <view class="screen_title">品牌</view>
   <scroll-view scroll-y class="screen_container clearfix">
-    <view class="screen_view">123</view>
+    <block wx:for="{{screen_content1}}">
+      <view class="screen_view {{item.screen_checked?'screen_checked':''}}" data-type="brand" data-index="{{index}}" data-name="{{item.brandname}}" bindtap="multipleSelect"> {{item.brandname}}</view>
+     </block>
   </scroll-view>
   <view class="screen_title">季节</view>
   <scroll-view scroll-y class="screen_container clearfix">
-    <view class="screen_view">春</view>
-    <view class="screen_view">夏</view>
-    <view class="screen_view">秋</view>
-    <view class="screen_view">冬</view>
+    <block wx:for="{{screen_content3}}">
+      <view class="screen_view {{season == item.value?'screen_checked':''}}" data-name="{{item.value}}" data-type="season" bindtap="radioSelect">
+      {{item.value}}
+      </view>
+     </block>
   </scroll-view>
   <view class="screen_title">状态</view>
   <scroll-view scroll-y class="screen_container clearfix">
-    <view class="screen_view">待处理</view>
-    <view class="screen_view">上架</view>
-    <view class="screen_view">下架</view>
-    <view class="screen_view">作废</view>
+    <block wx:for="{{screen_content4}}">
+      <view class="screen_view {{status == item.value?'screen_checked':''}}" data-type="status" data-name="{{item.value}}" bindtap="radioSelect">
+      {{item.value}}
+      </view>
+     </block>
   </scroll-view>
 </view>

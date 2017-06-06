@@ -17,13 +17,70 @@ Page({
       { name: '1', value: '待处理' },
       { name: '3', value: '报废' },
     ],
-    
+    cate:[],
+    brand:[],
+    season:'',
+    status:'',
+    enterValue:''
   },
-
-  onLoad: function (options) {
+  // 输入框操作
+  bindKeyInput:function(e){
+    var value = e.detail.value;
     this.setData({
-      screen_content1: app.screen_brandList,
-      screen_content2: app.screen_productTypeList,
+      enterValue: value
+    })
+  },
+  // 品牌、种类多选
+  multipleSelect:function(e){
+    var boolean2 = true;
+    var type = e.target.dataset.type;
+    var screen = e.target.dataset.type == 'cate' ? 'screen_content2' :'screen_content1';
+    var name = e.target.dataset.name; 
+    var index = e.target.dataset.index;
+    var object = {};
+    object[type] = this.data[type];
+    object[screen] = this.data[screen];
+    for (var p in object[type]){
+      if(object[type][p] == e.target.dataset.name){
+        object[type].splice(p,1);
+        object[screen][index].screen_checked = false;
+        boolean2 = false;
+        break;
+      }
+    }
+    if (boolean2){
+      object[type].push(name);
+      object[screen][index].screen_checked = true;
+    }
+    this.setData(object)
+  },
+   // 季节、状态多选
+  radioSelect:function(e){
+    var type = e.target.dataset.type;
+    var name = e.target.dataset.name; 
+    var object = {};
+    object[type] = name;
+    this.setData(object);
+    console.log(object);
+  },
+  searchClick:function(){
+    var getFilterData = {
+      filed: productTypeArray,
+      value: this.data.cate
+    }   
+  },
+  onLoad: function (options) {
+    var screen_content1 = app.screen_brandList;
+    var screen_content2 = app.screen_productTypeList;
+    for (var p in screen_content1){
+      screen_content1[p].screen_checked = false;
+    }
+    for (var p in screen_content2) {
+      screen_content2[p].screen_checked = false;
+    }
+    this.setData({
+      screen_content1: screen_content1,
+      screen_content2: screen_content2
     })
   }
 })

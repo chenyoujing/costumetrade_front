@@ -184,12 +184,14 @@ Page({
       if (boolean) {
         this.data.getFilterData.push({
           filed: data,
-          value: screen,
-          pageNum: 1,
-          product: [],
-          requestSwitch: true
+          value: screen
         })
       }
+      this.setData({
+        pageNum: 1,
+        product: [],
+        requestSwitch: true
+      })
       this.page_request();
     }
   },
