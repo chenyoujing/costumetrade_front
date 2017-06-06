@@ -9,7 +9,7 @@
     <navigator url="../Goods/GoodsScreen/GoodsScreen" hover-class="navigator-hover">
       <image src="../../../images/preparation.png" mode="aspectFit" class="title_image" style="margin-left:10px;" />
     </navigator>
-    <input class="title_input" type="text" name="search" placeholder="货号" bindinput="bindKeyInput" />
+    <input class="title_input" disabled="true" type="text" name="search" placeholder="货号" bindtap="bindKeyInput" />
   </view>
   <view class="screen_cover" bindtap="screen_close" animation="{{screen_opacity}}" style="display:{{screen_display}};"></view>
   <view class="condition">

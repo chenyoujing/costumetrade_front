@@ -12,9 +12,10 @@ Page({
       { name: 'SEASON_WINTER', value: '冬' },
     ],
     screen_content4: [
-      { name: '0', value: '正常' },
+      { name: '0', value: '上架' },
+      { name: '2', value: '下架' },
       { name: '1', value: '待处理' },
-      { name: '2', value: '报废' },
+      { name: '3', value: '报废' },
     ],
     state: 'timeUpOp',
     Op: 'desc',
@@ -196,8 +197,11 @@ Page({
     }
   },
   bindKeyInput: function (e) {
-    this.setData({
-      code: e.detail.value
+    // this.setData({
+    //   code: e.detail.value
+    // })
+    wx.navigateTo({
+      url: '../Goods/GoodsScreen/GoodsScreen' 
     })
   },
   //搜索货号
@@ -394,9 +398,12 @@ Page({
     var newProduct = this.data.product;
     console.log(app)
     if (app.newid) {
+      this.setData({
+        pageNum:1
+      })
       this.page_request();
       app.newid = "";
-    } else {
+    } else if (app.updataGoodsInfo){
       for (var p in newProduct) {
         if (newProduct[p].id == app.updataGoodsInfo.id) {
           newProduct[p].name = app.updataGoodsInfo.name;
@@ -407,6 +414,16 @@ Page({
         product: newProduct
       })
       app.updataGoodsInfo = {};
+    } else if (app.getFilterData.length > 0) {
+      console.log(11)
+      this.setData({
+        pageNum: 1,
+        product: [],
+        requestSwitch: true,
+        getFilterData: app.getFilterData
+      })
+      this.page_request();
+      app.getFilterData = [];
     }
   }
 });

@@ -54,20 +54,46 @@ Page({
     }
     this.setData(object)
   },
-   // 季节、状态多选
+   // 季节、状态单选
   radioSelect:function(e){
     var type = e.target.dataset.type;
     var name = e.target.dataset.name; 
     var object = {};
     object[type] = name;
     this.setData(object);
-    console.log(object);
   },
   searchClick:function(){
-    var getFilterData = {
-      filed: productTypeArray,
+    var season =[];
+    season.push(this.data.season);
+    var status = [];
+    status.push(this.data.status);
+    var getFilterData = [
+      {
+      filed: 'productTypeArray',
       value: this.data.cate
-    }   
+      },
+      {
+        filed: 'productBrandArray',
+        value: this.data.brand
+      }      
+    ] 
+    if (this.data.season !== ''){
+      getFilterData.push({
+        filed: 'productSeasonArray',
+        value: season
+      })
+    }  
+    if (this.data.status !== '') {
+      getFilterData.push({
+        filed: 'status',
+        value: status
+      })
+    };
+    app.getFilterData = getFilterData;
+    console.log(app.getFilterData)
+    wx.navigateBack({
+      delta: 1
+    })  
   },
   onLoad: function (options) {
     var screen_content1 = app.screen_brandList;
