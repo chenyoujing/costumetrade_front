@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/my/Goods/Goods",
     "pages/grid/shop/shop",
     "pages/grid/user/user",
     "pages/grid/info/info",
@@ -22,7 +23,7 @@
     "pages/my/openOrder/unitSelect/unitSelect",
     "pages/my/client/client",
     "pages/index/index",
-    "pages/my/Goods/Goods",
+    
     "pages/my/Goods/GoodsInfo/GoodsInfo",
     "pages/my/Goods/GoodsBrand/GoodsBrand",
     "pages/my/Goods/GoodsBrandAdd/GoodsBrandAdd",
