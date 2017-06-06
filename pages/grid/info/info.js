@@ -8,6 +8,7 @@ Page({
     ],
     nav_right: ['↑', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '#',],
     infotype:'0',
+    nav_position:'relative',
   },
   infotype: function(e){
     this.setData({
