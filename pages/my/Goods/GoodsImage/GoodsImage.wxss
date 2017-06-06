@@ -78,6 +78,7 @@
   width: 70px !important;
   height: 70px !important;
   margin: auto;
+  z-index: -1;
 }
 .image_submit{
   font-size: 16px;
