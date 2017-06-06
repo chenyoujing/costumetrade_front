@@ -33,6 +33,7 @@
     "pages/my/Goods/Goodstock/Goodstock",
     "pages/my/Goods/GoodsUpdate/GoodsUpdate",
     "pages/my/Goods/GoodsShare/GoodsShare",
+    "pages/my/Goods/GoodsScreen/GoodsScreen",
     "pages/grid/shop/mall/mall",
     "pages/grid/shop/shoppingcard/shoppingcard",
     "pages/grid/shop/goods_detail/goods_detail",

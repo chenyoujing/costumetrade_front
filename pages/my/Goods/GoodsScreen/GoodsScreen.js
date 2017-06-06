@@ -1,66 +1,29 @@
 // pages/my/Goods/GoodsScreen/GoodsScreen.js
+var util = require('../../../../utils/util.js')
+var app = getApp()
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
-  
+    screen_content1: [],
+    screen_content2: [],
+    screen_content3: [
+      { name: 'SEASON_SPRING', value: '春' },
+      { name: 'SEASON_SUMMER', value: '夏' },
+      { name: 'SEASON_AUTUMN', value: '秋' },
+      { name: 'SEASON_WINTER', value: '冬' }
+    ],
+    screen_content4: [
+      { name: '0', value: '上架' },
+      { name: '2', value: '下架' },
+      { name: '1', value: '待处理' },
+      { name: '3', value: '报废' },
+    ],
+    
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
   onLoad: function (options) {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-  
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-  
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-  
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-  
+    this.setData({
+      screen_content1: app.screen_brandList,
+      screen_content2: app.screen_productTypeList,
+    })
   }
 })
