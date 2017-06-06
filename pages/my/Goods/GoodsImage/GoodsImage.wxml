@@ -13,27 +13,27 @@
 
     <view class="image_container">
       <image src="../../../../images/search_image.png" mode="aspectFit" class="image_bg" />
-      <image src="" class="image_container_image" />
+      <image src="" class="image_container_image" mode="aspectFill" bindtap="chooseImg" data-src="{{src}}" />
     </view>
     <view class="image_container">
       <image src="../../../../images/search_image.png" mode="aspectFit" class="image_bg" />
-      <image src="" class="image_container_image" />
+      <image src="" class="image_container_image" mode="aspectFill" bindtap="chooseImg" data-src="1" />
     </view>
     <view class="image_container">
       <image src="../../../../images/search_image.png" mode="aspectFit" class="image_bg" />
-      <image src="" class="image_container_image" />
+      <image src="" class="image_container_image" mode="aspectFill" bindtap="chooseImg" data-src="1" />
     </view>
     <view class="image_container">
       <image src="../../../../images/search_image.png" mode="aspectFit" class="image_bg" />
-      <image src="" class="image_container_image" />
+      <image src="" class="image_container_image" mode="aspectFill" bindtap="chooseImg" data-src="1" />
     </view>
     <view class="image_container">
       <image src="../../../../images/search_image.png" mode="aspectFit" class="image_bg" />
-      <image src="" class="image_container_image" />
+      <image src="" class="image_container_image" mode="aspectFill" bindtap="chooseImg" data-src="1" />
     </view>
     <view class="image_container">
       <image src="../../../../images/search_image.png" mode="aspectFit" class="image_bg" />
-      <image src="" class="image_container_image" />
+      <image src="" class="image_container_image" mode="aspectFill" bindtap="chooseImg" data-src="1" />
     </view>
 
   </view>
