@@ -1,0 +1,37 @@
+<view class="modal2_cover" bindtap="brand_modal_close" animation="{{brand_modal_opacity}}" style="display:{{brand_modal}};"></view>
+<view class="modal2" animation="{{brand_modal_opacity}}" style="display:{{brand_modal}};">
+  <view class="modal_header">代替图片</view>
+  <navigator open-type="navigateBack">
+    <image src="../../../../images/amputate.png" mode="aspectFit" class="image_close" />
+  </navigator>
+  <!--<view class="search">
+    <input class="title_input" type="text" name="search" placeholder="输入文件名" bindinput="bindKeyInput" />
+    <image mode="aspectFit" src="../../../../images/search.png" class="image_search" />
+  </view>-->
+
+  <view class="image_content clearfix" bindtap="submitGoodsInfo">
+
+    <view class="image_container">
+      <image src="../../../../images/search_image.png" mode="aspectFit" class="image_bg" />
+      <image src="{{image}}" class="image_container_image" mode="aspectFill" bindtap="chooseImg" data-index="image" />
+    </view>
+    <view class="image_container">
+      <image src="../../../../images/search_image.png" mode="aspectFit" class="image_bg" />
+      <image src="{{image1}}" class="image_container_image" mode="aspectFill" bindtap="chooseImg" data-index="image1" />
+    </view>
+    <view class="image_container">
+      <image src="../../../../images/search_image.png" mode="aspectFit" class="image_bg" />
+      <image src="{{image2}}" class="image_container_image" mode="aspectFill" bindtap="chooseImg" data-index="image2" />
+    </view>
+    <view class="image_container">
+      <image src="../../../../images/search_image.png" mode="aspectFit" class="image_bg" />
+      <image src="{{image3}}" class="image_container_image" mode="aspectFill" bindtap="chooseImg" data-index="image3" />
+    </view>
+    <view class="image_container">
+      <image src="../../../../images/search_image.png" mode="aspectFit" class="image_bg" />
+      <image src="{{image4}}" class="image_container_image" mode="aspectFill" bindtap="chooseImg" data-index="image4" />
+    </view>
+
+  </view>
+  <button class="image_submit" bindtap="submit">确定</button>
+</view>
