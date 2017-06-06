@@ -1,11 +1,11 @@
 .title{
   background-color: #52CAC1;
   padding: 15px 20px;
+  padding-right: 0;
   position: relative;
   z-index: 3;
 }
 .title_input{
-  margin-right: 20%;
   margin-left: 2%; 
   background-color: #ffffff;
   font-family: Microsoft YaHei;
@@ -14,23 +14,17 @@
   height:27px;
   min-height:27px;
 }
-.image_search,.image_add,.image_more{
-  position: absolute;
-  top: 0;
-  right: 25%;
-  bottom: 0;
-  margin: auto;
+.image_search,.title_image{
+  float: right;
   background-color: transparent;
   width: 16px;
   height: 16px;
   z-index: 3;
   padding: 10px;
 }
-.image_add{
-  right: 10%;
-}
-.image_more{
-  right: 0%;
+.image_search{
+  position: absolute;
+  right: 118px;
 }
 .title button{
   width: 50px;
@@ -284,7 +278,7 @@ button::after{
   text-align: right;
 }
 .volume::before{
-  content: "销量："
+  content: "30天销量："
 }
 /*模态框*/
 .modal_cover{

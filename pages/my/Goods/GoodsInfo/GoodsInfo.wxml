@@ -73,7 +73,7 @@
           </picker-view>
       </view>
       <view class="upload_input">
-        <navigator url="../GoodsImage/GoodsImage" class="imagesearch">
+        <navigator url="../GoodsImage/GoodsImage?productName={{GoodsInfoData.name}}" class="imagesearch">
           <image src="../../../../images/search.png" mode="aspectFit" class="imagesearch_image" />
           <view class="imagesearch_text">网上搜索</view>
         </navigator>
@@ -81,6 +81,7 @@
         <scroll-view scroll-x="true" class="image_container">
           <view class="image_content" bindtap="chooseImg">
            <image src="{{GoodsInfoData.image}}" mode="aspectFill" data-index="image" class="" />
+           <image src="../../../../images/add_image.png" mode="aspectFit" class="image_bg" />
           </view>
           <view class="image_content" bindtap="chooseImg">
            <image src="{{GoodsInfoData.Image1}}" mode="aspectFill" data-index="Image1" class="" />
@@ -98,12 +99,10 @@
         <view class="clear"></view>
       </view>
       <view class="upload_input">
-        <view class="imagesearch">
-        <navigator url="../GoodsImage/GoodsImage" hover-class="navigator-hover">
+        <navigator url="../GoodsImage/GoodsImage?productName={{GoodsInfoData.name}}" class="imagesearch">
           <image src="../../../../images/search.png" mode="aspectFit" class="imagesearch_image" />
           <view class="imagesearch_text">网上搜索</view>
-          </navigator>
-        </view>
+        </navigator>
         <view class="upload_input_text">视频:</view>
         <scroll-view scroll-x="true" class="image_container">
           <view class="image_content" bindtap="chooseVideo">

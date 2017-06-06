@@ -13,6 +13,8 @@
   line-height: 24px;
   padding: 8px;
   text-align: center;
+  background-color: #52CAC1;
+  color: #ffffff;
 }
 .image_close{
   position: absolute;
@@ -58,13 +60,24 @@
   text-align: center;
   padding: 10px 0;
   display: block;
+  position: relative;
 }
-.image_container image{
+.image_container_image{
   width: 100px;
   height: 100px;
   border: 1px solid #52CAC1;
   display: block;
   margin: 0 auto;
+}
+.image_bg{
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 70px !important;
+  height: 70px !important;
+  margin: auto;
 }
 .image_submit{
   font-size: 16px;

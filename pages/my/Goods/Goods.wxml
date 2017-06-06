@@ -1,13 +1,15 @@
 <!--pages/my/Goods/Goods.wxml-->
 <view style="overflow:hidden; min-height:100vh;">
-  <view class="title">
-    <input class="title_input" type="text" name="search" placeholder="货号" bindinput="bindKeyInput" />
+  <view class="title clearfix">
     <image bindtap="packPageFilterCode" mode="aspectFit" src="../../../images/search.png" class="image_search" />
+    <image src="../../../images/more.png" mode="aspectFit" class="title_image" bindtap="more_function" />
     <navigator url="../Goods/GoodsInfo/GoodsInfo?ID=null" hover-class="navigator-hover">
-      <image src="../../../images/add.png" mode="aspectFit" class="image_add" />
+      <image src="../../../images/add.png" mode="aspectFit" class="title_image" />
     </navigator>
-    <image src="../../../images/more.png" mode="aspectFit" class="image_more" bindtap="more_function" />
-    <view class="clear"></view>
+    <navigator url="../Goods/GoodsScreen/GoodsScreen" hover-class="navigator-hover">
+      <image src="../../../images/preparation.png" mode="aspectFit" class="title_image" style="margin-left:10px;" />
+    </navigator>
+    <input class="title_input" type="text" name="search" placeholder="货号" bindinput="bindKeyInput" />
   </view>
   <view class="screen_cover" bindtap="screen_close" animation="{{screen_opacity}}" style="display:{{screen_display}};"></view>
   <view class="condition">
@@ -130,7 +132,7 @@
   <view class="batch_button" bindtap="batch_delete_sure" style="height:{{delete_button}}px;">删除</view>
   <!--分析按钮-->
   <view class="batch_button_ok" bindtap="batch_share_ok" style="height:{{share_button}}px;">取消</view>
-  <view class="batch_button" bindtap="batch_share_sure" style="height:{{share_button}}px;">分享</view>
+  <view class="batch_button bg_g" bindtap="batch_share_sure" style="height:{{share_button}}px;">分享</view>
   <!--批量修改按钮-->
   <view class="batch_button_ok" bindtap="batch_update_ok" style="height:{{update_button}}px;">完成</view>
   <view class="batch_button" bindtap="batch_update_sure" style="height:{{update_button}}px;">修改</view>
@@ -144,3 +146,5 @@
   <view class="more_function_view" bindtap="batch_share">分享图片</view>
   <view class="more_function_view" bindtap="batch_update">批量修改</view>
 </view>
+
+

@@ -1,0 +1,29 @@
+  <view class="title clearfix">
+    <image bindtap="packPageFilterCode" mode="aspectFit" src="../../../../images/search.png" class="image_search" />
+    <navigator open-type="navigateBack" hover-class="navigator-hover">
+      <image src="../../../../images/return.png" mode="aspectFit" class="image_back" />
+    </navigator>
+    <view class="search_button">搜索</view>
+    <input class="title_input" type="text" name="search" placeholder="货号" bindinput="bindKeyInput" />
+  </view>
+
+
+<!--筛选-->
+<view class="screen">
+  <view class="screen_title">类别</view>
+  <scroll-view scroll-y class="screen_container clearfix">
+    <view class="screen_view screen_checked">123</view>
+  </scroll-view>
+  <view class="screen_title">品牌</view>
+  <scroll-view scroll-y class="screen_container clearfix">
+    <view class="screen_view">123</view>
+  </scroll-view>
+  <view class="screen_title">季节</view>
+  <scroll-view scroll-y class="screen_container clearfix">
+    <view class="screen_view">123</view>
+  </scroll-view>
+  <view class="screen_title">状态</view>
+  <scroll-view scroll-y class="screen_container clearfix">
+    <view class="screen_view">123</view>
+  </scroll-view>
+</view>
