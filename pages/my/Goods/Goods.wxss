@@ -221,6 +221,10 @@ button::after{
   right: 50%;
   border-right: 2px solid #ffffff;
 }
+.bg_g{
+  background-color: #52CAC1;
+  color: #ffffff;
+}
 
 
 
