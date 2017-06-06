@@ -32,7 +32,44 @@ Page({
     changPrice_index:0,
     updataAut:false,
     firstBoolean:true,
-    perImgSrc:'image'
+    perImgSrc:'image',
+    fileList:[
+      {
+        storeId: 1,
+        filename: 'image',
+        url: '',
+        productName: '',
+        resizeFixUrl:""
+      },
+      {
+        storeId: 1,
+        filename: 'image1',
+        url: '',
+        productName: '',
+        resizeFixUrl: ""
+      },
+      {
+        storeId: 1,
+        filename: 'image2',
+        url: '',
+        productName: '',
+        resizeFixUrl: ""
+      },
+      {
+        storeId: 1,
+        filename: 'image3',
+        url: '',
+        productName: '',
+        resizeFixUrl: ""
+      },
+      {
+        storeId: 1,
+        filename: 'image4',
+        url: '',
+        productName: '',
+        resizeFixUrl: ""
+      }
+    ]
   },
   // 返回
   backdelta: function () {
@@ -88,17 +125,23 @@ Page({
       success: function (res) {
         console.log(JSON.stringify(res));
         var url = "http://117.149.24.42:8788" + JSON.parse(res.data).data.url;
+        var resizeFixUrl = "http://117.149.24.42:8788" + JSON.parse(res.data).data.resizeFixUrl;
         var param = that.data.GoodsInfoData;
-        console.log(url);
+        var fileArray = that.data.fileList;
         param[that.data.perImgSrc] = url;
+        for (var p in fileArray){
+          if (fileArray[p].filename == that.data.perImgSrc){
+            fileArray[p].url = url;
+            fileArray[p].resizeFixUrl = resizeFixUrl;
+          }
+        }
         that.setData({
-          GoodsInfoData:param
+          GoodsInfoData:param,
+          fileList: fileArray
         }) 
-        console.log(param);
       }
     })
   },
-
   // 选择图片
   chooseImg: function (e) {
     var that = this;
@@ -220,6 +263,16 @@ Page({
     target.video1 = this.data.GoodsInfoData.video1;
     target.video2 = this.data.GoodsInfoData.video2;
     target.video3 = this.data.GoodsInfoData.video3;
+    target.fileList = this.data.fileList;
+    console.log(target.fileList)
+    console.log(this.data.fileList)
+    for (var p = target.fileList.length - 1;p>=0;p--){
+      if (target.fileList[p].url !== ''){
+        target.fileList[p].productName = target.name
+      }else{
+        target.fileList.splice(p,1)
+      }
+    }
     for (var p in app.screen_productTypeList) {
       if (app.screen_productTypeList[p].catename == target.producttype) {
         target.producttype = app.screen_productTypeList[p].id;
