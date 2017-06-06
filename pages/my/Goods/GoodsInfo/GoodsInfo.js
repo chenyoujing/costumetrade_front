@@ -242,7 +242,7 @@ Page({
         });
        
         that.gradeCate();
- 
+        that.GoodsImage();
       }
     })
   },
@@ -442,6 +442,21 @@ Page({
       url: url
     })
   },
+  // 搜索图片
+  GoodsImage: function () {
+    app.imageinfo = {}
+    if (this.data.GoodsInfoData.id) {
+      console.log(11)
+      app.imageinfo.image = this.data.GoodsInfoData.image
+      app.imageinfo.image1 = this.data.GoodsInfoData.image1
+      app.imageinfo.image2 = this.data.GoodsInfoData.image2
+      app.imageinfo.image3 = this.data.GoodsInfoData.image3
+      app.imageinfo.image4 = this.data.GoodsInfoData.image4
+      app.imageinfo.id = this.data.GoodsInfoData.id
+    }
+    app.imageinfo.storeId = this.data.GoodsInfoData.storeId
+    app.imageinfo.productName = this.data.GoodsInfoData.productName
+  },
   onLoad: function (options) {
     this.setData({
       screen_brandList: app.screen_brandList,
@@ -472,6 +487,7 @@ Page({
       this.showGoodsInfo();
     }else{
       this.gradeCate();
+      this.GoodsImage();
     }
   },
   onShow:function() {
