@@ -12,10 +12,9 @@ Page({
       { name: 'SEASON_WINTER', value: '冬' },
     ],
     screen_content4: [
-      { name: '0', value: '上架' },
+      { name: '0', value: '正常' },
       { name: '1', value: '待处理' },
-      { name: '2', value: '下架' },
-      { name: '3', value: '报废' },
+      { name: '2', value: '报废' },
     ],
     state: 'timeUpOp',
     Op: 'desc',
@@ -39,8 +38,7 @@ Page({
     delete_button: '0',
     update_button: '0',
     share_button: '0',
-    ids:[],
-    aa:''
+    ids: []
   },
   // 请求数据函数
   page_request: function () {
@@ -256,8 +254,10 @@ Page({
   // 批量删除
   batch_delete: function () {
     this.setData({
-      select_checkbox:'50',
-      delete_button: '40'
+      select_checkbox: '50',
+      delete_button: '40',
+      update_button: '0',
+      share_button: '0'
     })
     this.more_function_close();
   },
@@ -265,10 +265,10 @@ Page({
   batch_delete_ok: function () {
     this.setData({
       select_checkbox: '0',
-      delete_button: '0'
+      delete_button: '0',
+      reset: false,
     })
   },
-  // 确认删除货品
   batch_delete_sure: function () {
     this.delectRequest()
   },
@@ -286,14 +286,25 @@ Page({
   batch_share_ok: function () {
     this.setData({
       select_checkbox: '0',
-      share_button: '0'
+      share_button: '0',
+      reset: false,
     })
   },
   // 进入分享页面
   batch_share_sure: function () {
-    wx.navigateTo({
-      url: '',
-    })
+    var idsArray = this.data.ids;
+    var storeId = '1'
+    if (idsArray.length == 0) {
+      wx.showToast({
+        title: '请勾选要分享的货品',
+        mask: true,
+        duration: 2000
+      })
+    } else {
+      wx.navigateTo({
+        url: 'GoodsShare/GoodsShare?ids=' + idsArray + '&storeId=' + storeId,
+      })
+    }
   },
   // 批量修改
   batch_update: function () {
@@ -309,45 +320,43 @@ Page({
   batch_update_ok: function () {
     this.setData({
       select_checkbox: '0',
-      update_button: '0'
+      update_button: '0',
+      reset: false,
     })
   },
   // 进入批量修改页面
   batch_update_sure: function () {
-    this.setData({
-      select_checkbox: '0',
-      update_button: '0'
-    })
     wx.navigateTo({
-      url: 'GoodsUpdate/GoodsUpdate?ids='+this.data.ids,
+      url: 'GoodsUpdate/GoodsUpdate',
     })
-  },  
-  delete_container:function(e){
+  },
+  delete_container: function (e) {
     var ids = e.target.dataset.id;
     var boolean2 = true;
     var idsArray = this.data.ids;
-    for (var p in idsArray){
-      if(idsArray[p] == ids){
-        idsArray.splice(p,1);
+    for (var p in idsArray) {
+      if (idsArray[p] == ids) {
+        idsArray.splice(p, 1);
         boolean2 = false;
         break;
       }
     }
-    if (boolean2){
+    if (boolean2) {
       idsArray.push(ids)
     }
     this.setData({
       ids: idsArray
     })
+
     console.log(idsArray)
   },
-  delectRequest:function(){
+  delectRequest: function () {
     var that = this;
     wx.showNavigationBarLoading()
     util.api.request({
       url: 'product/updateProducts',
       data: {
-        storeId: 1,
+        openid: app.globalData.openid,
         idArray: that.data.ids
       },
       method: 'POST',
@@ -357,16 +366,15 @@ Page({
       success: function (res) {
         wx.hideNavigationBarLoading();
         var product = that.data.product;
-        for (var p in that.data.ids) {
+        for (var p in ids) {
           for (var j in product) {
-            if (that.data.ids[p] == product[j].id) {
-              product.splice(j, 1)
+            if (ids[p] = product[j].id) {
+              product[j].splice(j, 1)
             }
           }
         }
         that.setData({
-          product: product,
-          aa:false
+          product: product
         })
         wx.showToast({
           title: '成功',
@@ -390,7 +398,6 @@ Page({
       for (var p in newProduct) {
         if (newProduct[p].id == app.updataGoodsInfo.id) {
           newProduct[p].name = app.updataGoodsInfo.name;
-          newProduct[p].image = app.updataGoodsInfo.image;
           break;
         }
       }
