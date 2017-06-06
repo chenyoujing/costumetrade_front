@@ -80,8 +80,8 @@
         <view class="upload_input_text">图片:</view>
         <scroll-view scroll-x="true" class="image_container">
           <view class="image_content" bindtap="chooseImg">
-           <image src="{{GoodsInfoData.image}}" mode="aspectFill" data-index="image" class="" />
            <image src="../../../../images/add_image.png" mode="aspectFit" class="image_bg" />
+           <image src="{{GoodsInfoData.image}}" mode="aspectFill" data-index="image" class="" />
           </view>
           <view class="image_content" bindtap="chooseImg">
            <image src="{{GoodsInfoData.Image1}}" mode="aspectFill" data-index="Image1" class="" />

@@ -155,6 +155,7 @@
   left: 10px;
   bottom: 10px;
   width: 19%;
+  padding: 10px 0;
 }
 .imagesearch_image{
   display: block;
@@ -196,6 +197,7 @@
   width: 25px !important;
   height: 25px !important;
   margin: auto;
+  z-index: -1;
 }
 .image_content video{
   width: 100%;
