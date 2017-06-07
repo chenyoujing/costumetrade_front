@@ -1,12 +1,14 @@
 {
   "pages": [
+    "pages/grid/order/order",
     "pages/grid/shop/shop",
     "pages/grid/user/user",
     "pages/grid/info/info",
-    "pages/grid/order/order",
+   
     "pages/grid/order/express/express",
     "pages/grid/order/comment/comment",
     "pages/grid/order/orderDetails/orderDetails",
+    "pages/grid/order/payOrder/payOrder",
     "pages/grid/user/dictionary/dictionary",
     "pages/grid/user/goodsLevel/goodsLevel",
     "pages/grid/user/customerType/customerType",

@@ -1,30 +1,32 @@
 <!--头部-->
 <view class="pay_title">
-  总价: ￥1250.60
+  总价: ￥{{pay}}
+<navigator open-type="navigateBack" hover-class="navigator-hover">
   <image src="../../../../images/close.png" mode="aspectFit" class="pay_title_image" />
+  </navigator>
 </view>
 <view class="pay_method">
   <view class="method_title">支付方式</view>
   <view class="method_view">
-    <view class="method_name {{method == '0' ? 'method_active' : ''}}" bindtap="method" data-method="0">微信</view>
+    <view class="method_name {{method == '4' ? 'method_active' : ''}}" bindtap="method" data-method="4" data-index="0">微信</view>
   </view>
   <view class="method_view">
-    <view class="method_name {{method == '1' ? 'method_active' : ''}}" bindtap="method" data-method="1">支付宝</view>
+    <view class="method_name {{method == '2' ? 'method_active' : ''}}" bindtap="method" data-method="2" data-index="1">支付宝</view>
   </view>
   <view class="method_view">
-    <view class="method_name {{method == '2' ? 'method_active' : ''}}" bindtap="method" data-method="2">转账</view>
+    <view class="method_name {{method == '3' ? 'method_active' : ''}}" bindtap="method" data-method="3" data-index="2">转账</view>
   </view>
   <view class="clear"></view>
   <view class="method_prompt" bindtap="method">
-    <text hidden="{{method != '0'}}">长按二维码识别图片付款</text>
-    <text hidden="{{method != '1'}}">长按二维码保存 > 打开支付宝 > 点击扫一扫 > 选择相册</text>
-    <text hidden="{{method != '2'}}">以下是对方账户信息</text>
+    <text hidden="{{method !== '4'}}">长按二维码识别图片付款</text>
+    <text hidden="{{method !== '2'}}">长按二维码保存 > 打开支付宝 > 点击扫一扫 > 选择相册</text>
+    <text hidden="{{method !== '3'}}">以下是对方账户信息</text>
   </view>
 </view>
 
 <!--支付内容-->
-<swiper class="pay_swiper" current="{{method}}" bindchange="method_swiper">
-    <swiper-item>
+<swiper class="pay_swiper" current="{{index}}" bindchange="method_swiper">
+    <swiper-item >
       <image src="../../../../images/image_none.png" mode="aspectFit" class="pay_image" />
     </swiper-item>
     <swiper-item>
@@ -41,6 +43,6 @@
 
 <!--底部浮动-->
 <view class="shopping_cart_container">
-  <view class="pay_button1" bindtap="pay" data-pay="本次不支付">本次不支付</view>
-  <view class="pay_button2" bindtap="pay" data-pay="本次已支付">本次已支付</view>
+  <view class="pay_button1" bindtap="changeOrderStatus" data-pay="1">本次不支付</view>
+  <view class="pay_button2" bindtap="changeOrderStatus" data-pay="2">本次已支付</view>
 </view>

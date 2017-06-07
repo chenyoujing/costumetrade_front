@@ -9,12 +9,12 @@ Page({
     openid: 1,
     url:"order/getOrders",
     statusUrl:'order/orderOperate',
-    payurl:"order/getOrders",
     loadMore: true,
     requestSwitch: true,
     logisticsModal: true,
     numberModal: true,
     expressModal: true,
+    countNum:{}
   },
   // 一级标签切换
   ordertype:function(e){
@@ -90,10 +90,6 @@ Page({
        buyerstoreid: orderInfo.buyerstoreid,
        openid: 1
      };
-     if (orderInfo.orderno == 2){
-       param.pay = orderInfo.pay;
-       param.payType = 4;
-     }
      console.log(orderInfo)
      wx.showModal({
        title: '提示',
@@ -102,7 +98,7 @@ Page({
          if (res.confirm) {
            wx.showNavigationBarLoading();
            util.api.request({
-             url: orderInfo.orderno == 2?that.data.payurl:that.data.statusUrl,
+             url: that.data.statusUrl,
              data: {
                orderNo: orderInfo.orderno,
                operate: orderInfo.status,
@@ -127,6 +123,29 @@ Page({
        }
      })
     
+  },
+  // 加载订单列表页面汇总数量
+  countOrders:function(){
+    var that = this;
+    wx.showNavigationBarLoading();
+    util.api.request({
+      url: "order/countOrders",
+      data: {
+        openid:1,
+      },
+      method: 'POST',
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      success: function (res) {
+        console.log(res.data)
+        that.setData({
+          countNum:res.data
+        })
+        
+      }
+    })
+   
   },
   // 选物流模态框
   logisticsView: function () {
@@ -169,6 +188,7 @@ Page({
     }
   },
   onLoad:function(){
-    this.order_request()
+    this.order_request();
+    this.countOrders()
   }
 })
