@@ -27,7 +27,10 @@ radio,checkbox{
   text-overflow:ellipsis;
 
 }
-
+/*input必填*/
+.required{
+  color: #ff0000;
+}
 .clear{
   clear: both;
 }
