@@ -4,7 +4,7 @@
   <view class="name">NICK</view>
   <image src="../../../images/image_none.png" mode="aspectFill" class="tx" />
   <image src="../../../images/order-form.png" mode="aspectFit" class="order_title_image" >
-    <view class="prompt">3</view>
+    <view class="prompt">{{countNum.ordersCount}}</view>
   </image>
   <image src="../../../images/message.png" mode="aspectFit" class="order_title_image" >
     <view class="prompt" style="left:10px;">3</view>
@@ -312,5 +312,18 @@
     <view class="logistics_choose">
       <navigator url="express/express" class="choose_view">韵达</navigator>
     </view>
+  </view>
+</modal>
+
+<!--收付款-->
+<modal title="收款" hidden="{{expressModal}}" confirm-text="取消" no-cancel bindconfirm="cancel" bindcancel="cancel" >
+  <view class="choose_container clearfix" style="padding:20px 20px;">
+    <picker class="logistics_picker" range="">
+      <view class="picker">
+      现金
+      <image src="../../../../images/down.png" mode="aspectFit" class="picker_image" />
+    </view>
+  </picker>
+     <input class="logistics_number" placeholder="输入金额" />
   </view>
 </modal>

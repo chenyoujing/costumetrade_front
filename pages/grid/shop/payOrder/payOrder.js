@@ -20,7 +20,10 @@ Page({
   changeOrderStatus: function (e) {
     var orderInfo = e.target.dataset;
     var that = this;
-    console.log(orderInfo)
+    if (orderInfo.pay == "2") {
+      app.payOrderno = this.data.orderno;
+
+    }
     wx.showModal({
       title: '确认下单',
       content: '确认后将会下单？',

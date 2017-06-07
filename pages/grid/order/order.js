@@ -189,6 +189,28 @@ Page({
   },
   onLoad:function(){
     this.order_request();
-    this.countOrders()
+    this.countOrders();
+  },
+  onShow:function(){
+    if (app.payOrderno){
+      var product = this.data.product;
+      var totole = this.data.countNum;
+      console.log(app.payOrderno)
+      for (var p in product){
+        if (product[p].payorderno == app.payOrderno){
+          product.splice(p,1);
+          totole.pNoPayCount -=1; 
+          totole.pNoShipCount += 1; 
+          this.setData({
+            product: product,
+            countNum: totole
+          })
+          console.log(app.payOrderno)
+          break;
+        }
+      }
+      
+      app.payOrderno = ""
+    }
   }
 })
