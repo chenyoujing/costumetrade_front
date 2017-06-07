@@ -95,7 +95,17 @@ Page({
       delta: 1
     })  
   },
+  downData:function(){
+    util.api.downData();
+    wx.getStorage({
+      key: 'GoodsData',
+      success: function (res) {
+        console.log(res.data)
+      }
+    })
+  },
   onLoad: function (options) {
+    this.downData()
     var screen_content1 = app.screen_brandList;
     var screen_content2 = app.screen_productTypeList;
     for (var p in screen_content1){

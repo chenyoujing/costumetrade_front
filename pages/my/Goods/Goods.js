@@ -414,7 +414,7 @@ Page({
         product: newProduct
       })
       app.updataGoodsInfo = {};
-    } else if (app.getFilterData.length > 0) {
+    } else if (app.getFilterData) {
       console.log(11)
       this.setData({
         pageNum: 1,

@@ -73,7 +73,7 @@
           </picker-view>
       </view>
       <view class="upload_input">
-        <navigator url="../GoodsImage/GoodsImage" class="imagesearch">
+        <navigator url="../GoodsImageAdd/GoodsImageAdd" class="imagesearch">
           <image src="../../../../images/search.png" mode="aspectFit" class="imagesearch_image" />
           <view class="imagesearch_text">网上搜索</view>
         </navigator>

@@ -1,4 +1,6 @@
 var app = getApp();
+var pageNum = 1;
+var publicProduct = [];
 function formatTime(date) {
   var year = date.getFullYear()
   var month = date.getMonth() + 1
@@ -9,7 +11,6 @@ function formatTime(date) {
   return [year, month, day].map(formatNumber).join('-')
   //  + ' ' + [hour, minute, second].map(formatNumber).join(':')
 }
-
 function formatNumber(n) {
   n = n.toString()
   return n[1] ? n : '0' + n
@@ -83,6 +84,42 @@ var api = {
       }
     }
     return updated;
+  },
+  downData:function(){
+   
+    var that = this;
+    wx.showNavigationBarLoading();
+    this.request({
+      url:'product/getProducts',
+      data: {
+        storeId: 1,
+        pageNum:pageNum
+      },
+      method: 'POST',
+      header: {
+        'content-type': 'application/json'
+      },
+      success: function (res) {
+        for (var p in res.data) {
+          publicProduct.push(res.data[p])
+        }
+        if(res.data.length == 10){
+          pageNum = pageNum+1;
+          that.downData();
+        }else{
+          wx.hideNavigationBarLoading();
+          wx.setStorage({
+            key: "GoodsData",
+            data: publicProduct
+          })
+          wx.showToast({
+            title: '更新完毕',
+            mask: true,
+            duration: 2000
+          })
+        }
+      }
+    })
   },
   request: function (para) {
     para.url = api.host + para.url ;
