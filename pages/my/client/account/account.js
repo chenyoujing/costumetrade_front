@@ -61,8 +61,9 @@ Page({
       goods: "0",
     })
   },
-  onLoad: function (options) {
+  onLoad: function (e) {
     this.setData({
+      client: e.client,
       date_start: util.formatTime(new Date(Date.now() - 86400000)),
       date_end: util.formatTime(new Date(Date.now())),
       account_date: util.formatTime(new Date(Date.now())),

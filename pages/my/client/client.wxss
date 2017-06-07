@@ -68,6 +68,8 @@
 }
 .client_container{
   padding: 10px;
+  position: relative;
+  transition: all 0.3s;
 }
 .client_content{
   box-shadow: 0.5px 0.5px 2px #000000;
@@ -135,296 +137,83 @@
 
 
 
-.client_add{
-  position: fixed;
-  top: 100%;
-  left: 0;
-  right: 0;
-  bottom: -100%;
-  background-color: #ffffff;
-  z-index: 9;
-  transition: all 0.5s;
-}
-.client_add_title{
-  background-color: #52CAC1;
-  font-size: 16px;
-  line-height: 24px;
-  padding: 8px;
-  color: #ffffff;
-  text-align: center;
-}
-.client_add_close{
-  position: absolute;
-  width: 16px;
-  height: 16px;
-  padding: 12px;
-  top: 0;
-  right: 10px;
-}
-.client_add scroll-view{
-  position: absolute;
-  top: 40px;
-  bottom: 40px;
-}
-.client_add_input{
-  padding: 10px 30px 0;
-}
-.client_add_city{
-  box-sizing: border-box;
-  border: 1px solid #52CAC1;
-  font-size: 14px;
-  padding-left: 7px; 
-  height: 28px;
-  width: 33.33333333%;
-  float: left;
-}
-.client_add_input:last-child{
-  padding-bottom: 10px;
-}
-.client_add_input:first-child{
-  padding-top: 40px;
-}
-.client_add_input_text{
-  width: 30%;
-  float: left;
-  text-align: center;
-  font-size: 14px;
-  line-height: 30px;
-}
-.client_add_input1,.client_add_input2{
-  border: 1px solid #52CAC1;
-  font-size: 14px;
-  padding-left: 7px; 
-  height: 28px;
-}
-.client_add_input2{
-  margin-right: 70px;
-}
-.client_add_input > picker{
-  border: 1px solid #52CAC1;
-  height: 28px;
-  margin-right: 70px;
-  margin-left: 30%;
-  text-align: center;
-  width: auto;
-  font-size: 14px;
-  line-height: 28px;
-}
-.client_add_input_button{
-  width: 60px;
-  float: right;
-  font-size: 16px;
-  border-radius: 0;
-  background-color: #52CAC1;
-  line-height: 30px;
-  text-align: center;
-  padding: 0;
-  color: #ffffff;
-}
-.submit{
-  font-size: 16px;
-  border-radius: 0;
-  background-color: #52CAC1;
-  line-height: 30px;
-  text-align: center;
-  padding: 0;
-  position: absolute;
-  width: 100px;
-  bottom: 5px;
-  left: 0;
-  right: 0;
-  margin: auto;
-  color: #ffffff;
-}
-swiper{
-  position:absolute;
-  top:70px;
-  bottom:0;
-  left:0;
-  right:0;
-  height: auto;
-}
-.account_time{
-  font-size: 16px;
-  text-align: center;
-  width: 300px;
-  margin: auto;
-  padding: 10px 0;
-}
-.account_time > picker{
-  float: left;
-  border: 1px solid #000000;
-  padding: 5px 10px;
-}
-.account_title{
-  font-size: 18px;
-  padding: 10px 20px;
-  border-bottom: 1px solid #E3E3E3;
-}
-.account_view{
-  padding: 10px 20px;
-}
-.account_view1{
-  float: left;
-  width: 30%;
-  font-size: 16px;
-}
-.account_view2{
-  float: left;
-  width: 70%;
-  font-size: 16px;
-}
-.account_all{
-  padding: 10px 30px 10px 20px;
-  background-color: #DBF4F1;
-}
-.account_all1{
-  float: left;
-  font-size: 16px;
-}
-.account_all2{
-  float: right;
-  font-size: 16px;
-}
-.account_container{
-  margin: 10px 30px;
-  box-shadow: 0.5px 0.5px 2px #000000;
-}
-.account_container_title{
-  font-size: 12px;
-  padding: 10px;
-  border-bottom: 2px solid #DBF4F1;
-}
-.account_container_content{
-  padding: 0 10px;
-  position: relative;
-}
-.content_view{
-  font-size: 11px;
-  line-height: 20px;
-}
-.content_button{
-  position: absolute;
-  right: 10px;
-  bottom: 5px;
-  background-color: #52CAC1;
-  box-shadow: 0.5px 0.5px 2px #000000;
-  color: #ffffff;
+/*批量删除*/
+.delete_container{
   text-align: center;
   width: 50px;
-  height: 20px;
-  line-height: 20px;
-  font-size: 12px;
-}
-.price{
-  color: #ff0000;
-}
-.price::after{
-  content: "元";
-  color: #000000;
-}
-.account_input{
-  text-align: center;
-  border: 1px solid #000000;
-  float: left;
-  width: 70%;
-  font-size: 16px;
-  box-sizing: border-box;
-  padding: 5px 0;
-}
-.zero_input{
-  text-align: left;
-  height: 30px;
-  line-height: 16px;
-  padding-left: 8px;
-}
-.padding{
-  padding: 5px 0;
-}
-.zero{
-  margin-left: 2%;
-  width: 20%;
-  float: left;
-  background-color: #52CAC1;
-  color: #ffffff;
-  font-size: 16px;
-  height: 30px;
-  line-height: 30px;
-  text-align: center;
-}
-
-/*补货*/
-.container{
-  float: left;
-  padding: 10px;
-  box-sizing:border-box;
-}
-.content_container{
-  box-shadow: 0.5px 0.5px 2px #000000;
-  position: relative;
-  border-radius: 3px;
-}
-.content_container > image{
-  width: 115px;
-  height: 115px;
-  float: left;
-}
-.content_container_text{
+  line-height: 115px;
   position: absolute;
-  top: 0;
-  left: 115px;
+  top: 10px;
+  left: 10px;
+  bottom: 10px;
+}
+.delete_container checkbox{
+  width: 100%;
+}
+.batch_button,.batch_button_ok{
+  position: absolute;
+  left: 50%;
   right: 0;
   bottom: 0;
-  padding: 5px;
-}
-.content_container_text > image{
-  width: 20px;
-  height: 20px;
-  float: right;
-}
-.content_container_title{
-  font-size: 16px;
-  line-height: 20px;
-  padding: 15px 5px;
-  word-break:keep-all;
-  white-space:nowrap;
-  overflow:hidden;
-  text-overflow:ellipsis;
-}
-.content_container_info{
-  border-top: 1px solid #000000;
-  padding: 10px 5px 10px 0;
-}
-.price{
-  color: #ff0000;
+  text-align: center;
+  background-color: #DBDBDB;
   font-size: 20px;
-  line-height: 32px;
-  float: left;
- }
-.price::before{
-  content: "￥"
+  line-height: 40px;
+  height: 40px;
+  overflow: hidden;
+  transition: all 0.3s;
 }
-.info_other{
-  float: right;
+.batch_button_ok{
+  left: 0;
+  right: 50%;
+  border-right: 2px solid #ffffff;
 }
-.volume,.date{
-  font-size: 12px;
-  line-height: 16px;
-  text-align: right;
-}
-.volume::before{
-  content: "销量："
+.bg_g{
+  background-color: #52CAC1;
+  color: #ffffff;
 }
 
-/*补货*/
-.goods{
-  
+
+
+/*更多功能*/
+.more_function{
+  position: fixed;
+  top: 65px;
+  right: 0;
+  background-color: #ffffff;
+  box-shadow: 0.5px 0.5px 3px #000000;
+  z-index: 11;
+  opacity: 0;
+  transform: scale(0.5) translate(16px,-36px);
+  transition: all 0.3s;
 }
-.title_text{
-  color: #ffffff;
-  float: left;
-  width: 25%;
-  font-size: 16px;
-  line-height: 35px;
-  height: 35px;
+.more_function::before{
+  content: "";
+  width: 0;
+  height: 0;
+  position: fixed;
+  right: 8px;
+  top: -30px;
+  border: solid #ffffff; 
+  border-width: 15px 10px; 
+  border-left-color: transparent;
+  border-top-color: transparent;
+  border-right-color: transparent;
+}
+.more_function_cover{
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 8;
+}
+.more_function_view{
+  font-size: 14px;
+  line-height: 24px;
+  padding: 0 10px;
+}
+.animation{
+  opacity: 1;
+  transform: scale(1) translate(0,0);
 }

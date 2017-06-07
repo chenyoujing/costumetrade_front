@@ -1,43 +1,42 @@
 <!--客户添加-->
-<view class="client_add" style="top:{{client_add}}; bottom:-{{client_add}};">
-  <view class="client_add_title">{{client=='1' ? '客户' : ''}}{{client=='2' ? '供货商' : ''}}{{client=='3' ? '朋友' : ''}}</view>
-  <image src="../../../images/amputate.png" mode="aspectFit" class="client_add_close" bindtap="close" />
+<view class="client_add">
+  <view class="client_add_title">添加{{client=='1' ? '客户' : ''}}{{client=='2' ? '供货商' : ''}}{{client=='3' ? '朋友' : ''}}</view>
+  <navigator open-type="navigateBack">
+    <image src="../../../../images/amputate.png" mode="aspectFit" class="client_add_close" />
+  </navigator>
   <form class="client_add_content" bindsubmit="client_add_submit" data-clientid="{{clientid}}">
     <scroll-view scroll-y="true" style="top:">
-      <view class="client_add_input">
-        <view class="client_add_input_text">名称：</view>
-        <input type="text" class="client_add_input1" name="name0" value="{{updata_name}}" />
-        <view class="clear"></view>
+      <view class="client_add_input clearfix">
+        <view class="client_add_input_text">真实姓名：</view>
+        <input type="text" class="client_add_input1" name="name0" value="{{updata_name}}" placeholder="*" placeholder-class="required" />
       </view>
-      <view class="client_add_input">
-        <view class="client_add_input_text">收货地址：</view>
+      <view class="client_add_input clearfix">
+        <view class="client_add_input_text">微信名称：</view>
         <input type="text" class="client_add_input1" name="address" value="{{updata_packprice}}" />
-        <view class="clear"></view>
       </view>
-      <view class="client_add_input">
-        <view class="client_add_input_text">固定电话：</view>
+      <view class="client_add_input clearfix">
+        <view class="client_add_input_text">备注：</view>
         <input type="number" class="client_add_input1" name="telephone"  value="{{updata_code}}"/>
-        <view class="clear"></view>
       </view>
-      <view class="client_add_input">
+      <view class="client_add_input clearfix">
         <view class="client_add_input_text">移动电话：</view>
         <input type="number" class="client_add_input1" name="phone" value="{{updata_name}}" />
-        <view class="clear"></view>
       </view>
-      <view class="client_add_input">
-        <view class="client_add_input_text">联系人：</view>
+      <view class="client_add_input clearfix">
+        <view class="client_add_input_text">收货地址：</view>
         <input type="number" class="client_add_input1" name="contact"  value="{{updata_code}}"/>
-        <view class="clear"></view>
       </view>
-      <view class="client_add_input">
+      <view class="client_add_input clearfix">
+        <view class="client_add_input_text">生日信息：</view>
+        <input type="number" class="client_add_input1" name="contact"  value="{{updata_code}}"/>
+      </view>
+      <view class="client_add_input clearfix">
         <view class="client_add_input_text">所属地区：</view>
-        <view style="float:left; width: 70%;">
+        <view class="clearfix" style="float:left; width: 70%;">
           <input type="text" class="client_add_city" name="province" value="{{updata_wholeprice}}" />
           <input type="text" class="client_add_city" name="city" value="{{updata_wholeprice}}" />
           <input type="text" class="client_add_city" name="district" value="{{updata_wholeprice}}" />
-          <view class="clear"></view>
         </view>
-        <view class="clear"></view>
       </view>
       <view class="client_add_input" hidden="{{client=='1' ? '' : 'hidden'}}">
         <view class="client_add_input_text">客户类型：</view>

@@ -2,7 +2,7 @@
   <view class="title clearfix">
     <image bindtap="packPageFilterCode" mode="aspectFit" src="../../../images/search.png" class="image_search" />
     <image src="../../../images/more.png" mode="aspectFit" class="title_image" bindtap="more_function" />
-    <navigator url="clientAdd/clientAdd">
+    <navigator url="clientAdd/clientAdd?client={{client}}">
       <image src="../../../images/add.png" mode="aspectFit" class="title_image" />
     </navigator>
       <image src="../../../images/preparation.png" mode="aspectFit" class="title_image" style="margin-left:10px;" />
@@ -21,8 +21,14 @@
     <view class="client_text sort_text {{sort=='3' ? 'active' : ''}}" bindtap="clientSort" data-sort="3">积分</view>
     <view class="clear"></view>
   </view>
-  <scroll-view class="content" scroll-y>
-    <view class="client_container">
+  <scroll-view class="content" scroll-y style="bottom:{{delete_button}}px;">
+    <checkbox-group class="delete_container" bindchange="delete_container" data-id ="{{item.id}}" >
+      <label class="checkbox">
+        <checkbox value="{{item.id}}"  checked='{{aa}}'/>
+      </label>
+    </checkbox-group>
+
+    <view class="client_container" style="left:{{select_checkbox}}px">
       <view class="client_content clearfix">
         <image image src="{{item.image ? item.image : '../../../images/image_none.png'}}" mode="aspectFill" class="client_tx" />
         <view class="clearfix">
@@ -36,12 +42,21 @@
             <view class="client_info2_text">区域：杭州市萧山区</view>
           </view>
         </view>
-        <navigator url="account/account" class="client_button client_button2">对账</navigator>
+        <navigator url="account/account?client={{client}}" class="client_button client_button2">对账</navigator>
         <navigator url="replenishment/replenishment" class="client_button client_button1">补货</navigator>
         <image image src="../../../images/update.png" mode="aspectFill" class="client_updata" bindtap="client_add" data-clientid="clientid" />
       </view>
     </view>
   </scroll-view>
+  <!--批量删除按钮-->
+  <view class="batch_button_ok bg_g" bindtap="batch_delete_ok" style="height:{{delete_button}}px;">完成</view>
+  <view class="batch_button" bindtap="batch_delete_sure" style="height:{{delete_button}}px;">删除</view>
+
 </view>
 
 
+<!--更多功能-->
+<view class="more_function_cover {{animation}}" bindtap="more_function_close" style="display:{{more_function_display}};"></view>
+<view class="more_function {{animation}}" style="display:{{more_function_display}};">
+  <view class="more_function_view" bindtap="batch_delete">批量删除</view>
+</view>

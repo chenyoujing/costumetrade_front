@@ -215,6 +215,7 @@
   border-radius: 3px;
   transition: all 0.3s;
   left: 0;
+  background-color: #ffffff;
 }
 .content_container > image{
   width: 115px;

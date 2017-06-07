@@ -1,17 +1,17 @@
 .client_add{
-  position: fixed;
-  top: 100%;
+  position: absolute;
+  top: 0;
   left: 0;
   right: 0;
-  bottom: -100%;
+  bottom: 0;
   background-color: #ffffff;
   z-index: 9;
-  transition: all 0.5s;
 }
 .client_add_title{
   background-color: #52CAC1;
   font-size: 16px;
   line-height: 24px;
+  height: 24px;
   padding: 8px;
   color: #ffffff;
   text-align: center;
@@ -43,9 +43,6 @@
 }
 .client_add_input:last-child{
   padding-bottom: 10px;
-}
-.client_add_input:first-child{
-  padding-top: 40px;
 }
 .client_add_input_text{
   width: 30%;
@@ -85,15 +82,15 @@
   color: #ffffff;
 }
 .submit{
-  font-size: 16px;
+  font-size: 20px;
   border-radius: 0;
   background-color: #52CAC1;
-  line-height: 30px;
+  line-height: 40px;
   text-align: center;
   padding: 0;
   position: absolute;
-  width: 100px;
-  bottom: 5px;
+  width: 170px;
+  bottom: 0;
   left: 0;
   right: 0;
   margin: auto;

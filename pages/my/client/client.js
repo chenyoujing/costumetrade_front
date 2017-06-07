@@ -2,25 +2,18 @@ var util = require('../../../utils/util.js')
 var app = getApp()
 Page({
   data: {
-    scroll_height: "",
     client: "1",
     sort:'1',
-    clienttype: "",
-    client_info: "",
-    client_add: "",
     account: "",
     goods: "",
-    accounttype: "0",
     date_start: '',
     date_end: '',
     account_date: "",
-    billtype: ["收客户欠款", "换供货欠款", "应收调账", "应付调账"],
-    billtype_index: 0,
-    paytype: ["现金", "刷卡", "微信", "支付宝", "农业银行", "工商银行", "广发银行", "招商银行", "中信银行", "华夏银行", "建设银行"],
-    paytype_index: 0,
-    zero: "",
-    container_width: "100%",
-    image_width: "115",
+    more_function_display: "none",
+    animation: "",
+    select_checkbox: '0',
+    delete_button: '0',
+
   },
   onLoad: function (e) {
     var that = this
@@ -111,15 +104,6 @@ Page({
         warnLow: "",
       })
     }
-
-    this.setData({
-      client_add: "0",
-    })
-  },
-  close: function () {
-    this.setData({
-      client_add: "100%"
-    })
   },
   client_add_submit: function (e) {
     var client = event.detail.value
@@ -182,101 +166,46 @@ Page({
       }
     })
   },
-  account: function (e) {
-    var that = this
-    let data = e.target.dataset
+  // 打开多功能键
+  more_function: function () {
     this.setData({
-      account: "0",
+      more_function_display: "block",
     })
-  },
-  account_close: function () {
-    this.setData({
-      account: "100%"
-    })
-  },
-  accounttype: function (e) {
-    var that = this
-    let data = e.target.dataset
-    that.setData({
-      accounttype: data.accounttype
-    })
-  },
-  startDateChange: function (e) {
-    this.setData({
-      date_start: e.detail.value
-    })
-  },
-  endDateChange: function (e) {
-    this.setData({
-      date_end: e.detail.value
-    })
-  },
-  account_date: function (e) {
-    this.setData({
-      account_date: e.detail.value
-    })
-  },
-  swiper_change: function (e) {
-    this.setData({
-      accounttype: e.detail.current
-    })
-  },
-  billtypePicker: function (e) {
-    this.setData({
-      billtype_index: e.detail.value
-    })
-  },
-  paytypePicker: function (e) {
-    this.setData({
-      paytype_index: e.detail.value
-    })
-  },
-  zero: function () {
-    this.setData({
-      zero: "0"
-    })
-  },
-  goods: function (e) {
-    var that = this
-    let data = e.target.dataset
-    this.setData({
-      goods: "0",
-    })
-  },
-  rank: function() {
-    var that = this
-    if (this.data.container_width == "100%"){
-      wx.getSystemInfo({
-        success: function (res) {
-          that.setData({
-            container_width: "50%",
-            image_width: res.windowWidth/2 - 20,
-            text_position: "relative",
-            text_left: "0",
-            text_padding: "0 5px",
-            title_padding: "5px 5px 0",
-            info_padding: "0",
-            info_border: "none",
-          })
-        }
+    setTimeout(() => {
+      this.setData({
+        animation: "animation",
       })
-    }else{
-      that.setData({
-        container_width: "100%",
-        image_width: "115",
-        text_position: "absolute",
-        text_left: "115px",
-        text_padding: "",
-        title_padding: "",
-        info_padding: "",
-        info_border: "",
-      })
-    }
+    }, 10)
   },
-  goods_close: function () {
+  // 关闭多功能键
+  more_function_close: function () {
     this.setData({
-      goods: "100%"
+      animation: "",
     })
+    setTimeout(() => {
+      this.setData({
+        more_function_display: "none",
+      })
+    }, 300)
+  },
+  // 批量删除
+  batch_delete: function () {
+    this.setData({
+      select_checkbox: '50',
+      delete_button: '40',
+    })
+    this.more_function_close();
+  },
+  // 完成批量删除
+  batch_delete_ok: function () {
+    this.setData({
+      select_checkbox: '0',
+      delete_button: '0',
+    })
+  },
+  // 选择删除
+  batch_delete_sure: function () {
+    
   },
 
 })
