@@ -1,5 +1,3 @@
-//index.js
-//获取应用实例
 var util = require('../../../utils/util.js')
 var app = getApp()
 Page({
@@ -26,14 +24,7 @@ Page({
   },
   onLoad: function (e) {
     var that = this
-    wx.getSystemInfo({
-      success: function (res) {
-        that.setData({
-          scroll_height: res.windowHeight - 95
-        })
-      }
-    })
-    that.setData({
+    this.setData({
       date_start: util.formatTime(new Date(Date.now() - 86400000)),
       date_end: util.formatTime(new Date(Date.now())),
       account_date: util.formatTime(new Date(Date.now())),

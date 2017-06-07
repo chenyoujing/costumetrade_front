@@ -74,6 +74,7 @@
   padding: 30rpx;
   padding-right: 0;
   position: relative;
+  background-color: #ffffff;
 }
 .client_tx{
   width: 160rpx;
@@ -87,7 +88,7 @@
   box-sizing: border-box;
   float: left;
   width: 31%;
-  padding: 0 20rpx;
+  padding-left: 20rpx;
 }
 .client_name{
   line-height: 30px;
@@ -117,27 +118,11 @@
   padding: 7px;
   margin: auto;
 }
-.client_delete{
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  right: 15px;
-  width: 16px;
-  height: 16px;
-  padding: 7px;
-  margin: auto;
-}
-.client_content_bottom{
-  position: relative;
-  height: 70px;
-}
 .client_button{
-  position: absolute;
-  bottom: 5px;
-  width: 70px;
-  margin-right: 20px;
+  float: right;
+  margin-bottom: -15px;
+  width: 80px;
   font-size: 14px;
-  border-radius: 0;
   background-color: #52CAC1;
   line-height: 24px;
   text-align: center;
@@ -145,11 +130,11 @@
   color: #ffffff;
 }
 .client_button1{
-  right: 0;
+  margin-right: 1px;
 }
-.client_button2{
-  right: 80px;
-}
+
+
+
 .client_add{
   position: fixed;
   top: 100%;

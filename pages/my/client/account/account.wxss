@@ -1,0 +1,177 @@
+.client_add{
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ffffff;
+  z-index: 9;
+  transition: all 0.5s;
+}
+.client_text{
+  box-sizing: border-box;
+  text-align: center;
+  float: left;
+  font-size: 16px;
+  line-height: 30px;
+  height: 30px;
+  background-color: #DCDCDC;
+  width: 50%;
+}
+.active{
+  background-color: #ffffff;
+}
+.client_add_title{
+  background-color: #52CAC1;
+  font-size: 16px;
+  line-height: 24px;
+  padding: 8px;
+  color: #ffffff;
+  text-align: center;
+}
+.client_add_close{
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  padding: 12px;
+  top: 0;
+  right: 10px;
+}
+.client_add scroll-view{
+  position: absolute;
+  top: 40px;
+  bottom: 40px;
+}
+swiper{
+  position:absolute;
+  top:70px;
+  bottom:0;
+  left:0;
+  right:0;
+  height: auto;
+}
+.account_time{
+  font-size: 16px;
+  text-align: center;
+  width: 300px;
+  margin: auto;
+  padding: 10px 0;
+}
+.account_time > picker{
+  float: left;
+  border: 1px solid #000000;
+  padding: 5px 10px;
+}
+.account_title{
+  font-size: 17px;
+  padding: 10px 20px;
+  border-bottom: 1px solid #E3E3E3;
+}
+.account_view{
+  padding: 10px 20px;
+}
+.account_view1{
+  float: left;
+  width: 30%;
+  font-size: 15px;
+}
+.account_view2{
+  float: left;
+  width: 70%;
+  font-size: 15px;
+}
+.account_all{
+  padding: 10px 30px 10px 20px;
+  background-color: #DBF4F1;
+}
+.account_all1{
+  float: left;
+  font-size: 16px;
+}
+.account_all2{
+  float: right;
+  font-size: 16px;
+}
+.account_container{
+  margin: 10px 30px;
+  box-shadow: 0.5px 0.5px 2px #000000;
+}
+.account_container_title{
+  font-size: 12px;
+  padding: 10px;
+  border-bottom: 2px solid #DBF4F1;
+}
+.account_container_content{
+  padding: 0 10px;
+  position: relative;
+}
+.content_view{
+  font-size: 11px;
+  line-height: 20px;
+}
+.content_button{
+  position: absolute;
+  right: 10px;
+  bottom: 5px;
+  background-color: #52CAC1;
+  box-shadow: 0.5px 0.5px 2px #000000;
+  color: #ffffff;
+  text-align: center;
+  width: 50px;
+  height: 20px;
+  line-height: 20px;
+  font-size: 12px;
+}
+.price{
+  color: #ff0000;
+}
+.price::after{
+  content: "元";
+  color: #000000;
+}
+.account_input{
+  text-align: center;
+  border: 1px solid #000000;
+  float: left;
+  width: 70%;
+  font-size: 16px;
+  line-height: 18px;
+  height: 30px;
+  box-sizing: border-box;
+  padding: 5px 0;
+  padding-right: 30px;
+  position: relative;
+}
+.image_down{
+  width: 16px;
+  height: 16px;
+  padding: 7px;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+.zero_input{
+  float: unset;
+  width: auto;
+  text-align: left;
+  height: 30px;
+  line-height: 16px;
+  padding-left: 8px;
+  padding-right: 8px;
+}
+.paytype{
+  padding: 5px 0;
+  position: relative;
+}
+.zero{
+  float: right;
+  margin-left: 2%;
+  width: 20%;
+  background-color: #52CAC1;
+  color: #ffffff;
+  font-size: 16px;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+}
+
