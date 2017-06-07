@@ -26,19 +26,6 @@
   position: absolute;
   right: 118px;
 }
-.title button{
-  width: 50px;
-  height: 50px;
-  padding: 0;
-}
-.title button icon{
-  left: 0;
-  right: 0;
-  padding: 15px;
-}
-button::after{
-  content: none;
-}
 .condition{
   width: 100%;
   height: 30px;

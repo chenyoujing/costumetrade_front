@@ -271,11 +271,24 @@
   </view>
 </scroll-view>
 
-<!--选物流-->
-<!--<modal title="选物流" hidden="{{hiddenModal}}" confirm-text="确定" no-cancel bindconfirm="confirm" bindcancel="cancel" >
+
+<!--选择物流-->
+<modal title="选择物流" hidden="{{logisticsModal}}" confirm-text="取消" no-cancel bindconfirm="cancel" bindcancel="cancel" >
+  <view class="choose_container clearfix">
+    <view class="logistics_choose">
+      <view class="choose_view" bindtap="expressView">打印快递面单</view>
+    </view>
+    <view class="logistics_choose">
+      <view class="choose_view" bindtap="numberView">输入快递面单</view>
+    </view>
+  </view>
+</modal>
+
+
+<!--物流单号-->
+<modal title="物流单号" hidden="{{numberModal}}" confirm-text="确定" bindconfirm="numberConfirm" bindcancel="cancel" >
   <view class="logistics_title" style="width:30%;">物流公司</view>
-  <view class="logistics_title" style="width:45%;">单号</view>
-  <view class="logistics_title" style="width:25%;">打印快递单</view>
+  <view class="logistics_title" style="width:70%; padding-right:35px;">单号</view>
   <view class="clear"></view>
   <picker class="logistics_picker" range="">
     <view class="picker">
@@ -283,34 +296,19 @@
       <image src="../../../../images/down.png" mode="aspectFit" class="picker_image" />
     </view>
   </picker>
-  <view class="logistics_print">
-    <navigator url="express/express" class="print_view">打印</navigator>
-  </view>
+  <image src="../../../../images/scan_black.png" mode="aspectFit" class="image_scan" />
   <input class="logistics_number" placeholder="单号" />
-</modal>-->
+</modal>
 
 
-<!--选物流-->
-<!--<modal title="选择物流" hidden="{{hiddenModal}}" confirm-text="确定" no-cancel bindconfirm="confirm" bindcancel="cancel" >
-  <view class="choose_container clearfix">
+<!--选择快递公司-->
+<modal title="选择快递公司" hidden="{{expressModal}}" confirm-text="取消" no-cancel bindconfirm="cancel" bindcancel="cancel" >
+  <view class="choose_container clearfix" style="padding:20px 20px;">
     <view class="logistics_choose">
-      <view class="choose_view">打印快递面单</view>
+      <navigator url="express/express" class="choose_view">顺丰</navigator>
     </view>
     <view class="logistics_choose">
-      <view class="choose_view">输入快递面单</view>
-    </view>
-  </view>
-</modal>-->
-
-
-<!--选物流-->
-<modal title="选择快递公司" hidden="{{hiddenModal}}" confirm-text="确定" no-cancel bindconfirm="confirm" bindcancel="cancel" >
-  <view class="choose_container clearfix">
-    <view class="logistics_choose">
-      <view class="choose_view">顺丰</view>
-    </view>
-    <view class="logistics_choose">
-      <view class="choose_view">韵达</view>
+      <navigator url="express/express" class="choose_view">韵达</navigator>
     </view>
   </view>
 </modal>

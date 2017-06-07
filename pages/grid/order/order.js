@@ -12,7 +12,9 @@ Page({
     payurl:"order/getOrders",
     loadMore: true,
     requestSwitch: true,
-    hiddenModal: true,
+    logisticsModal: true,
+    numberModal: true,
+    expressModal: true,
   },
   // 一级标签切换
   ordertype:function(e){
@@ -127,21 +129,31 @@ Page({
     
   },
   // 选物流模态框
-  logistics:function(){
+  logisticsView: function () {
     this.setData({
-      hiddenModal:false,
+      logisticsModal: false,
     })
   },
-  // 模态框取消
+  // 关闭模态框
   cancel: function () {
     this.setData({
-      hiddenModal: true,
+      logisticsModal: true,
+      numberModal: true,
+      expressModal: true,
+   })
+  },
+  // 打开输入单号模态框
+  numberView: function () {
+    this.cancel()
+    this.setData({
+      numberModal: false,
     })
   },
-  // 模态框确认
-  confirm: function () {
+  // 打开选快递公司模态框
+  expressView: function () {
+    this.cancel()
     this.setData({
-      hiddenModal: true,
+      expressModal: false,
     })
   },
   //滚动到底部触发事件  
@@ -155,11 +167,6 @@ Page({
     if (this.data.requestSwitch) {
       this.order_request();
     }
-  },
-  logisticsView:function(){
-    this.setData({
-      hiddenModal:false
-    })
   },
   onLoad:function(){
     this.order_request()

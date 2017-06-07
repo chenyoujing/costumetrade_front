@@ -195,6 +195,7 @@
 
 /*模态框*/
 .logistics_title{
+  box-sizing: border-box;
   color: #000000;
   float: left;
   font-size: 14px;
@@ -212,7 +213,7 @@
   height: 30px;
   text-align: center;
   border: 1px solid #286561;
-  width: 27%;
+  width: 30%;
   margin-right: 3%;
   position: relative;
 }
@@ -228,25 +229,11 @@
   bottom: 0;
   margin: auto;
 }
-.logistics_print{
+.image_scan{
+  width: 18px;
+  height: 18px;
+  padding:5px 0 5px 17px;
   float: right;
-  height: 30px;
-  width: 25%;
-  margin: 0;
-  position: relative;
-}
-.print_view{
-  background-color: #52CAC1;
-  color: #ffffff;
-  font-size: 14px;
-  line-height: 30px;
-  text-align: center;
-  position: absolute;
-  left: 0;
-  right: 0;
-  margin: auto;
-  width: 40px;
-  box-shadow: 0.5px 0.5px 2px #000000;
 }
 .logistics_number{
   color: #000000;
@@ -258,8 +245,12 @@
 }
 
 
+modal{
+  min-height: 200px;
+}
 .choose_container{
-  padding: 0 -20px;
+  margin: 0 -20px;
+  padding: 20px 0;
 }
 .logistics_choose{
   width: 50%;
@@ -273,4 +264,5 @@
   line-height: 40px;
   display: inline-block;
   padding: 0 8px;
+  min-width: 74px;
 }

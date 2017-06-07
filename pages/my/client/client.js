@@ -6,6 +6,7 @@ Page({
   data: {
     scroll_height: "",
     client: "1",
+    sort:'1',
     clienttype: "",
     client_info: "",
     client_add: "",
@@ -38,7 +39,7 @@ Page({
       account_date: util.formatTime(new Date(Date.now())),
     })
   },
-  clienttype: function (e) {
+  clientType: function (e) {
     var that = this
     let data = e.target.dataset
     if (that.data.client != data.client) {
@@ -60,6 +61,12 @@ Page({
     }
     that.setData({
       client: data.client
+    })
+  },
+  clientSort:function(e){
+    let data = e.target.dataset
+    this.setData({
+      sort: data.sort
     })
   },
   client_add: function (e) {
