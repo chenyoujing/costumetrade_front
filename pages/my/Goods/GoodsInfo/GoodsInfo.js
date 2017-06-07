@@ -264,8 +264,7 @@ Page({
     target.video2 = this.data.GoodsInfoData.video2;
     target.video3 = this.data.GoodsInfoData.video3;
     target.fileList = this.data.fileList;
-    console.log(target.fileList)
-    console.log(this.data.fileList)
+    target.name = target.code + target.name
     for (var p = target.fileList.length - 1;p>=0;p--){
       if (target.fileList[p].url !== ''){
         target.fileList[p].productName = target.name

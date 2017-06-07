@@ -39,7 +39,8 @@ Page({
     delete_button: '0',
     update_button: '0',
     share_button: '0',
-    ids: []
+    ids: [],
+    name:''
   },
   // 请求数据函数
   page_request: function () {
@@ -52,6 +53,7 @@ Page({
         sort: that.data.getSortData,
         rules: that.data.getFilterData,
         code: that.data.code,
+        name: that.data.name,
         pageNum: that.data.pageNum,
       },
       method: 'POST',
@@ -414,13 +416,15 @@ Page({
         product: newProduct
       })
       app.updataGoodsInfo = {};
-    } else if (app.getFilterData) {
+    } else if (app.getFilterData || app.searchValue) {
       console.log(11)
       this.setData({
         pageNum: 1,
         product: [],
         requestSwitch: true,
-        getFilterData: app.getFilterData
+        code: app.searchValue ? app.searchValue:'',
+        name: app.searchValue ? app.searchValue : '',
+        getFilterData: app.getFilterData ? app.getFilterData:undefined
       })
       this.page_request();
       app.getFilterData = [];

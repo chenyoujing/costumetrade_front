@@ -21,7 +21,10 @@ Page({
     brand:[],
     season:'',
     status:'',
-    enterValue:''
+    enterValue:'',
+    product:[],
+    keyArray:[],
+    changeBoolean:false
   },
   // 输入框操作
   bindKeyInput:function(e){
@@ -29,6 +32,7 @@ Page({
     this.setData({
       enterValue: value
     })
+    this.keyup(value)
   },
   // 品牌、种类多选
   multipleSelect:function(e){
@@ -62,6 +66,13 @@ Page({
     object[type] = name;
     this.setData(object);
   },
+  selectOptions:function(e){
+    var value = e.target.dataset.name;
+    this.setData({
+      enterValue: value
+    });
+    this.searchClick()
+  },
   searchClick:function(){
     var season =[];
     season.push(this.data.season);
@@ -83,6 +94,9 @@ Page({
         value: season
       })
     }  
+    if (this.data.enterValue){
+      app.searchValue = this.data.enterValue;     
+    };
     if (this.data.status !== '') {
       getFilterData.push({
         filed: 'status',
@@ -90,22 +104,38 @@ Page({
       })
     };
     app.getFilterData = getFilterData;
-    console.log(app.getFilterData)
     wx.navigateBack({
       delta: 1
     })  
   },
+  keyup:function(e){
+    if(e == ""){
+      this.setData({
+        changeBoolean:false
+      })
+    } else{
+      var endArray4 = util.api.objectPushArry(this.data.product,e)
+      this.setData({
+        keyArray: endArray4,
+        changeBoolean: true
+      })
+    }
+  },
+ 
   downData:function(){
     util.api.downData();
+    var that = this;
     wx.getStorage({
       key: 'GoodsData',
       success: function (res) {
-        console.log(res.data)
+        that.setData({
+          product: res.data
+        })
       }
     })
   },
   onLoad: function (options) {
-    this.downData()
+    this.downData();
     var screen_content1 = app.screen_brandList;
     var screen_content2 = app.screen_productTypeList;
     for (var p in screen_content1){

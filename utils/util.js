@@ -121,6 +121,102 @@ var api = {
       }
     })
   },
+  // 智能搜索
+  searchKeyWord: function (filedsName, select, value) {
+    var endArray;
+    value = value.toLowerCase();
+    if (filedsName[select].toLowerCase() == value || filedsName['code'].toLowerCase() == value) {
+      endArray = filedsName;
+      endArray.type = 1;
+    } else if ((filedsName[select].toLowerCase().indexOf(value) > -1 && filedsName[select].toLowerCase() !== value) || (filedsName["code"].toLowerCase().indexOf(value) > -1 && filedsName["code"].toLowerCase() !== value)) {
+      endArray = filedsName;
+      endArray.type = 2;
+    } else {
+      if (value.length <= 2) {
+        for (var i in value) {
+          if (filedsName[select].toLowerCase() == value[i]) {
+            endArray = filedsName;
+            endArray.type = 3;
+            endArray.word = i;
+          } else if (filedsName[select].toLowerCase().indexOf(value[i]) > -1 && filedsName[select].toLowerCase() !== value[i]) {
+            endArray = filedsName;
+            endArray.type = 3;
+            endArray.word = i;
+          }
+        }
+      } else {
+        var value1 = value.substring(1);
+        var value2 = value.substring(value.length - 1, 0);
+        var value3 = value.substring(1, value.length - 1);
+        if (filedsName[select].toLowerCase() == value1 ||
+          filedsName[select].toLowerCase() == value2 ||
+          filedsName[select].toLowerCase() == value3) {
+          endArray = filedsName;
+          endArray.type = 3;
+        } else if ((filedsName[select].toLowerCase().indexOf(value1) > -1 && filedsName[select].toLowerCase() !== value1) ||
+          (filedsName[select].toLowerCase().indexOf(value2) > -1 && filedsName[select].toLowerCase() !== value2) ||
+          (filedsName[select].toLowerCase().indexOf(value3) > -1 && filedsName[select].toLowerCase() !== value3)
+        ) {
+          endArray = filedsName;
+          endArray.type = 3;
+        }
+      }
+    }
+    return endArray;
+
+  },
+  // push顺序 e为input里的value的值
+  objectPushArry: function (product, e) {
+    var n = [];
+    for (var p in product) {
+      if (this.searchKeyWord(product[p], 'name', e)) {
+        n.push(this.searchKeyWord(product[p], 'name', e));
+      }
+    }
+    var endArray4 = [];
+    var endArray1 = [];
+    var endArray2 = [];
+    var endArray3 = [];
+    var endArray5 = [];
+    var endArray6 = [];
+    for (var a in n) {
+      if (n[a].type == 1) {
+        endArray1.push(n[a]);
+      }
+      if (n[a].type == 2) {
+        endArray2.push(n[a]);
+      }
+      if (n[a].type == 3) {
+        if (!n[a].word) {
+          endArray3.push(n[a]);
+        } else if (n[a].word == 0) {
+          endArray5.push(n[a]);
+        } else if (n[a].word == 1) {
+          endArray6.push(n[a]);
+        }
+      }
+    }
+    for (var f in endArray1) {
+      endArray4.push(endArray1[f]);
+    }
+
+    for (var b in endArray2) {
+      endArray4.push(endArray2[b]);
+    }
+
+    for (var g in endArray5) {
+      endArray4.push(endArray5[g]);
+    }
+
+    for (var m in endArray6) {
+      endArray4.push(endArray6[m]);
+    }
+
+    for (var c in endArray3) {
+      endArray4.push(endArray3[c]);
+    }
+    return endArray4;
+  },
   request: function (para) {
     para.url = api.host + para.url ;
     para.oldSuccess = para.success;
