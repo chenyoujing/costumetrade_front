@@ -1,13 +1,13 @@
 {
   "pages": [
-    "pages/grid/order/order",
     "pages/grid/shop/shop",
     "pages/grid/user/user",
     "pages/grid/info/info",
-   
+    "pages/grid/order/order",    
     "pages/grid/order/express/express",
     "pages/grid/order/comment/comment",
     "pages/grid/order/orderDetails/orderDetails",
+    "pages/grid/order/logistics/logistics",
     "pages/grid/order/payOrder/payOrder",
     "pages/grid/user/dictionary/dictionary",
     "pages/grid/user/goodsLevel/goodsLevel",
@@ -23,6 +23,9 @@
     "pages/my/openOrder/Billing/Billing",
     "pages/my/openOrder/unitSelect/unitSelect",
     "pages/my/client/client",
+    "pages/my/client/account/account",
+    "pages/my/client/replenishment/replenishment",
+    "pages/my/client/clientAdd/clientAdd",
     "pages/index/index",
     "pages/my/Goods/Goods",
     "pages/my/Goods/GoodsInfo/GoodsInfo",
