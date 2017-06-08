@@ -137,7 +137,7 @@
       </view>
       <view class="clear"></view>
     <view class="order_container_button"  bindtap="changeOrderStatus" data-status='5' data-orderNo="{{item.payorderno}}" data-sellerstoreid="{{item.sellerstoreid}}" data-buyerstoreid="{{item.buyerstoreid}}">确认收货</view>
-    <navigator url="./logistics/logistics">
+    <navigator url="./logistics/logistics?sellerstoreid={{item.sellerstoreid}}&payorderno={{item.payorderno}}&buyerstoreid={{item.buyerstoreid}}">
       <view class="order_container_button btn_2">查看物流</view>
     </navigator>
   
@@ -205,7 +205,7 @@
       <image src="../../../../images/down.png" mode="aspectFit" class="picker_image" />
     </view>
   </picker>
-     <input class="logistics_number" value="{{colloctNum}}" bindblur="EventHandle" type="digit" placeholder="输入金额" />
+     <input class="logistics_number" value="{{colloctNum}}" disabled="true" type="digit" placeholder="输入金额" />
   </view>
 </modal>
   <!--销售待审核-->
@@ -257,7 +257,7 @@
       </view>
       <view class="clear"></view>
     <view class="order_container_button"  bindtap="changeOrderStatus" data-status='4' data-orderNo="{{item.payorderno}}" data-sellerstoreid="{{item.sellerstoreid}}" data-buyerstoreid="{{item.buyerstoreid}}">发货</view>
-    <view class="order_container_button btn_2" bindtap="logisticsView">选物流</view>
+    <view class="order_container_button btn_2" data-payorderno="{{item.payorderno}}"  data-logisticstype="{{item.ordertype}}" bindtap="logisticsView">选物流</view>
     <view class="clear"></view>
   </view>
 
@@ -303,18 +303,18 @@
 
 
 <!--物流单号-->
-<modal title="物流单号" hidden="{{numberModal}}" confirm-text="确定" bindconfirm="numberConfirm" bindcancel="cancel" >
+<modal title="物流单号" hidden="{{numberModal}}" confirm-text="确定" bindconfirm="SureLogicson" bindcancel="cancel" >
   <view class="logistics_title" style="width:30%;">物流公司</view>
-  <view class="logistics_title" style="width:70%; padding-right:35px;">单号</view>
+  <view class="logistics_title" style="width:70%; padding-right:35px;">物流单号</view>
   <view class="clear"></view>
-  <picker class="logistics_picker" range="">
+  <picker class="logistics_picker" data-style = 'logisticsname_index' bindchange="bindSelectorChange" value="{{logisticsname}}" range="{{logisticsCompany}}" name="logisticsname" mode="selector" range-key="custtypename">
     <view class="picker">
       顺丰
       <image src="../../../../images/down.png" mode="aspectFit" class="picker_image" />
     </view>
   </picker>
   <image src="../../../../images/scan_black.png" mode="aspectFit" class="image_scan" />
-  <input class="logistics_number" placeholder="单号" />
+  <input class="logistics_number" type="number" bindblur="EventHandle" value = "{{logisticsno}}" placeholder="单号" />
 </modal>
 
 

@@ -6,14 +6,15 @@
   </view>
 
 <scroll-view scroll-y class="logistic_container">
-  <view class="logistic_view clearfix" wx:for="123456">
+  <view class="logistic_view clearfix" wx:for="{{product}}">
     <view class="round_view">
       <view class="line"></view>
       <view class="round"></view>
     </view>
     <view class="logistic_info">
-      <view class="logistic_text">快件已签收</view>
-      <view class="logistic_time">2017-05-17  12:41:44</view>
+      <view class="logistic_text">{{item.remark}}</view>
+      <view class="logistic_time">{{item.acceptTime}}</view>
     </view>
   </view>
 </scroll-view>
+

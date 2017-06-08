@@ -17,8 +17,27 @@ Page({
     countNum:{},
     collectModal:true,
     colloctNum:0,
-    debet:0,
-    incomeData:{}
+    incomeData:{},
+    selectLogistics:{},
+    logisticsCompany:[],
+    logisticsno:'',
+    logisticsname:'顺丰',
+    logisticsname_index:0
+  },
+  EventHandle:function(e){
+    this.setData({
+      logisticsno:e.detail.value
+    })
+  },
+  bindSelectorChange:function(e){
+    var style = e.currentTarget.dataset.style;
+    var param = this.data.logisticsCompany;
+    var logisticsname = this.data.logisticsCompany[e.detail.value].id;
+        this.setData({
+          grade_index: e.detail.value,
+          logisticsname_index: logisticsname
+        })
+
   },
   // 一级标签切换
   ordertype:function(e){
@@ -83,6 +102,98 @@ Page({
       }
     })
   },
+  // 更改汇总图标
+  changecountOrders:function(status,type){
+    console.log(status)
+    console.log(status == 3)
+    var totole = this.data.countNum;
+    switch (status){
+      case '2':
+      if(type=="buy"){
+        totole.pNoPayCount -= 1;
+        totole.pNoShipCount += 1; 
+      }else{
+        totole.sNoPayCount -= 1;
+        totole.sNoAuditCount += 1; 
+      }
+         break;
+      case '3':
+        console.log(totole)
+        console.log(11)
+        totole.sNoAuditCount -= 1;
+        totole.sNoShipCount += 1;
+        break;
+      case '4':
+        totole.sNoShipCount -= 1;
+        break;
+      case '5':
+        totole.pNoReceiptCount -= 1;
+        break;
+    }
+    this.setData({
+      countNum:totole
+    })
+  },
+  // 订单操作请求
+  ajaxChange:function(data){
+    console.log('res.code')
+    var that= this;
+    var fliter = {
+      orderNo: data.orderno,
+      operate: data.status,
+      sellerstoreid: data.sellerstoreid,
+      buyerstoreid: data.buyerstoreid,
+      openid: 1
+    };
+    if (data.isContinue){
+      fliter.isContinue = true;
+    }
+    wx.showNavigationBarLoading();
+    util.api.request({
+      url: that.data.statusUrl,
+      data: fliter,
+      method: 'POST',
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      success: function (res) {
+        wx.hideNavigationBarLoading();
+        if (data.status == "3" && res.data == 1013) {
+          data.isContinue = true;
+          wx.showModal({
+            title: '提示',
+            content: '缺少库存,是否继续操作?',
+            success: function (res) {
+              if (res.confirm) {
+                that.ajaxChange(data);
+                that.changecountOrders(data.status, null)                
+              }
+            }
+          })
+        
+        } else {
+          if (data.status !== "3"){
+            that.changecountOrders(data.status, null)
+          }
+          var product = that.data.product;
+          for (var p in product) {
+            if (product[p].payorderno == data.orderno) {
+              product.splice(p, 1);
+              that.setData({
+                product: product
+              })
+              break;
+            }
+          }
+          wx.showToast({
+            title: '成功',
+            mask: true,
+            duration: 2000
+          })
+        }
+      }
+    })
+  },
   // 订单操作
   changeOrderStatus:function(e){
      var orderInfo = e.target.dataset;
@@ -100,29 +211,7 @@ Page({
        content: '确定更改？',
        success: function (res) {
          if (res.confirm) {
-           wx.showNavigationBarLoading();
-           util.api.request({
-             url: that.data.statusUrl,
-             data: {
-               orderNo: orderInfo.orderno,
-               operate: orderInfo.status,
-               sellerstoreid: orderInfo.sellerstoreid,
-               buyerstoreid: orderInfo.buyerstoreid,
-               openid: 1
-             },
-             method: 'POST',
-             header: {
-               'content-type': 'application/x-www-form-urlencoded'
-             },
-             success: function (res) {
-               wx.hideNavigationBarLoading();
-               wx.showToast({
-                 title: '成功',
-                 mask: true,
-                 duration: 2000
-               })
-             }
-           })
+           that.ajaxChange(orderInfo);
          }
        }
      })
@@ -164,18 +253,12 @@ Page({
     };
     this.setData({
       colloctNum: orderInfo.debet,
-      debet: orderInfo.debet,
       collectModal: false,
       incomeData: param
     });
     console.log(orderInfo.debet)
   },
-  EventHandle:function(e){
-    this.setData({
-      colloctNum: e.detail.value
-    })
-  },
-  // 付款确定按钮
+  // 收款确定按钮
   sureCollect:function(){
     var that = this;
     wx.showNavigationBarLoading();
@@ -196,11 +279,10 @@ Page({
       success: function (res) {
          wx.hideNavigationBarLoading();
          var product = that.data.product;
-         if (that.data.colloctNum == that.data.debet) {
-           console.log(11)
-            for(var p in product){
+         this.changecountOrders(2,'sal')
+          for(var p in product){
               console.log(product[p].payorderno)
-            if (product[p].payorderno == that.data.incomeData.orderno){
+              if (product[p].payorderno == that.data.incomeData.orderNo){
                 product.splice(p,1);
                 that.setData({
                   product: product
@@ -208,9 +290,6 @@ Page({
                 break;
               }
             }
-         }else{
-           that.order_request()
-         }
          that.setData({
            collectModal: true
          })
@@ -221,12 +300,55 @@ Page({
          })
       }
     })  
-   
+  },
+  SureLogicson:function(){
+    if (this.data.logisticsno){
+      this.ajaxLogicson()
+    }else{
+      wx.showToast({
+        title: '请输入物流单号',
+        mask: true,
+        duration: 2000
+      })
+    }
+  },
+  // 确认物流
+  ajaxLogicson: function () {
+    var that = this;
+    wx.showNavigationBarLoading();
+    util.api.request({
+      url:'order/confirmLogistic',
+       data: {
+         orderNo: this.data.selectLogistics.orderNo,
+         logisticstype: this.data.selectLogistics.logisticstype,
+        logisticsno: this.data.logisticsno,
+        logisticsname: this.data.logisticsname,
+        storeid: 1
+      },
+      method: 'POST',
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      success: function (res) {
+        wx.hideNavigationBarLoading();
+        wx.navigateTo({
+          url: "express/express"
+        })
+        console.log(res)
+        that.setData({
+          numberModal: true
+        })
+      }
+    })
   },
   // 选物流模态框
-  logisticsView: function () {
+  logisticsView: function (e) {
+    var selectLogistics = {};
+    selectLogistics.logisticstype = e.target.dataset.logisticstype;
+    selectLogistics.orderNo = e.target.dataset.payorderno;
     this.setData({
       logisticsModal: false,
+      selectLogistics: selectLogistics
     })
   },
   // 关闭模态框
@@ -271,16 +393,13 @@ Page({
   onShow:function(){
     if (app.payOrderno){
       var product = this.data.product;
-      var totole = this.data.countNum;
       console.log(app.payOrderno)
       for (var p in product){
         if (product[p].payorderno == app.payOrderno){
           product.splice(p,1);
-          totole.pNoPayCount -=1; 
-          totole.pNoShipCount += 1; 
+          this.changecountOrders(2,'buy')
           this.setData({
-            product: product,
-            countNum: totole
+            product: product
           })
           console.log(app.payOrderno)
           break;

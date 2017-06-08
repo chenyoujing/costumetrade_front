@@ -25,7 +25,7 @@ function toDate(number) {
 }
 //请求接口公共方法
 var api = {
-  host: 'http://192.168.2.221:8080/',
+  host: 'http://192.168.2.221:8088/',
   // 数组转化成字符串
   back: function () {
     wx.navigateBack({
