@@ -22,7 +22,6 @@ Page({
     var that = this;
     if (orderInfo.pay == "2") {
       app.payOrderno = this.data.orderno;
-
     }
     wx.showModal({
       title: '确认下单',

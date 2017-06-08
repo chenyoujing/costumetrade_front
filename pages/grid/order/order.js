@@ -14,7 +14,11 @@ Page({
     logisticsModal: true,
     numberModal: true,
     expressModal: true,
-    countNum:{}
+    countNum:{},
+    collectModal:true,
+    colloctNum:0,
+    debet:0,
+    incomeData:{}
   },
   // 一级标签切换
   ordertype:function(e){
@@ -147,6 +151,78 @@ Page({
     })
    
   },
+  // 付款模态框
+  collectView: function (e) {
+    var orderInfo = e.target.dataset;
+    var that = this;
+    var param = {
+      orderNo: orderInfo.orderno,
+      operate: orderInfo.status,
+      sellerstoreid: orderInfo.sellerstoreid,
+      buyerstoreid: orderInfo.buyerstoreid,
+      openid: 1
+    };
+    this.setData({
+      colloctNum: orderInfo.debet,
+      debet: orderInfo.debet,
+      collectModal: false,
+      incomeData: param
+    });
+    console.log(orderInfo.debet)
+  },
+  EventHandle:function(e){
+    this.setData({
+      colloctNum: e.detail.value
+    })
+  },
+  // 付款确定按钮
+  sureCollect:function(){
+    var that = this;
+    wx.showNavigationBarLoading();
+    util.api.request({
+    url: 'order/orderPay',
+      data: {
+        orderno: that.data.incomeData.orderNo,
+        operate: that.data.incomeData.operate,
+        buyerid: that.data.incomeData.buyerstoreid,
+        sellerid: that.data.incomeData.sellerstoreid,
+        openid: 1,
+        income: that.data.colloctNum
+      },
+      method: 'POST',
+      header: {
+         'content-type': 'application/x-www-form-urlencoded'
+      },
+      success: function (res) {
+         wx.hideNavigationBarLoading();
+         var product = that.data.product;
+         if (that.data.colloctNum == that.data.debet) {
+           console.log(11)
+            for(var p in product){
+              console.log(product[p].payorderno)
+            if (product[p].payorderno == that.data.incomeData.orderno){
+                product.splice(p,1);
+                that.setData({
+                  product: product
+                })
+                break;
+              }
+            }
+         }else{
+           that.order_request()
+         }
+         that.setData({
+           collectModal: true
+         })
+         wx.showToast({
+            title: '成功',
+            mask: true,
+            duration: 2000
+         })
+      }
+    })  
+   
+  },
   // 选物流模态框
   logisticsView: function () {
     this.setData({
@@ -159,6 +235,7 @@ Page({
       logisticsModal: true,
       numberModal: true,
       expressModal: true,
+      collectModal:true
    })
   },
   // 打开输入单号模态框

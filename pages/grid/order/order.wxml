@@ -137,7 +137,10 @@
       </view>
       <view class="clear"></view>
     <view class="order_container_button"  bindtap="changeOrderStatus" data-status='5' data-orderNo="{{item.payorderno}}" data-sellerstoreid="{{item.sellerstoreid}}" data-buyerstoreid="{{item.buyerstoreid}}">确认收货</view>
-    <view class="order_container_button btn_2" bindtap="">查看物流</view>
+    <navigator url="./logistics/logistics">
+      <view class="order_container_button btn_2">查看物流</view>
+    </navigator>
+  
     <view class="clear"></view>
   </view>
 
@@ -190,9 +193,21 @@
       </view>
       <view class="clear"></view>
    
-    <view class="order_container_button btn_2" bindtap="changeOrderStatus" data-status='2' data-orderNo="{{item.payorderno}}" data-sellerstoreid="{{item.sellerstoreid}}" data-buyerstoreid="{{item.buyerstoreid}}">付款</view>
+    <view class="order_container_button btn_2" bindtap="collectView" data-status='2' data-orderNo="{{item.payorderno}}" data-debet="{{item.unPay}}" data-sellerstoreid="{{item.sellerstoreid}}" data-buyerstoreid="{{item.buyerstoreid}}">收款</view>
     <view class="clear"></view>
   </view>
+  <!--收付款-->
+<modal title="收款" hidden="{{collectModal}}" confirm-text="确定" cancel-text="取消"  bindconfirm="sureCollect" bindcancel="cancel" >
+  <view class="choose_container clearfix" style="padding:20px 20px;">
+    <picker class="logistics_picker" range="">
+      <view class="picker">
+      现金
+      <image src="../../../../images/down.png" mode="aspectFit" class="picker_image" />
+    </view>
+  </picker>
+     <input class="logistics_number" value="{{colloctNum}}" bindblur="EventHandle" type="digit" placeholder="输入金额" />
+  </view>
+</modal>
   <!--销售待审核-->
   <view wx-if="{{ordertype==2 && ordertype2==4}}" wx:for="{{product}}" class="order_container_view">
    <navigator url="orderDetails/orderDetails?ordertype={{ordertype}}&payorderno={{item.payorderno}}& ordertype2=4">
@@ -315,15 +330,4 @@
   </view>
 </modal>
 
-<!--收付款-->
-<modal title="收款" hidden="{{expressModal}}" confirm-text="取消" no-cancel bindconfirm="cancel" bindcancel="cancel" >
-  <view class="choose_container clearfix" style="padding:20px 20px;">
-    <picker class="logistics_picker" range="">
-      <view class="picker">
-      现金
-      <image src="../../../../images/down.png" mode="aspectFit" class="picker_image" />
-    </view>
-  </picker>
-     <input class="logistics_number" placeholder="输入金额" />
-  </view>
-</modal>
+
