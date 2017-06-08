@@ -69,7 +69,6 @@
 .client_container{
   padding: 10px;
   position: relative;
-  transition: all 0.3s;
 }
 .client_content{
   box-shadow: 0.5px 0.5px 2px #000000;
@@ -77,6 +76,7 @@
   padding-right: 0;
   position: relative;
   background-color: #ffffff;
+  transition: all 0.3s;
 }
 .client_tx{
   width: 160rpx;
@@ -122,7 +122,7 @@
 }
 .client_button{
   float: right;
-  margin-bottom: -15px;
+  margin-bottom: -30rpx;
   width: 80px;
   font-size: 14px;
   background-color: #52CAC1;

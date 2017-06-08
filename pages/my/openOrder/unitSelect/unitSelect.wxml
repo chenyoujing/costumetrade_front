@@ -7,41 +7,44 @@
   <view class="claer"></view>
 </view>
 
-<scroll-view scroll-y class="unitSelect_sceoll">
+<scroll-view scroll-y class="unitSelect_sceoll" scroll-into-view="{{supplier_type}}">
   <!--供应商内容-->
-  <view class="supplier_container">
-    <view class="supplier_tx">
-      <image src="../../../../images/image_none.png" mode="aspectFill"></image>
+  <block wx:for="{{contacts}}">
+    <view class="supplier_type" id="{{item.type}}">{{item.type}}</view>
+    <view class="supplier_container" wx:for="{{item.value}}">
+      <view class="supplier_tx">
+        <image src="../../../../images/image_none.png" mode="aspectFill"></image>
+      </view>
+      <view class="supplier_name">{{item.name}}</view>
+      <view class="supplier_info">
+        <view>昵称：煎饼侠</view>
+        <view>电话：13333333333</view>
+      </view>
     </view>
-    <view class="supplier_name">小雨</view>
-    <view class="supplier_info">
-      <view>昵称：煎饼侠</view>
-      <view>电话：13333333333</view>
+    <!--<view class="supplier_container">
+      <view class="supplier_tx">
+        <image src="../../../../images/image_none.png" mode="aspectFill"></image>
+      </view>
+      <view class="supplier_name">小何</view>
+      <view class="supplier_info">
+        <view>昵称：煎饼侠</view>
+        <view>电话：13333333333</view>
+      </view>
     </view>
-  </view>
-  <view class="supplier_container">
-    <view class="supplier_tx">
-      <image src="../../../../images/image_none.png" mode="aspectFill"></image>
-    </view>
-    <view class="supplier_name">小何</view>
-    <view class="supplier_info">
-      <view>昵称：煎饼侠</view>
-      <view>电话：13333333333</view>
-    </view>
-  </view>
-  <view class="supplier_container">
-    <view class="supplier_tx">
-      <image src="../../../../images/image_none.png" mode="aspectFill"></image>
-    </view>
-    <view class="supplier_name">小王</view>
-    <view class="supplier_info">
-      <view>昵称：煎饼侠</view>
-      <view>电话：13333333333</view>
-    </view>
-  </view>
+    <view class="supplier_container">
+      <view class="supplier_tx">
+        <image src="../../../../images/image_none.png" mode="aspectFill"></image>
+      </view>
+      <view class="supplier_name">小王</view>
+      <view class="supplier_info">
+        <view>昵称：煎饼侠</view>
+        <view>电话：13333333333</view>
+      </view>
+    </view>-->
+  </block>
 
   <!--右边的导航栏-->
-  <view class="nav_right">
-    <view wx:for="{{nav_right}}" class="nav_text">{{item}}</view>
-  </view>
 </scroll-view>
+  <view class="nav_right" bindtap="supplier_select">
+    <view wx:for="{{nav_right}}" class="nav_text" data-type="{{item}}">{{item}}</view>
+  </view>

@@ -74,8 +74,10 @@ swiper image{
   position: relative;
 }
 .shop_image{
-  width: 65px;
-  height: 65px;
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+  padding: 10px;
   float: left;
 }
 .shop_name{

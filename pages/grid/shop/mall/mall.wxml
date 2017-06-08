@@ -37,7 +37,7 @@
 
 
 
-  <scroll-view scroll-y="true" class="mall_scroll clearfix" style="top:120px;bottom:0;">
+  <scroll-view scroll-y="true" class="mall_scroll" style="top:120px;bottom:0;">
     <view class="container" style="width:{{container_width}};">
       <navigator url="../goods_detail/goods_detail?orderid=1" class="content_container">
         <image src="{{item.image ? item.image : '../../../../images/image_none.png'}}" mode="aspectFill" style="width:{{image_width}}px;height:{{image_width}}px;" />

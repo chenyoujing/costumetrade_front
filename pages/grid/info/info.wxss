@@ -94,6 +94,9 @@
   
 }
 .supplier_search_input{}
+.contacts{
+  background-color: #DCDCDC;
+}
 .supplier_container{
   height: 48px;
   border-bottom: 2px solid #DBF4F1;

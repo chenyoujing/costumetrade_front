@@ -21,8 +21,8 @@
   <view class="screen_title">级别</view>
   <scroll-view scroll-y class="screen_container clearfix">
     <block wx:for="{{screen2}}">
-      <view class="screen_view {{level == item.name?'screen_checked':''}}" data-type="level" data-name="{{item.name}}" bindtap="radioSelect">
-      {{item.value}}
+      <view class="screen_view {{level == item.id?'screen_checked':''}}" data-type="level" data-name="{{item.id}}" bindtap="radioSelect">
+      {{item.custtypename}}
       </view>
     </block>
   </scroll-view>

@@ -131,6 +131,7 @@
           <input class="account_input zero_input" value="{{zero}}" />
           <view class="clear"></view>
         </view>
+        <view class="account_submit">确定</view>
       </scroll-view>
     </swiper-item>
     <!--不是供货商时显示-->
@@ -147,6 +148,7 @@
             <image src="../../../../images/down.png" mode="aspectFit" class="image_down" />
           </picker>
         </view>
+        <view class="account_submit">确定</view>
       </scroll-view>
     </swiper-item>
   </swiper>

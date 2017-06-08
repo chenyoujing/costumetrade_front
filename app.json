@@ -1,10 +1,9 @@
 {
   "pages": [
-    "pages/grid/order/order",
     "pages/grid/shop/shop",
     "pages/grid/user/user",
     "pages/grid/info/info",
-       
+    "pages/grid/order/order",    
     "pages/grid/order/express/express",
     "pages/grid/order/comment/comment",
     "pages/grid/order/orderDetails/orderDetails",
@@ -27,6 +26,7 @@
     "pages/my/client/account/account",
     "pages/my/client/replenishment/replenishment",
     "pages/my/client/clientAdd/clientAdd",
+    "pages/my/client/clientScreen/clientScreen",
     "pages/index/index",
     "pages/my/Goods/Goods",
     "pages/my/Goods/GoodsInfo/GoodsInfo",
@@ -51,8 +51,7 @@
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "WeChat",
-    "navigationBarTextStyle": "black",
-    "enablePullDownRefresh": true
+    "navigationBarTextStyle": "black"
   },
   "tabBar": {
     "list": [

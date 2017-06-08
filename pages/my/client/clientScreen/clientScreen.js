@@ -10,11 +10,11 @@ Page({
       { name: '上海市', value: '上海市' }
     ],
     screen2: [
-      { name: '0', value: '处理' },
-      { name: '1', value: '活动' },
-      { name: '2', value: '在销' },
-      { name: '3', value: '新款' },
-      { name: '4', value: '专供' },
+      { id: '1', custtypename: '普通会员' },
+      { id: '2', custtypename: '银卡会员' },
+      { id: '3', custtypename: '金卡会员' },
+      { id: '4', custtypename: '铂金会员' },
+      { id: '5', custtypename: '钻石会员' },
     ],
     region: [],
     level: '',
@@ -23,6 +23,27 @@ Page({
     keyArray: [],
     changeBoolean: false
   },
+  // 筛选的种类查询
+  initCustomer: function () {
+    var that = this
+    util.api.request({
+      url: 'client/initCustomer',
+      data: {
+        storeId: 1,
+      },
+      method: 'POST',
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      success: function (res) {
+        console.log(res.data)
+        that.setData({
+          screen2: res.data
+        })
+      }
+    })
+  },
+
   // 输入框操作
   bindKeyInput: function (e) {
     var value = e.detail.value;
@@ -133,6 +154,7 @@ Page({
   },
   onLoad: function (options) {
     this.downData();
+    this.initCustomer();
     var screen_content1 = app.screen_brandList;
     var screen_content2 = app.screen_productTypeList;
     for (var p in screen_content1) {

@@ -6,6 +6,16 @@ Page({
       '',
       'http://img06.tooopen.com/images/20160818/tooopen_sy_175833047715.jpg'
     ],
+    contacts: [{
+      type:'A',
+      value: [{ 'name': '啊啊' },{'name': '啊' },{'name': '哎' }]
+    }, {
+      type: 'B',
+      value: [{ 'name': '啊啊' }, { 'name': '啊' }, { 'name': '哎' }]
+    }, {
+      type: 'C',
+      value: [{ 'name': '啊啊' }, { 'name': '啊' }, { 'name': '哎' }]
+    }],
     nav_right: ['↑', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '#',],
     infotype:'0',
     nav_position:'relative',

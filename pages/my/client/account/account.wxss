@@ -86,6 +86,7 @@ swiper{
   float: left;
   width: 70%;
   font-size: 15px;
+  line-height: 30px;
 }
 .account_all{
   padding: 10px 30px 10px 20px;
@@ -174,7 +175,6 @@ swiper{
   padding-right: 8px;
 }
 .paytype{
-  padding: 5px 0;
   position: relative;
 }
 .zero{
@@ -187,5 +187,16 @@ swiper{
   height: 30px;
   line-height: 30px;
   text-align: center;
+}
+.account_submit{
+  width: 130px;
+  height: 32px;
+  font-size: 18px;
+  line-height: 32px;
+  color: #ffffff;
+  background-color: #52CAC1;
+  text-align: center;
+  margin: auto;
+  margin-top: 30px;
 }
 

@@ -1,8 +1,9 @@
-  <view class="title">
-    <image src="../../../../images/back-away.png" mode="aspectFit"></image>
+  <view class="title clearfix">
+    <navigator open-type="navigateBack">
+      <image src="../../../../images/back-away.png" mode="aspectFit"></image>
+    </navigator>
     <view class="title_text">发表评论</view>
     <view class="title_submit">发布</view>
-    <view class="clear"></view>
   </view>
 
   <view class="comment_content">
@@ -10,5 +11,10 @@
       输入评价内容
       <image src="../../../../images/comment_add.png" mode="aspectFit" class="add_image" />
     </view>
-    <textarea class="comment_container" placeholder="产品满足你的期待吗？说说你的心得，分享给他们把..." />
+    <view class="comment_container">
+      <textarea class="comment_text" placeholder="产品满足你的期待吗？说说你的心得，分享给他们把..." />
+      <block wx:for="{{fileList}}">
+        <image src="{{item}}" bindtap="changeImage" data-index="{{index}}" class="comment_image" />
+      </block>
+    </view>
   </view>
