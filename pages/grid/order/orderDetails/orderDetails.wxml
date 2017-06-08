@@ -28,7 +28,9 @@
         </view>
         <view class="order_unit_price">单价：{{item.price}}</view>
         <view class="order_view_price">{{item.totalPrice}}</view>
-        <view class="order_view_button" wx:if="{{ordertype==1&&ordertype2==5}}">评价</view>
+        <navigator url="../comment/comment?productid={{item.productid}}">
+          <view class="order_view_button" wx:if="{{ordertype==1&&ordertype2==5}}">评价</view>
+        </navigator>
       </view>
     </view>
     <view class="clear"></view>
