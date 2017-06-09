@@ -156,6 +156,7 @@
   bottom: 10px;
   width: 19%;
   padding: 10px 0;
+  z-index: 1;
 }
 .imagesearch_image{
   display: block;
