@@ -27,7 +27,6 @@ Page({
         wx.hideNavigationBarLoading();
         var data = [];
         for (var p = res.data.body.length-1;p >=0;p--){
-          // if (res.data.body[p].remark.indexOf('font'))
           res.data.body[p].remark = res.data.body[p].remark.replace(/<font color='red'>/g,'');
           res.data.body[p].remark = res.data.body[p].remark.replace(/<\/font>/g, '');
           console.log(res.data.body[p].remark)
