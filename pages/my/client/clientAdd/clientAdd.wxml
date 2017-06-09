@@ -13,15 +13,15 @@
 
       <image src="../../../../images/image_none.png" class="client_bg" mode="aspectFill" />
       <view class="client_content">
-        <image src="../../../../images/image_none.png" mode="aspectFill" class="client_image" bindtap="address" />
+        <image src="{{CustomerInfo.image?CustomerInfo.image:'../../../../images/image_none.png'}}" mode="aspectFill" class="client_image" bindtap="address" />
         <view class="client_info">
           <view class="info_text">
             <text class="info_text1">昵称：</text>
-            <text class="info_text2">jiop</text>
+            <text class="info_text2">{{CustomerInfo.nickName}}</text>
           </view>
           <view class="info_text">
             <text class="info_text1">真实姓名：</text>
-            <text class="info_text2">小鱼</text>
+            <text class="info_text2">{{CustomerInfo.reallyName}}</text>
           </view>
           <view class="info_text">
             <view class="info_text1 wechat_number_title">微信号：</view>
@@ -33,24 +33,20 @@
           </view>
           <view class="info_text">
             <text class="info_text1">生日信息：</text>
-            <text class="info_text2">1111-11-11</text>
+            <text class="info_text2">{{CustomerInfo.birthdate}}</text>
           </view>
           <view class="info_text">
             <text class="info_text1">移动电话：</text>
-            <text class="info_text2">13587893058</text>
+            <text class="info_text2">{{CustomerInfo.telephone}}</text>
           </view>
           <view class="info_text">
             <text class="info_text1">收货地址：</text>
-            <text class="info_text2">杭州市萧山区建设一路</text>
+            <text class="info_text2">{{CustomerInfo.address}}</text>
           </view>
         </view>
       </view>
     
 
-      <view class="client_add_input clearfix">
-        <view class="client_add_input_text">备注名称：</view>
-        <input type="text" class="client_add_input1" name="remarkName"  value="{{updata_code}}"/>
-      </view>
       <view class="client_add_input clearfix" wx:if="{{client=='1'}}">
         <view class="client_add_input_text">客户类型：</view>
         <picker class="client_add_picker" bindchange="bindSelectorChange" value="{{type_index}}" range="{{initCustomerList}}" name="cate" mode="selector" range-key="custtypename" >
@@ -59,12 +55,16 @@
         </picker>
       </view>
       <view class="client_add_input clearfix">
+        <view class="client_add_input_text">备注名称：</view>
+        <input type="text" class="client_add_input1" name="remarkName"  value="{{CustomerInfo.remarkName}}"/>
+      </view>
+      <view class="client_add_input clearfix">
         <view class="client_add_input_text">备用电话：</view>
-        <input type="number" class="client_add_input1" name="phoneBack" value="{{updata_name}}" />
+        <input type="number" class="client_add_input1" name="phoneBack" value="{{CustomerInfo.phoneBack}}" />
       </view>
       <view class="client_add_input clearfix">
         <view class="client_add_input_text">备用地址：</view>
-        <input type="text" class="client_add_input1" name="addressBack"  value="{{updata_code}}"/>
+        <input type="text" class="client_add_input1" name="addressBack"  value="{{CustomerInfo.addressBack}}"/>
       </view>
       <view class="client_add_input clearfix">
         <view class="client_add_input_text">所属地区：</view>

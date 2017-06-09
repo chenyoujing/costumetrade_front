@@ -1,7 +1,6 @@
 var util = require('../../../../utils/util.js')
 var app = getApp()
 Page({
-
   data: {
     type_index:'0',
     title:'',
@@ -47,38 +46,17 @@ Page({
     }
     switch (client){
       case '1':
-        title2 = '客户'
+        title2 = '客户';
         break;
       case '2':
-        title2 = '供应商'
+        title2 = '供应商';
         break;
       case '3':
-        title2 = '朋友'
+        title2 = '朋友';
         break;
     }
     this.setData({
       title: title1 + title2 + title3
-    })
-  },
-  // 客户等级查询
-  initCustomer:function(){
-    var client = this.data.client
-    var that = this
-    util.api.request({
-      url:'client/initCustomer',
-      data: {
-        type: client,
-        storeId: 1,
-      },
-      method:'POST',
-      header: {
-        'content-type': 'application/x-www-form-urlencoded'
-      },
-      success: function (res) {
-        that.setData({
-          initCustomerList: res.data.custProdPriceList
-        })
-      }
     })
   },
   // 修改客户界面查询
@@ -96,6 +74,14 @@ Page({
       },
       success: function (res) {
         console.log(res.data)
+        for (var p in that.data.initCustomerList){
+          if (that.data.initCustomerList[p].id == res.data.cate){
+            that.setData({
+              type_index: p
+            })
+          }
+        }
+        
         that.setData({
           CustomerInfo: res.data
         })
@@ -109,13 +95,13 @@ Page({
     var that = this
     var object = e.detail.value
     if (this.data.clientId){
-      object.clientId = this.data.clientId
+      object.id = this.data.clientId
+    }else{
+      object.id = util.api.DateFormat(new Date())
     }
     object.storeId = 1
-    object.reallyName = '王'
-    object.id = util.api.DateFormat(new Date())
+    // object.reallyName = '王'
     object.type = this.data.client
-    object.telephone = '057112345678'
     object.cate = this.data.initCustomerList[this.data.type_index].id
     console.log(object)
     util.api.request({
@@ -128,7 +114,7 @@ Page({
       success: function (res) {
         console.log(res)
         wx.showToast({
-          title: '添加成功',
+          title: '成功添加',
           icon: 'success',
           duration: 2000
         })
@@ -179,10 +165,14 @@ Page({
   onLoad: function (e) {
     this.setData({
       client: e.client,
-      clientId: e.clientId
+      clientId: e.clientId,
+      initCustomerList: app.custProdPriceList
     })
-    this.client_add_title(e.client, e.clientId)
+    if (e.clientId){
+      this.getClient()
+    }
+    this.client_add_title()
     // this.scan()
-    this.initCustomer()
+
   },
 })
