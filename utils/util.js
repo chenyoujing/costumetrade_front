@@ -100,11 +100,12 @@ var api = {
     }
     return updated;
   },
-  downData:function(url){  
+  downData:function(url2){  
     var that = this;
     wx.showNavigationBarLoading();
+    console.log(url2)
     this.request({
-      url: url,
+      url: url2,
       data: {
         storeId: 1,
         pageNum:pageNum
@@ -119,7 +120,7 @@ var api = {
         }
         if(res.data.length == 10){
           pageNum = pageNum+1;
-          that.downData();
+          that.downData(url2);
         }else{
           wx.hideNavigationBarLoading();
           wx.setStorage({
@@ -142,26 +143,28 @@ var api = {
     })
   },
   // 检测是否该更新数据
-  supplierRefresh:function(){
-    var boolean2 = false;
+  supplierRefresh:function(url){
+    var that = this;
+    var myDate = new Date();
     wx.getStorage({
       key: 'updataTime',
-      success: function (res) {
+      complete: function (res) {
+        console.log(res)
         if (parseInt((myDate - res.data) / 1000 / 60 / 60) >= 1 || res.data == undefined) {
-          boolean2 = true;
+          that.downData(url)
         }
       }
     })
-    return boolean2;
+   
   },
   // 智能搜索
-  searchKeyWord: function (filedsName, select, value,select2) {
-    var endArray;
+  searchKeyWord: function (filedsName, select,value,select2) {
+    var endArray = [];
     value = value.toLowerCase();
     if (filedsName[select].toLowerCase() == value || filedsName[select2].toLowerCase() == value) {
       endArray = filedsName;
       endArray.type = 1;
-    } else if ((filedsName[select].toLowerCase().indexOf(value) > -1 && filedsName[select].toLowerCase() !== value) || (filedsName[select2].toLowerCase().indexOf(value) > -1 && filedsName[valselect2ue2].toLowerCase() !== value)) {
+    } else if ((filedsName[select].toLowerCase().indexOf(value) > -1 && filedsName[select].toLowerCase() !== value) || (filedsName[select2].toLowerCase().indexOf(value) > -1 && filedsName[select2].toLowerCase() !== value)) {
       endArray = filedsName;
       endArray.type = 2;
     } else {
@@ -202,8 +205,8 @@ var api = {
   objectPushArry: function (product, e) {
     var n = [];
     for (var p in product) {
-      if (this.searchKeyWord(product[p], 'name', e,'code')) {
-        n.push(this.searchKeyWord(product[p], 'name', e,'code'));
+      if (this.searchKeyWord(product[p],'name', e,'code')) {
+        n.push(this.searchKeyWord(product[p],'name', e,'code'));
       }
     }
     var endArray4 = [];
