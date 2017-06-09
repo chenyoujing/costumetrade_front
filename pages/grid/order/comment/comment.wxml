@@ -11,10 +11,10 @@
       输入评价内容
       <image src="../../../../images/comment_add.png" mode="aspectFit" class="add_image" />
     </view>
-    <view class="comment_container">
-      <textarea class="comment_text" placeholder="产品满足你的期待吗？说说你的心得，分享给他们把..." />
-      <block wx:for="{{fileList}}">
-        <image src="{{item}}" bindtap="changeImage" data-index="{{index}}" class="comment_image" />
-      </block>
-    </view>
+    <textarea class="comment_container" placeholder="产品满足你的期待吗？说说你的心得，分享给他们把..." />
+    <block wx:for="{{fileList}}">
+      <view class="add_image_view" style="text-align:left;">
+        <image src="{{item}}" bindtap="changeImage" data-index="{{index}}" mode="aspectFill" class="image" />
+      </view>
+    </block>
   </view>

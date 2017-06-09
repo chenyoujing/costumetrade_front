@@ -46,6 +46,7 @@
 .add_image_view{
   float: left;
   width: 33.33333333%;
+  text-align: center;
 }
 .image{
   width: 200rpx;
