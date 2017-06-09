@@ -8,6 +8,9 @@ Page({
     billtype_index: 0,
     paytype: ["现金", "刷卡", "微信", "支付宝", "农业银行", "工商银行", "广发银行", "招商银行", "中信银行", "华夏银行", "建设银行"],
     paytype_index: 0,
+    date_start: '',
+    date_end: '',
+    account_date: "",
 
   },
 

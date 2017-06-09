@@ -39,49 +39,6 @@ icon,.title button{
 button::after{
   content: none;
 }
-.order_footer{
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 50px;
-  border-top: 1px solid #E3E3E3;
-  background-color: #ffffff;
-}
-.all_number{
-  float: left;
-  width: 25%;
-  font-size: 16px;
-  text-align: center;
-  line-height: 50px;
-}
-.all_number::before{
-  content: "共"
-}
-.all_number::after{
-  content: "件"
-}
-.all_price{
-  float: left;
-  width: 40%;
-  line-height: 50px;
-  color: #ff0000;
-  font-size: 18px;
-}
-.all_price::before{
-  content: "合计:";
-  color: #000000;
-}
-.all_button{
-  float: left;
-  width: 35%;
-  text-align: center;
-  font-size: 18px;
-  background-color: #ff0000;
-  height: 50px;
-  line-height: 50px;
-  color: #ffffff;
-}
 .content{
   box-sizing: border-box;
 }

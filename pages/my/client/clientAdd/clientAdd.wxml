@@ -49,7 +49,7 @@
 
       <view class="client_add_input clearfix">
         <view class="client_add_input_text">备注名称：</view>
-        <input type="text" class="client_add_input1" name="remarks"  value="{{updata_code}}"/>
+        <input type="text" class="client_add_input1" name="remarkName"  value="{{updata_code}}"/>
       </view>
       <view class="client_add_input clearfix" wx:if="{{client=='1'}}">
         <view class="client_add_input_text">客户类型：</view>
@@ -60,11 +60,11 @@
       </view>
       <view class="client_add_input clearfix">
         <view class="client_add_input_text">备用电话：</view>
-        <input type="number" class="client_add_input1" name="phone" value="{{updata_name}}" />
+        <input type="number" class="client_add_input1" name="phoneBack" value="{{updata_name}}" />
       </view>
       <view class="client_add_input clearfix">
         <view class="client_add_input_text">备用地址：</view>
-        <input type="text" class="client_add_input1" name="address"  value="{{updata_code}}"/>
+        <input type="text" class="client_add_input1" name="addressBack"  value="{{updata_code}}"/>
       </view>
       <view class="client_add_input clearfix">
         <view class="client_add_input_text">所属地区：</view>

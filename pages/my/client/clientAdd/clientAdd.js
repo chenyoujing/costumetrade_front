@@ -4,10 +4,39 @@ Page({
 
   data: {
     type_index:'0',
-    title:''
+    title:'',
+    client:'',
+    clientId:''
+  },
+  // 获取二维码
+  scan:function(){
+    var client = this.data.client
+    var that = this
+    util.api.request({
+      url: 'client/scanQRCode',
+      data: {
+        type: client,
+        storeId: "1",
+        id: util.api.DateFormat(new Date())
+      },
+      method: 'POST',
+      header: {
+        'content-type': 'application/json'
+      },
+      success: function (res) {
+        console.log(res.data)
+        that.setData({
+          scan: res.data
+        })
+      }
+    })
+
+    
   },
   // 标题内容
-  client_add_title: function (client, clientId){
+  client_add_title: function (){
+    var client = this.data.client
+    var clientId = this.data.clientId
     var title1 = ''
     var title2 = ''
     var title3 = ''
@@ -33,10 +62,12 @@ Page({
   },
   // 客户等级查询
   initCustomer:function(){
+    var client = this.data.client
     var that = this
     util.api.request({
       url:'client/initCustomer',
       data: {
+        type: client,
         storeId: 1,
       },
       method:'POST',
@@ -44,15 +75,15 @@ Page({
         'content-type': 'application/x-www-form-urlencoded'
       },
       success: function (res) {
-        console.log(res.data)
         that.setData({
-          initCustomerList: res.data
+          initCustomerList: res.data.custProdPriceList
         })
       }
     })
   },
   // 修改客户界面查询
-  getClient: function (clientId){
+  getClient: function (){
+    var clientId = this.data.clientId
     var that = this
     util.api.request({
       url: 'client/getClient',
@@ -80,8 +111,11 @@ Page({
     if (this.data.clientId){
       object.clientId = this.data.clientId
     }
+    object.storeId = 1
+    object.reallyName = '王'
+    object.id = util.api.DateFormat(new Date())
     object.type = this.data.client
-    object.telephone = '0571-12345678'
+    object.telephone = '057112345678'
     object.cate = this.data.initCustomerList[this.data.type_index].id
     console.log(object)
     util.api.request({
@@ -89,10 +123,20 @@ Page({
       data: object,
       method: 'POST',
       header: {
-        'content-type': 'application/x-www-form-urlencoded'
+        'content-type': 'application/json'
       },
       success: function (res) {
         console.log(res)
+        wx.showToast({
+          title: '添加成功',
+          icon: 'success',
+          duration: 2000
+        })
+        setTimeout(() => {
+          wx.navigateBack({
+            delta: 1
+          })
+        }, 2000)
       }
     })
   },
@@ -133,11 +177,12 @@ Page({
 
   },
   onLoad: function (e) {
-    this.initCustomer()
-    this.client_add_title(e.client, e.clientId)
     this.setData({
       client: e.client,
       clientId: e.clientId
     })
+    this.client_add_title(e.client, e.clientId)
+    // this.scan()
+    this.initCustomer()
   },
 })

@@ -2,24 +2,28 @@ var util = require('../../../utils/util.js')
 var app = getApp()
 Page({
   data: {
-    client: "",
-    sort:'1',
-    date_start: '',
-    date_end: '',
-    account_date: "",
+    client: "1",
     more_function_display: "none",
     animation: "",
     select_checkbox: '0',
     delete_button: '0',
     ids:[],
+    state: 'nameOp',
+    Op: 'desc',
+    getSortData: {
+      value: 'nameOp',
+      op: 'desc'
+    },
+    pageNum: 1,
+    requestSwitch: true,
+
   },
-  // 客户列表加载
+  // 请求数据
   clientType: function (e) {
     var that = this
+    var client=""
     if (e){
-      var client = e.target.dataset.client
-    }else{
-      var client = '1'
+      client = e.target.dataset.client
     }
 
     if (that.data.client != client) {
@@ -27,31 +31,72 @@ Page({
         url: 'client/getClients',
         data: {
           storeId:1,
-          type: client,
+          type: 1,
+          sort: that.data.getSortData
         },
         method: 'POST',
         header: {
-          'content-type': 'application/x-www-form-urlencoded'
+          'content-type': 'application/json'
         },
         success: function (res) {
-          console.log(res.data)
+          console.log(res)
           that.setData({
             ClientsList: res.data
           })
         }
       })
     }
+    if (client){
+      this.setData({
+        client: client
+      })
+    }
+  },
+  // 三种排序效果切换
+  clientSort: function (e) {
+    var status = e.currentTarget.dataset.sort;
+    var op = this.data.Op ? this.data.Op : 'desc';
+    if (op == 'desc') {
+      op = 'asc'
+    } else {
+      op = 'desc'
+    }
     this.setData({
-      client: client
+      state: status,
+      Op: op,
+      getSortData: {
+        value: status,
+        op: op
+      },
+      pageNum: 1,
+      product: [],
+      requestSwitch: true
+    });
+    this.clientType();
+  },
+  // 客户等级查询
+  initCustomer: function () {
+    var client = this.data.client
+    var that = this
+    util.api.request({
+      url: 'client/initCustomer',
+      data: {
+        type: client,
+        storeId: 1,
+      },
+      method: 'POST',
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      success: function (res) {
+        console.log(res.data)
+        that.setData({
+          initCustomerList: res.data.custProdPriceList
+        })
+      }
     })
   },
-  // 排序类型
-  clientSort:function(e){
-    let data = e.target.dataset
-    this.setData({
-      sort: data.sort
-    })
-  },
+
   // 批量删除选择框
   delete_container: function (e) {
     var ids = e.target.dataset.id;
@@ -150,10 +195,6 @@ Page({
   onLoad: function (e) {
     var that = this
     this.clientType()
-    this.setData({
-      date_start: util.formatTime(new Date(Date.now() - 86400000)),
-      date_end: util.formatTime(new Date(Date.now())),
-      account_date: util.formatTime(new Date(Date.now())),
-    })
+    this.initCustomer()
   },
 })

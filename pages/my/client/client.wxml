@@ -18,13 +18,13 @@
     <view class="clear"></view>
   </view>
   <view class="client">
-    <view class="client_text sort_text {{sort=='1' ? 'active' : ''}}" bindtap="clientSort" data-sort="1">名称</view>
-    <view class="client_text sort_text {{sort=='2' ? 'active' : ''}}" bindtap="clientSort" data-sort="2">时间</view>
-    <view class="client_text sort_text {{sort=='3' ? 'active' : ''}}" bindtap="clientSort" data-sort="3">积分</view>
+    <view class="client_text sort_text {{state=='nameOp' ? 'active' : ''}}" bindtap="clientSort" data-sort="nameOp">名称</view>
+    <view class="client_text sort_text {{state=='timeOp' ? 'active' : ''}}" bindtap="clientSort" data-sort="timeOp">时间</view>
+    <view class="client_text sort_text {{state=='pointsOp' ? 'active' : ''}}" bindtap="clientSort" data-sort="pointsOp">积分</view>
     <view class="clear"></view>
   </view>
   <scroll-view class="content" scroll-y style="bottom:{{delete_button}}px;">
-    <view class="client_container">
+    <view class="client_container" wx:for="{{ClientsList}}">
       <checkbox-group class="delete_container" bindchange="delete_container" data-id ="1" >
         <label class="checkbox">
           <checkbox value="{{item.id}}"  checked='{{aa}}'/>
