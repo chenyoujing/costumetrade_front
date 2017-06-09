@@ -13,30 +13,6 @@ Page({
     color: ["藏青色", "玫红色"],
     size: ["S", "M"],
   },
-  onLoad: function () {
-    var that = this
-    setTimeout(() => {
-      this.setData({
-        scrollTop: this.data.scrollTop,
-      })
-    }, 1000)
-    wx.getSystemInfo({
-      success: function (res) {
-        that.setData({
-          keyboard_width: (res.windowWidth - 8) / 4 - 4,
-          keyboard_height: res.windowHeight / 6 - 10
-        })
-      }
-    })
-  },
-  onShow: function (options) {
-    var that = this
-    setTimeout(() => {
-      this.setData({
-        scrollTop: this.data.scrollTop,
-      })
-    }, 100)
-  },
   input_type_change: function (e) {
     var that = this
     if (this.data.input_type == "number") {
@@ -101,8 +77,8 @@ Page({
   },
   //买单
   order: function () {
-    wx.switchTab({
-      url: '../order/order'
+    wx.navigateTo({
+      url: './orderSure/orderSure'
     })
   },
   order_buy: function (e) {
@@ -117,5 +93,29 @@ Page({
     this.setData({
       orderid: ""
     })
-  }
+  },
+  onLoad: function () {
+    var that = this
+    setTimeout(() => {
+      this.setData({
+        scrollTop: this.data.scrollTop,
+      })
+    }, 1000)
+    wx.getSystemInfo({
+      success: function (res) {
+        that.setData({
+          keyboard_width: (res.windowWidth - 8) / 4 - 4,
+          keyboard_height: res.windowHeight / 6 - 10
+        })
+      }
+    })
+  },
+  onShow: function (options) {
+    var that = this
+    setTimeout(() => {
+      this.setData({
+        scrollTop: this.data.scrollTop,
+      })
+    }, 100)
+  } 
 })

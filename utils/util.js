@@ -32,6 +32,21 @@ var api = {
       delta: 1
     })
   },
+  DateFormat:function (format) {
+    var o = {
+      "M+": format.getMonth() + 1, //month
+      "d+": format.getDate(), //day
+      "h+": format.getHours(), //hour
+      "m+": format.getMinutes(), //minute
+      "s+": format.getSeconds(), //second
+      "q+": Math.floor((format.getMonth() + 3) / 3),//quarter，
+      "S": format.getMilliseconds() //毫秒
+    };
+    format = String(7) + o["M+"]+ o["d+"]+ o["h+"] + o["m+"] + o["s+"] + o["S"];
+    console.log(o)
+    console.log(o["M+"])
+    return format;
+  },
   getFilterArray:function(array){
     var string = '';
     for(var p in array){
@@ -85,12 +100,11 @@ var api = {
     }
     return updated;
   },
-  downData:function(){
-   
+  downData:function(url){  
     var that = this;
     wx.showNavigationBarLoading();
     this.request({
-      url:'product/getProducts',
+      url: url,
       data: {
         storeId: 1,
         pageNum:pageNum
@@ -112,6 +126,12 @@ var api = {
             key: "GoodsData",
             data: publicProduct
           })
+          var myDate = new Date();
+          myDate.getTime();
+          wx.setStorage({
+            key: "updataTime",
+            data: myDate
+          })
           wx.showToast({
             title: '更新完毕',
             mask: true,
@@ -121,14 +141,27 @@ var api = {
       }
     })
   },
+  // 检测是否该更新数据
+  supplierRefresh:function(){
+    var boolean2 = false;
+    wx.getStorage({
+      key: 'updataTime',
+      success: function (res) {
+        if (parseInt((myDate - res.data) / 1000 / 60 / 60) >= 1 || res.data == undefined) {
+          boolean2 = true;
+        }
+      }
+    })
+    return boolean2;
+  },
   // 智能搜索
-  searchKeyWord: function (filedsName, select, value) {
+  searchKeyWord: function (filedsName, select, value,select2) {
     var endArray;
     value = value.toLowerCase();
-    if (filedsName[select].toLowerCase() == value || filedsName['code'].toLowerCase() == value) {
+    if (filedsName[select].toLowerCase() == value || filedsName[select2].toLowerCase() == value) {
       endArray = filedsName;
       endArray.type = 1;
-    } else if ((filedsName[select].toLowerCase().indexOf(value) > -1 && filedsName[select].toLowerCase() !== value) || (filedsName["code"].toLowerCase().indexOf(value) > -1 && filedsName["code"].toLowerCase() !== value)) {
+    } else if ((filedsName[select].toLowerCase().indexOf(value) > -1 && filedsName[select].toLowerCase() !== value) || (filedsName[select2].toLowerCase().indexOf(value) > -1 && filedsName[valselect2ue2].toLowerCase() !== value)) {
       endArray = filedsName;
       endArray.type = 2;
     } else {
@@ -169,8 +202,8 @@ var api = {
   objectPushArry: function (product, e) {
     var n = [];
     for (var p in product) {
-      if (this.searchKeyWord(product[p], 'name', e)) {
-        n.push(this.searchKeyWord(product[p], 'name', e));
+      if (this.searchKeyWord(product[p], 'name', e,'code')) {
+        n.push(this.searchKeyWord(product[p], 'name', e,'code'));
       }
     }
     var endArray4 = [];

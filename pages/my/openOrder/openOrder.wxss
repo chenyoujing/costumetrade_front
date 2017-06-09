@@ -12,7 +12,10 @@
   right: 0;
   background-color: #52CAC1;
   padding: 15px 10px;
-  z-index: 1;
+  z-index: 1
+}
+.title_color{
+  color:#be4e17
 }
 .title_number{
   float: left;
@@ -23,7 +26,7 @@
   text-align: center;
 }
 .title_number::before{
-  content: "数量:";
+  content: "数量：";
   color: #ffffff;
   font-size: 14px;
   line-height: 24px;
@@ -37,14 +40,15 @@
   text-align: center;
 }
 .title_price::before{
-  content: "合计金额:";
+  content: "合计金额：";
   color: #ffffff;
   font-size: 14px;
   line-height: 24px;
 }
 .title_supplier{
+  color: #fff;
   float: left;
-  font-size: 14px;
+  font-size: 15px;
   line-height: 24px;
   height: 24px;
   width: 30%;
@@ -66,6 +70,13 @@
   line-height: 24px;
   height: 24px;
   width: 5%;
+}
+.title_image{
+  float: right;
+  background-color: transparent;
+  width: 24px;
+  height: 24px;
+  z-index: 3;
 }
 .scroll_title{
   position: fixed;
@@ -130,6 +141,7 @@ input{
   float: left;
   color: #ffffff;
   padding: 10px;
+  height:45px
 }
 
 .products_info{
@@ -220,3 +232,6 @@ input{
   overflow:hidden;
   text-overflow:ellipsis;
 }
+
+
+

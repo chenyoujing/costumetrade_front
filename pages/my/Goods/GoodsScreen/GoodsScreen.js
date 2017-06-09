@@ -58,6 +58,7 @@ Page({
     }
     this.setData(object)
   },
+  
    // 季节、状态单选
   radioSelect:function(e){
     var type = e.target.dataset.type;
@@ -123,7 +124,9 @@ Page({
   },
  
   downData:function(){
-    util.api.downData();
+    if (util.api.supplierRefresh()){
+      util.api.downData('product/getProducts');
+    }
     var that = this;
     wx.getStorage({
       key: 'GoodsData',

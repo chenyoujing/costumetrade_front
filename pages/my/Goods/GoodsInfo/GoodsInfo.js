@@ -308,18 +308,40 @@ Page({
           'content-type': 'application/json'
         },
         success: function (res) {
+          var totalProduct = []
           wx.hideNavigationBarLoading();
           wx.showToast({
             title: '保存成功',
             mask: true,
             duration: 2000
           })
+          // 货品
+          wx.getStorage({
+            key: 'GoodsData',
+            success: function (res) {
+              totalProduct = res.data ? res.data:[];
+            }
+          })
           app.newid = that.data.id == "" ? res.data : null;
           if (that.data.id){
+            for (var p in totalProduct){
+              if (totalProduct[p].id = that.data.id){
+                for (var j in objectSubmit){
+                  totalProduct[p][j] = objectSubmit[j]
+                }
+                break;
+              }
+            }
             if (objectSubmit.name || objectSubmit.image) {
               app.updataGoodsInfo = that.data.GoodsInfoData;
             }
+          }else{
+            totalProduct.unshift(objectSubmit)
           }
+          wx.setStorage({
+            key: "GoodsData",
+            data: totalProduct
+          })
           wx.navigateBack({
             delta: 1
           })
