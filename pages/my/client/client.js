@@ -3,6 +3,7 @@ var app = getApp()
 Page({
   data: {
     client: "1",
+    ClientsList:[],
     more_function_display: "none",
     animation: "",
     select_checkbox: '0',
@@ -14,14 +15,17 @@ Page({
       value: 'nameOp',
       op: 'desc'
     },
-    pageNum: 1,
+    loadMore: true,
     requestSwitch: true,
-
+    name:'',
+    pageNum:1,
   },
   // 客户等级查询,全局变量
   initCustomer: function () {
-    var client = this.data.client
     var that = this
+    wx.showNavigationBarLoading()
+
+    var client = this.data.client
     util.api.request({
       url: 'client/initCustomer',
       data: {
@@ -33,50 +37,85 @@ Page({
         'content-type': 'application/x-www-form-urlencoded'
       },
       success: function (res) {
+        wx.hideNavigationBarLoading();
+        console.log(res.data)
+        var districtList = []
+        for (var p in res.data.districtList){
+          districtList.push({
+            value: res.data.districtList[p]
+          })
+        }
         app.custProdPriceList = res.data.custProdPriceList
+        app.districtList = districtList
       }
     })
   },
 
   // 请求数据
-  clientType: function (e) {
+  page_request: function () {
     var that = this
-    var client=""
-    if (e){
-      client = e.target.dataset.client
-    }
-
-    if (that.data.client != client) {
-      util.api.request({
-        url: 'client/getClients',
-        data: {
-          storeId:1,
-          type: client?client:that.data.client,
-          sort: that.data.getSortData
-        },
-        method: 'POST',
-        header: {
-          'content-type': 'application/json'
-        },
-        success: function (res) {
-          var ClientsList = res.data
-          for (var p in ClientsList) {
-            for (var j in app.custProdPriceList) {
-              if(ClientsList[p].cate == app.custProdPriceList[j].id){
-                ClientsList[p].cate = app.custProdPriceList[j].custtypename
-              }
+    var client = this.data.client
+    wx.showNavigationBarLoading()
+    util.api.request({
+      url: 'client/getClients',
+      data: {
+        storeId:1,
+        type: client,
+        sort: that.data.getSortData,
+        districtList: app.region,
+        name: that.data.name,
+        pageNum: that.data.pageNum,
+      },
+      method: 'POST',
+      header: {
+        'content-type': 'application/json'
+      },
+      success: function (res) {
+        wx.hideNavigationBarLoading();
+        var ClientsList = res.data
+        //把1,2,3...变为 普通会员,银卡会员,金卡会员...
+        for (var p in ClientsList) {
+          for (var j in app.custProdPriceList) {
+            if(ClientsList[p].cate == app.custProdPriceList[j].id){
+              ClientsList[p].cate = app.custProdPriceList[j].custtypename
             }
           }
-          that.setData({
-            ClientsList: res.data
-          })
         }
-      })
-    }
-    if (client){
+        //分页
+        var data = that.data.ClientsList
+        var booleanre = that.data.requestSwitch;
+
+        if (that.data.pageNum == 1) {
+          data = res.data;
+        } else {
+          for (var p in res.data) {
+            data.push(res.data[p])
+          }
+        }
+        if (res.data.length < 10) {
+          booleanre = false;
+        } else {
+          booleanre = true;
+        }
+        that.setData({
+          ClientsList: data,
+          loadMore: true,
+          requestSwitch: booleanre
+        })
+      }
+    })
+  },
+  // 三种种类切换
+  clientType:function(e){
+    var client = e.target.dataset.client
+    if (client != this.data.client){
       this.setData({
-        client: client
+        client: client,
+        pageNum: 1,
+        // ClientsList: [],
+        requestSwitch: true
       })
+      this.page_request();
     }
   },
   // 三种排序效果切换
@@ -96,10 +135,32 @@ Page({
         op: op
       },
       pageNum: 1,
-      product: [],
+      // ClientsList: [],
       requestSwitch: true
     });
-    this.clientType();
+    this.page_request();
+  },
+  // 搜索框输入
+  bindKeyInput: function (e) {
+    this.setData({
+      name: e.detail.value
+    })
+  },
+  // 搜索
+  searchName:function(){
+    this.page_request()
+  },
+  // 上拉加载
+  onReachBottom: function () {
+    console.log('到底不了')
+    this.setData({
+      pageNum: this.data.pageNum + 1,
+      loadMore: false
+    });
+    console.log(this.data.pageNum)
+    if (this.data.requestSwitch) {
+      this.page_request();
+    }
   },
 
   // 批量删除选择框
@@ -139,7 +200,7 @@ Page({
       },
       success: function (res) {
         wx.hideNavigationBarLoading();
-        var product = that.data.product;
+        var ClientsList = that.data.ClientsList;
         for (var p in ids) {
           for (var j in ClientsList) {
             if (ids[p] == ClientsList[j].id) {
@@ -149,7 +210,8 @@ Page({
         }
         that.setData({
           ClientsList: ClientsList,
-          ids:[]
+          ids:[],
+          checkedClear:false
         })
         wx.showToast({
           title: '成功删除',
@@ -205,8 +267,8 @@ Page({
   onLoad: function (e) {
     var that = this
     this.initCustomer()
+    this.page_request()
   },
   onShow:function(){
-    this.clientType()
   }
 })

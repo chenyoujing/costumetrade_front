@@ -22,7 +22,7 @@
   <scroll-view scroll-y class="screen_container clearfix">
     <block wx:for="{{screen2}}">
       <view class="screen_view {{level == item.id?'screen_checked':''}}" data-type="level" data-name="{{item.id}}" bindtap="radioSelect">
-      {{item.custtypename}}
+      {{item.custtypename}}会员
       </view>
     </block>
   </scroll-view>

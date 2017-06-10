@@ -1,6 +1,6 @@
 <view style="overflow:hidden; min-height:100vh;">
   <view class="title clearfix">
-    <image bindtap="packPageFilterCode" mode="aspectFit" src="../../../images/search.png" class="image_search" />
+    <image bindtap="searchName" mode="aspectFit" src="../../../images/search.png" class="image_search" />
     <image src="../../../images/more.png" mode="aspectFit" class="title_image" bindtap="more_function" />
     <navigator url="clientAdd/clientAdd?client={{client}}">
       <image src="../../../images/add.png" mode="aspectFit" class="title_image" />
@@ -23,7 +23,7 @@
     <view class="client_text sort_text {{state=='pointsOp' ? 'active' : ''}}" bindtap="clientSort" data-sort="pointsOp">积分</view>
     <view class="clear"></view>
   </view>
-  <scroll-view class="content" scroll-y style="bottom:{{delete_button}}px;">
+  <scroll-view class="content" scroll-y style="bottom:{{delete_button}}px;" lower-threshold="10" bindscrolltolower="{{loadMore?'onReachBottom':''}}">
     <view class="client_container" wx:for="{{ClientsList}}">
       <checkbox-group class="delete_container" bindchange="delete_container" data-id ="{{item.id}}" >
         <label class="checkbox">

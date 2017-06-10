@@ -14,14 +14,17 @@
       <image src="../../../../images/image_none.png" class="client_bg" mode="aspectFill" />
       <view class="client_content">
         <image src="{{CustomerInfo.image?CustomerInfo.image:'../../../../images/image_none.png'}}" mode="aspectFill" class="client_image" bindtap="address" />
+        <input hidden value="{{CustomerInfo.image}}" name="image" />
         <view class="client_info">
           <view class="info_text">
             <text class="info_text1">昵称：</text>
             <text class="info_text2">{{CustomerInfo.nickName}}</text>
+            <input hidden value="{{CustomerInfo.nickName}}" name="nickName" />
           </view>
           <view class="info_text">
             <text class="info_text1">真实姓名：</text>
             <text class="info_text2">{{CustomerInfo.reallyName}}</text>
+            <input hidden value="{{CustomerInfo.reallyName}}" name="reallyName" />
           </view>
           <view class="info_text">
             <view class="info_text1 wechat_number_title">微信号：</view>
@@ -30,18 +33,22 @@
               复制微信号
             </view>
             <view class="info_text2 wechat_number">shd.123</view>
+            <input hidden value="{{CustomerInfo.nickName}}" name="" />
           </view>
           <view class="info_text">
             <text class="info_text1">生日信息：</text>
             <text class="info_text2">{{CustomerInfo.birthdate}}</text>
+            <input hidden value="{{CustomerInfo.birthdate}}" name="birthdate" />
           </view>
           <view class="info_text">
             <text class="info_text1">移动电话：</text>
             <text class="info_text2">{{CustomerInfo.telephone}}</text>
+            <input hidden value="{{CustomerInfo.telephone}}" name="telephone" />
           </view>
           <view class="info_text">
             <text class="info_text1">收货地址：</text>
             <text class="info_text2">{{CustomerInfo.address}}</text>
+            <input hidden value="{{CustomerInfo.address}}" name="address" />
           </view>
         </view>
       </view>
@@ -49,7 +56,7 @@
 
       <view class="client_add_input clearfix" wx:if="{{client=='1'}}">
         <view class="client_add_input_text">客户类型：</view>
-        <picker class="client_add_picker" bindchange="bindSelectorChange" value="{{type_index}}" range="{{initCustomerList}}" name="cate" mode="selector" range-key="custtypename" >
+        <picker class="client_add_picker" bindchange="bindSelectorChange" value="{{type_index}}" range="{{initCustomerList}}" mode="selector" range-key="custtypename" >
             {{initCustomerList[type_index].custtypename}}
             <image src="../../../../images/down.png" mode="aspectFit" class="picker_image" />
         </picker>
@@ -68,11 +75,11 @@
       </view>
       <view class="client_add_input clearfix">
         <view class="client_add_input_text">所属地区：</view>
-        <view class="clearfix" style="float:left; width: 70%;">
-          <input type="text" class="client_add_city" name="province" value="{{updata_wholeprice}}" />
-          <input type="text" class="client_add_city" name="city" value="{{updata_wholeprice}}" />
-          <input type="text" class="client_add_city" name="district" value="{{updata_wholeprice}}" />
-        </view>
+        <input disabled type="text" class="client_add_input1" value="{{CustomerInfo.province}} {{CustomerInfo.city}} {{CustomerInfo.district}}" style="padding-right:30px;"/>
+        <input hidden value="{{CustomerInfo.province}}" name="province" />
+        <input hidden value="{{CustomerInfo.city}}" name="city" />
+        <input hidden value="{{CustomerInfo.district}}" name="district" />
+        <image src="../../../../images/map.png" mode="aspectFit" class="image_map" bindtap="address" />
       </view>
     </scroll-view>
     <button class="submit" form-type="submit">提交</button>
@@ -80,3 +87,7 @@
 </view>
 
 
+<!--微信账单-->
+<modal class="modal" title="请扫码" hidden="{{scanModal}}" confirm-text="扫好了" bindconfirm="confirm" bindcancel="cancel">
+  <image src="{{scan?scan:'../../../../images/image_none.png'}}" mode="widthFix" style="width:50%;margin: 20px 25%;"></image>
+</modal>
