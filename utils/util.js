@@ -265,6 +265,9 @@ var api = {
         api.fail(data);
       }
     };
+    para.fail = function () {
+      api.fail()
+    }
     wx.request(para);
   },
   fail: function () {
