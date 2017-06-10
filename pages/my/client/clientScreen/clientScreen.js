@@ -154,7 +154,7 @@ Page({
     // })
     this.setData({
       screen1: app.districtList,
-      screen2: app.custProdPriceList
+      screen2: app.custProdPriceList,
     })
   }
 })

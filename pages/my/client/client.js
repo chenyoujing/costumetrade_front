@@ -267,8 +267,13 @@ Page({
   onLoad: function (e) {
     var that = this
     this.initCustomer()
-    this.page_request()
   },
   onShow:function(){
+    this.setData({
+      pageNum: 1,
+      requestSwitch: true
+    })
+    this.page_request()
+
   }
 })
