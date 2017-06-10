@@ -24,7 +24,7 @@
     <view style="width:12%;">编辑</view>
     <view class="clear"></view>
   </view>
-  <scroll-view scroll-y="true" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}" style="bottom: {{keyboard_height*3 + 84}}px; background-color: #313131;" hidden="{{products_info}}">
+  <scroll-view scroll-y="true" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}" style="bottom:{{inputBoolean?65:keyboard_height*3 + 84}}px; background-color: #313131;" hidden="{{products_info}}">
     <view class="order_view">
       <navigator url="goodsDetails/goodsDetails" style="width:88%;">
         <view style="width:9%;" data-orderid="1">1</view>
@@ -50,7 +50,7 @@
       <view class="clear"></view>
     </view>
   </scroll-view>
-  <scroll-view scroll-y="true" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}" style="height: {{scroll_height + 74}}px; margin:0; background-color: #ffffff;" hidden="{{!products_info}}">
+  <scroll-view scroll-y="true" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}" style="top:0;bottom:{{inputBoolean?65:keyboard_height*3 + 84}}px;margin:0; background-color: #ffffff;" hidden="{{!products_info}}">
     <block wx:for="{{keyArray}}" wx:key="id">
       <view class="products_info" bindtap="products_add" data-id="{{item.id}}" style="position: absolute;left: 0;right: 0;">
         <image src="{{item.image ? item.image : '../../../images/image_none.png'}}" mode="aspectFill" class="products_info_image" />
@@ -63,7 +63,7 @@
     </block>
     {{id}}
   </scroll-view>
-  <view class="openorder_input" style="bottom:{{keyboard_height*3 + 20}}px">
+  <view class="openorder_input clearfix" style="bottom:{{inputBoolean?0:keyboard_height*3 + 20}}px">
    <view class="input_text" bindtap="order">买单</view>
     <input type="{{input_type}}" placeholder="{{placeholder}}" type="text" disabled = "{{!inputBoolean}}" cursor-spacing="20" focus="{{inputBoolean}}" value="{{keyboardNum}}"   bindinput="input_change"/>
     <view class="input_text" bindtap="input_type_change">
@@ -71,7 +71,6 @@
     <view class="input_text">
     <image src="../../../images/scan-wiht.png" mode="aspectFit" style="width:100%;height:100%"  />
     </view>
-    <view class="clear"></view>
   </view>
   <view class="keyboard" hidden="{{inputBoolean}}">
     <view class="keyboard_view" style="width:{{keyboard_width}}px;height:{{keyboard_height}}px;line-height:{{keyboard_height}}px;" data-index="1" bindtap="keyboardtap">1</view>
