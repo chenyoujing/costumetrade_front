@@ -1,17 +1,19 @@
 <view style="overflow:hidden; min-height:100vh; position:relative;">
   <view class="title">设置</view>
 
-  <view class="dictionary">
-    <view class="dictionary_text {{current=='0' ? 'active' : ''}}" bindtap="dictionarytype" data-dictionary="0">员工管理
+  <view class="dictionary clearfix">
+    <view class="dictionary_text {{current=='0' ? 'active' : ''}}" bindtap="dictionarytype" data-dictionary="0">员工
       <image src="../../../../images/down.png" mode="aspectFit" class="image_down " />
     </view>
-    <view class="dictionary_text {{current=='1' ? 'active' : ''}}" bindtap="dictionarytype" data-dictionary="1">打印信息
+    <view class="dictionary_text {{current=='1' ? 'active' : ''}}" bindtap="dictionarytype" data-dictionary="1">打印
       <image src="../../../../images/down.png" mode="aspectFit" class="image_down " />
     </view>
-    <view class="dictionary_text {{current=='2' ? 'active' : ''}}" bindtap="dictionarytype" data-dictionary="2">高级设置
+    <view class="dictionary_text {{current=='2' ? 'active' : ''}}" bindtap="dictionarytype" data-dictionary="2">基础
       <image src="../../../../images/down.png" mode="aspectFit" class="image_down " />
     </view>
-    <view class="clear"></view>
+    <view class="dictionary_text {{current=='3' ? 'active' : ''}}" bindtap="dictionarytype" data-dictionary="3">高级
+      <image src="../../../../images/down.png" mode="aspectFit" class="image_down " />
+    </view>
   </view>
   <swiper interval="0" duration="500" current="{{current}}" bindchange="swiper_change">
 
@@ -130,7 +132,7 @@
       <button class="submit">保存</button>
     </swiper-item>
 
-    <!--高级设置-->
+    <!--基础设置-->
     <swiper-item>
       <scroll-view scroll-y>
         <!--高级设置//支付管理,付款方式-->
@@ -242,6 +244,182 @@
             <view class="clear"></view>
           </view>
         </view>
+        <navigator url="../notecase/notecase" class="notecase">
+          <image src="../../../../images/notecase.png" mode="aspectFit" class="notecase_image" />
+          <view class="notecase_text">钱包管理</view>
+        </navigator>
+      </scroll-view>
+      <button class="submit">保存</button>
+    </swiper-item>
+
+    <!--高级设置-->
+    <swiper-item>
+      <scroll-view scroll-y>
+        <!--高级设置//支付管理,付款方式-->
+        <view class="setting_view" style="padding: 0 20px;">
+          <view class="setting_title">支付管理</view>
+          <view class="setting_title" style="font-size:16px;">添加手机支付二维码</view>
+          <view class="setting_operation">
+            <text>1.</text>微信支付(二维码)
+            <image src="../../../../images/update.png" mode="aspectFit" class="image_update" />
+          </view>
+          <view class="setting_operation">
+            <text>2.</text>支付宝支付(二维码)
+            <image src="../../../../images/update.png" mode="aspectFit" class="image_update" />
+          </view>
+          <view class="setting_pay">
+            <view class="pay_title">
+              付款方式
+              <image src="../../../../images/append.png" mode="aspectFit" class="image_add" />
+            </view>
+            <view class="pay_view">
+              <text>1.</text>现金
+              <image src="../../../../images/delete_2.png" mode="aspectFit" class="image_delete" />
+            </view>
+            <view class="pay_view">
+              <text>2.</text>刷卡
+              <image src="../../../../images/delete_2.png" mode="aspectFit" class="image_delete" />
+            </view>
+            <view class="pay_view">
+              <text>3.</text>微信
+              <image src="../../../../images/delete_2.png" mode="aspectFit" class="image_delete" />
+            </view>
+            <view class="pay_view">
+              <text>4.</text>支付宝
+              <image src="../../../../images/delete_2.png" mode="aspectFit" class="image_delete" />
+            </view>
+            <view class="pay_view">
+              <text>5.</text>转账
+              <image src="../../../../images/delete_2.png" mode="aspectFit" class="image_delete" />
+            </view>
+          </view>
+        </view>
+
+        <!--高级设置//货品售价生成方式-->
+        <view class="setting_view">
+          <view class="setting_title2">货品售价生成方式</view>
+          <view class="setting_button_view">
+            <view class="setting_button">
+              <view class="setting_button_small"></view>
+              <view class="setting_button_text1">成本价*毛利率</view>
+              <view class="setting_button_text2">吊牌价*折扣率</view>
+            </view>
+          </view>
+          <view class="clear"></view>
+          <view class="setting_name2">成本价*毛利率</view>
+          <view class="setting_text2">此种方式适合批发店，新增货品时按成本价和客户种类的毛利率计算出固定的销售价格</view>
+          <view class="setting_name2">成本价*毛利率</view>
+          <view class="setting_text2">此种方式适合零售店，在货品销售时，按吊牌价和客户种类的折扣率生成销售价格</view>
+        </view>
+
+        <!--货品级别-->
+        <view class="print_info" style="border-bottom:1px solid #52CAC1;">
+          <navigator url="../goodsLevel/goodsLevel" class="goods_update">修改</navigator>
+          货品级别
+        </view>
+        <view class="goods_level">
+          <view class="goods_level_title" style="width:25%">货品名称</view>
+          <view class="goods_level_title" style="width:15%"></view>
+          <view class="goods_level_title" style="width:35%">客户种类</view>
+          <view class="goods_level_title" style="width:25%">折扣率</view>
+          <picker-view indicator-style="height: 30px;" class="goods_level_picker"  bindchange="bindChange">
+            <picker-view-column>
+              <view wx:for="{{goods_level}}" class="picker_text">{{item.value}}</view>
+            </picker-view-column>
+          </picker-view>
+          <image src="../../../../images/retreat.png" mode="aspectFit" class="goods_level_image" />
+          <view class="goods_level_text" style="width:35%;">
+            <view wx:for="{{goods_level2}}" class="goods_level_view">{{item.value}}</view>
+          </view>
+          <view class="goods_level_text" style="width:25%;">
+            <view wx:for="{{goods_level3}}" class="goods_level_view">{{item.value}}</view>
+          </view>
+          <view class="clear"></view>
+        </view>
+
+        <!--客户种类-->
+        <view class="setting_view">
+          <view class="setting_title" style="margin-bottom:10px;">客户种类</view>
+          <view class="setting_title3">
+            <view class="setting_text">客户名称</view>
+            <view class="setting_text">可见货品级别</view>
+            <view class="setting_text">编辑</view>
+            <view class="clear"></view>
+          </view>
+          <view class="setting_content">
+            <view class="setting_text">种类一</view>
+            <view class="setting_text">普通</view>
+            <navigator url="../customerType/customerType" class="setting_text">修改</navigator>
+            <view class="clear"></view>
+          </view>
+          <view class="setting_content">
+            <view class="setting_text">种类二</view>
+            <view class="setting_text">会员</view>
+            <navigator url="../customerType/customerType" class="setting_text">修改</navigator>
+            <view class="clear"></view>
+          </view>
+          <view class="setting_content">
+            <view class="setting_text">种类三</view>
+            <view class="setting_text">高级会员</view>
+            <navigator url="../customerType/customerType" class="setting_text">修改</navigator>
+            <view class="clear"></view>
+          </view>
+        </view>
+
+        <!--物流公司-->
+        <view class="setting_view" style="padding-right:20px;">
+          <view class="pay_title" style="font-size:18px;">
+            物流公司
+            <image src="../../../../images/append.png" mode="aspectFit" class="image_add" />
+          </view>
+          <view class="pay_view">
+            <text>1.</text>顺丰
+            <image src="../../../../images/delete_2.png" mode="aspectFit" class="image_delete" />
+          </view>
+          <view class="pay_view">
+            <text>2.</text>汇通
+            <image src="../../../../images/delete_2.png" mode="aspectFit" class="image_delete" />
+          </view>
+          <view class="pay_view">
+            <text>3.</text>韵达
+            <image src="../../../../images/delete_2.png" mode="aspectFit" class="image_delete" />
+          </view>
+        </view>
+
+        <!--会员积分转换-->
+        <view class="setting_view">
+          <view class="pay_title" style="font-size:18px;">
+            会员积分转换
+            <navigator class="goods_update" style="margin:10px;">修改</navigator>
+          </view>
+          <view class="integral clearfix">
+            <view class="integral_title">1积分=</view>
+            <view class="integral_unit">元</view>
+            <input type="number" class="integral_input" />
+          </view>
+        </view>
+
+        <!--费用清单-->
+        <view class="setting_view" style="padding-right:20px;">
+          <view class="pay_title" style="font-size:18px;">
+            费用清单
+            <image src="../../../../images/append.png" mode="aspectFit" class="image_add" />
+          </view>
+          <view class="pay_view">
+            <text>1.</text>快餐
+            <image src="../../../../images/delete_2.png" mode="aspectFit" class="image_delete" />
+          </view>
+          <view class="pay_view">
+            <text>2.</text>快递
+            <image src="../../../../images/delete_2.png" mode="aspectFit" class="image_delete" />
+          </view>
+          <view class="pay_view">
+            <text>3.</text>水电
+            <image src="../../../../images/delete_2.png" mode="aspectFit" class="image_delete" />
+          </view>
+        </view>
+
+        <!--钱包管理-->
         <navigator url="../notecase/notecase" class="notecase">
           <image src="../../../../images/notecase.png" mode="aspectFit" class="notecase_image" />
           <view class="notecase_text">钱包管理</view>

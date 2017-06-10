@@ -21,7 +21,7 @@
   line-height: 40px;
 }
 .dictionary_text{
-  width: 33.33333333%;
+  width: 25%;
 }
 .image_down{
   width: 10px;
@@ -210,6 +210,7 @@ scroll-view{
   font-size: 18px;
   line-height: 30px;
   padding-left: 10px;
+  position: relative;
 }
 .setting_operation{
   font-size: 16px;
@@ -474,6 +475,31 @@ scroll-view{
   height: 28px;
 }
 
+/*积分*/
+.integral{
+  padding: 0 20px 10px;
+}
+.integral_title{
+  float: left;
+  width: 25%;
+  font-size: 14px;
+  line-height: 30px;
+  text-align: center;
+}
+.integral_unit{
+  float: right;
+  width: 10%;
+  font-size: 14px;
+  line-height: 30px;
+  text-align: center;
+}
+.integral_input{
+  background-color: #ffffff; 
+  padding: 0 8px;
+  font-size: 14px;
+  line-height: 30px;
+  height: 30px;
+}
 
 /*钱包*/
 .notecase{
