@@ -24,60 +24,49 @@
     <view style="width:12%;">编辑</view>
     <view class="clear"></view>
   </view>
-  <scroll-view scroll-y="true" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}" style="bottom:{{inputBoolean?65:keyboard_height*3 + 84}}px; background-color: #313131;" hidden="{{products_info}}">
-    <view class="order_view">
-      <navigator url="goodsDetails/goodsDetails" style="width:88%;">
-        <view style="width:9%;" data-orderid="1">1</view>
-        <view style="width:29%;" data-orderid="1">621报喜鸟11</view>
-        <view style="width:9%;" data-orderid="1">1</view>
-        <view style="width:17%;" data-orderid="1">蓝</view>
-        <view style="width:17%;" data-orderid="1">S</view>
-        <view style="width:19%;" data-orderid="1">323</view>
-      </navigator>
-      <view style="width:12%;" bindtap="order_delete">删除</view>
-      <view class="clear"></view>
-    </view>
-    <view class="order_view">
-      <navigator url="goodsDetails/goodsDetails" style="width:88%;">
-        <view style="width:9%;" data-orderid="1">1</view>
-        <view style="width:29%;" data-orderid="1">621报喜鸟11</view>
-        <view style="width:9%;" data-orderid="1">1</view>
-        <view style="width:17%;" data-orderid="1">蓝</view>
-        <view style="width:17%;" data-orderid="1">S</view>
-        <view style="width:19%;" data-orderid="1">323</view>
+  <scroll-view scroll-y="true" bindscroll="keyHidden" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}" style="bottom:{{keyHidden?65:keyboard_height*3 + 84}}px; background-color: #313131;" hidden="{{products_info}}">
+     <view class="order_view" wx:for="{{shopCart}}" bindtap="">
+      <navigator url="goodsDetails/goodsDetails?id={{item.id}}" style="width:88%;">
+        <view style="width:9%;" data-orderid="1">{{index+1}}</view>
+        <view style="width:29%;" data-orderid="1">{{item.name}}</view>
+        <view style="width:9%;" data-orderid="1">{{item.num}}</view>
+        <view style="width:17%;" data-orderid="1">{{item.color}}</view>
+        <view style="width:17%;" data-orderid="1">{{item.size}}</view>
+        <view style="width:19%;" data-orderid="1">{{item.price}}</view>
       </navigator>
       <view style="width:12%;">删除</view>
       <view class="clear"></view>
     </view>
   </scroll-view>
-  <scroll-view scroll-y="true" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}" style="top:0;bottom:{{inputBoolean?65:keyboard_height*3 + 84}}px;margin:0; background-color: #ffffff;" hidden="{{!products_info}}">
+  <scroll-view scroll-y="true" bindscroll="keyHidden" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}" style="top:0;bottom:{{keyHidden?65:keyboard_height*3 + 84}}px;margin:0; background-color: #ffffff;" hidden="{{!products_info}}">
     <block wx:for="{{keyArray}}" wx:key="id">
-      <view class="products_info" bindtap="products_add" data-id="{{item.id}}" style="position: absolute;left: 0;right: 0;">
+      <navigator url="goodsDetails/goodsDetails?id={{item.id}}" style="width:88%;">
+      <view class="products_info" data-id="{{item.id}}" style="position: absolute;left: 0;right: 0;">
         <image src="{{item.image ? item.image : '../../../images/image_none.png'}}" mode="aspectFill" class="products_info_image" />
         <view class="products_info_name">{{item.code}} {{item.name}}</view>
         <view class="products_info_price">{{item.salePrice}}</view>
         <view class="products_info_time">{{item.timeUp}}</view>
         <view class="clear"></view>
       </view>
-      <view class="products_info" bindtap="products_add" data-id="{{item.id}}"></view>
+      <view class="products_info" data-id="{{item.id}}"></view>
+  </navigator>
     </block>
-    {{id}}
   </scroll-view>
-  <view class="openorder_input clearfix" style="bottom:{{inputBoolean?0:keyboard_height*3 + 20}}px">
+  <view class="openorder_input clearfix" style="bottom:{{keyHidden?0:keyboard_height*3 + 20}}px">
    <view class="input_text" bindtap="order">买单</view>
-    <input type="{{input_type}}" placeholder="{{placeholder}}" type="text" disabled = "{{!inputBoolean}}" cursor-spacing="20" focus="{{inputBoolean}}" value="{{keyboardNum}}"   bindinput="input_change"/>
+    <input type="{{input_type}}" placeholder="{{placeholder}}" type="text" disabled = "{{!inputBoolean}}" cursor-spacing="20" focus="{{inputBoolean}}" value="{{keyboardNum}}" bindtap="keyShow" data-index="{{inputBoolean}}" bindinput="input_change"/>
     <view class="input_text" bindtap="input_type_change">
      <image src="../../../images/write.png" mode="aspectFit" bindtap="changeCodeName" style="width:100%;height:100%"/></view>
     <view class="input_text">
     <image src="../../../images/scan-wiht.png" mode="aspectFit" style="width:100%;height:100%"  />
     </view>
   </view>
-  <view class="keyboard" hidden="{{inputBoolean}}">
+  <view class="keyboard" hidden="{{keyHidden}}">
     <view class="keyboard_view" style="width:{{keyboard_width}}px;height:{{keyboard_height}}px;line-height:{{keyboard_height}}px;" data-index="1" bindtap="keyboardtap">1</view>
     <view class="keyboard_view" style="width:{{keyboard_width}}px;height:{{keyboard_height}}px;line-height:{{keyboard_height}}px;" data-index="2" bindtap="keyboardtap">2</view>
     <view class="keyboard_view" style="width:{{keyboard_width}}px;height:{{keyboard_height}}px;line-height:{{keyboard_height}}px;" data-index="3" bindtap="keyboardtap">3</view>
     <view class="keyboard_view" style="width:{{keyboard_width}}px;height:{{keyboard_height}}px;line-height:{{keyboard_height}}px;" data-index="clear" bindtap="keyboardtap">
-     <image src="../../../images/retreat.png"  data-index="clear" bindtap="keyboardtap"  mode="aspectFit" style="width:50%;height:100%" class="image_down" />
+     <image src="../../../images/retreat.png" data-index="clear" mode="aspectFit" style="width:50%;height:100%" class="image_down" />
     </view>
     <view class="keyboard_view" style="width:{{keyboard_width}}px;height:{{keyboard_height}}px;line-height:{{keyboard_height}}px;" data-index="4" bindtap="keyboardtap">4</view>
     <view class="keyboard_view" style="width:{{keyboard_width}}px;height:{{keyboard_height}}px;line-height:{{keyboard_height}}px;" data-index="5" bindtap="keyboardtap">5</view>
@@ -89,7 +78,6 @@
     <view class="keyboard_view" style="width:{{keyboard_width}}px;height:{{keyboard_height}}px;line-height:{{keyboard_height}}px;" data-index="0" bindtap="keyboardtap">0</view>
     <view class="clear:both;"></view>
   </view>
-
 </view>
 <!--更多功能-->
 <view class="more_function_cover {{animation}}" bindtap="more_function_close" style="display:{{more_function_display}};"></view>
