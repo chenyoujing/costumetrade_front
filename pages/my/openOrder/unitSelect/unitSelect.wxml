@@ -20,27 +20,7 @@
         <view>昵称：煎饼侠</view>
         <view>电话：13333333333</view>
       </view>
-    </view>
-    <!--<view class="supplier_container">
-      <view class="supplier_tx">
-        <image src="../../../../images/image_none.png" mode="aspectFill"></image>
-      </view>
-      <view class="supplier_name">小何</view>
-      <view class="supplier_info">
-        <view>昵称：煎饼侠</view>
-        <view>电话：13333333333</view>
-      </view>
-    </view>
-    <view class="supplier_container">
-      <view class="supplier_tx">
-        <image src="../../../../images/image_none.png" mode="aspectFill"></image>
-      </view>
-      <view class="supplier_name">小王</view>
-      <view class="supplier_info">
-        <view>昵称：煎饼侠</view>
-        <view>电话：13333333333</view>
-      </view>
-    </view>-->
+    </view>  
   </block>
 
   <!--右边的导航栏-->

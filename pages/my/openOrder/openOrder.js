@@ -7,13 +7,15 @@ Page({
     scrollTop: '800',
     keyboardNum:'',
     inputBoolean:false,
+    keyHidden:false,
     nameUnit:'',
     headImage:'../../../images/image_none.png',
     type:1,
     products_info:false,
     placeholder:"货号",
     product:[],
-    keyArray:[]
+    keyArray:[],
+    shopCart:[]
   },
   //买单
   order: function () {
@@ -31,8 +33,10 @@ Page({
         num = num ==""? "": parseInt(-num);
         break;
       case 'clear':
-        num = '';
-        boolean2 = false;
+        console.log(num.length)
+        num = String(num);
+        num = num.substring(0,num.length-1);
+        boolean2 = num?true: false;
         break;
       default:
         num = num +String(index);
@@ -65,7 +69,8 @@ Page({
       inputBoolean: !this.data.inputBoolean,
       keyboardNum:'',
       placeholder: place,
-      products_info:false
+      products_info:false,
+      keyHidden: this.data.inputBoolean?false:true
     })
   },
   // 切换单据类型
@@ -80,15 +85,45 @@ Page({
   sale:function(){
 
   },
+  // 货品加入进货单或图库单
+   documentsAdding:function(e){
+     var product = this.data.shopCart;
+
+   },
   // 搜索货品
   searchGoods:function(){
     var value = this.data.keyboardNum;
     console.log(value)
     var endArray4 = util.api.objectPushArry(this.data.product, value)
+    for (var p in endArray4){
+      endArray4[p].timeUp = util.toDate(endArray4[p].timeUp)
+    }
     this.setData({
       keyArray: endArray4
     })
     console.log(endArray4)
+  },
+  // 隐藏键盘
+  keyHidden:function(){
+    this.setData({
+      keyHidden:true
+    })
+    console.log(this.data.keyHidden)
+  },
+  // keyShow显示键盘
+  keyShow:function(e){
+    var index = e.target.dataset.index;
+    console.log(index)
+    if(index){
+      this.setData({
+        keyHidden: true
+      })
+    }else{
+      this.setData({
+        keyHidden: false
+      })
+    }
+    console.log(this.data.keyHidden)
   },
   downData: function () {
     util.api.supplierRefresh('product/getProducts');
