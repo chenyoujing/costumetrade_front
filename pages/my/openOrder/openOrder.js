@@ -23,6 +23,16 @@ Page({
       url: './orderSure/orderSure'
     })
   },
+  orderid:function(e){
+    this.setData({
+      orderid: e.target.dataset.id
+    })
+  },
+  order_back:function(){
+    this.setData({
+      orderid: ""
+    })
+  },
   // 键盘事件
   keyboardtap:function(e){
     var index = e.target.dataset.index;
