@@ -100,16 +100,42 @@ var api = {
     }
     return updated;
   },
-  downData:function(url2){  
+  //拆分客户，朋友
+  unitType:function(product){
+    var UnitData1 = [];
+    var UnitData2 = [];
+    for(var p in product){
+      if (product[p].cate!==1){
+        UnitData2.push(product[p])
+      } else if (product[p].cate !== 2){
+        UnitData1.push(product[p])
+      }
+    }
+    wx.setStorage({
+      key: 'UnitData2',
+      data: UnitData2
+    })
+    wx.setStorage({
+      key: 'UnitData1',
+      data: UnitData1
+    })
+  },
+  downData:function(url2,objectName,timeName){  
     var that = this;
     wx.showNavigationBarLoading();
     console.log(url2)
+    var param = {
+      storeId: 1,
+      pageNum: pageNum
+    }
+    if (url2=="client/getClients"){
+      param = param;
+    }else{
+      param.fields = "firsthPrice,secondPrice,thirdPrice,fourthPrice,fifthPrice,purchaseprice,tagprice,image,name,code,barcodes,barcode"
+    }
     this.request({
       url: url2,
-      data: {
-        storeId: 1,
-        pageNum:pageNum
-      },
+      data: param,
       method: 'POST',
       header: {
         'content-type': 'application/json'
@@ -120,17 +146,21 @@ var api = {
         }
         if(res.data.length == 10){
           pageNum = pageNum+1;
-          that.downData(url2);
+          that.downData(url2, objectName, timeName);
         }else{
           wx.hideNavigationBarLoading();
-          wx.setStorage({
-            key: "GoodsData",
-            data: publicProduct
-          })
+          if (url2 == "client/getClients"){
+            that.unitType()
+          }else{
+            wx.setStorage({
+              key: objectName,
+              data: publicProduct
+            })
+          }
           var myDate = new Date();
           myDate.getTime();
           wx.setStorage({
-            key: "updataTime",
+            key: timeName,
             data: myDate
           })
           wx.showToast({
@@ -143,15 +173,16 @@ var api = {
     })
   },
   // 检测是否该更新数据
-  supplierRefresh:function(url){
+  supplierRefresh: function (url,objectName,timeName){
+    console.log(timeName)
     var that = this;
     var myDate = new Date();
     wx.getStorage({
-      key: 'updataTime',
+      key: timeName,
       complete: function (res) {
         console.log(res)
         if (parseInt((myDate - res.data) / 1000 / 60 / 60) >= 1 || res.data == undefined) {
-          that.downData(url)
+          that.downData(url, objectName, timeName)
         }
       }
     })

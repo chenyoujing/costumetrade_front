@@ -124,8 +124,7 @@ Page({
   },
  
   downData:function(){
-    util.api.supplierRefresh('product/getProducts');
-
+    util.api.supplierRefresh('product/getProducts',"GoodsData", 'updataTime');
     var that = this;
     wx.getStorage({
       key: 'GoodsData',

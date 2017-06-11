@@ -70,7 +70,7 @@ Page({
       keyboardNum:'',
       placeholder: place,
       products_info:false,
-      // keyHidden: this.data.inputBoolean?false:true
+      keyHidden: false
     })
   },
   // 切换单据类型
@@ -110,10 +110,12 @@ Page({
     })
     console.log(this.data.keyHidden)
   },
+
   // keyShow显示键盘
   keyShow:function(e){
     var index = e.target.dataset.index;
     console.log(index)
+    
     if(index){
       this.setData({
         keyHidden: true
@@ -121,12 +123,13 @@ Page({
     }else{
       this.setData({
         keyHidden: false
+        // inputBoolean: true
       })
     }
     console.log(this.data.keyHidden)
   },
   downData: function () {
-    util.api.supplierRefresh('product/getProducts');
+    util.api.supplierRefresh('product/getProducts',"GoodsData", 'updataTime');
     var that = this;
     wx.getStorage({
       key: 'GoodsData',

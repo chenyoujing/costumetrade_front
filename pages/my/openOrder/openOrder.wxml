@@ -3,7 +3,7 @@
  <view class="openorder_title" hidden="{{products_info}}">
     <view class="title_number title_color">12</view>
     <view class="title_price title_color">￥12443</view>
-    <navigator url="unitSelect/unitSelect" class="title_supplier">
+    <navigator url="unitSelect/unitSelect?type={{type}}" class="title_supplier">
       <image src="{{headImage}}"  mode="aspectFill" />
       <view wx:if="{{type == 1}}">客户</view>
       <view wx:if="{{type == 2}}">供应商</view>
@@ -25,8 +25,8 @@
     <view style="width:12%;">编辑</view>
     <view class="clear"></view>
   </view>
-  <scroll-view scroll-y="true" bindscroll="keyHidden" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}" style="background-color: #313131;" hidden="{{products_info}}">
-     <view class="order_view" wx:for="12345678915" bindtap="">
+  <scroll-view scroll-y="true" bindscroll="keyHidden" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}" style="bottom:{{keyHidden?65:keyboard_height*3 + 84}}px;background-color: #313131;" hidden="{{products_info}}">
+     <view class="order_view" wx:for="123545468" bindtap="">
       <navigator url="goodsDetails/goodsDetails?id={{item.id}}" style="width:88%;">
         <view style="width:9%;" data-orderid="1">{{index+1}}</view>
         <view style="width:29%;" data-orderid="1">{{item.name}}</view>
@@ -54,9 +54,9 @@
     </block>
   </scroll-view>
   
-<view class="openorder_input clearfix" style="bottom:{{keyHidden?keyboard_height*3 + 20:keyboard_height*3 + 20}}px">
+<view class="openorder_input clearfix" style="bottom:{{keyHidden?0:keyboard_height*3 + 20}}px">
    <view class="input_text" bindtap="order">买单</view>
-    <input type="{{input_type}}" placeholder="{{placeholder}}" type="text" disabled = "{{!inputBoolean}}" cursor-spacing="20" focus="{{inputBoolean}}" value="{{keyboardNum}}" bindtap="keyShow" data-index="{{inputBoolean}}" bindinput="input_change"/>
+    <input  placeholder="{{placeholder}}" type="number" disabled = "{{!inputBoolean}}" cursor-spacing="20" focus="{{inputBoolean}}" value="{{keyboardNum}}" bindtap="keyShow" data-index="{{inputBoolean}}" bindinput="input_change"/>
     <view class="input_text" bindtap="input_type_change">
      <image src="../../../images/write.png" mode="aspectFit" bindtap="changeCodeName" style="width:100%;height:100%"/></view>
     <view class="input_text">
