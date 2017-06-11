@@ -70,7 +70,7 @@ Page({
       keyboardNum:'',
       placeholder: place,
       products_info:false,
-      keyHidden: this.data.inputBoolean?false:true
+      // keyHidden: this.data.inputBoolean?false:true
     })
   },
   // 切换单据类型
