@@ -1,10 +1,13 @@
 
 <!--对账-->
-<view class="client_add" style="top:{{account}}; bottom:-{{account}};">
-  <view class="client_add_title">{{client=='1' ? '客户' : ''}}{{client=='2' ? '供货商' : ''}}{{client=='3' ? '朋友' : ''}}对账</view>
-  <navigator open-type="navigateBack">
-    <image src="../../../../images/amputate.png" mode="aspectFit" class="client_add_close" />
-  </navigator>
+<view class="client_add">
+  <view class="title clearfix">
+    {{client=='1' ? '客户' : ''}}{{client=='2' ? '供货商' : ''}}{{client=='3' ? '朋友' : ''}}对账
+    <navigator open-type="navigateBack">
+      <image src="../../../../images/amputate.png" mode="aspectFit" class="title_image_close" />
+    </navigator>
+  </view>
+
   <view class="client">
     <view class="client_text {{accounttype=='0' ? 'active' : ''}}" bindtap="accounttype" data-accounttype="0" style="width:50%;">明细</view>
     <view class="client_text {{accounttype=='1' ? 'active' : ''}}" bindtap="accounttype" data-accounttype="1" style="width:50%;">还款</view>

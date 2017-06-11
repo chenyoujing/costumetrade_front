@@ -1,0 +1,38 @@
+<!--头部-->
+<view class="title clearfix">
+  <navigator open-type="navigateBack">
+    <image src="../../../../images/back-away.png" mode="aspectFit" class="title_image_back" />
+  </navigator>
+  <view class="title_text">评价</view>
+</view>
+  
+  <view class="shop">
+    <image src="../../../../images/image_none.png" mode="aspectFill" class="shop_image"></image>
+    <view class="shop_name">店铺名称</view>
+    <view class="shop_goods">全部货品：105件</view>
+    <view class="clear"></view>
+    <image src="../../../../images/customer_service.png" mode="aspectFit" class="shop_service" >
+      <view class="prompt">3</view>
+    </image>
+  </view>
+  <view class="evaluate_container">
+    商品评价(171)
+    <view class="evaluate_content">
+      <view class="evaluate_content_header">
+        <image src="../../../../images/image_none.png" mode="aspectFill" class="client_tx" />
+        <view class="client_name">客户名称</view>
+        <view class="clear"></view>
+      </view>
+      <view class="evaluate_content_body">评价内容。。。。。。</view>
+      <view class="evaluate_content_footer">2017-02-16 颜色分类：藏蓝色 尺码：M</view>
+    </view>
+    <view class="evaluate_content">
+      <view class="evaluate_content_header">
+        <image src="../../../../images/image_none.png" mode="aspectFill" class="client_tx" />
+        <view class="client_name">客户名称</view>
+        <view class="clear"></view>
+      </view>
+      <view class="evaluate_content_body">评价内容。。。。。。</view>
+      <view class="evaluate_content_footer">2017-02-16 颜色分类：藏蓝色 尺码：M</view>
+    </view>
+  </view>

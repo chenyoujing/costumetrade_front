@@ -1,9 +1,10 @@
-<view class="modal2_cover" bindtap="brand_modal_close" animation="{{brand_modal_opacity}}" style="display:{{brand_modal}};"></view>
-<view class="modal2" animation="{{brand_modal_opacity}}" style="display:{{brand_modal}};">
-  <view class="modal_header">代替图片</view>
-  <navigator open-type="navigateBack">
-    <image src="../../../../images/amputate.png" mode="aspectFit" class="image_close" />
-  </navigator>
+<view class="modal">
+  <view class="title clearfix">
+    代替图片
+    <navigator open-type="navigateBack">
+      <image src="../../../../images/amputate.png" mode="aspectFit" class="title_image_close" />
+    </navigator>
+  </view>
   <!--<view class="search">
     <input class="title_input" type="text" name="search" placeholder="输入文件名" bindinput="bindKeyInput" />
     <image mode="aspectFit" src="../../../../images/search.png" class="image_search" />

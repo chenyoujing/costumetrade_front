@@ -1,8 +1,11 @@
 <!--头部-->
-<view class="Help_title">
-  <image src="../../../../images/back-away.png" mode="aspectFit" />
-  帮助
+<view class="title clearfix">
+  <navigator open-type="navigateBack">
+    <image src="../../../../images/back-away.png" mode="aspectFit" class="title_image_back" />
+  </navigator>
+  <view class="title_text">帮助</view>
 </view>
+
 
 <swiper class="Help_container">
   <swiper-item>

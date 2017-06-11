@@ -1,10 +1,10 @@
-  <view class="title clearfix">
-    <navigator open-type="navigateBack">
-      <image src="../../../../images/back-away.png" mode="aspectFit"></image>
-    </navigator>
-    <view class="title_text">发表评论</view>
-    <view class="title_submit">发布</view>
-  </view>
+<view class="title clearfix">
+  <navigator open-type="navigateBack">
+    <image src="../../../../images/back-away.png" mode="aspectFit" class="title_image_back" />
+  </navigator>
+  <view class="title_text">发表评论</view>
+  <view class="title_submit">发布</view>
+</view>
 
   <view class="comment_content">
     <view class="comment_image">

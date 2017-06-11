@@ -1,7 +1,8 @@
-  <view class="title">
-    <image src="../../../../images/back-away.png" mode="aspectFit" bindtap="back"></image>
-    批量修改
-  </view>
+<!--头部-->
+<view class="title clearfix">
+  {{title}}
+  <image src="../../../../images/amputate.png" mode="aspectFit" class="title_image_close" bindtap="back" />
+</view>
 
 <view class="update_content">
   <view class="upload_input clearfix">

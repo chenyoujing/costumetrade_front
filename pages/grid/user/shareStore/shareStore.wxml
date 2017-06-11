@@ -1,8 +1,11 @@
 <!--头部-->
-<view class="shareStore_title">
-  <image src="../../../../images/back-away.png" mode="aspectFit"></image>
-  分享
+<view class="title clearfix">
+  <navigator open-type="navigateBack">
+    <image src="../../../../images/back-away.png" mode="aspectFit" class="title_image_back" />
+  </navigator>
+  <view class="title_text">分享</view>
 </view>
+
 
 <scroll-view scroll-y class="shareStore_container">
   <!--店铺信息-->

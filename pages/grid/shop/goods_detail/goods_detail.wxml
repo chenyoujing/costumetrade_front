@@ -26,11 +26,12 @@
       <view class="clear"></view>
     </swiper-item>
   </swiper>
-  <view class="shop">
+  <view class="shop clearfix">
     <image src="../../../../images/image_none.png" mode="aspectFill" class="shop_image"></image>
-    <view class="shop_name">店铺名称</view>
-    <view class="shop_goods">全部货品：105件</view>
-    <view class="clear"></view>
+    <view style="float:left;">
+      <view class="shop_name">店铺名称</view>
+      <view class="shop_goods">全部货品：105件</view>
+    </view>
     <image src="../../../../images/customer_service.png" mode="aspectFit" class="shop_service" >
       <view class="prompt">3</view>
     </image>
@@ -47,15 +48,7 @@
       <view class="evaluate_content_body">评价内容。。。。。。</view>
       <view class="evaluate_content_footer">2017-02-16 颜色分类：藏蓝色 尺码：M</view>
     </view>
-    <view class="evaluate_content">
-      <view class="evaluate_content_header">
-        <image src="../../../../images/image_none.png" mode="aspectFill" class="client_tx" />
-        <view class="client_name">客户名称</view>
-        <view class="clear"></view>
-      </view>
-      <view class="evaluate_content_body">评价内容。。。。。。</view>
-      <view class="evaluate_content_footer">2017-02-16 颜色分类：藏蓝色 尺码：M</view>
-    </view>
+    <navigator url="../goodsComment/goodsComment" class="evaluate_more">查看更多评论</navigator>
   </view>
 </view>
 

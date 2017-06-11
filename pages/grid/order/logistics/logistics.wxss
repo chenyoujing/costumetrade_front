@@ -1,24 +1,5 @@
-.title{
-  background-color: #52CAC1;
-  position: relative;
-  z-index: 3;
-  text-align: center;
-  color: #ffffff;
-  font-size: 14px;
-  line-height: 40px;
-}
-.title image{
-  width: 12px;
-  height: 12px;
-  padding: 14px 10px;
-  float: left;
-}
-.title_text{
-  float: left;
-  margin-left: 15px;
-}
-
-
+/*头部*/
+@import "../../../../css/title.wxss";
 
 .logistic_container{
   position: absolute;
@@ -33,12 +14,12 @@
 .round_view{
   float: left;
   width: 20%;
-  height: 70px;
+  height: 85px;
   position: relative;
 }
 .line{
   width: 2px;
-  height: 70px;
+  height: 85px;
   background-color: #9E9E9E;
   position: absolute;
   left: 0;

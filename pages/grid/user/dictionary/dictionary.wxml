@@ -1,4 +1,5 @@
 <view style="overflow:hidden; min-height:100vh; position:relative;">
+  <!--头部-->
   <view class="title">设置</view>
 
   <view class="dictionary clearfix">
@@ -349,26 +350,26 @@
           <view class="setting_content">
             <view class="setting_text">种类一</view>
             <view class="setting_text">普通</view>
-            <navigator url="../customerType/customerType" class="setting_text">修改</navigator>
+            <navigator url="../customerType/customerType" class="setting_text" style="color:#286561;">修改</navigator>
             <view class="clear"></view>
           </view>
           <view class="setting_content">
             <view class="setting_text">种类二</view>
             <view class="setting_text">会员</view>
-            <navigator url="../customerType/customerType" class="setting_text">修改</navigator>
+            <navigator url="../customerType/customerType" class="setting_text" style="color:#286561;">修改</navigator>
             <view class="clear"></view>
           </view>
           <view class="setting_content">
             <view class="setting_text">种类三</view>
             <view class="setting_text">高级会员</view>
-            <navigator url="../customerType/customerType" class="setting_text">修改</navigator>
+            <navigator url="../customerType/customerType" class="setting_text" style="color:#286561;">修改</navigator>
             <view class="clear"></view>
           </view>
         </view>
 
         <!--物流公司-->
         <view class="setting_view" style="padding-right:20px;">
-          <view class="pay_title" style="font-size:18px;">
+          <view class="pay_title4">
             物流公司
             <image src="../../../../images/append.png" mode="aspectFit" class="image_add" />
           </view>
@@ -388,7 +389,7 @@
 
         <!--会员积分转换-->
         <view class="setting_view">
-          <view class="pay_title" style="font-size:18px;">
+          <view class="pay_title4">
             会员积分转换
             <navigator class="goods_update" style="margin:10px;">修改</navigator>
           </view>
@@ -401,7 +402,7 @@
 
         <!--费用清单-->
         <view class="setting_view" style="padding-right:20px;">
-          <view class="pay_title" style="font-size:18px;">
+          <view class="pay_title4">
             费用清单
             <image src="../../../../images/append.png" mode="aspectFit" class="image_add" />
           </view>

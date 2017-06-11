@@ -1,20 +1,5 @@
-.Help_title{
-  background-color: #52CAC1;
-  color: #ffffff;
-  text-align: center;
-  font-size: 16px;
-  line-height: 45px;
-  height: 45px;
-  position: relative;
-  z-index: 9;
-}
-.Help_title image{
-  width: 16px;
-  height: 16px;
-  padding: 14.5px 10px;
-  position: absolute;
-  left: 0;
-}
+/*头部*/
+@import "../../../../css/title.wxss";
 
 .Help_container{
   position: absolute;

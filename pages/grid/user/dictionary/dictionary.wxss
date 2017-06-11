@@ -1,14 +1,7 @@
 /* pages/my/Goods/Goods.wxss */
-.title{
-  background-color: #52CAC1;
-  padding: 10px;
-  position: relative;
-  z-index: 3;
-  text-align: center;
-  color: #ffffff;
-  font-size: 16px;
-  line-height: 20px;
-}
+/*头部*/
+@import "../../../../css/title.wxss";
+
 
 .dictionary{
   width: 100%;
@@ -205,6 +198,7 @@ scroll-view{
 .setting_view{
   background-color: #DBF4F1;
   margin: 10px 20px;
+  position: relative;
 }
 .setting_title{
   font-size: 18px;
@@ -473,6 +467,14 @@ scroll-view{
   font-size: 14px;
   padding-left: 7px; 
   height: 28px;
+}
+
+.setting_view4{
+  font-size: 18px;
+  line-height: 40px;
+  position: relative;
+  padding-left: 10px;
+  padding-bottom: 10px;
 }
 
 /*积分*/

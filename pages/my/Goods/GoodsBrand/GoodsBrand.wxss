@@ -1,3 +1,6 @@
+/*头部*/
+@import "../../../../css/title.wxss";
+
 .modal{
   position: absolute;
   top: 0;
@@ -6,34 +9,6 @@
   bottom: 0;
   margin: auto;
   background-color: #ffffff;
-}
-.modal_header{
-  box-sizing: border-box;
-  font-size: 16px;
-  line-height: 24px;
-  padding: 8px;
-  height: 40px;
-  text-align: center;
-  background-color: #52CAC1;
-  color: #ffffff;
-}
-.image_close{
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 16px;
-  height: 16px;
-  padding: 12px 10px;
-}
-.image_add{
-  width: 16px;
-  height: 16px;
-  padding: 12px 10px;
-  position: absolute;
-  top: 0;
-  left: 50%;
-  right: 0;
-  margin: auto;
 }
 
 .modal_content{

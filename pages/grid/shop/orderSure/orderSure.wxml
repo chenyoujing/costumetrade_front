@@ -1,8 +1,11 @@
-<!--顶部信息-->
-<view class="orderSure_title">
-  <image src="../../../../images/right-thrust.png" mode="aspectFit"></image>
-  确认订单
+<!--头部-->
+<view class="title clearfix">
+  <navigator open-type="navigateBack">
+    <image src="../../../../images/back-away.png" mode="aspectFit" class="title_image_back" />
+  </navigator>
+  <view class="title_text">确认订单</view>
 </view>
+
 <view class="orderSure_userinfo">
   <view class="userinfo_text one_line">
     <text>收货人：李利</text>

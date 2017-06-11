@@ -1,6 +1,9 @@
-<view class="vipPlus_title">
-  <image src="../../../../images/back-away.png" mode="aspectFit" />
-  升级
+<!--头部-->
+<view class="title clearfix">
+  <navigator open-type="navigateBack">
+    <image src="../../../../images/back-away.png" mode="aspectFit" class="title_image_back" />
+  </navigator>
+  <view class="title_text">升级</view>
 </view>
 
 <scroll-view scroll-y class="vipPlus_container">

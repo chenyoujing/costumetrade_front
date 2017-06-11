@@ -1,7 +1,10 @@
-  <view class="title">
-    <image src="../../../../images/back-away.png" mode="aspectFit"></image>
-    钱包
-  </view>
+<!--头部-->
+<view class="title clearfix">
+  <navigator open-type="navigateBack">
+    <image src="../../../../images/back-away.png" mode="aspectFit" class="title_image_back" />
+  </navigator>
+  <view class="title_text">钱包</view>
+</view>
 
   <view class="notecase">
     <view class="notecase_text {{current=='0' ? 'active' : ''}}" bindtap="notecasetype" data-notecase="0">我的账户

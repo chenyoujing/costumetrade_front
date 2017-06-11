@@ -1,3 +1,4 @@
+
 /*商品详情*/
 .goods_detail{
   padding-bottom: 40px;
@@ -69,88 +70,9 @@ swiper image{
   line-height: 30px;
   float: left;
 }
-.shop{
-  padding: 10px 15px;
-  position: relative;
-}
-.shop_image{
-  width: 40px;
-  height: 40px;
-  border-radius: 20px;
-  padding: 10px;
-  float: left;
-}
-.shop_name{
-  font-size: 18px;
-  line-height: 40px;
-  padding-left: 95px;
-}
-.shop_goods{
-  font-size: 12px;
-  line-height: 20px;
-  padding-left: 85px;
-}
-.shop_service{
-  width: 18px;
-  height: 18px;
-  position: absolute;
-  top: 5px;
-  right: 10px;
-  padding: 11px 8px;
-}
-.prompt{
-  position: absolute;
-  top: 8px;
-  right: 4px;
-  height: 8px;
-  min-width: 8px;
-  border-radius: 4px;
-  background-color: #ff0000;
-  font-size: 8px;
-  line-height: 8px;
-  text-align: center;
-  color: #ffffff;
-}
 
-.evaluate_button{
-  width: 100%;
-  background-color: #52CAC1;
-  text-align: center;
-  font-size: 16px;
-  line-height: 20px;
-  padding: 5px 0;
-  color: #ffffff;
-}
-.evaluate_container{
-  padding: 20px;
-}
-.evaluate_content{
-  padding: 10px;
-  border-bottom: 5px solid #DBF4F1;
-}
-.evaluate_content_header{
-  margin-top: 20px;
-}
-.client_tx{
-  width: 40px;
-  height: 40px;
-  margin-right: 20px;
-  border-radius: 20px;
-  border: 1px solid #286561;
-  float: left;
-}
-.client_name{
-  font-size: 14px;
-  line-height: 40px;
-}
-.evaluate_content_body{
-  padding: 15px 0;
-  font-size: 16px;
-}
-.evaluate_content_footer{
-  font-size: 10px;
-  padding-top: 10px;
-}
+/*商品评论*/
+@import "../../../../css/goodsComment.wxss";
 
 .modal_cover{
   position: fixed;
@@ -186,7 +108,6 @@ swiper image{
   left: 0;
   right: 0;
   bottom: 50px;
-  padding: 15px 0;
   width: auto;
 }
 .modal_submit{

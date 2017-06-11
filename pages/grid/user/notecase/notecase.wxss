@@ -1,23 +1,5 @@
-.title{
-  background-color: #52CAC1;
-  padding: 10px;
-  position: relative;
-  z-index: 3;
-  text-align: center;
-  color: #ffffff;
-  font-size: 16px;
-  line-height: 20px;
-}
-.title image{
-  width: 16px;
-  height: 16px;
-  padding: 12px 10px;
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-
-
+/*头部*/
+@import "../../../../css/title.wxss";
 
 .notecase{
   width: 100%;

@@ -1,20 +1,5 @@
-.storeUpdate_title{
-  background-color: #52CAC1;
-  color: #ffffff;
-  text-align: center;
-  font-size: 16px;
-  line-height: 50px;
-  height: 50px;
-  position: relative;
-  z-index: 9;
-}
-.storeUpdate_title image{
-  width: 16px;
-  height: 16px;
-  padding: 17px 10px;
-  position: absolute;
-  left: 0;
-}
+/*头部*/
+@import "../../../../css/title.wxss";
 
 .storeUpdate_container{
   position: absolute;
@@ -61,10 +46,18 @@
   font-size: 14px;
   padding: 0 8px; 
   height: 28px;
+  position: relative;
 }
-.required{
-  color: #ff0000;
+.image_map{
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 20px;
+  height: 20px;
+  padding: 5px;
+  z-index: 2;
 }
+
 
 .dictionary{
   text-align: center;

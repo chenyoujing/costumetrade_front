@@ -1,8 +1,13 @@
 
 <!--货品详情-->
 <view class="upload" style="top:{{upload}}; bottom:-{{upload}};">
-  <view class="upload_title">{{title}}</view>
-  <image bindtap="backdelta" src="../../../../images/amputate.png" mode="aspectFit" class="image_close" />
+  <view class="title clearfix">
+    {{title}}
+    <navigator open-type="navigateBack">
+      <image src="../../../../images/amputate.png" mode="aspectFit" class="title_image_close" />
+    </navigator>
+  </view>
+
   <form class="upload_content" bindsubmit="submitGoodsInfo" data-id="{{id}}">
     <scroll-view scroll-y="true" class="upload_container">
       <view class="upload_input">

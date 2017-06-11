@@ -1,5 +1,4 @@
-<!--选色-->
-<view class="modal2_cover" bindtap="color_modal_close" animation="{{color_modal_opacity}}" style="display:{{color_modal}};"></view>
+<!--选色(不用的)-->
 <view class="modal2" animation="{{color_modal_opacity}}" style="display:{{color_modal}};">
   <view class="modal_header">{{title}}</view>
   <image src="../../../../images/close.png" bindtap="back" mode="aspectFit" class="image_close" />

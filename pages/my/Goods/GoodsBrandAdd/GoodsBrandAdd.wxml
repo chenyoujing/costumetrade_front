@@ -1,7 +1,10 @@
 <!--添加商品品牌-->
 <view class="modal">
-  <view class="modal_header">{{name}}</view>
-  <image src="../../../../images/amputate.png" mode="aspectFit"  bindtap="back" class="image_close" />
+  <view class="title clearfix">
+    {{name}}
+    <image src="../../../../images/amputate.png" mode="aspectFit" class="title_image_close"  bindtap="back" />
+  </view>
+
   <scroll-view scroll-y="true" class="modal_content" wx:if="{{name !== '尺码组'}}">
     <view class="add_content">
       <view class="add_text">{{name}}</view>

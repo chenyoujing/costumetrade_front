@@ -1,39 +1,7 @@
-/*模态框*/
-.modal_cover{
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.2);
-  z-index: 8;
-  opacity: 1;
-}
-.modal{
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  margin: auto;
+/*头部*/
+@import "../../../../css/title.wxss";
+.title{
   background-color: #ffffff;
-  z-index: 9;
-  opacity: 1;
-}
-.modal_header{
-  font-size: 16px;
-  line-height: 24px;
-  height: 24px;
-  padding: 8px;
-  text-align: center;
-}
-.image_close{
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 16px;
-  height: 16px;
-  padding: 12px 10px;
 }
 .image_service{
   position: absolute;
@@ -45,6 +13,20 @@
   height: 16px;
   padding: 12px 10px;
 }
+
+/*模态框*/
+.modal{
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  background-color: #ffffff;
+  z-index: 9;
+  opacity: 1;
+}
+
 .image_update{
   position: absolute;
   top: 0;

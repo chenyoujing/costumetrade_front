@@ -1,0 +1,96 @@
+/*商品详情-评价*/
+/*grid>shop>goodsComment,goods_detail*/
+.shop{
+  padding: 10px 15px;
+  position: relative;
+}
+.shop_image{
+  width: 50px;
+  height: 50px;
+  border-radius: 25px;
+  margin: 5px 10px;
+  float: left;
+}
+.shop_name{
+  font-size: 18px;
+  line-height: 40px;
+  padding-left: 5px;
+}
+.shop_goods{
+  font-size: 12px;
+  line-height: 20px;
+}
+.shop_service{
+  width: 18px;
+  height: 18px;
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  padding: 11px 8px;
+}
+.prompt{
+  position: absolute;
+  top: 8px;
+  right: 4px;
+  height: 8px;
+  min-width: 8px;
+  border-radius: 4px;
+  background-color: #ff0000;
+  font-size: 8px;
+  line-height: 8px;
+  text-align: center;
+  color: #ffffff;
+}
+
+.evaluate_button{
+  width: 100%;
+  background-color: #52CAC1;
+  text-align: center;
+  font-size: 16px;
+  line-height: 20px;
+  padding: 5px 0;
+  color: #ffffff;
+}
+.evaluate_container{
+  margin: 20px 0;
+  padding: 0 20px;
+  font-size: 18px;
+  border-bottom: 2px solid #eeeeee;
+}
+.evaluate_content{
+  padding: 10px;
+}
+.evaluate_content_header{
+  margin-top: 20px;
+}
+.client_tx{
+  width: 40px;
+  height: 40px;
+  margin-right: 20px;
+  border-radius: 20px;
+  border: 1px solid #286561;
+  float: left;
+}
+.client_name{
+  font-size: 14px;
+  line-height: 40px;
+}
+.evaluate_content_body{
+  padding: 15px 0;
+  font-size: 16px;
+}
+.evaluate_content_footer{
+  font-size: 10px;
+  padding-top: 10px;
+}
+.evaluate_more{
+  font-size: 14px;
+  line-height: 30px;
+  height: 30px;
+  border-radius: 15px;
+  text-align: center;
+  color: #ffffff;
+  background-color: #52CAC1;
+  width: 120px;
+  margin: 15px auto;
+}

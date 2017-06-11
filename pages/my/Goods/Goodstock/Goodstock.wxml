@@ -1,9 +1,10 @@
 <!--盘点库存模态框-->
-<view class="modal_cover" bindtap="modal_close" animation="{{modal_opacity}}" style="display:{{modal}};"></view>
-<view class="modal" animation="{{modal_opacity}}" style="display:{{modal}};">
-  <view class="modal_header">{{title}}</view>
-  <image src="../../../../images/close.png" bindtap="backdelta" mode="aspectFit" class="image_close" />
-  <image src="../../../../images/customer_service.png" mode="aspectFit" class="image_service" />
+<view class="modal">
+  <view class="title clearfix">
+    {{title}}
+    <image src="../../../../images/close.png" bindtap="backdelta" mode="aspectFit" class="title_image_close" />
+    <image src="../../../../images/customer_service.png" mode="aspectFit" class="image_service" />
+  </view>
   <view class="tr bg-w">
     <view class="th th1">序号</view>
     <view class="th th2">名称</view>

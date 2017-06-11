@@ -1,3 +1,6 @@
+/*头部*/
+@import "../../../../css/title.wxss";
+
 .client_add{
   position: absolute;
   top: 0;
@@ -21,25 +24,12 @@
 .active{
   background-color: #ffffff;
 }
-.client_add_title{
-  background-color: #52CAC1;
-  font-size: 16px;
-  line-height: 24px;
-  padding: 8px;
-  color: #ffffff;
-  text-align: center;
-}
-.client_add_close{
-  position: absolute;
-  width: 16px;
-  height: 16px;
-  padding: 12px;
-  top: 0;
-  right: 10px;
-}
+
 .client_add scroll-view{
   position: absolute;
   top: 40px;
+  left: 0;
+  right: 0;
   bottom: 40px;
 }
 swiper{

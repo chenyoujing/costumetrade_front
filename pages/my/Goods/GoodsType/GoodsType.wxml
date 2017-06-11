@@ -1,4 +1,4 @@
-<!--选色-->
+<!--选色(不用的)-->
 <view class="modal2" animation="{{color_modal_opacity}}" style="display:{{color_modal}};">
   <view class="modal_header">商品种类</view>
   <image src="../../../../images/close.png" mode="aspectFit" class="image_close" />

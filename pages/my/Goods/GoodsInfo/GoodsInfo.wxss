@@ -1,3 +1,6 @@
+/*头部*/
+@import "../../../../css/title.wxss";
+
 /*货品详情*/
 .upload{
   position: fixed;
@@ -9,22 +12,7 @@
   z-index: 9;
   transition: all 0.5s;
 }
-.upload_title{
-  background-color: #52CAC1;
-  font-size: 16px;
-  line-height: 24px;
-  padding: 8px;
-  color: #ffffff;
-  text-align: center;
-}
-.image_close{
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 16px;
-  height: 16px;
-  padding: 12px 10px;
-}
+
 .upload_container{
   position: absolute;
   top: 40px;
