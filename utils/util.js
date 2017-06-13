@@ -105,12 +105,15 @@ var api = {
     var UnitData1 = [];
     var UnitData2 = [];
     for(var p in product){
-      if (product[p].cate!==1){
+      if (product[p].type !=="1"){
+
         UnitData2.push(product[p])
-      } else if (product[p].cate !== 2){
+      } 
+      if (product[p].type !== '2'){
         UnitData1.push(product[p])
       }
     }
+    console.log(UnitData2)    
     wx.setStorage({
       key: 'UnitData2',
       data: UnitData2
@@ -120,10 +123,9 @@ var api = {
       data: UnitData1
     })
   },
-  downData:function(url2,objectName,timeName){  
+  downData:function(url2,objectName,timeName,callback){
     var that = this;
     wx.showNavigationBarLoading();
-    console.log(url2)
     var param = {
       storeId: 1,
       pageNum: pageNum
@@ -140,17 +142,19 @@ var api = {
       header: {
         'content-type': 'application/json'
       },
-      success: function (res) {
+      success: function (res) {        
         for (var p in res.data) {
           publicProduct.push(res.data[p])
         }
         if(res.data.length == 10){
           pageNum = pageNum+1;
-          that.downData(url2, objectName, timeName);
+          that.downData(url2, objectName, timeName,callback);
         }else{
           wx.hideNavigationBarLoading();
+          console.log(url2 == "client/getClients")  
           if (url2 == "client/getClients"){
-            that.unitType()
+            console.log(res)            
+            that.unitType(publicProduct)
           }else{
             wx.setStorage({
               key: objectName,
@@ -169,20 +173,20 @@ var api = {
             duration: 2000
           })
         }
+        callback();
       }
     })
   },
   // 检测是否该更新数据
-  supplierRefresh: function (url,objectName,timeName){
-    console.log(timeName)
+  supplierRefresh: function (url, objectName, timeName, callback){
+    console.log(callback)
     var that = this;
     var myDate = new Date();
     wx.getStorage({
       key: timeName,
       complete: function (res) {
-        console.log(res)
         if (parseInt((myDate - res.data) / 1000 / 60 / 60) >= 1 || res.data == undefined) {
-          that.downData(url, objectName, timeName)
+          that.downData(url, objectName, timeName,callback)
         }
       }
     })
@@ -288,6 +292,7 @@ var api = {
     para.url = api.host + para.url ;
     para.oldSuccess = para.success;
     para.method = para.method;
+    para.async = para.async;
     para.success = function (data) {
       var dataResponest = data.data;
       if (dataResponest.code === 0) {
