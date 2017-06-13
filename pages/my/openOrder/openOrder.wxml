@@ -1,7 +1,5 @@
  
 <view class="section clearfix">
-
-
  <view class="title clearfix" hidden="{{orderid}}">
     <navigator open-type="navigateBack">
       <image src="../../../../images/back-away.png" mode="aspectFit" class="title_image_back" />
@@ -14,7 +12,7 @@
     <image src="../../../images/more.png" mode="aspectFit" class="title_more_image" bindtap="more_function" />
     <navigator url="unitSelect/unitSelect?type={{type}}" class="title_supplier">
       <image src="{{headImage}}"  mode="aspectFill" class="title_supplier_tx" />
-      <view class="title_supplier_text" wx:if="{{type == 1}}">客户</view>
+      <view class="title_supplier_text" wx:if="{{type == 1}}">{{selectName.remarkName}}{{selectName.reallyName}}{{selectName.nickName}}</view>
       <view class="title_supplier_text" wx:if="{{type == 2}}">供应商</view>
     </navigator>
 
@@ -38,7 +36,7 @@
   </view>
 
   <scroll-view scroll-y="true" bindscroll="keyHidden" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}" style="bottom:{{keyHidden?60:keyboard_height*3 + 79}}px;" class="order_scroll" hidden="{{products_info||orderid}}">
-    <block wx:for="1235454689">
+    <block wx:for="{{shopCart}}">
       <view class="order_view clearfix {{index%2==0?'bg_w':''}}">
         <view style="width:100%;" bindatp="orderid">
           <view style="width:8%;" data-id="{{item.id}}">{{index+1}}</view>

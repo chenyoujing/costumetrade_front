@@ -2,6 +2,7 @@ var util = require('../../../../utils/util.js')
 var app = getApp()
 Page({
    data: {
+     title:"客户",
      product:[],
      type:1, 
     contacts: [],
@@ -20,44 +21,54 @@ Page({
     for(var p in product){
       var boolean2 = true;
       for(var j in contacts){
-        if (contacts[j].type == product[p].fastcode){
-          contacts[j]['value'].push(product[p]);
+        if (contacts[j].type == product[p].fastcode && product[p].fastcode !== undefined){
+          contacts[j].value.push(product[p]);
           boolean2 = false;
           break;
         }
       }
       if(boolean2){
         var value = [];
+        value.push(product[p])
         contacts.push({
           type: product[p].fastcode,
-          value: value.push(product[p])
+          value: value
         })
       }
     }
-    console.log(contacts);
+    contacts = contacts.sort(util.api.by('type'));
+    console.log(contacts)
     this.setData({
       contacts: contacts
+    })
+  },
+  selectName:function(e){
+    app.selectName = e.target.dataset;
+    wx.navigateBack({
+      delta: 1,
     })
   },
   callback:function(){
     var that = this;
     wx.getStorage({
-      key: 'UnitData1',
+      key: 'UnitData' + that.data.type,
       complete: function (res) {
         that.setData({
           product: res.data
         })
         that.classifyFastcode(res.data)
-        console.log(res.data)
+      
       }
     })
   },
   downData: function (type) {
-    this.callback()
-    util.api.supplierRefresh('client/getClients', "UnitData", 'updataTimeunit', this.callback());
-    // console.log('UnitData' + that.data.type);
+    util.api.supplierRefresh('client/getClients', "UnitData", 'updataTimeunit', this.callback);
   },
   onLoad: function (options) {
+    this.setData({
+      type: options.type,
+      title: options.type==1?'客户':"供应商"
+    })
     console.log(options);
     this.downData(options.type)
   }

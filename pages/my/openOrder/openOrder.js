@@ -15,7 +15,8 @@ Page({
     placeholder:"货号",
     product:[],
     keyArray:[],
-    shopCart:[]
+    shopCart:[],
+    selectName:{}
   },
   //买单
   order: function () {
@@ -98,7 +99,6 @@ Page({
   // 货品加入进货单或图库单
    documentsAdding:function(e){
      var product = this.data.shopCart;
-
    },
   // 搜索货品
   searchGoods:function(){
@@ -125,7 +125,6 @@ Page({
   keyShow:function(e){
     var index = e.target.dataset.index;
     console.log(index)
-    
     if(index){
       this.setData({
         keyHidden: true
@@ -138,8 +137,7 @@ Page({
     }
     console.log(this.data.keyHidden)
   },
-  downData: function () {
-    util.api.supplierRefresh('product/getProducts',"GoodsData", 'updataTime');
+  callback:function(){
     var that = this;
     wx.getStorage({
       key: 'GoodsData',
@@ -150,6 +148,10 @@ Page({
         console.log(res.data)
       }
     })
+  },
+  downData: function () {
+    util.api.supplierRefresh('product/getProducts',"GoodsData", 'updataTime',this.callback);
+  
   },
   // 打开多功能键
   more_function: function () {
@@ -197,6 +199,9 @@ Page({
       this.setData({
         scrollTop: this.data.scrollTop,
       })
-    }, 100)
+    }, 100);
+    this.setData({
+      selectName: app.selectName
+    })
   } 
 })

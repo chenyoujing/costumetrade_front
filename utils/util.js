@@ -100,6 +100,25 @@ var api = {
     }
     return updated;
   },
+  by : function (name) {
+     return function (o, p) {
+         var a, b;
+         if (typeof o === "object" && typeof p === "object" && o && p) {
+             a = o[name];
+             b = p[name];
+             if (a === b) {
+                 return 0;
+             }
+             if (typeof a === typeof b) {
+                 return a < b ? -1 : 1;
+             }
+             return typeof a < typeof b ? -1 : 1;
+         }
+         else {
+             throw ("error");
+         }
+     }
+  },
   //拆分客户，朋友
   unitType:function(product){
     var UnitData1 = [];
@@ -113,7 +132,6 @@ var api = {
         UnitData1.push(product[p])
       }
     }
-    console.log(UnitData2)    
     wx.setStorage({
       key: 'UnitData2',
       data: UnitData2
@@ -179,14 +197,15 @@ var api = {
   },
   // 检测是否该更新数据
   supplierRefresh: function (url, objectName, timeName, callback){
-    console.log(callback)
     var that = this;
     var myDate = new Date();
     wx.getStorage({
       key: timeName,
       complete: function (res) {
         if (parseInt((myDate - res.data) / 1000 / 60 / 60) >= 1 || res.data == undefined) {
-          that.downData(url, objectName, timeName,callback)
+          that.downData(url,objectName,timeName,callback)
+        }else{
+          callback()
         }
       }
     })
