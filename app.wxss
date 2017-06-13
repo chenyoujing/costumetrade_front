@@ -6,6 +6,7 @@ page,input{
 }
 input{
   min-height: 1px;
+  padding: 0 8px;
 }
 button{
   background-color: transparent;
@@ -32,6 +33,7 @@ radio,checkbox{
 .required{
   color: #ff0000;
 }
+/*清除浮动*/
 .clear{
   clear: both;
 }
@@ -42,6 +44,7 @@ radio,checkbox{
   clear: both;
   visibility: hidden;
 }
+/*提示小圆点*/
 .prompt{
   position: absolute;
   height: 8px;
@@ -53,6 +56,29 @@ radio,checkbox{
   text-align: center;
   color: #ffffff;
 }
+/*搜索input*/
+.search_input{
+  position: relative;
+  padding-right: 30px;
+}
+.search_input_image{
+  width: 16px;
+  height: 16px;
+  padding: 7px;
+  position: absolute;
+  top: -5px;
+  right: 0;
+  z-index: 4;
+  display: block;
+}
+bindtap_cover{
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
 .style_none{
   display: unset;
 }
