@@ -223,10 +223,19 @@ var api = {
    
   },
   // 智能搜索
-  searchKeyWord: function (filedsName, select,value,select2) {
+  searchKeyWord: function (filedsName, select,value,select2,select3) {
     var endArray = [];
     value = value.toLowerCase();
-    if (filedsName[select].toLowerCase() == value || filedsName[select2].toLowerCase() == value) {
+    if (!filedsName[select]) {
+      filedsName[select] = ""
+    }
+    if (!filedsName[select2]) {
+      filedsName[select2] = ""
+    }
+    if (!filedsName[select3]) {
+      filedsName[select3] = ""
+    }
+    if (filedsName[select].toLowerCase() == value || filedsName[select2].toLowerCase() == value || filedsName[select3].toLowerCase() == value) {
       endArray = filedsName;
       endArray.type = 1;
     } else if ((filedsName[select].toLowerCase().indexOf(value) > -1 && filedsName[select].toLowerCase() !== value) || (filedsName[select2].toLowerCase().indexOf(value) > -1 && filedsName[select2].toLowerCase() !== value)) {
@@ -270,8 +279,15 @@ var api = {
   objectPushArry: function (product, e) {
     var n = [];
     for (var p in product) {
-      if (this.searchKeyWord(product[p],'name', e,'code')) {
-        n.push(this.searchKeyWord(product[p],'name', e,'code'));
+      if (product[p].name || product[p].code) {
+        if (this.searchKeyWord(product[p], 'name', e, 'code')) {
+          n.push(this.searchKeyWord(product[p], 'name', e, 'code'));
+        }
+      }
+      if (product[p].nickName || product[p].reallyName || product[p].remarkName) {
+        if (this.searchKeyWord(product[p], 'nickName', e, 'reallyName', 'remarkName')) {
+          n.push(this.searchKeyWord(product[p], 'nickName', e, 'reallyName', 'remarkName'));
+        }
       }
     }
     var endArray4 = [];
