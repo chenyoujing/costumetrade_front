@@ -13,7 +13,9 @@
     <navigator url="unitSelect/unitSelect?type={{type}}" class="title_supplier">
       <image src="{{headImage}}"  mode="aspectFill" class="title_supplier_tx" />
       <view class="title_supplier_text" wx:if="{{type == 1}}">{{selectName.name}}</view>
-      <view class="title_supplier_text" wx:if="{{type == 2}}">供应商</view>
+       <view class="title_supplier_text" wx:if="{{type == 1 && !selectName.name}}">选客户</view>
+      <view class="title_supplier_text" wx:if="{{type == 2}}">{{selectName.name}}</view>
+       <view class="title_supplier_text" wx:if="{{type == 2 && !selectName.name}}">选供应商</view>
     </navigator>
 
     <input type="text" class="title_input" placeholder="{{placeholder}}" disabled = "{{!inputBoolean}}" cursor-spacing="20" focus="{{inputBoolean}}" value="{{keyboardNum}}" bindtap="keyShow" data-index="{{inputBoolean}}" bindinput="input_change" >
@@ -40,8 +42,8 @@
       <view class="order_view clearfix {{index%2==0?'bg_w':''}}">
         <view style="width:100%;" bindatp="orderid">
           <view style="width:8%;" data-id="{{item.id}}">{{index+1}}</view>
-          <view style="width:26%;" data-id="{{item.id}}">{{item.name}}</view>
-          <view style="width:8%;" data-id="{{item.id}}">{{item.num}}</view>
+          <view style="width:26%;" data-id="{{item.id}}">{{item.productName}}</view>
+          <view style="width:8%;" data-id="{{item.id}}">{{item.count}}</view>
           <view style="width:15%;" data-id="{{item.id}}">{{item.color}}</view>
           <view style="width:15%;" data-id="{{item.id}}">{{item.size}}</view>
           <view style="width:16%;" data-id="{{item.id}}">{{item.price}}</view>
@@ -57,11 +59,11 @@
     <block wx:for="{{keyArray}}" wx:key="id">
       <view class="products_info clearfix" data-id="{{item.id}}" style="position: absolute;left: 0;right: 0;">
         <image src="{{item.image ? item.image : '../../../images/image_none.png'}}" mode="aspectFill" class="products_info_image" />
-        <view class="products_info_name">{{item.code}} {{item.name}}</view>
-        <view class="products_info_price">{{item.salePrice}}</view>
+        <view class="products_info_name">{{item.code}}{{item.name}}</view>
+        <view class="products_info_price">{{item.showPrice}}</view>
         <view class="products_info_time">{{item.timeUp}}</view>
       </view>
-      <view class="products_info" bindtap="orderid" data-id="1{{item.id}}"></view>
+      <view class="products_info" bindtap="orderid" data-id="{{item.id}}"></view>
     </block>
   </scroll-view>
   
@@ -70,34 +72,35 @@
     <image src="{{GoodsDetail.image ?GoodsDetail.image : '../../../../images/image_none.png'}}" mode="aspectFill" class="goods_image" />
     <view class="goods_title">总库存：{{stockNum}}</view>
     <scroll-view scroll-y class="goods_check">
-      <radio-group>
+      <radio-group bindchange="EventHandle" data-index="seleceColor">
         <label class="goods_checkbox" wx:for="{{color}}" wx:key="id">
-          <radio value="{{item}}"/>
+          <radio value="{{item}}" checked="{{aa}}"/>
           {{item}}
         </label>
       </radio-group>
-      <radio-group>
+      <radio-group  bindchange="EventHandle" data-index="selectSize">
         <label class="goods_checkbox" wx:for="{{size}}" wx:key="id">
-          <radio value="{{item}}" disabled="{{disabled}}"/>
+          <radio value="{{item}}" disabled="{{disabled}}"  checked="{{aa}}"/>
           {{item}}
         </label>
       </radio-group>
     </scroll-view>
     <view class="keyboard_name">{{GoodsDetail.name}}</view>
-    <view class="keyboard_join">加入</view>
+    <view class="keyboard_join" bindtap="enterShopCart">加入</view>
   </view>
   
 
 <view class="openorder_info clearfix" style="bottom:{{keyHidden?0:keyboard_height*3 + 20}}px" hidden="{{orderid}}">
-  <view class="info_num">共3件商品</view>
+  <view class="info_num">共{{totalData.totalNum}}件商品</view>
   <view class="info_button" bindtap="order">买单</view>
-  <view class="info_price">￥1290</view>
+  <view class="info_price">￥{{totalData.realcostArray}}</view>
 </view>
 
 <view class="openorder_info one_line clearfix" style="bottom:{{keyHidden?0:keyboard_height*3 + 20}}px;background-color:#e5e5e5;padding:6px 4px 0;" hidden="{{!orderid}}">
-  <view class="keyboard_top" style="width:{{keyboard_width}}px;">500</view>
+  <view class="keyboard_top" style="width:{{keyboard_width}}px;">{{GoodsDetail.showPrice}}</view>
   <view class="keyboard_top" style="width:{{keyboard_width}}px;">元/批</view>
-  <view class="keyboard_top" style="width:{{keyboard_width}}px;" bindtap="changeGroup">{{keyboardNum}}
+  <view class="keyboard_top" style="width:{{keyboard_width}}px;" bindtap="changeGroup">
+  <block wx:if="{{keyboardNum ==''}}">{{oneKeyshow}}</block>{{keyboardNum}}
   <block wx:if="{{unitChange}}">手/{{GoodsDetail.handcount}}</block>{{GoodsDetail.unit}}</view>
   <view class="keyboard_top" style="width:{{keyboard_width}}px;" bindtap="order_back">返回</view>
 </view>

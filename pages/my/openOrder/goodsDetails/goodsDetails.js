@@ -101,11 +101,8 @@ Page({
     })
   },
   onLoad: function (options) {
-    if (!app.screen_unitList){
-      util.api.getProductInit();
-    }
-    this.showGoodsInfo(options.id);
-    this.stock_request(options.id)
+    
+   
     var that = this
     wx.getSystemInfo({
       success: function (res) {

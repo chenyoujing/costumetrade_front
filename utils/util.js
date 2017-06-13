@@ -42,9 +42,18 @@ var api = {
       "q+": Math.floor((format.getMonth() + 3) / 3),//quarter，
       "S": format.getMilliseconds() //毫秒
     };
+    o["M+"] = o["M+"] <= 10 ? String(0) + o["M+"] : o["M+"];
+    o["d+"] = o["d+"] <= 10 ? String(0) + o["d+"] : o["d+"];
+    o["h+"] = o["h+"] <= 10 ? String(0) + o["h+"] : o["h+"];
+    o["m+"] = o["m+"] <= 10 ? String(0) + o["m+"] : o["m+"];
+    o["s+"] = o["s+"] <= 10 ? String(0) + o["s+"] : o["s+"];
+    if (o["S"] <= 10) {
+      o["S"] = String(0) + String(0) + o["S"];
+    } else if (o["S"] <= 100) {
+      o["S"] = String(0) + o["S"];
+    };
     format = String(7) + o["M+"]+ o["d+"]+ o["h+"] + o["m+"] + o["s+"] + o["S"];
     console.log(o)
-    console.log(o["M+"])
     return format;
   },
   getFilterArray:function(array){
@@ -151,7 +160,7 @@ var api = {
     if (url2=="client/getClients"){
       param = param;
     }else{
-      param.fields = "firsthPrice,secondPrice,thirdPrice,fourthPrice,fifthPrice,purchaseprice,tagprice,image,name,code,barcodes,barcode"
+      param.fields = "firsthPrice,secondPrice,thirdPrice,fourthPrice,fifthPrice,purchasePrice,tagPrice,image,name,code,barcodes,barcode,time_up,id"
     }
     this.request({
       url: url2,

@@ -11,9 +11,9 @@
   <!--供应商内容-->
   <block wx:for="{{contacts}}">
     <view class="supplier_type" id="{{item.type}}">{{item.type}}</view>
-    <view class="supplier_container" wx:for="{{item.value}}">
-      <view class="supplier_tx" data-id="{{item.id}}" data-cate="{{item.cate}}" data-image="{{item.image}}" data-name = "{{item.remarkName}},{{item.reallyName}},{{item.nickName}}" bindtap="selectName">
-        <image src="{{item.image?item.image:'../../../../images/image_none.png'}}" mode="aspectFill"></image>
+    <view class="supplier_container" wx:for="{{item.value}}" bindtap="selectName" style="position:relative;">
+      <view class="supplier_tx" >
+        <image data-id="{{item.id}}" data-cate="{{item.cate}}" data-image="{{item.image}}" data-name = "{{item.remarkName}},{{item.reallyName}},{{item.nickName}}" bindtap="selectName" src="{{item.image?item.image:'../../../../images/image_none.png'}}" mode="aspectFill"></image>
       </view>
       <view class="supplier_name"></view>
       <view class="supplier_info">
@@ -21,6 +21,7 @@
         <view wx:if="{{!item.remarkName && item.reallyName}}">名称：{{item.reallyName}}</view>
         <view wx:if="{{!item.remarkName && !item.reallyName && item.nickName}}">名称：{{item.nickName}}</view>
         <view>电话：{{item.telephone}}</view>
+        <view style="position:absolute;top:0;left:0;right:0;bottom:0;" data-id="{{item.id}}" data-cate="{{item.cate}}" data-image="{{item.image}}" data-name = "{{item.remarkName}},{{item.reallyName}},{{item.nickName}}"></view>
       </view>
     </view>  
   </block>

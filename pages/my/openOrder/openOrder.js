@@ -16,7 +16,22 @@ Page({
     product:[],
     keyArray:[],
     shopCart:[],
-    selectName:{}
+    selectName:{},
+    saleChangeName:'tagprice',
+    color: [],
+    size: [],
+    GoodsDetail: {},
+    stockNum: [],
+    unitChange: false,
+    disabled: false,
+    oneKeyshow:1,
+    selectSize:'',
+    seleceColor: '', 
+    totalData: {
+      totalNum: 0,
+      realcostArray: 0
+    },
+    aa:false
   },
   //买单
   order: function () {
@@ -26,8 +41,16 @@ Page({
   },
   orderid:function(e){
     this.setData({
-      orderid: e.target.dataset.id
+      orderid: e.target.dataset.id,
+      keyboardNum:'',
+      keyHidden:false,
+      aa:false
     })
+    if (!app.screen_unitList) {
+      util.api.getProductInit();
+    }
+    this.showGoodsInfo(e.target.dataset.id);
+    this.stock_request(e.target.dataset.id)
   },
   order_back:function(){
     this.setData({
@@ -90,11 +113,38 @@ Page({
     this.setData({
       type:type
     })
+    this.sale()
+    console.log(e.target.dataset.type)
     this.more_function_close()
   },
   // 判断货品显示的价格
   sale:function(){
-
+    var salPrice = 'tagprice';
+    switch (this.data.selectName.cate){
+      case '1':
+        salPrice = 'firsthPrice';
+        break;
+      case '2':
+        salPrice = 'secondPrice';
+        break;
+      case '3':
+        salPrice = 'thirdPrice';
+        break;
+      case '4':
+        salPrice = 'fourthPrice';
+        break;
+      case '5':
+        salPrice = 'fifthPrice';
+        break;
+      default:
+        salPrice = 'tagprice';
+        break;
+    }
+    salPrice = this.data.type == 1 ? salPrice :'purchaseprice';
+    this.setData({
+      saleChangeName: salPrice
+    })
+    console.log(salPrice)
   },
   // 货品加入进货单或图库单
    documentsAdding:function(e){
@@ -106,7 +156,10 @@ Page({
     console.log(value)
     var endArray4 = util.api.objectPushArry(this.data.product, value)
     for (var p in endArray4){
-      endArray4[p].timeUp = util.toDate(endArray4[p].timeUp)
+      endArray4[p].timeUp = util.toDate(endArray4[p].timeUp);
+      endArray4[p].showPrice = endArray4[p][this.data.saleChangeName];
+      console.log(endArray4[p]['purchaseprice'])
+      console.log(this.data.saleChangeName)
     }
     this.setData({
       keyArray: endArray4
@@ -120,7 +173,6 @@ Page({
     })
     console.log(this.data.keyHidden)
   },
-
   // keyShow显示键盘
   keyShow:function(e){
     var index = e.target.dataset.index;
@@ -151,7 +203,6 @@ Page({
   },
   downData: function () {
     util.api.supplierRefresh('product/getProducts',"GoodsData", 'updataTime',this.callback);
-  
   },
   // 打开多功能键
   more_function: function () {
@@ -175,10 +226,128 @@ Page({
       })
     }, 300)
   },
+  // 手件切换
+  changeGroup: function () {
+    var unitString = !this.data.unitChange;
+    this.setData({
+      unitChange: unitString,
+      disabled: unitString
+    })
+  },
+  // 请求库存
+  stock_request: function (id) {
+    var that = this;
+    wx.showNavigationBarLoading()
+    util.api.request({
+      url: 'product/takingStock',
+      data: {
+        storeId: 1,
+        id: id
+      },
+      method: 'POST',
+      header: {
+        'content-type': 'application/json'
+      },
+      success: function (res) {
+        wx.hideNavigationBarLoading();
+        console.log(res.data)
+        var num = 0;
+        for (var p in res.data) {
+          num += res.data[p].stocknum
+        }
+        that.setData({
+          stockNum: num
+        })
+      }
+    })
+  },
+  // 货品详情
+  showGoodsInfo: function (id) {
+    var that = this;
+    wx.showNavigationBarLoading()
+    util.api.request({
+      url: 'product/getProductInit',
+      data: {
+        storeId: 1,
+        id: id
+      },
+      method: 'POST',
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      success: function (res) {
+        wx.hideNavigationBarLoading();
+        console.log(app.screen_unitList)
+        for (var p in app.screen_unitList) {
+          if (app.screen_unitList[p].id == res.data.unit) {
+            res.data.unit = app.screen_unitList[p].unit;
+          }
+        }
+        res.data.showPrice = res.data[that.data.saleChangeName];
+        that.setData({
+          GoodsDetail: res.data,
+          size: res.data.sizes.split(','),
+          color: res.data.colors.split(',')
+        })
+        console.log(that.data.color)
+      }
+    })
+  },
+  EventHandle:function(e){
+    var index = e.target.dataset.index;
+    var param = {};
+    param[index] = e.detail.value;
+    this.setData(param)
+  },
+  changeSale:function(){
 
+  },
+  // 计算总的价格和数量
+  totalData:function(){
+    var product = this.data.shopCart;
+    var realcostArray = 0;
+    var totalNum = 0; 
+    for(var p in product){
+      realcostArray += product[p].price;
+      totalNum += parseInt(product[p].count);
+    }
+    this.setData({
+      totalData:{
+        totalNum: totalNum,
+        realcostArray: realcostArray
+      }
+    })
+  },
+  enterShopCart: function (){
+    var shopCart = this.data.shopCart;
+    var object = {
+      count: this.data.keyboardNum ? this.data.keyboardNum : this.data.oneKeyshow,
+      productName: this.data.GoodsDetail.name,
+      price: this.data.GoodsDetail.showPrice,
+      productId: this.data.GoodsDetail.id,
+      unit: this.data.GoodsDetail.id,
+      color: this.data.seleceColor,
+      size:this.data.selectSize
+    }
+    shopCart.push(object);
+    this.setData({
+      shopCart:shopCart
+    });
+    console.log(this.data.GoodsDetail.name);
+    this.totalData()
+    this.order_back();
+  },
+  localData:function(){
+     
+  },
+  getData:function(){
+    var name = 'shopCartLowe'+this.data.type;
+    
+  },
   onLoad: function () {
     var that = this;
-    this.downData()
+    this.downData();
+    
     setTimeout(() => {
       this.setData({
         scrollTop: this.data.scrollTop,
@@ -194,6 +363,7 @@ Page({
     })
   },
   onShow: function (options) {
+    this.sale();
     var that = this
     setTimeout(() => {
       this.setData({
@@ -201,16 +371,18 @@ Page({
       })
     }, 100);
     var name = '';
-    var selectName = app.selectName.name.split(',');
-    if (selectName[0]){
-      name = selectName[0]
-    } else if (selectName[1]){
-      name = selectName[1]
-    } else if (selectName[2]) {
-      name = selectName[2]
+    if (app.selectName.name.indexOf(',')>-1){
+      var selectName = app.selectName.name.split(',');
+      if (selectName[0]) {
+        name = selectName[0]
+      } else if (selectName[1]) {
+        name = selectName[1]
+      } else if (selectName[2]) {
+        name = selectName[2]
+      }
+      app.selectName.name = name;
     }
-    app.selectName.name = name;
-    selectName
+    console.log(app.selectName)
     this.setData({
       selectName: app.selectName
     })
