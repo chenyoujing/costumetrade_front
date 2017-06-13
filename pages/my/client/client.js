@@ -17,10 +17,10 @@ Page({
     },
     loadMore: true,
     requestSwitch: true,
-    name:'',
     pageNum:1,
+    scanModal: true,
   },
-  // 客户等级查询,全局变量
+  // 客户等级查询/地区,全局变量
   initCustomer: function () {
     var that = this
     wx.showNavigationBarLoading()
@@ -62,8 +62,8 @@ Page({
         storeId:1,
         type: client,
         sort: that.data.getSortData,
-        districtList: app.region,
-        name: that.data.name,
+        rules: app.getClientData,
+        name: app.searchValue,
         pageNum: that.data.pageNum,
       },
       method: 'POST',
@@ -112,7 +112,7 @@ Page({
       this.setData({
         client: client,
         pageNum: 1,
-        // ClientsList: [],
+        ClientsList: [],
         requestSwitch: true
       })
       this.page_request();
@@ -135,20 +135,18 @@ Page({
         op: op
       },
       pageNum: 1,
-      // ClientsList: [],
+      ClientsList: [],
       requestSwitch: true
     });
     this.page_request();
   },
-  // 搜索框输入
-  bindKeyInput: function (e) {
-    this.setData({
-      name: e.detail.value
+  bindfocus:function(){
+    wx.navigateTo({
+      url: 'clientScreen/clientScreen',
     })
-  },
-  // 搜索
-  searchName:function(){
-    this.page_request()
+    this.setData({
+      inputFocus:false,
+    })
   },
   // 上拉加载
   onReachBottom: function () {
@@ -264,6 +262,75 @@ Page({
   batch_delete_sure: function(){
     this.delectRequest();
   },
+  // 获取二维码
+  scan: function () {
+    this.setData({
+      scanModal: false,
+    })
+    var client = this.data.client
+    var that = this
+    var id = util.api.DateFormat(new Date())
+    wx.showNavigationBarLoading()
+    util.api.request({
+      url: 'client/scanQRCode',
+      data: {
+        type: client,
+        storeId: "1",
+        id: id
+      },
+      method: 'POST',
+      header: {
+        'content-type': 'application/json'
+      },
+      success: function (res) {
+        wx.hideNavigationBarLoading();
+        that.setData({
+          scan: res.data,
+          id: id
+        })
+      }
+    })
+  },
+  // 关闭扫码模态框
+  cancel: function () {
+    this.setData({
+      scanModal: true
+    })
+  },
+  // 扫好了
+  confirm: function () {
+    var that = this
+    wx.showNavigationBarLoading()
+    var client = this.data.client
+    var id = this.data.id
+    util.api.request({
+      url: 'client/scanQRCodeOk',
+      data: {
+        type: client,
+        storeId: "1",
+        id: id
+      },
+      method: 'POST',
+      header: {
+        'content-type': 'application/json'
+      },
+      success: function (res) {
+        wx.hideNavigationBarLoading();
+        if (!res.data.id) {
+          wx.showToast({
+            title: res.msg,
+            duration: 2000
+          })
+        }else{
+          app.addCustomerInfo = res.data
+          wx.navigateTo({
+            url: 'clientAdd/clientAdd?client=' + that.data.client
+          })
+        }
+      }
+    })
+    this.cancel()
+  },
   onLoad: function (e) {
     var that = this
     this.initCustomer()
@@ -271,7 +338,8 @@ Page({
   onShow:function(){
     this.setData({
       pageNum: 1,
-      requestSwitch: true
+      requestSwitch: true,
+      enterValue: app.searchValue
     })
     this.page_request()
 

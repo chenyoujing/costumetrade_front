@@ -194,7 +194,7 @@ scroll-view{
 }
 
 
-
+/*基础*/
 .setting_view{
   background-color: #DBF4F1;
   margin: 10px 20px;
@@ -225,6 +225,7 @@ scroll-view{
 }
 .setting_pay{
   border-top: 1px solid #52CAC1;
+  padding: 5px 0;
 }
 .pay_title{
   font-size: 16px;
@@ -239,6 +240,15 @@ scroll-view{
   position: absolute;
   top: 0;
   right: 0;
+}
+.image_add2{
+  width: 16px;
+  height: 16px;
+  padding: 7px;
+  position: absolute;
+  top: 0;
+  right: 50px;
+
 }
 .pay_view{
   font-size: 16px;
@@ -257,9 +267,33 @@ scroll-view{
   top: 0;
   right: 5px;
 }
+.image_view{
+  width: 33.33333333%;
+  height: 200rpx;
+  float: left;
+  position: relative;
+}
+.index_image{
+  box-sizing: border-box;
+  width: 200rpx;
+  height: 200rpx;
+  display: block;
+  margin: auto;
+  border: 1px solid #999999;
+}
+.image_view_add{
+  width: 25px;
+  height: 25px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+}
 
 
-
+/*高级*/
 .setting_title2{
   float: left;
   width: 40%;

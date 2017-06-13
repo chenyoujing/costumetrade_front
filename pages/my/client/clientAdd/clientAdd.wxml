@@ -86,7 +86,7 @@
 </view>
 
 
-<!--微信账单-->
+<!--扫码添加-->
 <modal class="modal" title="请扫码" hidden="{{scanModal}}" confirm-text="扫好了" bindconfirm="confirm" bindcancel="cancel">
   <image src="{{scan?scan:'../../../../images/image_none.png'}}" mode="widthFix" style="width:50%;margin: 20px 25%;"></image>
 </modal>

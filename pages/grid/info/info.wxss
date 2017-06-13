@@ -15,7 +15,6 @@
 
 /*导航栏*/
 .info_nav{
-  background-color: #ffffff;
   width: 100%;
   top:0;
   z-index: 99;
@@ -24,7 +23,9 @@
   width: 33.33333333%;
   float: left;
   text-align: center;
-  z-index: 1
+  z-index: 1;
+  padding: 5px 0;
+  background-color: #52CAC1;
 }
 .nav_view image{
   width: 100%;
@@ -36,11 +37,12 @@
 .nav_view_text{
   font-size: 12px;
   line-height: 20px;
+  color: #ffffff;
 }
 
 /*信息*/
 .info{
-  padding-top: 50px;
+  padding-top: 60px;
 }
 .info_container{
   padding: 15px 15px 10px;
@@ -81,19 +83,30 @@
 
 /*通讯录*/
 .supplier_scroll{
-  padding-top: 50px;
+  padding-top: 60px;
   box-sizing: border-box;
   height: 100vh;
   position: relative;
 }
 .supplier_search_view{
   background-color: #DCDCDC;
-  height: 40px;
+  height: 30px;
+  padding: 5px;
 }
 .supplier_search_text{
-  
+  font-size: 14px;
+  float: left;
+  width: 25%;
+  text-align: center;
+  line-height: 30px;
 }
-.supplier_search_input{}
+.search_input{
+  margin-right: 25%;
+  height: 30px;
+  line-height: 30px;
+  background-color: #ffffff;
+  font-size: 14px;
+}
 .contacts{
   background-color: #DCDCDC;
 }
@@ -144,7 +157,7 @@
 
 /*公告*/
 .notice_container{
-  padding-top: 50px;
+  padding-top: 60px;
 }
 .notice{
   padding: 15px 10px 0;
@@ -201,7 +214,7 @@
   margin: auto;
 }
 .notice_video video{
-  width: auto;
+  width: 100%;
   height: auto;
   margin-top: 10px;
 }

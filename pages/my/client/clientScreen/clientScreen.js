@@ -17,7 +17,7 @@ Page({
       { id: '5', custtypename: '钻石' },
     ],
     region: [],
-    level: '',
+    level: [],
     enterValue: '',
     product: [],
     keyArray: [],
@@ -36,7 +36,7 @@ Page({
   multipleSelect: function (e) {
     var boolean2 = true;
     var type = e.target.dataset.type;
-    var screen = 'screen1';
+    var screen = type == 'region'?'screen1':'screen2';
     var name = e.target.dataset.name;
     var index = e.target.dataset.index;
     var object = {};
@@ -56,90 +56,65 @@ Page({
     }
     this.setData(object)
   },
-  // 单选
-  radioSelect: function (e) {
-    var type = e.target.dataset.type;
-    var name = e.target.dataset.name;
-    var object = {};
-    object[type] = name;
-    this.setData(object);
-  },
-  selectOptions: function (e) {
-    var value = e.target.dataset.name;
-    this.setData({
-      enterValue: value
-    });
-    this.searchClick()
-  },
   searchClick: function () {
-    var region = this.data.region;
-    if (this.data.region.length == 0){
-      region = null
+    var getClientData = []
+    if (this.data.season !== '') {
+      getClientData.push({
+        filed: 'districtList',
+        value: this.data.region
+      })
     }
-    app.region = region;
-
-
-    // var season = [];
-    // season.push(this.data.season);
-    // var status = [];
-    // status.push(this.data.status);
-    // var getFilterData = [
-    //   {
-    //     filed: 'productTypeArray',
-    //     value: this.data.cate
-    //   },
-    //   {
-    //     filed: 'productBrandArray',
-    //     value: this.data.brand
-    //   }
-    // ]
-    // if (this.data.season !== '') {
-    //   getFilterData.push({
-    //     filed: 'productSeasonArray',
-    //     value: season
-    //   })
-    // }
-    // if (this.data.enterValue) {
-    //   app.searchValue = this.data.enterValue;
-    // };
-    // if (this.data.status !== '') {
-    //   getFilterData.push({
-    //     filed: 'status',
-    //     value: status
-    //   })
-    // };
+    if (this.data.status !== '') {
+      getClientData.push({
+        filed: 'cateList',
+        value: this.data.level
+      })
+    };
+    console.log(getClientData)
+    app.searchValue = this.data.enterValue;
+    app.getClientData = getClientData
     wx.navigateBack({
       delta: 1
     })
   },
-  // keyup: function (e) {
-  //   if (e == "") {
-  //     this.setData({
-  //       changeBoolean: false
-  //     })
-  //   } else {
-  //     var endArray4 = util.api.objectPushArry(this.data.product, e)
-  //     this.setData({
-  //       keyArray: endArray4,
-  //       changeBoolean: true
-  //     })
-  //   }
-  // },
-
-  // downData: function () {
-  //   util.api.downData();
-  //   var that = this;
-  //   wx.getStorage({
-  //     key: 'GoodsData',
-  //     success: function (res) {
-  //       that.setData({
-  //         product: res.data
-  //       })
-  //     }
-  //   })
-  // },
+  // 搜索框输入
+  keyup: function (e) {
+    if (e == "") {
+      this.setData({
+        changeBoolean: false
+      })
+    } else {
+      var endArray4 = util.api.objectPushArry(this.data.product, e)
+      this.setData({
+        keyArray: endArray4,
+        changeBoolean: true
+      })
+    }
+  },
+  // 清空搜索框
+  clearValue:function(){
+    this.setData({
+      enterValue:"",
+      changeBoolean: false
+    })
+  },
+  callback: function () {
+    var that = this;
+    wx.getStorage({
+      key: 'UnitData1',
+      complete: function (res) {
+        that.setData({
+          product: res.data
+        })
+        console.log(res.data)
+      }
+    })
+  },
+  downData: function () {
+    util.api.supplierRefresh('client/getClients', "UnitData", 'updataTimeunit', this.callback());
+  },
   onLoad: function (options) {
-    // this.downData();
+    this.downData();
     // var screen_content1 = app.screen_brandList;
     // var screen_content2 = app.screen_productTypeList;
     // for (var p in screen_content1) {
@@ -155,6 +130,11 @@ Page({
     this.setData({
       screen1: app.districtList,
       screen2: app.custProdPriceList,
+    })
+  },
+  onShow:function(){
+    this.setData({
+      enterValue: app.searchValue
     })
   }
 })

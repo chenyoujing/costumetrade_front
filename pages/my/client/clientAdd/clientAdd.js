@@ -8,74 +8,6 @@ Page({
     clientId:'',
     scanModal:true,
   },
-  // 获取二维码
-  scan:function(){
-    this.setData({
-      scanModal: false,
-    })
-    var client = this.data.client
-    var that = this
-    var id = util.api.DateFormat(new Date())
-    wx.showNavigationBarLoading()
-    util.api.request({
-      url: 'client/scanQRCode',
-      data: {
-        type: client,
-        storeId: "1",
-        id: id
-      },
-      method: 'POST',
-      header: {
-        'content-type': 'application/json'
-      },
-      success: function (res) {
-        wx.hideNavigationBarLoading();
-        that.setData({
-          scan: res.data,
-          id: id
-        })
-      }
-    })
-  },
-  // 关闭扫码模态框
-  cancel: function () {
-    this.setData({
-      scanModal: true
-    })
-  },
-  // 扫好了
-  confirm: function () {
-    var that = this
-    wx.showNavigationBarLoading()
-    var client = this.data.client
-    var id = this.data.id
-    util.api.request({
-      url: 'client/scanQRCodeOk',
-      data: {
-        type: client,
-        storeId: "1",
-        id: id
-      },
-      method: 'POST',
-      header: {
-        'content-type': 'application/json'
-      },
-      success: function (res) {
-        wx.hideNavigationBarLoading();
-        that.setData({
-          CustomerInfo:res.data
-        })
-        if(res.data==1015){
-          wx.showToast({
-            title: res.msg,
-            icon: 'success',
-            duration: 2000
-          })
-        }
-      }
-    })
-    this.cancel()
-  },
   // 标题内容
   client_add_title: function (){
     var client = this.data.client
@@ -252,7 +184,9 @@ Page({
     if (e.clientId){
       this.getClient()
     }else{
-      this.scan()
+      this.setData({
+        CustomerInfo: app.addCustomerInfo
+      })
     }
     this.client_add_title()
 

@@ -51,8 +51,8 @@
   <!--通讯录-->
   <view class="supplier_scroll" hidden="{{infotype!=1}}">
     <view class="supplier_search_view">
-      <view class="supplier_search_text"></view>
-      <input type="text" class="supplier_search_input" />
+      <view class="supplier_search_text">通讯录</view>
+      <input type="text" class="search_input"><image src="../../../images/search.png" mode="aspectFit" class="search_input_image"/></input>
     </view>
     <view class="supplier_container">
       <view class="supplier_tx">
