@@ -11,8 +11,8 @@
   <!--供应商内容-->
   <block wx:for="{{contacts}}">
     <view class="supplier_type" id="{{item.type}}">{{item.type}}</view>
-    <view class="supplier_container" wx:for="{{item.value}}" data-id="{{item.id}}" data-cate="{{item.cate}}" data-image="{{item.image}}" data-name = "" bindtap="selectName">
-      <view class="supplier_tx">
+    <view class="supplier_container" wx:for="{{item.value}}">
+      <view class="supplier_tx" data-id="{{item.id}}" data-cate="{{item.cate}}" data-image="{{item.image}}" data-name = "{{item.remarkName}},{{item.reallyName}},{{item.nickName}}" bindtap="selectName">
         <image src="{{item.image?item.image:'../../../../images/image_none.png'}}" mode="aspectFill"></image>
       </view>
       <view class="supplier_name"></view>

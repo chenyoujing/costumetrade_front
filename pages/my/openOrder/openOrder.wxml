@@ -12,7 +12,7 @@
     <image src="../../../images/more.png" mode="aspectFit" class="title_more_image" bindtap="more_function" />
     <navigator url="unitSelect/unitSelect?type={{type}}" class="title_supplier">
       <image src="{{headImage}}"  mode="aspectFill" class="title_supplier_tx" />
-      <view class="title_supplier_text" wx:if="{{type == 1}}">{{selectName.remarkName}}{{selectName.reallyName}}{{selectName.nickName}}</view>
+      <view class="title_supplier_text" wx:if="{{type == 1}}">{{selectName.name}}</view>
       <view class="title_supplier_text" wx:if="{{type == 2}}">供应商</view>
     </navigator>
 

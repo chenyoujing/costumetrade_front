@@ -1,6 +1,4 @@
 var app = getApp();
-var pageNum = 1;
-var publicProduct = [];
 function formatTime(date) {
   var year = date.getFullYear()
   var month = date.getMonth() + 1
@@ -26,6 +24,8 @@ function toDate(number) {
 //请求接口公共方法
 var api = {
   host: 'http://192.168.2.221:8088/',
+  pageNum :1,
+  publicProduct:[],
   // 数组转化成字符串
   back: function () {
     wx.navigateBack({
@@ -146,7 +146,7 @@ var api = {
     wx.showNavigationBarLoading();
     var param = {
       storeId: 1,
-      pageNum: pageNum
+      pageNum: that.pageNum
     }
     if (url2=="client/getClients"){
       param = param;
@@ -162,22 +162,24 @@ var api = {
       },
       success: function (res) {        
         for (var p in res.data) {
-          publicProduct.push(res.data[p])
+          that.publicProduct.push(res.data[p])
         }
         if(res.data.length == 10){
-          pageNum = pageNum+1;
+          that.pageNum = that.pageNum+1;
           that.downData(url2, objectName, timeName,callback);
         }else{
           wx.hideNavigationBarLoading();
           console.log(url2 == "client/getClients")  
           if (url2 == "client/getClients"){
             console.log(res)            
-            that.unitType(publicProduct)
+            that.unitType(that.publicProduct)
           }else{
             wx.setStorage({
               key: objectName,
-              data: publicProduct
+              data: that.publicProduct
             })
+            that.pageNum = 1;
+            that.publicProduct = [];
           }
           var myDate = new Date();
           myDate.getTime();

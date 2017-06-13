@@ -44,6 +44,7 @@ Page({
   },
   selectName:function(e){
     app.selectName = e.target.dataset;
+    console.log(app.selectName)
     wx.navigateBack({
       delta: 1,
     })

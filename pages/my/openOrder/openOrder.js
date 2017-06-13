@@ -200,6 +200,17 @@ Page({
         scrollTop: this.data.scrollTop,
       })
     }, 100);
+    var name = '';
+    var selectName = app.selectName.name.split(',');
+    if (selectName[0]){
+      name = selectName[0]
+    } else if (selectName[1]){
+      name = selectName[1]
+    } else if (selectName[2]) {
+      name = selectName[2]
+    }
+    app.selectName.name = name;
+    selectName
     this.setData({
       selectName: app.selectName
     })
