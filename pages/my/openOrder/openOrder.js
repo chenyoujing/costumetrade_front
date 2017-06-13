@@ -36,10 +36,11 @@ Page({
   //买单
   order: function () {
     wx.navigateTo({
-      url: './orderSure/orderSure'
+      url: './orderSure/orderSure?type='+this.data.type
     })
   },
   orderid:function(e){
+    console.log(e)
     this.setData({
       orderid: e.target.dataset.id,
       keyboardNum:'',
@@ -110,10 +111,13 @@ Page({
   // 切换单据类型
   changeType:function(e){
     var type = e.target.dataset.type;
+    this.sale();
+    this.localData(this.data.shopCart);
     this.setData({
-      type:type
+      type: type,
+      shopCart:[]
     })
-    this.sale()
+    this.getData();
     console.log(e.target.dataset.type)
     this.more_function_close()
   },
@@ -337,17 +341,40 @@ Page({
     this.totalData()
     this.order_back();
   },
-  localData:function(){
-     
+  localData:function(product){
+    var name = 'shopCartLowe' + this.data.type;
+    wx.setStorage({
+      key: name,
+      data: product
+    })
   },
   getData:function(){
+    var that = this;
     var name = 'shopCartLowe'+this.data.type;
-    
+    wx.getStorage({
+      key: name,
+      complete: function (res) {
+        that.setData({
+          shopCart: res.data
+        })
+        that.totalData()
+        console.log(res.data)
+      }
+    })
   },
+  delect:function(e){
+    var index = e.target.dataset.delect;
+    var product = this.data.shopCart;
+    product.splice(index,1);
+    this.setData({
+      shopCart:product
+    })
+    this.localData(product)
+  },
+  
   onLoad: function () {
     var that = this;
     this.downData();
-    
     setTimeout(() => {
       this.setData({
         scrollTop: this.data.scrollTop,
@@ -364,6 +391,7 @@ Page({
   },
   onShow: function (options) {
     this.sale();
+    this.getData();
     var that = this
     setTimeout(() => {
       this.setData({
@@ -386,5 +414,8 @@ Page({
     this.setData({
       selectName: app.selectName
     })
-  } 
+  },
+  onUnload:function(){
+    this.localData(this.data.shopCart);
+  }
 })

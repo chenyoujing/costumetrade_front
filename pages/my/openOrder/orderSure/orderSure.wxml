@@ -7,9 +7,9 @@
       <view class="order_info">
         <view class="info_title">订单详情</view>
         <view class="order_info_content">
-          <view class="price_total">123</view>
-          <view class="price_amount">123</view>
-          <view class="price_unpaid">123</view>
+          <view class="price_total">{{totalData.realcostArray}}</view>
+          <view class="price_amount">{{totalData.realcostArray}}</view>
+          <view class="price_unpaid">{{debet}}</view>
           <view class="clear"></view>
         </view>
       </view>
@@ -29,13 +29,13 @@
           <view class="order_input">
             <view class="order_input_text">现金：</view>
             <button class="order_input_button">清零</button>
-            <input type="number" class="order_input2" name="name" />
+            <input type="digit" class="order_input2" name="name" />
             <view class="clear"></view>
           </view>
           <view class="order_input">
             <view class="order_input_text">刷卡：</view>
             <button class="order_input_button">清零</button>
-            <input type="number" class="order_input2" name="name" />
+            <input type="digit" class="order_input2" name="name" />
             <view class="clear"></view>
           </view>
         </view>
