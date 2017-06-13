@@ -1,10 +1,9 @@
 {
   "pages": [
-    "pages/my/openOrder/openOrder",    
     "pages/grid/shop/shop",
     "pages/grid/user/user",
     "pages/grid/info/info",
-    "pages/grid/order/order",    
+    "pages/grid/order/order",
     "pages/grid/order/express/express",
     "pages/grid/order/comment/comment",
     "pages/grid/order/orderDetails/orderDetails",
@@ -19,6 +18,7 @@
     "pages/grid/user/Help/Help",
     "pages/grid/user/helpInfo/helpInfo",
     "pages/grid/user/notecase/notecase",
+    "pages/my/openOrder/openOrder",
     "pages/my/openOrder/goodsDetails/goodsDetails",
     "pages/my/openOrder/Billing/Billing",
     "pages/my/openOrder/orderSure/orderSure",
@@ -28,6 +28,7 @@
     "pages/my/client/replenishment/replenishment",
     "pages/my/client/clientAdd/clientAdd",
     "pages/my/client/clientScreen/clientScreen",
+    "pages/my/client/clientInfo/clientInfo",
     "pages/index/index",
     "pages/my/Goods/Goods",
     "pages/my/Goods/GoodsInfo/GoodsInfo",
