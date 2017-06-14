@@ -101,7 +101,7 @@ Page({
   // 新增还款单
   saveAccountInfo: function () {
     var that = this
-    var reg=/^[0-9]*[1-9][0-9]*$/
+    var reg = /^[1-9]\d*(\.\d+)?$/
     var boolean = true
     boolean = util.api.regular(that.data.price, reg, '请填入大于0的数字')
     if (boolean){
