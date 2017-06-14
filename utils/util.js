@@ -334,6 +334,16 @@ var api = {
     }
     return endArray4;
   },
+  // 正则
+  regular: function(val, reg, title){
+    if (reg.test(val) != true) {
+      wx.showToast({
+        title: title
+      })
+      return false;
+    }
+    return true;
+  },
   request: function (para) {
     para.url = api.host + para.url ;
     para.oldSuccess = para.success;

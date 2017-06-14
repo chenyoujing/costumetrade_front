@@ -16,7 +16,7 @@
   <swiper current="{{accounttype}}" bindchange="swiper_change">
     <swiper-item>
       <scroll-view scroll-y="true" style="top:0;bottom:0;">
-        <view class="account_time">
+        <view class="account_time clearfix">
             <view style="float:left;line-height:30px;">时间：</view>
             <picker mode="date" value="{{date_start}}" bindchange="startDateChange">
               <view class="picker">
@@ -29,64 +29,66 @@
                 {{date_end}}
               </view>
             </picker>
-            <view class="clear"></view>
         </view>
-        <view class="account_title" style="border-top: 3px solid #DBF4F1;">期初</view>
-        <view class="account_view">
-          <view class="account_view1">时间：</view>
-          <view class="account_view2">截止到2017-05-17</view>
-          <view class="clear"></view>
-        </view>
-        <view class="account_view">
-          <view class="account_view1">应收：</view>
-          <view class="account_view2">0元</view>
-          <view class="clear"></view>
-        </view>
-        <view class="account_view">
-          <view class="account_view1">应付：</view>
-          <view class="account_view2">0元</view>
-          <view class="clear"></view>
-        </view>
-        <view class="account_all">
-          <view class="account_all1">合计应收：</view>
-          <view class="account_all2">￥0.00</view>
-          <view class="clear"></view>
-        </view>
-        <view class="account_title">期末</view>
-        <view class="account_view">
-          <view class="account_view1">时间：</view>
-          <view class="account_view2">截止到2017-05-17</view>
-          <view class="clear"></view>
-        </view>
-        <view class="account_view">
-          <view class="account_view1">应收：</view>
-          <view class="account_view2">0元</view>
-          <view class="clear"></view>
-        </view>
-        <view class="account_view">
-          <view class="account_view1">应付：</view>
-          <view class="account_view2">0元</view>
-          <view class="clear"></view>
-        </view>
-        <view class="account_all">
-          <view class="account_all1">合计应收：</view>
-          <view class="account_all2">￥0.00</view>
-          <view class="clear"></view>
-        </view>
-        <view class="account_title">期中</view>
-        <view class="account_container">
-          <view class="account_container_title">
-            <view style="float:left;">单号:170395728358293</view>
-            <view style="float:right; font-size:10px;">2017-05-16 销售出库</view>
-            <view class="clear"></view>
+        <block wx:for="{{counting}}">
+          <view style="border-top:{{index==0?'3px solid #DBF4F1;':''}}" wx:if="{{item.begining!='期中'}}">
+            <view class="account_title">{{item.begining}}</view>
+            <view class="account_view">
+              <view class="account_view1">时间：</view>
+              <view class="account_view2">截止到
+                <text wx:if="{{item.begining=='期初'}}">{{date_start}}</text>
+                <text wx:if="{{item.begining=='期末'}}">{{date_end}}</text>
+              </view>
+              <view class="clear"></view>
+            </view>
+            <view class="account_view">
+              <view class="account_view1">应收：</view>
+              <view class="account_view2">{{item.receivable}}元</view>
+              <view class="clear"></view>
+            </view>
+            <view class="account_view">
+              <view class="account_view1">应付：</view>
+              <view class="account_view2">{{item.payable}}元</view>
+              <view class="clear"></view>
+            </view>
+            <view class="account_all">
+              <view class="account_all1">合计{{item.receivable > item.payable?'应收':'应付'}}：</view>
+              <view class="account_all2">￥{{item.receivableTotalAmount}}</view>
+              <view class="clear"></view>
+            </view>
           </view>
-          <view class="account_container_content">
-            <view class="content_view">合计金额：781</view>
-            <view class="content_view">已付：281</view>
-            <view class="content_view">未付：500</view>
-            <view class="content_button">明细</view>
+
+          <view wx:if="{{item.begining=='期中'}}">
+            <view class="account_title" wx:if="{{item.orders.length!=0}}">{{item.begining}}</view>
+            <block wx:for="{{item.orders}}">
+              <view class="account_container" wx:if="{{item.totalamt}}">
+                <view class="account_container_title">
+                  <view style="float:left;">单号:{{item.payorderno}}</view>
+                  <view style="float:right; font-size:10px;">{{item.ordertime}} 销售出库</view>
+                  <view class="clear"></view>
+                </view>
+                <view class="account_container_content">
+                  <view class="content_view">合计金额：{{item.totalamt}}</view>
+                  <view class="content_view">已付：{{item.realcost}}<text style="padding-left:20px;">付款方式：{{item.paycate1}}</text></view>
+                  <view class="content_view">未付：{{item.unPay}}</view>
+                  <view class="content_button">明细</view>
+                </view>
+              </view>
+              <!--还款单-->
+              <view class="account_container" wx:if="{{!item.totalamt}}">
+                <view class="account_container_title">
+                  <view style="float:left;">单号:{{item.payorderno}}</view>
+                  <view style="float:right; font-size:10px;">{{item.ordertime}} 还款单</view>
+                  <view class="clear"></view>
+                </view>
+                <view class="account_container_content">
+                  <view class="content_view">付款方式：{{item.paycate1}}</view>
+                  <view class="content_view" style="text-align:right;">支付金额：{{item.realcost}}</view>
+                </view>
+              </view>
+            </block>
           </view>
-        </view>
+        </block>
       </scroll-view>
     </swiper-item>
     <!--供货商时显示-->
@@ -95,7 +97,7 @@
         <view class="account_title">付款信息</view>
         <view class="account_view">
           <view class="account_view1 padding">单号：</view>
-          <view class="account_view2 padding" style="text-align: center;">123456789</view>
+          <view class="account_view2 padding" style="text-align: center;">{{account.payno}}</view>
           <view class="clear"></view>
         </view>
         <view class="account_view">
@@ -109,32 +111,32 @@
         </view>
         <view class="account_view">
           <view class="account_view1 padding">单据类型：</view>
-            <picker bindchange="billtypePicker" value="{{billtype_index}}" range="{{billtype}}" class="account_input">
-              <view class="picker">{{billtype[billtype_index]}}</view>
+            <picker bindchange="billtypePicker" value="{{billtype_index}}" range="{{billtype}}" range-key="value" class="account_input">
+              <view class="picker">{{billtype[billtype_index].value}}</view>
               <image src="../../../../images/down.png" mode="aspectFit" class="image_down" />
             </picker>
           <view class="clear"></view>
         </view>
         <view class="account_view">
           <view class="account_view1 padding">姓名：</view>
-          <view class="account_view2" style="text-align: center;">商城用户001</view>
+          <view class="account_view2" style="text-align: center;">{{account.name}}</view>
           <view class="clear"></view>
         </view>
         <view class="account_view">
-          <view class="account_view1 padding">总计应收：</view>
-          <view class="account_view2 price padding" style="text-align: center;">500.00</view>
+          <view class="account_view1 padding">总计{{account.receivable >= account.payable?'应收':'应付'}}：</view>
+          <view class="account_view2 price padding" style="text-align: center;">{{account.receivable >= account.payable?account.receivable:account.payable}}</view>
           <view class="clear"></view>
         </view>
         <view class="account_view">
-          <picker bindchange="paytypePicker" value="{{paytype_index}}" range="{{paytype}}" class="account_view1 paytype">
-            <view>{{paytype[paytype_index]}}：</view>
+          <picker bindchange="paytypePicker" value="{{paytype_index}}" range="{{paytype}}" range-key="dictText" class="account_view1 paytype">
+            <view>{{paytype[paytype_index].dictText}}：</view>
             <image src="../../../../images/down.png" mode="aspectFit" class="image_down" style="right:10px;" />
           </picker>
           <view class="zero" bindtap="zero">清零</view>
-          <input class="account_input zero_input" value="{{zero}}" />
+          <input class="account_input zero_input" value="{{price}}" type="number" bindinput="pirceinput" />
           <view class="clear"></view>
         </view>
-        <view class="account_submit">确定</view>
+        <view class="account_submit" bindtap="saveAccountInfo">确定</view>
       </scroll-view>
     </swiper-item>
     <!--不是供货商时显示-->

@@ -154,6 +154,7 @@ swiper{
   text-align: left;
   height: 30px;
   line-height: 16px;
+  padding: 0;
   padding-left: 8px;
   padding-right: 8px;
 }

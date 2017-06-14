@@ -98,9 +98,9 @@ swiper image{
   position: absolute;
   top: 0;
   right: 10px;
-  color: #000000;
-  font-size: 32px;
-  line-height: 40px;
+  width: 16px;
+  height: 16px;
+  padding: 7px;
 }
 .modal scroll-view{
   position: absolute;

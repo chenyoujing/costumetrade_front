@@ -144,7 +144,7 @@
 
 .nav_right{
   position: absolute;
-  top: 90px;
+  top: 100px;
   right: 0;
   bottom: 0;
   width: 5%;

@@ -57,12 +57,12 @@
 <view class="modal_cover" bindtap="modal_close" animation="{{modal_opacity}}" style="display:{{modal}};"></view>
 <view class="modal" style="top:{{modal_top}};bottom:{{modal_bottom}};">
   <scroll-view scroll-y="true">
+    <image src="../../../../images/close.png" mode="aspectFit" class="modal_close" bindtap="modal_close" />
     <view style="padding:10px; overflow:hidden;">
       <view class="goods_container">
         <image src="../../../../images/image_none.png" mode="aspectFill" class="goods_image" />
         <view class="goods_name">621报喜鸟11 2017春 打底裤 适中紫</view>
         <view class="clear"></view>
-        <view class="modal_close" bindtap="modal_close">×</view>
       </view>
       <view class="goods_container">
         <view class="goods_title">尺码类型</view>

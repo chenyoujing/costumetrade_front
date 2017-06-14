@@ -22,6 +22,7 @@ radio,checkbox{
   position:relative;
   top:-2px;
 }
+/*单行不换行*/
 .one_line{
   word-break:keep-all;
   white-space:nowrap;
@@ -71,6 +72,7 @@ radio,checkbox{
   z-index: 4;
   display: block;
 }
+/*覆盖，bindatp用*/
 bindtap_cover{
   position: absolute;
   top: 0;
@@ -78,7 +80,17 @@ bindtap_cover{
   right: 0;
   bottom: 0;
 }
-
+/*扫码框*/
+.scan_modal_image{
+  width:50%;
+  margin: 20px 25% 0;
+}
+.scan_modal_text{
+  text-align: center;
+  color: #000000;
+  font-size: 10px;
+  margin-bottom: 20px;
+}
 .style_none{
   display: unset;
 }

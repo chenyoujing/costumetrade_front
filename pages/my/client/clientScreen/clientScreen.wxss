@@ -87,3 +87,6 @@
   font-size: 14px;
   line-height: 20px;
 }
+.search_view text{
+  padding-right: 20px;
+}

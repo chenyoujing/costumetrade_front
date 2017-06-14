@@ -42,8 +42,8 @@
             <view class="client_info2_text">区域：{{item.address?item.address:'暂无'}}</view>
           </view>
         </view>
-        <navigator url="account/account?client={{client}}" class="client_button client_button2">对账</navigator>
-        <navigator url="replenishment/replenishment" class="client_button client_button1">补货</navigator>
+        <navigator url="account/account?client={{client}}&clientId={{item.id}}" class="client_button client_button2">对账</navigator>
+        <navigator url="replenishment/replenishment?clientId={{item.id}}" class="client_button client_button1">补货</navigator>
         <navigator url="clientAdd/clientAdd?client={{client}}&clientId={{item.id}}">
           <image image src="../../../images/update.png" mode="aspectFill" class="client_updata"/>
         </navigator>
@@ -65,5 +65,6 @@
 
 <!--扫码添加-->
 <modal title="请扫码" hidden="{{scanModal}}" confirm-text="扫好了" bindconfirm="confirm" bindcancel="cancel">
-  <image src="{{scan?scan:'../../../../images/image_none.png'}}" mode="widthFix" style="width:50%;margin: 20px 25%;"></image>
+  <image src="{{scan?scan:'../../../../images/image_none.png'}}" mode="widthFix" class="scan_modal_image" />
+  <view class="scan_modal_text">请用微信扫一扫上面的团,扫好了后点击“扫好了”</view>
 </modal>

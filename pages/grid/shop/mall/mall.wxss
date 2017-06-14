@@ -64,25 +64,23 @@
   width: 60%;
   text-align: left;
 }
-.shop_input{
-  box-sizing: border-box;
+.search_input{
   font-size: 14px;
   line-height: 30px;
   height: 30px;
   border-radius: 15px;
   padding-left: 20px;
   padding-right: 35px;
-  background-color: rgba(255, 255, 255, 0.3);
-  width: 525rpx;
-  margin-left: 5%;
+  background-color: #ffffff;
+  opacity: 0.5;
+  margin-left: 10%;
 }
 .search_image{
   width: 16px;
   height: 16px;
-  padding: 7px;
-  position: absolute;
+  padding: 7px 12px;
+  float: right;
   top: 0;
-  right: 26%;
 }
 
 
@@ -219,10 +217,11 @@
   color: #ffffff;
 }
 
-.container{
+.mall_container{
   float: left;
   padding: 10px;
   box-sizing:border-box;
+  width: 100%;
 }
 .content_container{
   box-shadow: 0.5px 0.5px 2px #000000;
@@ -279,6 +278,22 @@
 }
 .volume::before{
   content: "销量："
+}
+/*排列后*/
+.rank{
+  width: 50%;
+}
+.rank .content_container_text{
+  position: relative;
+  left: 0;
+  padding: 0 5px;
+}
+.rank .content_container_title{
+  padding: 5px 5px 0;
+}
+.rank .content_container_info{
+  padding: 0;
+  border: none;
 }
 
 .title_text{

@@ -334,6 +334,9 @@ Page({
   onLoad: function (e) {
     var that = this
     this.initCustomer()
+    console.log(typeof (new Date(Date.now() - 86400000)))
+    console.log(new Date)
+
   },
   onShow:function(){
     this.setData({

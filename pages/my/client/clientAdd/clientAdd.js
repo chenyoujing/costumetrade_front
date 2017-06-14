@@ -80,17 +80,10 @@ Page({
     var that = this
     var object = e.detail.value
     var boolean = true;
-    if (reg.test(object.remarkName) != true) {
-      wx.showToast({
-        title: '不可输入特殊符号',
-        duration: 2000
-      })
-      boolean = false;
-    }
+    boolean = util.api.regular(object.remarkName, reg, '不可输入特殊符号')
     if (!object.remarkName && !object.reallyName && !object.nickName) {
       wx.showToast({
         title: '昵称、真实姓名、备注名称必须存在一个',
-        duration: 2000
       })
       boolean = false;
     }

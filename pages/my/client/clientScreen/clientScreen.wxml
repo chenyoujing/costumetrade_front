@@ -32,7 +32,11 @@
 <!--搜索-->
 <view class="search" wx:if="{{changeBoolean}}">
   <block wx:for="{{keyArray}}">
-    <view class="search_view" bindtap="selectOptions" data-id="{{item.id}}">{{item.remarkName}}、{{item.nickName}}、{{item.reallyName}}</view>
+    <view class="search_view" bindtap="selectOptions" data-id="{{item.id}}">
+    <text wx:if="{{item.remarkName}}">{{item.remarkName}}</text>
+    <text wx:if="{{item.nickName}}">{{item.nickName}}</text>
+    <text wx:if="{{item.reallyName}}">{{item.reallyName}}</text>
+    </view>
   </block>
   
 </view>

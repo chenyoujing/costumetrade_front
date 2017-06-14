@@ -78,7 +78,7 @@
       </view>
 
       <navigator url="../replenishment/replenishment?clientId={{clientId}}" class="client_info_button bg_g">补货</navigator>
-      <navigator url="../account/account?clientId={{clientId}}" class="client_info_button">对账</navigator>
+      <navigator url="../account/account?client={{client}}&clientId={{clientId}}" class="client_info_button">对账</navigator>
     </view>
     <view class="client_button">发消息</view>
   </view>

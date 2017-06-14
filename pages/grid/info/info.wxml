@@ -10,7 +10,7 @@
   </swiper>
 
   <!--导航栏-->
-  <view class="info_nav" style="position:{{nav_position}}; top:0;" bindtap="infotype">
+  <view class="info_nav" style="position:{{nav_position}};" bindtap="infotype">
     <view class="nav_view">
       <image src="../../../images/info.png" mode="aspectFit" data-infotype="0" />
       <view class="nav_view_text" data-infotype="0">信息</view>
@@ -84,8 +84,268 @@
         <view>电话：13333333333</view>
       </view>
     </view>
+    <view class="supplier_container">
+      <view class="supplier_tx">
+        <image src="../../../images/image_none.png" mode="aspectFill" />
+      </view>
+      <view class="supplier_name">小王</view>
+      <view class="supplier_info">
+        <view>昵称：煎饼侠</view>
+        <view>电话：13333333333</view>
+      </view>
+    </view>
+    <view class="supplier_container">
+      <view class="supplier_tx">
+        <image src="../../../images/image_none.png" mode="aspectFill" />
+      </view>
+      <view class="supplier_name">小王</view>
+      <view class="supplier_info">
+        <view>昵称：煎饼侠</view>
+        <view>电话：13333333333</view>
+      </view>
+    </view>
+    <view class="supplier_container">
+      <view class="supplier_tx">
+        <image src="../../../images/image_none.png" mode="aspectFill" />
+      </view>
+      <view class="supplier_name">小王</view>
+      <view class="supplier_info">
+        <view>昵称：煎饼侠</view>
+        <view>电话：13333333333</view>
+      </view>
+    </view>
+    <view class="supplier_container">
+      <view class="supplier_tx">
+        <image src="../../../images/image_none.png" mode="aspectFill" />
+      </view>
+      <view class="supplier_name">小王</view>
+      <view class="supplier_info">
+        <view>昵称：煎饼侠</view>
+        <view>电话：13333333333</view>
+      </view>
+    </view>
+    <view class="supplier_container">
+      <view class="supplier_tx">
+        <image src="../../../images/image_none.png" mode="aspectFill" />
+      </view>
+      <view class="supplier_name">小王</view>
+      <view class="supplier_info">
+        <view>昵称：煎饼侠</view>
+        <view>电话：13333333333</view>
+      </view>
+    </view>
+    <view class="supplier_container">
+      <view class="supplier_tx">
+        <image src="../../../images/image_none.png" mode="aspectFill" />
+      </view>
+      <view class="supplier_name">小王</view>
+      <view class="supplier_info">
+        <view>昵称：煎饼侠</view>
+        <view>电话：13333333333</view>
+      </view>
+    </view>
+    <view class="supplier_container">
+      <view class="supplier_tx">
+        <image src="../../../images/image_none.png" mode="aspectFill" />
+      </view>
+      <view class="supplier_name">小王</view>
+      <view class="supplier_info">
+        <view>昵称：煎饼侠</view>
+        <view>电话：13333333333</view>
+      </view>
+    </view>
+    <view class="supplier_container">
+      <view class="supplier_tx">
+        <image src="../../../images/image_none.png" mode="aspectFill" />
+      </view>
+      <view class="supplier_name">小王</view>
+      <view class="supplier_info">
+        <view>昵称：煎饼侠</view>
+        <view>电话：13333333333</view>
+      </view>
+    </view>
+    <view class="supplier_container">
+      <view class="supplier_tx">
+        <image src="../../../images/image_none.png" mode="aspectFill" />
+      </view>
+      <view class="supplier_name">小王</view>
+      <view class="supplier_info">
+        <view>昵称：煎饼侠</view>
+        <view>电话：13333333333</view>
+      </view>
+    </view>
+    <view class="supplier_container">
+      <view class="supplier_tx">
+        <image src="../../../images/image_none.png" mode="aspectFill" />
+      </view>
+      <view class="supplier_name">小王</view>
+      <view class="supplier_info">
+        <view>昵称：煎饼侠</view>
+        <view>电话：13333333333</view>
+      </view>
+    </view>
+    <view class="supplier_container">
+      <view class="supplier_tx">
+        <image src="../../../images/image_none.png" mode="aspectFill" />
+      </view>
+      <view class="supplier_name">小王</view>
+      <view class="supplier_info">
+        <view>昵称：煎饼侠</view>
+        <view>电话：13333333333</view>
+      </view>
+    </view>
+    <view class="supplier_container">
+      <view class="supplier_tx">
+        <image src="../../../images/image_none.png" mode="aspectFill" />
+      </view>
+      <view class="supplier_name">小王</view>
+      <view class="supplier_info">
+        <view>昵称：煎饼侠</view>
+        <view>电话：13333333333</view>
+      </view>
+    </view>
+    <view class="supplier_container">
+      <view class="supplier_tx">
+        <image src="../../../images/image_none.png" mode="aspectFill" />
+      </view>
+      <view class="supplier_name">小王</view>
+      <view class="supplier_info">
+        <view>昵称：煎饼侠</view>
+        <view>电话：13333333333</view>
+      </view>
+    </view>
+    <view class="supplier_container">
+      <view class="supplier_tx">
+        <image src="../../../images/image_none.png" mode="aspectFill" />
+      </view>
+      <view class="supplier_name">小王</view>
+      <view class="supplier_info">
+        <view>昵称：煎饼侠</view>
+        <view>电话：13333333333</view>
+      </view>
+    </view>
+    <view class="supplier_container">
+      <view class="supplier_tx">
+        <image src="../../../images/image_none.png" mode="aspectFill" />
+      </view>
+      <view class="supplier_name">小王</view>
+      <view class="supplier_info">
+        <view>昵称：煎饼侠</view>
+        <view>电话：13333333333</view>
+      </view>
+    </view>
+    <view class="supplier_container">
+      <view class="supplier_tx">
+        <image src="../../../images/image_none.png" mode="aspectFill" />
+      </view>
+      <view class="supplier_name">小王</view>
+      <view class="supplier_info">
+        <view>昵称：煎饼侠</view>
+        <view>电话：13333333333</view>
+      </view>
+    </view>
+    <view class="supplier_container">
+      <view class="supplier_tx">
+        <image src="../../../images/image_none.png" mode="aspectFill" />
+      </view>
+      <view class="supplier_name">小王</view>
+      <view class="supplier_info">
+        <view>昵称：煎饼侠</view>
+        <view>电话：13333333333</view>
+      </view>
+    </view>
+    <view class="supplier_container">
+      <view class="supplier_tx">
+        <image src="../../../images/image_none.png" mode="aspectFill" />
+      </view>
+      <view class="supplier_name">小王</view>
+      <view class="supplier_info">
+        <view>昵称：煎饼侠</view>
+        <view>电话：13333333333</view>
+      </view>
+    </view>
+    <view class="supplier_container">
+      <view class="supplier_tx">
+        <image src="../../../images/image_none.png" mode="aspectFill" />
+      </view>
+      <view class="supplier_name">小王</view>
+      <view class="supplier_info">
+        <view>昵称：煎饼侠</view>
+        <view>电话：13333333333</view>
+      </view>
+    </view>
+    <view class="supplier_container">
+      <view class="supplier_tx">
+        <image src="../../../images/image_none.png" mode="aspectFill" />
+      </view>
+      <view class="supplier_name">小王</view>
+      <view class="supplier_info">
+        <view>昵称：煎饼侠</view>
+        <view>电话：13333333333</view>
+      </view>
+    </view>
+    <view class="supplier_container">
+      <view class="supplier_tx">
+        <image src="../../../images/image_none.png" mode="aspectFill" />
+      </view>
+      <view class="supplier_name">小王</view>
+      <view class="supplier_info">
+        <view>昵称：煎饼侠</view>
+        <view>电话：13333333333</view>
+      </view>
+    </view>
+    <view class="supplier_container">
+      <view class="supplier_tx">
+        <image src="../../../images/image_none.png" mode="aspectFill" />
+      </view>
+      <view class="supplier_name">小王</view>
+      <view class="supplier_info">
+        <view>昵称：煎饼侠</view>
+        <view>电话：13333333333</view>
+      </view>
+    </view>
+    <view class="supplier_container">
+      <view class="supplier_tx">
+        <image src="../../../images/image_none.png" mode="aspectFill" />
+      </view>
+      <view class="supplier_name">小王</view>
+      <view class="supplier_info">
+        <view>昵称：煎饼侠</view>
+        <view>电话：13333333333</view>
+      </view>
+    </view>
+    <view class="supplier_container">
+      <view class="supplier_tx">
+        <image src="../../../images/image_none.png" mode="aspectFill" />
+      </view>
+      <view class="supplier_name">小王</view>
+      <view class="supplier_info">
+        <view>昵称：煎饼侠</view>
+        <view>电话：13333333333</view>
+      </view>
+    </view>
+    <view class="supplier_container">
+      <view class="supplier_tx">
+        <image src="../../../images/image_none.png" mode="aspectFill" />
+      </view>
+      <view class="supplier_name">小王</view>
+      <view class="supplier_info">
+        <view>昵称：煎饼侠</view>
+        <view>电话：13333333333</view>
+      </view>
+    </view>
+    <view class="supplier_container">
+      <view class="supplier_tx">
+        <image src="../../../images/image_none.png" mode="aspectFill" />
+      </view>
+      <view class="supplier_name">小王</view>
+      <view class="supplier_info">
+        <view>昵称：煎饼侠</view>
+        <view>电话：13333333333</view>
+      </view>
+    </view>
 
-    <view class="nav_right">
+    <view class="nav_right" style="position:{{nav_position=='fixed'?'fixed':''}}">
       <view wx:for="{{nav_right}}" class="nav_text">{{item}}</view>
     </view>
   </view>

@@ -27,7 +27,7 @@
           </view>
           <view class="info_text">
             <view class="info_text1 wechat_number_title">微信号：</view>
-            <view class="wechat_number_button clearfix" bindtap="Clipboard">
+            <view class="wechat_number_button one_line clearfix" bindtap="Clipboard">
               <image src="../../../../images/wechat.png" mode="aspectFit" class="wechat_image" />
               复制微信号
             </view>

@@ -15,31 +15,19 @@ Page({
   },
   rank: function () {
     var that = this
-    if (this.data.container_width == "100%") {
+    if (!this.data.rank) {
       wx.getSystemInfo({
         success: function (res) {
           that.setData({
-            container_width: "50%",
             image_width: res.windowWidth / 2 - 20,
-            text_position: "relative",
-            text_left: "0",
-            text_padding: "0 5px",
-            title_padding: "5px 5px 0",
-            info_padding: "0",
-            info_border: "none",
+            rank: 'rank'
           })
         }
       })
     } else {
       that.setData({
-        container_width: "100%",
         image_width: "115",
-        text_position: "absolute",
-        text_left: "115px",
-        text_padding: "",
-        title_padding: "",
-        info_padding: "",
-        info_border: "",
+        rank: ''
       })
     }
   },
