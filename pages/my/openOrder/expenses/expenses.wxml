@@ -1,0 +1,50 @@
+<view class="title clearfix">
+  <navigator open-type="navigateBack">
+    <image src="../../../../../images/back-away.png" mode="aspectFit" class="title_image_back" />
+  </navigator>
+  <image src="../../../../images/bill-of-document.png"  mode="aspectFill" class="expenses_title_image" />
+  <view class="expenses_title_text">费用单</view>
+  <image src="../../../../images/more.png" mode="aspectFit" class="title_more_image" bindtap="more_function" />
+  <view class="title_button_view clearfix">
+    <view class="title_button_view2">
+      <view class="title_button">取消</view>
+    </view>
+    <view class="title_button_view2">
+      <view class="title_button">入账</view>
+    </view>
+  </view>
+</view>
+
+
+<view class="expenses_view1">
+  <view class="content_title">明细</view>
+  <view class="expenses_detail clearfix">
+    <view class="expenses_detail_text">快递</view>
+    <view class="expenses_detail_unit">元</view>
+    <input type="digit" class="expenses_detail_input" />
+  </view>
+  <view class="expenses_detail clearfix">
+    <view class="expenses_detail_text">快餐</view>
+    <view class="expenses_detail_unit">元</view>
+    <input type="digit" class="expenses_detail_input" />
+  </view>
+  <view class="expenses_detail_info clearfix">
+    <view class="expenses_detail_num">2</view>
+    <view class="expenses_detail_price">￥1290</view>
+  </view>
+</view>
+<view class="expenses_view2">
+  <view class="content_title">项目</view>
+  <view class="expenses_item">快递</view>
+  <view class="expenses_item">快餐</view>
+  <view class="expenses_item">水电</view>
+</view>
+
+
+<!--更多功能-->
+<view class="more_function_cover {{animation}}" bindtap="more_function_close" style="display:{{more_function_display}};"></view>
+<view class="more_function {{animation}}" style="display:{{more_function_display}};">
+  <view class="more_function_view" data-type= "1" bindtap="changeType">销售单</view>
+  <view class="more_function_view" data-type= "2" bindtap="changeType">采购单</view>
+  <navigator url="expenses/expenses" class="more_function_view" bindtap="batch_update">费用单</navigator>
+</view>

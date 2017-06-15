@@ -31,8 +31,8 @@ Page({
       data: {
         clientId: that.data.clientId,
         openid: app.globalData.openid,
-        timeFrom: new Date(that.data.date_start),
-        timeTo: new Date(that.data.date_end),
+        timeFrom: new Date(Date.parse(this.data.date_start) - 28800000),
+        timeTo: new Date(Date.parse(this.data.date_end) + 57600000 ),
         clientType: that.data.client
       },
       method: 'POST',
@@ -125,19 +125,12 @@ Page({
         success: function (res) {
           wx.hideNavigationBarLoading();
           console.log(res.data)
-          var account = res.data
 
-          if (res.data.receivable >= res.data.payable) {
-            // 应收
-            var price = res.data.receivable
-          } else {
-            // 应付
-            var price = res.data.payable
-          }
-          that.setData({
-            account: res.data,
-            price: price
+          wx.showToast({
+            title: '还款成功',
           })
+          that.financialCounting()
+          that.initAccountInfo()
         }
       })
     }
@@ -200,7 +193,7 @@ Page({
   onLoad: function (e) {
     this.setData({
       client: e.client,
-      date_start: util.formatTime(new Date(Date.now() - 8640000000)),
+      date_start: util.formatTime(new Date(Date.now() - 86400000)),
       date_end: util.formatTime(new Date(Date.now())),
       account_date: util.formatTime(new Date(Date.now())),
       client:e.client,
