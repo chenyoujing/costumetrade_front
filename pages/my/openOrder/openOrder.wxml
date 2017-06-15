@@ -40,13 +40,13 @@
   <scroll-view scroll-y="true" bindscroll="keyHidden" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}" style="bottom:{{keyHidden?60:keyboard_height*3 + 79}}px;" class="order_scroll" hidden="{{products_info||orderid}}">
     <block wx:for="{{shopCart}}" >
       <view class="order_view clearfix {{index%2==0?'bg_w':''}}" >
-        <view style="width:100%;" bindtap="orderid" data-id="{{item.productId}}">
-          <view style="width:8%;" data-id="{{item.productId}}">{{index+1}}</view>
-          <view style="width:26%;" data-id="{{item.productId}}">{{item.productName}}</view>
-          <view style="width:8%;" data-id="{{item.productId}}">{{item.count}}</view>
-          <view style="width:15%;" data-id="{{item.productId}}">{{item.color}}</view>
-          <view style="width:15%;" data-id="{{item.productId}}">{{item.size}}</view>
-          <view style="width:16%;" data-id="{{item.productId}}">{{item.price}}</view>
+        <view style="width:100%;" bindtap="orderid" data-id="{{item.productid}}">
+          <view style="width:8%;" data-id="{{item.productid}}">{{index+1}}</view>
+          <view style="width:26%;" data-id="{{item.productid}}">{{item.productName}}</view>
+          <view style="width:8%;" data-id="{{item.productid}}">{{item.count}}</view>
+          <view style="width:15%;" data-id="{{item.productid}}">{{item.productcolor}}</view>
+          <view style="width:15%;" data-id="{{item.productid}}">{{item.productsize}}</view>
+          <view style="width:16%;" data-id="{{item.productid}}">{{item.price}}</view>
           <view style="width:12%;"></view>
         </view>
         <view class="order_view_delete" data-delect="{{index}}" bindtap="delect">删除</view>

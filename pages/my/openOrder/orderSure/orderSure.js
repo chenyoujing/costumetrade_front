@@ -200,17 +200,21 @@ Page({
     submitData.order.paycate2 = this.data.payCate2;
     submitData.order.paycost2 = this.data.payCost2;
     for (var p in this.data.shopCart){
-      if (this.data.shopCart[p].size == "全尺码"){
-        var sizebill = this.data.shopCart[p].sizeGroup;
+      if (this.data.shopCart[p].productsize == "全尺码"){
+        console.log(this.data.shopCart[p])
+        var sizebill = this.data.shopCart[p].sizeGroup.split(',');
+       
         for (var index in sizebill) {
           submitData.stoDetails.push({
             count: this.data.shopCart[p].count,
             productName: this.data.shopCart[p].productName,
             price: this.data.shopCart[p].price,
-            productId: this.data.shopCart[p].productId,
-            unit: this.data.shopCart[p].unit,
-            color: this.data.shopCart[p].color,
-            size: sizebill[index]
+            productid: this.data.shopCart[p].productid,
+            productunit: this.data.shopCart[p].productunit,
+            productcolor: this.data.shopCart[p].productcolor,
+            productsize: sizebill[index],
+            producttype: this.data.shopCart[p].producttype,
+            handtag: this.data.shopCart[p].handcount
           })
         }
       }else{

@@ -411,19 +411,22 @@ Page({
       count: this.data.keyboardNum2 ? this.data.keyboardNum2 : this.data.oneKeyshow,
       productName: this.data.GoodsDetail.name,
       price: this.data.GoodsDetail.showPrice,
-      productId: this.data.GoodsDetail.id,
-      unit: this.data.GoodsDetail.id,
-      color: this.data.selectColor,
-      size: this.data.selectSize
+      productid: this.data.GoodsDetail.id,
+      productunit: this.data.GoodsDetail.unit,
+      productcolor: this.data.selectColor,
+      productsize: this.data.selectSize,
+      producttype: this.data.GoodsDetail.producttype,
+      handtag: this.data.GoodsDetail.handcount
     }
     if (this.data.unitChange){
       object.count = object.count * this.data.GoodsDetail.handcount;
-      object.size =  '全尺码';
-      object.sizeGroup = this.data.GoodsDetail.size
+      object.productsize =  '全尺码';
+      object.sizeGroup = this.data.GoodsDetail.sizes;
+      console.log(object)
     }
     console.log(object.count)
     for(var p in shopCart){
-      if (shopCart[p].productId == object.productId && shopCart[p].color == object.color && shopCart[p].size == object.size){
+      if (shopCart[p].productId == object.productId && shopCart[p].productcolor == object.productcolor && shopCart[p].productsize == object.productsize){
         shopCart[p].count = parseInt(object.count) + shopCart[p].count;
         add = false;
       }
@@ -432,6 +435,7 @@ Page({
     if(add){
       shopCart.push(object);
     }
+    console.log(shopCart)
     console.log(this.data.GoodsDetail.name);
     this.localData(this.data.shopCart);
     this.totalData();
