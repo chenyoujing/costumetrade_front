@@ -69,6 +69,16 @@
   margin: 5px 0;
   position: relative;
 }
+.title_input_cover{
+  z-index:8;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 30px;
+  bottom: 0;
+  background-color: red;
+  opacity: 0;
+}
 .title_image_write{
   position: absolute;
   right: 0;
