@@ -7,9 +7,9 @@
       <view class="order_info">
         <view class="info_title">订单详情</view>
         <view class="order_info_content">
-          <view class="price_total">{{totalData.realcostArray}}</view>
-          <view class="price_amount">{{totalData.realcostArray}}</view>
-          <view class="price_unpaid">{{debet}}</view>
+          <view class="price_total"> {{totalData.realcostArray}}</view>
+          <view class="price_amount"> {{reallyPay}}</view>
+          <view class="price_unpaid"> {{debet}}</view>
           <view class="clear"></view>
         </view>
       </view>
@@ -18,24 +18,24 @@
         <view class="pay_info_content">
           <view class="order_input">
             <view class="order_input_text">折扣：</view>
-            <input type="number" class="order_input1" name="handcount" placeholder="请输入折扣1-100" />
+            <input type="number" class="order_input1" data-type="disCount" value="{{disCount}}" bindinput="EventInput" name="disCount" placeholder="请输入折扣1-100" />
             <view class="clear"></view>
           </view>
           <view class="order_input">
             <view class="order_input_text">去零：</view>
-            <input type="number" class="order_input1" name="handcount" placeholder="请输入金额" />
+            <input type="number" bindinput="EventInput" class="order_input1" data-type="mchange" value="{{mchange}}" name="mchange" placeholder="请输入金额" />
             <view class="clear"></view>
           </view>
           <view class="order_input">
             <view class="order_input_text">现金：</view>
-            <button class="order_input_button">清零</button>
-            <input type="digit" class="order_input2" name="name" />
+            <button class="order_input_button"  data-num="{{payCost1}}" data-type="payCost1" bindtap="clear">清零</button>
+            <input type="digit" data-type="payCost1" value="{{payCost1}}" class="order_input2" name="name"  bindinput="changePaycost"/>
             <view class="clear"></view>
           </view>
           <view class="order_input">
             <view class="order_input_text">刷卡：</view>
-            <button class="order_input_button">清零</button>
-            <input type="digit" class="order_input2" name="name" />
+            <button class="order_input_button" data-num="{{payCost2}}" data-type="payCost2" bindtap="clear">清零</button>
+            <input type="digit" data-type="payCost2" class="order_input2" value="{{payCost2}}" name="name" bindinput="changePaycost"/>
             <view class="clear"></view>
           </view>
         </view>
@@ -57,9 +57,9 @@
       </view>
     </scroll-view>
     <view class="order_footer" style="position:absolute;">
-      <view class="all_number">1</view>
-      <view class="all_price">232.00</view>
-      <view class="all_button" bindtap="order">提交订单 </view>
+      <view class="all_number">{{totalData.totalNum}}</view>
+      <view class="all_price"> {{reallyPay}}</view>
+      <view class="all_button" bindtap="order" bindtap="sureSubmit">提交订单 </view>
       <view class="clear"></view>
     </view>
   </form>
@@ -82,7 +82,7 @@
     </view>
   </scroll-view>
   <view class="bill_close" bindtap="bill_modal_close">取消</view>
-  <view class="bill_submit">确定</view>
+  <view class="bill_submit" >确定</view>
 </view>
 
 <!--微信账单-->

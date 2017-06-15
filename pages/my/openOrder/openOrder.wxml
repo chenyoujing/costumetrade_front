@@ -39,8 +39,8 @@
 
   <scroll-view scroll-y="true" bindscroll="keyHidden" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}" style="bottom:{{keyHidden?60:keyboard_height*3 + 79}}px;" class="order_scroll" hidden="{{products_info||orderid}}">
     <block wx:for="{{shopCart}}" >
-      <view class="order_view clearfix {{index%2==0?'bg_w':''}}" bindtap="orderid" data-id="{{item.productId}}">
-        <view style="width:100%;">
+      <view class="order_view clearfix {{index%2==0?'bg_w':''}}" >
+        <view style="width:100%;" bindtap="orderid" data-id="{{item.productId}}">
           <view style="width:8%;" data-id="{{item.productId}}">{{index+1}}</view>
           <view style="width:26%;" data-id="{{item.productId}}">{{item.productName}}</view>
           <view style="width:8%;" data-id="{{item.productId}}">{{item.count}}</view>
@@ -72,7 +72,7 @@
     <image src="{{GoodsDetail.image ?GoodsDetail.image : '../../../../images/image_none.png'}}" mode="aspectFill" class="goods_image" />
     <view class="goods_title">总库存：{{stockNum}}</view>
     <scroll-view scroll-y class="goods_check">
-      <radio-group bindchange="EventHandle" data-index="seleceColor">
+      <radio-group bindchange="EventHandle" data-index="selectColor">
         <label class="goods_checkbox" wx:for="{{color}}" wx:key="id">
           <radio value="{{item}}" checked="{{aa}}"/>
           {{item}}
@@ -86,7 +86,7 @@
       </radio-group>
     </scroll-view>
     <view class="keyboard_name">{{GoodsDetail.name}}</view>
-    <view class="keyboard_join" bindtap="enterShopCart">加入</view>
+    <view class="keyboard_join" bindtap="checkEnterBefore">加入</view>
   </view>
   
 
@@ -97,10 +97,10 @@
 </view>
 
 <view class="openorder_info one_line clearfix" style="bottom:{{keyHidden?0:keyboard_height*3 + 20}}px;background-color:#e5e5e5;padding:6px 4px 0;" hidden="{{!orderid}}">
-  <view class="keyboard_top" style="width:{{keyboard_width}}px;">{{GoodsDetail.showPrice}}</view>
-  <view class="keyboard_top" style="width:{{keyboard_width}}px;">元/批</view>
-  <view class="keyboard_top" style="width:{{keyboard_width}}px;" bindtap="changeGroup">
-  <block wx:if="{{keyboardNum ==''}}">{{oneKeyshow}}</block>{{keyboardNum}}
+  <view bindtap="changeInputSale" class="keyboard_top {{colorChange ==2 ? 'saleColor' : ''}}" style="width:{{keyboard_width}}px;">{{GoodsDetail.showPrice}}元</view>
+  <view class="keyboard_top" style="width:{{keyboard_width}}px;" bindtap="changeSale">{{saleName}}</view>
+  <view class="keyboard_top {{colorChange ==1 ? 'saleColor' : ''}}" style="width:{{keyboard_width}}px;" bindtap="changeGroup">
+  <block wx:if="{{keyboardNum2 ==''}}">{{oneKeyshow}}</block>{{keyboardNum2}}
   <block wx:if="{{unitChange}}">手/{{GoodsDetail.handcount}}</block>{{GoodsDetail.unit}}</view>
   <view class="keyboard_top" style="width:{{keyboard_width}}px;" bindtap="order_back">返回</view>
 </view>

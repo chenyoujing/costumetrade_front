@@ -6,6 +6,7 @@ Page({
     animation: "",
     scrollTop: '800',
     keyboardNum:'',
+    keyboardNum2:'',
     inputBoolean:false,
     keyHidden:false,
     nameUnit:'',
@@ -18,6 +19,7 @@ Page({
     shopCart:[],
     selectName:{},
     saleChangeName:'tagprice',
+    saleChangeName2:'tagprice',
     color: [],
     size: [],
     GoodsDetail: {},
@@ -26,12 +28,15 @@ Page({
     disabled: false,
     oneKeyshow:1,
     selectSize:'',
-    seleceColor: '', 
+    selectColor: '', 
     totalData: {
       totalNum: 0,
       realcostArray: 0
     },
-    aa:false
+    aa:false,
+    colorChange:1,
+    cate:1,
+    saleName:'标签价'
   },
   //买单
   order: function () {
@@ -49,19 +54,27 @@ Page({
     })
     if (!app.screen_unitList) {
       util.api.getProductInit();
+      console.log(app)
     }
     this.showGoodsInfo(e.target.dataset.id);
     this.stock_request(e.target.dataset.id)
   },
   order_back:function(){
     this.setData({
-      orderid: ""
+      orderid: "",
+      selectSize:'',
+      selectColor:""
     })
   },
   // 键盘事件
   keyboardtap:function(e){
     var index = e.target.dataset.index;
-    var num = this.data.keyboardNum;
+    var num = "";
+    if (this.data.orderid){
+      num = this.data.colorChange == 2?this.data.GoodsDetail.showPrice:this.data.keyboardNum2;
+    }else{
+      num = this.data.keyboardNum;
+    }
     var boolean2 = this.data.products_info;
     switch (index){
       case '-':
@@ -78,13 +91,28 @@ Page({
         boolean2 = true;
         break;
     }
-    this.setData({
-      keyboardNum:num,
-      products_info: boolean2
-    })
-    if (boolean2){
-      this.searchGoods()
+    if (this.data.orderid){
+      if (this.data.colorChange == 2){
+        var GoodsDetail = this.data.GoodsDetail;
+        GoodsDetail.showPrice = num;
+        this.setData({
+          GoodsDetail: GoodsDetail
+        })
+      }else{
+        this.setData({
+          keyboardNum2: num,
+        })
+      }
+    }else{
+      this.setData({
+        keyboardNum: num,
+        products_info: boolean2
+      })
+      if (boolean2) {
+        this.searchGoods()
+      }
     }
+    
   },
   // input改变事件
   input_change:function(e){
@@ -111,7 +139,7 @@ Page({
   // 切换单据类型
   changeType:function(e){
     var type = e.target.dataset.type;
-    this.sale();
+    this.sale(this.data.selectName.cate);
     this.localData(this.data.shopCart);
     this.setData({
       type: type,
@@ -122,32 +150,51 @@ Page({
     this.more_function_close()
   },
   // 判断货品显示的价格
-  sale:function(){
+  sale:function(cate){
+    cate= String(cate)
+    var name = this.data.saleName;
     var salPrice = 'tagprice';
-    switch (this.data.selectName.cate){
+    switch (cate){
       case '1':
         salPrice = 'firsthPrice';
+        name = app.customerTypeList[0].custtypename;
         break;
       case '2':
         salPrice = 'secondPrice';
+        name = app.customerTypeList[1].custtypename;
         break;
       case '3':
         salPrice = 'thirdPrice';
+        name = app.customerTypeList[2].custtypename;
         break;
       case '4':
         salPrice = 'fourthPrice';
+        name = app.customerTypeList[3].custtypename;
         break;
       case '5':
         salPrice = 'fifthPrice';
+        name = app.customerTypeList[4].custtypename;
         break;
       default:
         salPrice = 'tagprice';
+        name = '标签价';
         break;
     }
+    var saleChangeName2 = salPrice;
     salPrice = this.data.type == 1 ? salPrice :'purchaseprice';
-    this.setData({
-      saleChangeName: salPrice
-    })
+    name = this.data.type == 1 ? name : '进货价';
+    if (this.data.orderid){
+      this.setData({
+        saleChangeName2: saleChangeName2,
+        saleName:name
+      })
+    }else{
+      this.setData({
+        saleChangeName: salPrice,
+        saleName: name
+      })
+    }
+    
     console.log(salPrice)
   },
   // 货品加入进货单或图库单
@@ -235,7 +282,8 @@ Page({
     var unitString = !this.data.unitChange;
     this.setData({
       unitChange: unitString,
-      disabled: unitString
+      disabled: unitString,
+      colorChange:1
     })
   },
   // 请求库存
@@ -303,8 +351,35 @@ Page({
     param[index] = e.detail.value;
     this.setData(param)
   },
+  // 价格切换
   changeSale:function(){
-
+    var cate = this.data.cate;
+    console.log(cate)
+    if (cate < 5){
+      cate = cate + 1
+    }else{
+     cate = 1
+    }
+    this.sale(cate);
+    var GoodsDetail = this.data.GoodsDetail;
+    GoodsDetail.showPrice = GoodsDetail[this.data.saleChangeName2]
+    console.log(GoodsDetail[this.data.saleChangeName2])
+    if (GoodsDetail[this.data.saleChangeName2] == 0){
+      // this.changeSale()
+    }
+    this.setData({
+      GoodsDetail: GoodsDetail,
+      cate: cate
+    })
+  },
+  // 手动更改价格
+  changeInputSale:function(){
+    var GoodsDetail = this.data.GoodsDetail;
+    GoodsDetail.showPrice = "";
+     this.setData({
+       colorChange:2,
+       GoodsDetail:GoodsDetail
+     })
   },
   // 计算总的价格和数量
   totalData:function(){
@@ -312,7 +387,7 @@ Page({
     var realcostArray = 0;
     var totalNum = 0; 
     for(var p in product){
-      realcostArray += product[p].price;
+      realcostArray += parseFloat((product[p].price * product[p].count).toFixed(1));
       totalNum += parseInt(product[p].count);
     }
     this.setData({
@@ -321,26 +396,51 @@ Page({
         realcostArray: realcostArray
       }
     })
+    var that = this;
+    var nametotal = 'totalData' + this.data.type;
+    wx.setStorage({
+      key: nametotal,
+      data: that.data.totalData
+    })
   },
+  // 加入进货单
   enterShopCart: function (){
+    var add = true;
     var shopCart = this.data.shopCart;
     var object = {
-      count: this.data.keyboardNum ? this.data.keyboardNum : this.data.oneKeyshow,
+      count: this.data.keyboardNum2 ? this.data.keyboardNum2 : this.data.oneKeyshow,
       productName: this.data.GoodsDetail.name,
       price: this.data.GoodsDetail.showPrice,
       productId: this.data.GoodsDetail.id,
       unit: this.data.GoodsDetail.id,
-      color: this.data.seleceColor,
-      size:this.data.selectSize
+      color: this.data.selectColor,
+      size: this.data.selectSize
     }
-    shopCart.push(object);
-    this.setData({
-      shopCart:shopCart
-    });
+    if (this.data.unitChange){
+      object.count = object.count * this.data.GoodsDetail.handcount;
+      object.size =  '全尺码';
+      object.sizeGroup = this.data.GoodsDetail.size
+    }
+    console.log(object.count)
+    for(var p in shopCart){
+      if (shopCart[p].productId == object.productId && shopCart[p].color == object.color && shopCart[p].size == object.size){
+        shopCart[p].count = parseInt(object.count) + shopCart[p].count;
+        add = false;
+      }
+    }
+    console.log(object.count)
+    if(add){
+      shopCart.push(object);
+    }
     console.log(this.data.GoodsDetail.name);
-    this.totalData()
+    this.localData(this.data.shopCart);
+    this.totalData();
     this.order_back();
+    this.setData({
+      shopCart: shopCart
+    });
   },
+  // 还魂本地数据
   localData:function(product){
     var name = 'shopCartLowe' + this.data.type;
     wx.setStorage({
@@ -348,6 +448,26 @@ Page({
       data: product
     })
   },
+  // 加入之前的判断
+  checkEnterBefore:function(){
+    console.log(this.data.selectColor)
+    if (!this.data.selectColor){
+      wx.showToast({
+        title: '请选择颜色',
+        mask: true,
+        duration: 2000
+      })
+    } else if (!this.data.unitChange && !this.data.selectSize){
+      wx.showToast({
+        title: '请选择尺码',
+        mask: true,
+        duration: 2000
+      })
+    }else{
+      this.enterShopCart()
+    }
+  },
+  // 得到缓存本地数据
   getData:function(){
     var that = this;
     var name = 'shopCartLowe'+this.data.type;
@@ -362,6 +482,7 @@ Page({
       }
     })
   },
+  // 删除
   delect:function(e){
     var index = e.target.dataset.delect;
     var product = this.data.shopCart;
@@ -369,9 +490,9 @@ Page({
     this.setData({
       shopCart:product
     })
-    this.localData(product)
+    this.localData(product);
+    this.totalData()
   },
-  
   onLoad: function () {
     var that = this;
     this.downData();
@@ -390,7 +511,8 @@ Page({
     })
   },
   onShow: function (options) {
-    this.sale();
+    console.log(app)
+    this.sale(this.data.selectName.cate);
     this.getData();
     var that = this
     setTimeout(() => {

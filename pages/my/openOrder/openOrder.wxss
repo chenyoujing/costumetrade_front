@@ -298,7 +298,9 @@
   text-align: center;
   font-size: 40px;
 }
-
+.saleColor{
+  background-color:bisque
+}
 
 /*更多功能*/
 .more_function{

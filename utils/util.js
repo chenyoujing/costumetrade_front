@@ -23,7 +23,7 @@ function toDate(number) {
 }
 //请求接口公共方法
 var api = {
-  host: 'http://192.168.2.221:8088/',
+  host: 'http://192.168.2.221:8080/',
   pageNum :1,
   publicProduct:[],
   // 数组转化成字符串
@@ -77,6 +77,7 @@ var api = {
         'content-type': 'application/x-www-form-urlencoded'
       },
       success: function (res) {
+        console.log(res.data.customerTypeList)
         wx.hideNavigationBarLoading();
         app.screen_brandList = res.data.brandList;
         app.screen_productTypeList = res.data.productTypeList;
@@ -85,6 +86,7 @@ var api = {
         app.screen_unitList = res.data.unitList,
         app.custOrDiscTag = res.data.custOrDiscTag,
         app.custProdPrice = res.data.custProdPrice,
+          app.customerTypeList = res.data.customerTypeList;
         app.getProductInit = true
       }
     })
