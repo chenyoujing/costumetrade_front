@@ -18,13 +18,10 @@
        <view class="title_supplier_text" wx:if="{{type == 2 && !selectName.name}}">选供应商</view>
     </navigator>
 
-    <view style="overflow:hidden;position:relative;">
-      <input type="text" class="title_input" placeholder="{{placeholder}}" disabled = "{{!inputBoolean}}" cursor-spacing="20" focus="{{inputBoolean}}" value="{{keyboardNum}}"  data-index="{{inputBoolean}}" bindinput="input_change" >
-        <image src="../../../images/update.png" mode="aspectFit" bindtap="changeCodeName" class="title_image_write"/>
-      </input>
-      <view class="title_input_cover" data-index="{{inputBoolean}}"  hidden="{{inputBoolean}}" bindtap="keyShow">88888</view>
-    </view>
-
+    <input type="text" class="title_input" placeholder="{{placeholder}}" disabled = "{{!inputBoolean}}" cursor-spacing="20" focus="{{inputBoolean}}" value="{{keyboardNum}}"  data-index="{{inputBoolean}}" bindinput="input_change" >
+      <image src="../../../images/update.png" mode="aspectFit" bindtap="changeCodeName" class="title_image_write"/>
+    </input>
+<view class="classname" data-index="{{inputBoolean}}" hidden="{{inputBoolean}}" bindtap="keyShow" style="z-index:8;width:200px;height:50px;background-color:red">88888</view>
   </view>
 
 
