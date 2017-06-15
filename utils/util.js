@@ -23,7 +23,7 @@ function toDate(number) {
 }
 //请求接口公共方法
 var api = {
-  host: 'http://192.168.2.221:8080/',
+  host: 'http://192.168.2.221:8088/',
   pageNum :1,
   publicProduct:[],
   // 数组转化成字符串
@@ -335,16 +335,6 @@ var api = {
       endArray4.push(endArray3[c]);
     }
     return endArray4;
-  },
-  // 正则
-  regular: function(val, reg, title){
-    if (reg.test(val) != true) {
-      wx.showToast({
-        title: title
-      })
-      return false;
-    }
-    return true;
   },
   request: function (para) {
     para.url = api.host + para.url ;
