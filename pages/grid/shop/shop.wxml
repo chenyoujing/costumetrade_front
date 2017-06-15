@@ -56,7 +56,9 @@
         <view class="clear"></view>
       </navigator>
     </view>
-    <contact-button class="shop_content_service" session-from="1"/>
+    <button open-type="contact" class="shop_content_service"  session-from="1">
+      <image src="../../../images/customer_service.png" mode="aspectFit" />
+    </button>
   </view>
 
   <view class="shop_content">
@@ -85,7 +87,8 @@
         <view class="clear"></view>
       </navigator>
     </view>
-    <contact-button class="shop_content_service" session-from="2"/>
-    <!--<image src="../../../images/custom-service.png" mode="aspectFit" class="shop_content_service" />-->
+    <button open-type="contact" class="shop_content_service"  session-from="1">
+      <image src="../../../images/customer_service.png" mode="aspectFit" />
+    </button>
   </view>
 </scroll-view>

@@ -7,10 +7,9 @@
       <view class="clear"></view>
     </view>
     <view style="position:relative;margin: 2.5px 0;">
-      <image src="../../../../images/{{rank?'transverse':'pane'}}.png" mode="aspectFit" class="search_image" bindtap="rank" />
-      <image src="../../../../images/preparation.png" mode="aspectFit" class="search_image" style="margin-left:5%;"/>
+      <image src="../../../../images/{{rank?'transverse':'pane'}}.png" mode="aspectFit" class="search_image" bindtap="rank"  style="margin-left:5%;"/>
       <input class="search_input" type="text" placeholder="请输入货号搜索货品..." >
-        <image src="../../../../images/search.png" mode="aspectFit" class="search_input_image" style="right:5px;" />
+        <image src="../../../../images/search.png" mode="aspectFit" class="search_input_image" />
       </input>
     </view>
   </view>
@@ -26,7 +25,7 @@
       <image src="../../../../images/down.png" mode="aspectFit" class="image_down {{Op=='asc' ? 'sort_up' : ''}}" />
     </view>
     <view class="sort_text {{state=='saleOp' ? 'screen_active' : ''}}" bindtap="changeSortData" data-sort="saleOp" >
-      销售
+      销量
       <image src="../../../../images/down.png" mode="aspectFit" class="image_down {{Op=='asc' ? 'sort_up' : ''}}" />
     </view>
     <view class="sort_text {{state=='priceOp' ? 'screen_active' : ''}}" bindtap="changeSortData" data-sort="priceOp" >

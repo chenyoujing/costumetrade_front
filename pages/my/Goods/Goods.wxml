@@ -70,7 +70,7 @@
         <image src="../../../images/down.png" mode="aspectFit" class="image_down {{Op=='asc' ? 'sort_up' : ''}}" />
       </view>
       <view class="sort_text {{state=='saleOp' ? 'screen_active' : ''}}" bindtap="changeSortData" data-sort="saleOp" >
-        销售排序
+        销量排序
         <image src="../../../images/down.png" mode="aspectFit" class="image_down {{Op=='asc' ? 'sort_up' : ''}}" />
       </view>
       <view class="more" bindtap="more">更多</view>

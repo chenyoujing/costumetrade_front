@@ -54,7 +54,6 @@
   border-radius: 25px;
   display: block;
   float: left;
-  overflow: unset;
   position: relative;
 }
 .prompt{

@@ -57,7 +57,6 @@
 <view class="modal_cover" bindtap="modal_close" animation="{{modal_opacity}}" style="display:{{modal}};"></view>
 <view class="modal" style="top:{{modal_top}};bottom:{{modal_bottom}};">
   <scroll-view scroll-y="true">
-    <image src="../../../../images/close.png" mode="aspectFit" class="modal_close" bindtap="modal_close" />
     <view style="padding:10px; overflow:hidden;">
       <view class="goods_container">
         <image src="../../../../images/image_none.png" mode="aspectFill" class="goods_image" />
@@ -94,6 +93,7 @@
       </view>
     </view>
   </scroll-view>
+  <image src="../../../../images/close.png" mode="aspectFit" class="modal_close" bindtap="modal_close" />
   <button class="modal_submit">确定</button>
 </view>
 

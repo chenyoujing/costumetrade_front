@@ -2,10 +2,7 @@
   <view class="title clearfix">
     <image bindtap="searchName" mode="aspectFit" src="../../../images/search.png" class="image_search" />
     <image src="../../../images/more.png" mode="aspectFit" class="title_image" bindtap="more_function" />
-    <image src="../../../images/add.png" mode="aspectFit" class="title_image" bindtap="scan" />
-    <navigator url="clientScreen/clientScreen?client={{client}}">
-      <image src="../../../images/preparation.png" mode="aspectFit" class="title_image" style="margin-left:10px;" />
-    </navigator>
+    <image src="../../../images/add.png" mode="aspectFit" class="title_image" bindtap="scan" style="margin-left:10px;" />
     <input class="title_input" type="text" name="search" placeholder="名称" bindfocus="bindfocus" focus="{{inputFocus}}" value="{{enterValue}}" />
   </view>
 
@@ -16,9 +13,9 @@
     <view class="clear"></view>
   </view>
   <view class="client">
-    <view class="client_text sort_text {{state=='nameOp' ? 'active' : ''}}" bindtap="clientSort" data-sort="nameOp">名称</view>
-    <view class="client_text sort_text {{state=='timeOp' ? 'active' : ''}}" bindtap="clientSort" data-sort="timeOp">时间</view>
-    <view class="client_text sort_text {{state=='pointsOp' ? 'active' : ''}}" bindtap="clientSort" data-sort="pointsOp">积分</view>
+    <view class="client_text sort_text {{state=='nameOp' ? 'active' : ''}}" bindtap="clientSort" data-sort="nameOp">名称排序</view>
+    <view class="client_text sort_text {{state=='timeOp' ? 'active' : ''}}" bindtap="clientSort" data-sort="timeOp">时间排序</view>
+    <view class="client_text sort_text {{state=='pointsOp' ? 'active' : ''}}" bindtap="clientSort" data-sort="pointsOp">积分排序</view>
     <view class="clear"></view>
   </view>
   <scroll-view class="content" scroll-y style="bottom:{{delete_button}}px;" lower-threshold="10" bindscrolltolower="{{loadMore?'onReachBottom':''}}">

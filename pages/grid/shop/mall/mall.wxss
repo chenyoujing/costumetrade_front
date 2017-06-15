@@ -37,6 +37,11 @@
   bottom: 0;
   background-color: rgba(0, 0, 0, 0.3);
 }
+.search_input_image{
+  right: 5px;
+  top: -3px;
+}
+
 .shop_info{
   text-align: center;
   font-size: 15px;

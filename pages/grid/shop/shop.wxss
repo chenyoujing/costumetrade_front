@@ -55,14 +55,14 @@
   width: 100%;
 }
 .shop_content{
-  padding: 15px 10px 0;
+  padding: 15px 20rpx 0;
   position: relative;
 }
 .shop_content:last-child{
   padding-bottom: 15px;
 }
 .shop_content_view{
-  padding: 10px 0;
+  padding: 10px 0 5px;
   box-shadow: 1px 1px 4px #000000;
   position: relative;
 }
@@ -115,16 +115,22 @@
   padding: 10px;
   top: 15px;
   right: 20px;
+  box-sizing: unset;
+}
+.shop_content_service image{
+  width: 100%;
+  height: 100%;
+  display: block;
 }
 .shop_picture{
   width: 33.33333333%;
-  height: 190rpx;
+  height: 230rpx;
   float: left;
   position: relative;
 }
 .shop_picture image{
-  width: 190rpx;
-  height: 190rpx;
+  width: 230rpx;
+  height: 230rpx;
   position: absolute;
   top: 0;
   left: 0;

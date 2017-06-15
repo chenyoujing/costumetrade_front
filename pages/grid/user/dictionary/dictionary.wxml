@@ -22,7 +22,7 @@
     <swiper-item>
       <scroll-view scroll-y style="bottom:0;">
         <view style="padding:10px;">
-          <view class="staff bg-1">
+          <view class="staff">
             <image src="{{item.image ? item.image : '../../../../images/image_none.png'}}" mode="aspectFill" class="staff_tx" />
             <view class="staff_info">
               <view class="staff_info_name">名称：小鱼</view>
@@ -34,42 +34,45 @@
           </view>
         </view>
       </scroll-view>
-      <scroll-view scroll-y style="left:-{{staff_updata}};right:{{staff_updata}};" class="staff_updata">
-        <view class="staff_updata_top">
-          <view class="dictionary_input">
-            <view class="dictionary_input_text1">姓名：</view>
-            <input type="number" class="dictionary_input1" />
-            <view class="clear"></view>
+      <view class="staff_updata" style="left:-{{staff_updata}};right:{{staff_updata}};">
+        <scroll-view scroll-y >
+          <view class="staff_updata_top">
+            <view class="dictionary_input">
+              <view class="dictionary_input_text1">姓名：</view>
+              <input type="number" class="dictionary_input1" />
+              <view class="clear"></view>
+            </view>
+            <view class="dictionary_input">
+              <view class="dictionary_input_text1">微信号：</view>
+              <input type="number" class="dictionary_input1" />
+              <view class="clear"></view>
+            </view>
+            <view class="dictionary_input">
+              <view class="dictionary_input_text1">打折：</view>
+              <input type="number" class="dictionary_input1" />
+              <view class="clear"></view>
+            </view>
+            <view class="dictionary_input">
+              <view class="dictionary_input_text1">去零：</view>
+              <input type="number" class="dictionary_input1" placeholder="去零规则(小于1元去掉，可以四舍五入)" />
+              <view class="clear"></view>
+            </view>
+            <view class="dictionary_input">
+              <view class="dictionary_input_text1">改价：</view>
+              <input type="number" class="dictionary_input1" />
+              <view class="clear"></view>
+            </view>
           </view>
-          <view class="dictionary_input">
-            <view class="dictionary_input_text1">微信号：</view>
-            <input type="number" class="dictionary_input1" />
-            <view class="clear"></view>
-          </view>
-          <view class="dictionary_input">
-            <view class="dictionary_input_text1">打折：</view>
-            <input type="number" class="dictionary_input1" />
-            <view class="clear"></view>
-          </view>
-          <view class="dictionary_input">
-            <view class="dictionary_input_text1">去零：</view>
-            <input type="number" class="dictionary_input1" placeholder="去零规则(小于1元去掉，可以四舍五入)" />
-            <view class="clear"></view>
-          </view>
-          <view class="dictionary_input">
-            <view class="dictionary_input_text1">改价：</view>
-            <input type="number" class="dictionary_input1" />
-            <view class="clear"></view>
-          </view>
-        </view>
-        <view class="print_info">四个权限</view>
-        <checkbox-group>
-          <label class="checkbox" wx:for="{{items}}" wx:key="id">
-            <checkbox value="{{item.name}}" checked="{{item.checked}}"/>{{item.value}}
-          </label>
-        </checkbox-group>
-      </scroll-view>
-      <button class="submit" style="left:-{{staff_updata}};right:{{staff_updata}};" bindtap="staff_updata_close">保存</button>
+          <view class="print_info">四个权限</view>
+          <checkbox-group>
+            <label class="checkbox" wx:for="{{items}}" wx:key="id">
+              <checkbox value="{{item.name}}" checked="{{item.checked}}"/>{{item.value}}
+            </label>
+          </checkbox-group>
+        </scroll-view>
+        <button class="submit submit_gray" bindtap="staff_updata_close">取消</button>
+        <button class="submit" bindtap="staff_updata_close" style="width:50%;left:unset;">保存</button>
+      </view>
     </swiper-item>
 
     <!--打印信息-->
@@ -232,45 +235,6 @@
     <!--高级设置-->
     <swiper-item>
       <scroll-view scroll-y>
-        <!--高级设置//支付管理,付款方式-->
-        <view class="setting_view" style="padding: 0 20px;">
-          <view class="setting_title">支付管理</view>
-          <view class="setting_title" style="font-size:16px;">添加手机支付二维码</view>
-          <view class="setting_operation">
-            <text>1.</text>微信支付(二维码)
-            <image src="../../../../images/update.png" mode="aspectFit" class="image_update" />
-          </view>
-          <view class="setting_operation">
-            <text>2.</text>支付宝支付(二维码)
-            <image src="../../../../images/update.png" mode="aspectFit" class="image_update" />
-          </view>
-          <view class="setting_pay">
-            <view class="pay_title">
-              付款方式
-              <image src="../../../../images/append.png" mode="aspectFit" class="image_add" />
-            </view>
-            <view class="pay_view">
-              <text>1.</text>现金
-              <image src="../../../../images/delete_2.png" mode="aspectFit" class="image_delete" />
-            </view>
-            <view class="pay_view">
-              <text>2.</text>刷卡
-              <image src="../../../../images/delete_2.png" mode="aspectFit" class="image_delete" />
-            </view>
-            <view class="pay_view">
-              <text>3.</text>微信
-              <image src="../../../../images/delete_2.png" mode="aspectFit" class="image_delete" />
-            </view>
-            <view class="pay_view">
-              <text>4.</text>支付宝
-              <image src="../../../../images/delete_2.png" mode="aspectFit" class="image_delete" />
-            </view>
-            <view class="pay_view">
-              <text>5.</text>转账
-              <image src="../../../../images/delete_2.png" mode="aspectFit" class="image_delete" />
-            </view>
-          </view>
-        </view>
 
         <!--高级设置//货品售价生成方式-->
         <view class="setting_view">

@@ -115,18 +115,7 @@ Page({
   },
   onLoad: function (options) {
     this.downData();
-    // var screen_content1 = app.screen_brandList;
-    // var screen_content2 = app.screen_productTypeList;
-    // for (var p in screen_content1) {
-    //   screen_content1[p].screen_checked = false;
-    // }
-    // for (var p in screen_content2) {
-    //   screen_content2[p].screen_checked = false;
-    // }
-    // this.setData({
-    //   screen_content1: screen_content1,
-    //   screen_content2: screen_content2,
-    // })
+
     this.setData({
       screen1: app.districtList,
       screen2: app.custProdPriceList,

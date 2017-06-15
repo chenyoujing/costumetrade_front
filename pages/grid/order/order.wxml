@@ -3,17 +3,22 @@
   <image src="../../../images/head-portrait.png" mode="aspectFill" class="order_title_image" />
   <view class="name">NICK</view>
   <image src="../../../images/image_none.png" mode="aspectFill" class="tx" />
-  <image src="../../../images/order-form.png" mode="aspectFit" class="order_title_image" >
-    <view class="prompt">{{countNum.ordersCount}}</view>
-  </image>
-  <image src="../../../images/message.png" mode="aspectFit" class="order_title_image" >
-    <view class="prompt" style="left:10px;">3</view>
-  </image>
+  <navigator url="../order/order" open-type="switchTab">
+    <image src="../../../images/order-form.png" mode="aspectFit" class="order_title_image" >
+      <view class="prompt">{{countNum.ordersCount}}</view>
+    </image>
+  </navigator>
+  <navigator url="../info/info" open-type="switchTab">
+    <image src="../../../images/message.png" mode="aspectFit" class="order_title_image" >
+      <view class="prompt" style="left:10px;">3</view>
+    </image>
+  </navigator>
   <image src="../../../images/notice.png" mode="aspectFit" class="order_title_image" style="margin-left:10px;" >
     <view class="prompt">3</view>
   </image>
-  <image mode="aspectFit" src="../../../images/search.png" class="search_image" />
-  <input type="number" class="order_title_input" placeholder="单号查询..." />
+  <input type="number" class="search_input" placeholder="单号查询..." >
+    <image mode="aspectFit" src="../../../images/search.png" class="search_input_image" />
+  </input>
   <view class="clear"></view>
 </view>
 

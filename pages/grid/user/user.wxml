@@ -1,7 +1,9 @@
 <view class="my_container">
   <!--头部-->
   <view class="my_title">
-    <image src="../../../images/image_none.png" mode="aspectFill" class="my_tx" />
+    <navigator url="storeUpdate/storeUpdate">
+      <image src="../../../images/image_none.png" mode="aspectFill" class="my_tx" />
+    </navigator>
     <view class="my_info">
       <navigator url="storeUpdate/storeUpdate" class="my_name">个人名称</navigator>
       <view class="my_fans">200</view>

@@ -42,9 +42,7 @@ swiper{
 
 .staff{
   position: relative;
-}
-.bg-1{
-  background-color: #DBF4F1;
+  box-shadow: 1px 1px 4px #000000;
 }
 .staff_tx{
   width: 60px;
@@ -74,6 +72,7 @@ swiper{
 .staff_updata{
   position: absolute;
   top: 0;
+  bottom: 0;
   background-color: #ffffff;
   transition: all 0.3s
 }
@@ -191,6 +190,12 @@ scroll-view{
   margin: auto;
   color: #ffffff;
   transition: all 0.3s;
+}
+.submit_gray{
+  right: unset;
+  width: 50%;
+  background-color: #DCDCDC;
+  color: #000000;
 }
 
 
