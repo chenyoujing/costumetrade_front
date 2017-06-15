@@ -3,12 +3,16 @@
   <image src="../../../images/head-portrait.png" mode="aspectFill" class="shop_title_image" />
   <view class="name">NICK</view>
   <image src="../../../images/image_none.png" mode="aspectFill" class="tx" />
-  <image src="../../../images/order-form.png" mode="aspectFit" class="shop_title_image" >
-    <view class="prompt">3</view>
-  </image>
-  <image src="../../../images/message.png" mode="aspectFit" class="shop_title_image" >
-    <view class="prompt" style="left:10px;">3</view>
-  </image>
+  <navigator url="../order/order" open-type="switchTab">
+    <image src="../../../images/order-form.png" mode="aspectFit" class="shop_title_image" >
+      <view class="prompt">3</view>
+    </image>
+  </navigator>
+  <navigator url="../info/info" open-type="switchTab">
+    <image src="../../../images/message.png" mode="aspectFit" class="shop_title_image" >
+      <view class="prompt" style="left:10px;">3</view>
+    </image>
+  </navigator>
   <image src="../../../images/notice.png" mode="aspectFit" class="shop_title_image" >
     <view class="prompt">3</view>
   </image>

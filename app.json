@@ -1,6 +1,5 @@
 {
   "pages": [
-    "pages/my/openOrder/openOrder",
     "pages/grid/shop/shop",
     "pages/grid/user/user",
     "pages/grid/info/info",
@@ -19,7 +18,7 @@
     "pages/grid/user/Help/Help",
     "pages/grid/user/helpInfo/helpInfo",
     "pages/grid/user/notecase/notecase",
-    
+    "pages/my/openOrder/openOrder",
     "pages/my/openOrder/goodsDetails/goodsDetails",
     "pages/my/openOrder/Billing/Billing",
     "pages/my/openOrder/orderSure/orderSure",
@@ -62,13 +61,13 @@
     "list": [
       {
         "pagePath": "pages/grid/shop/shop",
-        "text": "点艺商城",
+        "text": "商城",
         "iconPath": "images/home-page2.png",
         "selectedIconPath": "images/home-page.png"
       },
       {
         "pagePath": "pages/grid/order/order",
-        "text": "我的订单",
+        "text": "订单",
         "iconPath": "images/order-form2.png",
         "selectedIconPath": "images/order-for-goods.png"
       },
