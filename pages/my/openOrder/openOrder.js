@@ -133,7 +133,7 @@ Page({
       keyboardNum:'',
       placeholder: place,
       products_info:false,
-      keyHidden: false
+      keyHidden: place == "货号"?false:true
     })
   },
   // 切换单据类型
@@ -197,10 +197,6 @@ Page({
     
     console.log(salPrice)
   },
-  // 货品加入进货单或图库单
-   documentsAdding:function(e){
-     var product = this.data.shopCart;
-   },
   // 搜索货品
   searchGoods:function(){
     var value = this.data.keyboardNum;
@@ -422,21 +418,16 @@ Page({
       object.count = object.count * this.data.GoodsDetail.handcount;
       object.productsize =  '全尺码';
       object.sizeGroup = this.data.GoodsDetail.sizes;
-      console.log(object)
     }
-    console.log(object.count)
     for(var p in shopCart){
       if (shopCart[p].productId == object.productId && shopCart[p].productcolor == object.productcolor && shopCart[p].productsize == object.productsize){
         shopCart[p].count = parseInt(object.count) + shopCart[p].count;
         add = false;
       }
     }
-    console.log(object.count)
     if(add){
       shopCart.push(object);
     }
-    console.log(shopCart)
-    console.log(this.data.GoodsDetail.name);
     this.localData(this.data.shopCart);
     this.totalData();
     this.order_back();
@@ -478,6 +469,7 @@ Page({
     wx.getStorage({
       key: name,
       complete: function (res) {
+        res.data = res.data ? res.data:[];
         that.setData({
           shopCart: res.data
         })
