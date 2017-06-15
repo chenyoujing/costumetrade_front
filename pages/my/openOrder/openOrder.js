@@ -50,7 +50,8 @@ Page({
       orderid: e.target.dataset.id,
       keyboardNum:'',
       keyHidden:false,
-      aa:false
+      aa:false,
+      keyboardNum2: e.target.dataset.num
     })
     if (!app.screen_unitList) {
       util.api.getProductInit();

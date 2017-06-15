@@ -18,26 +18,22 @@
 
 <view class="expenses_view1">
   <view class="content_title">明细</view>
-  <view class="expenses_detail clearfix">
-    <view class="expenses_detail_text">快递</view>
+  <view class="expenses_detail clearfix" wx:for="{{product}}" hidden="{{item.boolean}}">
+    <view class="expenses_detail_text">{{item.dictText}}</view>
     <view class="expenses_detail_unit">元</view>
-    <input type="digit" class="expenses_detail_input" />
+    <input type="digit" class="expenses_detail_input" value="{{item.value}}" bindinput="EventHandle" data-index="{{index}}"  focus="{{item.focus}}"/>
   </view>
-  <view class="expenses_detail clearfix">
-    <view class="expenses_detail_text">快餐</view>
-    <view class="expenses_detail_unit">元</view>
-    <input type="digit" class="expenses_detail_input" />
-  </view>
+
   <view class="expenses_detail_info clearfix">
-    <view class="expenses_detail_num">2</view>
-    <view class="expenses_detail_price">￥1290</view>
+    <view class="expenses_detail_num">{{totalNum}}</view>
+    <view class="expenses_detail_price">￥{{totalMoney}}</view>
   </view>
 </view>
 <view class="expenses_view2">
   <view class="content_title">项目</view>
-  <view class="expenses_item">快递</view>
-  <view class="expenses_item">快餐</view>
-  <view class="expenses_item">水电</view>
+  <block wx:for="{{product}}">
+    <view class="content_title" bindtap="showInput" data-index="{{index}}" data-id="{{item.dictValue}}">{{item.dictText}}</view>
+  </block>
 </view>
 
 

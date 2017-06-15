@@ -17,7 +17,7 @@ App({
     wx.login({
       success: function (loginCode) {
         wx.request({
-          url: 'http://192.168.2.221:8080/user/login',
+          url: 'http://192.168.2.221:8088/user/login',
           header: {
             'content-type': 'application/x-www-form-urlencoded'
           },

@@ -18,10 +18,12 @@
        <view class="title_supplier_text" wx:if="{{type == 2 && !selectName.name}}">选供应商</view>
     </navigator>
 
-    <input type="text" class="title_input" placeholder="{{placeholder}}" disabled = "{{!inputBoolean}}" cursor-spacing="20" focus="{{inputBoolean}}" value="{{keyboardNum}}"  data-index="{{inputBoolean}}" bindinput="input_change" >
-      <image src="../../../images/update.png" mode="aspectFit" bindtap="changeCodeName" class="title_image_write"/>
-    </input>
-<view class="classname" data-index="{{inputBoolean}}" hidden="{{inputBoolean}}" bindtap="keyShow" style="z-index:8;width:200px;height:50px;background-color:red">88888</view>
+    <view style="position:relative;overflow:hidden;">
+      <input type="text" class="title_input" placeholder="{{placeholder}}" disabled = "{{!inputBoolean}}" cursor-spacing="20" focus="{{inputBoolean}}" value="{{keyboardNum}}"  data-index="{{inputBoolean}}" bindinput="input_change" >
+        <image src="../../../images/update.png" mode="aspectFit" bindtap="changeCodeName" class="title_image_write"/>
+      </input>
+      <view class="classname" data-index="{{inputBoolean}}" hidden="{{inputBoolean}}" bindtap="keyShow" class="title_input_cover">88888</view>
+    </view>
   </view>
 
 
@@ -40,7 +42,7 @@
   <scroll-view scroll-y="true" bindscroll="keyHidden" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}" style="bottom:{{keyHidden?60:keyboard_height*3 + 79}}px;" class="order_scroll" hidden="{{products_info||orderid}}">
     <block wx:for="{{shopCart}}" >
       <view class="order_view clearfix {{index%2==0?'bg_w':''}}" >
-        <view style="width:100%;" bindtap="orderid" data-id="{{item.productid}}">
+        <view style="width:100%;" bindtap="orderid" data-id="{{item.productid}}" data-num="{{item.count}}">
           <view style="width:8%;" data-id="{{item.productid}}">{{index+1}}</view>
           <view style="width:26%;" data-id="{{item.productid}}">{{item.productName}}</view>
           <view style="width:8%;" data-id="{{item.productid}}">{{item.count}}</view>
@@ -129,7 +131,7 @@
 <view class="more_function {{animation}}" style="display:{{more_function_display}};">
   <view class="more_function_view" data-type= "1" bindtap="changeType">销售单</view>
   <view class="more_function_view" data-type= "2" bindtap="changeType">采购单</view>
-  <view class="more_function_view" bindtap="batch_update">费用单</view>
+  <navigator url="expenses/expenses" class="more_function_view" bindtap="batch_update">费用单</navigator>
 </view>
   
 </view>
