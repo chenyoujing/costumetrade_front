@@ -299,49 +299,6 @@
   font-size: 40px;
 }
 .saleColor{
-  background-color:bisque
-}
-
-/*更多功能*/
-.more_function{
-  position: fixed;
-  top: 65px;
-  right: 0;
-  background-color: #ffffff;
-  box-shadow: 0.5px 0.5px 3px #000000;
-  z-index: 11;
-  opacity: 0;
-  transform: scale(0.5) translate(16px,-36px);
-  transition: all 0.3s;
-}
-.more_function::before{
-  content: "";
-  width: 0;
-  height: 0;
-  position: fixed;
-  right: 8px;
-  top: -30px;
-  border: solid #ffffff; 
-  border-width: 15px 10px; 
-  border-left-color: transparent;
-  border-top-color: transparent;
-  border-right-color: transparent;
-}
-.more_function_cover{
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 8;
-}
-.more_function_view{
-  font-size: 14px;
-  line-height: 24px;
-  padding: 0 10px;
-}
-.animation{
-  opacity: 1;
-  transform: scale(1) translate(0,0);
+  background-color: bisque
 }
 
