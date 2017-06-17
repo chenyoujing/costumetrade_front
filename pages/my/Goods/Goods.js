@@ -66,6 +66,7 @@ Page({
         var booleanre = that.data.requestSwitch;
         for (var p in res.data) {
           res.data[p].timeUp = util.toDate(res.data[p].timeUp)
+          res.data[p].image = util.api.imgUrl + res.data[p].image
         }
         if (that.data.pageNum == 1) {
           data = res.data;

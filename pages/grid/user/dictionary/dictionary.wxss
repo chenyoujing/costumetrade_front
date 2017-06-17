@@ -122,6 +122,14 @@ scroll-view{
   font-size: 14px;
   padding-left: 7px; 
   height: 28px;
+  overflow: hidden;
+  line-height:28px;
+  position: relative;
+}
+.perCent{
+  position: absolute;
+  top: 0;
+  right: 10px;
 }
 .dictionary_input radio-group{
   float: left;

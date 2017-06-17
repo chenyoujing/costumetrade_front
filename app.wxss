@@ -133,7 +133,19 @@ bindtap_cover{
   opacity: 1;
   transform: scale(1) translate(0,0);
 }
-
+/*下拉框箭头*/
+picker{
+  position: relative;
+}
+.picker_image{
+  width: 10px;
+  height: 10px;
+  position: absolute;
+  right: 10px;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+}
 
 .style_none{
   display: unset;
