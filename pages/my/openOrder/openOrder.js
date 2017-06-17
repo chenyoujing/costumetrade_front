@@ -348,6 +348,7 @@ Page({
           }
         }
         res.data.showPrice = res.data[that.data.saleChangeName];
+        res.data.image = res.data.image ? util.api.imgUrl + res.data.image:""; 
          var size = res.data.sizes.split(',');
          var color = res.data.colors.split(',');
          var sizeArray = [];
@@ -395,24 +396,35 @@ Page({
   // 价格切换
   changeSale:function(){
     var cate = this.data.cate;
-    console.log(cate)
-    if (cate < 5){
-      cate = cate + 1
-    }else{
-     cate = 1
-    }
-    if (GoodsDetail[this.data.saleChangeName2] == 0) {
-      // this.changeSale()
-    }
-    this.sale(cate);
     var GoodsDetail = this.data.GoodsDetail;
-    GoodsDetail.showPrice = GoodsDetail[this.data.saleChangeName2]
-    console.log(GoodsDetail[this.data.saleChangeName2])
-    
-    this.setData({
-      GoodsDetail: GoodsDetail,
-      cate: cate
-    })
+    console.log(cate)
+    if (GoodsDetail.firsthPrice == 0 && GoodsDetail.secondPrice == 0 && GoodsDetail.thirdPrice == 0 && GoodsDetail.fourthPrice == 0 && GoodsDetail.fifthPrice == 0) {
+      wx.showToast({
+        title: '价格都为零不能切换！',
+        mask: true,
+        duration: 2000
+      })
+    }else{
+      if (cate < 5) {
+        cate = cate + 1
+      } else {
+        cate = 1
+      }
+      this.sale(cate);
+      if (GoodsDetail[this.data.saleChangeName2]==0){
+        this.setData({
+          cate: cate
+        })
+        this.changeSale();
+      }else{
+        GoodsDetail.showPrice = GoodsDetail[this.data.saleChangeName2]
+        console.log(GoodsDetail[this.data.saleChangeName2])
+        this.setData({
+          GoodsDetail: GoodsDetail,
+          cate: cate
+        })
+      }
+    }
   },
   // 手动更改价格
   changeInputSale:function(){

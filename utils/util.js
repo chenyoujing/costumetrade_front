@@ -87,7 +87,7 @@ var api = {
         app.screen_unitList = res.data.unitList,
         app.custOrDiscTag = res.data.custOrDiscTag,
         app.custProdPrice = res.data.custProdPrice,
-          app.customerTypeList = res.data.customerTypeList;
+        app.customerTypeList = res.data.customerTypeList;
         app.getProductInit = true
       }
     })
@@ -162,7 +162,7 @@ var api = {
     if (url2=="client/getClients"){
       param = param;
     }else{
-      param.fields = "firsthPrice,secondPrice,thirdPrice,fourthPrice,fifthPrice,purchasePrice,tagPrice,image,name,code,barcodes,barcode,time_up,id，isDiscount"
+      param.fields = "firsthPrice,secondPrice,thirdPrice,fourthPrice,fifthPrice,purchasePrice,tagPrice,image,name,code,barcodes,barcode,time_up,id,isDiscount"
     }
     this.request({
       url: url2,
@@ -173,6 +173,7 @@ var api = {
       },
       success: function (res) {        
         for (var p in res.data) {
+          res.data[p].image = res.data[p].image?that.imgUrl + res.data[p].image:'';
           that.publicProduct.push(res.data[p])
         }
         if(res.data.length == 10){

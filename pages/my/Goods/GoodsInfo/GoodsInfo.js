@@ -204,11 +204,14 @@ Page({
         answerData.timeDown = util.toDate(answerData.timeDown);
         answerData.timeUp = util.toDate(answerData.timeUp);
          console.log(util.api.imgUrl)
-        answerData.image = util.api.imgUrl + answerData.image;
-        answerData.image1 = util.api.imgUrl + answerData.image1;
-        answerData.image2 = util.api.imgUrl + answerData.image2;
-        answerData.image3 = util.api.imgUrl + answerData.image3;
-        answerData.image4 = util.api.imgUrl + answerData.image4;
+         answerData.image = answerData.image?util.api.imgUrl + answerData.image:'';
+         answerData.image1 = answerData.image1?util.api.imgUrl + answerData.image1:'';
+         answerData.image2 = answerData.image2 ? util.api.imgUrl + answerData.image2 : '';
+         answerData.image3 = answerData.image3 ? util.api.imgUrl + answerData.image3 : '';
+         answerData.image4 = answerData.image4 ? util.api.imgUrl + answerData.image4 : '';
+         answerData.video1 = answerData.video1 ? util.api.imgUrl + answerData.video1 : '';
+         answerData.video2 = answerData.video2 ? util.api.imgUrl + answerData.video2 : '';
+         answerData.video3 = answerData.video3 ? util.api.imgUrl + answerData.video3 : '';
         for (var p in app.screen_productTypeList){
           if (app.screen_productTypeList[p].id == answerData.producttype){
             typeName = app.screen_productTypeList[p].catename;
@@ -262,18 +265,25 @@ Page({
     target.thirdPrice = this.data.picker_view[2].price ? this.data.picker_view[2].price : 0;
     target.fourthPrice = this.data.picker_view[3].price ? this.data.picker_view[3].price : 0;
     target.fifthPrice = this.data.picker_view[4].price ? this.data.picker_view[4].price : 0;
-    target.image = this.data.GoodsInfoData.image.replace(/http:\/\/117.149.24.42:8788/g, '');
-    if (this.data.GoodsInfoData.Image1){
-      target.Image1 = this.data.GoodsInfoData.Image1.replace(/http:\/\/117.149.24.42:8788/g, '');
+    
+    if (this.data.GoodsInfoData.image){
+      target.image = this.data.GoodsInfoData.image.replace(/http:\/\/117.149.24.42:8788/g, '');
+      
     }
-    if (this.data.GoodsInfoData.Image2){
-      target.Image2 = this.data.GoodsInfoData.Image2.replace(/http:\/\/117.149.24.42:8788/g, '');
+    if (this.data.GoodsInfoData.image1){
+      target.image1 = this.data.GoodsInfoData.image1.replace(/http:\/\/117.149.24.42:8788/g, '');
+      console.log(this.data.GoodsInfoData)
     }
-    if (this.data.GoodsInfoData.Image3){
-      target.Image3 = this.data.GoodsInfoData.Image3.replace(/http:\/\/117.149.24.42:8788/g, '');
+    if (this.data.GoodsInfoData.image2){
+      target.image2 = this.data.GoodsInfoData.image2.replace(/http:\/\/117.149.24.42:8788/g, '');
     }
-    if (this.data.GoodsInfoData.Image4){
-      target.Image4 = this.data.GoodsInfoData.Image4.replace(/http:\/\/117.149.24.42:8788/g, '');
+   
+    if (this.data.GoodsInfoData.image3){
+      console.log(this.data.GoodsInfoData)
+      target.image3 = this.data.GoodsInfoData.image3.replace(/http:\/\/117.149.24.42:8788/g, '');
+    }
+    if (this.data.GoodsInfoData.image4){
+      target.image4 = this.data.GoodsInfoData.image4.replace(/http:\/\/117.149.24.42:8788/g, '');
     }
     if (this.data.GoodsInfoData.video1){
       target.video1 = this.data.GoodsInfoData.video1.replace(/http:\/\/117.149.24.42:8788/g, '');
@@ -285,7 +295,7 @@ Page({
       target.video3 = this.data.GoodsInfoData.video3.replace(/http:\/\/117.149.24.42:8788/g, '');
     }
     target.fileList = this.data.fileList;
-    target.name = target.code + target.name
+    
     for (var p = target.fileList.length - 1;p>=0;p--){
       if (target.fileList[p].url !== ''){
         target.fileList[p].productName = target.name
@@ -316,7 +326,8 @@ Page({
     }else{
       objectSubmit = target;
       objectSubmit.storeId = 1,
-      objectSubmit.id = undefined
+      objectSubmit.id = undefined,
+      target.name = target.code + target.name
     }
     console.log(objectSubmit);
     if (objectSubmit !== null){
@@ -345,6 +356,7 @@ Page({
           })
           app.newid = that.data.id == "" ? res.data : null;
           if (that.data.id){
+            // 更新货品缓存
             for (var p in totalProduct){
               if (totalProduct[p].id = that.data.id){
                 for (var j in objectSubmit){

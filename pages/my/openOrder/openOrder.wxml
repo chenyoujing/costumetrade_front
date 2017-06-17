@@ -17,7 +17,6 @@
       <view class="title_supplier_text" wx:if="{{type == 2}}">{{selectName.name}}</view>
        <view class="title_supplier_text" wx:if="{{type == 2 && !selectName.name}}">选供应商</view>
     </navigator>
-
     <view style="position:relative;overflow:hidden;">
       <input type="text" class="title_input" placeholder="{{placeholder}}" disabled = "{{!inputBoolean}}" cursor-spacing="20" focus="{{inputBoolean}}" value="{{keyboardNum}}"  data-index="{{inputBoolean}}" bindinput="input_change" >
         <image src="../../../images/update.png" mode="aspectFit" bindtap="changeCodeName" class="title_image_write"/>
@@ -99,7 +98,8 @@
 
 <view class="openorder_info one_line clearfix" style="bottom:{{keyHidden?0:keyboard_height*3 + 20}}px;background-color:#e5e5e5;padding:6px 4px 0;" hidden="{{!orderid}}">
   <view bindtap="changeInputSale" class="keyboard_top {{colorChange ==2 ? 'saleColor' : ''}}" style="width:{{keyboard_width}}px;">{{GoodsDetail.showPrice}}元</view>
-  <view class="keyboard_top" style="width:{{keyboard_width}}px;" bindtap="changeSale">{{saleName}}</view>
+  <view class="keyboard_top" wx:if="{{type == 1}}" style="width:{{keyboard_width}}px;" bindtap="changeSale">{{saleName}}</view>
+   <view class="keyboard_top" wx:if="{{type == 2}}" style="width:{{keyboard_width}}px;">{{saleName}}</view>
   <view class="keyboard_top {{colorChange ==1 ? 'saleColor' : ''}}" style="width:{{keyboard_width}}px;" bindtap="changeGroup">
   <block wx:if="{{!keyboardNum2}}">{{oneKeyshow}}</block>{{keyboardNum2}}
   <block wx:if="{{unitChange}}">手/{{GoodsDetail.handcount}}</block>{{GoodsDetail.unit}}</view>
