@@ -40,7 +40,7 @@ Page({
     update_button: '0',
     share_button: '0',
     ids: [],
-    name:''
+    name: ''
   },
   // 请求数据函数
   page_request: function () {
@@ -66,7 +66,7 @@ Page({
         var booleanre = that.data.requestSwitch;
         for (var p in res.data) {
           res.data[p].timeUp = util.toDate(res.data[p].timeUp)
-          res.data[p].image = util.api.imgUrl + res.data[p].image
+          res.data[p].image = res.data[p].image ? util.api.imgUrl + res.data[p].image : ""
         }
         if (that.data.pageNum == 1) {
           data = res.data;
@@ -204,7 +204,7 @@ Page({
     //   code: e.detail.value
     // })
     wx.navigateTo({
-      url: '../Goods/GoodsScreen/GoodsScreen' 
+      url: '../Goods/GoodsScreen/GoodsScreen'
     })
   },
   //搜索货号
@@ -402,14 +402,15 @@ Page({
     console.log(app)
     if (app.newid) {
       this.setData({
-        pageNum:1
+        pageNum: 1
       })
       this.page_request();
       app.newid = "";
-    } else if (app.updataGoodsInfo){
+    } else if (app.updataGoodsInfo) {
       for (var p in newProduct) {
         if (newProduct[p].id == app.updataGoodsInfo.id) {
           newProduct[p].name = app.updataGoodsInfo.name;
+          newProduct[p].image = app.updataGoodsInfo.image;
           break;
         }
       }
@@ -423,9 +424,9 @@ Page({
         pageNum: 1,
         product: [],
         requestSwitch: true,
-        code: app.searchValue ? app.searchValue:'',
+        code: app.searchValue ? app.searchValue : '',
         name: app.searchValue ? app.searchValue : '',
-        getFilterData: app.getFilterData ? app.getFilterData:undefined
+        getFilterData: app.getFilterData ? app.getFilterData : undefined
       })
       this.page_request();
       app.getFilterData = [];
