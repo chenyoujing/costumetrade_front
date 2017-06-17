@@ -2,7 +2,7 @@ var util = require('../../../../utils/util.js')
 var app = getApp()
 Page({
   data: {
-    items: [
+    privilegeEmployees: [
     ],
     goods_level: [
       { name: 'USA', value: '处理' },
@@ -11,12 +11,7 @@ Page({
       { name: 'JPN', value: '热销' },
       { name: 'USA', value: '最新' },
     ],
-    goods_level2: [
-      { name: 'USA', value: '普通会员' },
-      { name: 'CHN', value: '银卡会员' },
-      { name: 'BRA', value: '金卡会员' },
-      { name: 'JPN', value: '白金会员' },
-      { name: 'USA', value: '钻石会员' },
+    customerTypeList: [
     ],
     goods_level3: [
       { name: 'USA', value: '90%' },
@@ -28,7 +23,9 @@ Page({
     current: "0",
     dictionary: "1",
     staff_updata: "100%",
-    employeeProduct:[]
+    employeeProduct:[],
+    custtypename_index:0,
+    custtypename:''
   },
   swiper_change: function (e) {
     this.setData({
@@ -46,8 +43,10 @@ Page({
     var id = e.target.dataset.id;
     var that = this;
     this.setData({
-      items: app.privilegeEmployees
+      privilegeEmployees: app.privilegeEmployees,
+      customerTypeList: app.customerTypeList
     })
+    console.log(app.customerTypeList)
     wx.showNavigationBarLoading()
     util.api.request({
       url: 'employee/getEmployee',
@@ -67,7 +66,6 @@ Page({
         })
       }
     })
-    
   },
   staff_updata_close: function (e) {
     this.setData({
@@ -96,13 +94,12 @@ Page({
       }
     })
   },
-
   onLoad: function() {
     var that = this;
     if (!app.privilegeEmployees) {
       util.api.getProductInit();
     }
-    
+    console.log(app)
     this.stock_request()
   },
   

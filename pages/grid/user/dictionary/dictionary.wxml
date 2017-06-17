@@ -38,41 +38,41 @@
           <view class="staff_updata_top">
             <view class="dictionary_input">
               <view class="dictionary_input_text1 clearfix">姓名：</view>
-              <input type="number" class="dictionary_input1" value="{{employeeDetails.r}}"/>
+              <input type="number" class="dictionary_input1" value="{{employeeDetails.reallyName}}"/>
             </view>
             <view class="dictionary_input clearfix">
-              <view class="dictionary_input_text1">微信号：</view>
+              <view class="dictionary_input_text1" value="{{employeeDetails.reallyName}}">微信号：</view>
               <input type="number" class="dictionary_input1" />
             </view>
             <view class="dictionary_input clearfix">
               <view class="dictionary_input_text1">打折：</view>
-              <input type="number" class="dictionary_input1" style="padding-right:30px;">
+              <input type="number" class="dictionary_input1" style="padding-right:30px;"  value="{{employeeDetails.discount}}">
                 <view class="perCent">%</view>
               </input>
             </view>
             <view class="dictionary_input clearfix">
               <view class="dictionary_input_text1">去零：</view>
-              <input type="number" class="dictionary_input1" placeholder="去零最高值" />
+              <input type="number" class="dictionary_input1"  value="{{employeeDetails.zeroPrice}}" placeholder="去零最高值" />
             </view>
             <view class="dictionary_input clearfix">
               <view class="dictionary_input_text1">改价权限：</view>
-                <picker bindchange="" value="{{index}}" range="{{array}}" class="dictionary_input1" style="padding-right:30px;">
-                  {{array[index]}}
+               <picker bindchange="" range="{{customerTypeList}}" value="{{custtypename}}" range-key="{{custtypename}}"class="dictionary_input1" style="padding-right:30px;">
+                  {{customerTypeList[custtypename_index].custtypename}}
                   <text style="color:#808080;" wx:if="!{{array[index]}}">改价最低值</text>
                   <image src="../../../../images/down.png" mode="aspectFit" class="picker_image" />
                 </picker>
             </view>
             <view class="dictionary_input clearfix">
               <view class="dictionary_input_text1">选择分店：</view>
-                <picker bindchange="" value="{{index}}" range="{{array}}" class="dictionary_input1" style="padding-right:30px;">
-                  {{array[index]}}
+                <picker bindchange="" range="{{customerTypeList}}" class="dictionary_input1" style="padding-right:30px;">
+                  {{customerTypeList[custtypename_index].custtypename}}
                   <image src="../../../../images/down.png" mode="aspectFit" class="picker_image" />
                 </picker>
             </view>
           </view>
           <view class="print_info">五个权限</view>
           <checkbox-group>
-            <label class="checkbox" wx:for="{{items}}" wx:key="id">
+            <label class="checkbox" wx:for="{{privilegeEmployees}}" wx:key="id">
               <checkbox value="{{item.id}}" checked="{{item.checked}}"/>{{item.operateName}}
             </label>
           </checkbox-group>

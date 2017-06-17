@@ -87,7 +87,8 @@ var api = {
         app.screen_unitList = res.data.unitList,
         app.custOrDiscTag = res.data.custOrDiscTag,
         app.custProdPrice = res.data.custProdPrice,
-        app.customerTypeList = res.data.customerTypeList;
+        app.privilegeEmployees = res.data.privileges,
+        app.customerTypeList = res.data.customerTypeList,
         app.getProductInit = true
       }
     })
