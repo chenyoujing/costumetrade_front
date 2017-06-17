@@ -16,55 +16,26 @@
 </view>
 
 <!--订单内容-->
-<scroll-view scroll-y class="orderSure_container">
-  <view class="content {{0%2 == 0 ? 'bg1' : 'bg2'}}">
-    <view class="content_left">
-      <view class="order_name">621报喜鸟</view>
-      <view class="order_info">
-        <text>颜色：适中紫</text>
-        <text style="float:right;">尺码：44</text>
-        <view class="clear"></view>
+<scroll-view scroll-y class="orderSure_scroll">
+    <view class="orderSure_container">
+      <view class="content_container clearfix">
+        <image src="{{item.image ? item.image : '../../../../images/image_none.png'}}" mode="aspectFill" style="width:{{image_width}}px;height:{{image_width}}px;" />
+        <view class="content_container_text">
+          <view class="content_container_title">1{{item.name}}</view>
+          <view class="content_container_info clearfix">
+            <view class="info_text">
+              <text>款式：藏红色</text>
+              <text>尺码：L</text>
+            </view>
+            <view class="price">{{item.price}}1</view>
+            <view class="info_other">
+              <view class="num">0</view>
+              <view class="date">0{{item.timeUp}}</view>
+            </view>
+          </view>
+        </view>
       </view>
     </view>
-    <view class="content_right">
-      <view class="order_price">￥639.6</view>
-      <view class="order_num">数量:1</view>
-    </view>
-    <view class="clear"></view>
-  </view>
-
-  <view class="content {{1%2 == 0 ? 'bg1' : 'bg2'}}">
-    <view class="content_left">
-      <view class="order_name">621报喜鸟</view>
-      <view class="order_info">
-        <text>颜色：适中紫</text>
-        <text style="float:right;">尺码：44</text>
-        <view class="clear"></view>
-      </view>
-    </view>
-    <view class="content_right">
-      <view class="order_price">￥639.6</view>
-      <view class="order_num">数量:1</view>
-    </view>
-    <view class="clear"></view>
-  </view>
-
-  <view class="content {{2%2 == 0 ? 'bg1' : 'bg2'}}">
-    <view class="content_left">
-      <view class="order_name">621报喜鸟</view>
-      <view class="order_info">
-        <text>颜色：适中紫</text>
-        <text style="float:right;">尺码：44</text>
-        <view class="clear"></view>
-      </view>
-    </view>
-    <view class="content_right">
-      <view class="order_price">￥639.6</view>
-      <view class="order_num">数量:1</view>
-    </view>
-    <view class="clear"></view>
-  </view>
-
 </scroll-view>
 
 <!--底部浮动-->

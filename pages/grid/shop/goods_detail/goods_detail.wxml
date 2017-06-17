@@ -27,7 +27,9 @@
     </swiper-item>
   </swiper>
   <view class="shop clearfix">
-    <image src="../../../../images/image_none.png" mode="aspectFill" class="shop_image"></image>
+    <navigator url="../storeDetails/storeDetails">
+      <image src="../../../../images/image_none.png" mode="aspectFill" class="shop_image"></image>
+    </navigator>
     <view style="float:left;">
       <view class="shop_name">店铺名称</view>
       <view class="shop_goods">全部货品：105件</view>

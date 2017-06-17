@@ -1,9 +1,10 @@
 <view style="overflow:hidden; min-height:100vh;">
   <view class="title clearfix">
-    <image bindtap="searchName" mode="aspectFit" src="../../../images/search.png" class="image_search" />
     <image src="../../../images/more.png" mode="aspectFit" class="title_image" bindtap="more_function" />
     <image src="../../../images/add.png" mode="aspectFit" class="title_image" bindtap="scan" style="margin-left:10px;" />
-    <input class="title_input" type="text" name="search" placeholder="名称" bindfocus="bindfocus" focus="{{inputFocus}}" value="{{enterValue}}" />
+    <input class="search_input" type="text" name="search" placeholder="名称" bindfocus="bindfocus" focus="{{inputFocus}}" value="{{enterValue}}">
+      <image bindtap="searchName" mode="aspectFit" src="../../../images/search.png" class="search_input_image" />
+    </input>
   </view>
 
   <view class="client">

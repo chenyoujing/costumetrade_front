@@ -10,7 +10,7 @@
       <view class="title_button">取消</view>
     </view>
     <view class="title_button_view2">
-      <view class="title_button">入账</view>
+      <view class="title_button" bindtap="account">入账</view>
     </view>
   </view>
 </view>
@@ -32,7 +32,7 @@
 <view class="expenses_view2">
   <view class="content_title">项目</view>
   <block wx:for="{{product}}">
-    <view class="content_title" bindtap="showInput" data-index="{{index}}" data-id="{{item.dictValue}}">{{item.dictText}}</view>
+    <view class="expenses_item" bindtap="showInput" data-index="{{index}}" data-id="{{item.dictValue}}">{{item.dictText}}</view>
   </block>
 </view>
 
@@ -44,3 +44,22 @@
   <view class="more_function_view" data-type= "2" bindtap="changeType">采购单</view>
   <navigator url="expenses/expenses" class="more_function_view" bindtap="batch_update">费用单</navigator>
 </view>
+
+
+<!--入账-->
+<modal title="支付" hidden="{{accountModal}}" confirm-text="确定" cancel-text="取消"  bindconfirm="accountConfirm" bindcancel="cancel" >
+  <view class="clearfix" style="margin-top:10px;">
+    <picker class="modal_pay one_line" range="">
+      现金
+      <image src="../../../../images/down.png" mode="aspectFit" class="picker_image" />
+    </picker>
+     <input class="pay_input" type="digit" placeholder="输入金额" />
+  </view>
+  <view class="clearfix" style="margin-top:10px;">
+    <picker class="modal_pay one_line" range="">
+      刷卡
+      <image src="../../../../images/down.png" mode="aspectFit" class="picker_image" />
+    </picker>
+     <input class="pay_input" type="digit" placeholder="输入金额" />
+  </view>
+</modal>

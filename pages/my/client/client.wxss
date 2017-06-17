@@ -5,7 +5,7 @@
   position: relative;
   z-index: 3;
 }
-.title_input{
+.search_input{
   margin-left: 2%; 
   background-color: #ffffff;
   font-family: Microsoft YaHei;
@@ -13,18 +13,18 @@
   font-size: 14px;
   height:27px;
   min-height:27px;
+  border-radius:3px;
 }
-.image_search,.title_image{
+.search_input_image{
+  padding: 10px;
+}
+.title_image{
   float: right;
   background-color: transparent;
   width: 16px;
   height: 16px;
   z-index: 3;
   padding: 10px;
-}
-.image_search{
-  position: absolute;
-  right: 118px;
 }
 .condition{
   width: 100%;

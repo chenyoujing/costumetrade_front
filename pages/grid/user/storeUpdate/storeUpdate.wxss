@@ -39,13 +39,14 @@
   float: left;
   text-align: center;
   font-size: 14px;
-  line-height: 30px;
+  line-height: 30px; 
 }
 .store_input1{
   border: 1px solid #52CAC1;
   font-size: 14px;
   padding: 0 8px; 
   height: 28px;
+  line-height: 28px;
   position: relative;
 }
 .image_map{

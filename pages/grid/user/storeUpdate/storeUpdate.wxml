@@ -48,6 +48,11 @@
       <view class="store_input_text">店铺介绍：</view>
       <input type="text" class="store_input1" />
     </view>
+    <view class="store_input clearfix">
+      <view class="store_input_text" style="float:unset;">银行信息：</view>
+      <textarea type="text" class="store_input1" style="height:80px;padding:8px;" />
+    </view>
+
   </view>
 </scroll-view>
 <navigator url="../dictionary/dictionary" class="dictionary">跳转到高级设置</navigator>

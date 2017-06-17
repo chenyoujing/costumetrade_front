@@ -17,7 +17,7 @@
     <view class="prompt">3</view>
   </image>
   <input type="number" class="search_input" placeholder="单号查询..." >
-    <image mode="aspectFit" src="../../../images/search.png" class="search_input_image" />
+    <image mode="aspectFit" src="../../../images/search.png" class="search_input_image" style="top:-3px;" />
   </input>
   <view class="clear"></view>
 </view>

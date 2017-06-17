@@ -5,7 +5,20 @@ Page({
     more_function_display: "none",
     product:[],
     totalNum: 0,
-    totalMoney: 0
+    totalMoney: 0,
+    accountModal: true,
+  },
+  // 打开入账模态框
+  account:function(){
+    this.setData({
+      accountModal: false
+    })
+  },
+  // 关闭入账模态框
+  cancel: function () {
+    this.setData({
+      accountModal: true
+    })
   },
   // 打开多功能键
   more_function: function () {
