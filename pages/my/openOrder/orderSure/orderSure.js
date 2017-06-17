@@ -125,7 +125,14 @@ Page({
     var num = this.data.totalData.realcostArray;
     var disCount = this.data.disCount ? this.data.disCount/100:1;
     var mchange = this.data.mchange ? this.data.mchange:0;
-    num = (num * disCount - this.data.mchange).toFixed(2);
+    var shopCart = this.data.shopCar;
+    for (var p in shopCart){
+      if (shopCart[p].isDiscount == 1){
+        shopCart[p].price = (shopCart[p].price * disCount).toFixed(2);
+      }
+      num += shopCart[p].price
+    }
+    num = (num - this.data.mchange).toFixed(2);
     this.setData({
       reallyPay: num,
       payCost1: num

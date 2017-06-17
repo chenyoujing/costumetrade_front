@@ -3,10 +3,6 @@ var app = getApp()
 Page({
   data: {
     items: [
-      { name: 'USA', value: '进货价格' },
-      { name: 'CHN', value: '客户' },
-      { name: 'BRA', value: '供应商' },
-      { name: 'JPN', value: '报表' },
     ],
     goods_level: [
       { name: 'USA', value: '处理' },
@@ -32,9 +28,7 @@ Page({
     current: "0",
     dictionary: "1",
     staff_updata: "100%",
-  },
-  onLoad: function() {
-    var that = this
+    employeeProduct:[]
   },
   swiper_change: function (e) {
     this.setData({
@@ -49,13 +43,67 @@ Page({
     })
   },
   staff_updata: function (e) {
+    var id = e.target.dataset.id;
+    var that = this;
     this.setData({
-      staff_updata: "0"
+      items: app.privilegeEmployees
     })
+    wx.showNavigationBarLoading()
+    util.api.request({
+      url: 'employee/getEmployee',
+      data: {
+        empId: id
+      },
+      method: 'POST',
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      success: function (res) {
+        wx.hideNavigationBarLoading();
+        console.log(res.data)
+        that.setData({
+          staff_updata: "0",
+          employeeDetails: res.data
+        })
+      }
+    })
+    
   },
   staff_updata_close: function (e) {
     this.setData({
       staff_updata: "100%"
     })
   },
+  // 请求数据
+  stock_request: function (id) {
+    var that = this;
+    wx.showNavigationBarLoading()
+    util.api.request({
+      url: 'employee/getAllEmployees',
+      data: {
+        storeId: String(1)
+      },
+      method: 'POST',
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      success: function (res) {
+        wx.hideNavigationBarLoading();
+        console.log(res.data)
+        that.setData({
+          employeeProduct:res.data
+        })
+      }
+    })
+  },
+
+  onLoad: function() {
+    var that = this;
+    if (!app.privilegeEmployees) {
+      util.api.getProductInit();
+    }
+    
+    this.stock_request()
+  },
+  
 })

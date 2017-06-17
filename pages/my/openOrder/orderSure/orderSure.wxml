@@ -45,13 +45,6 @@
         <view class="bill_content">
           <view class="bill_content_button" bindtap="bill_wechat">微信账单</view>
           <view class="bill_content_button" bindtap="bill_print">打印账单</view>
-          <view style="float:left; width:100%;">
-            <view class="order_input_text">单据时间：</view>
-            <picker style="margin-right:0;" mode="date" value="{{date}}"start="1970-1-1" bindchange="date" name="date">
-              {{date}}
-            </picker>
-            <view class="clear"></view>
-          </view>
           <view class="clear"></view>
         </view>
       </view>

@@ -21,16 +21,16 @@
     <!--员工管理-->
     <swiper-item>
       <scroll-view scroll-y style="bottom:0;">
-        <view style="padding:10px;">
+        <view style="padding:10px;" wx:for="{{employeeProduct}}">
           <view class="staff">
             <image src="{{item.image ? item.image : '../../../../images/image_none.png'}}" mode="aspectFill" class="staff_tx" />
             <view class="staff_info">
-              <view class="staff_info_name">名称：小鱼</view>
-              <view class="staff_info_num">编号：001</view>
+              <view class="staff_info_name">名称：{{item.reallyName}}</view>
+              <view class="staff_info_num">编号：{{item.id}}</view>
               <view class="staff_info_state">在职状态：在职</view>
               <view class="clear"></view>
             </view>
-            <image src="../../../../images/update.png" mode="aspectFit" class="staff_modify" bindtap="staff_updata" />
+            <image src="../../../../images/update.png" mode="aspectFit" class="staff_modify" bindtap="staff_updata" data-id="{{item.id}}" />
           </view>
         </view>
       </scroll-view>
@@ -39,7 +39,7 @@
           <view class="staff_updata_top">
             <view class="dictionary_input">
               <view class="dictionary_input_text1">姓名：</view>
-              <input type="number" class="dictionary_input1" />
+              <input type="number" class="dictionary_input1" value="{{employeeDetails.r}}"/>
               <view class="clear"></view>
             </view>
             <view class="dictionary_input">
@@ -54,19 +54,19 @@
             </view>
             <view class="dictionary_input">
               <view class="dictionary_input_text1">去零：</view>
-              <input type="number" class="dictionary_input1" placeholder="去零规则(小于1元去掉，可以四舍五入)" />
+              <input type="number" class="dictionary_input1" placeholder="去零最高值" />
               <view class="clear"></view>
             </view>
             <view class="dictionary_input">
-              <view class="dictionary_input_text1">改价：</view>
+              <view class="dictionary_input_text1">改价权限：</view>
               <input type="number" class="dictionary_input1" />
               <view class="clear"></view>
             </view>
           </view>
-          <view class="print_info">四个权限</view>
+          <view class="print_info">五个权限</view>
           <checkbox-group>
             <label class="checkbox" wx:for="{{items}}" wx:key="id">
-              <checkbox value="{{item.name}}" checked="{{item.checked}}"/>{{item.value}}
+              <checkbox value="{{item.id}}" checked="{{item.checked}}"/>{{item.operateName}}
             </label>
           </checkbox-group>
         </scroll-view>

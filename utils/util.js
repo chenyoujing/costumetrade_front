@@ -26,6 +26,7 @@ var api = {
   host: 'http://192.168.2.221:8088/',
   pageNum :1,
   publicProduct:[],
+  imgUrl: "http://117.149.24.42:8788",
   // 数组转化成字符串
   back: function () {
     wx.navigateBack({
@@ -136,7 +137,6 @@ var api = {
     var UnitData2 = [];
     for(var p in product){
       if (product[p].type !=="1"){
-
         UnitData2.push(product[p])
       } 
       if (product[p].type !== '2'){
@@ -162,7 +162,7 @@ var api = {
     if (url2=="client/getClients"){
       param = param;
     }else{
-      param.fields = "firsthPrice,secondPrice,thirdPrice,fourthPrice,fifthPrice,purchasePrice,tagPrice,image,name,code,barcodes,barcode,time_up,id"
+      param.fields = "firsthPrice,secondPrice,thirdPrice,fourthPrice,fifthPrice,purchasePrice,tagPrice,image,name,code,barcodes,barcode,time_up,id，isDiscount"
     }
     this.request({
       url: url2,
@@ -240,7 +240,7 @@ var api = {
     if (filedsName[select].toLowerCase() == value || filedsName[select2].toLowerCase() == value || filedsName[select3].toLowerCase() == value) {
       endArray = filedsName;
       endArray.type = 1;
-    } else if ((filedsName[select].toLowerCase().indexOf(value) > -1 && filedsName[select].toLowerCase() !== value) || (filedsName[select2].toLowerCase().indexOf(value) > -1 && filedsName[select2].toLowerCase() !== value)) {
+    } else if ((filedsName[select].toLowerCase().indexOf(value) > -1 && filedsName[select].toLowerCase() !== value) || (filedsName[select2].toLowerCase().indexOf(value) > -1 && filedsName[select2].toLowerCase() !== value) || (filedsName[select3].toLowerCase().indexOf(value) > -1 && filedsName[select3].toLowerCase() !== value)) {
       endArray = filedsName;
       endArray.type = 2;
     } else {

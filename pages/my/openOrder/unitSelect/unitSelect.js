@@ -6,6 +6,7 @@ Page({
      product:[],
      type:1, 
     contacts: [],
+    nameSearch:"",
     supplier_type:'A',
     nav_right: ['↑', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '#',]
   },
@@ -17,7 +18,7 @@ Page({
   },
   // 拆分助记码
   classifyFastcode:function(product){
-    var contacts = this.data.contacts;
+    var contacts = [];
     for(var p in product){
       var boolean2 = true;
       for(var j in contacts){
@@ -57,10 +58,25 @@ Page({
         that.setData({
           product: res.data
         })
+       
         that.classifyFastcode(res.data)
-      
       }
     })
+  },
+  // 客户筛选信息
+  search:function(e){
+    console.log(e.detail.value.length)
+    if (e.detail.value == "" || e.detail.value == " ") {
+      this.callback()
+    } else {
+      console.log(this.data.product)
+      var endArray4 = util.api.objectPushArry(this.data.product, e.detail.value)
+      this.setData({
+        product: endArray4
+      })
+      console.log(endArray4)
+      this.classifyFastcode(endArray4)
+    }
   },
   downData: function (type) {
     util.api.supplierRefresh('client/getClients', "UnitData", 'updataTimeunit', this.callback);

@@ -42,7 +42,7 @@
   <scroll-view scroll-y="true" bindscroll="keyHidden" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}" style="bottom:{{keyHidden?60:keyboard_height*3 + 79}}px;" class="order_scroll" hidden="{{products_info||orderid}}">
     <block wx:for="{{shopCart}}" >
       <view class="order_view clearfix {{index%2==0?'bg_w':''}}" >
-        <view style="width:100%;" bindtap="orderid" data-id="{{item.productid}}" data-num="{{item.count}}">
+        <view style="width:100%;" bindtap="orderid" data-id="{{item.productid}}" data-num="{{item.count}}" data-index="{{index}}">
           <view style="width:8%;" data-id="{{item.productid}}">{{index+1}}</view>
           <view style="width:26%;" data-id="{{item.productid}}">{{item.productName}}</view>
           <view style="width:8%;" data-id="{{item.productid}}">{{item.count}}</view>
@@ -65,7 +65,7 @@
         <view class="products_info_price">{{item.showPrice}}</view>
         <view class="products_info_time">{{item.timeUp}}</view>
       </view>
-      <view class="products_info" bindtap="orderid" data-id="{{item.id}}"></view>
+      <view class="products_info" bindtap="orderid" data-num="" data-id="{{item.id}}"></view>
     </block>
   </scroll-view>
   
@@ -76,14 +76,14 @@
     <scroll-view scroll-y class="goods_check">
       <radio-group bindchange="EventHandle" data-index="selectColor">
         <label class="goods_checkbox" wx:for="{{color}}" wx:key="id">
-          <radio value="{{item}}" checked="{{aa}}"/>
-          {{item}}
+          <radio value="{{item.color}}" checked="{{aa}}"/>
+          {{item.color}} {{item.num}}
         </label>
       </radio-group>
       <radio-group  bindchange="EventHandle" data-index="selectSize">
         <label class="goods_checkbox" wx:for="{{size}}" wx:key="id">
-          <radio value="{{item}}" disabled="{{disabled}}"  checked="{{aa}}"/>
-          {{item}}
+          <radio value="{{item.size}}}" disabled="{{disabled}}"  checked="{{aa}}"/>
+          {{item.size}} {{item.num}}
         </label>
       </radio-group>
     </scroll-view>
@@ -91,7 +91,6 @@
     <view class="keyboard_join" bindtap="checkEnterBefore">加入</view>
   </view>
   
-
 <view class="openorder_info clearfix" style="bottom:{{keyHidden?0:keyboard_height*3 + 20}}px" hidden="{{orderid}}">
   <view class="info_num">共{{totalData.totalNum}}件商品</view>
   <view class="info_button" bindtap="order">买单</view>
@@ -102,7 +101,7 @@
   <view bindtap="changeInputSale" class="keyboard_top {{colorChange ==2 ? 'saleColor' : ''}}" style="width:{{keyboard_width}}px;">{{GoodsDetail.showPrice}}元</view>
   <view class="keyboard_top" style="width:{{keyboard_width}}px;" bindtap="changeSale">{{saleName}}</view>
   <view class="keyboard_top {{colorChange ==1 ? 'saleColor' : ''}}" style="width:{{keyboard_width}}px;" bindtap="changeGroup">
-  <block wx:if="{{keyboardNum2 ==''}}">{{oneKeyshow}}</block>{{keyboardNum2}}
+  <block wx:if="{{!keyboardNum2}}">{{oneKeyshow}}</block>{{keyboardNum2}}
   <block wx:if="{{unitChange}}">手/{{GoodsDetail.handcount}}</block>{{GoodsDetail.unit}}</view>
   <view class="keyboard_top" style="width:{{keyboard_width}}px;" bindtap="order_back">返回</view>
 </view>

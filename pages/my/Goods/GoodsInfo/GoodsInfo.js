@@ -119,20 +119,21 @@ Page({
   photoSubmit: function (file, i){
     var that = this;
     wx.uploadFile({
-      url: 'http://192.168.2.221:8088/product/uploadImage', 
+      url: 'http://192.168.2.221:8080/product/uploadImage', 
       filePath: file[i],
       name: 'file',
       success: function (res) {
         console.log(JSON.stringify(res));
-        var url = "http://117.149.24.42:8788" + JSON.parse(res.data).data.url;
-        var resizeFixUrl = "http://117.149.24.42:8788" + JSON.parse(res.data).data.resizeFixUrl;
+        var url = util.api.imgUrl + JSON.parse(res.data).data.url;
+        var resizeFixUrl = util.api.imgUrl + JSON.parse(res.data).data.resizeFixUrl;
+       
         var param = that.data.GoodsInfoData;
         var fileArray = that.data.fileList;
         param[that.data.perImgSrc] = url;
         for (var p in fileArray){
           if (fileArray[p].filename == that.data.perImgSrc){
-            fileArray[p].url = url;
-            fileArray[p].resizeFixUrl = resizeFixUrl;
+            fileArray[p].url = JSON.parse(res.data).data.url;
+            fileArray[p].resizeFixUrl = JSON.parse(res.data).data.resizeFixUrl;
           }
         }
         that.setData({
@@ -202,6 +203,12 @@ Page({
         var answerData = res.data;
         answerData.timeDown = util.toDate(answerData.timeDown);
         answerData.timeUp = util.toDate(answerData.timeUp);
+         console.log(util.api.imgUrl)
+        answerData.image = util.api.imgUrl + answerData.image;
+        answerData.image1 = util.api.imgUrl + answerData.image1;
+        answerData.image2 = util.api.imgUrl + answerData.image2;
+        answerData.image3 = util.api.imgUrl + answerData.image3;
+        answerData.image4 = util.api.imgUrl + answerData.image4;
         for (var p in app.screen_productTypeList){
           if (app.screen_productTypeList[p].id == answerData.producttype){
             typeName = app.screen_productTypeList[p].catename;
@@ -255,14 +262,28 @@ Page({
     target.thirdPrice = this.data.picker_view[2].price ? this.data.picker_view[2].price : 0;
     target.fourthPrice = this.data.picker_view[3].price ? this.data.picker_view[3].price : 0;
     target.fifthPrice = this.data.picker_view[4].price ? this.data.picker_view[4].price : 0;
-    target.image = this.data.GoodsInfoData.image;
-    target.Image1 = this.data.GoodsInfoData.Image1;
-    target.Image2 = this.data.GoodsInfoData.Image2;
-    target.Image3 = this.data.GoodsInfoData.Image3;
-    target.Image4 = this.data.GoodsInfoData.Image4;
-    target.video1 = this.data.GoodsInfoData.video1;
-    target.video2 = this.data.GoodsInfoData.video2;
-    target.video3 = this.data.GoodsInfoData.video3;
+    target.image = this.data.GoodsInfoData.image.replace(/http:\/\/117.149.24.42:8788/g, '');
+    if (this.data.GoodsInfoData.Image1){
+      target.Image1 = this.data.GoodsInfoData.Image1.replace(/http:\/\/117.149.24.42:8788/g, '');
+    }
+    if (this.data.GoodsInfoData.Image2){
+      target.Image2 = this.data.GoodsInfoData.Image2.replace(/http:\/\/117.149.24.42:8788/g, '');
+    }
+    if (this.data.GoodsInfoData.Image3){
+      target.Image3 = this.data.GoodsInfoData.Image3.replace(/http:\/\/117.149.24.42:8788/g, '');
+    }
+    if (this.data.GoodsInfoData.Image4){
+      target.Image4 = this.data.GoodsInfoData.Image4.replace(/http:\/\/117.149.24.42:8788/g, '');
+    }
+    if (this.data.GoodsInfoData.video1){
+      target.video1 = this.data.GoodsInfoData.video1.replace(/http:\/\/117.149.24.42:8788/g, '');
+    }
+    if (this.data.GoodsInfoData.video2){
+      target.video2 = this.data.GoodsInfoData.video2.replace(/http:\/\/117.149.24.42:8788/g, '');
+    }
+    if (this.data.GoodsInfoData.video3){
+      target.video3 = this.data.GoodsInfoData.video3.replace(/http:\/\/117.149.24.42:8788/g, '');
+    }
     target.fileList = this.data.fileList;
     target.name = target.code + target.name
     for (var p = target.fileList.length - 1;p>=0;p--){

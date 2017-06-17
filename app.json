@@ -1,7 +1,5 @@
 {
   "pages": [
-    "pages/my/openOrder/openOrder",
-    
     "pages/grid/shop/shop",
     "pages/grid/user/user",
     "pages/grid/info/info",
@@ -11,15 +9,17 @@
     "pages/grid/order/orderDetails/orderDetails",
     "pages/grid/order/logistics/logistics",
     "pages/grid/order/payOrder/payOrder",
-    "pages/grid/user/dictionary/dictionary",
     "pages/grid/user/goodsLevel/goodsLevel",
     "pages/grid/user/customerType/customerType",
     "pages/grid/user/shareStore/shareStore",
     "pages/grid/user/vipPlus/vipPlus",
+    "pages/grid/user/dictionary/dictionary",
+    
     "pages/grid/user/storeUpdate/storeUpdate",
     "pages/grid/user/Help/Help",
     "pages/grid/user/helpInfo/helpInfo",
     "pages/grid/user/notecase/notecase",
+    "pages/my/openOrder/openOrder",
     "pages/my/openOrder/goodsDetails/goodsDetails",
     "pages/my/openOrder/Billing/Billing",
     "pages/my/openOrder/orderSure/orderSure",

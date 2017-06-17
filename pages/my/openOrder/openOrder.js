@@ -36,7 +36,8 @@ Page({
     aa:false,
     colorChange:1,
     cate:1,
-    saleName:'标签价'
+    saleName:'标签价',
+    stockArray:[]
   },
   //买单
   order: function () {
@@ -46,19 +47,24 @@ Page({
   },
   orderid:function(e){
     console.log(e)
+    // 判断时候是新增还是修改
+    var shopCart = this.data.shopCart;
+    if (e.target.dataset.index){
+      shopCart[e.target.dataset.index].upData = e.currentTarget.dataset.num ? true : false;
+    }
     this.setData({
       orderid: e.target.dataset.id,
       keyboardNum:'',
       keyHidden:false,
       aa:false,
-      keyboardNum2: e.target.dataset.num
+      keyboardNum2: e.currentTarget.dataset.num,
+      shopCart: shopCart
     })
+    console.log(e.currentTarget.dataset.num)
     if (!app.screen_unitList) {
       util.api.getProductInit();
-      console.log(app)
     }
     this.showGoodsInfo(e.target.dataset.id);
-    this.stock_request(e.target.dataset.id)
   },
   order_back:function(){
     this.setData({
@@ -101,7 +107,7 @@ Page({
         })
       }else{
         this.setData({
-          keyboardNum2: num,
+          keyboardNum2: num
         })
       }
     }else{
@@ -301,11 +307,20 @@ Page({
         wx.hideNavigationBarLoading();
         console.log(res.data)
         var num = 0;
+        var color = that.data.color;
         for (var p in res.data) {
-          num += res.data[p].stocknum
+          num += res.data[p].stocknum;
+          for (var j in color){
+            if (color[j].color == res.data[p].productcolor){
+              color[j].num += parseInt(res.data[p].stocknum)
+            }
+          }
         }
+        console.log(color)
         that.setData({
-          stockNum: num
+          stockNum: num,
+          color: color,
+          stockArray: res.data
         })
       }
     })
@@ -333,12 +348,28 @@ Page({
           }
         }
         res.data.showPrice = res.data[that.data.saleChangeName];
+         var size = res.data.sizes.split(',');
+         var color = res.data.colors.split(',');
+         var sizeArray = [];
+         var colorArray = [];
+         for (var p in size){
+           sizeArray.push({
+             size: size[p],
+             num:''
+           })
+         }
+         for (var p in color) {
+           colorArray.push({
+             color: color[p],
+             num: 0
+           })
+         }
         that.setData({
           GoodsDetail: res.data,
-          size: res.data.sizes.split(','),
-          color: res.data.colors.split(',')
+          size: sizeArray,
+          color: colorArray
         })
-        console.log(that.data.color)
+        that.stock_request(id)
       }
     })
   },
@@ -346,6 +377,19 @@ Page({
     var index = e.target.dataset.index;
     var param = {};
     param[index] = e.detail.value;
+    if (index == "selectColor"){
+      var stockArray = this.data.stockArray;
+      var size = this.data.size;
+      for (var p in stockArray) {
+        for (var j in size) {
+          if (stockArray[p].productcolor == e.detail.value && stockArray[p].productsize == size[j].size) {
+            size[j].num += stockArray[p].stocknum
+          }
+        }
+      }
+      param.size = size
+    }
+    console.log(size)
     this.setData(param)
   },
   // 价格切换
@@ -357,13 +401,14 @@ Page({
     }else{
      cate = 1
     }
+    if (GoodsDetail[this.data.saleChangeName2] == 0) {
+      // this.changeSale()
+    }
     this.sale(cate);
     var GoodsDetail = this.data.GoodsDetail;
     GoodsDetail.showPrice = GoodsDetail[this.data.saleChangeName2]
     console.log(GoodsDetail[this.data.saleChangeName2])
-    if (GoodsDetail[this.data.saleChangeName2] == 0){
-      // this.changeSale()
-    }
+    
     this.setData({
       GoodsDetail: GoodsDetail,
       cate: cate
@@ -421,8 +466,10 @@ Page({
       object.sizeGroup = this.data.GoodsDetail.sizes;
     }
     for(var p in shopCart){
-      if (shopCart[p].productId == object.productId && shopCart[p].productcolor == object.productcolor && shopCart[p].productsize == object.productsize){
-        shopCart[p].count = parseInt(object.count) + shopCart[p].count;
+      if (shopCart[p].upData){
+        shopCart[p] = object;
+      }else if (shopCart[p].productId == object.productId && shopCart[p].productcolor == object.productcolor && shopCart[p].productsize == object.productsize){
+        shopCart[p].count = parseInt(object.count) + parseInt(shopCart[p].count);
         add = false;
       }
     }

@@ -29,7 +29,9 @@ App({
           method: 'POST',
           success: function (res) {
             that.globalData.userInfo.code= loginCode.code
-            that.globalData.openid = res.data.data.openid;
+            that.globalData.openid = res.data.data.query.openid;
+            that.globalData.privilegeEmployees = res.data.data.employee.privilegeEmployees;
+            console.log(that.globalData.openid )
           }
         })
 
