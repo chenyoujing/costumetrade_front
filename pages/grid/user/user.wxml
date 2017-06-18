@@ -1,23 +1,21 @@
 <view class="my_container">
   <!--头部-->
-  <view class="my_title">
+  <view class="my_title clearfix">
     <navigator url="storeUpdate/storeUpdate">
       <image src="../../../images/image_none.png" mode="aspectFill" class="my_tx" />
     </navigator>
-    <view class="my_info">
+    <view class="my_info clearfix">
       <navigator url="storeUpdate/storeUpdate" class="my_name">个人名称</navigator>
       <view class="my_fans">200</view>
       <navigator url="shareStore/shareStore" class="my_share">分享</navigator>
-      <view class="clear"></view>
     </view>
     <view class="my_code">
       <image src="../../../images/image_none.png" mode="aspectFill" />
       <view class="my_code_text">+粉</view>
     </view>
-    <view class="clear"></view>
   </view>
   <!--店铺功能-->
-  <view class="operation">
+  <view class="operation clearfix">
     <navigator url="../../my/openOrder/openOrder">
       <image src="../../../images/My-orders.png" mode="aspectFit" class="operation_image" />
       <view class="operation_text">开单</view>
@@ -34,67 +32,57 @@
       <image src="../../../images/report-forms.png" mode="aspectFit" class="operation_image" />
       <view class="operation_text">报表</view>
     </navigator>
-    <view class="clear"></view>
   </view>
   <!--内容-->
   <view class="my_content">
-    <view class="my_content_view">
-      <navigator url="../../my/client/client">
+    <view class="my_content_view clearfix">
+      <view class="navigator clearfix" bindtap="goto_info" data-infotype="0" hover-class="navigator-hover">
         <image src="../../../images/custom-service.png" mode="aspectFit" class="my_content_image" />
-        <view class="my_content_text">客户</view>
+        <view class="my_content_text">客服</view>
         <image src="../../../images/right-thrust.png" mode="aspectFit" class="my_content_right" />
-        <view class="clear"></view>
-      </navigator>
-      <navigator url="dictionary/dictionary">
+      </view>
+      <navigator class="clearfix" url="../order/order" open-type="switchTab">
         <image src="../../../images/order-form3.png" mode="aspectFit" class="my_content_image" />
         <view class="my_content_text">订单</view>
         <image src="../../../images/right-thrust.png" mode="aspectFit" class="my_content_right" />
-        <view class="clear"></view>
       </navigator>
-      <navigator url="dictionary/dictionary">
+      <view class="navigator clearfix" bindtap="goto_info" data-infotype="2" hover-class="navigator-hover" style="border-bottom:none;">
         <image src="../../../images/notice2.png" mode="aspectFit" class="my_content_image" />
         <view class="my_content_text">公告</view>
         <image src="../../../images/right-thrust.png" mode="aspectFit" class="my_content_right" />
-        <view class="clear"></view>
-      </navigator>
+      </view>
     </view>
 
     <view class="my_content_view">
-      <navigator url="notecase/notecase">
+      <navigator class="clearfix" url="notecase/notecase">
         <image src="../../../images/notecase.png" mode="aspectFit" class="my_content_image" />
         <view class="my_content_text">钱包管理</view>
         <image src="../../../images/right-thrust.png" mode="aspectFit" class="my_content_right" />
-        <view class="clear"></view>
       </navigator>
-      <navigator url="dictionary/dictionary">
+      <navigator class="clearfix" url="dictionary/dictionary">
         <image src="../../../images/localization.png" mode="aspectFit" class="my_content_image" />
         <view class="my_content_text">收货地址</view>
         <image src="../../../images/right-thrust.png" mode="aspectFit" class="my_content_right" />
-        <view class="clear"></view>
       </navigator>
-      <navigator url="Help/Help">
+      <navigator class="clearfix" url="Help/Help">
         <image src="../../../images/assist.png" mode="aspectFit" class="my_content_image" />
         <view class="my_content_text">帮助</view>
         <image src="../../../images/right-thrust.png" mode="aspectFit" class="my_content_right" />
-        <view class="clear"></view>
       </navigator>
-      <navigator url="dictionary/dictionary">
+      <navigator class="clearfix" url="dictionary/dictionary">
         <image src="../../../images/Suggestions.png" mode="aspectFit" class="my_content_image" />
         <view class="my_content_text">意见反馈</view>
         <image src="../../../images/right-thrust.png" mode="aspectFit" class="my_content_right" />
-        <view class="clear"></view>
       </navigator>
-      <navigator url="vipPlus/vipPlus">
+      <navigator class="clearfix" url="vipPlus/vipPlus">
         <image src="../../../images/vip.png" mode="aspectFit" class="my_content_image" />
         <view class="my_content_text">升级</view>
         <image src="../../../images/right-thrust.png" mode="aspectFit" class="my_content_right" />
-        <view class="clear"></view>
       </navigator>
-      <navigator url="dictionary/dictionary">
+      <navigator class="clearfix" url="dictionary/dictionary">
         <image src="../../../images/set.png" mode="aspectFit" class="my_content_image" />
         <view class="my_content_text">设置</view>
         <image src="../../../images/right-thrust.png" mode="aspectFit" class="my_content_right" />
-        <view class="clear"></view>
       </navigator>
     </view>
   </view>
