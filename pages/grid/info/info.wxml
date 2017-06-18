@@ -12,15 +12,15 @@
   <!--导航栏-->
   <view class="info_nav" style="position:{{nav_position}};" bindtap="infotype">
     <view class="nav_view">
-      <image src="../../../images/info.png" mode="aspectFit" data-infotype="0" />
+      <image src="../../../images/{{infotype==0?'information2':'information'}}.png" mode="aspectFit" data-infotype="0" />
       <view class="nav_view_text" data-infotype="0">信息</view>
     </view>
     <view class="nav_view">
-      <image src="../../../images/address-list.png" mode="aspectFit" data-infotype="1" />
+      <image src="../../../images/{{infotype==1?'Contacts2':'Contacts'}}.png" mode="aspectFit" data-infotype="1" />
       <view class="nav_view_text" data-infotype="1">通讯录</view>
     </view>
     <view class="nav_view">
-      <image src="../../../images/bell.png" mode="aspectFit" data-infotype="2" />
+      <image src="../../../images/{{infotype==2?'bell2':'bell'}}.png" mode="aspectFit" data-infotype="2" />
       <view class="nav_view_text" data-infotype="2">公告</view>
     </view>
   </view>

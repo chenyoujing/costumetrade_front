@@ -4,6 +4,14 @@
   position: relative;
   z-index: 3;
 }
+.title_back{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 16px;
+  height: 16px;
+  padding: 7px;
+}
 .title_input{
   margin-right: 10%;
   margin-left: 2%; 
@@ -15,7 +23,6 @@
   min-height:27px;
 }
 .mall_title{
-  height: 90px;
   position: relative;
 }
 .mall_title_bg{
@@ -37,30 +44,17 @@
   bottom: 0;
   background-color: rgba(0, 0, 0, 0.3);
 }
-.search_input_image{
-  right: 5px;
-  top: -3px;
-}
-
-.shop_info{
-  text-align: center;
-  font-size: 15px;
-  padding: 2.5px 20%;
+.title_view{
+  position:relative;
+  padding: 60px 0 4px;
 }
 .shop_tx{
   float: left;
-  width: 40%;
-  height: 50px;
-  position: relative;
-}
-.shop_tx image{
-  width: 50px;
-  height: 50px;
-  border-radius: 25px;
-  position: absolute;
-  left: 0;
-  right: 0;
-  margin: auto;
+  width: 36px;
+  height: 36px;
+  border-radius: 18px;
+  margin-left: 8%;
+  margin-right: 5%;
 }
 .shop_name{
   height: 50px;
@@ -71,22 +65,31 @@
 }
 .search_input{
   font-size: 14px;
-  line-height: 30px;
-  height: 30px;
-  border-radius: 15px;
+  line-height: 36px;
+  height: 36px;
+  border-radius: 18px;
   padding-left: 20px;
   padding-right: 35px;
   background-color: #ffffff;
   opacity: 0.5;
   margin-left: 10%;
 }
-.search_image{
-  width: 16px;
-  height: 16px;
-  padding: 7px 12px;
+.search_input_image{
+  padding: 10px;
+}
+.shoppingcard_image{
+  width: 20px;
+  height: 20px;
+  padding: 8px 10px;
   float: right;
   top: 0;
+  position: relative;
 }
+.prompt{
+  top:8px;
+  right:5px;
+}
+
 
 
 .sort{
@@ -96,135 +99,44 @@
 }
 .sort_text,.more{
   text-align: center;
-  background-color: #75D4CC;
-  color: #ffffff;
+  background-color: #EAEAEA;
+  color: #000000;
   float: left;
   font-size: 14px;
   line-height: 30px;
 }
 .sort_text{
-  width: 25%;
+  width: 30%;
 }
 .sort_text .image_down{
-  width: 10px;
-  height: 10px;
+  width: 12px;
+  height: 12px;
+}
+.screen_active{
+  background-color: #ffffff;
 }
 .screen_active .sort_up{
   transform:rotate(180deg);
 }
+.rank_image{
+  width: 100%;
+  height: 16px;
+  padding: 7px 0;
+  float: right;
+  top: 0;
+}
+
 
 
 .mall_scroll{
   position: absolute;
-  top: 120px;
+  top: 130px;
   bottom: 0;
 }
-.client_add{
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: #ffffff;
-  z-index: 9;
-  transition: all 0.5s;
-}
-.client_add_title{
-  background-color: #52CAC1;
-  font-size: 16px;
-  line-height: 24px;
-  padding: 8px;
-  color: #ffffff;
-  text-align: center;
-}
-.client_add_close{
-  position: absolute;
-  top: 0;
-  right: 10px;
-  color: #ffffff;
-  font-size: 32px;
-  line-height: 40px;
-  height: 40px;
-}
-.client_add scroll-view{
-  position: absolute;
-  top: 40px;
-  bottom: 40px;
-}
-.client_add_input{
-  padding: 10px 30px 0;
-}
-.client_add_city{
-  box-sizing: border-box;
-  border: 1px solid #52CAC1;
-  font-size: 14px;
-  padding-left: 7px; 
-  height: 28px;
-  width: 33.33333333%;
-  float: left;
-}
-.client_add_input:last-child{
-  padding-bottom: 10px;
-}
-.client_add_input:first-child{
-  padding-top: 40px;
-}
-.client_add_input_text{
-  width: 30%;
-  float: left;
-  text-align: center;
-  font-size: 14px;
-  line-height: 30px;
-}
-.client_add_input1,.client_add_input2{
-  border: 1px solid #52CAC1;
-  font-size: 14px;
-  padding-left: 7px; 
-  height: 28px;
-}
-.client_add_input2{
-  margin-right: 70px;
-}
-.client_add_input > picker{
-  border: 1px solid #52CAC1;
-  height: 28px;
-  margin-right: 70px;
-  margin-left: 30%;
-  text-align: center;
-  width: auto;
-  font-size: 14px;
-  line-height: 28px;
-}
-.client_add_input_button{
-  width: 60px;
-  float: right;
-  font-size: 16px;
-  border-radius: 0;
-  background-color: #52CAC1;
-  line-height: 30px;
-  text-align: center;
-  padding: 0;
-  color: #ffffff;
-}
-.submit{
-  font-size: 16px;
-  border-radius: 0;
-  background-color: #52CAC1;
-  line-height: 30px;
-  text-align: center;
-  padding: 0;
-  position: absolute;
-  width: 100px;
-  bottom: 5px;
-  left: 0;
-  right: 0;
-  margin: auto;
-  color: #ffffff;
-}
-
 .mall_container{
   float: left;
-  padding: 10px;
+  padding: 8px;
+  padding-bottom: 0;
   box-sizing:border-box;
   width: 100%;
 }
@@ -284,9 +196,12 @@
 .volume::before{
   content: "销量："
 }
+
+
 /*排列后*/
 .rank{
   width: 50%;
+  padding: 8px 5px 0;
 }
 .rank .content_container_text{
   position: relative;

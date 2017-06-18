@@ -10,8 +10,7 @@ Page({
       url: '../logs/logs'
     })
   },
-  onLoad: function () {
-    var that = this
+  changeSortData:function(){
   },
   rank: function () {
     var that = this
@@ -19,7 +18,7 @@ Page({
       wx.getSystemInfo({
         success: function (res) {
           that.setData({
-            image_width: res.windowWidth / 2 - 20,
+            image_width: res.windowWidth / 2 - 10,
             rank: 'rank'
           })
         }
@@ -39,6 +38,9 @@ Page({
     return {
       title: 'XXX店铺的推荐',
     }
-  }
+  },
+  onLoad: function () {
+  },
+
 
 })

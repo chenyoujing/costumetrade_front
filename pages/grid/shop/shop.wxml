@@ -1,22 +1,16 @@
 <!--商城头部-->
-<view class="shop_title" bindtap="aaa">
-  <image src="../../../images/head-portrait.png" mode="aspectFill" class="shop_title_image" />
-  <view class="name">NICK</view>
-  <image src="../../../images/image_none.png" mode="aspectFill" class="tx" />
+<view class="shop_title clearfix">
   <navigator url="../order/order" open-type="switchTab">
     <image src="../../../images/order-form.png" mode="aspectFit" class="shop_title_image" >
       <view class="prompt">3</view>
     </image>
   </navigator>
-  <navigator url="../info/info" open-type="switchTab">
-    <image src="../../../images/message.png" mode="aspectFit" class="shop_title_image" >
-      <view class="prompt" style="left:10px;">3</view>
-    </image>
-  </navigator>
-  <image src="../../../images/notice.png" mode="aspectFit" class="shop_title_image" >
+  <image src="../../../images/message.png" mode="aspectFit" class="shop_title_image" bindtap="goto_info" data-infotype="0">
+    <view class="prompt" style="left:10px;">3</view>
+  </image>
+  <image src="../../../images/notice.png" mode="aspectFit" class="shop_title_image" bindtap="goto_info" data-infotype="2">
     <view class="prompt">3</view>
   </image>
-  <view class="clear"></view>
 </view>
 
 <scroll-view scroll-y class="shop_scroll">
@@ -43,17 +37,16 @@
         </view>
         <view class="clear"></view>
       </navigator>
-      <navigator url="mall/mall" class="shop_goods">
+      <navigator url="mall/mall" class="shop_goods clearfix">
         <view class="shop_picture">
-          <image src="../../../images/image_none.png" mode="aspectFill"></image>
+          <image src="../../../images/image_none.png" mode="aspectFill" style="margin-left:0;" />
         </view>
         <view class="shop_picture">
-          <image src="../../../images/image_none.png" mode="aspectFill"></image>
+          <image src="../../../images/image_none.png" mode="aspectFill" />
         </view>
         <view class="shop_picture">
-          <image src="../../../images/image_none.png" mode="aspectFill"></image>
+          <image src="../../../images/image_none.png" mode="aspectFill" style="margin-right:0;" />
         </view>
-        <view class="clear"></view>
       </navigator>
     </view>
     <button open-type="contact" class="shop_content_service"  session-from="1">
@@ -74,17 +67,16 @@
         </view>
         <view class="clear"></view>
       </navigator>
-      <navigator url="mall/mall" class="shop_goods">
+      <navigator url="mall/mall" class="shop_goods clearfix">
         <view class="shop_picture">
-          <image src="../../../images/image_none.png" mode="aspectFill"></image>
+          <image src="../../../images/image_none.png" mode="aspectFill" style="margin-left:0;" />
         </view>
         <view class="shop_picture">
-          <image src="../../../images/image_none.png" mode="aspectFill"></image>
+          <image src="../../../images/image_none.png" mode="aspectFill" />
         </view>
         <view class="shop_picture">
-          <image src="../../../images/image_none.png" mode="aspectFill"></image>
+          <image src="../../../images/image_none.png" mode="aspectFill" style="margin-right:0;" />
         </view>
-        <view class="clear"></view>
       </navigator>
     </view>
     <button open-type="contact" class="shop_content_service"  session-from="1">

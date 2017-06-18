@@ -1,4 +1,5 @@
-// pages/grid/info/info.js
+var util = require('../../../utils/util.js')
+var app = getApp()
 Page({
   data: {
     imgUrls: [
@@ -41,5 +42,13 @@ Page({
   },
   onLoad:function(){
     
+  },
+  onShow:function(){
+    if (app.infotype){
+      this.setData({
+        infotype: app.infotype
+      })
+    }
+    app.infotype = null
   }
 })

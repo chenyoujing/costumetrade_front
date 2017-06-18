@@ -1,38 +1,41 @@
 <view class="mall">
   <view class="mall_title">
     <image src="../../../../images/image_none.png" mode="aspectFill" class="mall_title_bg" />
-    <view class="shop_info">
-      <view class="shop_tx"><image src="../../../../images/image_none.png" mode="scaleToFill" class="shop_tx" /></view>
-      <view class="shop_name">小雨服装店</view>
-      <view class="clear"></view>
-    </view>
-    <view style="position:relative;margin: 2.5px 0;">
-      <image src="../../../../images/{{rank?'transverse':'pane'}}.png" mode="aspectFit" class="search_image" bindtap="rank"  style="margin-left:5%;"/>
+    <view class="title_view">
+      <navigator url="../storeDetails/storeDetails?storeId=1">
+        <image src="../../../../images/image_none.png" mode="scaleToFill" class="shop_tx" />
+      </navigator>
+      <navigator url="../shoppingcard/shoppingcard?storeId=1">
+        <image src="../../../../images/shoppingcard.png" mode="aspectFit" class="shoppingcard_image" style="margin-left:5%;">
+          <view class="prompt">3</view>
+        </image>
+      </navigator>
       <input class="search_input" type="text" placeholder="请输入货号搜索货品..." >
         <image src="../../../../images/search.png" mode="aspectFit" class="search_input_image" />
       </input>
     </view>
+    <navigator open-type="navigateBack">
+      <image src="../../../../images/back-away.png" mode="aspectFit" class="title_back" />
+    </navigator>
   </view>
 
 
-  <view class="sort">
-    <view class="sort_text {{state=='priceOp' ? 'screen_active' : ''}}" bindtap="changeSortData" data-sort="priceOp" >
-      推荐
-      <image src="../../../../images/down.png" mode="aspectFit" class="image_down {{Op=='asc' ? 'sort_up' : ''}}" />
-    </view>
+  <view class="sort clearfix">
     <view class="sort_text {{state=='timeUpOp' ? 'screen_active' : ''}}" bindtap="changeSortData" data-sort="timeUpOp">
-      上架
-      <image src="../../../../images/down.png" mode="aspectFit" class="image_down {{Op=='asc' ? 'sort_up' : ''}}" />
+      上架排序
+      <image src="../../../../images/sort.png" mode="aspectFit" class="image_down {{Op=='asc' ? 'sort_up' : ''}}" />
     </view>
     <view class="sort_text {{state=='saleOp' ? 'screen_active' : ''}}" bindtap="changeSortData" data-sort="saleOp" >
-      销量
-      <image src="../../../../images/down.png" mode="aspectFit" class="image_down {{Op=='asc' ? 'sort_up' : ''}}" />
+      销量排序
+      <image src="../../../../images/sort.png" mode="aspectFit" class="image_down {{Op=='asc' ? 'sort_up' : ''}}" />
     </view>
     <view class="sort_text {{state=='priceOp' ? 'screen_active' : ''}}" bindtap="changeSortData" data-sort="priceOp" >
-      价格
-      <image src="../../../../images/down.png" mode="aspectFit" class="image_down {{Op=='asc' ? 'sort_up' : ''}}" />
+      价格排序
+      <image src="../../../../images/sort.png" mode="aspectFit" class="image_down {{Op=='asc' ? 'sort_up' : ''}}" />
     </view>
-    <view class="clear"></view>
+    <view class="sort_text" style="width:10%;">
+      <image src="../../../../images/{{rank?'transverse2':'pane2'}}.png" mode="aspectFit" class="rank_image" bindtap="rank"/>
+    </view>
   </view>
 
 

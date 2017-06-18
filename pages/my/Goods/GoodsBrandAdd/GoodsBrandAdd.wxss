@@ -51,6 +51,25 @@
 .modal_submit{
   left: 50%;
 }
+.size_title_selected{
+  border: 1px solid #AEB8B8;
+  height: 28px;
+  line-height: 28px;
+  background-color: #ffffff;
+  font-size: 12px;
+  padding: 0 8px;
+  color: #000000;
+  overflow:hidden;
+  width:auto;
+  box-sizing:border-box;
+  white-space:nowrap;
+}
+.selected_view{
+  display: inline-block;
+  min-width: 20px;
+  margin: 0 5px;
+  text-align: center;
+}
 
 
 /*尺码组*/

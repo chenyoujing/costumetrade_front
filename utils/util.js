@@ -39,7 +39,9 @@ var api = {
       wx.showToast({
         title: title,
       })
+      return false
     }    
+    return true
   },
   DateFormat:function (format) {
     var o = {

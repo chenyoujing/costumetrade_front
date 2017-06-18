@@ -56,15 +56,15 @@
             </view>
             <view class="dictionary_input clearfix">
               <view class="dictionary_input_text1">改价权限：</view>
-               <picker bindchange="" range="{{customerTypeList}}" value="{{custtypename}}" range-key="{{custtypename}}"class="dictionary_input1" style="padding-right:30px;">
+               <picker bindchange="" range="{{customerTypeList}}" value="{{custtypename}}" range-key="custtypename" class="dictionary_input1" style="padding-right:30px;">
                   {{customerTypeList[custtypename_index].custtypename}}
-                  <text style="color:#808080;" wx:if="!{{array[index]}}">改价最低值</text>
+                  <text style="color:#808080;" hidden="{{customerTypeList[custtypename_index].custtypename}}">改价最低值</text>
                   <image src="../../../../images/down.png" mode="aspectFit" class="picker_image" />
                 </picker>
             </view>
             <view class="dictionary_input clearfix">
               <view class="dictionary_input_text1">选择分店：</view>
-                <picker bindchange="" range="{{customerTypeList}}" class="dictionary_input1" style="padding-right:30px;">
+                <picker bindchange="" range="{{customerTypeList}}" range-key="custtypename" class="dictionary_input1" style="padding-right:30px;">
                   {{customerTypeList[custtypename_index].custtypename}}
                   <image src="../../../../images/down.png" mode="aspectFit" class="picker_image" />
                 </picker>
@@ -101,7 +101,7 @@
             </label>
           </radio-group>
         </view>
-        <view class="dictionary_input clearfi">
+        <view class="dictionary_input clearfix">
           <view class="dictionary_input_text2">默认打印店铺logo：</view>
           <radio-group>
             <label class="radio">
@@ -118,19 +118,6 @@
           <view class="image_operation_button">支付宝收款二维码</view>
           <view class="image_operation_button">上传店铺logo图片</view>
           <view class="image_operation_button">上传店铺二维码</view>
-        </view>
-        <view class="print_info">银行信息</view>
-        <view class="dictionary_input clearfix">
-          <view class="dictionary_input_text1">姓名：</view>
-          <input type="text" class="dictionary_input1" />
-        </view>
-        <view class="dictionary_input clearfix">
-          <view class="dictionary_input_text1">开户银行：</view>
-          <input type="text" class="dictionary_input1" />
-        </view>
-        <view class="dictionary_input clearfix">
-          <view class="dictionary_input_text1">银行账号：</view>
-          <input type="number" class="dictionary_input1" />
         </view>
       </scroll-view>
       <button class="submit">保存</button>
@@ -335,10 +322,10 @@
           </view>
         </view>
 
-        <!--费用清单-->
+        <!--费用单项目-->
         <view class="setting_view" style="padding-right:20px;">
           <view class="pay_title" style="font-size:18px;">
-            费用清单
+            费用单项目
             <image src="../../../../images/append.png" mode="aspectFit" class="image_add" />
           </view>
           <view class="pay_view">

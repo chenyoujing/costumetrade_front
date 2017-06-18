@@ -8,6 +8,12 @@ Page({
       'http://img06.tooopen.com/images/20160818/tooopen_sy_175833047715.jpg'
     ],
   },
+  goto_info:function(e){
+    app.infotype = e.target.dataset.infotype
+    wx.switchTab({
+      url: '../info/info',
+    })
+  },
   onLoad:function(){
     wx.updateShareMenu({
       withShareTicket: true,

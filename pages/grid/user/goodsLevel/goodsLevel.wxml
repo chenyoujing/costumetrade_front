@@ -1,5 +1,9 @@
 <view class="level_title">设置货品级别折扣率</view>
-<view class="table">
+<navigator open-type="navigateBack">
+  <image src="../../../../images/close.png" mode="aspectFit" class="title_image_close" />
+</navigator>
+
+<view class="table clearfix">
   <view class="table_title">货品级别</view>
   <view class="table_title">普通会员</view>
   <view class="table_title">银卡会员</view>
@@ -14,5 +18,4 @@
     <view class="table_text">{{item.value[3]}}</view>
     <view class="table_text">{{item.value[4]}}</view>
   </block>
-  <view class="clear"></view>
 </view>

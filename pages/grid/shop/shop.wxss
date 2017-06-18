@@ -67,7 +67,7 @@
   position: relative;
 }
 .shop_goods{
-  padding-top: 20px;
+  padding: 20px 12rpx 0;
 }
 .shop_content_title{
   position: relative;
@@ -124,13 +124,13 @@
 }
 .shop_picture{
   width: 33.33333333%;
-  height: 230rpx;
+  height: 220rpx;
   float: left;
   position: relative;
 }
 .shop_picture image{
-  width: 230rpx;
-  height: 230rpx;
+  width: 220rpx;
+  height: 220rpx;
   position: absolute;
   top: 0;
   left: 0;

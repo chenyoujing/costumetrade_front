@@ -48,8 +48,8 @@
   width: 30%;
 }
 .sort_text .image_down{
-  width: 10px;
-  height: 10px;
+  width: 12px;
+  height: 12px;
 }
 .screen_active .sort_up{
   transform:rotate(180deg);

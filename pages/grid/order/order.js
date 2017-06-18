@@ -24,6 +24,12 @@ Page({
     logisticsname:'顺丰',
     logisticsname_index:0
   },
+  goto_info: function (e) {
+    app.infotype = e.target.dataset.infotype
+    wx.switchTab({
+      url: '../info/info',
+    })
+  },
   EventHandle:function(e){
     this.setData({
       logisticsno:e.detail.value
