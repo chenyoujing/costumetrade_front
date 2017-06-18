@@ -4,10 +4,13 @@ Page({
     container_width: "100%",
     image_width: "115",
   },
-  //事件处理函数
-  bindViewTap: function () {
+  // 跳转搜索页面
+  bindfocus:function(){
     wx.navigateTo({
-      url: '../logs/logs'
+      url: '../mallScreen/mallScreen',
+    })
+    this.setData({
+      inputFocus: false,
     })
   },
   changeSortData:function(){
@@ -41,6 +44,5 @@ Page({
   },
   onLoad: function () {
   },
-
 
 })

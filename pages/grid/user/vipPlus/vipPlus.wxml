@@ -55,18 +55,6 @@
     <view class="clear"></view>
   </view>
 
-  <!--支付方式-->
-  <view class="vip_pay">
-    <view class="vip_pay_title">选择支付方式</view>
-    <view class="method_view">
-      <view class="method_name method_active">微信支付</view>
-    </view>
-    <view class="method_view">
-      <view class="method_name">钱包支付</view>
-    </view>
-
-    <view class="clear"></view>
-  </view>
 
   <!--底部浮动-->
   <view class="vip_bottom">
