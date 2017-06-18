@@ -33,6 +33,14 @@ var api = {
       delta: 1
     })
   },
+  // 正则判断。。。
+  regular: function (val,reg,title){    
+    if (!reg.test(val)) {
+      wx.showToast({
+        title: title,
+      })
+    }    
+  },
   DateFormat:function (format) {
     var o = {
       "M+": format.getMonth() + 1, //month
