@@ -29,7 +29,7 @@
 <!--内容-->
 
   <!--信息-->
-  <view class="info" hidden="{{infotype!=0}}">
+  <view class="info" hidden="{{infotype!=0||!hiddenChat}}">
     <view class="info_container clearfix">
       <image src="../../../images/image_none.png" mode="aspectFill" class="info_tx"><view class="prompt">3</view></image>
       <view class="info_content">
@@ -37,14 +37,30 @@
         <view class="info_text">你的衣服质量很不错</view>
       </view>
       <view class="info_time">19:28</view>
+      <view class="bindtap_cover" bindtap="chat"></view>
     </view>
     <view class="info_container clearfix">
-      <image src="../../../images/image_none.png" mode="aspectFill" class="info_tx" ><view class="prompt">3</view></image>
+      <image src="../../../images/image_none.png" mode="aspectFill" class="info_tx"><view class="prompt">3</view></image>
       <view class="info_content">
         <view class="info_name">小鱼</view>
         <view class="info_text">你的衣服质量很不错</view>
       </view>
       <view class="info_time">19:28</view>
+      <view class="bindtap_cover" bindtap="chat"></view>
+    </view>
+  </view>
+  <view class="chat" hidden="{{infotype!=0||hiddenChat}}">
+    <view class="chat_container clearfix">
+      <image src="../../../images/image_none.png" mode="aspectFill" class="info_tx" />
+      <view class="chat_text">你的衣服质量很不错</view>
+    </view>
+    <view class="chat_container clearfix chat_my">
+      <image src="../../../images/image_none.png" mode="aspectFill" class="info_tx" />
+      <view class="chat_text">谢谢你的认可</view>
+    </view>
+    <view class="chat_container clearfix chat_my">
+      <image src="../../../images/image_none.png" mode="aspectFill" class="info_tx" />
+      <view class="chat_text">谢谢你的认可</view>
     </view>
   </view>
 

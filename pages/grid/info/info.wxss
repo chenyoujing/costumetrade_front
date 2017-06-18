@@ -47,6 +47,7 @@
 .info_container{
   padding: 15px 15px 10px;
   border-bottom: 2px solid #DCDCDC;
+  position: relative;
 }
 .info_tx{
   width: 50px;
@@ -80,6 +81,50 @@
   line-height: 20px;
   color: #cccccc;
 }
+
+/*客服*/
+.chat{
+  padding-top: 60px;
+}
+.chat_container{
+  padding: 10px 15px 0;
+}
+.chat_container:last-child{
+  padding-bottom: 10px;
+}
+.chat_text{
+  font-size: 16px;
+  line-height: 30px;
+  background-color: #eeeeee;
+  border-radius: 15px;
+  padding: 0 20px;
+  margin: 10px 25px;
+  float: left;
+  position: relative;
+}
+.chat_text::before{
+  content: '';
+  border: 15px solid transparent;
+  border-right-color: #eeeeee;
+  position: absolute;
+  top: 0;
+  left: -20px;
+}
+.chat_my .chat_text::before{
+  display: none;
+}
+.chat_my .chat_text::after{
+  content: '';
+  border: 15px solid transparent;
+  border-left-color: #eeeeee;
+  position: absolute;
+  top: 0;
+  right: -20px;
+}
+.chat_my .info_tx,.chat_my .chat_text{
+  float: right;
+}
+
 
 /*通讯录*/
 .supplier_scroll{

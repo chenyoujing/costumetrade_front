@@ -73,7 +73,7 @@ radio,checkbox{
   display: block;
 }
 /*覆盖，bindatp用*/
-bindtap_cover{
+.bindtap_cover{
   position: absolute;
   top: 0;
   left: 0;
