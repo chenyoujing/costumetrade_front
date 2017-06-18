@@ -1,6 +1,5 @@
 {
   "pages": [
-    
     "pages/grid/shop/shop",
     "pages/grid/user/user",
     "pages/grid/info/info",
@@ -15,6 +14,9 @@
     "pages/grid/user/shareStore/shareStore",
     "pages/grid/user/vipPlus/vipPlus",
     "pages/grid/user/dictionary/dictionary",
+    "pages/grid/user/updateBrand/updateBrand",
+    "pages/grid/user/updateSize/updateSize",
+    
     "pages/grid/user/storeUpdate/storeUpdate",
     "pages/grid/user/Help/Help",
     "pages/grid/user/helpInfo/helpInfo",
@@ -44,7 +46,9 @@
     "pages/my/Goods/GoodsUpdate/GoodsUpdate",
     "pages/my/Goods/GoodsShare/GoodsShare",
     "pages/my/Goods/GoodsScreen/GoodsScreen",
+    "pages/my/Goods/priceUpdate/priceUpdate",
     "pages/grid/shop/mall/mall",
+    "pages/grid/shop/mallScreen/mallScreen",
     "pages/grid/shop/shoppingcard/shoppingcard",
     "pages/grid/shop/goods_detail/goods_detail",
     "pages/grid/shop/goodsComment/goodsComment",
