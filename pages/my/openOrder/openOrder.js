@@ -447,7 +447,7 @@ Page({
     this.setData({
       totalData:{
         totalNum: totalNum,
-        realcostArray: realcostArray
+        realcostArray: (realcostArray).toFixed(2)
       }
     })
     var that = this;

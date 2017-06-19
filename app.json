@@ -1,5 +1,7 @@
 {
   "pages": [
+    "pages/grid/user/dictionary/dictionary",
+    
     "pages/grid/shop/shop",
     "pages/grid/user/user",
     "pages/grid/info/info",
@@ -13,7 +15,6 @@
     "pages/grid/user/customerType/customerType",
     "pages/grid/user/shareStore/shareStore",
     "pages/grid/user/vipPlus/vipPlus",
-    "pages/grid/user/dictionary/dictionary",
     "pages/grid/user/updateBrand/updateBrand",
     "pages/grid/user/updateSize/updateSize",
     

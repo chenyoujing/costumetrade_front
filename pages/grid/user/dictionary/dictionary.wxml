@@ -38,47 +38,47 @@
           <view class="staff_updata_top">
             <view class="dictionary_input">
               <view class="dictionary_input_text1 clearfix">姓名：</view>
-              <input type="number" class="dictionary_input1" value="{{employeeDetails.reallyName}}"/>
+              <input type="number" class="dictionary_input1" value="{{employeeDetails.reallyName}}" data-index="reallyName" bindblur="employeeInfoChange"/>
             </view>
             <view class="dictionary_input clearfix">
-              <view class="dictionary_input_text1" value="{{employeeDetails.reallyName}}">微信号：</view>
-              <input type="number" class="dictionary_input1" />
+              <view class="dictionary_input_text1">微信号：</view>
+              <input type="number" value="{{employeeDetails.weChatNo}}" class="dictionary_input1" data-index="weChatNo" bindblur="employeeInfoChange"/>
             </view>
             <view class="dictionary_input clearfix">
               <view class="dictionary_input_text1">打折：</view>
-              <input type="number" class="dictionary_input1" style="padding-right:30px;"  value="{{employeeDetails.discount}}">
+              <input type="number" class="dictionary_input1" style="padding-right:30px;"  value="{{employeeDetails.discount}}"  data-index="discount" bindblur="employeeInfoChange">
                 <view class="perCent">%</view>
               </input>
             </view>
             <view class="dictionary_input clearfix">
               <view class="dictionary_input_text1">去零：</view>
-              <input type="number" class="dictionary_input1"  value="{{employeeDetails.zeroPrice}}" placeholder="去零最高值" />
+              <input type="number" class="dictionary_input1"  value="{{employeeDetails.zeroPrice}}" placeholder="去零最高值" data-index="zeroPrice" bindblur="employeeInfoChange"/>
             </view>
             <view class="dictionary_input clearfix">
               <view class="dictionary_input_text1">改价权限：</view>
-               <picker bindchange="" range="{{customerTypeList}}" value="{{custtypename}}" range-key="custtypename" class="dictionary_input1" style="padding-right:30px;">
+               <picker bindchange="binChangeSale" data-index="custtypename_index" range="{{customerTypeList}}" value="{{employeeDetails.modifyPrice}}" range-key="custtypename" class="dictionary_input1" style="padding-right:30px;">
                   {{customerTypeList[custtypename_index].custtypename}}
                   <text style="color:#808080;" hidden="{{customerTypeList[custtypename_index].custtypename}}">改价最低值</text>
                   <image src="../../../../images/down.png" mode="aspectFit" class="picker_image" />
                 </picker>
             </view>
-            <view class="dictionary_input clearfix">
+            <view class="dictionary_input clearfix" wx:if="{{brandList.length>0}}">
               <view class="dictionary_input_text1">选择分店：</view>
-                <picker bindchange="" range="{{customerTypeList}}" range-key="custtypename" class="dictionary_input1" style="padding-right:30px;">
+                <picker bindchange="binChangeSale" data-index="branch_index" range="{{customerTypeList}}" range-key="custtypename" value="{{employeeDetails.branchname}}" class="dictionary_input1" style="padding-right:30px;">
                   {{customerTypeList[custtypename_index].custtypename}}
                   <image src="../../../../images/down.png" mode="aspectFit" class="picker_image" />
                 </picker>
             </view>
           </view>
           <view class="print_info">五个权限</view>
-          <checkbox-group>
+          <checkbox-group bindchange="privilegeId">
             <label class="checkbox" wx:for="{{privilegeEmployees}}" wx:key="id">
               <checkbox value="{{item.id}}" checked="{{item.checked}}"/>{{item.operateName}}
             </label>
           </checkbox-group>
         </scroll-view>
         <button class="submit submit_gray" bindtap="staff_updata_close">取消</button>
-        <button class="submit" bindtap="staff_updata_close" style="width:50%;left:unset;">保存</button>
+        <button class="submit" bindtap="employeeSubmit" style="width:50%;left:unset;">保存</button>
       </view>
     </swiper-item>
 
