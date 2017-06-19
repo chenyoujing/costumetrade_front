@@ -23,8 +23,8 @@ Page({
         wx.hideNavigationBarLoading();
         var CustomerInfo = res.data
         for(var p in app.custProdPriceList){
-          if (CustomerInfo.type == app.custProdPriceList[p].id){
-            CustomerInfo.type = app.custProdPriceList[p].custtypename
+          if (CustomerInfo.cate == app.custProdPriceList[p].id){
+            CustomerInfo.cate = app.custProdPriceList[p].custtypename
           }
         }
         that.setData({
@@ -37,7 +37,6 @@ Page({
   onLoad: function (e) {
     this.setData({
       clientId: e.clientId,
-      client: e.client
     })
     this.getClient()
   },

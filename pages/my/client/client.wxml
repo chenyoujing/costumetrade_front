@@ -7,11 +7,10 @@
     </input>
   </view>
 
-  <view class="client">
+  <view class="client clearfix">
     <view class="client_text {{client=='1' ? 'active' : ''}}" bindtap="clientType" data-client="1">客户</view>
     <view class="client_text {{client=='2' ? 'active' : ''}}" bindtap="clientType" data-client="2">供货商</view>
     <view class="client_text {{client=='3' ? 'active' : ''}}" bindtap="clientType" data-client="3">朋友</view>
-    <view class="clear"></view>
   </view>
   <view class="client">
     <view class="client_text sort_text {{state=='nameOp' ? 'active' : ''}}" bindtap="clientSort" data-sort="nameOp">名称排序</view>
@@ -20,6 +19,9 @@
     <view class="clear"></view>
   </view>
   <scroll-view class="content" scroll-y style="bottom:{{delete_button}}px;" lower-threshold="10" bindscrolltolower="{{loadMore?'onReachBottom':''}}">
+    <view class="prompt_none" wx:if="{{ClientsList == 0}}">
+      <text>您没有{{client==1?'客户':''}}{{client==2?'供货商':''}}{{client==3?'朋友':''}}，请添加</text>
+    </view>
     <view class="client_container" wx:for="{{ClientsList}}">
       <checkbox-group class="delete_container" bindchange="delete_container" data-id ="{{item.id}}" >
         <label class="checkbox">
@@ -27,7 +29,7 @@
         </label>
       </checkbox-group>
 
-      <navigator url="clientInfo/clientInfo?client={{client}}&clientId={{item.id}}" class="client_content clearfix" style="left:{{select_checkbox}}px">
+      <navigator url="clientInfo/clientInfo?clientId={{item.id}}" class="client_content clearfix" style="left:{{select_checkbox}}px">
         <image image src="{{item.image ? item.image : '../../../images/image_none.png'}}" mode="aspectFill" class="client_tx" />
         <view class="clearfix">
           <view class="client_info">

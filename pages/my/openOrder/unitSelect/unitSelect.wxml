@@ -1,27 +1,28 @@
   <!--头部-->
-<view class="unitSelect_title">
+<view class="unitSelect_title clearfix">
   <view class="title_text">{{title}}</view>
-  <input type="text" class="title_input" value="{{nameSearch}}" bindinput="search"/>
   <image src="../../../../images/search.png" class="title_search" mode="aspectFit" />
-  <image src="../../../../images/add.png" class="title_add" mode="aspectFit" />
-  <view class="claer"></view>
+  <image src="../../../../images/add.png" class="title_add" mode="aspectFit" bindtap="scan" />
+  <input type="text" class="title_input" value="{{nameSearch}}" bindinput="search"/>
 </view>
 
 <scroll-view scroll-y class="unitSelect_sceoll" scroll-into-view="{{supplier_type}}">
+  <view class="prompt_none" wx:if="{{contacts == 0}}">
+    <text>对不起，搜不到您的{{title}}</text>
+  </view>
   <!--供应商内容-->
   <block wx:for="{{contacts}}">
     <view class="supplier_type" id="{{item.type}}">{{item.type}}</view>
-    <view class="supplier_container" wx:for="{{item.value}}" bindtap="selectName" style="position:relative;">
-      <view class="supplier_tx" >
+    <view class="supplier_container" wx:for="{{item.value}}" style="position:relative;">
+      <navigator url="../../client/clientInfo/clientInfo?clientId={{item.id}}" class="supplier_tx" >
         <image data-id="{{item.id}}" data-cate="{{item.cate}}" data-image="{{item.image}}" data-name = "{{item.remarkName}},{{item.reallyName}},{{item.nickName}}" bindtap="selectName" src="{{item.image?item.image:'../../../../images/image_none.png'}}" mode="aspectFill"></image>
-      </view>
-      <view class="supplier_name"></view>
+      </navigator>
       <view class="supplier_info">
         <view>昵称：{{item.nickName}}</view>
         <view wx:if="{{item.remarkName}}">名称：{{item.remarkName}}</view>
         <view wx:if="{{!item.remarkName && item.reallyName}}">名称：{{item.reallyName}}</view>
-        <view style="position:absolute;top:0;left:0;right:0;bottom:0;" data-id="{{item.id}}" data-cate="{{item.cate}}" data-image="{{item.image}}" data-name = "{{item.remarkName}},{{item.reallyName}},{{item.nickName}}"></view>
       </view>
+      <view class="bindtap_cover" style="left:20%;" bindtap="selectName" data-id="{{item.id}}" data-cate="{{item.cate}}" data-image="{{item.image}}" data-name = "{{item.remarkName}},{{item.reallyName}},{{item.nickName}}"></view>
     </view>  
   </block>
 
@@ -30,3 +31,9 @@
   <view class="nav_right" bindtap="supplier_select">
     <view wx:for="{{nav_right}}" class="nav_text" data-type="{{item}}">{{item}}</view>
   </view>
+
+<!--扫码添加-->
+<modal title="请扫码" hidden="{{scanModal}}" confirm-text="扫好了" bindconfirm="confirm" bindcancel="cancel">
+  <image src="{{scan?scan:'../../../../images/image_none.png'}}" mode="widthFix" class="scan_modal_image" />
+  <view class="scan_modal_text">请用微信扫一扫上面的团,扫好了后点击“扫好了”</view>
+</modal>

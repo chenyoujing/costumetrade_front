@@ -39,6 +39,9 @@
   </view>
 
   <scroll-view scroll-y="true" bindscroll="keyHidden" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}" style="bottom:{{keyHidden?60:keyboard_height*3 + 79}}px;" class="order_scroll" hidden="{{products_info||orderid}}">
+    <view class="prompt_none" wx:if="{{shopCart == 0}}">
+      <text>您没有添加货品，请添加</text>
+    </view>
     <block wx:for="{{shopCart}}" >
       <view class="order_view clearfix {{index%2==0?'bg_w':''}}" >
         <view style="width:100%;" bindtap="orderid" data-id="{{item.productid}}" data-num="{{item.count}}" data-index="{{index}}">
@@ -57,6 +60,9 @@
 
   <!--页面2-->
   <scroll-view scroll-y="true" bindscroll="keyHidden" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}" style="top:42px;bottom:{{keyHidden?60:keyboard_height*3 + 79}}px;background-color:#ffffff;" class="order_scroll" hidden="{{!products_info||orderid}}">
+    <view class="prompt_none" wx:if="{{keyArray == 0}}">
+      <text>对不起，搜不到您要的货品</text>
+    </view>
     <block wx:for="{{keyArray}}" wx:key="id">
       <view class="products_info clearfix" data-id="{{item.id}}" style="position: absolute;left: 0;right: 0;">
         <image src="{{item.image ? item.image : '../../../images/image_none.png'}}" mode="aspectFill" class="products_info_image" />

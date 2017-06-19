@@ -14,14 +14,14 @@
         <view class="client_name_text">真实姓名：{{CustomerInfo.reallyName}}</view>
         <view class="client_name_text">微信名：{{CustomerInfo.nickName}}</view>
       </view>
-      <navigator url="../clientAdd/clientAdd?client={{client}}&clientId={{clientId}}">
+      <navigator url="../clientAdd/clientAdd?client={{CustomerInfo.type}}&clientId={{clientId}}">
         <image src="../../../../images/update.png" mode="aspectFill" class="client_image_update" />
       </navigator>
     </view>
 
     <view class="client_info_view clearfix">
       <view class="client_info clearfix">
-        <view class="client_info_text">种类：<text>{{CustomerInfo.type}}会员</text></view>
+        <view class="client_info_text">种类：<text>{{CustomerInfo.cate}}会员</text></view>
         <view class="client_info_text">积分：<text>5</text></view>
         <view class="client_info_text">电话：<text>{{CustomerInfo.telephone||CustomerInfo.phoneBack}}</text></view>
         <view class="client_info_text">区域：<text>{{CustomerInfo.city}}{{CustomerInfo.district}}</text></view>

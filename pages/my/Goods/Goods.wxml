@@ -99,6 +99,11 @@
     </view>
   </view>
   <scroll-view scroll-y="true" class="content" lower-threshold="10" bindscrolltolower="{{loadMore?'onReachBottom':''}}" style="bottom:{{delete_button}}px;">
+  
+    <view class="prompt_none" wx:if="{{product == 0}}">
+      <text>对不起，搜不到您要的货品</text>
+    </view>
+
     <view class="content_view" wx:for="{{product}}" wx:key="{{id}}">
       <checkbox-group class="delete_container" bindchange="delete_container" data-id ="{{item.id}}" >
         <label class="checkbox">

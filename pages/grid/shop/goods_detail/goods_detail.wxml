@@ -68,7 +68,7 @@
       <view class="goods_container">
         <view class="goods_title">尺码类型</view>
         <view class="goods_check {{sizes == '1' ? 'goods_checked' : ''}}" bindtap="sizes_checked" data-sizes="1">选尺码</view>
-        <view class="goods_check {{sizes == '2' ? 'goods_checked' : ''}}" bindtap="sizes_checked" data-sizes="2">选尺码</view>
+        <view class="goods_check {{sizes == '2' ? 'goods_checked' : ''}}" bindtap="sizes_checked" data-sizes="2">选尺码组</view>
         <view class="clear"></view>
       </view>
       <view class="goods_container">

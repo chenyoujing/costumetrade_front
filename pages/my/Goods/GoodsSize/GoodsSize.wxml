@@ -11,6 +11,11 @@
     <image src="../../../../images/amputate.png" bindtap="back" mode="aspectFit" class="image_close" />
     </view>
     <scroll-view scroll-x class="size_title_selected" >
+
+      <view class="prompt_none" wx:if="{{selected == 0}}">
+        <text>您没有可供选择的尺码，请添加</text>
+      </view>
+
       <block wx:for="{{selected}}">
         <view class="" bindtap="reduce" data-size="{{item}}" class="selected_view">
           {{item}}
@@ -37,6 +42,11 @@
   </navigator>
     </view>
     <scroll-view scroll-y class="sizes_container">
+
+      <view class="prompt_none" wx:if="{{sizeProduct == 0}}">
+        <text>您还没有添加过尺码组</text>
+      </view>
+
       <radio-group bindchange="changeBoxBind">
         <label class="sizes_option" wx:for="{{sizeProduct}}" wx:key="id">
           <radio value="{{item.value}}" />{{item.customname}}

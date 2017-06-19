@@ -62,6 +62,7 @@
       <image src="../../../images/image_none.png" mode="aspectFill" class="info_tx" />
       <view class="chat_text">谢谢你的认可</view>
     </view>
+    <view class="chat_button"></view>
   </view>
 
   <!--通讯录-->
@@ -372,7 +373,9 @@
     <view class="notice">
       <view class="notice_view">
         <view class="notice_title clearfix" wx:if="{{0 == 0}}">
-          <image src="../../../images/image_none.png" mode="aspectFill" class="notice_tx" />
+          <navigator url="../shop/storeDetails/storeDetails">
+            <image src="../../../images/image_none.png" mode="aspectFill" class="notice_tx" />
+          </navigator>
           <view class="notice_text">公告</view>
           <view class="notice_name">点艺公司</view>
         </view>

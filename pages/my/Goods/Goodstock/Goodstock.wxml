@@ -15,6 +15,11 @@
     <view class="th th1">编辑</view>
   </view>
   <scroll-view scroll-y="true">
+
+    <view class="prompt_none" wx:if="{{product == 0}}">
+      <text>对不起，搜不到该货品库存</text>
+    </view>
+
     <block wx:for="{{product}}" wx:key="id">
       <view class="tr tr1">
         <view class="td th1">{{index+1}}</view>

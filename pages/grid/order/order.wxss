@@ -68,17 +68,14 @@
   margin-top: 40px;
 }
 .ordertype_text{
+  box-sizing: border-box;
   color: #202020;
   text-align: center;
-  background-color: #DCDCDC;
   float: left;
   font-size: 18px;
   line-height: 40px;
   height: 40px;
   width: 50%;
-}
-.ordertype_active{
-  background: #ffffff;
 }
 .ordertype2{
   border: solid #52CAC1;
@@ -109,7 +106,7 @@
   text-align: center;
   color: #ffffff;
 }
-.ordertype2_active{
+.ordertype_active{
   color: #33736e;
   border-bottom: 2px solid #33736e;
 }

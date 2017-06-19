@@ -8,7 +8,8 @@ Page({
     contacts: [],
     nameSearch:"",
     supplier_type:'A',
-    nav_right: ['↑', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '#',]
+    nav_right: ['↑', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '#',],
+    scanModal: true,
   },
   supplier_select:function(e){
     let data = e.target.dataset
@@ -80,6 +81,76 @@ Page({
   },
   downData: function (type) {
     util.api.supplierRefresh('client/getClients', "UnitData", 'updataTimeunit', this.callback);
+  },
+  // 获取二维码/添加客户、供应商
+  scan: function (e) {
+    this.setData({
+      scanModal: false,
+    })
+    let data = e.target.dataset
+    var client = this.data.type
+    var that = this
+    var id = util.api.DateFormat(new Date())
+    wx.showNavigationBarLoading()
+    util.api.request({
+      url: 'client/scanQRCode',
+      data: {
+        type: client,
+        storeId: "1",
+        id: id
+      },
+      method: 'POST',
+      header: {
+        'content-type': 'application/json'
+      },
+      success: function (res) {
+        wx.hideNavigationBarLoading();
+        that.setData({
+          scan: res.data,
+          id: id
+        })
+      }
+    })
+  },
+  // 关闭扫码模态框
+  cancel: function () {
+    this.setData({
+      scanModal: true
+    })
+  },
+  // 扫好了
+  confirm: function () {
+    var that = this
+    wx.showNavigationBarLoading()
+    var client = this.data.type
+    var id = this.data.id
+    util.api.request({
+      url: 'client/scanQRCodeOk',
+      data: {
+        type: client,
+        storeId: "1",
+        id: id
+      },
+      method: 'POST',
+      header: {
+        'content-type': 'application/json'
+      },
+      success: function (res) {
+        wx.hideNavigationBarLoading();
+        if (!res.data.id) {
+          wx.showToast({
+            title: res.msg,
+            duration: 2000
+          })
+        } else {
+          app.addCustomerInfo = res.data
+          wx.navigateTo({
+            url: '../../client/clientAdd/clientAdd?client=' + that.data.client
+          })
+        }
+      }
+    })
+    this.cancel()
   },
   onLoad: function (options) {
     this.setData({

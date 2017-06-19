@@ -25,16 +25,16 @@
 
 <!--二级分类 销售-->
 <view class="ordertype2" wx-if="{{ordertype==2}}">
-  <view class="ordertype2_text {{ordertype2=='1' ? 'ordertype2_active' : ''}}" bindtap="ordertype2" data-ordertypetwo="1">
+  <view class="ordertype2_text {{ordertype2=='1' ? 'ordertype_active' : ''}}" bindtap="ordertype2" data-ordertypetwo="1">
       待收款<view class="ordertype2_prompt">{{countNum.sNoPayCount}}</view>
     </view>
-  <view class="ordertype2_text {{ordertype2=='4' ? 'ordertype2_active' : ''}}" bindtap="ordertype2" data-ordertypetwo="4">
+  <view class="ordertype2_text {{ordertype2=='4' ? 'ordertype_active' : ''}}" bindtap="ordertype2" data-ordertypetwo="4">
      待审核<view class="ordertype2_prompt">{{countNum.sNoAuditCount}}</view>
   </view>
-  <view class="ordertype2_text {{ordertype2=='2' ? 'ordertype2_active' : ''}}" bindtap="ordertype2" data-ordertypetwo="2">
+  <view class="ordertype2_text {{ordertype2=='2' ? 'ordertype_active' : ''}}" bindtap="ordertype2" data-ordertypetwo="2">
      待发货<view class="ordertype2_prompt">{{countNum.sNoShipCount}}</view>
   </view>
-  <view class="ordertype2_text {{ordertype2=='5' ? 'ordertype2_active' : ''}}" bindtap="ordertype2" data-ordertypetwo="5">
+  <view class="ordertype2_text {{ordertype2=='5' ? 'ordertype_active' : ''}}" bindtap="ordertype2" data-ordertypetwo="5">
       全部
   </view>
   <view class="clear"></view>
@@ -42,16 +42,16 @@
 
 <!--二级分类 采购-->
 <view class="ordertype2"  wx-if="{{ordertype==1}}">
-  <view class="ordertype2_text {{ordertype2=='1' ? 'ordertype2_active' : ''}}" bindtap="ordertype2" data-ordertypetwo="1">
+  <view class="ordertype2_text {{ordertype2=='1' ? 'ordertype_active' : ''}}" bindtap="ordertype2" data-ordertypetwo="1">
       待付款<view class="ordertype2_prompt">{{countNum.pNoPayCount}}</view>
     </view>
-  <view class="ordertype2_text {{ordertype2=='2' ? 'ordertype2_active' : ''}}" bindtap="ordertype2" data-ordertypetwo="2">
+  <view class="ordertype2_text {{ordertype2=='2' ? 'ordertype_active' : ''}}" bindtap="ordertype2" data-ordertypetwo="2">
       待发货<view class="ordertype2_prompt">{{countNum.pNoShipCount}}</view>
   </view>
-  <view class="ordertype2_text {{ordertype2=='3' ? 'ordertype2_active' : ''}}" bindtap="ordertype2" data-ordertypetwo="3">
+  <view class="ordertype2_text {{ordertype2=='3' ? 'ordertype_active' : ''}}" bindtap="ordertype2" data-ordertypetwo="3">
       待收货<view class="ordertype2_prompt">{{countNum.pNoReceiptCount}}</view>
   </view>
-  <view class="ordertype2_text {{ordertype2=='5' ? 'ordertype2_active' : ''}}" bindtap="ordertype2" data-ordertypetwo="5">
+  <view class="ordertype2_text {{ordertype2=='5' ? 'ordertype_active' : ''}}" bindtap="ordertype2" data-ordertypetwo="5">
       全部
   </view>
   <view class="clear"></view>
@@ -60,6 +60,9 @@
 <scroll-view scroll-y class="order_scroll" lower-threshold="10" bindscrolltolower="{{loadMore?'onReachBottom':''}}">
   <view style="padding-top:10px;"></view>
 
+  <view class="prompt_none" wx:if="{{product == 0}}">
+    <text>暂无该种类订单</text>
+  </view>
   <!--采购待付款-->
   <view wx-if="{{ordertype==1 && ordertype2==1}}" wx:for="{{product}}" class="order_container_view">
     <navigator url="orderDetails/orderDetails?ordertype={{ordertype}}&payorderno={{item.payorderno}}&ordertype2=1">

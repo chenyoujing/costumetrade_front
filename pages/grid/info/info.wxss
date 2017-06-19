@@ -124,6 +124,10 @@
 .chat_my .info_tx,.chat_my .chat_text{
   float: right;
 }
+.chat_button{
+  position: fixed;
+  border: 1px solid #286561;
+}
 
 
 /*通讯录*/

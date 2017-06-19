@@ -9,6 +9,9 @@
   </view>
 
   <scroll-view scroll-y="true" class="modal_content" wx:if="{{title !== '颜色选择'}}">
+    <view class="prompt_none" wx:if="{{product == 0}}">
+      <text>您没有可供选择的{{titlename}}，请添加</text>
+    </view>
     <radio-group bindchange="checkboxChange">
       <label class="modal_content_option" wx:for="{{product}}" wx:key="id">
         <radio value="{{item.brandname}}{{item.catename}}{{item.unit}}|{{item.id}}" />{{item.brandname}}{{item.catename}}{{item.unit}}
@@ -17,6 +20,9 @@
     </radio-group>
   </scroll-view>
    <scroll-view scroll-y="true" class="modal_content" wx:if="{{title == '颜色选择'}}">
+    <view class="prompt_none" wx:if="{{product == 0}}">
+      <text>您没有可供选择的{{titlename}}，请添加</text>
+    </view>
     <checkbox-group bindchange="checkboxChange">
       <label class="checkbox modal_content_option" wx:for="{{product}}" wx:key="id">
        <checkbox value="{{item.colorname}}|{{item.id}}"/>{{item.colorname}}
