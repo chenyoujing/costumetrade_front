@@ -1,5 +1,8 @@
 <view style="overflow:hidden; min-height:100vh;">
   <view class="title clearfix">
+    <navigator open-type="navigateBack">
+      <image src="../../../../images/back-away.png" mode="aspectFit" class="title_image_back" />
+    </navigator>
     <image src="../../../images/more.png" mode="aspectFit" class="title_image" bindtap="more_function" />
     <image src="../../../images/add.png" mode="aspectFit" class="title_image" bindtap="scan" style="margin-left:10px;" />
     <input class="search_input" type="text" name="search" placeholder="名称" bindfocus="bindfocus" focus="{{inputFocus}}" value="{{enterValue}}">

@@ -1,4 +1,7 @@
 <view class="shoppingcard">
+  <navigator class="back_nav" open-type="navigateBack">
+    <image src="../../../../images/back-away.png" mode="aspectFit" class="back" />
+  </navigator>
   <view class="shoppingcard_container clearfix">
     <checkbox-group class="container_check">
       <checkbox value="" checked="" style="width:100%;"/>
@@ -42,7 +45,7 @@
 
 <!--底部浮动-->
 <view class="shoppingcard_bottom">
-  <navigator url="../orderSure/orderSure" class="bottom_button">去结算</navigator>
+  <navigator url="../orderSure/orderSure" open-type="redirect" class="bottom_button">去结算</navigator>
   <view class="bottom_info">
     <checkbox-group class="bottom_check" bindchange="allcheck">
       <label>

@@ -160,7 +160,22 @@ picker{
   border-radius: 3px;
   vertical-align: middle;
 }
-
-.style_none{
+/*返回按钮*/
+.back_nav{
+  width: 30px;
+  height: 30px;
+  position: fixed;
+  top: 5px;
+  left: 5px;
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 15px;
+  z-index: 1;
+}
+.back{
+  width: 16px;
+  height: 16px;
+  padding: 7px;
+}
+title_image_back{
   display: unset;
 }

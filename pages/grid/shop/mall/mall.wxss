@@ -5,7 +5,7 @@
   z-index: 3;
 }
 .title_back{
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 16px;

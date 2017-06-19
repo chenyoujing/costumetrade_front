@@ -1,7 +1,11 @@
 
 /*商品详情*/
 .goods_detail{
-  padding-bottom: 40px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 40px;
 }
 swiper image{
   width: 100%;

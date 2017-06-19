@@ -4,7 +4,7 @@
     <navigator open-type="navigateBack">
       <image src="../../../../images/back-away.png" mode="aspectFit" class="title_image_back" />
     </navigator>
-    <view class="title_scan">
+    <view class="title_scan" bindtap="scan">
       <image src="../../../images/scan-wiht.png" mode="aspectFit" class="title_image_scan" />
       <view class="title_scan_text">扫一扫</view>
     </view>

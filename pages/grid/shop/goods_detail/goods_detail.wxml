@@ -1,5 +1,5 @@
 <!--商品详情-->
-<view class="goods_detail">
+<scroll-view class="goods_detail" scroll-y="{{modal=='block'?false:true}}">
   <swiper indicator-dots autoplay circular style="height:{{height*0.4}}px;">
     <block wx:for="{{imgUrls}}" wx:key="id">
       <swiper-item>
@@ -7,6 +7,9 @@
       </swiper-item>
     </block>
   </swiper>
+  <navigator class="back_nav" open-type="navigateBack">
+    <image src="../../../../images/back-away.png" mode="aspectFit" class="back" />
+  </navigator>
   <view class="detail_title">621报喜鸟11 2017春 打底裤 适中紫</view>
   <view class="detail_price">￥639.6</view>
   <view class="detail_price_original">￥1491</view>
@@ -52,7 +55,7 @@
     </view>
     <navigator url="../goodsComment/goodsComment" class="evaluate_more">查看更多评论</navigator>
   </view>
-</view>
+</scroll-view>
 
 
 <!--加入购物车-->

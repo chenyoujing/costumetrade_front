@@ -19,3 +19,5 @@
     <view class="table_text">{{item.value[4]}}</view>
   </block>
 </view>
+
+<button class="submit">保存</button>

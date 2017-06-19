@@ -4,6 +4,12 @@
   padding: 5px 0;
   position: relative;
 }
+.title_image_back{
+  width: 12px;
+  height: 12px;
+  padding: 9px 10px;
+  float: left;
+}
 .title_text{
   float: left;
   width: 25%;

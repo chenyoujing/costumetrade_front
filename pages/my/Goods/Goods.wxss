@@ -1,9 +1,14 @@
 .title{
   background-color: #52CAC1;
-  padding: 15px 20px;
-  padding-right: 0;
+  padding: 15px 0;
   position: relative;
   z-index: 3;
+}
+.title_image_back{
+  width: 12px;
+  height: 12px;
+  padding: 12px 10px;
+  float: left;
 }
 .title_input{
   margin-left: 2%; 
