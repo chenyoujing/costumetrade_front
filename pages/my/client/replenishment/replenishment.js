@@ -4,7 +4,9 @@ Page({
   data: {
     clientId: "",
     clientType: "",
-    product:[]
+    product:[],
+    name: '',
+    cate: ''
   },
   Replenishment_requst:function(){
     wx.showNavigationBarLoading()
@@ -31,10 +33,11 @@ Page({
   },
   // 相应的跳转
   skipUrl:function(e){
-    var id= e.target.dataset.id;
+    var id= e.target.dataset.Goodsid;
     var url = "";
     if (this.data.clientType == 1){
-      url = "../../openOrder/openOrder?clientId="+this.data.clientId+"&id=" + id+'&ClientData=true'
+      url = "../../openOrder/openOrder?clientId=" + this.data.clientId + "&id=" + id+'&ClientData=true';
+      app.selectName = e.target.dataset;
     }else{
       url = "../../../gird/shop/goods_detail/goods_detail?clientId=" + this.data.clientId + "&id=" + id + '&ClientData=true'
     };
@@ -45,7 +48,10 @@ Page({
   onLoad: function (options) {
     this.setData({
       clientId: options.id,
-      clientType: options.type
+      clientType: options.type,
+      name: options.name,
+      cate: options.cate,
+      image: options.image
     })
     this.Replenishment_requst()
   },

@@ -549,7 +549,7 @@ Page({
     this.localData(product);
     this.totalData()
   },
-  onLoad: function () {
+  onLoad: function (e) {
     var that = this;
     this.downData();
     setTimeout(() => {
@@ -565,6 +565,15 @@ Page({
         })
       }
     })
+    console.log(e)
+    if (e.ClientData){
+      var object = {};
+      object.target.dataset.id = e.id;
+      object.currentTarget.dataset.num = "";
+      console.log(object)
+      this.orderid(object)
+    }
+    
   },
   onShow: function (options) {
     console.log(app)
@@ -576,19 +585,6 @@ Page({
         scrollTop: this.data.scrollTop,
       })
     }, 100);
-    var name = '';
-    if (app.selectName.name.indexOf(',')>-1){
-      var selectName = app.selectName.name.split(',');
-      if (selectName[0]) {
-        name = selectName[0]
-      } else if (selectName[1]) {
-        name = selectName[1]
-      } else if (selectName[2]) {
-        name = selectName[2]
-      }
-      app.selectName.name = name;
-    }
-    console.log(app.selectName)
     this.setData({
       selectName: app.selectName
     })

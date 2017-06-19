@@ -22,7 +22,7 @@
         <view wx:if="{{item.remarkName}}">名称：{{item.remarkName}}</view>
         <view wx:if="{{!item.remarkName && item.reallyName}}">名称：{{item.reallyName}}</view>
       </view>
-      <view class="bindtap_cover" style="left:20%;" bindtap="selectName" data-id="{{item.id}}" data-cate="{{item.cate}}" data-image="{{item.image}}" data-name = "{{item.remarkName}},{{item.reallyName}},{{item.nickName}}"></view>
+      <view class="bindtap_cover" style="left:20%;" bindtap="selectName" data-id="{{item.id}}" data-cate="{{item.cate}}" data-image="{{item.image}}" data-name = "{{item.remarkName||item.reallyName||item.nickName}}"></view>
     </view>  
   </block>
 

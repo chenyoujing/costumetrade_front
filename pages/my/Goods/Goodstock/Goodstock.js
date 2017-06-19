@@ -52,8 +52,7 @@ Page({
       url: 'product/takingStock',
       data: {
         storeId: 1,
-        id:that.data.id,
-        page:{}
+        id:that.data.id
       },
       method: 'POST',
       header:{
@@ -65,6 +64,19 @@ Page({
           product: res.data
         })
       }
+    })
+  },
+  // 相应的跳转
+  skipUrl: function (e) {
+    var id = this.data.id;
+    var url = "";
+    if (this.data.clientType == 1) {
+      url = "../../openOrder/openOrder?clientId=" + this.data.clientId + "&id=" + id + '&ClientData=true'
+    } else {
+      url = "../../../grid/shop/goods_detail/goods_detail?clientId=" + this.data.clientId + "&id=" + id + '&ClientData=true'
+    };
+    wx.navigateTo({
+      url: url
     })
   },
   // 点击保存

@@ -37,5 +37,5 @@
     </block>
   </scroll-view>
   <button class="modal_submit" bindtap="saveStock">保存</button>
-  <button class="modal_submit submit2">补货</button>
+  <button class="modal_submit submit2" bindtap="skipUrl">补货</button>
 </view>

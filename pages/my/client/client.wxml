@@ -43,7 +43,7 @@
           </view>
         </view>
         <navigator url="account/account?client={{client}}&clientId={{item.id}}" class="client_button client_button2">对账</navigator>
-        <navigator url="replenishment/replenishment?id={{item.id}}&type={{item.type}}" class="client_button client_button1">补货</navigator>
+        <navigator url="replenishment/replenishment?id={{item.id}}&type={{item.type}}&name={{item.remarkName||item.reallyName||item.nickName}}&cate={{item.cate}}&image={{item.image}}" class="client_button client_button1">补货</navigator>
         <navigator url="clientAdd/clientAdd?client={{client}}&clientId={{item.id}}">
           <image image src="../../../images/update.png" mode="aspectFill" class="client_updata"/>
         </navigator>
