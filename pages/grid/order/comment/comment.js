@@ -19,6 +19,7 @@ Page({
   },
   // 上传图片
   photoSubmit: function (file, i, index) {
+    console.log(index)
     var that = this;
     wx.uploadFile({
       url: 'http://192.168.2.221:8088/product/uploadImage',
@@ -26,7 +27,7 @@ Page({
       name: 'file',
       success: function (res) {
         console.log(JSON.stringify(res));
-        var url = "http://117.149.24.42:8788" + JSON.parse(res.data).data.url;
+        var url = util.api.imgUrl + JSON.parse(res.data).data.url;
         var fileArray = that.data.fileList;
         if (index) {
           fileArray[index] = url
@@ -73,6 +74,10 @@ Page({
   },
   order_request: function () {
     var that = this;
+    var fileList = this.data.fileList;
+    for (var p in fileList){
+      fileList[p]= fileList[p].replace(/http:\/\/117.149.24.42:8788/g, '');
+    }
     wx.showNavigationBarLoading();
     util.api.request({
       url: this.data.url,
@@ -98,7 +103,6 @@ Page({
     })
   },
   onLoad: function (options) {
-
     this.setData({
       productid: options.productid
     })

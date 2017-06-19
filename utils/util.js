@@ -184,7 +184,9 @@ var api = {
       },
       success: function (res) {        
         for (var p in res.data) {
-          res.data[p].image = res.data[p].image?that.imgUrl + res.data[p].image:'';
+          if (url2 !== "client/getClients"){
+            res.data[p].image = res.data[p].image ? that.imgUrl + res.data[p].image : '';
+          }
           that.publicProduct.push(res.data[p])
         }
         if(res.data.length == 10){
@@ -369,7 +371,7 @@ var api = {
   fail: function () {
     wx.hideNavigationBarLoading()
     wx.showToast({
-      title: '无法连接服务器',
+      title: '请稍后重试',
       mask: true,
       duration: 2000
     })

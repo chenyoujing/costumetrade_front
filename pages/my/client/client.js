@@ -24,7 +24,6 @@ Page({
   initCustomer: function () {
     var that = this
     wx.showNavigationBarLoading()
-
     var client = this.data.client
     util.api.request({
       url: 'client/initCustomer',

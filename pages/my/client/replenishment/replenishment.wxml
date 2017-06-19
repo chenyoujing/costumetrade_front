@@ -26,7 +26,7 @@
               <view class="info_txet">数量1件</view>
             </view>
             <view class="price">32.00</view>
-            <view class="button">补货</view>
+            <view class="button" bindtap="skipUrl" data-id="{{item.id}}">补货</view>
           </view>
         </view>
       </view>
