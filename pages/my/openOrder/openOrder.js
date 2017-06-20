@@ -549,6 +549,14 @@ Page({
     this.localData(product);
     this.totalData()
   },
+    // 扫一扫
+  scan:function(){
+    wx.scanCode({
+      success: (res) => {
+        console.log(res)
+      }
+    })
+  },
   onLoad: function (e) {
     var that = this;
     this.downData();
