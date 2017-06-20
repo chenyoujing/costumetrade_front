@@ -1,5 +1,8 @@
   <!--头部-->
 <view class="unitSelect_title clearfix">
+  <navigator open-type="navigateBack">
+    <image src="../../../../images/back-away.png" mode="aspectFit" class="title_image_back" />
+  </navigator>
   <view class="title_text">{{title}}</view>
   <image src="../../../../images/search.png" class="title_search" mode="aspectFit" />
   <image src="../../../../images/add.png" class="title_add" mode="aspectFit" bindtap="scan" />
@@ -14,15 +17,15 @@
   <block wx:for="{{contacts}}">
     <view class="supplier_type" id="{{item.type}}">{{item.type}}</view>
     <view class="supplier_container" wx:for="{{item.value}}" style="position:relative;">
-      <navigator url="../../client/clientInfo/clientInfo?clientId={{item.id}}" class="supplier_tx" >
-        <image data-id="{{item.id}}" data-cate="{{item.cate}}" data-image="{{item.image}}" data-name = "{{item.remarkName}},{{item.reallyName}},{{item.nickName}}" bindtap="selectName" src="{{item.image?item.image:'../../../../images/image_none.png'}}" mode="aspectFill"></image>
-      </navigator>
+      <view class="supplier_tx" >
+        <image src="{{item.image?item.image:'../../../../images/image_none.png'}}" mode="aspectFill" />
+      </view>
       <view class="supplier_info">
         <view>昵称：{{item.nickName}}</view>
         <view wx:if="{{item.remarkName}}">名称：{{item.remarkName}}</view>
         <view wx:if="{{!item.remarkName && item.reallyName}}">名称：{{item.reallyName}}</view>
       </view>
-      <view class="bindtap_cover" style="left:20%;" bindtap="selectName" data-id="{{item.id}}" data-cate="{{item.cate}}" data-image="{{item.image}}" data-name = "{{item.remarkName||item.reallyName||item.nickName}}"></view>
+      <view class="bindtap_cover" bindtap="selectName" data-id="{{item.id}}" data-cate="{{item.cate}}" data-image="{{item.image}}" data-name = "{{item.remarkName}},{{item.reallyName}},{{item.nickName}}"></view>
     </view>  
   </block>
 
