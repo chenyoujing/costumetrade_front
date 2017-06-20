@@ -12,7 +12,7 @@
   <view class="slider_view">新款货品</view>
   <view class="slider_view">专供货品</view>
   <view class="clear"></view>
-  <slider activeColor="#52CAC1"/>
+  <slider activeColor="#52CAC1" max="4" style="margin:10px 10%;"/>
 </view>
 <view class="update_discount">
   <view class="discount_title">设置货品级别折扣率</view>

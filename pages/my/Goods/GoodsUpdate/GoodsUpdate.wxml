@@ -1,7 +1,9 @@
 <!--头部-->
 <view class="title clearfix">
-  {{title}}
-  <image src="../../../../images/amputate.png" mode="aspectFit" class="title_image_close" bindtap="back" />
+  <navigator open-type="navigateBack">
+    <image src="../../../../images/back-away.png" mode="aspectFit" class="title_image_back" />
+  </navigator>
+  <view class="title_text">批量修改</view>
 </view>
 
 <view class="update_content">
@@ -32,7 +34,7 @@
 
 
   <view class="upload_input">
-    <view class="upload_input_text">是否折扣：</view>
+    <view class="upload_input_text">折扣:</view>
       <radio-group class="radio-group" name="isDiscount" bindchange="changeRadio">
         <label class="radio" wx:for="{{screen_content3}}" wx:key="id">
           <radio value="{{item.name}}"/>{{item.value}}

@@ -153,6 +153,7 @@
   width: 8%;
   position: relative;
   height: 30px;
+  padding: 0;
 }
 .image_back{
   width: 16px;

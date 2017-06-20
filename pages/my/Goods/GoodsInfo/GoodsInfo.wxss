@@ -339,3 +339,25 @@ radio,checkbox{
   opacity: 0;
   display: none;
 }
+
+/*修改收货价模态框*/
+.table{
+  width:100%;
+}
+.table_text{
+  box-sizing: border-box;
+  float: left;
+  width: 25%;
+  color: #000000;
+  text-align: center;
+  font-size: 14px;
+  line-height: 30px;
+  border: 1px solid #E3E3E3;
+}
+.bg_g{
+  background-color: #52CAC1;
+  color: #ffffff;
+}
+.bg_gray{
+  background-color: #EEEEEE;
+}

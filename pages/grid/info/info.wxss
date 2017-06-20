@@ -141,6 +141,10 @@
   background-color: #DCDCDC;
   height: 30px;
   padding: 5px;
+  left: 0;
+  right: 0;
+  top: 60px;
+  z-index: 1;
 }
 .supplier_search_text{
   font-size: 14px;
@@ -150,11 +154,12 @@
   line-height: 30px;
 }
 .search_input{
-  margin-right: 25%;
+  margin-right: 10%;
   height: 30px;
   line-height: 30px;
   background-color: #ffffff;
   font-size: 14px;
+  border-radius: 5px;
 }
 .contacts{
   background-color: #DCDCDC;

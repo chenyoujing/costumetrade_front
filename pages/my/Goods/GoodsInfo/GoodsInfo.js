@@ -69,7 +69,15 @@ Page({
         productName: '',
         resizeFixUrl: ""
       }
-    ]
+    ],
+    array: [
+      { name: "普通会员", value: ["100", "95%", "80%"] },
+      { name: "银卡会员", value: ["100", "95%", "80%"] },
+      { name: "金卡会员", value: ["100", "95%", "80%"] },
+      { name: "白金会员", value: ["100", "95%", "80%"] },
+      { name: "钻石会员", value: ["100", "95%", "80%"] },
+    ],
+    priceUpdate:true
   },
   // 返回
   backdelta: function () {
@@ -470,7 +478,13 @@ Page({
   },
   checkboxChange:function(e){
     this.setData({
-      updataAut: !this.data.updataAut
+      updataAut: !this.data.updataAut,
+      priceUpdate: false
+    })
+  },
+  cancel:function(){
+    this.setData({
+      priceUpdate: true
     })
   },
   blurInputPrice:function(e){

@@ -10,19 +10,7 @@
   text-align: center;
 }
 .table{
-  display: table;
   padding: 10px;
-}
-.table_title{
-  box-sizing: border-box;
-  background-color: #52CAC1;
-  float: left;
-  width: 16.6666666%;
-  color: #ffffff;
-  text-align: center;
-  font-size: 14px;
-  line-height: 30px;
-  border: 1px solid #E3E3E3;
 }
 .table_text{
   box-sizing: border-box;
@@ -33,6 +21,13 @@
   font-size: 14px;
   line-height: 30px;
   border: 1px solid #E3E3E3;
+}
+.bg_1{
+  background-color: #52CAC1;
+  color: #ffffff;
+}
+.bg_2{
+  background-color: #EEEEEE;
 }
 
 .submit{

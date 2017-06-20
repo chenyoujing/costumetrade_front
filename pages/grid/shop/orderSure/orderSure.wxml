@@ -12,7 +12,7 @@
     <text>电话：13333333333</text>
   </view>
   <view class="one_line">收货地址：浙江省 杭州市 萧山区 建设一路</view>
-  <image src="../../../../images/update.png" mode="aspectFill" class="userinfo_update" />
+  <image src="../../../../images/update.png" mode="aspectFill" class="userinfo_update" bindtap="address" />
 </view>
 
 <!--订单内容-->
@@ -36,15 +36,36 @@
         </view>
       </view>
     </view>
+
+    <view class="orderinfo">
+      <view class="orderinfo_title clearfix">
+        <view class="orderinfo_text" style="float:left;font-size:16px;">配送方式</view>
+        <view class="orderinfo_text" style="float:right;">顺丰快递（免运费）
+          <image src="../../../../images/right-thrust.png" mode="aspectFit" class="orderinfo_text_image" />
+        </view>
+      </view>
+      <view class="clearfix">
+        <view class="orderinfo_text" style="float:left;padding:0 5px;">金额</view>
+        <view class="orderinfo_text" style="float:right;color:#FE2D04;padding:0 5px;">￥100.00</view>
+      </view>
+      <view class="clearfix">
+        <view class="orderinfo_text" style="float:left;padding:0 5px;">运费</view>
+        <view class="orderinfo_text" style="float:right;color:#FE2D04;padding:0 5px;" wx:if="{{false}}">￥100.00</view>
+        <view class="orderinfo_text" style="float:right;padding:0 5px;" wx:if="{{true}}">运费待审核</view>
+      </view>
+      <view class="orderinfo_footer clearfix">
+        <view class="orderinfo_footer_text" style="float:right;color:#FE2D04;">￥100</view>
+      </view>
+    </view>
 </scroll-view>
 
+<view class="sure_button">确定</view>
+
 <!--底部浮动-->
-<view class="orderSure_bottom">
+<!--<view class="orderSure_bottom clearfix">
   <navigator url="../payOrder/payOrder" class="bottom_button">下单</navigator>
-  <view class="bottom_info">
+  <view class="bottom_info clearfix">
     <view class="bottom_num">共3件商品</view>
     <view class="bottom_price">￥1250.60</view>
-    <view class="clear"></view>
   </view>
-  <view class="clear"></view>
-</view>
+</view>-->

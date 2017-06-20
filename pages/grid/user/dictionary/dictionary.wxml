@@ -37,6 +37,10 @@
         <scroll-view scroll-y >
           <view class="staff_updata_top">
             <view class="dictionary_input">
+              <view class="dictionary_input_text1 clearfix">昵称：</view>
+              <view class="dictionary_input1" style="border:none;">{{employeeDetails.nickName}}</view>
+            </view>
+            <view class="dictionary_input">
               <view class="dictionary_input_text1 clearfix">姓名：</view>
               <input type="number" class="dictionary_input1" value="{{employeeDetails.reallyName}}" data-index="reallyName" bindblur="employeeInfoChange"/>
             </view>
@@ -100,6 +104,7 @@
               <radio value="false" checked />否
             </label>
           </radio-group>
+          <view class="image_operation_button">上传店铺logo图片</view>
         </view>
         <view class="dictionary_input clearfix">
           <view class="dictionary_input_text2">默认打印店铺logo：</view>
@@ -111,12 +116,6 @@
               <radio value="false" checked />否
             </label>
           </radio-group>
-        </view>
-        <view class="print_info">图片操作</view>
-        <view class="image_operation clearfix">
-          <view class="image_operation_button">微信收款二维码</view>
-          <view class="image_operation_button">支付宝收款二维码</view>
-          <view class="image_operation_button">上传店铺logo图片</view>
           <view class="image_operation_button">上传店铺二维码</view>
         </view>
       </scroll-view>
@@ -132,36 +131,36 @@
           <view class="setting_title" style="font-size:16px;">添加手机支付二维码</view>
           <view class="setting_operation">
             <text>1.</text>微信支付(二维码)
-            <image src="../../../../images/update.png" mode="aspectFit" class="image_update" />
+            <image src="../../../../images/update.png" mode="aspectFit" class="image_setting0" />
           </view>
           <view class="setting_operation">
             <text>2.</text>支付宝支付(二维码)
-            <image src="../../../../images/update.png" mode="aspectFit" class="image_update" />
+            <image src="../../../../images/update.png" mode="aspectFit" class="image_setting0" />
           </view>
           <view class="setting_pay">
             <view class="pay_title">
               付款方式
-              <image src="../../../../images/append.png" mode="aspectFit" class="image_add" />
+              <image src="../../../../images/append.png" mode="aspectFit" class="image_setting0" />
             </view>
             <view class="pay_view">
               <text>1.</text>现金
-              <image src="../../../../images/delete_2.png" mode="aspectFit" class="image_delete" />
+              <image src="../../../../images/delete_2.png" mode="aspectFit" class="image_setting" />
             </view>
             <view class="pay_view">
               <text>2.</text>刷卡
-              <image src="../../../../images/delete_2.png" mode="aspectFit" class="image_delete" />
+              <image src="../../../../images/delete_2.png" mode="aspectFit" class="image_setting" />
             </view>
             <view class="pay_view">
               <text>3.</text>微信
-              <image src="../../../../images/delete_2.png" mode="aspectFit" class="image_delete" />
+              <image src="../../../../images/delete_2.png" mode="aspectFit" class="image_setting" />
             </view>
             <view class="pay_view">
               <text>4.</text>支付宝
-              <image src="../../../../images/delete_2.png" mode="aspectFit" class="image_delete" />
+              <image src="../../../../images/delete_2.png" mode="aspectFit" class="image_setting" />
             </view>
             <view class="pay_view">
               <text>5.</text>转账
-              <image src="../../../../images/delete_2.png" mode="aspectFit" class="image_delete" />
+              <image src="../../../../images/delete_2.png" mode="aspectFit" class="image_setting" />
             </view>
           </view>
         </view>
@@ -170,35 +169,30 @@
           <view class="setting_pay" style="border:0;">
             <view class="pay_view">
               <text>1.</text>品牌
-              <image src="../../../../images/append.png" mode="aspectFit" class="image_add2" />
-              <image src="../../../../images/delete_2.png" mode="aspectFit" class="image_delete" />
+              <image src="../../../../images/update.png" mode="aspectFit" class="image_setting" />
             </view>
             <view class="pay_view">
               <text>2.</text>种类
-              <image src="../../../../images/append.png" mode="aspectFit" class="image_add2" />
-              <image src="../../../../images/delete_2.png" mode="aspectFit" class="image_delete" />
+              <image src="../../../../images/update.png" mode="aspectFit" class="image_setting" />
             </view>
             <view class="pay_view">
               <text>3.</text>单位
-              <image src="../../../../images/append.png" mode="aspectFit" class="image_add2" />
-              <image src="../../../../images/delete_2.png" mode="aspectFit" class="image_delete" />
+              <image src="../../../../images/update.png" mode="aspectFit" class="image_setting" />
             </view>
             <view class="pay_view">
               <text>4.</text>尺码
-              <image src="../../../../images/append.png" mode="aspectFit" class="image_add2" />
-              <image src="../../../../images/delete_2.png" mode="aspectFit" class="image_delete" />
+              <image src="../../../../images/update.png" mode="aspectFit" class="image_setting" />
             </view>
             <view class="pay_view">
               <text>5.</text>颜色
-              <image src="../../../../images/append.png" mode="aspectFit" class="image_add2" />
-              <image src="../../../../images/delete_2.png" mode="aspectFit" class="image_delete" />
+              <image src="../../../../images/update.png" mode="aspectFit" class="image_setting" />
             </view>
           </view>
         </view>
 
         <!--首页推荐照片-->
         <view class="setting_view clearfix">
-          <view class="pay_title" style="font-size:18px;">
+          <view class="pay_title">
             首页推荐照片
           </view>
           <view class="image_view">
@@ -212,6 +206,18 @@
           <view class="image_view">
             <image src="../../../../images/add_image.png" class="image_view_add" />
             <image src="" class="index_image" />
+          </view>
+        </view>
+
+        <!--运费规则-->
+        <view class="setting_view clearfix">
+          <view class="pay_title">
+            运费规则
+          </view>
+          <view class="freight_explain">
+            <view class="freight_explain_title">说明:</view>
+            <image src="../../../../images/right-thrust.png" class="freight_explain_right" />
+            <view class="freight_explain_text">江浙沪地区8元；新疆，西藏，青海，甘肃，海南五省20元；其他地域15元</view>
           </view>
         </view>
 
@@ -246,7 +252,7 @@
           货品级别
         </view>
         <view class="goods_level clearfix">
-          <view class="goods_level_title" style="width:25%">货品名称</view>
+          <view class="goods_level_title" style="width:25%">级别名称</view>
           <view class="goods_level_title" style="width:15%"></view>
           <view class="goods_level_title" style="width:35%">客户种类</view>
           <view class="goods_level_title" style="width:25%">折扣率</view>
@@ -268,23 +274,27 @@
         <view class="setting_view">
           <view class="setting_title" style="margin-bottom:10px;">客户种类</view>
           <view class="setting_title3 clearfix">
-            <view class="setting_text">客户名称</view>
-            <view class="setting_text">可见货品级别</view>
+            <view class="setting_text" style="width:30%;">客户名称</view>
+            <view class="setting_text" style="width:40%;">可见货品级别</view>
+            <view class="setting_text">启用</view>
             <view class="setting_text">编辑</view>
           </view>
           <view class="setting_content clearfix">
-            <view class="setting_text">种类一</view>
-            <view class="setting_text">普通</view>
+            <view class="setting_text" style="width:30%;">普通会员</view>
+            <view class="setting_text" style="width:40%;">处理货品</view>
+            <view class="setting_text">是</view>
             <navigator url="../customerType/customerType" class="setting_text" style="color:#286561;">修改</navigator>
           </view>
           <view class="setting_content clearfix">
-            <view class="setting_text">种类二</view>
-            <view class="setting_text">会员</view>
+            <view class="setting_text" style="width:30%;">银卡会员</view>
+            <view class="setting_text" style="width:40%;">活动货品</view>
+            <view class="setting_text">否</view>
             <navigator url="../customerType/customerType" class="setting_text" style="color:#286561;">修改</navigator>
           </view>
           <view class="setting_content clearfix">
-            <view class="setting_text">种类三</view>
-            <view class="setting_text">高级会员</view>
+            <view class="setting_text" style="width:30%;">金卡会员</view>
+            <view class="setting_text" style="width:40%;">在销货品</view>
+            <view class="setting_text">否</view>
             <navigator url="../customerType/customerType" class="setting_text" style="color:#286561;">修改</navigator>
           </view>
         </view>
@@ -293,19 +303,19 @@
         <view class="setting_view" style="padding-right:20px;">
           <view class="pay_title" style="font-size:18px;">
             物流公司
-            <image src="../../../../images/append.png" mode="aspectFit" class="image_add" />
+            <image src="../../../../images/append.png" mode="aspectFit" class="image_setting0" />
           </view>
           <view class="pay_view">
             <text>1.</text>顺丰
-            <image src="../../../../images/delete_2.png" mode="aspectFit" class="image_delete" />
+            <image src="../../../../images/delete_2.png" mode="aspectFit" class="image_setting" />
           </view>
           <view class="pay_view">
             <text>2.</text>汇通
-            <image src="../../../../images/delete_2.png" mode="aspectFit" class="image_delete" />
+            <image src="../../../../images/delete_2.png" mode="aspectFit" class="image_setting" />
           </view>
           <view class="pay_view">
             <text>3.</text>韵达
-            <image src="../../../../images/delete_2.png" mode="aspectFit" class="image_delete" />
+            <image src="../../../../images/delete_2.png" mode="aspectFit" class="image_setting" />
           </view>
         </view>
 
@@ -326,20 +336,35 @@
         <view class="setting_view" style="padding-right:20px;">
           <view class="pay_title" style="font-size:18px;">
             费用单项目
-            <image src="../../../../images/append.png" mode="aspectFit" class="image_add" />
+            <image src="../../../../images/append.png" mode="aspectFit" class="image_setting0" />
           </view>
           <view class="pay_view">
             <text>1.</text>快餐
-            <image src="../../../../images/delete_2.png" mode="aspectFit" class="image_delete" />
+            <image src="../../../../images/delete_2.png" mode="aspectFit" class="image_setting" />
           </view>
           <view class="pay_view">
             <text>2.</text>快递
-            <image src="../../../../images/delete_2.png" mode="aspectFit" class="image_delete" />
+            <image src="../../../../images/delete_2.png" mode="aspectFit" class="image_setting" />
           </view>
           <view class="pay_view">
             <text>3.</text>水电
-            <image src="../../../../images/delete_2.png" mode="aspectFit" class="image_delete" />
+            <image src="../../../../images/delete_2.png" mode="aspectFit" class="image_setting" />
           </view>
+        </view>
+
+        <!--客户种类数量-->
+        <view class="setting_view clearfix">
+          <view class="pay_title">
+            客户种类数量:
+            <text class="slider_text_text">选择使用的客户种类</text>
+          </view>
+          <view class="slider_view slider_checked">处理货品</view>
+          <view class="slider_view">活动货品</view>
+          <view class="slider_view">在销货品</view>
+          <view class="slider_view">新款货品</view>
+          <view class="slider_view">专供货品</view>
+          <view class="clear"></view>
+          <slider activeColor="#52CAC1" max="4" style="margin:10px 10%;"/>
         </view>
 
         <!--钱包管理-->

@@ -8,6 +8,7 @@ Page({
     animation: "",
     select_checkbox: '0',
     delete_button: '0',
+    points_button: '0',
     ids:[],
     state: 'nameOp',
     Op: 'desc',
@@ -242,6 +243,7 @@ Page({
   },
   // 批量删除
   batch_delete: function () {
+    this.batch_ok()
     this.setData({
       select_checkbox: '50',
       delete_button: '40',
@@ -249,17 +251,31 @@ Page({
     this.more_function_close();
   },
   // 完成批量删除
-  batch_delete_ok: function () {
+  batch_ok: function () {
     this.setData({
       select_checkbox: '0',
       delete_button: '0',
-      ids:[],
-      checkedClear:false
+      points_button: '0',
+      ids: [],
+      checkedClear: false
     })
   },
   // 批量删除
-  batch_delete_sure: function(){
+  batch_delete_sure: function () {
     this.delectRequest();
+  },
+  // 清空积分
+  batch_points: function () {
+    this.batch_ok()
+    this.setData({
+      select_checkbox: '50',
+      points_button: '40',
+    })
+    this.more_function_close();
+  },
+  // 清空积分
+  batch_points_sure: function () {
+    
   },
   // 获取二维码
   scan: function () {

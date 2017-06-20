@@ -101,7 +101,7 @@ scroll-view{
 }
 .dictionary_input{
   padding-right: 30px;
-  margin-bottom: 10px;
+  margin: 5px 0;
 }
 .dictionary_input_text1{
   width: 30%;
@@ -111,7 +111,7 @@ scroll-view{
   line-height: 30px;
 }
 .dictionary_input_text2{
-  width: 60%;
+  width: 50%;
   float: left;
   text-align: center;
   font-size: 14px;
@@ -133,28 +133,23 @@ scroll-view{
 }
 .dictionary_input radio-group{
   float: left;
-  width: 40%;
+  width: 50%;
+  line-height: 30px;
+  text-align: center;
 }
 .dictionary_input .radio{
   float: left;
   width: 50%;
   font-size: 16px;
 }
-.dictionary_input .radio radio{
-  zoom: 80%;
-}
-.image_operation{
-  margin: 0 20px;
-}
 .image_operation_button{
-  box-sizing: border-box;
-  width: 49%;
-  margin: 0.1%;
-  border: 1px solid #52CAC1;
-  float: left;
-  font-size: 16px;
+  width: 50%;
+  background-color: #E5E5E5;
+  float: right;
+  font-size: 14px;
   line-height: 30px;
   text-align: center;
+  margin: 5px 0;
 }
 .add{
   float: right;
@@ -223,19 +218,11 @@ scroll-view{
   font-size: 16px;
   line-height: 40px;
   position: relative;
-  padding-right: 40px;
 }
 .setting_operation text{
   padding: 0 20px;
 }
-.image_update{
-  width: 16px;
-  height: 16px;
-  padding: 12px;
-  position: absolute;
-  top: 0;
-  right: 0;
-}
+
 .setting_pay{
   border-top: 1px solid #52CAC1;
   padding: 5px 0;
@@ -246,39 +233,27 @@ scroll-view{
   position: relative;
   padding-left: 10px;
 }
-.image_add{
-  width: 16px;
-  height: 16px;
-  padding: 12px;
-  position: absolute;
-  top: 0;
-  right: 0;
-}
-.image_add2{
-  width: 16px;
-  height: 16px;
-  padding: 7px;
-  position: absolute;
-  top: 0;
-  right: 50px;
 
-}
 .pay_view{
   font-size: 16px;
   line-height: 30px;
   position: relative;
-  padding-right: 30px;
 }
 .pay_view text{
   padding: 0 20px;
 }
-.image_delete{
+.image_setting{
+  float: right;
   width: 16px;
   height: 16px;
-  padding: 7px;
-  position: absolute;
-  top: 0;
-  right: 5px;
+  padding: 7px 12px;
+}
+/*首页推荐照片*/
+.image_setting0{
+  float: right;
+  width: 16px;
+  height: 16px;
+  padding: 12px;
 }
 .image_view{
   width: 33.33333333%;
@@ -304,7 +279,29 @@ scroll-view{
   bottom: 0;
   margin: auto;
 }
+/*运费规则*/
+.freight_explain{
 
+}
+.freight_explain_title{
+  float: left;
+  font-size: 15px;
+  line-height: 20px;
+  width: 60px;
+  text-align: center;
+}
+.freight_explain_right{
+  float: right;
+  width: 16px;
+  height: 16px;
+  padding: 12px;
+}
+.freight_explain_text{
+  font-size: 12px;
+  line-height: 20px;
+  margin-left: 60px;
+  margin-right: 40px;
+}
 
 /*高级*/
 .setting_title2{
@@ -418,7 +415,7 @@ scroll-view{
   border-bottom: 1px solid #52CAC1;
 }
 .setting_text{
-  width: 33.33333333%;
+  width: 15%;
   text-align: center;
   float: left;
   font-size: 14px;
@@ -548,6 +545,23 @@ scroll-view{
   font-size: 14px;
   line-height: 30px;
   height: 30px;
+}
+
+/*客户种类数量*/
+.slider_text_text{
+  font-size: 12px;
+  padding-left: 20px;
+}
+.slider_view{
+  float: left;
+  width: 20%;
+  text-align: center;
+  font-size: 12px;
+  line-height: 40px;
+  color: #999999;
+}
+.slider_checked{
+  color: #000000;
 }
 
 /*钱包*/

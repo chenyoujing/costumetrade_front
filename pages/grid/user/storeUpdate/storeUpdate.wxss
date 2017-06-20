@@ -49,6 +49,13 @@
   line-height: 28px;
   position: relative;
 }
+.store_textarea{
+  height: 80px;
+  padding: 8px;
+  float: left;
+  width: 70%;
+  box-sizing: border-box;
+}
 .image_map{
   position: absolute;
   right: 0;

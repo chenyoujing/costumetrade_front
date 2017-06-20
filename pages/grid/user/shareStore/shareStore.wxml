@@ -4,26 +4,27 @@
     <image src="../../../../images/back-away.png" mode="aspectFit" class="title_image_back" />
   </navigator>
   <view class="title_text">分享</view>
+  <image src="../../../../images/share.png" class="title_submit" />
 </view>
 
 
 <scroll-view scroll-y class="shareStore_container">
   <!--店铺信息-->
-  <view class="store_info">
-    <view style="padding-bottom: 20px;">
+  <view class="store_info_view">
+    <view class="store_info">
       <image src="../../../../images/image_none.png" class="store_tx" />
       <view class="store_name">点艺信息科技</view>
       <view class="store_content">不想打字不想打字不想打字不想打字不想打字不想打字不想打字不想打字不想打字</view>
       <view class="clear"></view>
     </view>
     <view class="image_view">
-      <image src="../../../../images/image_none.png" class="store_image" />
+      <image src="../../../../images/image_none.png" class="store_image" style="margin-left:8rpx;" />
     </view>
     <view class="image_view">
       <image src="../../../../images/image_none.png" class="store_image" />
     </view>
     <view class="image_view">
-      <image src="../../../../images/image_none.png" class="store_image" />
+      <image src="../../../../images/image_none.png" class="store_image" style="margin-right:8rpx;" />
     </view>
     <view class="clear"></view>
     <view class="store_address">
@@ -38,11 +39,4 @@
   <view class="store_trait">实时掌控</view>
   <view class="clear"></view>
 
-  <view class="scan_info">
-    <view class="scan_info_title">扫码立刻成为本店会员</view>
-    <view class="scan_info_text">快捷订货补货</view>
-    <view class="scan_info_text">查看最新上架货品</view>
-    <image src="../../../../images/image_none.png" mode="aspectFit" class="scan_info_image" />
-    <view class="scan_info_text">长按二维码关注</view>
-  </view>
 </scroll-view>

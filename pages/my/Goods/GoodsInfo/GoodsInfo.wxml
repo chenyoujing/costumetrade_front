@@ -131,8 +131,9 @@
         <view class="clear"></view>
       </view>
       <view class="upload_input">
-        <view class="upload_input_text">一手件数:</view>
-        <input type="number" bindblur="blurInput" data-name="handcount"  class="upload_input1" name="handcount" value="{{GoodsInfoData.handcount}}" />
+        <view class="upload_input_text">商品详情:</view>
+        <input type="number" class="upload_input2" style="padding-right:30px;" />
+        <image src="../../../../images/update.png" mode="aspectFit" class="update_image" />
         <view class="clear"></view>
       </view>
       <view class="upload_input">
@@ -158,6 +159,11 @@
         <navigator  url="../GoodsSize/GoodsSize?url=size/getAllSizes&title=尺码选择" hover-class="navigator-hover">
         <image src="../../../../images/update.png" mode="aspectFit" class="update_image" />
         </navigator>
+        <view class="clear"></view>
+      </view>
+      <view class="upload_input">
+        <view class="upload_input_text">一手件数:</view>
+        <input type="number" bindblur="blurInput" data-name="handcount"  class="upload_input1" name="handcount" value="{{GoodsInfoData.handcount}}" />
         <view class="clear"></view>
       </view>
       <view class="upload_input">
@@ -208,6 +214,39 @@
         </view>
         <view class="clear"></view>
       </view>
+      <view class="upload_input clearfix">
+        <view class="upload_input_text">打折:</view>
+        <radio-group class="radio-group">
+          <label class="radio" style="margin-left:25%;">
+            <radio />是
+          </label>
+          <label class="radio" style="margin-right:25%;">
+            <radio />否
+          </label>
+        </radio-group>
+      </view>
+      <view class="upload_input clearfix">
+        <view class="upload_input_text">款式加价:</view>
+        <radio-group class="radio-group">
+          <label class="radio" style="margin-left:25%;">
+            <radio />是
+          </label>
+          <label class="radio" style="margin-right:25%;">
+            <radio />否
+          </label>
+        </radio-group>
+      </view>
+      <view class="upload_input clearfix">
+        <view class="upload_input_text">允许上架:</view>
+        <radio-group class="radio-group">
+          <label class="radio" style="margin-left:25%;">
+            <radio />是
+          </label>
+          <label class="radio" style="margin-right:25%;">
+            <radio />否
+          </label>
+        </radio-group>
+      </view>
     </scroll-view>
     <button class="submit" form-type="submit">提交</button>
   </form>
@@ -230,3 +269,18 @@
   <image src="../../../../images/close.png" mode="aspectFit" class="image_close" />
 </view>
 
+<!--手动修改销售价-->
+<modal title="修改销售价" hidden="{{priceUpdate}}" bindconfirm="confirm" bindcancel="cancel">
+  <view class="table clearfix">
+    <view class="table_text bg_g">客户种类</view>
+    <view class="table_text bg_gray">销售价</view>
+    <view class="table_text bg_gray">折扣率</view>
+    <view class="table_text bg_gray">毛利率</view>
+    <block wx:for="{{array}}">
+      <view class="table_text bg_g">{{item.name}}</view>
+      <view class="table_text">{{item.value[0]}}</view>
+      <view class="table_text">{{item.value[1]}}</view>
+      <view class="table_text">{{item.value[2]}}</view>
+    </block>
+  </view>
+</modal>

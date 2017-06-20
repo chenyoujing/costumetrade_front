@@ -49,8 +49,8 @@
       <input type="text" class="store_input1" />
     </view>
     <view class="store_input clearfix">
-      <view class="store_input_text" style="float:unset;">银行信息：</view>
-      <textarea type="text" class="store_input1" style="height:80px;padding:8px;" />
+      <view class="store_input_text">银行信息：</view>
+      <textarea type="text" class="store_input1 store_textarea" />
     </view>
 
   </view>

@@ -26,10 +26,9 @@
 .orderSure_scroll{
   position: absolute;
   top: 90px;
-  bottom: 50px;
+  bottom: 60px;
 }
 .orderSure_container{
-  float: left;
   padding: 10px;
   box-sizing:border-box;
   width: 100%;
@@ -107,6 +106,57 @@
   color: #666666;
 }
 
+.orderinfo{
+  background-color: #eeeeee;
+  margin: 10px;
+  padding: 10px;
+}
+.orderinfo_title{
+  border-bottom: 2px solid #DDDDDD;
+  margin-bottom: 5px;
+}
+.orderinfo_text{
+  padding: 5px;
+  font-size: 14px;
+  line-height: 30px;
+}
+.orderinfo_text_image{
+  width: 12px;
+  height: 12px;
+  padding: 9px 0;
+  padding-left: 5px; 
+  float: right;
+}
+.orderinfo_footer{
+  border-top: 2px solid #DDDDDD;
+  margin-top: 5px;
+}
+.orderinfo_footer_text::before{
+  content: "实付金额：";
+  color: #000000;
+}
+.orderinfo_footer_text{
+  color: #FE2D04;
+  padding: 5px;
+  font-size: 17px;
+  line-height: 30px;
+}
+
+.sure_button{
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 40px;
+  margin: 10px;
+  border-radius: 5px;
+  background-color: #52CAC1;
+  font-size: 18px;
+  line-height: 40px;
+  text-align: center;
+  color: #ffffff;
+}
+/*底部浮动*/
 .orderSure_bottom{
   position: fixed;
   left: 0;

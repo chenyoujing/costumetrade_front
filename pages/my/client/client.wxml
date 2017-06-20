@@ -11,14 +11,23 @@
   </view>
 
   <view class="client clearfix">
-    <view class="client_text {{client=='1' ? 'active' : ''}}" bindtap="clientType" data-client="1">客户</view>
-    <view class="client_text {{client=='2' ? 'active' : ''}}" bindtap="clientType" data-client="2">供货商</view>
-    <view class="client_text {{client=='3' ? 'active' : ''}}" bindtap="clientType" data-client="3">朋友</view>
+    <view class="client_text {{client=='1' ? 'active1' : ''}}" bindtap="clientType" data-client="1">客户</view>
+    <view class="client_text {{client=='2' ? 'active1' : ''}}" bindtap="clientType" data-client="2">供货商</view>
+    <view class="client_text {{client=='3' ? 'active1' : ''}}" bindtap="clientType" data-client="3">朋友</view>
   </view>
   <view class="client">
-    <view class="client_text sort_text {{state=='nameOp' ? 'active' : ''}}" bindtap="clientSort" data-sort="nameOp">名称排序</view>
-    <view class="client_text sort_text {{state=='timeOp' ? 'active' : ''}}" bindtap="clientSort" data-sort="timeOp">时间排序</view>
-    <view class="client_text sort_text {{state=='pointsOp' ? 'active' : ''}}" bindtap="clientSort" data-sort="pointsOp">积分排序</view>
+    <view class="client_text sort_text {{state=='nameOp' ? 'active2' : ''}}" bindtap="clientSort" data-sort="nameOp">
+      名称排序
+      <image src="../../../images/sort.png" mode="aspectFit" class="image_down {{Op=='asc' ? 'sort_up' : ''}}" />
+    </view>
+    <view class="client_text sort_text {{state=='timeOp' ? 'active2' : ''}}" bindtap="clientSort" data-sort="timeOp">
+      时间排序
+      <image src="../../../images/sort.png" mode="aspectFit" class="image_down {{Op=='asc' ? 'sort_up' : ''}}" />
+    </view>
+    <view class="client_text sort_text {{state=='pointsOp' ? 'active2' : ''}}" bindtap="clientSort" data-sort="pointsOp">
+      积分排序
+      <image src="../../../images/sort.png" mode="aspectFit" class="image_down {{Op=='asc' ? 'sort_up' : ''}}" />
+    </view>
     <view class="clear"></view>
   </view>
   <scroll-view class="content" scroll-y style="bottom:{{delete_button}}px;" lower-threshold="10" bindscrolltolower="{{loadMore?'onReachBottom':''}}">
@@ -54,8 +63,21 @@
     </view>
   </scroll-view>
   <!--批量删除按钮-->
-  <view class="batch_button_ok bg_g" bindtap="batch_delete_ok" style="height:{{delete_button}}px;">完成</view>
+  <checkbox-group class="batch_button_all" style="height:{{delete_button}}px;">
+    <label class="checkbox">
+      <checkbox />全选
+    </label>
+  </checkbox-group>
+  <view class="batch_button_ok bg_g" bindtap="batch_ok" style="height:{{delete_button}}px;">完成</view>
   <view class="batch_button" bindtap="batch_delete_sure" style="height:{{delete_button}}px;">删除</view>
+  <!--清空积分按钮-->
+  <checkbox-group class="batch_button_all" style="height:{{points_button}}px;">
+    <label class="checkbox">
+      <checkbox />全选
+    </label>
+  </checkbox-group>
+  <view class="batch_button_ok" bindtap="batch_ok" style="height:{{points_button}}px;">取消</view>
+  <view class="batch_button bg_g" bindtap="batch_points_sure" style="height:{{points_button}}px;">清空</view>
 
 </view>
 
@@ -64,6 +86,7 @@
 <view class="more_function_cover {{animation}}" bindtap="more_function_close" style="display:{{more_function_display}};"></view>
 <view class="more_function {{animation}}" style="display:{{more_function_display}};">
   <view class="more_function_view" bindtap="batch_delete">批量删除</view>
+  <view class="more_function_view" bindtap="batch_points">清空积分</view>
 </view>
 
 <!--扫码添加-->

@@ -27,7 +27,7 @@ swiper image{
   color: #000000;
 }
 .detail_price_original{
-  color: #000000;
+  color: #666666;
   font-size: 16px;
   line-height: 20px;
   padding: 0 15px;
@@ -39,12 +39,12 @@ swiper image{
 }
 .detail_price_original::after{
   content: "";
-  color: #000000;
+  color: #666666;
   position: absolute;
   left: 15px;
   right: 15px;
   top: 50%;
-  border-bottom: 2px solid #000000;
+  border-bottom: 2px solid #666666;
 }
 .detail_info{
   box-sizing: border-box;

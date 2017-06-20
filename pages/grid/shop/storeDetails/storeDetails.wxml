@@ -1,13 +1,13 @@
 <image src="../../../../images/image_none.png" class="store_bg" mode="aspectFill" />
 <view class="store_content">
+  <button open-type="contact" class="service"  session-from="1">
+    <image src="../../../../images/customer_service.png" mode="aspectFit" />
+  </button>
   <image src="../../../../images/image_none.png" mode="aspectFill" class="store_image" />
   <view class="store_name">小雨家服装</view>
   <view class="store_info clearfix">
     <view class="info1">联系人:</view>
     <view class="info2">小雨</view>
-    <button open-type="contact" class="service"  session-from="1">
-      <image src="../../../../images/customer_service.png" mode="aspectFit" />
-    </button>
   </view>
   <view class="store_info clearfix">
     <view class="info1">固定电话:</view>
