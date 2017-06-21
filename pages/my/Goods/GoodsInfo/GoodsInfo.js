@@ -6,11 +6,11 @@ Page({
     grade_index: 0,
     title:'新增货品',
     picker_view: [
-      { name: '名字', price: 0, discount: 0, profit: 0, pricename:"firsthPrice"},
-      { name: '名字', price: 0, discount: 0, profit: 0, pricename:"secondPrice"},
-      { name: '名字', price: 0, discount: 0, profit: 0, pricename:"thirdPrice"},
-      { name: '名字', price: 0, discount: 0, profit: 0, pricename:"fourthPrice"},
-      { name: '名字', price: 0, discount: 0, profit: 0, pricename:"fifthPrice"},
+      { name: '名字', price: 0, discPriceJson: 0, custPriceJson: 0,isUse:false,isChage:false, pricename:"firsthPrice"},
+      { name: '名字', price: 0, discPriceJson: 0, custPriceJson: 0, isUse: false, isChage: false,pricename:"secondPrice"},
+      { name: '名字', price: 0, discPriceJson: 0, custPriceJson: 0, isUse: false, isChage: false,pricename:"thirdPrice"},
+      { name: '名字', price: 0, discPriceJson: 0, custPriceJson: 0, isUse: false, isChage: false,pricename:"fourthPrice"},
+      { name: '名字', price: 0, discPriceJson: 0, custPriceJson: 0, isUse: false, isChage: false,pricename:"fifthPrice"},
     ],
     screen_content3: [
       { name: '春', value: '春' },
@@ -69,15 +69,7 @@ Page({
         productName: '',
         resizeFixUrl: ""
       }
-    ],
-    array: [
-      { name: "普通会员", value: ["100", "95%", "80%"] },
-      { name: "银卡会员", value: ["100", "95%", "80%"] },
-      { name: "金卡会员", value: ["100", "95%", "80%"] },
-      { name: "白金会员", value: ["100", "95%", "80%"] },
-      { name: "钻石会员", value: ["100", "95%", "80%"] },
-    ],
-    priceUpdate:true
+    ]
   },
   // 返回
   backdelta: function () {
@@ -127,7 +119,7 @@ Page({
   photoSubmit: function (file, i){
     var that = this;
     wx.uploadFile({
-      url: 'http://192.168.2.221:8080/product/uploadImage', 
+      url: util.api.host + 'product/uploadImage', 
       filePath: file[i],
       name: 'file',
       success: function (res) {
@@ -396,95 +388,9 @@ Page({
       })
     }
   },
-  // 计算价格
-  priceCalculate:function(style,value){
-    var param = this.data.GoodsInfoData;
-    if(value !== 0){
-      param[style] = value;
-    }else{
-      param[style] = ''
-    }
-    if (style == 'tagprice' && value>= 0) {
-      param.purchaseprice = (value*this.data.screen_brandList[this.data.brand_index].profitD0 / 100).toFixed(2);
-    }
-    if (style == 'purchaseprice' && value>=0) {
-      param.tagprice = (value / this.data.screen_brandList[this.data.brand_index].profitD0 * 100).toFixed(2);
-    }
-    this.setData({
-      GoodsInfoData: param
-    })
-    this.gradeCate();
-  },
-  // input失去焦点
-  blurInput:function(e){
-    var style = e.currentTarget.dataset.name;
-    var valuenum = e.detail.value ? e.detail.value:0;
-    this.priceCalculate(style, valuenum);
-  },
-  // 等级、客户种类逻辑,五种价格
-  gradeCate:function(type){
-    var arry = [];
-    var newPicker = [];
-    var name = app.custOrDiscTag == 1 ? 'custPriceJson' :'discPriceJson';
-    var pickername = app.custOrDiscTag == 1 ? 'profit' : 'discount';
-    console.log(this.data.grade_index)
-    arry = app.custProdPrice[this.data.grade_index][name];
-    var ben = parseInt(this.data.GoodsInfoData.purchaseprice) ? parseInt(this.data.GoodsInfoData.purchaseprice) : 0;
-    var ben1 = this.data.GoodsInfoData.tagprice?this.data.GoodsInfoData.tagprice : 0;
-    if (type) {
-      newPicker = this.data.picker_view;
-      for (var p in newPicker) {
-        if (newPicker[p].price == type) {
-          newPicker[p].discount = (type / ben1 * 100).toFixed(1) !== 'NaN' ? (type / ben1 * 100).toFixed(1) : 0;
-          newPicker[p].profit = ((type - ben) / type * 100).toFixed(1);
-          newPicker[p].price = type;
-        }
-      }
-    } else if (!type && app.custOrDiscTag == 1){
-      for (var p in arry) {
-        var sale1 = (ben / (1 - arry[p].value / 100)).toFixed(2);
-        sale1 = sale1 ? sale1 : 0;
-        newPicker.push({
-          name: arry[p].name,
-          profit: arry[p].value,
-          price: this.data.firstBoolean ? this.data.picker_view[p].price:sale1,
-          discount: (sale1 / ben1 * 100).toFixed(1) !== 'NaN' ? (sale1 / ben1 * 100).toFixed(1) : 0
-        })
-      }
-    } else if (!type && app.custOrDiscTag == 2){
-      for (var p in arry) {
-        var sale2 = (ben1 * arry[p].value / 100).toFixed(2);
-        sale2 = sale2 ? 0 : sale2;
-        newPicker.push({
-          name: arry[p].name,
-          discount: arry[p].value,
-          price: this.data.firstBoolean ? this.data.picker_view[p].price : sale2,
-          profit: (sale2 - ben / sale2).toFixed(1)
-        })
-      }
-    }
-    console.log(newPicker);
-    this.setData({
-      picker_view: newPicker,
-      firstBoolean:false
-    })
-    
-  },
-  changPrice:function(e){
-    var num = e.detail.value;
-    this.setData({
-      changPrice_index:num[0]
-    })
-  },
   checkboxChange:function(e){
     this.setData({
-      updataAut: !this.data.updataAut,
-      priceUpdate: false
-    })
-  },
-  cancel:function(){
-    this.setData({
-      priceUpdate: true
+      updataAut: !this.data.updataAut
     })
   },
   blurInputPrice:function(e){
@@ -524,6 +430,125 @@ Page({
     }
     app.imageinfo.storeId = this.data.GoodsInfoData.storeId
     app.imageinfo.productName = this.data.GoodsInfoData.productName
+  },
+  // 等级、客户种类逻辑,五种价格
+  gradeCate: function (type) {
+    var arry = [];
+    var newPicker = [];
+    var name = app.custOrDiscTag == 1 ? 'custPriceJson' : 'discPriceJson';
+    var pickername = app.custOrDiscTag == 1 ? 'profit' : 'discount';
+    console.log(this.data.grade_index)
+    arry = app.custProdPrice[this.data.grade_index][name];
+    var ben = parseInt(this.data.GoodsInfoData.purchaseprice) ? parseInt(this.data.GoodsInfoData.purchaseprice) : 0;
+    var ben1 = this.data.GoodsInfoData.tagprice ? this.data.GoodsInfoData.tagprice : 0;
+    if (type) {
+      newPicker = this.data.picker_view;
+      for (var p in newPicker) {
+        if (newPicker[p].price == type) {
+          newPicker[p].discount = (type / ben1 * 100).toFixed(1) !== 'NaN' ? (type / ben1 * 100).toFixed(1) : 0;
+          newPicker[p].profit = ((type - ben) / type * 100).toFixed(1);
+          newPicker[p].price = type;
+        }
+      }
+    } else if (!type && app.custOrDiscTag == 1) {
+      for (var p in arry) {
+        var sale1 = (ben / (1 - arry[p].value / 100)).toFixed(2);
+        sale1 = sale1 ? sale1 : 0;
+        newPicker.push({
+          name: arry[p].name,
+          profit: arry[p].value,
+          price: this.data.firstBoolean ? this.data.picker_view[p].price : sale1,
+          discount: (sale1 / ben1 * 100).toFixed(1) !== 'NaN' ? (sale1 / ben1 * 100).toFixed(1) : 0
+        })
+      }
+    } else if (!type && app.custOrDiscTag == 2) {
+      for (var p in arry) {
+        var sale2 = (ben1 * arry[p].value / 100).toFixed(2);
+        sale2 = sale2 ? 0 : sale2;
+        newPicker.push({
+          name: arry[p].name,
+          discount: arry[p].value,
+          price: this.data.firstBoolean ? this.data.picker_view[p].price : sale2,
+          profit: (sale2 - ben / sale2).toFixed(1)
+        })
+      }
+    }
+    console.log(newPicker);
+    this.setData({
+      picker_view: newPicker,
+      firstBoolean: false
+    })
+
+  },
+  // 计算价格
+  priceCalculate: function (style, value) {
+    var param = this.data.GoodsInfoData;
+    if (value !== 0) {
+      param[style] = value;
+    } else {
+      param[style] = ''
+    }
+    if (style == 'tagprice' && value >= 0) {
+      param.purchaseprice = (value * this.data.screen_brandList[this.data.brand_index].profitD0 / 100).toFixed(2);
+    }
+    if (style == 'purchaseprice' && value >= 0) {
+      param.tagprice = (value / this.data.screen_brandList[this.data.brand_index].profitD0 * 100).toFixed(2);
+    }
+    this.setData({
+      GoodsInfoData: param
+    })
+    this.gradeCate();
+  },
+  changPrice: function (e) {
+    var num = e.detail.value;
+    this.setData({
+      changPrice_index: num[0]
+    })
+  },
+  // input失去焦点
+  blurInput: function (e) {
+    var style = e.currentTarget.dataset.name;
+    var valuenum = e.detail.value ? e.detail.value : 0;
+    this.priceCalculate(style, valuenum);
+    // if(+)
+  },
+  // 按折扣计算
+  discPrice: function (purchaseprice,tagprice){
+    var newPicker = this.data.picker_view;
+    for (var p in newPicker) {
+      if (newPicker[p].isChage == false) {
+        newPicker[p].price = (tagprice * newPicker[p].discPriceJson / 100).toFixed(2);
+        newPicker[p].custPriceJson = (newPicker[p].price - purchaseprice / purchaseprice).toFixed(2);
+      }
+    }
+    this.setData({
+      picker_view: newPicker
+    })
+  },
+  // 按毛利率计算
+  custPrice: function (purchaseprice,tagprice){
+    var newPicker = this.data.picker_view;
+    for (var p in newPicker){
+      if (newPicker[p].isChage==false){
+        newPicker[p].price = (purchaseprice * (1 + newPicker[p].custPriceJson / 100)).toFixed(2);
+        newPicker[p].discPriceJson = (purchaseprice / tagprice).toFixed(2);
+      }
+    }
+    this.setData({
+      picker_view: newPicker
+    })
+  },
+  // 初始化折扣率或者销售价
+  initializeData:function(){
+    var newPicker = this.data.picker_view;
+    var name = app.custOrDiscTag == 1 ? 'custPriceJson' :'discPriceJson';
+   for (var p in app.custProdPrice[this.data.grade_index]){
+     newPicker[p][name] = app.custProdPrice[this.data.grade_index][name];
+     newPicker[p].isUse = true;
+   }
+   this.setData({
+     picker_view: newPicker
+   })
   },
   onLoad: function (options) {
     this.setData({
