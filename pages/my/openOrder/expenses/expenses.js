@@ -151,6 +151,9 @@ Page({
     })
   },
   onLoad:function(){
+    if (!app.screen_unitList) {
+      util.api.getProductInit();
+    }
     this.getDataAjax();
   }
 })
