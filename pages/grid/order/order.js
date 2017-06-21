@@ -115,15 +115,12 @@ Page({
     var totole = this.data.countNum;
     switch (status){
       case 2:
-        console.log('buy')
        if(type=="buy"){
          totole.pNoPayCount -= 1;
          totole.pNoShipCount += 1; 
-         console.log('buy')
        }else{
          totole.sNoPayCount -= 1;
          totole.sNoAuditCount += 1; 
-         console.log('sal')
        }
          break;
       case '3':
@@ -144,7 +141,6 @@ Page({
         } else if (this.data.ordertype == 2 && this.data.ordertype4 == 1){
           totole.sNoAuditCount -= 1;
         }
-        
         break;
     }
     this.setData({
