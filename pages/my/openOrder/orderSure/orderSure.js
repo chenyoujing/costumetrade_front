@@ -4,8 +4,7 @@ Page({
   data: {
     bill_modal: "none",
     bill_modal_opacity: "",
-    wechat_modal: "none",
-    wechat_modal_opacity: "",
+    bill_wechat:true,
     shopCart:[],
     type:1,
     totalData: {
@@ -55,35 +54,14 @@ Page({
   },
   //微信账单
   bill_wechat: function (e) {
-    var that = this
-    let data = e.target.dataset
-
     this.setData({
-      wechat_modal: "block",
-    })
-    var animation = wx.createAnimation({
-      duration: 300,
-      timingFunction: 'ease',
-    })
-    animation.opacity(1).step()
-    this.setData({
-      wechat_modal_opacity: animation.export()
+      bill_wechat: false
     })
   },
-  wechat_modal_close: function () {
-    var animation = wx.createAnimation({
-      duration: 300,
-      timingFunction: 'ease',
-    })
-    animation.opacity(0).step()
+  cancel: function () {
     this.setData({
-      wechat_modal_opacity: animation.export()
+      bill_wechat: true
     })
-    setTimeout(() => {
-      this.setData({
-        wechat_modal: "none",
-      })
-    }, 300)
   },
   //单据时间
   date: function (e) {

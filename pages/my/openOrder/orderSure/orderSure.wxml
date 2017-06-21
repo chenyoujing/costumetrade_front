@@ -79,13 +79,6 @@
 </view>
 
 <!--微信账单-->
-<view class="modal_cover" bindtap="wechat_modal_close" animation="{{wechat_modal_opacity}}" style="display:{{wechat_modal}};"></view>
-<view class="modal" animation="{{wechat_modal_opacity}}" style="display:{{wechat_modal}}; top:20%;bottom: unset; height:auto; padding-bottom:50px;">
-  <view class="wechat_header">请扫码</view>
-  <view class="modal_close" bindtap="wechat_modal_close" style="color:#000000;">×</view>
-  <image src="../../../../images/image_none.png" mode="widthFix" style="width:50%;margin: 20px 25%;"></image>
-  <view class="wechat_button">
-    <view class="wechat_submit">扫好了，发账单</view>
-    <view class="wechat_close" bindtap="wechat_modal_close">取消</view>
-  </view>
-</view>
+<modal title="请扫码" hidden="{{bill_wechat}}" confirm-text="扫好了，发账单" bindconfirm="wechat_confirm" bindcancel="cancel">
+  <image src="{{scan?scan:'../../../../images/image_none.png'}}" mode="widthFix" class="scan_modal_image" />
+</modal>
