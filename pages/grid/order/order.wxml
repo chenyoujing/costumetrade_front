@@ -86,7 +86,7 @@
         <view class="order_container_text" style="margin-top:5px;">经手人：{{item.operator}}</view>
       </view>
       <view class="clear"></view>
-      <navigator url="../shop/payOrder/payOrder?operate=2&orderno={{item.payorderno}}&buyerid={{item.buyerstoreid}}&sellerid={{item.sellerstoreid}}&pay={{item.unPay}}">
+      <navigator url="payOrder/payOrder?operate=2&orderno={{item.payorderno}}&buyerid={{item.buyerstoreid}}&sellerid={{item.sellerstoreid}}&pay={{item.unPay}}">
         <view class="order_container_button btn_1">付款</view>      
       </navigator>
     <view class="clear"></view>

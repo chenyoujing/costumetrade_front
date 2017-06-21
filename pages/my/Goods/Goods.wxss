@@ -190,9 +190,10 @@
 .delete_container checkbox{
   width: 100%;
 }
-.batch_button,.batch_button_ok{
+.batch_button,.batch_button_ok,.batch_button_all{
+  box-sizing: border-box;
   position: absolute;
-  left: 50%;
+  left: 60%;
   right: 0;
   bottom: 0;
   text-align: center;
@@ -204,9 +205,16 @@
   transition: all 0.3s;
 }
 .batch_button_ok{
-  left: 0;
-  right: 50%;
+  left: 20%;
+  right: 40%;
   border-right: 2px solid #ffffff;
+}
+.batch_button_all{
+  left: 0;
+  right: 80%;
+  background-color: #ffffff;
+  border: 1px solid #DBDBDB;
+  font-size: 16px;
 }
 .bg_g{
   background-color: #52CAC1;

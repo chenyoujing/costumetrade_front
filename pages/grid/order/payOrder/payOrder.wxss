@@ -1,1 +1,2 @@
-/* pages/grid/order/payOrder/payOrder.wxss */
+/*头部*/
+@import "../../../../css/title.wxss";

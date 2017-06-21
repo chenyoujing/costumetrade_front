@@ -105,35 +105,34 @@
 .required{
   color: #ff0000;
 }
-.picker_checkbox{
-  text-align: center;
-  font-size: 14px;
-}
-.picker_checkbox checkbox{
-  margin-right: 20px;
-}
-.picker_title{
-  background-color: #52CAC1;
-  line-height: 33px;
-  color: #ffffff;
-}
-.picker_container{
-  box-sizing: border-box;
-  width: 100%;
-  height: 100px; 
-  border: 1px solid #52CAC1;
-}
-.picker_container picker-view-column{
-  height: 98px;
-}
+
 .picker_content{
+  box-sizing: border-box;
   line-height: 33px;
+  width: 80%;
+  float: left;
+  padding-right:30px; 
+  position: relative;
 }
-.picker_content_view{
-  display: inline-block;
+.picker_content_view,.picker_content_title{
+  float: left;
   width: 25%;
   text-align: center;
   font-size: 12px;
+  box-sizing: border-box;
+  border: 1px solid #DDDDDD;
+  background-color: #ffffff;
+}
+.picker_content_title{
+  background-color: #EEEEEE;
+}
+.picker_update_image{
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 16px;
+  height: 16px;
+  padding: 7px;
 }
 
 /*图片添加*/

@@ -1,2 +1,6 @@
-<!--pages/grid/order/payOrder/payOrder.wxml-->
-<text>pages/grid/order/payOrder/payOrder.wxml</text>
+<view class="title clearfix">
+  <navigator open-type="navigateBack">
+    <image src="../../../../images/back-away.png" mode="aspectFit" class="title_image_back" />
+  </navigator>
+  <view class="title_text">付款</view>
+</view>

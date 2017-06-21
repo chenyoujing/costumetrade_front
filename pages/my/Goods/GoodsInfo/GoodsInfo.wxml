@@ -13,71 +13,11 @@
       <view class="upload_input">
         <input type="text"  hidden="true" name="id" value="{{GoodsInfoData.id}}" />
       </view>
-      <view class="upload_input">
+      <view class="upload_input clearfix">
         <view class="upload_input_text">名称:</view>
         <input type="text" class="upload_input1" name="name" value="{{GoodsInfoData.name}}" placeholder="*" placeholder-class="required" />
-        <view class="clear"></view>
       </view>
-      <view class="upload_input">
-        <view class="upload_input_text">货号:</view>
-        <input type="number" class="upload_input1" name="code"  value="{{GoodsInfoData.code}}"/>
-        <view class="clear"></view>
-      </view>
-      <view class="upload_input">
-        <view class="upload_input_text">品牌:</view>
-        <input type="number" disabled="true" data-name="brand"  class="upload_input2" name="brandid" style="padding-right:30px;" value="{{brand}}"/>
-        <navigator  url="../GoodsBrand/GoodsBrand?url=brand/getAllBrands&title=品牌" hover-class="navigator-hover">
-        <image src="../../../../images/update.png" mode="aspectFit" class="update_image" />
-        </navigator>  
-        <view class="clear"></view>
-      </view>
-      <view class="upload_input">
-        <view class="upload_input_text">等级:</view>
-        <picker style="margin-right:0" data-style = 'grade_index' bindchange="bindSelectorChange" value="{{GoodsInfoData.grade}}" range="{{screen_gradeList}}" name="grade" mode="selector" range-key="custtypename" >
-            {{screen_gradeList[grade_index].custtypename}}
-            <image src="../../../../images/down.png" mode="aspectFit" class="picker_image" />
-        </picker>
-        <view class="clear"></view>
-      </view>
-      <view class="upload_input">
-        <view class="upload_input_text">吊牌价:</view>
-        <input type="digit" bindinput="blurInput" data-name="tagprice" class="upload_input1" name="tagprice" value="{{GoodsInfoData.tagprice}}" placeholder="*" placeholder-class="required" />
-        <view class="clear"></view>
-      </view>
-      <view class="upload_input">
-        <view class="upload_input_text">进货价:</view>
-        <input type="digit" bindinput="blurInput" data-name="purchaseprice"  class="upload_input1" name="purchaseprice" value="{{GoodsInfoData.purchaseprice}}" />
-        <view class="clear"></view>
-      </view>
-      <view class="upload_input">
-        <view class="upload_input_text">销售价:</view>
-        <checkbox-group class="picker_checkbox"  bindchange="checkboxChange">
-          <label>
-            <checkbox value="{{updataAut}}" checked="{{item.checked}}"/>手动修改销售价
-          </label>
-        </checkbox-group>
-        <view class="clear"></view>
-        <view class="picker_title">
-          <view class="picker_content_view">客户种类</view>
-          <view class="picker_content_view">销售价</view>
-          <view class="picker_content_view">折扣率</view>
-          <view class="picker_content_view">毛利率</view>
-        </view>
-        <picker-view class="picker_container" indicator-style="height: 33px;" value="{{value}}" bindchange="changPrice">
-            <picker-view-column>
-              <view class="picker_content" wx:for="{{picker_view}}">
-                <view class="picker_content_view">{{item.name}}</view>
-                <view class="picker_content_view">
-                <input focus="true" wx-if="{{changPrice_index==index && updataAut == true}}" type = "digit" data-name="{{index}}" bindinput="blurInputPrice" value="{{item.price}}"/>
-                <view wx-if="{{changPrice_index !==index || updataAut !== true}}">{{item.price}}</view>
-                </view>
-                <view class="picker_content_view">{{item.discount}}</view>
-                <view class="picker_content_view">{{item.profit}}</view>
-              </view>
-            </picker-view-column>
-          </picker-view>
-      </view>
-      <view class="upload_input">
+      <view class="upload_input clearfix">
         <navigator url="../GoodsImage/GoodsImage" class="imagesearch">
           <image src="../../../../images/search.png" mode="aspectFit" class="imagesearch_image" />
           <view class="imagesearch_text">网上搜索</view>
@@ -101,6 +41,53 @@
           <image src="{{GoodsInfoData.image4}}" mode="aspectFill" data-index="image4" class="" />
           </view>
         </scroll-view>
+      </view>
+      <view class="upload_input clearfix">
+        <view class="upload_input_text">吊牌价:</view>
+        <input type="digit" bindinput="blurInput" data-name="tagprice" class="upload_input1" name="tagprice" value="{{GoodsInfoData.tagprice}}" placeholder="*" placeholder-class="required" />
+      </view>
+      <view class="upload_input clearfix">
+        <view class="upload_input_text">进货价:</view>
+        <input type="digit" bindinput="blurInput" data-name="purchaseprice"  class="upload_input1" name="purchaseprice" value="{{GoodsInfoData.purchaseprice}}" />
+      </view>
+      <view class="upload_input clearfix">
+        <view class="upload_input_text">销售价:</view>
+        <view class="picker_content claerfix">
+          <view class="picker_content_title">客户种类</view>
+          <view class="picker_content_title">销售价</view>
+          <view class="picker_content_title">折扣率</view>
+          <view class="picker_content_title">毛利率</view>
+          <block wx:for="{{picker_view}}">
+            <view class="picker_content_view">{{item.name}}</view>
+            <view class="picker_content_view">
+            <input focus="true" wx-if="{{changPrice_index==index && updataAut == true}}" type = "digit" data-name="{{index}}" bindinput="blurInputPrice" value="{{item.price}}"/>
+            <view wx-if="{{changPrice_index !==index || updataAut !== true}}">{{item.price}}</view>
+            </view>
+            <view class="picker_content_view">{{item.discount}}</view>
+            <view class="picker_content_view">{{item.profit}}</view>
+          </block>
+        <image src="../../../../images/update.png" mode="aspectFit" class="picker_update_image" bindtap="checkboxChange" />
+        </view>
+      </view>
+      <view class="upload_input">
+        <view class="upload_input_text">货号:</view>
+        <input type="number" class="upload_input1" name="code"  value="{{GoodsInfoData.code}}"/>
+        <view class="clear"></view>
+      </view>
+      <view class="upload_input">
+        <view class="upload_input_text">品牌:</view>
+        <input type="number" disabled="true" data-name="brand"  class="upload_input2" name="brandid" style="padding-right:30px;" value="{{brand}}"/>
+        <navigator  url="../GoodsBrand/GoodsBrand?url=brand/getAllBrands&title=品牌" hover-class="navigator-hover">
+        <image src="../../../../images/update.png" mode="aspectFit" class="update_image" />
+        </navigator>  
+        <view class="clear"></view>
+      </view>
+      <view class="upload_input">
+        <view class="upload_input_text">等级:</view>
+        <picker style="margin-right:0" data-style = 'grade_index' bindchange="bindSelectorChange" value="{{GoodsInfoData.grade}}" range="{{screen_gradeList}}" name="grade" mode="selector" range-key="custtypename" >
+            {{screen_gradeList[grade_index].custtypename}}
+            <image src="../../../../images/down.png" mode="aspectFit" class="picker_image" />
+        </picker>
         <view class="clear"></view>
       </view>
       <view class="upload_input">
@@ -131,13 +118,14 @@
         <view class="clear"></view>
       </view>
       <view class="upload_input">
-        <view class="upload_input_text">一手件数:</view>
-        <input type="number" class="upload_input1" name="handcount" value="{{GoodsInfoData.handcount}}" />
+        <view class="upload_input_text">商品详情:</view>
+        <input type="number" class="upload_input2" style="padding-right:30px;" />
+        <image src="../../../../images/update.png" mode="aspectFit" class="update_image" />
         <view class="clear"></view>
       </view>
       <view class="upload_input">
         <view class="upload_input_text">单位:</view>
-        <input type="number" disabled="true"  class="upload_input2" name="unit" style="padding-right:30px;" value="{{unit}}"/>
+        <input type="number" disabled="true" data-name="unit"  class="upload_input2" name="unit" style="padding-right:30px;" value="{{unit}}"/>
         <navigator  url="../GoodsBrand/GoodsBrand?url=unit/getAllUnits&title=单位" hover-class="navigator-hover">
         <image src="../../../../images/update.png" mode="aspectFit" class="update_image" />
         </navigator>      
@@ -145,7 +133,7 @@
       </view>
       <view class="upload_input">
         <view class="upload_input_text">颜色:</view>
-        <input type="number"  disabled="true" class="upload_input2" name="colors" style="padding-right:30px;" value="{{GoodsInfoData.colors}}"/>
+        <input type="number"  disabled="true" bindblur="blurInput" data-name="colors"  class="upload_input2" name="colors" style="padding-right:30px;" value="{{GoodsInfoData.colors}}"/>
         <navigator  url="../GoodsBrand/GoodsBrand?url=color/getAllColors&title=颜色选择" hover-class="navigator-hover">
         <image src="../../../../images/update.png" mode="aspectFit" class="update_image" />
         </navigator>
@@ -154,21 +142,26 @@
       
       <view class="upload_input">
         <view class="upload_input_text">尺码:</view>
-         <input type="number"  disabled="true" class="upload_input2" name="sizes" style="padding-right:30px;" value="{{GoodsInfoData.sizes}}"/>
+         <input type="number"  disabled="true" bindblur="blurInput" data-name="colors"  class="upload_input2" name="sizes" style="padding-right:30px;" value="{{GoodsInfoData.sizes}}"/>
         <navigator  url="../GoodsSize/GoodsSize?url=size/getAllSizes&title=尺码选择" hover-class="navigator-hover">
         <image src="../../../../images/update.png" mode="aspectFit" class="update_image" />
         </navigator>
         <view class="clear"></view>
       </view>
       <view class="upload_input">
+        <view class="upload_input_text">一手件数:</view>
+        <input type="number" bindblur="blurInput" data-name="handcount"  class="upload_input1" name="handcount" value="{{GoodsInfoData.handcount}}" />
+        <view class="clear"></view>
+      </view>
+      <view class="upload_input">
         <view class="upload_input_text">主条码:</view>
-        <input type="number" class="upload_input2" name="barcode" value = "{{GoodsInfoData.barcode}}" style="padding-right:30px;" />
+        <input type="number" bindblur="blurInput" data-name="barcode"  class="upload_input2" name="barcode" value = "{{GoodsInfoData.barcode}}" style="padding-right:30px;" />
         <image src="../../../../images/scan_black.png" mode="aspectFit" class="code_image" />
         <view class="clear"></view>
       </view>
       <view class="upload_input">
         <view class="upload_input_text">分条码:</view>
-        <input type="number" disabled="true" class="upload_input2" value="{{GoodsInfoData.barcodes}}" name="barcodes" style="padding-right:30px;" />
+        <input type="number" disabled="true" data-name="barcodes"  class="upload_input2" value="{{GoodsInfoData.barcodes}}" name="barcodes" style="padding-right:30px;" />
         <navigator  url="../Goodscodes/Goodscodes?barcodes={{GoodsInfoData.barcodes}}&color={{GoodsInfoData.colors}}&size={{GoodsInfoData.sizes}}" hover-class="navigator-hover">
         <image src="../../../../images/update.png" mode="aspectFit" class="update_image" />
         </navigator>
@@ -208,6 +201,39 @@
         </view>
         <view class="clear"></view>
       </view>
+      <view class="upload_input clearfix">
+        <view class="upload_input_text">打折:</view>
+        <radio-group class="radio-group">
+          <label class="radio" style="margin-left:25%;">
+            <radio />是
+          </label>
+          <label class="radio" style="margin-right:25%;">
+            <radio />否
+          </label>
+        </radio-group>
+      </view>
+      <view class="upload_input clearfix">
+        <view class="upload_input_text">款式加价:</view>
+        <radio-group class="radio-group">
+          <label class="radio" style="margin-left:25%;">
+            <radio />是
+          </label>
+          <label class="radio" style="margin-right:25%;">
+            <radio />否
+          </label>
+        </radio-group>
+      </view>
+      <view class="upload_input clearfix">
+        <view class="upload_input_text">允许上架:</view>
+        <radio-group class="radio-group">
+          <label class="radio" style="margin-left:25%;">
+            <radio />是
+          </label>
+          <label class="radio" style="margin-right:25%;">
+            <radio />否
+          </label>
+        </radio-group>
+      </view>
     </scroll-view>
     <button class="submit" form-type="submit">提交</button>
   </form>
@@ -230,3 +256,18 @@
   <image src="../../../../images/close.png" mode="aspectFit" class="image_close" />
 </view>
 
+<!--手动修改销售价-->
+<modal title="修改销售价" hidden="{{priceUpdate}}" bindconfirm="confirm" bindcancel="cancel">
+  <view class="table clearfix">
+    <view class="table_text bg_g">客户种类</view>
+    <view class="table_text bg_gray">销售价</view>
+    <view class="table_text bg_gray">折扣率</view>
+    <view class="table_text bg_gray">毛利率</view>
+    <block wx:for="{{array}}">
+      <view class="table_text bg_g">{{item.name}}</view>
+      <view class="table_text">{{item.value[0]}}</view>
+      <view class="table_text">{{item.value[1]}}</view>
+      <view class="table_text">{{item.value[2]}}</view>
+    </block>
+  </view>
+</modal>
