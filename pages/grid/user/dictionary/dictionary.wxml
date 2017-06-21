@@ -168,24 +168,34 @@
         <view class="setting_view" style="padding: 0 20px;">
           <view class="setting_pay" style="border:0;">
             <view class="pay_view">
+              <navigator url="../updateBrand/updateBrand">
+                <image src="../../../../images/update.png" mode="aspectFit" class="image_setting" />
+              </navigator>
               <text>1.</text>品牌
-              <image src="../../../../images/update.png" mode="aspectFit" class="image_setting" />
             </view>
             <view class="pay_view">
+              <navigator url="../updateBrand/updateBrand">
+                <image src="../../../../images/update.png" mode="aspectFit" class="image_setting" />
+              </navigator>
               <text>2.</text>种类
-              <image src="../../../../images/update.png" mode="aspectFit" class="image_setting" />
             </view>
             <view class="pay_view">
+              <navigator url="../updateBrand/updateBrand">
+                <image src="../../../../images/update.png" mode="aspectFit" class="image_setting" />
+              </navigator>
               <text>3.</text>单位
-              <image src="../../../../images/update.png" mode="aspectFit" class="image_setting" />
             </view>
             <view class="pay_view">
+              <navigator url="../updateSize/updateSize">
+                <image src="../../../../images/update.png" mode="aspectFit" class="image_setting" />
+              </navigator>
               <text>4.</text>尺码
-              <image src="../../../../images/update.png" mode="aspectFit" class="image_setting" />
             </view>
             <view class="pay_view">
+              <navigator url="../updateBrand/updateBrand">
+                <image src="../../../../images/update.png" mode="aspectFit" class="image_setting" />
+              </navigator>
               <text>5.</text>颜色
-              <image src="../../../../images/update.png" mode="aspectFit" class="image_setting" />
             </view>
           </view>
         </view>

@@ -89,12 +89,11 @@
         <view class="clear"></view>
       </view>
       <view class="goods_price"><text style="color:#000000;">零售价：</text>639.6元</view>
-      <view class="goods_number">
+      <view class="goods_number clearfix">
         <view class="goods_number_view subtract">-</view>
         <view class="goods_number_view number">1</view>
         <view class="goods_number_view add">+</view>
         <view class="goods_number_text">件数</view>
-        <view class="clear"></view>
       </view>
     </view>
   </scroll-view>

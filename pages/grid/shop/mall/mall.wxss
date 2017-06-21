@@ -12,16 +12,6 @@
   height: 16px;
   padding: 7px;
 }
-.title_input{
-  margin-right: 10%;
-  margin-left: 2%; 
-  background-color: #ffffff;
-  font-family: Microsoft YaHei;
-  padding: 4px 10px;
-  font-size: 14px;
-  height:27px;
-  min-height:27px;
-}
 .mall_title{
   position: relative;
 }
@@ -44,14 +34,17 @@
   bottom: 0;
   background-color: rgba(0, 0, 0, 0.3);
 }
+.search_input_image{
+  top: -4px;
+}
 .title_view{
   position:relative;
   padding: 60px 0 4px;
 }
 .shop_tx{
   float: left;
-  width: 36px;
-  height: 36px;
+  width: 32px;
+  height: 32px;
   border-radius: 18px;
   margin-left: 8%;
   margin-right: 5%;
@@ -65,8 +58,8 @@
 }
 .search_input{
   font-size: 14px;
-  line-height: 36px;
-  height: 36px;
+  line-height: 32px;
+  height: 32px;
   border-radius: 18px;
   padding-left: 20px;
   padding-right: 35px;

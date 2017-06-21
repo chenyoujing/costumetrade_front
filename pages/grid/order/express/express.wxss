@@ -6,7 +6,7 @@
   top: 40px;
   left: 0;
   right: 0;
-  bottom: 0;
+  bottom: 40px;
   padding-top: 15px;
   width: unset;
 }
@@ -45,4 +45,20 @@
 }
 .bg_2 .content_input{
   padding-bottom: 10px;
+}
+
+.submit{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 40px;
+  background-color: #eeeeee;
+  text-align: center;
+  font-size: 16px;
+  line-height: 40px;
+}
+.bg_g{
+  background-color: #52CAC1;
+  color: #ffffff;
 }
