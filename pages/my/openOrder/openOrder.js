@@ -45,26 +45,28 @@ Page({
       url: './orderSure/orderSure?type='+this.data.type
     })
   },
+  // 进入详情
   orderid:function(e){
     console.log(e)
+    this.detail(e.target.dataset.index, e.target.dataset.id, e.currentTarget.dataset.num)
+  },
+  // 打开详情页面
+  detail:function(index,id,num){
     // 判断时候是新增还是修改
     var shopCart = this.data.shopCart;
-    if (e.target.dataset.index){
-      shopCart[e.target.dataset.index].upData = e.currentTarget.dataset.num ? true : false;
+    if (index) {
+      shopCart[index].upData = num ? true : false;
     }
     this.setData({
-      orderid: e.target.dataset.id,
-      keyboardNum:'',
-      keyHidden:false,
-      aa:false,
-      keyboardNum2: e.currentTarget.dataset.num,
+      orderid: id,
+      keyboardNum: '',
+      keyHidden: false,
+      aa: false,
+      keyboardNum2:num,
       shopCart: shopCart
     })
-    console.log(e.currentTarget.dataset.num)
-    if (!app.screen_unitList) {
-      util.api.getProductInit();
-    }
-    this.showGoodsInfo(e.target.dataset.id);
+    
+    this.showGoodsInfo(id);
   },
   order_back:function(){
     this.setData({
@@ -222,9 +224,11 @@ Page({
   },
   // 隐藏键盘
   keyHidden:function(){
-    this.setData({
-      keyHidden:true
-    })
+    if (!this.data.orderid){
+      this.setData({
+        keyHidden: true
+      })
+    }
     console.log(this.data.keyHidden)
   },
   // keyShow显示键盘
@@ -575,17 +579,20 @@ Page({
     })
     console.log(e)
     if (e.ClientData){
-      var object = {};
-      object.target.dataset.id = e.id;
-      object.currentTarget.dataset.num = "";
-      console.log(object)
-      this.orderid(object)
+      this.detail("", e.id, "")
     }
-    
   },
   onShow: function (options) {
+    // 防止没有客户时报错
+    var cate = app.selectName ? app.selectName.cate:6;
+    if (!app.screen_unitList) {
+      util.api.getProductInit();
+    }
     console.log(app)
-    this.sale(this.data.selectName.cate);
+    this.setData({
+      selectName: app.selectName
+    })
+    this.sale(cate);
     this.getData();
     var that = this
     setTimeout(() => {
@@ -593,9 +600,7 @@ Page({
         scrollTop: this.data.scrollTop,
       })
     }, 100);
-    this.setData({
-      selectName: app.selectName
-    })
+    
   },
   onUnload:function(){
     this.localData(this.data.shopCart);

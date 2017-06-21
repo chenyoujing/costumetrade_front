@@ -75,6 +75,7 @@ Page({
         var ClientsList = res.data
         //把1,2,3...变为 普通会员,银卡会员,金卡会员...
         for (var p in ClientsList) {
+          ClientsList[p].catenum = ClientsList[p].cate
           for (var j in app.custProdPriceList) {
             if(ClientsList[p].cate == app.custProdPriceList[j].id){
               ClientsList[p].cate = app.custProdPriceList[j].custtypename

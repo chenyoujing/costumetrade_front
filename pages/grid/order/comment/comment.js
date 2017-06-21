@@ -22,7 +22,7 @@ Page({
     console.log(index)
     var that = this;
     wx.uploadFile({
-      url: 'http://192.168.2.221:8088/product/uploadImage',
+      url: util.api.host + 'product/uploadImage',
       filePath: file[i],
       name: 'file',
       success: function (res) {

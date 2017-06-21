@@ -10,23 +10,23 @@
   </view>
 
   <scroll-view scroll-y="true" class="content">
-    <view style="padding:10px;">
+    <view style="padding:10px;" wx:for="{{product}}">
       <view class="content_container clearfix" >
         <image src="{{item.image ? item.image : '../../../../images/image_none.png'}}" mode="aspectFill" />
         <view class="content_container_text">
           <view class="content_container_title">
-            44
+            {{item.name}}
             <text class="date">2017-01-01</text>
           </view>
           <view class="content_container_info clearfix">
-            <view class="unit_price">单价:32</view>
+            <view class="unit_price">单价:{{item.price}}</view>
             <view class="info clearfix">
-              <view class="info_txet">颜色：皇家蓝</view>
-              <view class="info_txet">尺码：145</view>
-              <view class="info_txet">数量1件</view>
+              <view class="info_txet">颜色： {{item.colors}}</view>
+              <view class="info_txet">尺码： {{item.sizes}}</view>
+              <view class="info_txet">数量： {{item.count}}</view>
             </view>
-            <view class="price">32.00</view>
-            <view class="button" bindtap="skipUrl" data-cate="{{cate}}" data-image="{{image}}" data-name = "{{name}}"  data-id="{{clientId}}" data-Goodid="{{item.id}}">补货</view>
+            <view class="price"> {{item.price}}</view>
+            <view class="button" bindtap="skipUrl" data-cate="{{cate}}" data-image="{{image}}" data-name = "{{name}}"  data-id="{{clientId}}" data-goodsid="{{item.id}}">补货</view>
           </view>
         </view>
       </view>

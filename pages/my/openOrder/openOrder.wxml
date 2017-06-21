@@ -38,7 +38,7 @@
     <view class="clear"></view>
   </view>
 
-  <scroll-view scroll-y="true" bindscroll="keyHidden" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}" style="bottom:{{keyHidden?60:keyboard_height*3 + 79}}px;" class="order_scroll" hidden="{{products_info||orderid}}">
+  <scroll-view scroll-y="true"  scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}" style="bottom:{{keyHidden?60:keyboard_height*3 + 79}}px;" class="order_scroll" hidden="{{products_info||orderid}}" bindscroll="keyHidden">
     <view class="prompt_none" wx:if="{{shopCart == 0}}">
       <text>您没有添加货品，请添加</text>
     </view>
@@ -87,7 +87,7 @@
       </radio-group>
       <radio-group  bindchange="EventHandle" data-index="selectSize">
         <label class="goods_checkbox" wx:for="{{size}}" wx:key="id">
-          <radio value="{{item.size}}}" disabled="{{disabled}}"  checked="{{aa}}"/>
+          <radio value="{{item.size}}" disabled="{{disabled}}"  checked="{{aa}}"/>
           {{item.size}} {{item.num}}
         </label>
       </radio-group>

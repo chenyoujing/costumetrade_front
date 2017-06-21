@@ -12,7 +12,7 @@ Page({
     wx.showNavigationBarLoading()
     var that = this;
     util.api.request({
-      url: 'client/initCustomer',
+      url: 'client/clientReplenishment',
       data: {
         clientId: this.data.clientId,
         openid: app.globalData.openid,
@@ -25,7 +25,7 @@ Page({
       success: function (res) {
         wx.hideNavigationBarLoading();
         console.log(res.data)
-        thatsetData({
+        that.setData({
           product:res.data
         })
       }
@@ -33,7 +33,7 @@ Page({
   },
   // 相应的跳转
   skipUrl:function(e){
-    var id= e.target.dataset.Goodsid;
+    var id = e.target.dataset.goodsid;
     var url = "";
     if (this.data.clientType == 1){
       url = "../../openOrder/openOrder?clientId=" + this.data.clientId + "&id=" + id+'&ClientData=true';
@@ -41,6 +41,7 @@ Page({
     }else{
       url = "../../../gird/shop/goods_detail/goods_detail?clientId=" + this.data.clientId + "&id=" + id + '&ClientData=true'
     };
+    console.log(e)
     wx.navigateTo({
       url: url
     })
