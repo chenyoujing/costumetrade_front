@@ -1,3 +1,4 @@
+<form bindsubmit="expressSubmit">
 <view class="title">
   {{title}}
   <navigator open-type="navigateBack">
@@ -93,5 +94,6 @@
   </view>
 </scroll-view>
 
-<view class="submit bg_g" style="left:50%;">提交</view>
+<button class="submit bg_g" style="left:50%;" form-type="submit">提交</button>
 <view class="submit" style="right:50%;">打印</view>
+</form>

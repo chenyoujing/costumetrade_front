@@ -6,7 +6,7 @@
         <image src="../../../../images/image_none.png" mode="scaleToFill" class="shop_tx" />
       </navigator>
       <navigator url="../shoppingcard/shoppingcard?storeId=1">
-        <image src="../../../../images/shoppingcard.png" mode="aspectFit" class="shoppingcard_image" style="margin-left:5%;">
+        <image src="../../../../images/shoppingcard.png" mode="aspectFit" class="shoppingcard_image" style="margin-left:3%;">
           <view class="prompt">3</view>
         </image>
       </navigator>
