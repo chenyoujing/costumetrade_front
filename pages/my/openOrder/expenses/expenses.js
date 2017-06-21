@@ -7,12 +7,15 @@ Page({
     totalNum: 0,
     totalMoney: 0,
     accountModal: true,
+    saveOrderFee:[],
+    paycact:'现金'
   },
   // 打开入账模态框
   account:function(){
     this.setData({
       accountModal: false
-    })
+    });
+    
   },
   // 关闭入账模态框
   cancel: function () {
@@ -44,37 +47,39 @@ Page({
   },
   // 显示
   showInput:function(e){
-    var index = e.target.dataset.index;
-    var product = this.data.product;
-    product[index].boolean = false;
-    for (var p in product){
-      product[p].focus = false;
+    var saveOrderFee = this.data.saveOrderFee;
+    var object = {
+      storeid:1,
+      cate:e.target.dataset.id,
+      catename: e.target.dataset.text,
+      paycate:"",
+      paycost:""
     }
-    product[index].focus = product[index].boolean?false:true;
-    console.log(product[index].focus)
+    saveOrderFee.push(object)
     this.setData({
-      product:product
+      saveOrderFee: saveOrderFee
     })
   },
   EventHandle:function(e){
     var index = e.target.dataset.index;
-    var product = this.data.product;
-    product[index].value = e.detail.value;
+    var saveOrderFee = this.data.saveOrderFee;
+    saveOrderFee[index].paycost = e.detail.value;
     this.setData({
-      product: product
+      saveOrderFee: saveOrderFee
     })
-    console.log(product)
+    console.log(saveOrderFee)
     this.total()
   },
+  
   // 计算数量
   total:function(){
-    var product = this.data.product;
+    var saveOrderFee = this.data.saveOrderFee;
     var totalNum = 0;
     var totalMoney = 0;
-    for (var p in product) {
-      if(product[p].value>0){
+    for (var p in saveOrderFee) {
+      if (saveOrderFee[p].paycost>0){
         totalNum +=1;
-        totalMoney += parseInt(product[p].value);
+        totalMoney += parseInt(saveOrderFee[p].paycost);
       }
     }
     this.setData({
@@ -109,25 +114,43 @@ Page({
       }
     })
   },
+  // 取消操作
+  canleSubmit:function(){
+    var saveOrderFee = this.data.saveOrderFee;
+    for (var p in saveOrderFee) {
+      saveOrderFee[p].paycost = "";
+    } 
+    this.setData({
+      saveOrderFee: saveOrderFee
+    })
+  },
+  // 提交订单
   submitData:function(){
     var that = this;
+    var saveOrderFee = this.data.saveOrderFee;
+    for (var p in saveOrderFee){
+      saveOrderFee[p].paycate = this.data.paycact;
+    }
+    console.log(saveOrderFee)
     wx.showNavigationBarLoading()
     util.api.request({
       url: 'order/saveOrderFee',
-      data: {
-        openid: app.globalData.openid
-      },
+      data: saveOrderFee,
       method: 'POST',
       header: {
-        'content-type': 'application/x-www-form-urlencoded'
+        'content-type': 'application/json'
       },
       success: function (res) {
         wx.hideNavigationBarLoading();
-       
+        wx.showToast({
+          title: 'ok',
+          mask: true,
+          duration: 2000
+        })
       }
     })
   },
   onLoad:function(){
-    this.getDataAjax()
+    this.getDataAjax();
   }
 })

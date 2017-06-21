@@ -148,6 +148,7 @@ Page({
   // 切换单据类型
   changeType:function(e){
     var type = e.target.dataset.type;
+   
     this.sale(this.data.selectName.cate);
     this.localData(this.data.shopCart);
     this.setData({
@@ -584,15 +585,16 @@ Page({
   },
   onShow: function (options) {
     // 防止没有客户时报错
-    var cate = app.selectName ? app.selectName.cate:6;
+    console.log(app.selectName)
+    app.selectName = app.selectName ? app.selectName:{cate:6};
     if (!app.screen_unitList) {
       util.api.getProductInit();
     }
     console.log(app)
     this.setData({
-      selectName: app.selectName
+      selectName: app.selectName 
     })
-    this.sale(cate);
+    this.sale(app.selectName.cate);
     this.getData();
     var that = this
     setTimeout(() => {

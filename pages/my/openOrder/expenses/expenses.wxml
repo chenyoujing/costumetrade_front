@@ -7,7 +7,7 @@
   <image src="../../../../images/more.png" mode="aspectFit" class="title_more_image" bindtap="more_function" />
   <view class="title_button_view clearfix">
     <view class="title_button_view2">
-      <view class="title_button">取消</view>
+      <view class="title_button" bindtap="canleSubmit">取消</view>
     </view>
     <view class="title_button_view2">
       <view class="title_button" bindtap="account">入账</view>
@@ -18,12 +18,11 @@
 
 <view class="expenses_view1">
   <view class="content_title">明细</view>
-  <view class="expenses_detail clearfix" wx:for="{{product}}" hidden="{{item.boolean}}">
-    <view class="expenses_detail_text">{{item.dictText}}</view>
+  <view class="expenses_detail clearfix" wx:for="{{saveOrderFee}}">
+    <view class="expenses_detail_text">{{item.catename}}</view>
     <view class="expenses_detail_unit">元</view>
-    <input type="digit" class="expenses_detail_input" value="{{item.value}}" bindinput="EventHandle" data-index="{{index}}"  focus="{{item.focus}}"/>
+    <input type="digit" class="expenses_detail_input" value="{{item.paycost}}" bindblur="EventHandle" data-index="{{index}}"  focus="{{item.focus}}"/>
   </view>
-
   <view class="expenses_detail_info clearfix">
     <view class="expenses_detail_num">{{totalNum}}</view>
     <view class="expenses_detail_price">￥{{totalMoney}}</view>
@@ -32,7 +31,7 @@
 <view class="expenses_view2">
   <view class="content_title">项目</view>
   <block wx:for="{{product}}">
-    <view class="expenses_item" bindtap="showInput" data-index="{{index}}" data-id="{{item.dictValue}}">{{item.dictText}}</view>
+    <view class="expenses_item" bindtap="showInput" data-index="{{index}}" data-id="{{item.dictValue}}" data-text="{{item.dictText}}">{{item.dictText}}</view>
   </block>
 </view>
 
@@ -47,19 +46,12 @@
 
 
 <!--入账-->
-<modal title="支付" hidden="{{accountModal}}" confirm-text="确定" cancel-text="取消"  bindconfirm="accountConfirm" bindcancel="cancel" >
+<modal title="支付" hidden="{{accountModal}}" confirm-text="确定" cancel-text="取消"  bindconfirm="submitData" bindcancel="cancel" >
   <view class="clearfix" style="margin-top:10px;">
     <picker class="modal_pay one_line" range="">
       现金
       <image src="../../../../images/down.png" mode="aspectFit" class="picker_image" />
     </picker>
-     <input class="pay_input" type="digit" placeholder="输入金额" />
-  </view>
-  <view class="clearfix" style="margin-top:10px;">
-    <picker class="modal_pay one_line" range="">
-      刷卡
-      <image src="../../../../images/down.png" mode="aspectFit" class="picker_image" />
-    </picker>
-     <input class="pay_input" type="digit" placeholder="输入金额" />
+     <input class="pay_input" disabled="true" value="{{totalMoney}}" type="digit" placeholder="输入金额" />
   </view>
 </modal>
