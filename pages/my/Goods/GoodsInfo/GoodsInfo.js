@@ -31,7 +31,7 @@ Page({
     soruceData:{},
     changPrice_index:0,
     updataAut:false,
-    firstBoolean:true,
+    firstBoolean:false,
     perImgSrc:'image',
     fileList:[
       {
@@ -70,14 +70,9 @@ Page({
         resizeFixUrl: ""
       }
     ],
-    array: [
-      { name: "普通会员", value: ["100", "95%", "80%"] },
-      { name: "银卡会员", value: ["100", "95%", "80%"] },
-      { name: "金卡会员", value: ["100", "95%", "80%"] },
-      { name: "白金会员", value: ["100", "95%", "80%"] },
-      { name: "钻石会员", value: ["100", "95%", "80%"] },
-    ],
-    priceUpdate: true
+    priceUpdate: true,
+    userIdentity: '',
+    privilegeEmployees: false,
   },
   // 返回
   backdelta: function () {
@@ -105,7 +100,7 @@ Page({
     var param = this.data.GoodsInfoData;
     switch (style) {
       case 'grade_index':
-        param.grade = this.data.screen_gradeList[e.detail.value].id;
+        param.grade = this.data.screen_gradeList[e.detail.value].dictValue;
         this.setData({
           grade_index: e.detail.value,
           GoodsInfoData: param
@@ -237,7 +232,7 @@ Page({
           }
         }
         for (var p in app.screen_gradeList) {
-          if (app.screen_gradeList[p].id == answerData.grade) {
+          if (app.screen_gradeList[p].dictValue == answerData.grade) {
             gradeNumber = p;
           }
         }
@@ -256,10 +251,10 @@ Page({
           unit: unitName,
           grade_index: gradeNumber,
           picker_view: newPicker,
-          brand_index: brandNumber
+          brand_index: brandNumber,
+          firstBoolean: true
         });
-       
-        that.gradeCate();
+        that.initializeData();
         that.GoodsImage();
       }
     })
@@ -396,12 +391,6 @@ Page({
       })
     }
   },
-  changPrice: function (e) {
-    var num = e.detail.value;
-    this.setData({
-      changPrice_index: num[0]
-    })
-  },
   checkboxChange: function (e) {
     this.setData({
       updataAut: !this.data.updataAut,
@@ -412,17 +401,6 @@ Page({
     this.setData({
       priceUpdate: true
     })
-  },
-  blurInputPrice:function(e){
-    var num = e.currentTarget.dataset.name;
-    var arry = this.data.picker_view;
-    arry[num].price = e.detail.value;
-    this.setData({
-      picker_view: arry
-    })
-    if (e.detail.value){
-      this.gradeCate(e.detail.value);
-    }
   },
   //尺码添加
   sizeAdd:function(type){
@@ -451,124 +429,154 @@ Page({
     app.imageinfo.storeId = this.data.GoodsInfoData.storeId
     app.imageinfo.productName = this.data.GoodsInfoData.productName
   },
-  // 等级、客户种类逻辑,五种价格
-  gradeCate: function (type) {
-    var arry = [];
-    var newPicker = [];
-    var name = app.custOrDiscTag == 1 ? 'custPriceJson' : 'discPriceJson';
-    var pickername = app.custOrDiscTag == 1 ? 'profit' : 'discount';
-    console.log(this.data.grade_index)
-    arry = app.custProdPrice[this.data.grade_index][name];
-    var ben = parseInt(this.data.GoodsInfoData.purchaseprice) ? parseInt(this.data.GoodsInfoData.purchaseprice) : 0;
-    var ben1 = this.data.GoodsInfoData.tagprice ? this.data.GoodsInfoData.tagprice : 0;
-    if (type) {
-      newPicker = this.data.picker_view;
-      for (var p in newPicker) {
-        if (newPicker[p].price == type) {
-          newPicker[p].discount = (type / ben1 * 100).toFixed(1) !== 'NaN' ? (type / ben1 * 100).toFixed(1) : 0;
-          newPicker[p].profit = ((type - ben) / type * 100).toFixed(1);
-          newPicker[p].price = type;
-        }
-      }
-    } else if (!type && app.custOrDiscTag == 1) {
-      for (var p in arry) {
-        var sale1 = (ben / (1 - arry[p].value / 100)).toFixed(2);
-        sale1 = sale1 ? sale1 : 0;
-        newPicker.push({
-          name: arry[p].name,
-          profit: arry[p].value,
-          price: this.data.firstBoolean ? this.data.picker_view[p].price : sale1,
-          discount: (sale1 / ben1 * 100).toFixed(1) !== 'NaN' ? (sale1 / ben1 * 100).toFixed(1) : 0
-        })
-      }
-    } else if (!type && app.custOrDiscTag == 2) {
-      for (var p in arry) {
-        var sale2 = (ben1 * arry[p].value / 100).toFixed(2);
-        sale2 = sale2 ? 0 : sale2;
-        newPicker.push({
-          name: arry[p].name,
-          discount: arry[p].value,
-          price: this.data.firstBoolean ? this.data.picker_view[p].price : sale2,
-          profit: (sale2 - ben / sale2).toFixed(1)
-        })
-      }
+  // 检测吊牌价与进货价是否存在
+  tagpriceOrPurchase:function(e){
+    if (!this.data.GoodsInfoData.purchaseprice && this.data.privilegeEmployees){
+      wx.showToast({
+        title: '请先输入进货价',
+        mask: true,
+        duration: 2000
+      })
+    } else if (!this.data.GoodsInfoData.tagprice) {
+      wx.showToast({
+        title: '请先输入吊牌价',
+        mask: true,
+        duration: 2000
+      })
+    }else{
+      this.blurInputPrice(e)
     }
-    console.log(newPicker);
-    this.setData({
-      picker_view: newPicker,
-      firstBoolean: false
-    })
-
   },
-  // 计算价格
-  priceCalculate: function (style, value) {
-    var param = this.data.GoodsInfoData;
-    if (value !== 0) {
-      param[style] = value;
-    } else {
-      param[style] = ''
-    }
-    if (style == 'tagprice' && value >= 0) {
-      param.purchaseprice = (value * this.data.screen_brandList[this.data.brand_index].profitD0 / 100).toFixed(2);
-    }
-    if (style == 'purchaseprice' && value >= 0) {
-      param.tagprice = (value / this.data.screen_brandList[this.data.brand_index].profitD0 * 100).toFixed(2);
+  //更改销售价、折扣价、毛利率
+  blurInputPrice: function (e) {
+    var newPicker = this.data.picker_view;
+    var name = e.currentTarget.dataset.name;
+    var index = e.currentTarget.dataset.index;
+    var value = e.detail.value ? e.detail.value:0;
+    var purchaseprice = this.data.GoodsInfoData.purchaseprice?parseFloat(this.data.GoodsInfoData.purchaseprice):0;
+    console.log(value)
+    if (name == "price"){
+      newPicker[index].price = value?value:"";
+      newPicker[index].discPriceJson = (value / this.data.GoodsInfoData.tagprice * 100).toFixed(1);
+      if (purchaseprice !== 0){
+        newPicker[index].custPriceJson = ((value - purchaseprice) / purchaseprice * 100).toFixed(1)
+      }
+    } else if (name == "discPriceJson"){
+      console.log(value)
+      newPicker[index].discPriceJson = value ? value : "";
+      newPicker[index].price = (value * this.data.GoodsInfoData.tagprice / 100).toFixed(1);
+      console.log(value)
+      newPicker[index].custPriceJson = ((newPicker[index].price - purchaseprice) / purchaseprice * 100).toFixed(1)
+    } else if (name == "custPriceJson") {
+      newPicker[index].custPriceJson = value ? value : "";
+      newPicker[index].price = ((parseFloat(value) * purchaseprice / 100) + purchaseprice).toFixed(1);
+      newPicker[index].discPriceJson = (newPicker[index].price / this.data.GoodsInfoData.tagprice * 100).toFixed(1)
     }
     this.setData({
-      GoodsInfoData: param
-    })
-    this.gradeCate();
-  },
-  changPrice: function (e) {
-    var num = e.detail.value;
-    this.setData({
-      changPrice_index: num[0]
+      picker_view: newPicker
     })
   },
   // input失去焦点
   blurInput: function (e) {
     var style = e.currentTarget.dataset.name;
     var valuenum = e.detail.value ? e.detail.value : 0;
-    this.priceCalculate(style, valuenum);
-    // if(+)
+    var GoodsInfoData = this.data.GoodsInfoData;
+    GoodsInfoData[style] = valuenum ? valuenum:"";
+    this.setData({
+      GoodsInfoData: GoodsInfoData
+    })
+    if (app.custOrDiscTag == 1 && style == "tagprice") {
+      this.custPrice(this.data.GoodsInfoData.purchaseprice, valuenum)
+    } else if (app.custOrDiscTag == 1 && style == "purchaseprice") {
+      this.custPrice(valuenum, this.data.GoodsInfoData.tagprice)
+    }else if (app.custOrDiscTag == 2 && style == "purchaseprice") {
+      this.discPrice(valuenum, this.data.GoodsInfoData.tagprice)
+    } else if (app.custOrDiscTag == 1 && style == "tagprice") {
+      this.discPrice(this.data.GoodsInfoData.purchaseprice, valuenum)
+    }
   },
   // 按折扣计算
   discPrice: function (purchaseprice,tagprice){
+    purchaseprice = purchaseprice ? purchaseprice : 0;
+    tagprice = tagprice ? tagprice : 0;
     var newPicker = this.data.picker_view;
     for (var p in newPicker) {
-      if (newPicker[p].isChage == false) {
+      if (!this.data.firstBoolean) {
         newPicker[p].price = (tagprice * newPicker[p].discPriceJson / 100).toFixed(2);
-        newPicker[p].custPriceJson = (newPicker[p].price - purchaseprice / purchaseprice).toFixed(2);
+        newPicker[p].custPriceJson = ((newPicker[p].price - purchaseprice) / purchaseprice).toFixed(2);
+        newPicker[p].custPriceJson = newPicker[p].custPriceJson == "Infinity" ? 100 : newPicker[p].custPriceJson;
+        newPicker[p].custPriceJson = newPicker[p].custPriceJson == "NaN" ? 0 : newPicker[p].custPriceJson;
+        console.log('dddddddddddd')
+      }else{
+      newPicker[p].discPriceJson = (newPicker[p].price / tagprice * 100).toFixed(1);
+      if (purchaseprice !== 0) {
+        newPicker[p].custPriceJson = ((newPicker[p].price - purchaseprice) / purchaseprice * 100).toFixed(1)
       }
     }
+  }
     this.setData({
-      picker_view: newPicker
+      picker_view: newPicker,
+      firstBoolean: false
     })
   },
   // 按毛利率计算
   custPrice: function (purchaseprice,tagprice){
+    purchaseprice = purchaseprice ? purchaseprice:0;
+    tagprice = tagprice ? tagprice : 0;
+    console.log(purchaseprice)
     var newPicker = this.data.picker_view;
     for (var p in newPicker){
-      if (newPicker[p].isChage==false){
-        newPicker[p].price = (purchaseprice * (1 + newPicker[p].custPriceJson / 100)).toFixed(2);
-        newPicker[p].discPriceJson = (purchaseprice / tagprice).toFixed(2);
+      if (!this.data.firstBoolean){
+        newPicker[p].price = (purchaseprice * (1 + newPicker[p].custPriceJson / 100)).toFixed(1);
+        newPicker[p].discPriceJson = (newPicker[p].price / tagprice *100).toFixed(1);
+        newPicker[p].discPriceJson = newPicker[p].discPriceJson == "Infinity" ? 100:newPicker[p].discPriceJson;
+        newPicker[p].discPriceJson = newPicker[p].discPriceJson == "NaN" ? 0 : newPicker[p].discPriceJson;
+      }else{
+        newPicker[p].discPriceJson = (newPicker[p].price / tagprice * 100).toFixed(1);
+        if (purchaseprice !== 0) {
+          newPicker[p].custPriceJson = ((newPicker[p].price - purchaseprice) / purchaseprice * 100).toFixed(1)
+        }
       }
     }
     this.setData({
-      picker_view: newPicker
+      picker_view: newPicker,
+      firstBoolean : false
     })
   },
   // 初始化折扣率或者销售价
   initializeData:function(){
     var newPicker = this.data.picker_view;
     var name = app.custOrDiscTag == 1 ? 'custPriceJson' :'discPriceJson';
-   for (var p in app.custProdPrice[this.data.grade_index]){
-     newPicker[p][name] = app.custProdPrice[this.data.grade_index][name];
+   for (var p in app.custProdPrice){
+     newPicker[p][name] = app.custProdPrice[p].custpricejson;
+     newPicker[p].name = app.custProdPrice[p].custtypename;
      newPicker[p].isUse = true;
    }
+   console.log(newPicker)
+   console.log(app.custProdPrice)
    this.setData({
      picker_view: newPicker
-   })
+   });
+   if (app.custOrDiscTag == 1){
+     this.custPrice(this.data.GoodsInfoData.purchaseprice, this.data.GoodsInfoData.tagprice)
+   }else{
+     this.discPrice(this.data.GoodsInfoData.purchaseprice, this.data.GoodsInfoData.tagprice)
+   }
+  },
+  // 判断是否有权限看进货价
+  authorityPurchaseprice:function(){
+    var userIdentity = app.globalData.userIdentity;
+    var privilegeEmployees = false;
+    if(userIdentity == 3){
+      for (var p in app.globalData.privilegeEmployees){
+        if (app.globalData.privilegeEmployees[p].privilegeId == 1){
+          privilegeEmployees = true;
+        }
+      }
+    }
+    this.setData({
+      privilegeEmployees: privilegeEmployees
+    })
   },
   onLoad: function (options) {
     this.setData({
@@ -577,10 +585,11 @@ Page({
       screen_gradeList: app.screen_gradeList,
       screen_unitList: app.screen_unitList,
       screen_productSize: app.screen_productSize,
+      userIdentity: app.globalData.userIdentity,
       GoodsInfoData: {
         brandid: app.screen_brandList[0].id,
         sizes: app.screen_productSize[0].value,
-        grade: app.screen_gradeList[0].id,
+        grade: app.screen_gradeList[0].dictValue,
         unit: app.screen_unitList[0].unit,
         producttype: app.screen_productTypeList[0].id,
         timeDown: util.formatTime(new Date),
@@ -592,6 +601,7 @@ Page({
       unit: app.screen_unitList[0].unit,
       producttype: app.screen_productTypeList[0].catename,
     });
+    this.authorityPurchaseprice();
     if (options.ID !== 'null'){
       this.setData({
         id: options.ID,
@@ -599,9 +609,10 @@ Page({
       });
       this.showGoodsInfo();
     }else{
-      this.gradeCate();
+      this.initializeData();
       this.GoodsImage();
     }
+   
   },
   onShow:function() {
     if (app.changeData) {

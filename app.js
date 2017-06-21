@@ -31,6 +31,7 @@ App({
             that.globalData.userInfo.code= loginCode.code
             that.globalData.openid = res.data.data.query.openid;
             that.globalData.privilegeEmployees = res.data.data.employee.privilegeEmployees;
+            that.globalData.userIdentity = res.data.data.userIdentity;
             console.log(that.globalData.openid )
           }
         })

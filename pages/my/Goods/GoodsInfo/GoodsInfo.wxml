@@ -48,7 +48,7 @@
       </view>
       <view class="upload_input clearfix">
         <view class="upload_input_text">进货价:</view>
-        <input type="digit" bindinput="blurInput" data-name="purchaseprice"  class="upload_input1" name="purchaseprice" value="{{GoodsInfoData.purchaseprice}}" />
+        <input type = "{{privilegeEmployees?'digit':'password'}}" disabled="{{!privilegeEmployees}}" bindinput="blurInput" data-name="purchaseprice"  class="upload_input1"  name="purchaseprice" value="{{GoodsInfoData.purchaseprice}}" />
       </view>
       <view class="upload_input clearfix">
         <view class="upload_input_text">销售价:</view>
@@ -58,13 +58,18 @@
           <view class="picker_content_title">折扣率</view>
           <view class="picker_content_title">毛利率</view>
           <block wx:for="{{picker_view}}">
-            <view class="picker_content_view">{{item.name}}</view>
+          <view hidden="{{!item.isUse}}">
+   <view class="picker_content_view">{{item.name}}</view>
             <view class="picker_content_view">
-            <input focus="true" wx-if="{{changPrice_index==index && updataAut == true}}" type = "digit" data-name="{{index}}" bindinput="blurInputPrice" value="{{item.price}}"/>
-            <view wx-if="{{changPrice_index !==index || updataAut !== true}}">{{item.price}}</view>
+              <input type = "digit" data-index="{{index}}" data-name="price" bindinput="tagpriceOrPurchase" value="{{item.price}}" />
             </view>
-            <view class="picker_content_view">{{item.discount}}</view>
-            <view class="picker_content_view">{{item.profit}}</view>
+            <view class="picker_content_view">
+              <input type = "digit" data-index="{{index}}" data-name="tagpriceOrPurchase"  bindinput="blurInputPrice" value="{{item.discPriceJson}}"/>
+           </view>
+            <view class="picker_content_view">
+                <input type = "{{privilegeEmployees?'digit':'password'}}" disabled="{{!privilegeEmployees}}" data-index="{{index}}" data-name="custPriceJson" bindinput="tagpriceOrPurchase" value="{{item.custPriceJson}}"/>
+            </view>
+          </view>
           </block>
         <image src="../../../../images/update.png" mode="aspectFit" class="picker_update_image" bindtap="checkboxChange" />
         </view>
@@ -84,8 +89,8 @@
       </view>
       <view class="upload_input">
         <view class="upload_input_text">等级:</view>
-        <picker style="margin-right:0" data-style = 'grade_index' bindchange="bindSelectorChange" value="{{GoodsInfoData.grade}}" range="{{screen_gradeList}}" name="grade" mode="selector" range-key="custtypename" >
-            {{screen_gradeList[grade_index].custtypename}}
+        <picker style="margin-right:0" data-style = 'grade_index' bindchange="bindSelectorChange" value="{{GoodsInfoData.grade}}" range="{{screen_gradeList}}" name="grade" mode="selector" range-key="dictText" >
+            {{screen_gradeList[grade_index].dictText}}
             <image src="../../../../images/down.png" mode="aspectFit" class="picker_image" />
         </picker>
         <view class="clear"></view>
