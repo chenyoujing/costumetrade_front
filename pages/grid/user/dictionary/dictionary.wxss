@@ -281,7 +281,8 @@ scroll-view{
 }
 /*运费规则*/
 .freight_explain{
-
+  padding-right: 20px;
+  margin-bottom: 5px;
 }
 .freight_explain_title{
   float: left;
@@ -292,9 +293,9 @@ scroll-view{
 }
 .freight_explain_right{
   float: right;
-  width: 16px;
-  height: 16px;
-  padding: 12px;
+  width: 12px;
+  height: 12px;
+  padding: 4px 14px;
 }
 .freight_explain_text{
   font-size: 12px;
@@ -302,6 +303,21 @@ scroll-view{
   margin-left: 60px;
   margin-right: 40px;
 }
+.freight_content{
+  padding-left: 30px;
+  padding-right: 20px;
+}
+.freight_content_title{
+  font-size: 15px;
+  line-height: 30px;
+  float: left;
+  overflow: hidden;
+}
+.freight_content_text{
+  font-size: 12px;
+  line-height: 20px;
+}
+
 
 /*高级*/
 .setting_title2{

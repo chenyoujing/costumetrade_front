@@ -214,11 +214,40 @@
           <view class="pay_title">
             运费规则
           </view>
-          <view class="freight_explain">
+          <view class="pay_view" style="padding:5px 20px;">
+            <text>1.</text>顺丰
+            <image src="../../../../images/right-thrust.png" mode="aspectFit" class="image_setting" />
+          </view>
+          <view class="pay_view" style="padding:5px 20px;">
+            <text>2.</text>韵达
+            <image src="../../../../images/right-thrust.png" mode="aspectFit" class="image_setting" />
+          </view>
+          <!--<view class="freight_explain">
             <view class="freight_explain_title">说明:</view>
-            <image src="../../../../images/right-thrust.png" class="freight_explain_right" />
+            <image src="../../../../images/right-thrust.png" mode="aspectFit" class="freight_explain_right" />
             <view class="freight_explain_text">江浙沪地区8元；新疆，西藏，青海，甘肃，海南五省20元；其他地域15元</view>
           </view>
+          <view class="freight_content" style="padding-bottom:5px;">
+            <view class="freight_content_title">1. 运费：</view>
+            <view class="setting_button_view" style="height:30px;overflow:hidden;width:unset;float:unset;">
+              <view class="setting_button">
+                <view class="setting_button_small"></view>
+                <view class="setting_button_text1" style="font-size:14px;">手动修改</view>
+                <view class="setting_button_text2" style="font-size:14px;">固定运费</view>
+              </view>
+            </view>
+            <view class="clear"></view>
+            <view class="freight_content_text">手动修改：客户下单后（审核时），手动修改运费</view>
+            <view class="freight_content_text">固定运费：客户下单后，自动添加运费</view>
+          </view>
+          <view class="freight_content clearfix">
+            <image src="../../../../images/right-thrust.png" mode="aspectFit" class="freight_explain_right" style="padding:9px 14px;" />
+            <view class="freight_content_title">2. 固定运费：<text style="padding: 0 10px 0 20px;">8</text>元</view>
+          </view>
+          <view class="freight_content clearfix">
+            <image src="../../../../images/right-thrust.png" mode="aspectFit" class="freight_explain_right" style="padding:9px 14px;" />
+            <view class="freight_content_title">3. 免邮金额：<text style="padding: 0 10px 0 20px;">300</text>元</view>
+          </view>-->
         </view>
 
       </scroll-view>
@@ -267,35 +296,6 @@
           </view>
           <view class="goods_level_text" style="width:25%;">
             <view wx:for="{{goods_level3}}" class="goods_level_view">{{item.value}}</view>
-          </view>
-        </view>
-
-        <!--客户种类-->
-        <view class="setting_view">
-          <view class="setting_title" style="margin-bottom:10px;">客户种类</view>
-          <view class="setting_title3 clearfix">
-            <view class="setting_text" style="width:30%;">客户名称</view>
-            <view class="setting_text" style="width:40%;">可见货品级别</view>
-            <view class="setting_text">启用</view>
-            <view class="setting_text">编辑</view>
-          </view>
-          <view class="setting_content clearfix">
-            <view class="setting_text" style="width:30%;">普通会员</view>
-            <view class="setting_text" style="width:40%;">处理货品</view>
-            <view class="setting_text">是</view>
-            <navigator url="../customerType/customerType" class="setting_text" style="color:#286561;">修改</navigator>
-          </view>
-          <view class="setting_content clearfix">
-            <view class="setting_text" style="width:30%;">银卡会员</view>
-            <view class="setting_text" style="width:40%;">活动货品</view>
-            <view class="setting_text">否</view>
-            <navigator url="../customerType/customerType" class="setting_text" style="color:#286561;">修改</navigator>
-          </view>
-          <view class="setting_content clearfix">
-            <view class="setting_text" style="width:30%;">金卡会员</view>
-            <view class="setting_text" style="width:40%;">在销货品</view>
-            <view class="setting_text">否</view>
-            <navigator url="../customerType/customerType" class="setting_text" style="color:#286561;">修改</navigator>
           </view>
         </view>
 
@@ -365,6 +365,35 @@
           <view class="slider_view">专供货品</view>
           <view class="clear"></view>
           <slider activeColor="#52CAC1" max="4" style="margin:10px 10%;"/>
+        </view>
+
+        <!--客户种类-->
+        <view class="setting_view">
+          <view class="setting_title" style="margin-bottom:10px;">客户种类</view>
+          <view class="setting_title3 clearfix">
+            <view class="setting_text" style="width:30%;">客户名称</view>
+            <view class="setting_text" style="width:40%;">可见货品级别</view>
+            <view class="setting_text">启用</view>
+            <view class="setting_text">编辑</view>
+          </view>
+          <view class="setting_content clearfix">
+            <view class="setting_text" style="width:30%;">普通会员</view>
+            <view class="setting_text" style="width:40%;">处理货品</view>
+            <view class="setting_text">是</view>
+            <navigator url="../customerType/customerType" class="setting_text" style="color:#286561;">修改</navigator>
+          </view>
+          <view class="setting_content clearfix">
+            <view class="setting_text" style="width:30%;">银卡会员</view>
+            <view class="setting_text" style="width:40%;">活动货品</view>
+            <view class="setting_text">否</view>
+            <navigator url="../customerType/customerType" class="setting_text" style="color:#286561;">修改</navigator>
+          </view>
+          <view class="setting_content clearfix">
+            <view class="setting_text" style="width:30%;">金卡会员</view>
+            <view class="setting_text" style="width:40%;">在销货品</view>
+            <view class="setting_text">否</view>
+            <navigator url="../customerType/customerType" class="setting_text" style="color:#286561;">修改</navigator>
+          </view>
         </view>
 
         <!--钱包管理-->

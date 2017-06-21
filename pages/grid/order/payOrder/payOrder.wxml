@@ -4,3 +4,50 @@
   </navigator>
   <view class="title_text">付款</view>
 </view>
+
+<scroll-view scroll-y class="orderSure_scroll">
+    <view class="orderSure_container">
+      <view class="content_container clearfix">
+        <image src="{{item.image ? item.image : '../../../../images/image_none.png'}}" mode="aspectFill" style="width:{{image_width}}px;height:{{image_width}}px;" />
+        <view class="content_container_text">
+          <view class="content_container_title">1{{item.name}}</view>
+          <view class="content_container_info clearfix">
+            <view class="info_text">
+              <text>款式：藏红色</text>
+              <text>尺码：L</text>
+            </view>
+            <view class="price">{{item.price}}1</view>
+            <view class="info_other">
+              <view class="num">0</view>
+              <view class="date">0{{item.timeUp}}</view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class="orderinfo">
+      <view class="orderinfo_title clearfix">
+        <view class="orderinfo_text" style="float:left;font-size:16px;">配送方式</view>
+        <view class="orderinfo_text" style="float:right;">顺丰快递（免运费）
+          <image src="../../../../images/right-thrust.png" mode="aspectFit" class="orderinfo_text_image" />
+        </view>
+      </view>
+      <view class="clearfix">
+        <view class="orderinfo_text" style="float:left;padding:0 5px;">金额</view>
+        <view class="orderinfo_text" style="float:right;color:#FE2D04;padding:0 5px;">￥100.00</view>
+      </view>
+      <view class="clearfix">
+        <view class="orderinfo_text" style="float:left;padding:0 5px;">运费</view>
+        <view class="orderinfo_text" style="float:right;color:#FE2D04;padding:0 5px;" wx:if="{{false}}">￥100.00</view>
+        <view class="orderinfo_text" style="float:right;padding:0 5px;" wx:if="{{true}}">运费待审核</view>
+      </view>
+      <view class="orderinfo_footer clearfix">
+        <view class="orderinfo_footer_text" style="float:right;color:#FE2D04;">￥100</view>
+      </view>
+    </view>
+</scroll-view>
+
+<navigator url="../../shop/payOrder/payOrder" class="sure_button1 bg_g">微信支付</navigator>
+<navigator url="../../shop/payOrder/payOrder" class="sure_button2">支付宝支付</navigator>
+<navigator url="../../shop/payOrder/payOrder" class="sure_button3">转账</navigator>

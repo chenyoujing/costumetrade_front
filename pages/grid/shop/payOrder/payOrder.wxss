@@ -1,85 +1,31 @@
-.pay_title{
-  border: solid #52CAC1;
-  border-width: 1px 0;
-  height: 48px;
-  font-size: 20px;
-  color: #ff0000;
-  line-height: 48px;
-  text-align: center;
-  position: relative;
-}
-.pay_title_image{
-  width: 16px;
-  height: 16px;
-  padding: 16px;
-  position: absolute;
-  top: 0;
-  right: 0;
-}
-.pay_method{
-  border-bottom: 1px solid #52CAC1;
-}
-.method_title{
-  font-size: 18px;
-  text-align: center;
-  padding: 20px 0;
-}
-.method_view{
-  float: left;
-  width: 33.33333333%;
-}
-.method_name{
-  width: 190rpx;
-  border: 1px solid #52CAC1;
-  text-align: center;
-  font-size: 17px;
-  line-height: 32px;
-  border-radius: 16px;
-  margin: auto;
-}
-.method_active{
-  background-color: #52CAC1;
-  color: #ffffff;
-}
-.method_prompt{
-  color: #ff0000;
-  text-align: center;
-  font-size: 12px;
-  padding: 15px 0;
-}
+/*头部*/
+@import "../../../../css/title.wxss";
 
-.pay_swiper{
+.pay_scroll{
   position: absolute;
-  top: 195px;
-  left: 0;
-  right: 0;
+  top: 40px;
   bottom: 40px;
-  height: unset;
-}
-.pay_swiper swiper-item{
-  width: 100%;
-  height: 100%;
-  position: relative;
 }
 .pay_image{
+  display: block;
   width: 400rpx;
   height: 400rpx;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
   margin: auto;
 }
-.pay_text{
-  height: 300rpx;
-  position:absolute;
-  bottom:0;
-  top:0;
-  left:0;
-  right:0;
-  margin: auto;
+.pay_title{
+  line-height: 60px;
+  font-size: 14px;
   text-align:center;
+}
+.shop_name{
+  font-size: 24px;
+  line-height: 40px;
+  text-align:center;
+}
+.pay_text{
+  width: 400rpx;
+  padding: 20px 0;
+  margin: auto;
   font-size: 16px;
   line-height: 32px;
 }
@@ -93,9 +39,9 @@
 }
 .pay_button1{
   box-sizing: border-box;
-  border: 1px solid #286561;
-  background-color: #ffffff;
-  color: #286561;
+  border: 1px solid #BFBFBF;
+  background-color: #eeeeee;
+  color: #000000;
   font-size: 16px;
   line-height: 40px;
   height: 40px;
@@ -106,7 +52,7 @@
 .pay_button2{
   box-sizing: border-box;
   border: 1px solid #BFBFBF;
-  background-color: #BFBFBF;
+  background-color: #52CAC1;
   color: #ffffff;
   font-size: 16px;
   line-height: 40px;

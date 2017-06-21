@@ -1,2 +1,152 @@
 /*头部*/
 @import "../../../../css/title.wxss";
+
+.orderSure_scroll{
+  position: absolute;
+  top: 40px;
+  bottom: 160px;
+}
+.orderSure_container{
+  padding: 10px;
+  box-sizing:border-box;
+  width: 100%;
+}
+.content_container{
+  box-shadow: 1px 1px 4px #000000;
+  position: relative;
+  border-radius: 3px;
+}
+.content_container > image{
+  width: 115px;
+  height: 115px;
+  float: left;
+}
+.content_container_text{
+  position: absolute;
+  top: 0;
+  left: 115px;
+  right: 0;
+  bottom: 0;
+  padding: 5px;
+}
+.content_container_text > image{
+  width: 20px;
+  height: 20px;
+  float: right;
+}
+.content_container_title{
+  font-size: 17px;
+  line-height: 20px;
+  padding: 5px;
+  word-break:keep-all;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+.content_container_info{
+  border-top: 2px solid #eeeeee;
+}
+.info_text{
+  color: #666666;
+  font-size: 12px;
+  line-height: 18px;
+  padding: 5px 0 10px;
+}
+.info_text text{
+  padding: 0 5px;
+  
+}
+.price{
+  color: #FE2D04;
+  font-size: 20px;
+  line-height: 40px;
+  float: left;
+ }
+.price::before{
+  content: "￥"
+}
+.info_other{
+  float: right;
+}
+.num{
+  font-size: 16px;
+  line-height: 24px;
+  text-align: right;
+  color: #666666;
+}
+.num::before{
+  content: "数量："
+}
+.date{
+  font-size: 12px;
+  line-height: 16px;
+  text-align: right;
+  color: #666666;
+}
+
+.orderinfo{
+  background-color: #eeeeee;
+  margin: 10px;
+  padding: 10px;
+}
+.orderinfo_title{
+  border-bottom: 2px solid #DDDDDD;
+  margin-bottom: 5px;
+}
+.orderinfo_text{
+  padding: 5px;
+  font-size: 14px;
+  line-height: 30px;
+}
+.orderinfo_text_image{
+  width: 12px;
+  height: 12px;
+  padding: 9px 0;
+  padding-left: 5px; 
+  float: right;
+}
+.orderinfo_footer{
+  border-top: 2px solid #DDDDDD;
+  margin-top: 5px;
+}
+.orderinfo_footer_text::before{
+  content: "实付金额：";
+  color: #000000;
+}
+.orderinfo_footer_text{
+  color: #FE2D04;
+  padding: 5px;
+  font-size: 17px;
+  line-height: 30px;
+}
+
+.sure_button1,.sure_button2,.sure_button3{
+  box-sizing: border-box;
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 40px;
+  margin: 10px;
+  border-radius: 5px;
+  background-color: #ffffff;
+  font-size: 18px;
+  line-height: 40px;
+  text-align: center;
+  color: #000000;
+  border: 1px solid #BEBEBE;
+}
+.sure_button1{
+  bottom: 100px;
+}
+.sure_button2{
+  bottom: 50px;
+}
+.sure_button3{
+  bottom: 0px;
+}
+.bg_g{
+  background-color: #52CAC1;
+  color: #ffffff;
+  border: none;
+}

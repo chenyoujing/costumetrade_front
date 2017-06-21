@@ -1,45 +1,33 @@
 <!--头部-->
-<view class="pay_title">
-  总价: ￥{{pay}}
-<navigator open-type="navigateBack" hover-class="navigator-hover">
-  <image src="../../../../images/close.png" mode="aspectFit" class="pay_title_image" />
+<view class="title clearfix">
+  <navigator open-type="navigateBack">
+    <image src="../../../../images/back-away.png" mode="aspectFit" class="title_image_back" />
   </navigator>
-</view>
-<view class="pay_method">
-  <view class="method_title">支付方式</view>
-  <view class="method_view">
-    <view class="method_name {{method == '4' ? 'method_active' : ''}}" bindtap="method" data-method="4" data-index="0">微信</view>
-  </view>
-  <view class="method_view">
-    <view class="method_name {{method == '2' ? 'method_active' : ''}}" bindtap="method" data-method="2" data-index="1">支付宝</view>
-  </view>
-  <view class="method_view">
-    <view class="method_name {{method == '3' ? 'method_active' : ''}}" bindtap="method" data-method="3" data-index="2">转账</view>
-  </view>
-  <view class="clear"></view>
-  <view class="method_prompt" bindtap="method">
-    <text hidden="{{method !== '4'}}">长按二维码识别图片付款</text>
-    <text hidden="{{method !== '2'}}">长按二维码保存 > 打开支付宝 > 点击扫一扫 > 选择相册</text>
-    <text hidden="{{method !== '3'}}">以下是对方账户信息</text>
-  </view>
+  <view class="title_text">微信支付</view>
 </view>
 
+
 <!--支付内容-->
-<swiper class="pay_swiper" current="{{index}}" bindchange="method_swiper">
-    <swiper-item >
-      <image src="../../../../images/image_none.png" mode="aspectFit" class="pay_image" />
-    </swiper-item>
-    <swiper-item>
-      <image src="../../../../images/image_none.png" mode="aspectFit" class="pay_image" />
-    </swiper-item>
-    <swiper-item>
-      <view class="pay_text">
-        <view>姓名：孙然</view>
-        <view>开户银行：邮政</view>
-        <view>开户账号：5993383848557635</view>
-      </view>
-    </swiper-item>
-</swiper>
+<scroll-view scroll-y class="pay_scroll" hidden>
+  <view class="pay_title">转账给</view>
+  <view class="shop_name">小鱼家店铺</view>
+  <image src="../../../../images/image_none.png" mode="aspectFit" class="pay_image" />
+
+  <view class="pay_text">
+    <view>1.打开微信扫一扫</view>
+    <view>2.点击从相机选取二维码</view>
+    <view>3.完成支付</view>
+  </view>
+</scroll-view>
+<scroll-view scroll-y class="pay_scroll">
+  <view class="pay_title">转账给</view>
+
+  <view class="pay_text" style="text-align:center;width:unset;">
+    <view>姓名：孙然</view>
+    <view>开户银行：邮政</view>
+    <view>开户账号：5993383848557635</view>
+  </view>
+</scroll-view>
 
 <!--底部浮动-->
 <view class="shopping_cart_container">
