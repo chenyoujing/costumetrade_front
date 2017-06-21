@@ -111,17 +111,20 @@ Page({
   // 更改汇总图标
   changecountOrders:function(status,type){
     console.log(status)
-    console.log(status == 3)
+    console.log(status == "2")
     var totole = this.data.countNum;
     switch (status){
-      case '2':
-      if(type=="buy"){
-        totole.pNoPayCount -= 1;
-        totole.pNoShipCount += 1; 
-      }else{
-        totole.sNoPayCount -= 1;
-        totole.sNoAuditCount += 1; 
-      }
+      case 2:
+        console.log('buy')
+       if(type=="buy"){
+         totole.pNoPayCount -= 1;
+         totole.pNoShipCount += 1; 
+         console.log('buy')
+       }else{
+         totole.sNoPayCount -= 1;
+         totole.sNoAuditCount += 1; 
+         console.log('sal')
+       }
          break;
       case '3':
         console.log(totole)
@@ -134,6 +137,14 @@ Page({
         break;
       case '5':
         totole.pNoReceiptCount -= 1;
+        break;
+      case '6':
+        if (this.data.ordertype == 2 && this.data.ordertype2 == 1){
+          totole.sNoPayCount -= 1;
+        } else if (this.data.ordertype == 2 && this.data.ordertype4 == 1){
+          totole.sNoAuditCount -= 1;
+        }
+        
         break;
     }
     this.setData({
@@ -176,7 +187,6 @@ Page({
               }
             }
           })
-        
         } else {
           if (data.status !== "3"){
             that.changecountOrders(data.status, null)
@@ -285,7 +295,7 @@ Page({
       success: function (res) {
          wx.hideNavigationBarLoading();
          var product = that.data.product;
-         this.changecountOrders(2,'sal')
+         that.changecountOrders(2,'sal')
           for(var p in product){
               console.log(product[p].payorderno)
               if (product[p].payorderno == that.data.incomeData.orderNo){
