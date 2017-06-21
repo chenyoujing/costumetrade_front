@@ -122,6 +122,8 @@
   box-sizing: border-box;
   border: 1px solid #DDDDDD;
   background-color: #ffffff;
+  line-height:33px;
+  height:33px;
 }
 .picker_content_title{
   background-color: #EEEEEE;
