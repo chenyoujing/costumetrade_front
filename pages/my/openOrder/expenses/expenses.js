@@ -8,7 +8,8 @@ Page({
     totalMoney: 0,
     accountModal: true,
     saveOrderFee:[],
-    paycact:''
+    paycact:'',
+    paycact_index: 0
   },
   // 打开入账模态框
   account:function(){
@@ -148,6 +149,12 @@ Page({
           duration: 2000
         })
       }
+    })
+  },
+  // 入账支付方式选择
+  paycactPicker:function(e){
+    this.setData({
+      paycact_index: e.detail.value
     })
   },
   onLoad:function(){

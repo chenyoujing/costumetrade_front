@@ -1,6 +1,11 @@
 <view style="overflow:hidden; min-height:100vh; position:relative;">
   <!--头部-->
-  <view class="title">设置</view>
+  <view class="title clearfix">
+    <navigator open-type="navigateBack">
+      <image src="../../../../images/back-away.png" mode="aspectFit" class="title_image_back" />
+    </navigator>
+    <view class="title_text">设置</view>
+  </view>
 
   <view class="dictionary clearfix">
     <view class="dictionary_text {{current=='0' ? 'active' : ''}}" bindtap="dictionarytype" data-dictionary="0">员工

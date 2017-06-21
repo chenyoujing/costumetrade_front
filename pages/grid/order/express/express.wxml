@@ -10,27 +10,29 @@
     <view class="content_title">寄信人信息</view>
     <view class="content_input">
       <view class="content_input_text">寄件<text>单位名称:</text></view>
-      <input type="text" class="content_input1" name="name" value="{{name}}" />
+      <input type="text" class="content_input1" name="consigneeCompany" value="{{name}}" />
       <view class="clear"></view>
     </view>
     <view class="content_input">
       <view class="content_input_text">联系人:</view>
-      <input type="text" class="content_input1" name="name" value="{{name}}" />
+      <input type="text" class="content_input1" value="{{address1.userName}}">
+        <image src="../../../../images/map.png" mode="aspectFit" class="image_map" bindtap="address" data-type="consignee" />
+      </input>
       <view class="clear"></view>
     </view>
     <view class="content_input">
       <view class="content_input_text">联系电话:</view>
-      <input type="text" class="content_input1" name="name" value="{{name}}" />
+      <input type="text" class="content_input1" value="{{address1.telNumber}}" />
       <view class="clear"></view>
     </view>
     <view class="content_input">
       <view class="content_input_text">地址:</view>
-      <input type="text" class="content_input1" name="name" value="{{name}}" />
+      <input type="text" class="content_input1" value="{{address1.provinceName}} {{address1.cityName}} {{address1.countyName}}" />
       <view class="clear"></view>
     </view>
     <view class="content_input">
       <view class="content_input_text">详细地址:</view>
-      <input type="text" class="content_input1" name="name" value="{{name}}" />
+      <input type="text" class="content_input1" value="{{address1.detailInfo}}" />
       <view class="clear"></view>
     </view>
   </view>
@@ -39,30 +41,33 @@
     <view class="content_title">收件人信息</view>
     <view class="content_input">
       <view class="content_input_text">寄件<text>单位名称:</text></view>
-      <input type="text" class="content_input1" name="name" value="{{name}}" />
+      <input type="text" class="content_input1" name="deliverCompany" value="{{name}}" />
       <view class="clear"></view>
     </view>
     <view class="content_input">
       <view class="content_input_text">联系人:</view>
-      <input type="text" class="content_input1" name="name" value="{{name}}" />
+      <input type="text" class="content_input1" name="name" value="{{address2.userName}}">
+        <image src="../../../../images/map.png" mode="aspectFit" class="image_map" bindtap="address" data-type="deliver" />
+      </input>
       <view class="clear"></view>
     </view>
     <view class="content_input">
       <view class="content_input_text">联系电话:</view>
-      <input type="text" class="content_input1" name="name" value="{{name}}" />
+      <input type="text" class="content_input1" name="name" value="{{address2.telNumber}}" />
       <view class="clear"></view>
     </view>
     <view class="content_input">
       <view class="content_input_text">地址:</view>
-      <input type="text" class="content_input1" name="name" value="{{name}}" />
+      <input type="text" class="content_input1" name="name" value="{{address2.provinceName}} {{address2.cityName}} {{address2.countyName}}" />
       <view class="clear"></view>
     </view>
     <view class="content_input">
       <view class="content_input_text">详细地址:</view>
-      <input type="text" class="content_input1" name="name" value="{{name}}" />
+      <input type="text" class="content_input1" name="name" value="{{address2.detailInfo}}" />
       <view class="clear"></view>
     </view>
   </view>
+
 
   <view class="content_title" style="padding-left:30px;">货品信息</view>
   <view class="express_content bg_2">

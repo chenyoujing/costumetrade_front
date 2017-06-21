@@ -343,10 +343,10 @@
 <modal title="选择快递公司" hidden="{{expressModal}}" confirm-text="取消" no-cancel bindconfirm="cancel" bindcancel="cancel" >
   <view class="choose_container clearfix" style="padding:20px 20px;">
     <view class="logistics_choose">
-      <navigator url="express/express" class="choose_view">顺丰</navigator>
+      <navigator url="express/express?orderNo={{selectLogistics.orderNo}}" class="choose_view">顺丰</navigator>
     </view>
     <view class="logistics_choose">
-      <navigator url="express/express" class="choose_view">韵达</navigator>
+      <navigator url="express/express?orderNo={{selectLogistics.orderNo}}" class="choose_view">韵达</navigator>
     </view>
   </view>
 </modal>

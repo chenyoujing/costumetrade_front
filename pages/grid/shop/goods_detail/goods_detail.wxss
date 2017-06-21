@@ -48,8 +48,7 @@ swiper image{
 }
 .detail_info{
   box-sizing: border-box;
-  border: 1px solid #000000;
-  background-color: #ffffff;
+  background-color: #EEEEEE;
   color: #000000;
   font-size: 16px;
   line-height: 40px;
@@ -61,12 +60,10 @@ swiper image{
 }
 .detail_info_swiper{
   height: 90px;
-  border-bottom: 5px solid #DBF4F1;
+  border-bottom: 2px solid #DCDCDC;
 }
 .active{
-  border-color: #52CAC1;
-  background-color: #52CAC1;
-  color: #ffffff;
+  border-bottom: 3px solid #9B9B9B;
 }
 .detail_info_view{
   padding: 0 20px;

@@ -48,8 +48,8 @@
 <!--入账-->
 <modal title="支付" hidden="{{accountModal}}" confirm-text="确定" cancel-text="取消"  bindconfirm="submitData" bindcancel="cancel" >
   <view class="clearfix" style="margin-top:10px;">
-    <picker class="modal_pay one_line" range="">
-      现金
+    <picker class="modal_pay one_line" range="{{paycact}}" range-key="dictText" bindchange="paycactPicker" value="{{paycact_index}}">
+      {{paycact[paycact_index].dictText}}
       <image src="../../../../images/down.png" mode="aspectFit" class="picker_image" />
     </picker>
      <input class="pay_input" disabled="true" value="{{totalMoney}}" type="digit" placeholder="输入金额" />
