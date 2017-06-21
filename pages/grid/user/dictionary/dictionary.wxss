@@ -87,7 +87,7 @@ swiper{
   padding: 10px 0;
   font-size: 16px;
 }
-scroll-view{
+.setting_scroll{
   position: absolute;
   top: 0;
   bottom: 40px;
@@ -247,6 +247,7 @@ scroll-view{
   width: 16px;
   height: 16px;
   padding: 7px 12px;
+  transition: all 0.5s;
 }
 /*首页推荐照片*/
 .image_setting0{
@@ -280,6 +281,13 @@ scroll-view{
   margin: auto;
 }
 /*运费规则*/
+.freight{
+  max-height: 0;
+  transition: all 0.3s;
+}
+.freight_active{
+  max-height: 200px;
+}
 .freight_explain{
   padding-right: 20px;
   margin-bottom: 5px;
@@ -316,6 +324,9 @@ scroll-view{
 .freight_content_text{
   font-size: 12px;
   line-height: 20px;
+}
+.right_active{
+  transform: rotate(90deg);
 }
 
 
@@ -490,11 +501,6 @@ scroll-view{
   font-size: 32px;
   line-height: 40px;
   color: #ffffff;
-}
-.modal scroll-view{
-  position: absolute;
-  top: 40px;
-  bottom: 40px;
 }
 .modal_submit{
   font-size: 16px;

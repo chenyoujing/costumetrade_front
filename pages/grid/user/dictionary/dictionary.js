@@ -181,6 +181,17 @@ Page({
       }
     })
   },
+  // 运费规则
+  freight:function(e){
+    var freight = e.target.dataset.freight
+    if (freight == this.data.freight){
+      freight = ''
+    }
+    this.setData({
+      freight: freight
+
+    })
+  },
   onLoad: function() {
     var that = this;
     if (!app.privilegeEmployees) {
