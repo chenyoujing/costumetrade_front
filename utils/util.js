@@ -99,6 +99,8 @@ var api = {
         app.custProdPrice = res.data.custProdPrice,
         app.privilegeEmployees = res.data.privileges,
         app.customerTypeList = res.data.customerTypeList,
+        app.logisticFees = res.data.logisticFees,
+        app.payTypeList = res.data.payTypeList,
         app.getProductInit = true
       }
     })

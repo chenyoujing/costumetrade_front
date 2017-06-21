@@ -8,7 +8,7 @@ Page({
     totalMoney: 0,
     accountModal: true,
     saveOrderFee:[],
-    paycact:'现金'
+    paycact:''
   },
   // 打开入账模态框
   account:function(){
@@ -151,9 +151,12 @@ Page({
     })
   },
   onLoad:function(){
-    if (!app.screen_unitList) {
+    if (!app.payTypeList) {
       util.api.getProductInit();
     }
+    this.setData({
+      paycact: app.payTypeList
+    })
     this.getDataAjax();
   }
 })
