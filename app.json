@@ -48,6 +48,7 @@
     "pages/my/Goods/GoodsShare/GoodsShare",
     "pages/my/Goods/GoodsScreen/GoodsScreen",
     "pages/my/Goods/priceUpdate/priceUpdate",
+    "pages/my/Goods/styleMarkup/styleMarkup",
     "pages/grid/shop/mall/mall",
     "pages/grid/shop/mallScreen/mallScreen",
     "pages/grid/shop/shoppingcard/shoppingcard",

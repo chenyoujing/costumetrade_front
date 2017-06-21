@@ -205,9 +205,6 @@
   display: inline-block;
   text-align: center;
 }
-radio,checkbox{
-  zoom: 80%;
-}
 .submit{
   font-size: 16px;
   border-radius: 0;

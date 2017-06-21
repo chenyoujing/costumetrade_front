@@ -1,0 +1,48 @@
+/*头部*/
+@import "../../../../css/title.wxss";
+
+.styleMarkup_scroll{
+  position: absolute;
+  top: 40px;
+  left: 0;
+  right: 0;
+  bottom: 40px;
+}
+.styleMarkup_name{
+  font-size: 20px;
+  line-height: 60px;
+  text-align: center;
+}
+.markup_container{
+  padding: 0 15% 20px;
+}
+.markup_view{
+  box-sizing: border-box;
+  width: 50%;
+  font-size: 16px;
+  line-height: 38px;
+  height: 40px;
+  border: 1px solid #DCDCDC;
+  text-align: center;
+  float: left;
+}
+.bg_g{
+  background-color: #52CAC1;
+  color: #ffffff;
+  line-height: 30px;
+  height: 32px;
+}
+
+.submit{
+  box-sizing: border-box;
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 40px;
+  background-color: #52CAC1;
+  font-size: 18px;
+  line-height: 40px;
+  text-align: center;
+  color: #ffffff;
+}

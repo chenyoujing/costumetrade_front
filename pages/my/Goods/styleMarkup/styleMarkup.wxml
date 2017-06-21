@@ -1,0 +1,20 @@
+<view class="title clearfix">
+  <navigator open-type="navigateBack">
+    <image src="../../../../images/back-away.png" mode="aspectFit" class="title_image_back" />
+  </navigator>
+  <view class="title_text">款式加价</view>
+</view>
+
+<scroll-view class="styleMarkup_scroll">
+  <view class="styleMarkup_name">夏装连衣裙</view>
+  <view class="markup_container clearfix">
+    <view class="markup_view bg_g">款式名称</view>
+    <view class="markup_view bg_g">加价金额</view>
+    <block wx:for="123">
+      <view class="markup_view">颜色一</view>
+      <view class="markup_view">0</view>
+    </block>
+  </view>
+</scroll-view>
+
+<view class="submit">提交</view>

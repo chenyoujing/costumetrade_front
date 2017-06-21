@@ -18,6 +18,7 @@
   font-size: 14px;
   height:27px;
   min-height:27px;
+  border-radius: 5px;
 }
 .image_search,.title_image{
   float: right;

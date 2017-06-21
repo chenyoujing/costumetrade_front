@@ -215,9 +215,9 @@
       <view class="upload_input clearfix">
         <view class="upload_input_text">款式加价:</view>
         <radio-group class="radio-group">
-          <label class="radio" style="margin-left:25%;">
+          <navigator url="../styleMarkup/styleMarkup" class="radio" style="margin-left:25%;">
             <radio />是
-          </label>
+          </navigator>
           <label class="radio" style="margin-right:25%;">
             <radio />否
           </label>
