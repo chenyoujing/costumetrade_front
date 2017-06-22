@@ -23,7 +23,9 @@ Page({
     logisticsno:'',
     logisticsname:'顺丰',
     logisticsname_index:0,
-    logisticFees:[]
+    logisticFees:[],
+    updateModal:true,
+    paycact_index:0,
   },
   goto_info: function (e) {
     app.infotype = e.target.dataset.infotype
@@ -403,6 +405,12 @@ Page({
       expressModal: false,
     })
   },
+  // 销售-全部-修改
+  paycactPicker: function (e) {
+    this.setData({
+      paycact_index: e.detail.value
+    })
+  },
   //滚动到底部触发事件  
   onReachBottom: function () {
     console.log('到底不了')
@@ -422,7 +430,8 @@ Page({
     this.order_request();
     this.countOrders();
     this.setData({
-      logisticFees: app.logisticFees
+      logisticFees: app.logisticFees,
+      paycact: app.payTypeList
     })
     console.log(app.logisticFees)
   },

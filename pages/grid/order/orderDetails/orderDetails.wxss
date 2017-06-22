@@ -46,6 +46,13 @@
   font-size: 14px;
   line-height: 30px;
 }
+.orderinfo_input{
+  border: 1px solid #DDDDDD;
+  font-size: 14px;
+  line-height: 28px;
+  float:right;
+  width: 15%;
+}
 .orderinfo_text_image{
   width: 12px;
   height: 12px;

@@ -21,12 +21,18 @@
       </view>
       <view class="clearfix">
         <view class="orderinfo_text" style="float:left;padding:0 5px;">金额</view>
-        <view class="orderinfo_text" style="float:right;color:#FE2D04;padding:0 5px;">￥{{price}}</view>
+        <view class="orderinfo_text" style="float:right;color:#FE2D04;padding:0 5px;" wx:if="{{!update}}">￥{{price}}</view>
+        <view class="orderinfo_input" wx:if="{{update}}">
+          <input type="digit" value="{{price}}" />
+        </view>
       </view>
       <view class="clearfix">
         <view class="orderinfo_text" style="float:left;padding:0 5px;">运费</view>
-        <view class="orderinfo_text" style="float:right;color:#FE2D04;padding:0 5px;" wx:if="{{product.ssStoOrder.freight||product.ssStoOrder.freight===0}}">￥{{product.ssStoOrder.freight}}</view>
-        <view class="orderinfo_text" style="float:right;padding:0 5px;" wx:if="{{!product.ssStoOrder.freight&&product.ssStoOrder.freight!==0}}">运费待审核</view>
+        <view class="orderinfo_text" style="float:right;color:#FE2D04;padding:0 5px;" wx:if="{{product.ssStoOrder.freight||product.ssStoOrder.freight===0&&!update}}">￥{{product.ssStoOrder.freight}}</view>
+        <view class="orderinfo_text" style="float:right;padding:0 5px;" wx:if="{{!product.ssStoOrder.freight&&product.ssStoOrder.freight!==0&&!update}}">运费待审核</view>
+        <view class="orderinfo_input" wx:if="{{update}}">
+          <input type="digit" value="{{product.ssStoOrder.freight}}" />
+        </view>
       </view>
       <view class="orderinfo_footer clearfix">
         <view class="orderinfo_footer_text0">下单时间：{{product.ssStoOrder.ordertime}}</view>

@@ -51,7 +51,8 @@ Page({
      this.setData({
        payorderno: options.payorderno,
        ordertype: options.ordertype,
-       ordertype2: options.ordertype2
+       ordertype2: options.ordertype2,
+       update: options.update,
      })
      this.orderDetail_request();
   }

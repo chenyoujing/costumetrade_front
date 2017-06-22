@@ -185,7 +185,7 @@
 
   <!--销售待审核-->
   <view wx-if="{{ordertype==2 && ordertype2==4}}" wx:for="{{product}}" class="order_container_view">
-   <navigator url="orderDetails/orderDetails?ordertype={{ordertype}}&payorderno={{item.payorderno}}& ordertype2=4">
+   <navigator url="orderDetails/orderDetails?ordertype={{ordertype}}&payorderno={{item.payorderno}}&ordertype2=4">
     <view class="order_container_title" >
       <view class="order_container_name">客户：{{item.buyer}}</view>
       <view class="order_container_Bill">商城订单</view>
@@ -209,7 +209,7 @@
       </view>
       <view class="clear"></view>
     <view class="order_container_button btn_2"  bindtap="changeOrderStatus" data-status='8' data-orderNo="{{item.payorderno}}" data-sellerstoreid="{{item.sellerstoreid}}" data-buyerstoreid="{{item.buyerstoreid}}">通过</view>
-    <view class="order_container_button">修改</view>
+    <navigator url="orderDetails/orderDetails?ordertype={{ordertype}}&payorderno={{item.payorderno}}&ordertype2=4&update=true" class="order_container_button">修改</navigator>
     <view class="order_container_button btn_3">取消</view>
     <view class="clear"></view>
   </view>
@@ -358,3 +358,13 @@
 </modal>
 
 
+<!--销售-全部-修改-->
+<modal title="修改" hidden="{{updateModal}}" confirm-text="确定" cancel-text="取消"  bindconfirm="submitData" bindcancel="cancel" >
+  <view class="clearfix" style="margin-top:10px;">
+    <picker class="modal_pay one_line" range="{{paycact}}" range-key="dictText" bindchange="paycactPicker" value="{{paycact_index}}">
+      {{paycact[paycact_index].dictText}}
+      <image src="../../../../images/down.png" mode="aspectFit" class="picker_image" />
+    </picker>
+     <input class="pay_input" disabled="true" value="{{totalMoney}}" type="digit" placeholder="输入金额" />
+  </view>
+</modal>
