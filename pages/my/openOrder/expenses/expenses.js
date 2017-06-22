@@ -130,7 +130,7 @@ Page({
     var that = this;
     var saveOrderFee = this.data.saveOrderFee;
     for (var p in saveOrderFee){
-      saveOrderFee[p].paycate = this.data.paycact;
+      saveOrderFee[p].paycate = this.data.paycact[paycact_index].dictValue;
     }
     console.log(saveOrderFee)
     wx.showNavigationBarLoading()
