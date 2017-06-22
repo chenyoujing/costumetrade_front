@@ -602,7 +602,7 @@ Page({
         scrollTop: this.data.scrollTop,
       })
     }, 100);
-    
+    console.log(app.globalData.storeInfo)
   },
   onUnload:function(){
     this.localData(this.data.shopCart);
