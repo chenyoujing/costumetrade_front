@@ -382,13 +382,20 @@ Page({
       selectLogistics: selectLogistics
     })
   },
+  // 打开“销售-全部-修改”模态框
+  updateModal:function(){
+    this.setData({
+      updateModal: false,
+    })
+  },
   // 关闭模态框
   cancel: function () {
     this.setData({
       logisticsModal: true,
       numberModal: true,
       expressModal: true,
-      collectModal:true
+      collectModal:true,
+      updateModal: true,
    })
   },
   // 打开输入单号模态框

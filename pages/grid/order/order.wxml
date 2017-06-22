@@ -310,7 +310,7 @@
         <view class="order_container_text" style="margin-top:5px;">经手人：{{item.operator}}</view>
       </view>
       <view class="clear"></view>
-      <view class="order_container_button btn_2">修改</view>
+      <view class="order_container_button btn_2" bindtap="updateModal">修改</view>
       <view class="order_container_button"  bindtap="changeOrderStatus" data-status='7' data-orderNo="{{item.payorderno}}" data-sellerstoreid="{{item.sellerstoreid}}" data-buyerstoreid="{{item.buyerstoreid}}">作废</view>
   </view>
 </scroll-view>
@@ -365,6 +365,6 @@
       {{paycact[paycact_index].dictText}}
       <image src="../../../../images/down.png" mode="aspectFit" class="picker_image" />
     </picker>
-     <input class="pay_input" disabled="true" value="{{totalMoney}}" type="digit" placeholder="输入金额" />
+     <input class="pay_input" type="digit" placeholder="输入金额" />
   </view>
 </modal>
