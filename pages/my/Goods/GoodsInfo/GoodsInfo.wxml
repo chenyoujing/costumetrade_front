@@ -61,17 +61,17 @@
           <view hidden="{{!item.isUse}}">
        <view class="picker_content_view">{{item.name}}</view>
             <view class="picker_content_view">
-              <input type = "digit" data-index="{{index}}" data-name="price" bindinput="tagpriceOrPurchase" value="{{item.price}}" />
+              <input type = "digit" disabled="true" value="{{item.price}}" />
             </view>
             <view class="picker_content_view">
-              <input type = "digit" data-index="{{index}}" data-name="tagpriceOrPurchase"  bindinput="blurInputPrice" value="{{item.discPriceJson}}"/>
+              <input type = "digit" disabled="true" value="{{item.discPriceJson}}"/>
            </view>
             <view class="picker_content_view">
-                <input type = "{{privilegeEmployees?'digit':'password'}}" disabled="{{!privilegeEmployees}}" data-index="{{index}}" data-name="custPriceJson" bindinput="tagpriceOrPurchase" value="{{item.custPriceJson}}"/>
+                <input type = "{{privilegeEmployees?'digit':'password'}}" disabled="true"  value="{{item.custPriceJson}}"/>
             </view>
           </view>
           </block>
-        <image src="../../../../images/update.png" mode="aspectFit" class="picker_update_image" bindtap="checkboxChange" />
+        <image src="../../../../images/update.png" mode="aspectFit" class="picker_update_image" bindtap="checkboxChange"/>
         </view>
       </view>
       <view class="upload_input">
@@ -208,34 +208,34 @@
       </view>
       <view class="upload_input clearfix">
         <view class="upload_input_text">打折:</view>
-        <radio-group class="radio-group">
+        <radio-group class="radio-group" name="isDiscount">
           <label class="radio" style="margin-left:25%;">
-            <radio />是
+            <radio value="1" checked="{{GoodsInfoData.isDiscount == 1 ? 'true' : ''}}" />是
           </label>
           <label class="radio" style="margin-right:25%;">
-            <radio />否
+            <radio value="2" checked="{{GoodsInfoData.isDiscount == 2 ? 'true' : ''}}" />否
           </label>
         </radio-group>
       </view>
       <view class="upload_input clearfix">
         <view class="upload_input_text">款式加价:</view>
-        <radio-group class="radio-group">
-          <navigator url="../styleMarkup/styleMarkup" class="radio" style="margin-left:25%;">
-            <radio />是
+        <radio-group class="radio-group" name="isPattern">
+          <navigator url="../styleMarkup/styleMarkup?colors={{GoodsInfoData.colors}}&sizes={{GoodsInfoData.sizes}}&name={{GoodsInfoData.name}}" class="radio" style="margin-left:25%;">
+            <radio value="1" checked="{{GoodsInfoData.isPattern == 1 ? 'true' : ''}}"/>是
           </navigator>
           <label class="radio" style="margin-right:25%;">
-            <radio />否
+            <radio value="2" checked="{{GoodsInfoData.isPattern == 2 ? 'true' : ''}}"/>否
           </label>
         </radio-group>
       </view>
       <view class="upload_input clearfix">
         <view class="upload_input_text">允许上架:</view>
-        <radio-group class="radio-group">
+        <radio-group class="radio-group" name="status">
           <label class="radio" style="margin-left:25%;">
-            <radio />是
+            <radio value="0" checked="{{GoodsInfoData.status == 0 ? 'true' : ''}}"/>是
           </label>
           <label class="radio" style="margin-right:25%;">
-            <radio />否
+            <radio value="2" checked="{{GoodsInfoData.status == 2 ? 'true' : ''}}"/>否
           </label>
         </radio-group>
       </view>
@@ -243,8 +243,6 @@
     <button class="submit" form-type="submit">提交</button>
   </form>
 </view>
-
-
 
 
 <!--添加图片-->
@@ -262,7 +260,7 @@
 </view>
 
 <!--手动修改销售价-->
-<modal title="修改销售价" hidden="{{priceUpdate}}" bindconfirm="confirm" bindcancel="cancel">
+<modal title="修改销售价" hidden="{{priceUpdate}}" bindconfirm="cancel" no-cancel="true">
   <view class="table clearfix">
     <view class="table_text bg_g">客户种类</view>
     <view class="table_text bg_gray">销售价</view>
@@ -272,13 +270,13 @@
       <view hidden="{{!item.isUse}}">
          <view class="table_text bg_g">{{item.name}}</view>
           <view class="table_text">
-              <input type = "digit" data-index="{{index}}" data-name="price" bindinput="tagpriceOrPurchase" value="{{item.price}}" />
+              <input type = "digit" data-index="{{index}}" data-name="price" bindinput="blurInputPrice" value="{{item.price}}" />
          </view>
           <view class="table_text">
-              <input type = "digit" data-index="{{index}}" data-name="tagpriceOrPurchase"  bindinput="blurInputPrice" value="{{item.discPriceJson}}"/>
+              <input type = "digit" data-index="{{index}}" data-name="blurInputPrice"  bindinput="blurInputPrice" value="{{item.discPriceJson}}"/>
          </view>
          <view class="table_text">
-            <input type = "{{privilegeEmployees?'digit':'password'}}" disabled="{{!privilegeEmployees}}" data-index="{{index}}" data-name="custPriceJson" bindinput="tagpriceOrPurchase" value="{{item.custPriceJson}}"/>
+            <input type = "{{privilegeEmployees?'digit':'password'}}" disabled="{{!privilegeEmployees}}" data-index="{{index}}" data-name="custPriceJson" bindinput="blurInputPrice" value="{{item.custPriceJson}}"/>
          </view>
       </view>
     </block>

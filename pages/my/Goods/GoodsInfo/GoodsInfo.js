@@ -30,7 +30,6 @@ Page({
     GoodsInfoData:{},
     soruceData:{},
     changPrice_index:0,
-    updataAut:false,
     firstBoolean:false,
     perImgSrc:'image',
     fileList:[
@@ -391,27 +390,30 @@ Page({
       })
     }
   },
+    // 检测吊牌价与进货价是否存在
   checkboxChange: function (e) {
-    this.setData({
-      updataAut: !this.data.updataAut,
-      priceUpdate: false
-    })
+    if (!this.data.GoodsInfoData.purchaseprice && this.data.privilegeEmployees) {
+      wx.showToast({
+        title: '请先输入进货价',
+        mask: true,
+        duration: 2000
+      })
+    } else if (!this.data.GoodsInfoData.tagprice) {
+      wx.showToast({
+        title: '请先输入吊牌价',
+        mask: true,
+        duration: 2000
+      })
+    } else {
+      this.setData({
+        priceUpdate: false
+      })
+      
+    }
   },
   cancel: function () {
     this.setData({
       priceUpdate: true
-    })
-  },
-  //尺码添加
-  sizeAdd:function(type){
-    var url = '';
-    if(type == 'sizes'){
-      url = '../GoodsBrand/GoodsBrand?url=size/getAllSizes&title=选尺码'
-    } else if (type == 'unit'){
-      url = '../GoodsBrand/GoodsBrand?url=unit/getAllUnits&title=添加单位'
-    }
-    wx.navigateTo({
-      url: url
     })
   },
   // 搜索图片
@@ -428,24 +430,6 @@ Page({
     }
     app.imageinfo.storeId = this.data.GoodsInfoData.storeId
     app.imageinfo.productName = this.data.GoodsInfoData.productName
-  },
-  // 检测吊牌价与进货价是否存在
-  tagpriceOrPurchase:function(e){
-    if (!this.data.GoodsInfoData.purchaseprice && this.data.privilegeEmployees){
-      wx.showToast({
-        title: '请先输入进货价',
-        mask: true,
-        duration: 2000
-      })
-    } else if (!this.data.GoodsInfoData.tagprice) {
-      wx.showToast({
-        title: '请先输入吊牌价',
-        mask: true,
-        duration: 2000
-      })
-    }else{
-      this.blurInputPrice(e)
-    }
   },
   //更改销售价、折扣价、毛利率
   blurInputPrice: function (e) {
@@ -506,14 +490,13 @@ Page({
         newPicker[p].custPriceJson = ((newPicker[p].price - purchaseprice) / purchaseprice).toFixed(2);
         newPicker[p].custPriceJson = newPicker[p].custPriceJson == "Infinity" ? 100 : newPicker[p].custPriceJson;
         newPicker[p].custPriceJson = newPicker[p].custPriceJson == "NaN" ? 0 : newPicker[p].custPriceJson;
-        console.log('dddddddddddd')
       }else{
       newPicker[p].discPriceJson = (newPicker[p].price / tagprice * 100).toFixed(1);
       if (purchaseprice !== 0) {
         newPicker[p].custPriceJson = ((newPicker[p].price - purchaseprice) / purchaseprice * 100).toFixed(1)
+       }
       }
     }
-  }
     this.setData({
       picker_view: newPicker,
       firstBoolean: false

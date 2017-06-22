@@ -5,16 +5,24 @@
   <view class="title_text">款式加价</view>
 </view>
 
-<scroll-view class="styleMarkup_scroll">
-  <view class="styleMarkup_name">夏装连衣裙</view>
+<scroll-view scroll-y class="styleMarkup_scroll">
+  <view class="styleMarkup_name">{{name}}</view>
   <view class="markup_container clearfix">
     <view class="markup_view bg_g">款式名称</view>
     <view class="markup_view bg_g">加价金额</view>
-    <block wx:for="123">
-      <view class="markup_view">颜色一</view>
-      <view class="markup_view">0</view>
+    <block wx:for="{{colors}}">
+      <view class="markup_view">{{item.colorname}}</view>
+      <view class="markup_view">
+        <input type="digit" data-index="{{index}}" data-name="colors" value="{{item.priceRaise}}" bindblur="changepriceRaise"/>
+      </view>
+    </block>
+     <block wx:for="{{sizes}}">
+      <view class="markup_view">{{item.sizename}}</view>
+      <view class="markup_view">
+        <input type="digit" data-index="{{index}}" data-name="sizes" bindblur="changepriceRaise" value="{{item.priceRaise}}"/>
+      </view>
     </block>
   </view>
 </scroll-view>
 
-<view class="submit">提交</view>
+<view class="submit" bindtap="submitData">提交</view>
