@@ -59,7 +59,7 @@
           <view class="picker_content_title">毛利率</view>
           <block wx:for="{{picker_view}}">
           <view hidden="{{!item.isUse}}">
-   <view class="picker_content_view">{{item.name}}</view>
+       <view class="picker_content_view">{{item.name}}</view>
             <view class="picker_content_view">
               <input type = "digit" data-index="{{index}}" data-name="price" bindinput="tagpriceOrPurchase" value="{{item.price}}" />
             </view>
@@ -268,11 +268,19 @@
     <view class="table_text bg_gray">销售价</view>
     <view class="table_text bg_gray">折扣率</view>
     <view class="table_text bg_gray">毛利率</view>
-    <block wx:for="{{array}}">
-      <view class="table_text bg_g">{{item.name}}</view>
-      <view class="table_text">{{item.value[0]}}</view>
-      <view class="table_text">{{item.value[1]}}</view>
-      <view class="table_text">{{item.value[2]}}</view>
+    <block wx:for="{{picker_view}}" >
+      <view hidden="{{!item.isUse}}">
+         <view class="table_text bg_g">{{item.name}}</view>
+          <view class="table_text">
+              <input type = "digit" data-index="{{index}}" data-name="price" bindinput="tagpriceOrPurchase" value="{{item.price}}" />
+         </view>
+          <view class="table_text">
+              <input type = "digit" data-index="{{index}}" data-name="tagpriceOrPurchase"  bindinput="blurInputPrice" value="{{item.discPriceJson}}"/>
+         </view>
+         <view class="table_text">
+            <input type = "{{privilegeEmployees?'digit':'password'}}" disabled="{{!privilegeEmployees}}" data-index="{{index}}" data-name="custPriceJson" bindinput="tagpriceOrPurchase" value="{{item.custPriceJson}}"/>
+         </view>
+      </view>
     </block>
   </view>
 </modal>
