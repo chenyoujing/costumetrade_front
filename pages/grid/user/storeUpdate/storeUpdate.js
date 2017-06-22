@@ -1,9 +1,7 @@
-// pages/grid/user/storeUpdate/storeUpdate.js
+var util = require('../../../../utils/util.js')
+var app = getApp()
 Page({
 
-  /**
-   * 页面的初始数据
-   */
   data: {
   
   },
@@ -30,6 +28,12 @@ Page({
         console.log(res.nationalCode)
         console.log(res.telNumber)
       }
+    })
+  },
+  onLoad: function () {
+    console.log(app.globalData.storeInfo)
+    this.setData({
+      shopInfo: app.globalData.storeInfo
     })
   }
 })

@@ -1,66 +1,102 @@
-// pages/grid/user/updateSize/updateSize.js
+var util = require('../../../../utils/util.js')
+var app = getApp()
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
-  
+    url: 'size/getAllSizes',
+    groupUrl: "size/getAllSizeCustom",
+    size: [],
+    sizeProduct: [],
+    selected: []
   },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
+  changeBoxBind: function (e) {
+    this.setData({
+      selected: e.detail.value.split(',')
+    })
+    console.log(e)
+  },
+  request_data: function (url, arrayName) {
+    var that = this;
+    wx.showNavigationBarLoading();
+    util.api.request({
+      url: url,
+      data: {
+        storeId: 1
+      },
+      method: 'POST',
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      success: function (res) {
+        wx.hideNavigationBarLoading();
+        var param = {};
+        if (arrayName == 'size') {
+          app.sizeArray = res.data
+        }
+        param[arrayName] = res.data;
+        that.setData(param);
+        console.log(param)
+      }
+    })
+  },
+  add: function (e) {
+    var size = e.target.dataset.size;
+    var selected = this.data.selected;
+    selected.push(size);
+    this.setData({
+      selected: selected
+    })
+  },
+  reduce: function (e) {
+    var size = e.target.dataset.size;
+    var selected = this.data.selected;
+    for (var index in selected) {
+      var row = selected[index];
+      if (row == size) {
+        selected.splice(index, 1);
+        break;
+      }
+    }
+    this.setData({
+      selected: selected
+    })
+  },
+  saveData: function () {
+    app.nameChange = '尺码';
+    app.changeData = util.api.getFilterArray(this.data.selected);
+    this.back()
+  },
   onLoad: function (options) {
-  
+    this.request_data(this.data.url, 'size');
+    this.request_data(this.data.groupUrl, 'sizeProduct');
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
   onShow: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-  
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-  
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-  
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-  
+    if (app.changeData) {
+      if (app.changesizename == 'sizename') {
+        var arry = this.data.size;
+        var object = {
+          id: app.changeId
+        };
+        object[app.changesizename] = app.changeData;
+        arry.push(object);
+        this.setData({
+          size: arry
+        })
+        app.changesizename = ""
+      } else {
+        console.log(app.changeId)
+        var arry = this.data.sizeProduct;
+        var object = {
+          value: app.changeId.value
+        };
+        object[app.changesizename] = app.changeData;
+        arry.push(object);
+        console.log(object)
+        this.setData({
+          sizeProduct: arry
+        })
+        app.changeId = ''
+      }
+      app.changeData = "";
+    }
   }
 })

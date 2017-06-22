@@ -10,6 +10,7 @@
     </navigator>
     <image src="../../../../images/amputate.png" bindtap="back" mode="aspectFit" class="image_close" />
     </view>
+    
     <scroll-view scroll-x class="size_title_selected" >
 
       <view class="prompt_none" wx:if="{{selected == 0}}">

@@ -13,7 +13,7 @@
     <image src="../../../../images/image_none.png" mode="aspectFill" class="store_image" bindtap="tx" />
     <view class="store_input">
       <view class="store_input_text clearfix">店铺名称：</view>
-      <input type="text" class="store_input1" placeholder="*" placeholder-class="required" />
+      <input type="text" class="store_input1" placeholder="*" placeholder-class="required" value="{{shopInfo.name}}" />
     </view>
     <view class="store_input">
       <view class="store_input_text clearfix">移动电话：</view>
@@ -25,7 +25,7 @@
     </view>
     <view class="store_input clearfix">
       <view class="store_input_text">企业地址：</view>
-      <input type="text" class="store_input1" placeholder="*" placeholder-class="required" />
+      <input type="text" class="store_input1" placeholder="*" placeholder-class="required" value="{{shopInfo.address}}" />
     </view>
     <view class="store_input clearfix">
       <view class="store_input_text">微信号：</view>

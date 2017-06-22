@@ -15,9 +15,67 @@
   top: 0;
   right: 0;
 }
-.order_info{
-  padding: 5px 25%;
-  padding-right: 15%;
+
+.order_container{
+  padding: 5px 0;
+}
+.seller_info{
+  padding: 10px 50rpx;
+}
+.seller_tx{
+  width: 50px;
+  height: 50px;
+  border-radius: 25px;
+  float: left;
+  margin-right: 15px;
+}
+.seller_text{
+  font-size: 13px;
+  line-height: 20px;
+}
+.orderinfo{
+  border-top: 5px solid #DBF4F1;
+  padding: 10px 50rpx;
+}
+.orderinfo_title{
+  border-bottom: 2px solid #DDDDDD;
+  margin-bottom: 5px;
+}
+.orderinfo_text{
+  padding: 5px;
+  font-size: 14px;
+  line-height: 30px;
+}
+.orderinfo_text_image{
+  width: 12px;
+  height: 12px;
+  padding: 9px 0;
+  padding-left: 5px; 
+  float: right;
+}
+.orderinfo_footer{
+  border-top: 2px solid #DDDDDD;
+  margin-top: 5px;
+}
+.orderinfo_footer_text::before{
+  content: "实付金额：";
+  color: #000000;
+}
+.orderinfo_footer_text0{
+  font-size: 10px;
+  line-height: 30px;
+  float: left;
+}
+.orderinfo_footer_text{
+  color: #FE2D04;
+  padding: 5px;
+  font-size: 17px;
+  line-height: 30px;
+  float:right;
+}
+/*.order_info{
+  padding: 15px 50rpx 0;
+  border-top: 5px solid #DBF4F1;
 }
 .info_title{
   color: #202020;
@@ -34,7 +92,8 @@
 .info_price::before{
   content: "实际金额：";
   color: #000000;
-}
+}*/
+
 
 .order_view{
   padding: 10px 8px 0;

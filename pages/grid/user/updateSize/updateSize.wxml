@@ -4,11 +4,11 @@
   <!--头部-->
   <view class="size_title clearfix">
     尺码
-    <navigator url="../GoodsBrandAdd/GoodsBrandAdd?url=size/saveSize&name=尺码&addname=sizename">
+    <navigator url="../../../my/Goods/GoodsBrandAdd/GoodsBrandAdd?url=size/saveSize&name=尺码&addname=sizename">
       <image class="image_add" src="../../../../images/add_small.png"      mode="aspectFit" />
     </navigator>
     <navigator open-type="navigateBack">
-      <image src="../../../../images/amputate.png" bindtap="back" mode="aspectFit" class="image_close" />
+      <image src="../../../../images/amputate.png" mode="aspectFit" class="image_close" />
     </navigator>
     
   </view>
@@ -17,31 +17,31 @@
   
   <!--选择尺码，尺码组-->
   <scroll-view scroll-y class="size_container clearfix">
-    <view class="update_option">
-      <view class="option_num" style="width:20%;">1.</view>
-      <image src="../../../../images/delete_2.png" mode="aspectFit" class="option_delete" />
-      <view class="option_text one_line">S</view>
+  
+    <view class="prompt_none" wx:if="{{size == 0}}">
+      <text>您没有可供操作的尺码，请添加</text>
     </view>
-    <view class="update_option">
-      <view class="option_num" style="width:20%;">2.</view>
+
+    <view class="update_option" wx:for="{{size}}">
+      <view class="option_num" style="width:20%;">{{index+1}}.</view>
       <image src="../../../../images/delete_2.png" mode="aspectFit" class="option_delete" />
-      <view class="option_text one_line">M</view>
+      <view class="option_text one_line">{{item.sizename}}</view>
     </view>
   </scroll-view>
 
 
   <view class="size_title2">
       尺码组
-    <navigator url="../GoodsBrandAdd/GoodsBrandAdd?url=size/saveSizeCustom&name=尺码组&addname=customname">
+    <navigator url="../../../my/Goods/GoodsBrandAdd/GoodsBrandAdd?url=size/saveSizeCustom&name=尺码组&addname=customname">
       <image class="image_add2" src="../../../../images/add_small.png"      mode="aspectFit" />
     </navigator>
   </view>
   <scroll-view scroll-y class="sizes_container">
-    <view class="update_option">
+    <view class="update_option" wx:for="{{sizeProduct}}">
       <view class="option_num" style="width:10%;">1.</view>
       <image src="../../../../images/delete_2.png" mode="aspectFit" class="option_delete" />
-      <view class="option_text one_line" style="width:45%;float:left;">自定义尺码组1</view>
-      <view class="option_text one_line">S,155</view>
+      <view class="option_text one_line" style="width:45%;float:left;">{{item.customname}}</view>
+      <view class="option_text one_line">{{item.value}}</view>
     </view>
   </scroll-view>
 </view>

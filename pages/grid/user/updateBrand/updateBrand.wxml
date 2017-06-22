@@ -1,22 +1,27 @@
 <!--添加商品品牌-->
 <view class="modal">
   <view class="title clearfix">
-    {{titlename}}商品种类
+    {{titlename}}
     <navigator open-type="navigateBack">
       <image src="../../../../images/amputate.png" mode="aspectFit" class="title_image_close"  bindtap="back" />
     </navigator>
-    <navigator url="../GoodsBrandAdd/GoodsBrandAdd?url={{addurl}}&name={{titlename}}&addname={{addname}}">
+    <navigator url="../../../my/Goods/GoodsBrandAdd/GoodsBrandAdd?url={{addurl}}&name={{titlename}}&addname={{addname}}">
       <image class="title_image_add" src="../../../../images/add_small.png"      mode="aspectFit" />
     </navigator>
   </view>
 
-  <scroll-view scroll-y="true" class="modal_content" wx:if="{{title !== '颜色选择'}}">
-    <view class="update_option clearfix">
-      <view class="option_num">1.</view>
-      <image src="../../../../images/delete_2.png" mode="aspectFit" class="option_delete" />
-      <image src="../../../../images/update.png" mode="aspectFit" class="option_update" />
-      <view class="option_default">默认</view>
-      <view class="option_text one_line">Burberry</view>
+  <scroll-view scroll-y="true" class="modal_content">
+
+    <view class="prompt_none" wx:if="{{selected == 0}}">
+      <text>您没有可供操作的{{titlename}}，请添加</text>
+    </view>
+  
+    <view class="update_option clearfix" wx:for="{{product}}">
+      <view class="option_num">{{index+1}}.</view>
+      <image src="../../../../images/delete_2.png" mode="aspectFit" class="option_delete" data-id="{{item.id}}" />
+      <image src="../../../../images/update.png" mode="aspectFit" class="option_update" data-id="{{item.id}}" />
+      <view class="option_default" wx:if="">默认</view>
+      <view class="option_text one_line">{{item.brandname||item.catename||item.unit||item.colorname}}</view>
     </view>
   </scroll-view>
   <button class="modal_submit" bindtap="saveData">确定</button>

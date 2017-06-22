@@ -149,7 +149,8 @@ picker{
 /*无数据时提示*/
 .prompt_none{
   width: 100%;
-  padding-top: 40px;
+  padding-top: 30px;
+  padding-bottom: 10px;
   text-align: center;
   font-size: 14px;
   line-height: 20px;
@@ -159,6 +160,7 @@ picker{
   padding: 10px;
   border-radius: 3px;
   vertical-align: middle;
+  display:inline-block;
 }
 /*返回按钮*/
 .back_nav{

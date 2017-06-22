@@ -33,8 +33,7 @@ App({
             that.globalData.privilegeEmployees = res.data.data.employee.privilegeEmployees;
             that.globalData.userIdentity = res.data.data.userIdentity;
             that.globalData.storeInfo = res.data.data.query.storeList;
-            console.log(that.globalData.storeInfo)
-            console.log(that.globalData.openid )
+            console.log(that.globalData.storeInfo )
           }
         })
 
@@ -64,6 +63,6 @@ App({
   globalData: {
     userInfo: null,
     openid: '',
-    
+    storeInfo: '',
   }
 })

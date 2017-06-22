@@ -27,7 +27,7 @@ Page({
       success: function (res) {
         wx.hideNavigationBarLoading();
         for (var p in res.data.ssStoDetail){
-          res.data.ssStoDetail[p].createtime = util.toDate(res.data.ssStoDetail[p].createtime);
+          res.data.ssStoDetail[p].ordertime = util.toDate(res.data.ssStoDetail[p].ordertime);
           res.data.ssStoDetail[p].totalPrice = (res.data.ssStoDetail[p].count * res.data.ssStoDetail[p].price).toFixed(2)
         }
        

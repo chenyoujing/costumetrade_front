@@ -394,7 +394,7 @@ swiper{
 }
 .goods_level{
   padding: 0 20px;
-  margin-bottom: 45px;
+  margin-bottom: 10px;
 }
 .goods_level_title{
   float: left;
@@ -409,7 +409,8 @@ swiper{
   border: 0.5px solid #ffffff;
   background-color: #E7F7F6;
   font-size: 14px;
-  line-height: 28px;
+  line-height: 30px;
+  height: 32px;
   text-align: center;
   width: 50%;
   float: left;

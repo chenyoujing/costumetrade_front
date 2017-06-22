@@ -159,31 +159,31 @@
         <view class="setting_view" style="padding: 0 20px;">
           <view class="setting_pay" style="border:0;">
             <view class="pay_view">
-              <navigator url="../updateBrand/updateBrand">
+              <navigator url="../updateBrand/updateBrand?url=brand/getAllBrands&title=品牌">
                 <image src="../../../../images/update.png" mode="aspectFit" class="image_setting" />
               </navigator>
               <text>1.</text>品牌
             </view>
             <view class="pay_view">
-              <navigator url="../updateBrand/updateBrand">
+              <navigator url="../updateBrand/updateBrand?url=cate/getAllCates&title=商品种类">
                 <image src="../../../../images/update.png" mode="aspectFit" class="image_setting" />
               </navigator>
               <text>2.</text>种类
             </view>
             <view class="pay_view">
-              <navigator url="../updateBrand/updateBrand">
+              <navigator url="../updateBrand/updateBrand?url=unit/getAllUnits&title=单位">
                 <image src="../../../../images/update.png" mode="aspectFit" class="image_setting" />
               </navigator>
               <text>3.</text>单位
             </view>
             <view class="pay_view">
-              <navigator url="../updateSize/updateSize">
+              <navigator url="../updateSize/updateSize?url=size/getAllSizes&title=尺码选择">
                 <image src="../../../../images/update.png" mode="aspectFit" class="image_setting" />
               </navigator>
               <text>4.</text>尺码
             </view>
             <view class="pay_view">
-              <navigator url="../updateBrand/updateBrand">
+              <navigator url="../updateBrand/updateBrand?url=color/getAllColors&title=颜色选择">
                 <image src="../../../../images/update.png" mode="aspectFit" class="image_setting" />
               </navigator>
               <text>5.</text>颜色
