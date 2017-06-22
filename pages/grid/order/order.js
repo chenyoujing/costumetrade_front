@@ -22,7 +22,8 @@ Page({
     logisticsCompany:[],
     logisticsno:'',
     logisticsname:'顺丰',
-    logisticsname_index:0
+    logisticsname_index:0,
+    logisticFees:[]
   },
   goto_info: function (e) {
     app.infotype = e.target.dataset.infotype
@@ -50,7 +51,7 @@ Page({
     var num = e.target.dataset.ordertype;
     this.setData({
       ordertype : num,
-      ordertype2: 1,
+      ordertype2: 4,
       page:1
     })
     this.order_request();
@@ -86,7 +87,13 @@ Page({
         var data = that.data.product;
         var booleanre = that.data.requestSwitch;
         for (var p in res.data) {
-          res.data[p].ordertime = util.toDate(res.data[p].ordertime)
+          res.data[p].ordertime = util.toDate(res.data[p].ordertime);
+          // 转换物流公司
+          for (var j in that.data.logisticFees){
+            if (that.data.logisticFees[j].logisticCode == res.data[p].logisticsCode){
+              res.data[p].logisticName = that.data.logisticFees[j].logisticName
+            }
+          }
         }
         if (that.data.page == 1) {
           data = res.data;
@@ -141,6 +148,10 @@ Page({
         } else if (this.data.ordertype == 2 && this.data.ordertype4 == 1){
           totole.sNoAuditCount -= 1;
         }
+        break;
+      case "8":
+        totole.sNoPayCount -= 1;
+        totole.sNoAuditCount += 1;
         break;
     }
     this.setData({
@@ -399,8 +410,15 @@ Page({
     }
   },
   onLoad:function(){
+    if (!app.logisticFees){
+      util.api.getProductInit()
+    }
     this.order_request();
     this.countOrders();
+    this.setData({
+      logisticFees: app.logisticFees
+    })
+    console.log(app.logisticFees)
   },
   onShow:function(){
     if (app.payOrderno){

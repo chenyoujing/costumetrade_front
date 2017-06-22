@@ -15,6 +15,9 @@ Page({
     })
   },
   onLoad:function(){
+    if (!app.logisticFees) {
+      util.api.getProductInit()
+    }
     wx.updateShareMenu({
       withShareTicket: true,
       success() {

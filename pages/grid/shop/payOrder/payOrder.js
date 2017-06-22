@@ -51,7 +51,7 @@ Page({
                 duration: 2000
               })
               wx.navigateBack({
-                delta: 1
+                delta: 2
               })
             }
           })

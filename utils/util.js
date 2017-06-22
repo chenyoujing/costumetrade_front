@@ -88,7 +88,6 @@ var api = {
         'content-type': 'application/x-www-form-urlencoded'
       },
       success: function (res) {
-        console.log(res.data.customerTypeList)
         wx.hideNavigationBarLoading();
         app.screen_brandList = res.data.brandList;
         app.screen_productTypeList = res.data.productTypeList;
