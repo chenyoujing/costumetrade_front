@@ -49,9 +49,15 @@ Page({
   // 一级标签切换
   ordertype:function(e){
     var num = e.target.dataset.ordertype;
+    var ordertype2
+    if (num == 1) {
+      ordertype2 = 1
+    }else if (num == 2) {
+      ordertype2 = 4
+    }
     this.setData({
       ordertype : num,
-      ordertype2: 4,
+      ordertype2: ordertype2,
       page:1
     })
     this.order_request();

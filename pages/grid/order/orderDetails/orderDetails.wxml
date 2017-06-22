@@ -25,8 +25,8 @@
       </view>
       <view class="clearfix">
         <view class="orderinfo_text" style="float:left;padding:0 5px;">运费</view>
-        <view class="orderinfo_text" style="float:right;color:#FE2D04;padding:0 5px;" wx:if="{{product.ssStoOrder.freight}}">￥{{product.ssStoOrder.freight}}</view>
-        <view class="orderinfo_text" style="float:right;padding:0 5px;" wx:if="{{!product.ssStoOrder.freight}}">运费待审核</view>
+        <view class="orderinfo_text" style="float:right;color:#FE2D04;padding:0 5px;" wx:if="{{product.ssStoOrder.freight||product.ssStoOrder.freight===0}}">￥{{product.ssStoOrder.freight}}</view>
+        <view class="orderinfo_text" style="float:right;padding:0 5px;" wx:if="{{!product.ssStoOrder.freight&&product.ssStoOrder.freight!==0}}">运费待审核</view>
       </view>
       <view class="orderinfo_footer clearfix">
         <view class="orderinfo_footer_text0">下单时间：{{product.ssStoOrder.ordertime}}</view>
@@ -53,7 +53,7 @@
         <view class="order_view_text">
           <text>颜色：{{item.productcolor}}</text>
           <text>尺码：{{item.productsize}}</text>
-          <text>数量：{{item.count}}{{item.productunit}}</text>
+          <text>数量：{{item.count}} {{item.productunit}}</text>
         </view>
         <view class="order_unit_price">单价：{{item.price}}</view>
         <view class="order_view_price">{{item.totalPrice}}</view>

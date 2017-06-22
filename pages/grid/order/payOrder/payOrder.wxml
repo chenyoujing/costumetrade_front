@@ -16,7 +16,7 @@
               <text>款式：{{item.productcolor}}</text>
               <text>尺码：{{item.productsize}}</text>
             </view>
-            <view class="price">{{item.price}}</view>
+            <view class="price">{{item.totalPrice}}</view>
             <view class="info_other">
               <view class="num">{{item.count}}{{item.productunit}}</view>
               <view class="date">{{item.modifytime}}</view>
@@ -39,8 +39,8 @@
       </view>
       <view class="clearfix">
         <view class="orderinfo_text" style="float:left;padding:0 5px;">运费</view>
-        <view class="orderinfo_text" style="float:right;color:#FE2D04;padding:0 5px;" wx:if="{{freight}}">￥{{freight}}</view>
-        <view class="orderinfo_text" style="float:right;padding:0 5px;" wx:if="{{!freight}}">运费待审核</view>
+        <view class="orderinfo_text" style="float:right;color:#FE2D04;padding:0 5px;" wx:if="{{freight||freight===0}}">￥{{freight}}</view>
+        <view class="orderinfo_text" style="float:right;padding:0 5px;" wx:if="{{!freight&&freight!==0}}">运费待审核</view>
       </view>
       <view class="orderinfo_footer clearfix">
         <view class="orderinfo_footer_text" style="float:right;color:#FE2D04;">￥{{price+freight}}</view>
