@@ -7,7 +7,6 @@ Page({
     customerTypeList: [
     ],
     brandList:[],
-   
     current: "0",
     dictionary: "1",
     staff_updata: "100%",
@@ -15,7 +14,8 @@ Page({
     custtypename_index:0,
     branch_index:0,
     originalEmployeeDetails:{},
-    privilegeIdsArray:[]
+    privilegeIdsArray:[],
+    employeesId:""
   },
   swiper_change: function (e) {
     this.setData({
@@ -35,7 +35,8 @@ Page({
     var that = this;
     this.setData({
       privilegeEmployees: app.privilegeEmployees,
-      customerTypeList: app.custProdPrice
+      customerTypeList: app.custProdPrice,
+      employeesId:id
     })
     console.log(app.custProdPrice)
     wx.showNavigationBarLoading()
@@ -154,6 +155,7 @@ Page({
     var objectSubmit = util.api.getEntityModified(this.data.originalEmployeeDetails, this.data.employeeDetails);
     objectSubmit.privilegeEmployees = privilegeIdsArray;
     objectSubmit.storeId = 1;
+    objectSubmit.employeesId = this.data.employeesId;
     wx.showNavigationBarLoading()
     util.api.request({
       url: 'employee/saveEmployee',

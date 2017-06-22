@@ -37,7 +37,57 @@ Page({
     colorChange:1,
     cate:1,
     saleName:'标签价',
-    stockArray:[]
+    stockArray:[],
+    userIdentity:3,
+    purchasePrivilege:false,
+    cusmPrivilege: false,
+    supplierPrivilege: false,
+  },
+  // 几个权限判断
+  authorityPurchaseprice: function () {
+    var userIdentity = app.globalData.userIdentity;
+    var privilegeEmployees = false;
+    var cusmPrivilege = false;
+    var supplierPrivilege = false;
+    if (userIdentity == 3) {
+      for (var p in app.globalData.privilegeEmployees) {
+        if (app.globalData.privilegeEmployees[p].privilegeId == 1) {
+          privilegeEmployees = true;
+        }
+        if (app.globalData.privilegeEmployees[p].privilegeId == 3) {
+          cusmPrivilege = true;
+        }
+        if (app.globalData.privilegeEmployees[p].privilegeId == 5) {
+          supplierPrivilege = true;
+        }
+      }
+    }
+    this.setData({
+      purchasePrivilege: privilegeEmployees,
+      cusmPrivilege: cusmPrivilege,
+      supplierPrivilege: supplierPrivilege
+    })
+  },
+  // 判断有没有权限看进货价、客户、供应商
+  authorityJudge:function(){
+    var type = this.data.type;
+    if (type == 1 && !this.data.cusmPrivilege){
+      wx.showToast({
+        title: '您没有权限查看客户',
+        mask: true,
+        duration: 2000
+      })
+    } else if (type == 2 && !this.data.supplierPrivilege){
+      wx.showToast({
+        title: '您没有权限查看供应商',
+        mask: true,
+        duration: 2000
+      })
+    }else{
+      wx.navigateTo({
+        url: 'unitSelect/unitSelect?type='+type
+      })
+    }
   },
   //买单
   order: function () {
@@ -585,24 +635,22 @@ Page({
   },
   onShow: function (options) {
     // 防止没有客户时报错
-    console.log(app.selectName)
     app.selectName = app.selectName ? app.selectName:{cate:6};
     if (!app.screen_unitList) {
       util.api.getProductInit();
     }
-    console.log(app)
     this.setData({
       selectName: app.selectName 
     })
     this.sale(app.selectName.cate);
     this.getData();
+    this.authorityPurchaseprice();
     var that = this
     setTimeout(() => {
       this.setData({
         scrollTop: this.data.scrollTop,
       })
     }, 100);
-    console.log(app.globalData.storeInfo)
   },
   onUnload:function(){
     this.localData(this.data.shopCart);
