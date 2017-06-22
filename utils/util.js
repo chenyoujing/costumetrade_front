@@ -23,7 +23,7 @@ function toDate(number) {
 }
 //请求接口公共方法
 var api = {
-  host: 'http://192.168.2.221:8088/',
+  host: 'http://192.168.2.221:8080/',
   pageNum :1,
   publicProduct:[],
   imgUrl: "http://117.149.24.42:8788",

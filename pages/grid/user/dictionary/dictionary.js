@@ -7,13 +7,7 @@ Page({
     customerTypeList: [
     ],
     brandList:[],
-    goods_level3: [
-      { name: '普通会员', value: '90%' },
-      { name: '银卡会员', value: '80%' },
-      { name: '金卡会员', value: '70%' },
-      { name: '白金会员', value: '60%' },
-      { name: '钻石会员', value: '50%' },
-    ],
+   
     current: "0",
     dictionary: "1",
     staff_updata: "100%",
@@ -41,9 +35,9 @@ Page({
     var that = this;
     this.setData({
       privilegeEmployees: app.privilegeEmployees,
-      customerTypeList: app.customerTypeList
+      customerTypeList: app.custProdPrice
     })
-    console.log(app.customerTypeList)
+    console.log(app.custProdPrice)
     wx.showNavigationBarLoading()
     util.api.request({
       url: 'employee/getEmployee',
@@ -59,9 +53,9 @@ Page({
         console.log(res.data);
         var custtypename_index = 0;
         var privilegeEmployees = that.data.privilegeEmployees;
-        var privilegeIdsArray = that.data.privilegeIdsArray;
+        var privilegeIdsArray = [];
         for (var p in that.data.customerTypeList){
-          if (that.data.customerTypeList[p].id == res.data.modifyPrice){
+          if (that.data.customerTypeList[p].custTypeCode == res.data.modifyPrice){
             custtypename_index = p;
           }
         }
@@ -70,16 +64,18 @@ Page({
           for (var j in res.data.privilegeEmployees){
             if (res.data.privilegeEmployees[j].privilegeId == privilegeEmployees[p].id){
               privilegeEmployees[p].checked = true;
-              privilegeIdsArray.push({
-                privilegeId: res.data.privilegeEmployees[j].privilegeId
-              })
+              privilegeIdsArray.push(res.data.privilegeEmployees[j].privilegeId)
             }
           }
         }
         that.setData({
+          originalEmployeeDetails: res.data
+        })
+        res.data.modifyPrice = res.data.modifyPrice || that.data.customerTypeList[0].custTypeCode;
+        console.log(res.data)
+        that.setData({
           staff_updata: "0",
           employeeDetails: res.data,
-          originalEmployeeDetails: res.data,
           custtypename_index: custtypename_index,
           privilegeEmployees: privilegeEmployees,
           privilegeIdsArray: privilegeIdsArray
@@ -121,10 +117,11 @@ Page({
     var name = index == 'custtypename_index' ? 'custtypename_index' :"branch_index";
     var nameValue = index == 'custtypename_index' ? 'modifyPrice' : "branch";
     var nameList = index == 'custtypename_index' ? this.data.customerTypeList : this.data.branchList;
+    console.log(this.data.customerTypeList)
     var param = {};
     param[name] = e.detail.value;
     param.employeeDetails = this.data.employeeDetails;
-    param.employeeDetails[nameValue] = nameList[e.detail.value].id;
+    param.employeeDetails[nameValue] = nameList[e.detail.value].custTypeCode;
     console.log(param)
     this.setData(param)
   },
@@ -155,10 +152,8 @@ Page({
       })
     }
     var objectSubmit = util.api.getEntityModified(this.data.originalEmployeeDetails, this.data.employeeDetails);
-    console.log(this.data.employeeDetails);
-    console.log(this.data.originalEmployeeDetails);
     objectSubmit.privilegeEmployees = privilegeIdsArray;
-    console.log(objectSubmit.privilegeEmployees);
+    objectSubmit.storeId = 1;
     wx.showNavigationBarLoading()
     util.api.request({
       url: 'employee/saveEmployee',
@@ -225,8 +220,6 @@ Page({
       }
     })
   },
-
-  
   // 运费规则
   freight:function(e){
     var freight = e.target.dataset.freight
