@@ -1,6 +1,6 @@
 <view class="title clearfix">
   <navigator open-type="navigateBack">
-    <image src="../../../../../images/back-away.png" mode="aspectFit" class="title_image_back" />
+    <image src="../../../../images/back-away.png" mode="aspectFit" class="title_image_back" />
   </navigator>
   <image src="../../../../images/bill-of-document.png"  mode="aspectFill" class="expenses_title_image" />
   <view class="expenses_title_text">费用单</view>
@@ -15,8 +15,7 @@
   </view>
 </view>
 
-
-<view class="expenses_view1">
+<scroll-view scroll-y class="expenses_view1">
   <view class="content_title">明细</view>
   <view class="expenses_detail clearfix" wx:for="{{saveOrderFee}}">
     <view class="expenses_detail_text">{{item.catename}}</view>
@@ -27,13 +26,13 @@
     <view class="expenses_detail_num">{{totalNum}}</view>
     <view class="expenses_detail_price">￥{{totalMoney}}</view>
   </view>
-</view>
-<view class="expenses_view2">
+</scroll-view>
+<scroll-view scroll-y class="expenses_view2">
   <view class="content_title">项目</view>
   <block wx:for="{{product}}">
     <view class="expenses_item" bindtap="showInput" data-index="{{index}}" data-id="{{item.dictValue}}" data-text="{{item.dictText}}">{{item.dictText}}</view>
   </block>
-</view>
+</scroll-view>
 
 
 <!--更多功能-->

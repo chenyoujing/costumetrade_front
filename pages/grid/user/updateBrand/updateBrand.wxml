@@ -2,7 +2,9 @@
 <view class="modal">
   <view class="title clearfix">
     {{titlename}}商品种类
-    <image src="../../../../images/amputate.png" mode="aspectFit" class="title_image_close"  bindtap="back" />
+    <navigator open-type="navigateBack">
+      <image src="../../../../images/amputate.png" mode="aspectFit" class="title_image_close"  bindtap="back" />
+    </navigator>
     <navigator url="../GoodsBrandAdd/GoodsBrandAdd?url={{addurl}}&name={{titlename}}&addname={{addname}}">
       <image class="title_image_add" src="../../../../images/add_small.png"      mode="aspectFit" />
     </navigator>

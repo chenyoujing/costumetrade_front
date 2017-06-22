@@ -55,7 +55,7 @@
             </view>
             <view class="dictionary_input clearfix">
               <view class="dictionary_input_text1">打折：</view>
-              <input type="number" class="dictionary_input1" style="padding-right:30px;"  value="{{employeeDetails.discount}}"  data-index="discount" bindblur="employeeInfoChange">
+              <input type="number" class="dictionary_input1" style="padding-right:30px;"  value="{{employeeDetails.discount}}"  data-index="discount" bindblur="employeeInfoChange" style="position:relative;">
                 <view class="perCent">%</view>
               </input>
             </view>
@@ -147,26 +147,12 @@
               付款方式
               <image src="../../../../images/append.png" mode="aspectFit" class="image_setting0" />
             </view>
-            <view class="pay_view">
-              <text>1.</text>现金
-              <image src="../../../../images/delete_2.png" mode="aspectFit" class="image_setting" />
-            </view>
-            <view class="pay_view">
-              <text>2.</text>刷卡
-              <image src="../../../../images/delete_2.png" mode="aspectFit" class="image_setting" />
-            </view>
-            <view class="pay_view">
-              <text>3.</text>微信
-              <image src="../../../../images/delete_2.png" mode="aspectFit" class="image_setting" />
-            </view>
-            <view class="pay_view">
-              <text>4.</text>支付宝
-              <image src="../../../../images/delete_2.png" mode="aspectFit" class="image_setting" />
-            </view>
-            <view class="pay_view">
-              <text>5.</text>转账
-              <image src="../../../../images/delete_2.png" mode="aspectFit" class="image_setting" />
-            </view>
+            <block wx:for="{{payProduct}}">
+              <view class="pay_view">
+                <text>{{index+1}}.</text>{{item.dictText}}
+                <image src="../../../../images/delete_2.png" mode="aspectFit" class="image_setting" />
+              </view>
+            </block>
           </view>
         </view>
 
@@ -318,32 +304,22 @@
           <view class="clear"></view>
           <view class="setting_name2">成本价*毛利率</view>
           <view class="setting_text2">此种方式适合批发店，新增货品时按成本价和客户种类的毛利率计算出固定的销售价格</view>
-          <view class="setting_name2">成本价*毛利率</view>
+          <view class="setting_name2">吊牌价*折扣率</view>
           <view class="setting_text2">此种方式适合零售店，在货品销售时，按吊牌价和客户种类的折扣率生成销售价格</view>
         </view>
 
         <!--货品级别-->
         <view class="print_info" style="border-bottom:1px solid #52CAC1;">
           <navigator url="../goodsLevel/goodsLevel" class="goods_update">修改</navigator>
-          货品级别
+          默认折扣率
         </view>
         <view class="goods_level clearfix">
-          <view class="goods_level_title" style="width:25%">级别名称</view>
-          <view class="goods_level_title" style="width:15%"></view>
-          <view class="goods_level_title" style="width:35%">客户种类</view>
-          <view class="goods_level_title" style="width:25%">折扣率</view>
-          <picker-view indicator-style="height: 30px;" class="goods_level_picker"  bindchange="bindChange">
-            <picker-view-column>
-              <view wx:for="{{goods_level}}" class="picker_text">{{item.value}}</view>
-            </picker-view-column>
-          </picker-view>
-          <image src="../../../../images/retreat.png" mode="aspectFit" class="goods_level_image" />
-          <view class="goods_level_text" style="width:35%;">
-            <view wx:for="{{goods_level2}}" class="goods_level_view">{{item.value}}</view>
-          </view>
-          <view class="goods_level_text" style="width:25%;">
-            <view wx:for="{{goods_level3}}" class="goods_level_view">{{item.value}}</view>
-          </view>
+          <view class="goods_level_title">客户种类</view>
+          <view class="goods_level_title">折扣率</view>
+          <block wx:for="{{goods_level3}}">
+            <view class="goods_level_view">{{item.name}}</view>
+            <view class="goods_level_view">{{item.value}}</view>
+          </block>
         </view>
 
         <!--物流公司-->
@@ -385,18 +361,12 @@
             费用单项目
             <image src="../../../../images/append.png" mode="aspectFit" class="image_setting0" />
           </view>
-          <view class="pay_view">
-            <text>1.</text>快餐
-            <image src="../../../../images/delete_2.png" mode="aspectFit" class="image_setting" />
-          </view>
-          <view class="pay_view">
-            <text>2.</text>快递
-            <image src="../../../../images/delete_2.png" mode="aspectFit" class="image_setting" />
-          </view>
-          <view class="pay_view">
-            <text>3.</text>水电
-            <image src="../../../../images/delete_2.png" mode="aspectFit" class="image_setting" />
-          </view>
+          <block wx:for="{{feeProduct}}">
+            <view class="pay_view">
+              <text>{{index+1}}.</text>{{item.dictText}}
+              <image src="../../../../images/delete_2.png" mode="aspectFit" class="image_setting" />
+            </view>
+          </block>
         </view>
 
         <!--客户种类数量-->

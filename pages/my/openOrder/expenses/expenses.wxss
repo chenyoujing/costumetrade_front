@@ -42,18 +42,20 @@
 
 .expenses_view1{
   position: absolute;
-  top: 40px;
+  top: 0;
   left: 0;
   right: 50%;
   bottom: 0;
+  width: auto;
 }
 .expenses_view2{
   position: absolute;
-  top: 40px;
+  top: 0;
   left: 50%;
   right: 0;
   bottom: 0;
   background-color: #EEEEEE;
+  width: auto;
 }
 .content_title{
   margin: 2px;
@@ -72,6 +74,7 @@
 .expenses_detail_text{
   float: left;
   width: 30%;
+  height: 40px;
   text-align: center;
 }
 .expenses_detail_unit{

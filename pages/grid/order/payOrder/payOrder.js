@@ -1,66 +1,47 @@
-// pages/grid/order/payOrder/payOrder.js
+var util = require('../../../../utils/util.js')
+var app = getApp()
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
   
   },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-  
+  getOrderInfo:function(){
+    var that = this;
+    wx.showNavigationBarLoading();
+    util.api.request({
+      url: "order/getOrder",
+      data: {
+        payorderno: this.data.orderno,
+        ordertype: this.data.ordertype,
+        openid: 1,
+      },
+      method: 'POST',
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      success: function (res) {
+        wx.hideNavigationBarLoading();
+        console.log(res.data)
+        var ssStoDetail = res.data.ssStoDetail
+        var price = 0
+        var freight = res.data.ssStoOrder.freight || 0
+        for (var p in ssStoDetail){
+          ssStoDetail[p].modifytime = util.toDate(ssStoDetail[p].modifytime)
+          price += ssStoDetail[p].price
+        }
+        that.setData({
+          ssStoDetail: ssStoDetail,
+          price: price,
+          freight: freight,
+        })
+      }
+    })
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-  
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-  
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-  
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-  
+  onLoad:function(e){
+    this.setData({
+      ordertype: e.operate,
+      orderno: e.orderno,
+      paycact: app.payTypeList
+    })
+    this.getOrderInfo()
   }
 })

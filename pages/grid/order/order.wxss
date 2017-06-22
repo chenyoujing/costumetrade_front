@@ -108,7 +108,7 @@
   color: #ffffff;
 }
 .ordertype_active1{
-  border-bottom: 2px solid #B3B3B3;
+  border-bottom: 2px solid #286561;
 }
 .ordertype_active2{
   background-color: #ffffff;
@@ -117,7 +117,7 @@
 
 .order_scroll{
   position: absolute;
-  top: 116px;
+  top: 113px;
   left: 0;
   right: 0;
   bottom: 0;

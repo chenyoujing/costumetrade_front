@@ -19,6 +19,9 @@ Page({
     payCost2: '',
     payCate1: '现金',
     payCate2: '刷卡',
+    paycact: '',
+    paycact_index1: 0,
+    paycact_index2: 1,
   },
   //打印账单
   bill_print: function (e) {
@@ -247,9 +250,24 @@ Page({
       })
     }
   },
+  // 入账支付方式选择
+  paycactPicker1: function (e) {
+    this.setData({
+      paycact_index1: e.detail.value
+    })
+  },
+  paycactPicker2: function (e) {
+    this.setData({
+      paycact_index2: e.detail.value
+    })
+  },
+
   onLoad:function(options){
     this.setData({
       type:options.type
+    })
+    this.setData({
+      paycact: app.payTypeList
     })
     this.getData();
   }

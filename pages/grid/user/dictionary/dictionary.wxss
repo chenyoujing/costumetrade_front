@@ -124,7 +124,6 @@ swiper{
   height: 28px;
   overflow: hidden;
   line-height:28px;
-  position: relative;
 }
 .perCent{
   position: absolute;
@@ -403,37 +402,17 @@ swiper{
   text-align: center;
   height: 30px;
   line-height: 30px;
-}
-.goods_level_picker{
-  float: left;
-  height: 150px;
-  width: 25%;
-  background-color: #EEEEEE;
-}
-.picker_text{
-  line-height: 30px;
-  font-size: 14px;
-  text-align: center;
-}
-.goods_level_image{
-  box-sizing: border-box;
-  float: left;
-  width: 15%;
-  padding: 4%;
-  height: 150px;
-}
-.goods_level_text{
-  box-sizing: border-box;
-  float: left;
-  height: 150px;
+  width: 50%;
 }
 .goods_level_view{
   box-sizing: border-box;
-  border: 1px solid #ffffff;
-  background-color: #DBF4F1;
+  border: 0.5px solid #ffffff;
+  background-color: #E7F7F6;
   font-size: 14px;
   line-height: 28px;
   text-align: center;
+  width: 50%;
+  float: left;
 }
 
 .setting_title3{

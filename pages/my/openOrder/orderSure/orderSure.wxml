@@ -27,13 +27,19 @@
             <view class="clear"></view>
           </view>
           <view class="order_input">
-            <view class="order_input_text">现金：</view>
+          <picker class="order_input_text one_line" range="{{paycact}}" range-key="dictText" bindchange="paycactPicker1" value="{{paycact_index1}}">
+            {{paycact[paycact_index1].dictText}}：
+            <image src="../../../../images/down.png" mode="aspectFit" class="picker_image" />
+          </picker>
             <button class="order_input_button"  data-num="{{payCost1}}" data-type="payCost1" bindtap="clear">清零</button>
             <input type="digit" data-type="payCost1" value="{{payCost1}}" class="order_input2" name="name"  bindinput="changePaycost"/>
             <view class="clear"></view>
           </view>
           <view class="order_input">
-            <view class="order_input_text">刷卡：</view>
+            <picker class="order_input_text one_line" range="{{paycact}}" range-key="dictText" bindchange="paycactPicker2" value="{{paycact_index2}}">
+              {{paycact[paycact_index2].dictText}}：
+              <image src="../../../../images/down.png" mode="aspectFit" class="picker_image" />
+            </picker>
             <button class="order_input_button" data-num="{{payCost2}}" data-type="payCost2" bindtap="clear">清零</button>
             <input type="digit" data-type="payCost2" class="order_input2" value="{{payCost2}}" name="name" bindinput="changePaycost"/>
             <view class="clear"></view>

@@ -4,22 +4,15 @@ Page({
   data: {
     privilegeEmployees: [
     ],
-    goods_level: [
-      { name: 'USA', value: '处理' },
-      { name: 'CHN', value: '促销' },
-      { name: 'BRA', value: '在销' },
-      { name: 'JPN', value: '热销' },
-      { name: 'USA', value: '最新' },
-    ],
     customerTypeList: [
     ],
     brandList:[],
     goods_level3: [
-      { name: 'USA', value: '90%' },
-      { name: 'CHN', value: '80%' },
-      { name: 'BRA', value: '70%' },
-      { name: 'JPN', value: '60%' },
-      { name: 'USA', value: '50%' },
+      { name: '普通会员', value: '90%' },
+      { name: '银卡会员', value: '80%' },
+      { name: '金卡会员', value: '70%' },
+      { name: '白金会员', value: '60%' },
+      { name: '钻石会员', value: '50%' },
     ],
     current: "0",
     dictionary: "1",
@@ -181,6 +174,59 @@ Page({
       }
     })
   },
+  // 请求数据
+  dictionary_request: function (id) {
+    var that = this;
+    wx.showNavigationBarLoading()
+    util.api.request({
+      url: 'dictionary/getDataDictionarys',
+      data: {
+        storeId: String(1)
+      },
+      method: 'POST',
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      success: function (res) {
+        wx.hideNavigationBarLoading();
+        console.log(res.data)
+        var payProduct = []
+        var feeProduct = []
+        var sellingProduct = []
+        var customerProduct = []
+        var productGrade = []
+        for (var p in res.data){
+          switch (res.data[p].dictGroup){
+            case "PAY_TYPE":
+              payProduct.push(res.data[p])
+              break;
+            case "FEE_TYPE":
+              feeProduct.push(res.data[p])
+              break;
+            case "SELLING_METHOD":
+              sellingProduct.push(res.data[p])
+              break;
+            case "CUSTOMER_TYPE":
+              customerProduct.push(res.data[p])
+              break;
+            case "PRODUCT_GRADE":
+              productGrade.push(res.data[p])
+              break;
+          }
+        }
+        that.setData({
+          payProduct: payProduct,
+          feeProduct: feeProduct,
+          sellingProduct: sellingProduct,
+          customerProduct: customerProduct,
+          productGrade: productGrade,
+        })
+        console.log(that.data)
+      }
+    })
+  },
+
+  
   // 运费规则
   freight:function(e){
     var freight = e.target.dataset.freight
@@ -199,6 +245,7 @@ Page({
     }
     console.log(app)
     this.employee_request()
+    this.dictionary_request()
   },
   
 })
