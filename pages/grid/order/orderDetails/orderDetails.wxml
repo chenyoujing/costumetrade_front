@@ -15,7 +15,7 @@
     <view class="orderinfo">
       <view class="orderinfo_title clearfix">
         <view class="orderinfo_text" style="float:left;font-size:16px;">配送方式</view>
-        <view class="orderinfo_text" style="float:right;">顺丰快递（免运费）
+        <view class="orderinfo_text" style="float:right;">顺丰快递
           <image src="../../../../images/right-thrust.png" mode="aspectFit" class="orderinfo_text_image" />
         </view>
       </view>
@@ -29,8 +29,8 @@
         <view class="orderinfo_text" style="float:right;padding:0 5px;" wx:if="{{!product.ssStoOrder.freight}}">运费待审核</view>
       </view>
       <view class="orderinfo_footer clearfix">
-        <view class="orderinfo_footer_text0">{{product.ssStoOrder.ordertime}}</view>
-        <view class="orderinfo_footer_text">￥{{price+freight}}</view>
+        <view class="orderinfo_footer_text0">下单时间：{{product.ssStoOrder.ordertime}}</view>
+        <view class="orderinfo_footer_text">￥{{price+product.ssStoOrder.freight}}</view>
       </view>
     </view>
     <!--<view class="info_text" wx:if="{{ordertype==1}}">供应商：{{product.ssStoOrder.seller}}</view>

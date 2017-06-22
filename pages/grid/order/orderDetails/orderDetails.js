@@ -26,13 +26,17 @@ Page({
       },
       success: function (res) {
         wx.hideNavigationBarLoading();
+        res.data.ssStoOrder.ordertime = util.toDate(res.data.ssStoOrder.ordertime)
+        var price = 0
         for (var p in res.data.ssStoDetail){
-          res.data.ssStoDetail[p].ordertime = util.toDate(res.data.ssStoDetail[p].ordertime);
+          res.data.ssStoDetail[p].createtime = util.toDate(res.data.ssStoDetail[p].createtime);
           res.data.ssStoDetail[p].totalPrice = (res.data.ssStoDetail[p].count * res.data.ssStoDetail[p].price).toFixed(2)
+          price += res.data.ssStoDetail[p].price
         }
        
         that.setData({
-          product: res.data
+          product: res.data,
+          price: price
         })
       }
     })
