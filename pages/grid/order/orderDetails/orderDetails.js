@@ -40,7 +40,7 @@ Page({
         for (var p in res.data.ssStoDetail){
           res.data.ssStoDetail[p].createtime = util.toDate(res.data.ssStoDetail[p].createtime);
           res.data.ssStoDetail[p].totalPrice = (res.data.ssStoDetail[p].count * res.data.ssStoDetail[p].price).toFixed(2)
-          price += res.data.ssStoDetail[p].count * res.data.ssStoDetail[p].price
+          price += Math.round((res.data.ssStoDetail[p].count * res.data.ssStoDetail[p].price) * 100) / 100 || 0
         }
        
         that.setData({
@@ -50,6 +50,7 @@ Page({
       }
     })
   },
+  // 保存
   updateOrder: function () {
     var that = this;
     var order = {}
@@ -60,17 +61,24 @@ Page({
       order.sellerstoreid = ssStoOrder.sellerstoreid
       order.buyerstoreid = ssStoOrder.buyerstoreid
       order.logisticsCode = ssStoOrder.logisticsCode
-
+      order.freight = ssStoOrder.freight
     }
     for (var p in that.data.product.ssStoDetail){
       var obj = {}
-      obj.id = that.data.product.ssStoDetail[p].id
-      stoDetails.price = that.data.update_price
+      obj.productid = that.data.product.ssStoDetail[p].productid
+      obj.productname = that.data.product.ssStoDetail[p].productname
+      obj.producttype = that.data.product.ssStoDetail[p].producttype
+      obj.productcolor = that.data.product.ssStoDetail[p].productcolor
+      obj.productsize = that.data.product.ssStoDetail[p].productsize
+      obj.orderid = that.data.product.ssStoDetail[p].orderid
+      obj.price = that.data.product.ssStoDetail[p].price
+      stoDetails.push(obj)
     }
-    var object = {}
-    object.openid = 1
-    object.order = order
-    object.stoDetails = stoDetails
+    var object = {
+      openid: 1,
+      order: order,
+      stoDetails: stoDetails
+    }
     console.log(object)
     wx.showNavigationBarLoading();
     util.api.request({
@@ -82,28 +90,63 @@ Page({
       },
       success: function (res) {
         wx.hideNavigationBarLoading();
-        that.cancel()
+        wx.showToast({
+          title: '修改成功',
+        })
+        setTimeout(() => {
+          wx.navigateBack({
+            delta: 1
+          })
+        }, 1500)
       }
     })
   },
   //选物流公司
   logistic:function(e){
     this.setData({
-      logisticName: e.target.dataset.name,
-      logisticCode: e.target.dataset.code
+      "product.ssStoOrder.logisticName": e.target.dataset.name,
+      "product.ssStoOrder.logisticsCode": e.target.dataset.code
     })
     this.cancel()
   },
   // 修改运费
   freight:function(e){
     this.setData({
-      "product.ssStoOrder.freight": parseFloat(e.detail.value)
+      "product.ssStoOrder.freight": parseFloat(e.detail.value)||0,
+      "product.ssStoOrder.freight_boolean": true,
+      "product.ssStoOrder.freight_one":e.detail.value
+
     })
   },
   // 修改价格
-  update_price:function(){
+  update_price:function(e){
+    if(e.target.dataset.boolean){
+      this.setData({
+        update_price: false,
+      })
+    }else{
+      this.setData({
+        update_price: true,
+      })
+    }
+  },
+  price:function(e){
+    var that = this
+    var id = e.target.dataset.id
+    var ssStoDetail = this.data.product.ssStoDetail
+    var price = 0
+    for (var p in ssStoDetail){
+      if (ssStoDetail[p].id == id){
+        ssStoDetail[p].price = parseFloat(e.detail.value) || 0
+        ssStoDetail[p].price_boolean = true
+        ssStoDetail[p].price_one = e.detail.value
+        ssStoDetail[p].totalPrice = Math.round((ssStoDetail[p].count * ssStoDetail[p].price) * 100) / 100
+        price += Math.round((ssStoDetail[p].count * ssStoDetail[p].price) * 100) / 100 || 0
+      }
+    }
     this.setData({
-      update_price: true,
+      "product.ssStoDetail": ssStoDetail,
+      price: price,
     })
   },
   express:function(){
@@ -121,7 +164,7 @@ Page({
        payorderno: options.payorderno,
        ordertype: options.ordertype,
        ordertype2: options.ordertype2,
-       update: 1,
+       update: options.update,
        logisticFees: app.logisticFees,
      })
      this.orderDetail_request();

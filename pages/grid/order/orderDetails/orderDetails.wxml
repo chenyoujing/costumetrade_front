@@ -18,7 +18,7 @@
       <view class="orderinfo">
         <view class="orderinfo_title clearfix">
           <view class="orderinfo_text" style="float:left;font-size:16px;">配送方式</view>
-          <view class="orderinfo_text" style="float:right;position:relative">{{logisticName||product.ssStoOrder.logisticName}}
+          <view class="orderinfo_text" style="float:right;position:relative">{{product.ssStoOrder.logisticName}}
             <image src="../../../../images/right-thrust.png" mode="aspectFit" class="orderinfo_text_image" />
             <view class="bindtap_cover" bindtap="express" wx:if="{{update}}"></view>
           </view>
@@ -32,7 +32,7 @@
           <view class="orderinfo_text" style="float:right;color:#FE2D04;padding:0 5px;" wx:if="{{(product.ssStoOrder.freight||product.ssStoOrder.freight===0)&&!update}}">￥{{product.ssStoOrder.freight}}</view>
           <view class="orderinfo_text" style="float:right;padding:0 5px;" wx:if="{{!product.ssStoOrder.freight&&product.ssStoOrder.freight!==0&&!update}}">运费待审核</view>
           <view class="orderinfo_input" wx:if="{{update}}">
-            <input type="digit" value="{{product.ssStoOrder.freight}}" bindinput="freight" />
+            <input type="digit" value="{{product.ssStoOrder.freight_boolean?product.ssStoOrder.freight_one:product.ssStoOrder.freight}}" bindinput="freight" />
           </view>
         </view>
         <view class="orderinfo_footer clearfix">
@@ -65,12 +65,12 @@
           <text>尺码：{{item.productsize}}</text>
           <text>数量：{{item.count}} {{item.productunit}}</text>
         </view>
-        <view class="order_unit_price">单价：{{item.price}}</view>
-        <view class="order_view_price" wx:if="{{!update_price}}">{{item.totalPrice}}</view>
+        <view class="order_unit_price" wx:if="{{!update_price}}">单价：{{item.price}}</view>
         <view class="order_view_input" wx:if="{{update_price}}">
-          <input type="digit" value="{{product.ssStoOrder.freight}}" bindinput="freight" />
+          <input type="digit" value="{{item.price_boolean?item.price_one:item.price}}" bindinput="price" data-id="{{item.id}}"/>
         </view>
-        <view class="order_view_button" wx:if="{{update}}" bindtap="update_price">{{update_price?'保存':'改价'}}</view>
+        <view class="order_view_price">{{item.totalPrice}}</view>
+        <view class="order_view_button" wx:if="{{update}}" bindtap="update_price" data-boolean="{{update_price}}">{{update_price?'保存':'改价'}}</view>
         <navigator url="../comment/comment?productid={{item.productid}}">
           <view class="order_view_button" wx:if="{{ordertype==1&&ordertype2==5}}">评价</view>
         </navigator>

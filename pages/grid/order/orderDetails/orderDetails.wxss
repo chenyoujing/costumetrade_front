@@ -160,6 +160,16 @@
   color: #999999;
   max-width: 65px;
 }
+.order_view_input{
+  font-size: 12px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  max-width: 65px;
+}
+.order_view_input input{
+  border: 1px solid #DDDDDD;
+}
 .order_view_price{
   color: #FF011F;
   font-size: 12px;
@@ -169,17 +179,6 @@
 .order_view_price::before{
   content: "合计：";
   color: #000000;
-}
-.order_view_input{
-  font-size: 12px;
-  padding: 4px 8px;
-  float:left;
-  width: 20%;
-}
-.order_view_input input{
-  line-height: 25px;
-  height: 25px;
-  border: 1px solid #DDDDDD;
 }
 .order_view_button{
   position: absolute;

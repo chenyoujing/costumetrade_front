@@ -475,8 +475,8 @@ Page({
     }
     this.setData({
       updateModal: false,
-      paycact_index1: paycact_index1,
-      paycact_index2: paycact_index2,
+      paycact_index1: paycact_index1 || null,
+      paycact_index2: paycact_index2 || null,
       paycost1: paycost1,
       paycost2: paycost2,
       payorderno: payorderno
