@@ -25,7 +25,6 @@ Page({
     logisticsname_index:0,
     logisticFees:[],
     updateModal:true,
-    paycact_index:0,
   },
   goto_info: function (e) {
     app.infotype = e.target.dataset.infotype
@@ -100,6 +99,14 @@ Page({
           for (var j in that.data.logisticFees){
             if (that.data.logisticFees[j].logisticCode == res.data[p].logisticsCode){
               res.data[p].logisticName = that.data.logisticFees[j].logisticName
+            }
+          }
+          for (var j in that.data.paycact) {
+            if (res.data[p].paycate1 == that.data.paycact[j].dictValue) {
+              res.data[p].paycate_1 = that.data.paycact[j].dictText
+             }
+            if (res.data[p].paycate2 == that.data.paycact[j].dictValue) {
+              res.data[p].paycate_2 = that.data.paycact[j].dictText
             }
           }
         }
@@ -222,6 +229,71 @@ Page({
             duration: 2000
           })
         }
+      }
+    })
+  },
+  update_priceInput:function(e){
+    switch (e.target.dataset.paycate) {
+      case ('paycate1'):
+        this.setData({
+          paycost1: e.detail.value
+        })
+        break;
+      case ('paycate2'):
+        this.setData({
+          paycost2: e.detail.value
+        })
+        break;
+    }
+
+  },
+  // 修改
+  updateOrder:function(){
+    var that = this;
+    var order = {}
+    var stoDetails = {}
+    for (var p in this.data.product){
+      if (this.data.product[p].payorderno == this.data.payorderno){
+        order.payorderno = this.data.product[p].payorderno
+        order.sellerstoreid = this.data.product[p].sellerstoreid
+        order.buyerstoreid = this.data.product[p].buyerstoreid
+        order.logisticsCode = this.data.product[p].logisticsCode  
+        order.paycate1 = that.data.paycact[that.data.paycact_index1] ? that.data.paycact[that.data.paycact_index1].dictValue : null
+        order.paycost1 = that.data.paycost1
+        order.paycate2 = that.data.paycact[that.data.paycact_index2] ? that.data.paycact[that.data.paycact_index2].dictValue : null
+        order.paycost2 = that.data.paycost2  
+
+        stoDetails.id = this.data.product[p].id
+        stoDetails.price = that.data.update_price
+      }
+    }
+    var object = {}
+    object.openid = 1
+    object.order = order
+    object.stoDetails = stoDetails
+    console.log(object)
+    wx.showNavigationBarLoading();
+    util.api.request({
+      url: "order/updateOrder",
+      data: object,
+      method: 'POST',
+      header: {
+        'content-type': 'application/json'
+      },
+      success: function (res) {
+        wx.hideNavigationBarLoading();
+        for (var p in that.data.product) {
+          if (that.data.product[p].payorderno == that.data.payorderno) {
+            that.data.product[p].paycate1 = order.paycate1
+            that.data.product[p].paycost1 = order.paycost1
+            that.data.product[p].paycate2 = order.paycate2
+            that.data.product[p].paycost2 = order.paycost2
+          }
+        }
+        that.setData({
+          product: that.data.product
+        })
+        that.cancel()
       }
     })
   },
@@ -383,9 +455,31 @@ Page({
     })
   },
   // 打开“销售-全部-修改”模态框
-  updateModal:function(){
+  updateModal:function(e){
+    var that = this
+    var payorderno = e.target.dataset.no
+    
+    for (var p in that.data.product) {
+      if (that.data.product[p].payorderno == payorderno) {
+        var paycost1 = that.data.product[p].paycost1
+        var paycost2 = that.data.product[p].paycost2
+        for (var j in that.data.paycact) {
+          if (that.data.product[p].paycate1 == that.data.paycact[j].dictValue) {
+            var paycact_index1 = j
+          }
+          if (that.data.product[p].paycate2 == that.data.paycact[j].dictValue) {
+            var paycact_index2 = j
+          }
+        }
+      }
+    }
     this.setData({
       updateModal: false,
+      paycact_index1: paycact_index1,
+      paycact_index2: paycact_index2,
+      paycost1: paycost1,
+      paycost2: paycost2,
+      payorderno: payorderno
     })
   },
   // 关闭模态框
@@ -414,9 +508,18 @@ Page({
   },
   // 销售-全部-修改
   paycactPicker: function (e) {
-    this.setData({
-      paycact_index: e.detail.value
-    })
+    switch (e.target.dataset.paycate){
+      case ('paycate1'):
+        this.setData({
+          paycact_index1: e.detail.value
+        })
+        break;
+      case ('paycate2'):
+        this.setData({
+          paycact_index2: e.detail.value
+        })
+        break;
+    }
   },
   //滚动到底部触发事件  
   onReachBottom: function () {

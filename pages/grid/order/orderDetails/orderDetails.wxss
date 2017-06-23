@@ -36,6 +36,7 @@
 .orderinfo{
   border-top: 5px solid #DBF4F1;
   padding: 10px 50rpx;
+  padding-bottom:40px;
 }
 .orderinfo_title{
   border-bottom: 2px solid #DDDDDD;
@@ -81,7 +82,7 @@
   line-height: 30px;
   float:right;
 }
-/*.order_info{
+.order_info{
   padding: 15px 50rpx 0;
   border-top: 5px solid #DBF4F1;
 }
@@ -100,7 +101,7 @@
 .info_price::before{
   content: "实际金额：";
   color: #000000;
-}*/
+}
 
 
 .order_view{
@@ -169,6 +170,17 @@
   content: "合计：";
   color: #000000;
 }
+.order_view_input{
+  font-size: 12px;
+  padding: 4px 8px;
+  float:left;
+  width: 20%;
+}
+.order_view_input input{
+  line-height: 25px;
+  height: 25px;
+  border: 1px solid #DDDDDD;
+}
 .order_view_button{
   position: absolute;
   bottom: 0;
@@ -179,4 +191,40 @@
   text-align: center;
   background-color: #52CAC1;
   color: #ffffff;
+}
+
+.submit{
+  font-size: 16px;
+  border-radius: 0;
+  background-color: #52CAC1;
+  line-height: 40px;
+  text-align: center;
+  padding: 0;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  color: #ffffff;
+}
+
+
+modal{
+  min-height: 200px;
+}
+.choose_container{
+  margin: 0 -20px;
+  padding: 20px 0;
+}
+.logistics_choose{
+  text-align: center;
+  margin: 10px 20px;
+}
+.choose_view{
+  background-color: #DCDCDC;
+  color: #000000;
+  font-size: 16px;
+  line-height: 40px;
+  padding: 0 8px;
+  width: auto;
 }

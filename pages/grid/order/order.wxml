@@ -83,8 +83,8 @@
       <view class="order_container_content_right">
         <view class="order_container_text">{{item.ordertime}}</view>
         <view class="order_container_text">合计金额：<text style="color:#ff0000;">￥{{item.totalamt}}</text></view>
-        <view class="order_container_text" wx:if="{{item.paycost1>0}}">{{item.paycate1}}：￥{{item.paycost1}}</view>
-        <view class="order_container_text" wx:if="{{item.paycost2>0}}">{{item.paycate2}}：￥{{item.paycost2}}</view>
+        <view class="order_container_text" wx:if="{{item.paycost1>0}}">{{item.paycate_1||item.paycate1}}：￥{{item.paycost1}}</view>
+        <view class="order_container_text" wx:if="{{item.paycost2>0}}">{{item.paycate_2||item.paycate2}}：￥{{item.paycost2}}</view>
         <view class="order_container_text" style="margin-top:5px;">经手人：{{item.operator}}</view>
       </view>
       <view class="clear"></view>
@@ -112,8 +112,8 @@
       <view class="order_container_content_right">
         <view class="order_container_text">{{item.ordertime}}</view>
         <view class="order_container_text">合计金额：<text style="color:#ff0000;">￥{{item.totalamt}}</text></view>
-        <view class="order_container_text" wx:if="{{item.paycost1>0}}">{{item.paycate1}}：￥{{item.paycost1}}</view>
-        <view class="order_container_text" wx:if="{{item.paycost2>0}}">{{item.paycate2}}：￥{{item.paycost2}}</view>
+        <view class="order_container_text" wx:if="{{item.paycost1>0}}">{{item.paycate_1||item.paycate1}}：￥{{item.paycost1}}</view>
+        <view class="order_container_text" wx:if="{{item.paycost2>0}}">{{item.paycate_2||item.paycate2}}：￥{{item.paycost2}}</view>
         <view class="order_container_text" style="margin-top:5px;">经手人：{{item.operator}}</view>
       </view>
       <view class="clear"></view>
@@ -140,8 +140,8 @@
       <view class="order_container_content_right">
         <view class="order_container_text">{{item.ordertime}}</view>
         <view class="order_container_text">合计金额：<text style="color:#ff0000;">￥{{item.totalamt}}</text></view>
-        <view class="order_container_text" wx:if="{{item.paycost1>0}}">{{item.paycate1}}：￥{{item.paycost1}}</view>
-        <view class="order_container_text" wx:if="{{item.paycost2>0}}">{{item.paycate2}}：￥{{item.paycost2}}</view>
+        <view class="order_container_text" wx:if="{{item.paycost1>0}}">{{item.paycate_1||item.paycate1}}：￥{{item.paycost1}}</view>
+        <view class="order_container_text" wx:if="{{item.paycost2>0}}">{{item.paycate_2||item.paycate2}}：￥{{item.paycost2}}</view>
         <view class="order_container_text" style="margin-top:5px;">经手人：{{item.operator}}</view>
       </view>
       <view class="clear"></view>
@@ -174,8 +174,8 @@
       <view class="order_container_content_right">
         <view class="order_container_text">{{item.ordertime}}</view>
         <view class="order_container_text">合计金额：<text style="color:#ff0000;">￥{{item.totalamt}}</text></view>
-        <view class="order_container_text" wx:if="{{item.paycost1>0}}">{{item.paycate1}}：￥{{item.paycost1}}</view>
-        <view class="order_container_text" wx:if="{{item.paycost2>0}}">{{item.paycate2}}：￥{{item.paycost2}}</view>
+        <view class="order_container_text" wx:if="{{item.paycost1>0}}">{{item.paycate_1||item.paycate1}}：￥{{item.paycost1}}</view>
+        <view class="order_container_text" wx:if="{{item.paycost2>0}}">{{item.paycate_2||item.paycate2}}：￥{{item.paycost2}}</view>
         <view class="order_container_text" style="margin-top:5px;">经手人：{{item.operator}}</view>
       </view>
       <view class="clear"></view>
@@ -203,8 +203,8 @@
       <view class="order_container_content_right">
         <view class="order_container_text">{{item.ordertime}}</view>
         <view class="order_container_text">合计金额：<text style="color:#ff0000;">￥{{item.totalamt}}</text></view>
-        <view class="order_container_text" wx:if="{{item.paycost1>0}}">{{item.paycate1}}：￥{{item.paycost1}}</view>
-        <view class="order_container_text" wx:if="{{item.paycost2>0}}">{{item.paycate2}}：￥{{item.paycost2}}</view>
+        <view class="order_container_text" wx:if="{{item.paycost1>0}}">{{item.paycate_1||item.paycate1}}：￥{{item.paycost1}}</view>
+        <view class="order_container_text" wx:if="{{item.paycost2>0}}">{{item.paycate_2||item.paycate2}}：￥{{item.paycost2}}</view>
         <view class="order_container_text" style="margin-top:5px;">经手人：{{item.operator}}</view>
       </view>
       <view class="clear"></view>
@@ -233,8 +233,8 @@
       <view class="order_container_content_right">
         <view class="order_container_text">{{item.ordertime}}</view>
         <view class="order_container_text">合计金额：<text style="color:#ff0000;">￥{{item.totalamt}}</text></view>
-        <view class="order_container_text" wx:if="{{item.paycost1>0}}">{{item.paycate1}}：￥{{item.paycost1}}</view>
-        <view class="order_container_text" wx:if="{{item.paycost2>0}}">{{item.paycate2}}：￥{{item.paycost2}}</view>
+        <view class="order_container_text" wx:if="{{item.paycost1>0}}">{{item.paycate_1||item.paycate1}}：￥{{item.paycost1}}</view>
+        <view class="order_container_text" wx:if="{{item.paycost2>0}}">{{item.paycate_2||item.paycate2}}：￥{{item.paycost2}}</view>
         <view class="order_container_text" style="margin-top:5px;">经手人：{{item.operator}}</view>
       </view>
       <view class="clear"></view>
@@ -275,8 +275,8 @@
       <view class="order_container_content_right">
         <view class="order_container_text">{{item.ordertime}}</view>
         <view class="order_container_text">合计金额：<text style="color:#ff0000;">￥{{item.totalamt}}</text></view>
-        <view class="order_container_text" wx:if="{{item.paycost1>0}}">{{item.paycate1}}：￥{{item.paycost1}}</view>
-        <view class="order_container_text" wx:if="{{item.paycost2>0}}">{{item.paycate2}}：￥{{item.paycost2}}</view>
+        <view class="order_container_text" wx:if="{{item.paycost1>0}}">{{item.paycate_1||item.paycate1}}：￥{{item.paycost1}}</view>
+        <view class="order_container_text" wx:if="{{item.paycost2>0}}">{{item.paycate_2||item.paycate2}}：￥{{item.paycost2}}</view>
         <view class="order_container_text" style="margin-top:5px;">经手人：{{item.operator}}</view>
       </view>
       <view class="clear"></view>
@@ -305,12 +305,12 @@
       <view class="order_container_content_right">
         <view class="order_container_text">{{item.ordertime}}</view>
         <view class="order_container_text">合计金额：<text style="color:#ff0000;">￥{{item.totalamt}}</text></view>
-        <view class="order_container_text" wx:if="{{item.paycost1>0}}">{{item.paycate1}}：￥{{item.paycost1}}</view>
-        <view class="order_container_text" wx:if="{{item.paycost2>0}}">{{item.paycate2}}：￥{{item.paycost2}}</view>
+        <view class="order_container_text" wx:if="{{item.paycost1>0}}">{{item.paycate_1||item.paycate1}}：￥{{item.paycost1}}</view>
+        <view class="order_container_text" wx:if="{{item.paycost2>0}}">{{item.paycate_2||item.paycate2}}：￥{{item.paycost2}}</view>
         <view class="order_container_text" style="margin-top:5px;">经手人：{{item.operator}}</view>
       </view>
       <view class="clear"></view>
-      <view class="order_container_button btn_2" bindtap="updateModal">修改</view>
+      <view class="order_container_button btn_2" bindtap="updateModal" data-no="{{item.payorderno}}">修改</view>
       <view class="order_container_button"  bindtap="changeOrderStatus" data-status='7' data-orderNo="{{item.payorderno}}" data-sellerstoreid="{{item.sellerstoreid}}" data-buyerstoreid="{{item.buyerstoreid}}">作废</view>
   </view>
 </scroll-view>
@@ -347,24 +347,31 @@
 
 <!--选择快递公司-->
 <modal title="选择快递公司" hidden="{{expressModal}}" confirm-text="取消" no-cancel bindconfirm="cancel" bindcancel="cancel" >
-  <view class="choose_container clearfix" style="padding:20px 20px;">
-    <view class="logistics_choose">
-      <navigator url="express/express?orderNo={{selectLogistics.orderNo}}" class="choose_view">顺丰</navigator>
-    </view>
-    <view class="logistics_choose">
-      <navigator url="express/express?orderNo={{selectLogistics.orderNo}}" class="choose_view">韵达</navigator>
-    </view>
+  <view class="logistics_choose">
+    <navigator url="express/express?orderNo={{selectLogistics.orderNo}}" class="choose_view">顺丰</navigator>
+  </view>
+  <view class="logistics_choose">
+    <navigator url="express/express?orderNo={{selectLogistics.orderNo}}" class="choose_view">韵达</navigator>
   </view>
 </modal>
 
 
 <!--销售-全部-修改-->
-<modal title="修改" hidden="{{updateModal}}" confirm-text="确定" cancel-text="取消"  bindconfirm="submitData" bindcancel="cancel" >
+<modal title="修改" hidden="{{updateModal}}" confirm-text="确定" cancel-text="取消"  bindconfirm="updateOrder" bindcancel="cancel" >
   <view class="clearfix" style="margin-top:10px;">
-    <picker class="modal_pay one_line" range="{{paycact}}" range-key="dictText" bindchange="paycactPicker" value="{{paycact_index}}">
-      {{paycact[paycact_index].dictText}}
+    <picker class="modal_pay one_line" range="{{paycact}}" range-key="dictText" bindchange="paycactPicker" value="{{paycact_index1}}" data-paycate="paycate1">
+      {{paycact[paycact_index1].dictText}}
       <image src="../../../../images/down.png" mode="aspectFit" class="picker_image" />
+      <view class="bindtap_cover"></view>
     </picker>
-     <input class="pay_input" type="digit" placeholder="输入金额" />
+     <input class="pay_input" type="digit" placeholder="输入金额" value="{{paycost1}}" bindinput="update_priceInput" data-paycate="paycate1"/>
+  </view>
+  <view class="clearfix" style="margin-top:10px;">
+    <picker class="modal_pay one_line" range="{{paycact}}" range-key="dictText" bindchange="paycactPicker" value="{{paycact_index2}}" data-paycate="paycate2">
+      {{paycact[paycact_index2].dictText}}
+      <image src="../../../../images/down.png" mode="aspectFit" class="picker_image" />
+      <view class="bindtap_cover"></view>
+    </picker>
+     <input class="pay_input" type="digit" placeholder="输入金额" value="{{paycost2}}" bindinput="update_priceInput" data-paycate="paycate2"/>
   </view>
 </modal>
