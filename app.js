@@ -33,6 +33,9 @@ App({
             that.globalData.privilegeEmployees = res.data.data.employee.privilegeEmployees;
             that.globalData.userIdentity = res.data.data.userIdentity;
             that.globalData.storeInfo = res.data.data.query.storeList;
+            that.globalData.modifyPrice = res.data.data.employee.modifyPrice;
+            that.globalData.zeroPrice = res.data.data.employee.zeroPrice;
+            that.globalData.discount = res.data.data.employee.discount;
             console.log(that.globalData.storeInfo )
           }
         })

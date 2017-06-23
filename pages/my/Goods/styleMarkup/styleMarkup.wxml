@@ -10,16 +10,16 @@
   <view class="markup_container clearfix">
     <view class="markup_view bg_g">款式名称</view>
     <view class="markup_view bg_g">加价金额</view>
-    <block wx:for="{{colors}}">
-      <view class="markup_view">{{item.colorname}}</view>
+    <block wx:for="{{product.colorLists}}">
+      <view class="markup_view">{{item.name}}</view>
       <view class="markup_view">
-        <input type="digit" data-index="{{index}}" data-name="colors" value="{{item.priceRaise}}" bindblur="changepriceRaise"/>
+        <input type="digit" data-index="{{index}}" data-name="colorLists" value="{{item.priceRaise}}" bindblur="changepriceRaise"/>
       </view>
     </block>
-     <block wx:for="{{sizes}}">
-      <view class="markup_view">{{item.sizename}}</view>
+     <block wx:for="{{product.sizeLists}}">
+      <view class="markup_view">{{item.name}}</view>
       <view class="markup_view">
-        <input type="digit" data-index="{{index}}" data-name="sizes" bindblur="changepriceRaise" value="{{item.priceRaise}}"/>
+        <input type="digit" data-index="{{index}}" data-name="sizeLists" bindblur="changepriceRaise" value="{{item.priceRaise}}"/>
       </view>
     </block>
   </view>

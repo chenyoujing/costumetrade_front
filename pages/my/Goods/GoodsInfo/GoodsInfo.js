@@ -214,6 +214,7 @@ Page({
          answerData.video1 = answerData.video1 ? util.api.imgUrl + answerData.video1 : '';
          answerData.video2 = answerData.video2 ? util.api.imgUrl + answerData.video2 : '';
          answerData.video3 = answerData.video3 ? util.api.imgUrl + answerData.video3 : '';
+        
         for (var p in app.screen_productTypeList){
           if (app.screen_productTypeList[p].id == answerData.producttype){
             typeName = app.screen_productTypeList[p].catename;
@@ -258,6 +259,18 @@ Page({
       }
     })
   },
+  // 打开加价表
+  priceRaise:function(e){
+    var check = e.target.dataset.checked;
+    var GoodsInfoData = this.data.GoodsInfoData;
+    if (check){
+      app.changeData = GoodsInfoData.priceJsons;
+      app.nameChange = '加价表';
+      wx.navigateTo({
+        url: '../styleMarkup/styleMarkup?colors='+GoodsInfoData.colors+'&sizes='+GoodsInfoData.sizes+'&name='+GoodsInfoData.name
+      })
+    }
+  },
    // 提交修改或新增货品
   submitGoodsInfo:function(e){
     var that = this;
@@ -267,10 +280,8 @@ Page({
     target.thirdPrice = this.data.picker_view[2].price ? this.data.picker_view[2].price : 0;
     target.fourthPrice = this.data.picker_view[3].price ? this.data.picker_view[3].price : 0;
     target.fifthPrice = this.data.picker_view[4].price ? this.data.picker_view[4].price : 0;
-    
     if (this.data.GoodsInfoData.image){
       target.image = this.data.GoodsInfoData.image.replace(/http:\/\/117.149.24.42:8788/g, '');
-      
     }
     if (this.data.GoodsInfoData.image1){
       target.image1 = this.data.GoodsInfoData.image1.replace(/http:\/\/117.149.24.42:8788/g, '');
@@ -279,7 +290,6 @@ Page({
     if (this.data.GoodsInfoData.image2){
       target.image2 = this.data.GoodsInfoData.image2.replace(/http:\/\/117.149.24.42:8788/g, '');
     }
-   
     if (this.data.GoodsInfoData.image3){
       console.log(this.data.GoodsInfoData)
       target.image3 = this.data.GoodsInfoData.image3.replace(/http:\/\/117.149.24.42:8788/g, '');
@@ -295,14 +305,14 @@ Page({
     }
     if (this.data.GoodsInfoData.video3){
       target.video3 = this.data.GoodsInfoData.video3.replace(/http:\/\/117.149.24.42:8788/g, '');
-    }
+    } 
+    target.priceJsons = this.data.GoodsInfoData.priceJsons;
     target.fileList = this.data.fileList;
-    
-    for (var p = target.fileList.length - 1;p>=0;p--){
-      if (target.fileList[p].url !== ''){
-        target.fileList[p].productName = target.name
-      }else{
-        target.fileList.splice(p,1)
+    for (var p = target.fileList.length - 1; p >= 0; p--) {
+      if (target.fileList[p].url !== '') {
+        target.fileList[p].productName = target.name;
+      } else {
+        target.fileList.splice(p, 1)
       }
     }
     for (var p in app.screen_productTypeList) {
@@ -488,14 +498,15 @@ Page({
       if (!this.data.firstBoolean) {
         newPicker[p].price = (tagprice * newPicker[p].discPriceJson / 100).toFixed(2);
         newPicker[p].custPriceJson = ((newPicker[p].price - purchaseprice) / purchaseprice).toFixed(2);
-        newPicker[p].custPriceJson = newPicker[p].custPriceJson == "Infinity" ? 100 : newPicker[p].custPriceJson;
-        newPicker[p].custPriceJson = newPicker[p].custPriceJson == "NaN" ? 0 : newPicker[p].custPriceJson;
+        
       }else{
       newPicker[p].discPriceJson = (newPicker[p].price / tagprice * 100).toFixed(1);
       if (purchaseprice !== 0) {
         newPicker[p].custPriceJson = ((newPicker[p].price - purchaseprice) / purchaseprice * 100).toFixed(1)
        }
       }
+      newPicker[p].custPriceJson = newPicker[p].custPriceJson == "Infinity" ? 100 : newPicker[p].custPriceJson;
+      newPicker[p].custPriceJson = newPicker[p].custPriceJson == "NaN" ? 0 : newPicker[p].custPriceJson;
     }
     this.setData({
       picker_view: newPicker,
@@ -512,14 +523,15 @@ Page({
       if (!this.data.firstBoolean){
         newPicker[p].price = (purchaseprice * (1 + newPicker[p].custPriceJson / 100)).toFixed(1);
         newPicker[p].discPriceJson = (newPicker[p].price / tagprice *100).toFixed(1);
-        newPicker[p].discPriceJson = newPicker[p].discPriceJson == "Infinity" ? 100:newPicker[p].discPriceJson;
-        newPicker[p].discPriceJson = newPicker[p].discPriceJson == "NaN" ? 0 : newPicker[p].discPriceJson;
+       
       }else{
         newPicker[p].discPriceJson = (newPicker[p].price / tagprice * 100).toFixed(1);
         if (purchaseprice !== 0) {
           newPicker[p].custPriceJson = ((newPicker[p].price - purchaseprice) / purchaseprice * 100).toFixed(1)
         }
       }
+      newPicker[p].discPriceJson = newPicker[p].discPriceJson == "Infinity" ? 100 : newPicker[p].discPriceJson;
+      newPicker[p].discPriceJson = newPicker[p].discPriceJson == "NaN" ? 0 : newPicker[p].discPriceJson;
     }
     this.setData({
       picker_view: newPicker,
@@ -599,6 +611,7 @@ Page({
   },
   onShow:function() {
     if (app.changeData) {
+      console.log(app.nameChange == "加价表")
       var param = this.data.GoodsInfoData;
       if (app.nameChange == '商品种类'){
         param.producttype = util.api.getFilterArray(app.changeData);
@@ -616,7 +629,6 @@ Page({
             num = p;
           }
         }
-        this.priceCalculate('tagprice', this.data.GoodsInfoData.tagprice);
         this.setData({
           brand_index: num,
           brand: app.changeData,
@@ -642,6 +654,11 @@ Page({
           }); 
       } else if (app.nameChange == "尺码") {
         param.sizes = app.changeData;
+        this.setData({
+          GoodsInfoData: param
+        });
+      } else if (app.nameChange == "加价表"){
+        param.priceJsons = app.changeData;
         this.setData({
           GoodsInfoData: param
         });

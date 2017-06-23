@@ -220,9 +220,9 @@
       <view class="upload_input clearfix">
         <view class="upload_input_text">款式加价:</view>
         <radio-group class="radio-group" name="isPattern">
-          <navigator url="../styleMarkup/styleMarkup?colors={{GoodsInfoData.colors}}&sizes={{GoodsInfoData.sizes}}&name={{GoodsInfoData.name}}" class="radio" style="margin-left:25%;">
-            <radio value="1" checked="{{GoodsInfoData.isPattern == 1 ? 'true' : ''}}"/>是
-          </navigator>
+        <label class="radio" style="margin-left:25%;">
+            <radio  class="radio" value="1" bindtap="priceRaise" checked="{{GoodsInfoData.isPattern == 1 ? 'true' : ''}}" data-checked="{{GoodsInfoData.isPattern == 1 ? 'true' : ''}}"/> 是
+          </label>
           <label class="radio" style="margin-right:25%;">
             <radio value="2" checked="{{GoodsInfoData.isPattern == 2 ? 'true' : ''}}"/>否
           </label>

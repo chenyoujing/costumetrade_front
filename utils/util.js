@@ -174,7 +174,7 @@ var api = {
     if (url2=="client/getClients"){
       param = param;
     }else{
-      param.fields = "firsthPrice,secondPrice,thirdPrice,fourthPrice,fifthPrice,purchasePrice,tagPrice,image,name,code,barcodes,barcode,time_up,id,isDiscount"
+      param.fields = "firsthPrice,secondPrice,thirdPrice,fourthPrice,fifthPrice,purchasePrice,tagPrice,image,name,code,barcodes,barcode,time_up,id,isDiscount,raise_price,isPattern"
     }
     this.request({
       url: url2,

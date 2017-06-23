@@ -89,6 +89,7 @@ Page({
       })
     }
   },
+
   //买单
   order: function () {
     wx.navigateTo({
@@ -198,7 +199,6 @@ Page({
   // 切换单据类型
   changeType:function(e){
     var type = e.target.dataset.type;
-   
     this.sale(this.data.selectName.cate);
     this.localData(this.data.shopCart);
     this.setData({
@@ -217,23 +217,23 @@ Page({
     switch (cate){
       case '1':
         salPrice = 'firsthPrice';
-        name = app.customerTypeList[0].custtypename;
+        name = app.custProdPrice[0].custtypename;
         break;
       case '2':
         salPrice = 'secondPrice';
-        name = app.customerTypeList[1].custtypename;
+        name = app.custProdPrice[1].custtypename;
         break;
       case '3':
         salPrice = 'thirdPrice';
-        name = app.customerTypeList[2].custtypename;
+        name = app.custProdPrice[2].custtypename;
         break;
       case '4':
         salPrice = 'fourthPrice';
-        name = app.customerTypeList[3].custtypename;
+        name = app.custProdPrice[3].custtypename;
         break;
       case '5':
         salPrice = 'fifthPrice';
-        name = app.customerTypeList[4].custtypename;
+        name = app.custProdPrice[4].custtypename;
         break;
       default:
         salPrice = 'tagprice';
@@ -450,35 +450,49 @@ Page({
   },
   // 价格切换
   changeSale:function(){
+    var modifyPrice = app.globalData.modifyPrice;
     var cate = this.data.cate;
     var GoodsDetail = this.data.GoodsDetail;
     console.log(cate)
-    if (GoodsDetail.firsthPrice == 0 && GoodsDetail.secondPrice == 0 && GoodsDetail.thirdPrice == 0 && GoodsDetail.fourthPrice == 0 && GoodsDetail.fifthPrice == 0) {
+    console.log(modifyPrice)
+    if (GoodsDetail.firsthPrice == 0 && GoodsDetail.secondPrice == 0 && GoodsDetail.thirdPrice == 0 && GoodsDetail.fourthPrice == 0 && GoodsDetail.fifthPrice == 0 && GoodsDetail.tagprice == 0) {
       wx.showToast({
         title: '价格都为零不能切换！',
-        mask: true,
+        icon: 'warn',
         duration: 2000
       })
-    }else{
-      if (cate < 5) {
+    } else if (modifyPrice < cate) {
+      wx.showToast({
+        title: '您的权限不够，不能切换！',
+        icon: 'warn',
+        duration: 2000
+      })
+    }
+    else if (modifyPrice == 1){
+      cate = cate == 0?1:0;
+      this.endChage(cate, GoodsDetail)
+    } else{
+      if (cate < modifyPrice) {
         cate = cate + 1
       } else {
         cate = 1
       }
-      this.sale(cate);
-      if (GoodsDetail[this.data.saleChangeName2]==0){
-        this.setData({
-          cate: cate
-        })
-        this.changeSale();
-      }else{
-        GoodsDetail.showPrice = GoodsDetail[this.data.saleChangeName2]
-        console.log(GoodsDetail[this.data.saleChangeName2])
-        this.setData({
-          GoodsDetail: GoodsDetail,
-          cate: cate
-        })
-      }
+      this.endChage(cate, GoodsDetail)
+    }
+  },
+  endChage: function (cate, GoodsDetail){
+    this.sale(cate);
+    if (GoodsDetail[this.data.saleChangeName2] == 0) {
+      this.setData({
+        cate: cate
+      })
+      this.changeSale();
+    } else {
+      GoodsDetail.showPrice = GoodsDetail[this.data.saleChangeName2]
+      this.setData({
+        GoodsDetail: GoodsDetail,
+        cate: cate
+      })
     }
   },
   // 手动更改价格
@@ -635,12 +649,13 @@ Page({
   },
   onShow: function (options) {
     // 防止没有客户时报错
-    app.selectName = app.selectName ? app.selectName:{cate:6};
+    app.selectName = app.selectName ? app.selectName:{cate:0};
     if (!app.screen_unitList) {
       util.api.getProductInit();
     }
     this.setData({
-      selectName: app.selectName 
+      selectName: app.selectName,
+      cate: app.selectName.cate
     })
     this.sale(app.selectName.cate);
     this.getData();

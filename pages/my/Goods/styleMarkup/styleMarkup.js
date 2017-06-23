@@ -7,83 +7,90 @@ Page({
     name:"",
     product:[]
   },
-  patternAddPriceInit:function(){
-    var that = this;
-    wx.showNavigationBarLoading()
-    util.api.request({
-      url: 'product/patternAddPriceInit',
-      data: {
-        storeId: 1
-      },
-      method: 'POST',
-      header: {
-        'content-type': 'application/x-www-form-urlencoded'
-      },
-      success: function (res) {
-        wx.hideNavigationBarLoading();
-        that.setData({
-          product:res.data
-        })
-        that.classify(that.data.colors,that.data.sizes)
-        console.log(res.data)
-      }
-    })
-  },
   // 寻找颜色尺码id
   classify:function(colors,sizes){
     var product = this.data.product;
-    var colorsArray = [];
-    var sizesArray = [];
-    for (var j in product){
+    var productArray = {};
+    productArray.colorLists = [];
+    productArray.sizeLists = [];
+    if (!product){
+      for(var p in colors){
+        productArray.colorLists.push({
+          name: colors[p],
+          priceRaise: ""
+        })
+      }
+      for (var p in sizes) {
+        productArray.sizeLists.push({
+          name: sizes[p],
+          priceRaise: ""
+        })
+      }
+    }else{
+      console.log(product.colorLists)
       for (var p in colors) {
-        if (colors[p] == product[j].colorname){
-          colorsArray.push(product[j])
+        var has = true;
+        for (var j in product.colorLists) {
+          console.log(55555)
+          console.log(product.colorLists[j].priceRaise)
+          if (colors[p] == product.colorLists[j].name) {
+            productArray.colorLists.push({
+              name: colors[p],
+              priceRaise: product.colorLists[j].priceRaise
+            })
+            has = false;
+          }
+        }
+        if (has) {
+          productArray.colorLists.push({
+            name: colors[p],
+            priceRaise: ""
+          })
         }
       }
-      for(var g in sizes){
-        if (sizes[g] == product[j].sizename) {
-          sizesArray.push(product[j])
+      for (var p in sizes) {
+        var has = true;
+        for (var j in product.sizeLists) {
+          if (sizes[p] == product.sizeLists[j].name) {
+            productArray.sizeLists.push({
+              name: sizes[p],
+              priceRaise: product.sizeLists[j].priceRaise
+            })
+            has = false;
+            console.log(product.sizeLists[j].priceRaise)
+          }
+        }
+        if (has) {
+          productArray.sizeLists.push({
+            name: sizes[p],
+            priceRaise: ""
+          })
         }
       }
     }
+    console.log(productArray)
     this.setData({
-      colors: colorsArray,
-      sizes: sizesArray
+      product: productArray
     })
   },
   changepriceRaise:function(e){
     var index = e.target.dataset.index;
     var name = e.target.dataset.name;
-    var colorORseize = [];
-    colorORseize = this.data[name];
+    var colorORseize = this.data.product;
     console.log(colorORseize)
-    colorORseize[index]['priceRaise'] = e.detail.value;
+    colorORseize[name][index]['priceRaise'] = e.detail.value;
     var param = {};
-    param[name] = colorORseize;
-    console.log(param[name])
+    param['product'] = colorORseize;
+    console.log(param['product'])
     this.setData(param)
   },
   // 提交数据
   submitData:function(){
-    var that = this;
-    wx.showNavigationBarLoading()
-    util.api.request({
-      url: 'product/savePatternAddPrice',
-      data: {
-        sizeLists:this.data.sizes,
-        colorLists:this.data.colors
-      },
-      method: 'POST',
-      header: {
-        'content-type': 'application/json'
-      },
-      success: function (res) {
-        wx.hideNavigationBarLoading();
-        wx.navigateBack({
-          delta: 1
-        })
-        console.log(res.data)
-      }
+    app.changeData = this.data.product;
+    app.nameChange = '加价表';
+    console.log(app.changeData)
+    wx.navigateBack({
+      delta: 1
     })
   },
   onLoad: function (options) {
@@ -101,14 +108,13 @@ Page({
     } else {
       sizeProduct.push(options.sizes);
     }
+    console.log(options.raisePrice)
     this.setData({
       colors: colorProduct,
       sizes: sizeProduct,
-      name: options.name
+      name: options.name,
+      product: app.changeData ||false
     })
-    this.patternAddPriceInit()
-  },
-  onShow: function () {
-    
+    this.classify(this.data.colors, this.data.sizes)
   }
 })
