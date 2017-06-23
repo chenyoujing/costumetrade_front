@@ -59,7 +59,7 @@
     </view>
 </scroll-view>
 
-<view class="sure_button">确定</view>
+<view class="sure_button" bindtap="orderSure">确定</view>
 
 <!--底部浮动-->
 <!--<view class="orderSure_bottom clearfix">

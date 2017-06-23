@@ -35,7 +35,7 @@
   background-color: rgba(0, 0, 0, 0.3);
 }
 .search_input_image{
-  top: -4px;
+  top: -7px;
 }
 .title_view{
   position:relative;

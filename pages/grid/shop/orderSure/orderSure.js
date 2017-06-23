@@ -17,6 +17,23 @@ Page({
       }
     })
   },
+  orderSure:function(){
+    wx.showModal({
+      title: '是否下订单',
+      success: function (res) {
+        if (res.confirm) {
+          wx.showToast({
+            title: '下单成功',
+          })
+          setTimeout(() => {
+            wx.navigateBack({
+              delta: 1
+            })
+          }, 1500)
+        } else if (res.cancel) {}
+      }
+    })
+  },
   onLoad: function (options) {
   
   },

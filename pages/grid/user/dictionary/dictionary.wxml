@@ -223,7 +223,7 @@
           <scroll-view scroll-y class="freight clearfix {{freight==1?'freight_active':''}}">
             <view class="freight_explain">
               <view class="freight_explain_title">说明:</view>
-              <image src="../../../../images/right-thrust.png" mode="aspectFit" class="freight_explain_right" />
+              <image src="../../../../images/update.png" mode="aspectFit" class="freight_explain_right" />
               <view class="freight_explain_text">江浙沪地区8元；新疆，西藏，青海，甘肃，海南五省20元；其他地域15元</view>
             </view>
             <view class="freight_content" style="padding-bottom:5px;">
@@ -240,13 +240,12 @@
               <view class="freight_content_text">固定运费：客户下单后，自动添加运费</view>
             </view>
             <view class="freight_content clearfix">
-              <image src="../../../../images/right-thrust.png" mode="aspectFit" class="freight_explain_right" style="padding:9px 14px;" />
               <view class="freight_content_title">2. 固定运费：<text style="padding: 0 10px 0 20px;">8</text>元</view>
             </view>
-            <view class="freight_content">
-              <image src="../../../../images/right-thrust.png" mode="aspectFit" class="freight_explain_right" style="padding:9px 14px;" />
+            <view class="freight_content claerfix">
               <view class="freight_content_title">3. 免邮金额：<text style="padding: 0 10px 0 20px;">300</text>元</view>
             </view>
+            <view class="freight_button">保存</view>
           </scroll-view>
 
           <view class="pay_view" style="padding:5px 20px;">
@@ -257,7 +256,7 @@
           <scroll-view scroll-y class="freight clearfix {{freight==2?'freight_active':''}}">
             <view class="freight_explain">
               <view class="freight_explain_title">说明:</view>
-              <image src="../../../../images/right-thrust.png" mode="aspectFit" class="freight_explain_right" />
+              <image src="../../../../images/update.png" mode="aspectFit" class="freight_explain_right" />
               <view class="freight_explain_text">江浙沪地区8元；新疆，西藏，青海，甘肃，海南五省20元；其他地域15元</view>
             </view>
             <view class="freight_content" style="padding-bottom:5px;">
@@ -274,13 +273,12 @@
               <view class="freight_content_text">固定运费：客户下单后，自动添加运费</view>
             </view>
             <view class="freight_content clearfix">
-              <image src="../../../../images/right-thrust.png" mode="aspectFit" class="freight_explain_right" style="padding:9px 14px;" />
               <view class="freight_content_title">2. 固定运费：<text style="padding: 0 10px 0 20px;">8</text>元</view>
             </view>
-            <view class="freight_content">
-              <image src="../../../../images/right-thrust.png" mode="aspectFit" class="freight_explain_right" style="padding:9px 14px;" />
+            <view class="freight_content claerfix">
               <view class="freight_content_title">3. 免邮金额：<text style="padding: 0 10px 0 20px;">300</text>元</view>
             </view>
+            <view class="freight_button">保存</view>
           </scroll-view>
         </view>
       </scroll-view>

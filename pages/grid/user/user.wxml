@@ -59,11 +59,11 @@
         <view class="my_content_text">分店管理</view>
         <image src="../../../images/right-thrust.png" mode="aspectFit" class="my_content_right" />
       </navigator>
-      <navigator class="clearfix" url="notecase/notecase">
+      <!--<navigator class="clearfix" url="notecase/notecase">
         <image src="../../../images/notecase.png" mode="aspectFit" class="my_content_image" />
         <view class="my_content_text">钱包管理</view>
         <image src="../../../images/right-thrust.png" mode="aspectFit" class="my_content_right" />
-      </navigator>
+      </navigator>-->
       <navigator class="clearfix" url="dictionary/dictionary">
         <image src="../../../images/localization.png" mode="aspectFit" class="my_content_image" />
         <view class="my_content_text">收货地址</view>
