@@ -43,6 +43,18 @@ var api = {
     }   
     return true
   },
+  // 支付方式转换。。。
+  paycact: function (dictText) {
+    for (var p in app.paycact) {
+      if (dictText == app.paycact[p].dictText) {
+        dictText = app.paycact[p].dictValue
+      }
+      if (dictText == app.paycact[p].dictValue) {
+        dictText = app.paycact[p].dictValue
+      }
+    }
+    return dictText
+  },
   DateFormat:function (format) {
     var o = {
       "M+": format.getMonth() + 1, //month
