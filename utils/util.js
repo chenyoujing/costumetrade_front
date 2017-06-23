@@ -40,7 +40,7 @@ var api = {
         title: title,
       })
       return false
-    }    
+    }   
     return true
   },
   DateFormat:function (format) {
