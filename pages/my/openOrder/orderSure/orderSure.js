@@ -22,6 +22,8 @@ Page({
     paycact: '',
     paycact_index1: 0,
     paycact_index2: 1,
+    discountAut:100,
+    zeroPrice:0
   },
   //打印账单
   bill_print: function (e) {
@@ -151,17 +153,41 @@ Page({
       debet: debet,
     })
   },
+  // 判断去零金额
   EventInput:function(e){
-    if (e.target.dataset.type == "disCount") {
-      this.setData({
-        disCount: e.detail.value
+    if (e.detail.value > this.data.zeroPrice){
+      wx.showToast({
+        title: '您的去零金额不能超过' + this.data.zeroPrice,
+        icon: 'warn',
+        duration: 500
       })
-    } else {
+      this.setData({
+        mchange: this.data.zeroPrice
+      })
+    } else if ( e.detail.value <= this.data.zeroPrice){
       this.setData({
         mchange: e.detail.value
       })
     }
     this.reallyPayTotal()
+  },
+ // 判断打折金额
+  EventInputDiscount: function (e) {
+    if (e.detail.value < this.data.discountAut && e.detail.value) {
+      wx.showToast({
+        title: '您的折扣值不能低于' + this.data.discountAut,
+        icon: 'warn',
+        duration: 500
+      })
+      this.setData({
+        disCount: this.data.discountAut
+      })
+    } else if ( e.detail.value >= this.data.discountAut) {
+      this.setData({
+        disCount: e.detail.value
+      })
+    }
+     this.reallyPayTotal()
   },
   submitData:function(){
     var submitData = {};
@@ -253,20 +279,21 @@ Page({
   // 入账支付方式选择
   paycactPicker1: function (e) {
     this.setData({
-      paycact_index1: e.detail.value
+      paycact_index1: e.detail.value,
+      payCate1: this.data.paycact[e.detail.value].dictValue
     })
   },
   paycactPicker2: function (e) {
     this.setData({
-      paycact_index2: e.detail.value
+      paycact_index2: e.detail.value,
+      payCate2: this.data.paycact[e.detail.value].dictValue
     })
   },
-
   onLoad:function(options){
     this.setData({
-      type:options.type
-    })
-    this.setData({
+      type:options.type,
+      discountAut: app.globalData.discount || 0,
+      zeroPrice: app.globalData.zeroPrice || Infinity,
       paycact: app.payTypeList
     })
     this.getData();

@@ -1,6 +1,6 @@
 {
   "pages": [
-    
+    "pages/my/openOrder/openOrder",
     "pages/grid/shop/shop",
     "pages/grid/user/user",
     "pages/grid/info/info",
@@ -22,7 +22,7 @@
     "pages/grid/user/helpInfo/helpInfo",
     "pages/grid/user/notecase/notecase",
     "pages/grid/user/branch/branch",
-    "pages/my/openOrder/openOrder",
+    
     "pages/my/openOrder/goodsDetails/goodsDetails",
     "pages/my/openOrder/Billing/Billing",
     "pages/my/openOrder/orderSure/orderSure",
