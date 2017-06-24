@@ -1,18 +1,31 @@
-<scroll-view scroll-y class="share_container clearfix">
-  <view class="goods_container rank" wx:for="{{product}}">
-    <navigator url="../goods_detail/goods_detail?orderid=1" class="content_container">
-      <image src="{{item.image ? item.image : '../../../../images/image_none.png'}}" mode="aspectFill" />
-      <view class="content_container_text">
-        <view class="content_container_title one_line">{{item.name}}</view>
+  <view class="clearfix" style="padding:0 12rpx;">
+    <block wx:for="{{product}}">
+      <view class="goods_container" wx:if="{{index<2}}">
+        <view class="content_container clearfix">
+          <image src="{{item.image ? item.image : '../../../../images/image_none.png'}}" mode="aspectFill" />
+          <view class="content_container_text one_line">{{item.name}}</view>
+        </view>
       </view>
-      <view class="clear"></view>
-    </navigator>
+      <view class="goods_container2" wx:if="{{index>=2&&index<6}}">
+        <view class="content_container clearfix">
+          <image src="{{item.image ? item.image : '../../../../images/image_none.png'}}" mode="aspectFill" />
+          <view class="content_container_text one_line">{{item.name}}</view>
+        </view>
+      </view>
+    </block>
   </view>
  
- 
-</scroll-view>
 <view class="share_text">
-  <textarea bindtap="share_text" placeholder="输入分享标题..." cursor-spacing="10" bindinput="share_text" />
-  <navigator open-type="navigateBack" class="back_button">取消</navigator>
-  <button open-type="share" class="share_button">分享</button>
+  <button open-type="share" class="share_button">
+    <image src="../../../../images/share.png" mode="aspectFit" />
+  </button>
+  <input class="share_input" placeholder="输入分享标题..." cursor-spacing="10" bindinput="share_text" />
 </view>
+    <block wx:for="{{product}}">
+      <view class="goods_container2" wx:if="{{index>=6}}">
+        <view class="content_container clearfix">
+          <image src="{{item.image ? item.image : '../../../../images/image_none.png'}}" mode="aspectFill" />
+          <view class="content_container_text one_line">{{item.name}}11</view>
+        </view>
+      </view>
+    </block>

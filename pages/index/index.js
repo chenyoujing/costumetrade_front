@@ -11,52 +11,48 @@ Page({
     title:'',
     product:[]
   },
-  //事件处理函数
-  bindViewTap: function() {
-    wx.navigateTo({
-      url: '../logs/logs'
-    })
-  },
   // 获取选中的货品
   selected_goods: function () {
     var that = this;
-    wx.showNavigationBarLoading()
-    util.api.request({
-      url: 'product/getShareProduct',
-      data: {
-        storeId: that.data.storeId,
-        idArray: that.data.ids,
-        appId: app.globalData.userInfo.appid,
-        appSecret: app.globalData.userInfo.secret,
-        code: app.globalData.userInfo.code
-      },
-      method: 'POST',
-      header: {
-        'content-type': 'application/x-www-form-urlencoded'
-      },
-      success: function (res) {
-        wx.hideNavigationBarLoading();
-        for (var p in res.data) {
-          res.data[p].timeUp = util.toDate(res.data[p].timeUp)
-        }
-        that.setData({
-          product: res.data
-        })
-        wx.showToast({
-          title: '成功',
-          mask: true,
-          duration: 2000
+    wx.login({
+      success: function (loginCode) {
+        wx.showNavigationBarLoading()
+        util.api.request({
+          url: 'product/getShareProduct',
+          data: {
+            storeId: that.data.storeId,
+            idArray: that.data.ids,
+            appId: app.globalData.userInfo.appid,
+            appSecret: app.globalData.userInfo.secret,
+            code: loginCode.code
+          },
+          method: 'POST',
+          header: {
+            'content-type': 'application/x-www-form-urlencoded'
+          },
+          success: function (res) {
+            wx.hideNavigationBarLoading();
+            for (var p in res.data) {
+              res.data[p].timeUp = util.toDate(res.data[p].timeUp)
+            }
+            that.setData({
+              product: res.data
+            })
+            wx.showToast({
+              title: '成功',
+              mask: true,
+              duration: 2000
+            })
+          }
         })
       }
     })
-
   },
   onLoad: function (e) {
-    console.log(app.globalData.userInfo)
     this.setData({
-      ids: e.ids,
-      storeId: e.storeId,
-      title:e.title
+      ids: e.ids || 'b68e360b015f4a11b1cb93a98c3a8d8b,676d3c1863ca4e9584c829fd536cab6b,aa410b29a85f46a597d05dc78fc5c6c7',
+      storeId: e.storeId||1,
+      title:e.title||1
     })
     console.log(e)
     this.selected_goods();

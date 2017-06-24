@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/index/index",
     "pages/grid/shop/shop",
     "pages/grid/user/user",
     "pages/grid/info/info",
@@ -33,7 +34,6 @@
     "pages/my/client/clientAdd/clientAdd",
     "pages/my/client/clientScreen/clientScreen",
     "pages/my/client/clientInfo/clientInfo",
-    "pages/index/index",
     "pages/my/Goods/Goods",
     "pages/my/Goods/GoodsInfo/GoodsInfo",
     "pages/my/Goods/GoodsBrand/GoodsBrand",

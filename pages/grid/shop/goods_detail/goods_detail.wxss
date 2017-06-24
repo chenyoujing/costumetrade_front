@@ -207,7 +207,7 @@ swiper image{
 }
 .shopping_cart{
   box-sizing: border-box;
-  border: 1px solid #286561;
+  border: 1px solid #AFAFAF;
   background-color: #ffffff;
   color: #286561;
   font-size: 16px;
