@@ -331,15 +331,12 @@
 
 <!--物流单号-->
 <modal title="物流单号" hidden="{{numberModal}}" confirm-text="确定" bindconfirm="SureLogicson" bindcancel="cancel" >
-  <view class="logistics_title" style="width:30%;">物流公司</view>
-  <view class="logistics_title" style="width:70%; padding-right:35px;">物流单号</view>
+  <view class="logistics_title" style="width:25%;">物流公司</view>
+  <view class="logistics_title" style="width:75%; padding-right:35px;">物流单号</view>
   <view class="clear"></view>
-  <picker class="logistics_picker" data-style = 'logisticsname_index' bindchange="bindSelectorChange" value="{{logisticsname}}" range="{{logisticsCompany}}" name="logisticsname" mode="selector" range-key="custtypename">
-    <view class="picker">
-      顺丰
-      <image src="../../../../images/down.png" mode="aspectFit" class="picker_image" />
-    </view>
-  </picker>
+  <view class="logistics_picker">
+      {{logisticsname}}
+  </view>
   <image src="../../../../images/scan_black.png" mode="aspectFit" class="image_scan" />
   <input class="logistics_number" type="number" bindblur="EventHandle" value = "{{logisticsno}}" placeholder="单号" />
 </modal>

@@ -33,13 +33,13 @@
   line-height: 30px;
 }
 .upload_input1,.upload_input2{
-  border: 1px solid #52CAC1;
+  border: 1px solid #AFAFAF;
   font-size: 14px;
   padding: 0 16px; 
   height: 28px;
 }
 .upload_input > picker{
-  border: 1px solid #52CAC1;
+  border: 1px solid #AFAFAF;
   height: 28px;
   margin-left: 20%;
   width: auto;
@@ -82,7 +82,7 @@
   text-align: center;
 }
 .upload_date picker{
-  border: 1px solid #52CAC1;
+  border: 1px solid #AFAFAF;
   height: 28px;
   margin-left: 50%;
   text-align: center;
@@ -170,7 +170,7 @@
   height: 85px;
   width: 85px;
   margin-right: 25px;
-  border: 1px solid #52CAC1;
+  border: 1px solid #AFAFAF;
   display: inline-block;
   position: relative;
 }

@@ -229,11 +229,10 @@
   color: #000000;
   float: left;
   font-size: 14px;
-  line-height: 28px;
+  line-height: 30px;
   height: 30px;
   text-align: center;
-  border: 1px solid #286561;
-  width: 30%;
+  width: 25%;
   margin-right: 3%;
   position: relative;
 }

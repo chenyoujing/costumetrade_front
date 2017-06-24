@@ -1,18 +1,9 @@
 <scroll-view scroll-y class="share_container clearfix">
-  <view class="goods_container" wx:for="{{product}}">
+  <view class="goods_container rank" wx:for="{{product}}">
     <navigator url="../goods_detail/goods_detail?orderid=1" class="content_container">
       <image src="{{item.image ? item.image : '../../../../images/image_none.png'}}" mode="aspectFill" />
       <view class="content_container_text">
-        <view class="content_container_title">{{item.name}}</view>
-        <view class="content_container_info">
-          <view class="price">{{item.salePrice}}</view>
-          <view class="info_other">
-            <view class="volume" wx:if="{{!item.volume}}">0</view>
-            <view class="volume" wx:if="{{item.volume}}">{{item.volume}}</view>
-            <view class="date">{{item.timeUp}}</view>
-          </view>
-          <view class="clear"></view>
-        </view>
+        <view class="content_container_title one_line">{{item.name}}</view>
       </view>
       <view class="clear"></view>
     </navigator>
@@ -22,6 +13,6 @@
 </scroll-view>
 <view class="share_text">
   <textarea bindtap="share_text" placeholder="输入分享标题..." cursor-spacing="10" bindinput="share_text" />
-  <view class="back_button">取消</view>
+  <navigator open-type="navigateBack" class="back_button">取消</navigator>
   <button open-type="share" class="share_button">分享</button>
 </view>

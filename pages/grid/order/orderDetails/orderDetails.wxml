@@ -80,8 +80,8 @@
   </view>
 </view>
 
-<view class="submit" wx:if="{{update}}" bindtap="updateOrder">保存</view>
-
+<view class="submit bg_g" wx:if="{{update}}" style="left:50%;" bindtap="updateOrder">保存</view>
+<navigator open-type="navigateBack" class="submit" wx:if="{{update}}" style="right:50%;" >取消</navigator>
 
 <!--选择快递公司-->
 <modal title="选择快递公司" hidden="{{expressModal1}}" confirm-text="取消" no-cancel bindconfirm="cancel" bindcancel="cancel" >

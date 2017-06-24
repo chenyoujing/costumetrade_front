@@ -195,7 +195,7 @@
 .submit{
   font-size: 16px;
   border-radius: 0;
-  background-color: #52CAC1;
+  background-color: #DCDCDC;
   line-height: 40px;
   text-align: center;
   padding: 0;
@@ -204,6 +204,9 @@
   left: 0;
   right: 0;
   margin: auto;
+}
+.bg_g{
+  background-color: #52CAC1;
   color: #ffffff;
 }
 
