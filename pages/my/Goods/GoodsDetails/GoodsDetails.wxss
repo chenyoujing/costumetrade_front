@@ -1,0 +1,31 @@
+/*头部*/
+@import "../../../../css/title.wxss";
+
+.details_text{
+  font-size: 18px;
+  line-height: 50px;
+  float: left;
+  padding: 0 10px;
+}
+.details_button_view{
+  overflow: hidden;
+}
+.details_button{
+  width: 50%;
+  float: left;
+  text-align: center;
+  font-size: 12px;
+  color: #A0A0A0;
+}
+
+.details_button image{
+  width: 24px;
+  height: 24px;
+  padding-top: 6px;
+  display: block;
+  margin: auto;
+}
+.text_align{
+  float: left;
+  padding: 10px;
+}

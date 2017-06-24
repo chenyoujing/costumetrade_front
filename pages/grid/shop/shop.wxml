@@ -45,7 +45,7 @@
           <image src="{{true?'../../../images/shop1_2.png':'../../../images/image_none.png'}}" mode="aspectFill" />
         </view>
         <view class="shop_picture">
-          <image src="{{true?'../../../images/shop1_3.png':'../../../images/image_none.png'}}" mode="aspectFill" style="margin-right:0;" />
+          <image src="{{true?'../../../images/shop1_1.png':'../../../images/image_none.png'}}" mode="aspectFill" style="margin-right:0;" />
         </view>
       </navigator>
     </view>

@@ -125,7 +125,9 @@
       <view class="upload_input">
         <view class="upload_input_text">商品详情:</view>
         <input type="number" class="upload_input2" style="padding-right:30px;" />
-        <image src="../../../../images/update.png" mode="aspectFit" class="update_image" />
+        <navigator url="../GoodsDetails/GoodsDetails">
+          <image src="../../../../images/update.png" mode="aspectFit" class="update_image" />
+        </navigator>
         <view class="clear"></view>
       </view>
       <view class="upload_input">
