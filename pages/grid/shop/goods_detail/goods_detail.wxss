@@ -63,7 +63,7 @@ swiper image{
   border-bottom: 2px solid #DCDCDC;
 }
 .active{
-  border-bottom: 3px solid #9B9B9B;
+  border-bottom: 3px solid #286561;
 }
 .detail_info_view{
   padding: 0 20px;

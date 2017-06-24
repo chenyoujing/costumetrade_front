@@ -264,11 +264,11 @@
 .info_num{
   float: left;
   text-align: center;
-  width: 28%;
-  margin-right: 3%;
+  padding: 0 10px;
 }
 .info_price{
   color: #FE2D04;
+  text-align: center;
 }
 .info_price::before{
   content: "总金额：";

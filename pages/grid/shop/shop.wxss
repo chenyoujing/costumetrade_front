@@ -48,10 +48,10 @@
   bottom: 0;
 }
 .shop_swiper{
-  height: 360rpx;
+  height: 319rpx;
 }
 .shop_swiper_image{
-  height: 360rpx;
+  height: 319rpx;
   width: 100%;
 }
 .shop_content{

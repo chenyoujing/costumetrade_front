@@ -37,9 +37,11 @@
       <view class="shop_name">店铺名称</view>
       <view class="shop_goods">全部货品：105件</view>
     </view>
-    <image src="../../../../images/customer_service.png" mode="aspectFit" class="shop_service" >
-      <view class="prompt">3</view>
-    </image>
+    <button open-type="contact" class="shop_content_service"  session-from="1">
+      <image src="../../../../images/customer_service.png" mode="aspectFit" class="shop_service" >
+        <view class="prompt">3</view>
+      </image>
+    </button>
   </view>
   <view class="evaluate_button">评价</view>
   <view class="evaluate_container">
@@ -98,7 +100,7 @@
     </view>
   </scroll-view>
   <image src="../../../../images/close.png" mode="aspectFit" class="modal_close" bindtap="modal_close" />
-  <button class="modal_submit">确定</button>
+  <button class="modal_submit" bindtap="modal_close">确定</button>
 </view>
 
 
