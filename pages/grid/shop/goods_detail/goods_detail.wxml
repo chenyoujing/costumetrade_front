@@ -10,21 +10,21 @@
   <navigator class="back_nav" open-type="navigateBack">
     <image src="../../../../images/back-away.png" mode="aspectFit" class="back" />
   </navigator>
-  <view class="detail_title">621报喜鸟11 2017春 打底裤 适中紫</view>
+  <view class="detail_title">{{GoodsInfoData.name}} {{GoodsInfoData.year}}{{GoodsInfoData.season}} {{GoodsInfoData.producttype}} {{GoodsInfoData.colors}}</view>
   <view class="detail_price">￥639.6</view>
   <view class="detail_price_original">￥1491</view>
   <view class="detail_info {{infoid == '0' ? 'active' : ''}}" bindtap="detail_info" data-infoid="0">商品描述</view>
   <view class="detail_info {{infoid == '1' ? 'active' : ''}}" bindtap="detail_info" data-infoid="1">产品参数</view>
   <swiper current="{{infoid}}" bindchange="detail_info_swiper" class="detail_info_swiper">
     <swiper-item style="overflow:auto;">
-      <view class="detail_info_view">商品描述：2017春 打底裤</view>
-      <view class="detail_info_view">商品颜色：适中紫,道奇蓝,玫瑰棕</view>
-      <view class="detail_info_view">商品尺码：XXS,44,38</view>
+      <view class="detail_info_view">商品描述：{{GoodsInfoData.year}}{{GoodsInfoData.season}} {{GoodsInfoData.producttype}}</view>
+      <view class="detail_info_view">商品颜色{{GoodsInfoData.colors}}</view>
+      <view class="detail_info_view">商品尺码：{{GoodsInfoData.sizes}}</view>
       <view class="clear"></view>
     </swiper-item>
     <swiper-item>
-      <view class="detail_info_view">上架时间：2017-03-27</view>
-      <view class="detail_info_view">下架时间：2027-03-16</view>
+      <view class="detail_info_view">上架时间：{{GoodsInfoData.timeUp}}</view>
+      <view class="detail_info_view">下架时间：{{GoodsInfoData.timeDown}}</view>
       <view class="detail_info_view">商品条码：2209590002663</view>
       <view class="clear"></view>
     </swiper-item>
@@ -34,7 +34,7 @@
       <image src="{{true?'../../../../images/shop1_tx.png':'../../../../images/image_none.png'}}" mode="aspectFill" class="shop_image"></image>
     </navigator>
     <view style="float:left;">
-      <view class="shop_name">店铺名称</view>
+      <view class="shop_name">{{title}}</view>
       <view class="shop_goods">全部货品：105件</view>
     </view>
     <button open-type="contact" class="shop_content_service"  session-from="1">
@@ -66,7 +66,7 @@
     <view style="padding:10px; overflow:hidden;">
       <view class="goods_container">
         <image src="{{true?'../../../../images/shop1_1.png':'../../../../images/image_none.png'}}" mode="aspectFill" class="goods_image" />
-        <view class="goods_name">621报喜鸟11 2017春 打底裤 适中紫</view>
+        <view class="goods_name">{{GoodsInfoData.name}} {{GoodsInfoData.year}}{{GoodsInfoData.season}} {{GoodsInfoData.producttype}}</view>
         <view class="clear"></view>
       </view>
       <view class="goods_container">

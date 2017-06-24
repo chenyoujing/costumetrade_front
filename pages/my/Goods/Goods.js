@@ -207,15 +207,7 @@ Page({
       url: '../Goods/GoodsScreen/GoodsScreen'
     })
   },
-  //搜索货号
-  packPageFilterCode: function () {
-    this.setData({
-      pageNum: 1,
-      product: [],
-      requestSwitch: true
-    });
-    this.page_request();
-  },
+
   //重置
   resetting: function (e) {
     var state = e.target.dataset.screen;
@@ -411,6 +403,7 @@ Page({
         if (newProduct[p].id == app.updataGoodsInfo.id) {
           newProduct[p].name = app.updataGoodsInfo.name;
           newProduct[p].image = app.updataGoodsInfo.image;
+          console.log(newProduct[p].name)
           break;
         }
       }

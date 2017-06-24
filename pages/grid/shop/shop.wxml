@@ -23,21 +23,21 @@
     </block>
   </swiper>
 
-  <!--店铺-->
+  <!--自己店铺-->
   <view class="shop_content">
     <view url="mall/mall" class="shop_content_view">
-      <navigator url="storeDetails/storeDetails" class="shop_content_title">
+      <navigator url="storeDetails/storeDetails?id={{myselfStord.id}}" class="shop_content_title">
         <image src="{{true?'../../../images/shop1_tx.png':'../../../images/image_none.png'}}" mode="aspectFill" class="shop_content_tx" />
         <view class="shop_content_info">
-          <view class="shop_content_name">向日宠物</view>
+          <view class="shop_content_name">{{myselfStord.name}}</view>
           <view class="shop_content_address">
             <image src="../../../images/site.png" mode="aspectFit" class="shop_address_image" />
-            地址：杭州市萧山区建设一路裘皮城2楼
+            地址：{{myselfStord.address}}
           </view>
         </view>
         <view class="clear"></view>
       </navigator>
-      <navigator url="mall/mall" class="shop_goods clearfix">
+      <navigator url="mall/mall?id={{myselfStord.id}}" class="shop_goods clearfix">
         <view class="shop_picture">
           <image src="{{true?'../../../images/shop1_1.png':'../../../images/image_none.png'}}" mode="aspectFill" style="margin-left:0;" />
         </view>
@@ -59,7 +59,7 @@
       <navigator url="storeDetails/storeDetails" class="shop_content_title">
         <image src="{{true?'../../../images/shop2_tx.png':'../../../images/image_none.png'}}" mode="aspectFill" class="shop_content_tx" />
         <view class="shop_content_info">
-          <view class="shop_content_name">点艺公司</view>
+          <view class="shop_content_name">向日宠物</view>
           <view class="shop_content_address">
             <image src="../../../images/site.png" mode="aspectFit" class="shop_address_image" />
             地址：杭州市萧山区建设一路中栋国际银座1幢20楼

@@ -38,27 +38,25 @@
     </view>
   </view>
 
-
-
-  <scroll-view scroll-y="true" class="mall_scroll">
-    <view class="mall_container {{rank}}">
-      <navigator url="../goods_detail/goods_detail?orderid=1" class="content_container clearfix">
-        <image src="{{true?'../../../../images/shop1_1.png': '../../../../images/image_none.png'}}" mode="aspectFill" style="width:{{image_width}}px;height:{{image_width}}px;" />
+  <scroll-view scroll-y="true" class="mall_scroll" lower-threshold="10" bindscrolltolower="{{loadMore?'onReachBottom':''}}" style="bottom:{{delete_button}}px;">
+    <view class="mall_container {{rank}}" wx:for="{{product}}">
+      <navigator url="../goods_detail/goods_detail?strod={{id}}&ID={{item.id}}&name={{item.name}}" hover-class="navigator-hover" class="content_container clearfix">
+        <image src="{{item.image?item.image:'../../../../images/shop1_1.png'}}" mode="aspectFill" style="width:{{image_width}}px;height:{{image_width}}px;" />
         <view class="content_container_text">
           <view class="clear"></view>
-          <view class="content_container_title">1{{item.name}}</view>
+          <view class="content_container_title">{{item.name}}</view>
           <view class="content_container_info clearfix">
-            <view class="price">{{item.price}}</view>
+            <view class="price">{{item.tagprice}}</view>
             <view class="info_other">
               <view class="volume" wx:if="{{!item.volume}}">0</view>
               <view class="volume" wx:if="{{item.volume}}">{{item.volume}}</view>
-              <view class="date">0{{item.timeUp}}</view>
+              <view class="date">{{item.timeUp}}</view>
             </view>
           </view>
         </view>
       </navigator>
     </view>
-    <view class="mall_container {{rank}}">
+    <!--<view class="mall_container {{rank}}">
       <navigator url="../goods_detail/goods_detail?orderid=1" class="content_container clearfix">
         <image src="{{true?'../../../../images/shop1_2.png': '../../../../images/image_none.png'}}" mode="aspectFill" style="width:{{image_width}}px;height:{{image_width}}px;" />
         <view class="content_container_text">
@@ -108,7 +106,7 @@
           </view>
         </view>
       </navigator>
-    </view>
+    </view>-->
   </scroll-view>
 </view>
 
