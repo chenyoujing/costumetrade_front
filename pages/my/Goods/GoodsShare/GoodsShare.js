@@ -5,7 +5,8 @@ Page({
     share_text:'',
     storeId:'',
     product:[],
-    idArray:[]
+    idArray:[],
+    title:''
   },
   // 获取选中的货品
   selected_goods:function(ids,storeId){
@@ -45,7 +46,7 @@ Page({
     var ids = this.data.idArray;
     var storeId = this.data.storeId;
     if (!title){
-      title = 'XXX店铺的分享'
+      title = this.data.title+'的分享'
     }
     return {
       title: title,
@@ -61,7 +62,8 @@ Page({
   onLoad: function (e) {
     this.setData({
       storeId: e.storeId,
-      idArray: e.ids
+      idArray: e.ids,
+      title: app.globalData.storeInfo[0].name
     })
     this.selected_goods(e.ids, e.storeId)
   },

@@ -58,7 +58,8 @@ Page({
         that.setData({
           soruceData: util.api.Clone(answerData),
           GoodsInfoData: answerData,
-          id: answerData.id
+          id: answerData.id,
+          imgUrls: imgUrls
         });
       }
     })

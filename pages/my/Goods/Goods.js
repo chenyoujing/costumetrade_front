@@ -40,7 +40,10 @@ Page({
     update_button: '0',
     share_button: '0',
     ids: [],
-    name: ''
+    name: '',
+    storeId:1,
+    aa:false,
+    type:1
   },
   // 请求数据函数
   page_request: function () {
@@ -49,7 +52,7 @@ Page({
     util.api.request({
       url: 'product/getProducts',
       data: {
-        storeId: 1,
+        storeId: that.data.storeId,
         sort: that.data.getSortData,
         rules: that.data.getFilterData,
         code: that.data.code,
@@ -207,7 +210,6 @@ Page({
       url: '../Goods/GoodsScreen/GoodsScreen'
     })
   },
-
   //重置
   resetting: function (e) {
     var state = e.target.dataset.screen;
@@ -252,49 +254,38 @@ Page({
       this.page_request();
     }
   },
-  // 批量删除
-  batch_delete: function () {
+  // 为多功能键赋值type
+  batchType:function(e){
+    var type = e.target.dataset.type;
+      this.setData({
+        type: type
+      })
+      this.batchOperations()
+  },
+  // 点击选项进行批量操作，第一步
+  batchOperations: function () {
     this.setData({
       select_checkbox: '50',
-      delete_button: '40',
-      update_button: '0',
-      share_button: '0'
+      update_button: '40'
     })
     this.more_function_close();
   },
-  // 完成批量删除
-  batch_delete_ok: function () {
+  // 完成删除操作
+ batchOperationsOk: function () {
     this.setData({
       select_checkbox: '0',
-      delete_button: '0',
+      update_button: '0',
       reset: false,
+      aa: false
     })
   },
   batch_delete_sure: function () {
-    this.delectRequest()
-  },
-  // 分享
-  batch_share: function () {
-    this.setData({
-      select_checkbox: '50',
-      share_button: '40',
-      update_button: '0',
-      delete_button: '0'
-    })
-    this.more_function_close();
-  },
-  // 取消分享
-  batch_share_ok: function () {
-    this.setData({
-      select_checkbox: '0',
-      share_button: '0',
-      reset: false,
-    })
+    this.delectRequest();
   },
   // 进入分享页面
   batch_share_sure: function () {
     var idsArray = this.data.ids;
-    var storeId = '1'
+    var storeId = app.globalData.storeInfo[0].id;
     if (idsArray.length == 0) {
       wx.showToast({
         title: '请勾选要分享的货品',
@@ -302,36 +293,30 @@ Page({
         duration: 2000
       })
     } else {
+      this.batchOperationsOk();
+      this.setData({
+        aa: false
+      })
       wx.navigateTo({
         url: 'GoodsShare/GoodsShare?ids=' + idsArray + '&storeId=' + storeId,
       })
     }
-  },
-  // 批量修改
-  batch_update: function () {
-    this.setData({
-      select_checkbox: '50',
-      update_button: '40',
-      delete_button: '0',
-      share_button: '0'
-    })
-    this.more_function_close();
-  },
-  // 完成批量修改
-  batch_update_ok: function () {
-    this.setData({
-      select_checkbox: '0',
-      update_button: '0',
-      reset: false,
-    })
   },
   // 进入批量修改页面
   batch_update_sure: function () {
     wx.navigateTo({
       url: 'GoodsUpdate/GoodsUpdate',
     })
+    this.batchOperationsOk()
   },
-  delete_container: function (e) {
+  // 全选全不选
+  SelectallOrNot:function(){
+    this.setData({
+      aa:!this.data.aa
+    })
+    console.log(!this.data.aa)
+  },
+  SelectContainer: function (e) {
     var ids = e.target.dataset.id;
     var boolean2 = true;
     var idsArray = this.data.ids;
@@ -386,6 +371,9 @@ Page({
     })
   },
   onLoad() {
+    this.setData({
+      storeId: app.globalData.storeInfo[0].id
+    })
     this.page_request();
     util.api.getProductInit();
   },

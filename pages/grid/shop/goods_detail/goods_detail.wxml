@@ -11,8 +11,8 @@
     <image src="../../../../images/back-away.png" mode="aspectFit" class="back" />
   </navigator>
   <view class="detail_title">{{GoodsInfoData.name}} {{GoodsInfoData.year}}{{GoodsInfoData.season}} {{GoodsInfoData.producttype}} {{GoodsInfoData.colors}}</view>
-  <view class="detail_price">￥639.6</view>
-  <view class="detail_price_original">￥1491</view>
+  <view class="detail_price">￥{{GoodsInfoData.salePrice}}</view>
+  <view class="detail_price_original">￥{{GoodsInfoData.originalPrice}}</view>
   <view class="detail_info {{infoid == '0' ? 'active' : ''}}" bindtap="detail_info" data-infoid="0">商品描述</view>
   <view class="detail_info {{infoid == '1' ? 'active' : ''}}" bindtap="detail_info" data-infoid="1">产品参数</view>
   <swiper current="{{infoid}}" bindchange="detail_info_swiper" class="detail_info_swiper">

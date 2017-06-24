@@ -14,6 +14,7 @@ Page({
       value: 'timeUpOp',
       op: 'desc'
     },
+    name: "店铺详情"
   },
   // 跳转搜索页面
   bindfocus:function(){
@@ -54,7 +55,6 @@ Page({
         storeId: that.data.id,
         sort: that.data.getSortData,
         rules: that.data.getFilterData,
-        name: that.data.name,
         pageNum: that.data.pageNum,
       },
       method: 'POST',
@@ -130,12 +130,13 @@ Page({
   },
   onShareAppMessage: function () {
     return {
-      title: 'XXX店铺的推荐',
+      title: this.data.name+"的推荐"
     }
   },
   onLoad: function (options) {
     this.setData({
-      id: options.id
+      id: options.id,
+      name: app.globalData.storeInfo[0].name
     });
     console.log(options.id)
     this.page_request()

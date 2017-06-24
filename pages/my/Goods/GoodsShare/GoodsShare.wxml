@@ -1,5 +1,6 @@
   <view class="clearfix" style="padding:0 12rpx;">
     <block wx:for="{{product}}">
+    <navigator url="../../../grid/shop/goods_detail/goods_detail?strod={{storeId}}&ID={{item.id}}&name={{title}}">
       <view class="goods_container" wx:if="{{index<2}}">
         <view class="content_container clearfix">
           <image src="{{item.image ? item.image : '../../../../images/image_none.png'}}" mode="aspectFill" />
@@ -12,6 +13,7 @@
           <view class="content_container_text one_line">{{item.name}}</view>
         </view>
       </view>
+      </navigator>
     </block>
   </view>
  

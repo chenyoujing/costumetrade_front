@@ -1,6 +1,6 @@
 {
   "pages": [
-    "pages/index/index",
+    
     "pages/grid/shop/shop",
     "pages/grid/user/user",
     "pages/grid/info/info",
@@ -55,7 +55,8 @@
     "pages/grid/shop/goodsComment/goodsComment",
     "pages/grid/shop/storeDetails/storeDetails",
     "pages/grid/shop/orderSure/orderSure",
-    "pages/grid/shop/payOrder/payOrder"
+    "pages/grid/shop/payOrder/payOrder",
+    "pages/index/index"
   ],
   "window": {
     "backgroundTextStyle": "light",
