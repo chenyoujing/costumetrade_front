@@ -6,7 +6,7 @@
     <checkbox-group class="container_check">
       <checkbox value="" checked="" style="width:100%;"/>
     </checkbox-group>
-    <image class="container_image" src="../../../../images/image_none.png"></image>
+    <image class="container_image" src="{{true?'../../../../images/shop1_1.png':'../../../../images/image_none.png'}}"></image>
     <view class="container_info">
       <view class="container_name one_line">小心机露腰显瘦套装</view>
       <view class="container_info_text">
@@ -25,7 +25,7 @@
     <checkbox-group class="container_check">
       <checkbox value="" checked="" style="width:100%;"/>
     </checkbox-group>
-    <image class="container_image" src="../../../../images/image_none.png"></image>
+    <image class="container_image" src="{{true?'../../../../images/shop2_2.png':'../../../../images/image_none.png'}}"></image>
     <view class="container_info">
       <view class="container_name one_line">小心机露腰显瘦套装</view>
       <view class="container_info_text">

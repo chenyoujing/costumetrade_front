@@ -8,7 +8,7 @@
   
   <view class="shop">
     <navigator url="../storeDetails/storeDetails">
-      <image src="../../../../images/image_none.png" mode="aspectFill" class="shop_image" />
+      <image src="{{true?'../../../../images/shop1_tx.png':'../../../../images/image_none.png'}}" mode="aspectFill" class="shop_image" />
     </navigator>
     <view class="shop_name">店铺名称</view>
     <view class="shop_goods">全部货品：105件</view>
@@ -23,7 +23,7 @@
     商品评价(171)
     <view class="evaluate_content">
       <view class="evaluate_content_header">
-        <image src="../../../../images/image_none.png" mode="aspectFill" class="client_tx" />
+        <image src="{{true?'../../../../images/shop2_tx.png':'../../../../images/image_none.png'}}" mode="aspectFill" class="client_tx" />
         <view class="client_name">客户名称</view>
         <view class="clear"></view>
       </view>
@@ -32,7 +32,7 @@
     </view>
     <view class="evaluate_content">
       <view class="evaluate_content_header">
-        <image src="../../../../images/image_none.png" mode="aspectFill" class="client_tx" />
+        <image src="{{true?'../../../../images/shop2_tx.png':'../../../../images/image_none.png'}}" mode="aspectFill" class="client_tx" />
         <view class="client_name">客户名称</view>
         <view class="clear"></view>
       </view>

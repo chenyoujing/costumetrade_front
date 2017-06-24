@@ -2,9 +2,8 @@ Page({
   data: {
     height: "",
     imgUrls: [
-      'http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg',
-      '',
-      'http://img06.tooopen.com/images/20160818/tooopen_sy_175833047715.jpg'
+      '../../../../images/shop1_1.png',
+      '../../../../images/shop1_2.png',
     ],
     infoid: "0",
     modal: "none",

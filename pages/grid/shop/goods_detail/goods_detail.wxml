@@ -31,7 +31,7 @@
   </swiper>
   <view class="shop clearfix">
     <navigator url="../storeDetails/storeDetails">
-      <image src="../../../../images/image_none.png" mode="aspectFill" class="shop_image"></image>
+      <image src="{{true?'../../../../images/shop1_tx.png':'../../../../images/image_none.png'}}" mode="aspectFill" class="shop_image"></image>
     </navigator>
     <view style="float:left;">
       <view class="shop_name">店铺名称</view>
@@ -47,10 +47,9 @@
   <view class="evaluate_container">
     商品评价(171)
     <view class="evaluate_content">
-      <view class="evaluate_content_header">
-        <image src="../../../../images/image_none.png" mode="aspectFill" class="client_tx" />
+      <view class="evaluate_content_header clearfix">
+        <image src="{{true?'../../../../images/shop2_tx.png':'../../../../images/image_none.png'}}" mode="aspectFill" class="client_tx" />
         <view class="client_name">客户名称</view>
-        <view class="clear"></view>
       </view>
       <view class="evaluate_content_body">评价内容。。。。。。</view>
       <view class="evaluate_content_footer">2017-02-16 颜色分类：藏蓝色 尺码：M</view>
@@ -66,7 +65,7 @@
   <scroll-view scroll-y="true">
     <view style="padding:10px; overflow:hidden;">
       <view class="goods_container">
-        <image src="../../../../images/image_none.png" mode="aspectFill" class="goods_image" />
+        <image src="{{true?'../../../../images/shop1_1.png':'../../../../images/image_none.png'}}" mode="aspectFill" class="goods_image" />
         <view class="goods_name">621报喜鸟11 2017春 打底裤 适中紫</view>
         <view class="clear"></view>
       </view>
