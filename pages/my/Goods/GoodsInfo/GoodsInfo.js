@@ -259,17 +259,34 @@ Page({
       }
     })
   },
-  // 打开加价表
-  priceRaise:function(e){
-    var check = e.target.dataset.checked;
+  // 更改单选框
+  radioChange:function(e){
+    var check = e.detail.value;
+    var name = e.target.dataset.name;
     var GoodsInfoData = this.data.GoodsInfoData;
-    if (check){
+    GoodsInfoData[name] = e.detail.value;
+    this.setData({
+      GoodsInfoData: GoodsInfoData
+    })
+    if (name == 'isPattern'){
+      this.priceRaise(check)
+    }
+  },
+  // 打开加价表
+  priceRaise: function (check){
+    var GoodsInfoData = this.data.GoodsInfoData;
+    console.log(GoodsInfoData.priceJsons)
+    if (check == 1){
+      console.log(check)
       app.changeData = GoodsInfoData.priceJsons;
       app.nameChange = '加价表';
       wx.navigateTo({
-        url: '../styleMarkup/styleMarkup?colors='+GoodsInfoData.colors+'&sizes='+GoodsInfoData.sizes+'&name='+GoodsInfoData.name
+        url: '../styleMarkup/styleMarkup?colors=' + GoodsInfoData.colors + '&sizes=' + GoodsInfoData.sizes + '&name=' + GoodsInfoData.name
       })
     }
+    this.setData({
+      GoodsInfoData: GoodsInfoData
+    })
   },
    // 提交修改或新增货品
   submitGoodsInfo:function(e){
@@ -306,7 +323,7 @@ Page({
     if (this.data.GoodsInfoData.video3){
       target.video3 = this.data.GoodsInfoData.video3.replace(/http:\/\/117.149.24.42:8788/g, '');
     } 
-    target.priceJsons = this.data.GoodsInfoData.priceJsons;
+    target.raise_price = this.data.GoodsInfoData.priceJsons;
     target.fileList = this.data.fileList;
     for (var p = target.fileList.length - 1; p >= 0; p--) {
       if (target.fileList[p].url !== '') {

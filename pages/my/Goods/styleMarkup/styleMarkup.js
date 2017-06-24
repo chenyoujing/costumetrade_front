@@ -27,11 +27,9 @@ Page({
         })
       }
     }else{
-      console.log(product.colorLists)
       for (var p in colors) {
         var has = true;
         for (var j in product.colorLists) {
-          console.log(55555)
           console.log(product.colorLists[j].priceRaise)
           if (colors[p] == product.colorLists[j].name) {
             productArray.colorLists.push({
@@ -57,7 +55,6 @@ Page({
               priceRaise: product.sizeLists[j].priceRaise
             })
             has = false;
-            console.log(product.sizeLists[j].priceRaise)
           }
         }
         if (has) {
@@ -68,7 +65,6 @@ Page({
         }
       }
     }
-    console.log(productArray)
     this.setData({
       product: productArray
     })
@@ -77,18 +73,15 @@ Page({
     var index = e.target.dataset.index;
     var name = e.target.dataset.name;
     var colorORseize = this.data.product;
-    console.log(colorORseize)
     colorORseize[name][index]['priceRaise'] = e.detail.value;
     var param = {};
     param['product'] = colorORseize;
-    console.log(param['product'])
     this.setData(param)
   },
   // 提交数据
   submitData:function(){
     app.changeData = this.data.product;
     app.nameChange = '加价表';
-    console.log(app.changeData)
     wx.navigateBack({
       delta: 1
     })
@@ -108,7 +101,6 @@ Page({
     } else {
       sizeProduct.push(options.sizes);
     }
-    console.log(options.raisePrice)
     this.setData({
       colors: colorProduct,
       sizes: sizeProduct,

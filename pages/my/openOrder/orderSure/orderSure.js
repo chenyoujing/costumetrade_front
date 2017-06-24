@@ -80,6 +80,7 @@ Page({
       delta: 1
     })
   },
+  // 得到数据
   getData: function () {
     var that = this;
     var name = 'shopCartLowe' + this.data.type;
@@ -104,6 +105,7 @@ Page({
       }
     })
   },
+  // 去零折扣计算
   reallyPayTotal:function(){
     var num = this.data.totalData.realcostArray;
     var disCount = this.data.disCount ? this.data.disCount/100:1;
@@ -122,6 +124,7 @@ Page({
     })
     this.debet()
   },
+  // 清零
   clear:function(e){
     var num = e.target.dataset.num;
     var type = e.target.dataset.type;

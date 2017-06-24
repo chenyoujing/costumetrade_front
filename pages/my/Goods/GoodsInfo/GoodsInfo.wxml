@@ -180,16 +180,7 @@
         </picker>
         <view class="clear"></view>
       </view>
-      <view class="upload_input">
-        <view class="upload_input_text">季节:</view>
-        <radio-group class="radio-group" name="season">
-          <label class="radio" wx:for="{{screen_content3}}" wx:key="id">
-            <radio value="{{item.name}}" checked="{{GoodsInfoData.season == item.value ? 'true' : ''}}"/>{{item.value}}
-          </label>
-        </radio-group>
-        <view class="clear"></view>
-      </view>
-      <view class="upload_input">
+         <view class="upload_input">
         <view class="upload_date">
           <view class="upload_date_text">上架时间:</view>
             <picker style="margin-right:0;" mode="date" bindchange="bindDateChange" data-style = 'timeUp' value="{{GoodsInfoData.timeUp}}" name="timeUp">
@@ -206,9 +197,19 @@
         </view>
         <view class="clear"></view>
       </view>
+      <view class="upload_input">
+        <view class="upload_input_text">季节:</view>
+        <radio-group class="radio-group" name="season" bindchange="radioChange"  data-name = "season">
+          <label class="radio" wx:for="{{screen_content3}}" wx:key="id">
+            <radio value="{{item.name}}" checked="{{GoodsInfoData.season == item.value ? 'true' : ''}}"/>{{item.value}}
+          </label>
+        </radio-group>
+        <view class="clear"></view>
+      </view>
+   
       <view class="upload_input clearfix">
         <view class="upload_input_text">打折:</view>
-        <radio-group class="radio-group" name="isDiscount">
+        <radio-group class="radio-group" name="isDiscount"  data-name = "isDiscount" bindchange="radioChange">
           <label class="radio" style="margin-left:25%;">
             <radio value="1" checked="{{GoodsInfoData.isDiscount == 1 ? 'true' : ''}}" />是
           </label>
@@ -219,9 +220,9 @@
       </view>
       <view class="upload_input clearfix">
         <view class="upload_input_text">款式加价:</view>
-        <radio-group class="radio-group" name="isPattern">
-        <label class="radio" style="margin-left:25%;">
-            <radio  class="radio" value="1" bindtap="priceRaise" checked="{{GoodsInfoData.isPattern == 1 ? 'true' : ''}}" data-checked="{{GoodsInfoData.isPattern == 1 ? 'true' : ''}}"/> 是
+        <radio-group class="radio-group" name="isPattern" data-name = "isPattern" bindchange="radioChange">
+         <label class="radio" style="margin-left:25%;">
+            <radio  class="radio" value="1"  checked="{{GoodsInfoData.isPattern == 1 ? 'true' : ''}}" /> 是
           </label>
           <label class="radio" style="margin-right:25%;">
             <radio value="2" checked="{{GoodsInfoData.isPattern == 2 ? 'true' : ''}}"/>否
@@ -230,7 +231,7 @@
       </view>
       <view class="upload_input clearfix">
         <view class="upload_input_text">允许上架:</view>
-        <radio-group class="radio-group" name="status">
+        <radio-group class="radio-group" name="status" data-name = "status" bindchange="radioChange">
           <label class="radio" style="margin-left:25%;">
             <radio value="0" checked="{{GoodsInfoData.status == 0 ? 'true' : ''}}"/>是
           </label>
