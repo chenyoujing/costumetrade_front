@@ -94,35 +94,70 @@
     <!--打印信息-->
     <swiper-item>
       <scroll-view scroll-y class="setting_scroll">
-        <view class="print_info">打印信息</view>
-        <view class="dictionary_input clearfix">
-          <view class="dictionary_input_text1">编号：</view>
-          <input type="number" class="dictionary_input1" />
-        </view>
-        <view class="dictionary_input clearfix">
-          <view class="dictionary_input_text2">默认打印店铺二维码：</view>
-          <radio-group>
-            <label class="radio">
-              <radio value="true" />是
-            </label>
-            <label class="radio">
-              <radio value="false" checked />否
-            </label>
-          </radio-group>
-          <view class="image_operation_button">上传店铺logo图片</view>
-        </view>
-        <view class="dictionary_input clearfix">
-          <view class="dictionary_input_text2">默认打印店铺logo：</view>
-          <radio-group>
-            <label class="radio">
-              <radio value="true" />是
-            </label>
-            <label class="radio">
-              <radio value="false" checked />否
-            </label>
-          </radio-group>
-          <view class="image_operation_button">上传店铺二维码</view>
-        </view>
+        <view class="print_title" bindtap="print" data-print="wifi">wifi打印</view>
+        <scroll-view scroll-y class="print_scroll {{print=='wifi'?'print_scroll_active':''}}">
+          <view class="print_info">打印信息</view>
+          <view class="dictionary_input clearfix">
+            <view class="dictionary_input_text1">编号：</view>
+            <input type="number" class="dictionary_input1" />
+          </view>
+          <view class="dictionary_input clearfix">
+            <view class="dictionary_input_text2">默认打印店铺二维码：</view>
+            <radio-group>
+              <label class="radio">
+                <radio value="true" />是
+              </label>
+              <label class="radio">
+                <radio value="false" checked />否
+              </label>
+            </radio-group>
+            <view class="image_operation_button">上传店铺二维码</view>
+          </view>
+          <view class="dictionary_input clearfix">
+            <view class="dictionary_input_text2">默认打印店铺logo：</view>
+            <radio-group>
+              <label class="radio">
+                <radio value="true" />是
+              </label>
+              <label class="radio">
+                <radio value="false" checked />否
+              </label>
+            </radio-group>
+            <view class="image_operation_button">上传店铺logo图片</view>
+          </view>
+        </scroll-view>
+        <view class="print_title" bindtap="print" data-print="ly">蓝牙打印</view>
+        <scroll-view scroll-y class="print_scroll {{print=='ly'?'print_scroll_active':''}}">
+          <view class="print_info">打印信息</view>
+          <view class="dictionary_input clearfix">
+            <view class="dictionary_input_text1">编号：</view>
+            <input type="number" class="dictionary_input1" />
+          </view>
+          <view class="dictionary_input clearfix">
+            <view class="dictionary_input_text2">默认打印店铺二维码：</view>
+            <radio-group>
+              <label class="radio">
+                <radio value="true" />是
+              </label>
+              <label class="radio">
+                <radio value="false" checked />否
+              </label>
+            </radio-group>
+            <view class="image_operation_button">上传店铺二维码</view>
+          </view>
+          <view class="dictionary_input clearfix">
+            <view class="dictionary_input_text2">默认打印店铺logo：</view>
+            <radio-group>
+              <label class="radio">
+                <radio value="true" />是
+              </label>
+              <label class="radio">
+                <radio value="false" checked />否
+              </label>
+            </radio-group>
+            <view class="image_operation_button">上传店铺logo图片</view>
+          </view>
+        </scroll-view>
       </scroll-view>
       <button class="submit">保存</button>
     </swiper-item>
@@ -242,7 +277,7 @@
             <view class="freight_content clearfix">
               <view class="freight_content_title">2. 固定运费：<text style="padding: 0 10px 0 20px;">8</text>元</view>
             </view>
-            <view class="freight_content claerfix">
+            <view class="freight_content clearfix">
               <view class="freight_content_title">3. 免邮金额：<text style="padding: 0 10px 0 20px;">300</text>元</view>
             </view>
             <view class="freight_button">保存</view>
@@ -275,7 +310,7 @@
             <view class="freight_content clearfix">
               <view class="freight_content_title">2. 固定运费：<text style="padding: 0 10px 0 20px;">8</text>元</view>
             </view>
-            <view class="freight_content claerfix">
+            <view class="freight_content clearfix">
               <view class="freight_content_title">3. 免邮金额：<text style="padding: 0 10px 0 20px;">300</text>元</view>
             </view>
             <view class="freight_button">保存</view>

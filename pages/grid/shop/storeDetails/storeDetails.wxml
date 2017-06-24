@@ -1,5 +1,9 @@
 <image src="../../../../images/image_none.png" class="store_bg" mode="aspectFill" />
 <view class="store_content">
+  <navigator class="back_nav" open-type="navigateBack">
+    <image src="../../../../images/back-away.png" mode="aspectFit" class="back" />
+  </navigator>
+
   <button open-type="contact" class="service"  session-from="1">
     <image src="../../../../images/customer_service.png" mode="aspectFit" />
   </button>

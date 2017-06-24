@@ -1,7 +1,7 @@
   <view class="mall_title">
     <image src="../../images/image_none.png" mode="aspectFill" class="mall_title_bg" />
-    <navigator url="../grid/shop/mall/mall">
-      <image src="../../images/return.png" mode="aspectFit" class="shop_back" />
+    <navigator url="../grid/shop/mall/mall" class="shop_back">
+      <image src="../../images/return.png" mode="aspectFit" />
     </navigator>
     <navigator url="../grid/shop/storeDetails/storeDetails" class="shop_info clearfix">
       <view class="shop_tx"><image src="../../images/image_none.png" mode="scaleToFill" class="shop_tx" /></view>
@@ -16,13 +16,13 @@
     <navigator url="../grid/shop/goods_detail/goods_detail?orderid=1" class="content_container">
       <image src="{{item.image ? item.image : '../../images/image_none.png'}}" mode="aspectFill" />
       <view class="content_container_text">
-        <view class="content_container_title">1{{item.name}}</view>
+        <view class="content_container_title">{{item.name}}</view>
         <view class="content_container_info">
           <view class="price">{{item.price}}</view>
           <view class="info_other">
             <view class="volume" wx:if="{{!item.volume}}">0</view>
             <view class="volume" wx:if="{{item.volume}}">{{item.volume}}</view>
-            <view class="date">0{{item.timeUp}}</view>
+            <view class="date">{{item.timeUp}}</view>
           </view>
           <view class="clear"></view>
         </view>

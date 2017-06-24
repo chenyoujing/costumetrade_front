@@ -15,7 +15,8 @@ Page({
     branch_index:0,
     originalEmployeeDetails:{},
     privilegeIdsArray:[],
-    employeesId:""
+    employeesId:"",
+    print:'wifi'
   },
   swiper_change: function (e) {
     this.setData({
@@ -220,6 +221,17 @@ Page({
         })
         console.log(that.data)
       }
+    })
+  },
+  // 选择打印
+  print:function(e){
+    var print = e.target.dataset.print
+    if (print == this.data.print) {
+      print = ''
+    }
+    this.setData({
+      print: print
+
     })
   },
   // 运费规则
