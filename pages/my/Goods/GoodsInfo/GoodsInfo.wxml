@@ -274,7 +274,7 @@
               <input type = "digit" data-index="{{index}}" data-name="price" bindinput="blurInputPrice" value="{{item.price}}" />
          </view>
           <view class="table_text">
-              <input type = "digit" data-index="{{index}}" data-name="blurInputPrice"  bindinput="blurInputPrice" value="{{item.discPriceJson}}"/>
+              <input type = "digit" data-index="{{index}}" data-name="discPriceJson"  bindinput="blurInputPrice" value="{{item.discPriceJson}}"/>
          </view>
          <view class="table_text">
             <input type = "{{privilegeEmployees?'digit':'password'}}" disabled="{{!privilegeEmployees}}" data-index="{{index}}" data-name="custPriceJson" bindinput="blurInputPrice" value="{{item.custPriceJson}}"/>
