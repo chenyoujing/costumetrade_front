@@ -136,8 +136,9 @@ Page({
   onLoad: function (options) {
     this.setData({
       id: options.id,
-      name: app.globalData.storeInfo[0].name
+      // name: app.globalData.storeInfo[0].name
     });
+    console.log(app.globalData)
     console.log(options.id)
     this.page_request()
   }

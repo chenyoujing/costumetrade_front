@@ -5,7 +5,7 @@
     </navigator>
     <navigator url="../grid/shop/storeDetails/storeDetails" class="shop_info clearfix">
       <view class="shop_tx"><image src="../../images/image_none.png" mode="scaleToFill" class="shop_tx" /></view>
-      <view class="shop_name">{{title}}</view>
+      <view class="shop_name">{{name}}</view>
       <image src="../../images/return.png" mode="aspectFit" class="shop_into" />
     </navigator>
   </view>
@@ -13,7 +13,7 @@
 <!--分享的内容-->
 <view class="share_container clearfix">
   <view class="goods_container" wx:for="{{product}}">
-    <navigator url="../grid/shop/goods_detail/goods_detail?orderid=1" class="content_container">
+    <navigator url="../grid/shop/goods_detail/goods_detail?strod={{storeId}}&ID={{item.id}}&name={{name}}" class="content_container">
       <image src="{{item.image ? item.image : '../../images/image_none.png'}}" mode="aspectFill" />
       <view class="content_container_text">
         <view class="content_container_title">{{item.name}}</view>
@@ -34,6 +34,6 @@
 
 <!--底部按钮-->
 <view class="button_view clearfix">
-  <navigator url="../grid/shop/mall/mall" class="back_mall">返回商城</navigator>
+  <navigator url="../grid/shop/mall/mall?id={{storeId}}" class="back_mall">返回商城</navigator>
   <navigator url="../grid/shop/shoppingcard/shoppingcard" class="shoppingcard">购物车</navigator>
 </view>

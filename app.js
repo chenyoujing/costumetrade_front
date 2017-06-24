@@ -5,7 +5,9 @@ App({
     openid: ''
   },
   onLaunch: function () {
-    this.getOpenid();
+    if (!app.globalData.openid){
+      this.getOpenid()
+    }
     this.getUserInfo();
   },
   getOpenid: function () {
@@ -36,11 +38,10 @@ App({
             that.globalData.modifyPrice = res.data.data.employee.modifyPrice;
             that.globalData.zeroPrice = res.data.data.employee.zeroPrice;
             that.globalData.discount = res.data.data.employee.discount;
-            console.log(that.globalData.storeInfo )
+            console.log(that.globalData.openid )
+            console.log(res.data.data.query.storeList)
           }
         })
-
-        //调用request请求api转换登录凭证
       }
     })
   },

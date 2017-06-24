@@ -50,7 +50,7 @@ Page({
     }
     return {
       title: title,
-      path: '/pages/index/index?ids=' + ids+ '&storeId=' + storeId+"&title="+title,
+      path: '/pages/index/index?ids=' + ids + '&storeId=' + storeId + "&title=" + title + '&name=' + this.data.title,
       success: function (res) {
         // 转发成功
       },

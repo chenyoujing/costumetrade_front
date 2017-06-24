@@ -40,7 +40,7 @@
 
   <scroll-view scroll-y="true" class="mall_scroll" lower-threshold="10" bindscrolltolower="{{loadMore?'onReachBottom':''}}" style="bottom:{{delete_button}}px;">
     <view class="mall_container {{rank}}" wx:for="{{product}}">
-      <navigator url="../goods_detail/goods_detail?strod={{id}}&ID={{item.id}}&name={{item.name}}" hover-class="navigator-hover" class="content_container clearfix">
+      <navigator url="../goods_detail/goods_detail?strod={{id}}&ID={{item.id}}&name={{name}}" hover-class="navigator-hover" class="content_container clearfix">
         <image src="{{item.image?item.image:'../../../../images/shop1_1.png'}}" mode="aspectFill" style="width:{{image_width}}px;height:{{image_width}}px;" />
         <view class="content_container_text">
           <view class="clear"></view>
