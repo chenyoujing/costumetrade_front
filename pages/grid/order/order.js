@@ -45,7 +45,6 @@ Page({
           grade_index: e.detail.value,
           logisticsname_index: logisticsname
         })
-
   },
   // 一级标签切换
   ordertype:function(e){
@@ -141,8 +140,8 @@ Page({
          totole.pNoPayCount -= 1;
          totole.pNoShipCount += 1; 
        }else{
-         totole.sNoPayCount -= 1;
-         totole.sNoAuditCount += 1; 
+         totole.sNoShipCount += 1;
+         totole.sNoAuditCount -= 1; 
        }
          break;
       case '3':

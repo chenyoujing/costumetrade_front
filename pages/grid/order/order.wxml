@@ -26,10 +26,10 @@
 <!--二级分类 销售-->
 <view class="ordertype2" wx-if="{{ordertype==2}}">
   <view class="ordertype2_text {{ordertype2=='4' ? 'ordertype_active2' : ''}}" bindtap="ordertype2" data-ordertypetwo="4">
-     待审核<view class="ordertype2_prompt">{{countNum.sNoAuditCount}}</view>
+     待审核<view class="ordertype2_prompt">{{countNum.sNoPayCount}}</view>
   </view>
   <view class="ordertype2_text {{ordertype2=='6' ? 'ordertype_active2' : ''}}" bindtap="ordertype2" data-ordertypetwo="6">
-      待收款<view class="ordertype2_prompt">{{countNum.sNoPayCount}}</view>
+      待收款<view class="ordertype2_prompt">{{countNum.sNoAuditCount}}</view>
   </view>
   <view class="ordertype2_text {{ordertype2=='2' ? 'ordertype_active2' : ''}}" bindtap="ordertype2" data-ordertypetwo="2">
      待发货<view class="ordertype2_prompt">{{countNum.sNoShipCount}}</view>
