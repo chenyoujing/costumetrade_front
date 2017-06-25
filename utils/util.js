@@ -27,6 +27,45 @@ var api = {
   pageNum :1,
   publicProduct:[],
   imgUrl: "http://117.149.24.42:8788",
+  // 登录接口
+  getOpenid: function (callback) {
+    var that = this;
+    console.log(app.globalData) 
+    app.globalData.userInfo = {
+      appid: 'wx82428b2ac752c6a3',
+      secret: 'ed8c5aa16cf56f66339fcb4be3377e30',
+      storeInfo: ''
+    }
+    wx.login({
+      success: function (loginCode) {
+        wx.request({
+          url: util.api.host + '/user/login',
+          header: {
+            'content-type': 'application/x-www-form-urlencoded'
+          },
+          data: {
+            code: loginCode.code,
+            appId: app.globalData.userInfo.appid,
+            appSecret: app.globalData.userInfo.secret
+          },
+          method: 'POST',
+          success: function (res) {
+            app.globalData.userInfo.code = loginCode.code
+            app.globalData.openid = res.data.data.query.openid;
+            app.globalData.privilegeEmployees = res.data.data.employee.privilegeEmployees;
+            app.globalData.userIdentity = res.data.data.userIdentity;
+            app.globalData.storeInfo = res.data.data.query.storeList;
+            app.globalData.modifyPrice = res.data.data.employee.modifyPrice;
+            app.globalData.zeroPrice = res.data.data.employee.zeroPrice;
+            app.globalData.discount = res.data.data.employee.discount;
+            console.log(app.globalData.openid)
+            console.log(res.data);
+            callback()
+          }
+        })
+      }
+    })
+  },
   // 数组转化成字符串
   back: function () {
     wx.navigateBack({
@@ -100,8 +139,10 @@ var api = {
         'content-type': 'application/x-www-form-urlencoded'
       },
       success: function (res) {
+        console.log(res.data)
         wx.hideNavigationBarLoading();
         app.screen_brandList = res.data.brandList;//品牌
+        console.log(app.screen_brandList)
         app.screen_productTypeList = res.data.productTypeList;//种类
         app.screen_productSize = res.data.productSize,//尺码组
         app.screen_gradeList = res.data.gradeList,//等级
@@ -112,7 +153,8 @@ var api = {
         app.customerTypeList = res.data.customerTypeList,//待确定
         app.logisticFees = res.data.logisticFees,//快递
         app.payTypeList = res.data.payTypeList,//支付方式
-        app.getProductInit = true
+        app.getProductInit = true;
+        console.log(res.data)
       }
     })
   },
