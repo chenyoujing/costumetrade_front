@@ -1,18 +1,18 @@
-  <view class="clearfix" style="padding:0 12rpx;">
+  <view class="share_container clearfix">
     <block wx:for="{{product}}">
-    <navigator url="../../../grid/shop/goods_detail/goods_detail?strod={{storeId}}&ID={{item.id}}&name={{title}}">
-      <view class="goods_container" wx:if="{{index<2}}">
-        <view class="content_container clearfix">
-          <image src="{{item.image ? item.image : '../../../../images/image_none.png'}}" mode="aspectFill" />
-          <view class="content_container_text one_line">{{item.name}}</view>
+      <navigator url="../../../grid/shop/goods_detail/goods_detail?strod={{storeId}}&ID={{item.id}}&name={{title}}">
+        <view class="goods_container" wx:if="{{index<1}}">
+          <view class="content_container clearfix">
+            <image src="{{item.image ? item.image : '../../../../images/image_none.png'}}" mode="aspectFill" />
+            <!--<view class="content_container_text one_line">{{item.name}}</view>-->
+          </view>
         </view>
-      </view>
-      <view class="goods_container2" wx:if="{{index>=2&&index<6}}">
-        <view class="content_container clearfix">
-          <image src="{{item.image ? item.image : '../../../../images/image_none.png'}}" mode="aspectFill" />
-          <view class="content_container_text one_line">{{item.name}}</view>
+        <view class="goods_container2" wx:if="{{index>=1&&index<4}}">
+          <view class="content_container clearfix">
+            <image src="{{item.image ? item.image : '../../../../images/image_none.png'}}" mode="aspectFill" />
+            <!--<view class="content_container_text one_line">{{item.name}}</view>-->
+          </view>
         </view>
-      </view>
       </navigator>
     </block>
   </view>
@@ -24,10 +24,10 @@
   <input class="share_input" placeholder="输入分享标题..." cursor-spacing="10" bindinput="share_text" />
 </view>
     <block wx:for="{{product}}">
-      <view class="goods_container2" wx:if="{{index>=6}}">
+      <view class="goods_container2" wx:if="{{index>=4}}">
         <view class="content_container clearfix">
           <image src="{{item.image ? item.image : '../../../../images/image_none.png'}}" mode="aspectFill" />
-          <view class="content_container_text one_line">{{item.name}}11</view>
+          <!--<view class="content_container_text one_line">{{item.name}}</view>-->
         </view>
       </view>
     </block>
