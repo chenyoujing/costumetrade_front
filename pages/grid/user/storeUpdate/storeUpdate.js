@@ -30,10 +30,35 @@ Page({
       }
     })
   },
-  onLoad: function () {
+  update_storeInfo: function (e) {
+    var that = this;
+    var object = e.detail.value
+    object.storeId = app.globalData.storeInfo[0].id
+    object.userId = app.globalData.openid
+    console.log(object)
+    wx.showNavigationBarLoading()
+    util.api.request({
+      url: 'user/saveUserOrStore',
+      data: object,
+      method: 'POST',
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      success: function (res) {
+        wx.hideNavigationBarLoading();
+        wx.showToast({
+          title: '成功',
+          mask: true,
+          duration: 2000
+        })
+      }
+    })
+  },
+
+  onLoad: function (e) {
     console.log(app.globalData.storeInfo)
     this.setData({
-      shopInfo: app.globalData.storeInfo
+      shopInfo: app.globalData.storeInfo,
     })
   }
 })

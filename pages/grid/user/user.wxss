@@ -3,9 +3,6 @@
   padding: 20px;
   color: #ffffff;
   position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
 }
 .my_tx{
   width: 70px;
@@ -18,6 +15,10 @@
 .my_info{
   min-width: 120px;
   height: 60px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 120px;
   margin: auto;
 }
 .my_name{
@@ -52,7 +53,7 @@
 .my_code{
   float: right;
   height: 40px;
-  margin: auto;
+  margin: 15px 0 15px 15px;
 }
 .my_code image{
   width: 25px;

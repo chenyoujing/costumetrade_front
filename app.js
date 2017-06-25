@@ -38,7 +38,7 @@ App({
             that.globalData.modifyPrice = res.data.data.employee.modifyPrice;
             that.globalData.zeroPrice = res.data.data.employee.zeroPrice;
             that.globalData.discount = res.data.data.employee.discount;
-            console.log(that.globalData.openid )
+            console.log(res.data.data.query )
             console.log(res.data.data.query.storeList)
           }
         })

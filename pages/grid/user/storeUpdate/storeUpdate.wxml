@@ -6,54 +6,55 @@
   <view class="title_text">商铺信息</view>
 </view>
 
-
+<form bindsubmit="update_storeInfo">
 <scroll-view scroll-y class="storeUpdate_container">
     <image src="../../../../images/mall_bg.png" mode="aspectFill" class="store_bg" />
   <view class="store_content">
     <image src="{{true?'../../../../images/shop1_tx.png':'../../../../images/image_none.png'}}" mode="aspectFill" class="store_image" bindtap="tx" />
     <view class="store_input">
       <view class="store_input_text clearfix">店铺名称：</view>
-      <input type="text" class="store_input1" placeholder="*" placeholder-class="required" value="{{shopInfo.name}}" />
+      <input type="text" class="store_input1" placeholder="*" placeholder-class="required" value="{{shopInfo.name}}" name="name"/>
     </view>
     <view class="store_input">
       <view class="store_input_text clearfix">移动电话：</view>
-      <input type="text" class="store_input1" placeholder="*" placeholder-class="required" />
+      <input type="text" class="store_input1" placeholder="*" placeholder-class="required" name="cphone"/>
     </view>
     <view class="store_input clearfix">
       <view class="store_input_text">固定电话：</view>
-      <input type="text" class="store_input1" />
+      <input type="text" class="store_input1" name="phone"/>
     </view>
     <view class="store_input clearfix">
       <view class="store_input_text">企业地址：</view>
-      <input type="text" class="store_input1" placeholder="*" placeholder-class="required" value="{{shopInfo.address}}" />
+      <input type="text" class="store_input1" placeholder="*" placeholder-class="required" value="{{shopInfo.address}}" name="address"/>
     </view>
     <view class="store_input clearfix">
       <view class="store_input_text">微信号：</view>
-      <input type="text" class="store_input1" />
+      <input type="text" class="store_input1" name="wechat"/>
     </view>
     <view class="store_input clearfix">
       <view class="store_input_text">所属地区：</view>
         <input type="text" class="store_input1" />
-        <image src="../../../../images/map.png" mode="aspectFit" class="image_map" bindtap="address" />
+        <image src="../../../../images/map.png" mode="aspectFit" class="image_map" bindtap="address" name="region"/>
     </view>
     <view class="store_input clearfix">
       <view class="store_input_text">生日：</view>
-      <input type="text" class="store_input1" />
+      <input type="text" class="store_input1" name="birthday"/>
     </view>
     <view class="store_input clearfix">
       <view class="store_input_text">联系人：</view>
-      <input type="text" class="store_input1" />
+      <input type="text" class="store_input1" name="contact"/>
     </view>
     <view class="store_input clearfix">
       <view class="store_input_text">店铺介绍：</view>
-      <input type="text" class="store_input1" />
+      <input type="text" class="store_input1" name="description"/>
     </view>
     <view class="store_input clearfix">
       <view class="store_input_text">银行信息：</view>
-      <textarea type="text" class="store_input1 store_textarea" />
+      <textarea type="text" class="store_input1 store_textarea" name="name"/>
     </view>
 
   </view>
 </scroll-view>
 <navigator url="../dictionary/dictionary" class="dictionary">跳转到高级设置</navigator>
 <button class="submit" form-type="submit">提交</button>
+</form>
