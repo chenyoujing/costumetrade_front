@@ -5,7 +5,7 @@
       <image src="{{myselfStord.image[0]?storeInfo.image[0]:'../../../images/image_none.png'}}" mode="aspectFill" class="my_tx" />
     </navigator>
     <view class="my_info one_line clearfix">
-      <navigator url="storeUpdate/storeUpdate" class="my_name">sdfasfsafasdf{{myselfStord.name}}</navigator>
+      <navigator url="storeUpdate/storeUpdate" class="my_name">{{myselfStord.name}}</navigator>
       <view class="my_fans">200</view>
       <navigator url="shareStore/shareStore" class="my_share">分享</navigator>
     </view>
