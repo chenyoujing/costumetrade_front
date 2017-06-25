@@ -2,7 +2,7 @@
   <!--头部-->
   <view class="my_title clearfix">
     <navigator url="storeUpdate/storeUpdate">
-      <image src="{{true?'../../../../images/shop1_tx.png':'../../../../images/image_none.png'}}" mode="aspectFill" class="my_tx" />
+      <image src="{{true?'../../../images/shop1_tx.png':'../../../images/image_none.png'}}" mode="aspectFill" class="my_tx" />
     </navigator>
     <view class="my_info clearfix">
       <navigator url="storeUpdate/storeUpdate" class="my_name">个人名称</navigator>
@@ -95,6 +95,6 @@
 
 <!--扫码添加-->
 <modal title="请扫码" hidden="{{scanModal}}" confirm-text="扫好了" bindconfirm="confirm" bindcancel="cancel">
-  <image src="{{scan?scan:'../../../../images/image_none.png'}}" mode="widthFix" class="scan_modal_image" />
+  <image src="{{scan?scan:'../../../images/image_none.png'}}" mode="widthFix" class="scan_modal_image" />
   <view class="scan_modal_text">请用微信扫一扫上面的团,扫好了后点击“扫好了”</view>
 </modal>

@@ -1,7 +1,7 @@
 <view style="overflow:hidden; min-height:100vh;">
   <view class="title clearfix">
     <navigator open-type="navigateBack">
-      <image src="../../../../images/back-away.png" mode="aspectFit" class="title_image_back" />
+      <image src="../../../images/back-away.png" mode="aspectFit" class="title_image_back" />
     </navigator>
     <image src="../../../images/more.png" mode="aspectFit" class="title_image" bindtap="more_function" />
     <image src="../../../images/add.png" mode="aspectFit" class="title_image" bindtap="scan" style="margin-left:10px;" />
@@ -91,6 +91,6 @@
 
 <!--扫码添加-->
 <modal title="请扫码" hidden="{{scanModal}}" confirm-text="扫好了" bindconfirm="confirm" bindcancel="cancel">
-  <image src="{{scan?scan:'../../../../images/image_none.png'}}" mode="widthFix" class="scan_modal_image" />
+  <image src="{{scan?scan:'../../../images/image_none.png'}}" mode="widthFix" class="scan_modal_image" />
   <view class="scan_modal_text">请用微信扫一扫上面的团,扫好了后点击“扫好了”</view>
 </modal>

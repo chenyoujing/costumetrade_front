@@ -8,9 +8,9 @@
 
 
 <scroll-view scroll-y class="storeUpdate_container">
-  <image src="../../../../images/image_none.png" class="store_bg" mode="aspectFill" />
+    <image src="../../../../images/mall_bg.png" mode="aspectFill" class="store_bg" />
   <view class="store_content">
-    <image src="../../../../images/image_none.png" mode="aspectFill" class="store_image" bindtap="tx" />
+    <image src="{{true?'../../../../images/shop1_tx.png':'../../../../images/image_none.png'}}" mode="aspectFill" class="store_image" bindtap="tx" />
     <view class="store_input">
       <view class="store_input_text clearfix">店铺名称：</view>
       <input type="text" class="store_input1" placeholder="*" placeholder-class="required" value="{{shopInfo.name}}" />

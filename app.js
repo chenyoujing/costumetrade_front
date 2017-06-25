@@ -5,7 +5,7 @@ App({
     openid: ''
   },
   onLaunch: function () {
-    if (!app.globalData.openid){
+    if (!this.globalData.openid){
       this.getOpenid()
     }
     this.getUserInfo();

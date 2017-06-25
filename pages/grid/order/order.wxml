@@ -249,7 +249,7 @@
       <picker class="logistics_picker" range="">
         <view class="picker">
         现金
-        <image src="../../../../images/down.png" mode="aspectFit" class="picker_image" />
+        <image src="../../../images/down.png" mode="aspectFit" class="picker_image" />
       </view>
     </picker>
       <input class="logistics_number" value="{{colloctNum}}" disabled="true" type="digit" placeholder="输入金额" />
@@ -337,7 +337,7 @@
   <view class="logistics_picker">
       {{logisticsname}}
   </view>
-  <image src="../../../../images/scan_black.png" mode="aspectFit" class="image_scan" />
+  <image src="../../../images/scan_black.png" mode="aspectFit" class="image_scan" />
   <input class="logistics_number" type="number" bindblur="EventHandle" value = "{{logisticsno}}" placeholder="单号" />
 </modal>
 
@@ -358,7 +358,7 @@
   <view class="clearfix" style="margin-top:10px;">
     <picker class="modal_pay one_line" range="{{paycact}}" range-key="dictText" bindchange="paycactPicker" value="{{paycact_index1}}" data-paycate="paycate1">
       {{paycact[paycact_index1].dictText}}
-      <image src="../../../../images/down.png" mode="aspectFit" class="picker_image" />
+      <image src="../../../images/down.png" mode="aspectFit" class="picker_image" />
       <view class="bindtap_cover"></view>
     </picker>
      <input class="pay_input" type="digit" placeholder="输入金额" value="{{paycost1}}" bindinput="update_priceInput" data-paycate="paycate1"/>
@@ -366,7 +366,7 @@
   <view class="clearfix" style="margin-top:10px;">
     <picker class="modal_pay one_line" range="{{paycact}}" range-key="dictText" bindchange="paycactPicker" value="{{paycact_index2}}" data-paycate="paycate2">
       {{paycact[paycact_index2].dictText}}
-      <image src="../../../../images/down.png" mode="aspectFit" class="picker_image" />
+      <image src="../../../images/down.png" mode="aspectFit" class="picker_image" />
       <view class="bindtap_cover"></view>
     </picker>
      <input class="pay_input" type="digit" placeholder="输入金额" value="{{paycost2}}" bindinput="update_priceInput" data-paycate="paycate2"/>

@@ -2,7 +2,7 @@
 <view style="overflow:hidden; min-height:100vh;">
   <view class="title clearfix">
     <navigator open-type="navigateBack">
-      <image src="../../../../images/back-away.png" mode="aspectFit" class="title_image_back" />
+      <image src="../../../images/back-away.png" mode="aspectFit" class="title_image_back" />
     </navigator>
     <image bindtap="packPageFilterCode" mode="aspectFit" src="../../../images/search.png" class="image_search" />
     <image src="../../../images/more.png" mode="aspectFit" class="title_image" bindtap="more_function" />

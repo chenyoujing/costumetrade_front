@@ -1,4 +1,4 @@
-<image src="../../../../images/image_none.png" class="store_bg" mode="aspectFill" />
+<image src="../../../../images/mall_bg.png" class="store_bg" mode="aspectFill" />
 <view class="store_content">
   <navigator class="back_nav" open-type="navigateBack">
     <image src="../../../../images/back-away.png" mode="aspectFit" class="back" />
