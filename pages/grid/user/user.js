@@ -20,5 +20,10 @@ Page({
       scanModal: true,
     })
   },
+  onLoad:function(){
+    this.setData({
+      myselfStord: app.globalData.storeInfo[0]
+    })
+  }
 
 })

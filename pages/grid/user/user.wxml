@@ -2,10 +2,10 @@
   <!--头部-->
   <view class="my_title clearfix">
     <navigator url="storeUpdate/storeUpdate">
-      <image src="{{true?'../../../images/shop1_tx.png':'../../../images/image_none.png'}}" mode="aspectFill" class="my_tx" />
+      <image src="{{myselfStord.image[0]?storeInfo.image[0]:'../../../images/image_none.png'}}" mode="aspectFill" class="my_tx" />
     </navigator>
-    <view class="my_info clearfix">
-      <navigator url="storeUpdate/storeUpdate" class="my_name">个人名称</navigator>
+    <view class="my_info one_line clearfix">
+      <navigator url="storeUpdate/storeUpdate" class="my_name">sdfasfsafasdf{{myselfStord.name}}</navigator>
       <view class="my_fans">200</view>
       <navigator url="shareStore/shareStore" class="my_share">分享</navigator>
     </view>
