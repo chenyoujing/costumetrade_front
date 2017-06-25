@@ -39,7 +39,7 @@ var api = {
     wx.login({
       success: function (loginCode) {
         wx.request({
-          url: util.api.host + '/user/login',
+          url: that.host + '/user/login',
           header: {
             'content-type': 'application/x-www-form-urlencoded'
           },

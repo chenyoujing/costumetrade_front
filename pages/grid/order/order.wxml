@@ -208,9 +208,9 @@
         <view class="order_container_text" style="margin-top:5px;">经手人：{{item.operator}}</view>
       </view>
       <view class="clear"></view>
-    <view class="order_container_button btn_2"  bindtap="changeOrderStatus" data-status='8' data-orderNo="{{item.payorderno}}" data-sellerstoreid="{{item.sellerstoreid}}" data-buyerstoreid="{{item.buyerstoreid}}">通过</view>
-    <navigator url="orderDetails/orderDetails?ordertype={{ordertype}}&payorderno={{item.payorderno}}&ordertype2=4&update=true" class="order_container_button">修改</navigator>
-    <view class="order_container_button btn_3">取消</view>
+    <view class="order_container_button btn_2"  bindtap="changeOrderStatus" data-status='8' data-orderNo="{{item.payorderno}}" data-sellerstoreid="{{item.sellerstoreid}}" data-buyerstoreid="{{item.buyerstoreid}}">通过审核</view>
+    <navigator url="orderDetails/orderDetails?ordertype={{ordertype}}&payorderno={{item.payorderno}}&ordertype2=4&update=true" class="order_container_button">修改订单</navigator>
+    <view class="order_container_button btn_3">取消订单</view>
     <view class="clear"></view>
   </view>
 
@@ -239,8 +239,9 @@
       </view>
       <view class="clear"></view>
    
-    <view class="order_container_button btn_2" bindtap="collectView" data-status='2' data-orderNo="{{item.payorderno}}" data-debet="{{item.debetamt}}" data-sellerstoreid="{{item.sellerstoreid}}" data-buyerstoreid="{{item.buyerstoreid}}">配货</view>
-    <view class="order_container_button" bindtap="changeOrderStatus" data-status='6' data-orderNo="{{item.payorderno}}" data-debet="{{item.debetamt}}" data-sellerstoreid="{{item.sellerstoreid}}" data-buyerstoreid="{{item.buyerstoreid}}">取消</view>
+    <view class="order_container_button btn_2" wx:if="{{item.debetamt >0}}" bindtap="collectView" data-status='2' data-orderNo="{{item.payorderno}}" data-debet="{{item.debetamt}}" data-sellerstoreid="{{item.sellerstoreid}}" data-buyerstoreid="{{item.buyerstoreid}}">配货</view>
+     <view class="order_container_button btn_2" wx:if="{{item.debetamt==0 || !item.debetamt}}" data-status='3' data-orderNo="{{item.payorderno}}"  data-sellerstoreid="{{item.sellerstoreid}}" data-buyerstoreid="{{item.buyerstoreid}}" bindtap="changeOrderStatus">配货</view>
+    <view class="order_container_button" bindtap="changeOrderStatus" data-status='6' data-orderNo="{{item.payorderno}}" data-sellerstoreid="{{item.sellerstoreid}}" data-buyerstoreid="{{item.buyerstoreid}}">取消</view>
     <view class="clear"></view>
   </view>
   <!--收付款-->

@@ -37,7 +37,7 @@
         </view>
         <view class="orderinfo_footer clearfix">
           <view class="orderinfo_footer_text0">下单时间：{{product.ssStoOrder.ordertime}}</view>
-          <view class="orderinfo_footer_text">￥{{price+product.ssStoOrder.freight}}</view>
+          <view class="orderinfo_footer_text">￥{{paycost}}</view>
         </view>
       </view>
     </block>

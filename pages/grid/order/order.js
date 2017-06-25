@@ -147,8 +147,8 @@ Page({
       case '3':
         console.log(totole)
         console.log(11)
-        totole.sNoAuditCount -= 1;
         totole.sNoShipCount += 1;
+        totole.sNoAuditCount -= 1;
         break;
       case '4':
         totole.sNoShipCount -= 1;
@@ -181,7 +181,7 @@ Page({
       operate: data.status,
       sellerstoreid: data.sellerstoreid,
       buyerstoreid: data.buyerstoreid,
-      openid: 1
+      openid: app.globalData.openid
     };
     if (data.isContinue){
       fliter.isContinue = true;
@@ -261,7 +261,7 @@ Page({
         order.paycost1 = that.data.paycost1
         order.paycate2 = that.data.paycact[that.data.paycact_index2] ? that.data.paycact[that.data.paycact_index2].dictValue : null
         order.paycost2 = that.data.paycost2  
-
+        
         stoDetails.id = this.data.product[p].id
         stoDetails.price = that.data.update_price
       }

@@ -8,7 +8,8 @@ Page({
     openid:1,
     ordertype2:'',
     product:{},
-    expressModal1:true
+    expressModal1:true,
+    paycost:0
   },
   // ajax请求数据
   orderDetail_request:function(){
@@ -28,6 +29,7 @@ Page({
       success: function (res) {
         console.log(res.data)
         wx.hideNavigationBarLoading();
+        var paycost = that.data.paycost;
         // 转换物流公司
         for (var j in app.logisticFees) {
           if (app.logisticFees[j].logisticCode==res.data.ssStoOrder.logisticsCode) {
@@ -42,10 +44,11 @@ Page({
           res.data.ssStoDetail[p].totalPrice = (res.data.ssStoDetail[p].count * res.data.ssStoDetail[p].price).toFixed(2)
           price += Math.round((res.data.ssStoDetail[p].count * res.data.ssStoDetail[p].price) * 100) / 100 || 0
         }
-       
+        paycost = (price + res.data.ssStoOrder.freight).toFixed(2)
         that.setData({
           product: res.data,
-          price: price
+          price: price,
+          paycost: paycost
         })
       }
     })
@@ -111,11 +114,13 @@ Page({
   },
   // 修改运费
   freight:function(e){
+    var paycost = this.data.paycost;
+    paycost = (parseFloat(this.data.price) + parseFloat(e.detail.value || 0)).toFixed(2);
     this.setData({
       "product.ssStoOrder.freight": parseFloat(e.detail.value)||0,
       "product.ssStoOrder.freight_boolean": true,
-      "product.ssStoOrder.freight_one":e.detail.value
-
+      "product.ssStoOrder.freight_one":e.detail.value,
+       paycost: paycost
     })
   },
   // 修改价格
@@ -131,7 +136,8 @@ Page({
     }
   },
   price:function(e){
-    var that = this
+    var that = this;
+    var paycost = that.data.paycost;
     var id = e.target.dataset.id
     var ssStoDetail = this.data.product.ssStoDetail
     var price = 0
@@ -144,9 +150,11 @@ Page({
         price += Math.round((ssStoDetail[p].count * ssStoDetail[p].price) * 100) / 100 || 0
       }
     }
+    paycost = (price + this.data.freight).toFixed(2)
     this.setData({
       "product.ssStoDetail": ssStoDetail,
       price: price,
+      paycost: paycost
     })
   },
   express:function(){

@@ -30,7 +30,6 @@ Page({
     })
   },
   onLoad:function(){
-    console.log(app.globalData)
     if (!app.globalData.openid){
       util.api.getOpenid(this.initialize);
     }else{

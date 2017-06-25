@@ -1,4 +1,3 @@
-
 //app.js
 App({
   data: {
@@ -8,6 +7,7 @@ App({
     if (!this.globalData.openid){
       this.getOpenid()
     }
+   
     this.getUserInfo();
   },
   getOpenid: function () {
