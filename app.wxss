@@ -66,7 +66,7 @@ radio,checkbox{
   height: 16px;
   padding: 7px;
   position: absolute;
-  top: -5px;
+  top: -4px;
   right: 0;
   z-index: 4;
   display: block;

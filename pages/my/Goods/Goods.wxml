@@ -113,26 +113,27 @@
           <checkbox value="{{item.id}}"  checked='{{aa}}'/>
         </label>
       </checkbox-group>
-      <navigator url="../Goods/Goodstock/Goodstock?ID={{item.id}}&title={{item.name}}" hover-class="navigator-hover" class="content_container" style="left:{{select_checkbox}}px;">
-        <image src="{{item.image ? item.image : '../../../images/image_none.png'}}" mode="aspectFill" />
-        <view class="content_container_text">
-        <navigator url="../Goods/GoodsInfo/GoodsInfo?ID={{item.id}}&name={{item.name}}" hover-class="navigator-hover">
-          <image src="../../../images/update.png" mode="aspectFit" class="image_update" bindtap="stock" data-storeid="{{item.storeId}}" data-id="{{item.id}}"/>
-        </navigator>
-          <view class="clear"></view>
-          <view class="content_container_title">{{item.name}}</view>
-          <view class="content_container_info">
-            <view class="price">{{item.tagprice}}</view>
-            <view class="info_other">
-              <view class="volume" wx:if="{{!item.volume}}">0</view>
-              <view class="volume" wx:if="{{item.volume}}">{{item.volume}}</view>
-              <view class="date">{{item.timeUp}}</view>
+      <view class="content_container" style="left:{{select_checkbox}}px;">
+        <navigator url="../Goods/Goodstock/Goodstock?ID={{item.id}}&title={{item.name}}" hover-class="navigator-hover">
+          <image src="{{item.image ? item.image : '../../../images/image_none.png'}}" mode="aspectFill" class="goods_image" />
+          <view class="content_container_text">
+            <view class="content_container_title">{{item.name}}</view>
+            <view class="content_container_info">
+              <view class="price">{{item.tagprice}}</view>
+              <view class="info_other">
+                <view class="volume" wx:if="{{!item.volume}}">0</view>
+                <view class="volume" wx:if="{{item.volume}}">{{item.volume}}</view>
+                <view class="date">{{item.timeUp}}</view>
+              </view>
+              <view class="clear"></view>
             </view>
-            <view class="clear"></view>
           </view>
-        </view>
-        <view class="clear"></view>
-      </navigator>
+          <view class="clear"></view>
+        </navigator>
+        <navigator url="../Goods/GoodsInfo/GoodsInfo?ID={{item.id}}&name={{item.name}}" hover-class="navigator-hover">
+          <image src="../../../images/update.png" mode="aspectFit" class="image_update"/>
+        </navigator>
+      </view>
     </view>
   </scroll-view>
   <!--批量删除按钮-->

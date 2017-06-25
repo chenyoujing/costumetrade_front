@@ -96,5 +96,5 @@
 <!--扫码添加-->
 <modal title="请扫码" hidden="{{scanModal}}" confirm-text="扫好了" bindconfirm="confirm" bindcancel="cancel">
   <image src="{{scan?scan:'../../../images/image_none.png'}}" mode="widthFix" class="scan_modal_image" />
-  <view class="scan_modal_text">请用微信扫一扫上面的团,扫好了后点击“扫好了”</view>
+  <view class="scan_modal_text">请用微信扫一扫上面的图片,扫好了后点击“扫好了”</view>
 </modal>

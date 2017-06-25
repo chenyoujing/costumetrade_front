@@ -232,7 +232,7 @@
   left: 0;
   background-color: #ffffff;
 }
-.content_container > image{
+.goods_image{
   width: 115px;
   height: 115px;
   float: left;
@@ -244,16 +244,19 @@
   right: 0;
   bottom: 0;
   padding: 5px;
+  background-color: #ffffff;
 }
 .image_update{
   width: 16px;
   height: 16px;
   padding: 5px 10px;
-  float: right;
+  position: absolute;
+  top: 5px;
+  right: 5px;
 }
 .content_container_title{
   font-size: 14px;
-  padding: 0 5px 10px;
+  padding: 25px 5px 10px;
   word-break:keep-all;
   white-space:nowrap;
   overflow:hidden;

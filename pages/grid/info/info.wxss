@@ -85,6 +85,7 @@
 /*客服*/
 .chat{
   padding-top: 60px;
+  padding-bottom: 50px;
 }
 .chat_container{
   padding: 10px 15px 0;
@@ -126,7 +127,23 @@
 }
 .chat_button{
   position: fixed;
-  border: 1px solid #286561;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 40px;
+  border-radius: 0;
+  border-top: 1px solid #286561;
+  text-align: center;
+  font-size: 16px;
+  line-height: 40px;
+  display: flex;
+  justify-content: center;
+  background-color: #ffffff;
+}
+.chat_button_image{
+  width: 24px;
+  height: 24px;
+  padding: 8px;
 }
 
 

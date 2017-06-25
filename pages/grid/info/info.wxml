@@ -62,7 +62,10 @@
       <image src="../../../images/image_none.png" mode="aspectFill" class="info_tx" />
       <view class="chat_text">谢谢你的认可</view>
     </view>
-    <view class="chat_button"></view>
+    <button open-type="contact" class="chat_button">
+      <image src="../../../images/custom-service.png" mode="aspectFit" class="chat_button_image" />
+      点击图标与客服聊天
+    </button>
   </view>
 
   <!--通讯录-->

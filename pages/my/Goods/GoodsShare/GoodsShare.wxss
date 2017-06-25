@@ -47,6 +47,13 @@
 .volume::before{
   content: "销量："
 }
+.share_scroll{
+  position: absolute;
+  top: calc(600rpx + 55px);
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
 .goods_container2{
   float: left;
   box-sizing:border-box;

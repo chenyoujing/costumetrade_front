@@ -41,25 +41,27 @@
         </label>
       </checkbox-group>
 
-      <navigator url="clientInfo/clientInfo?clientId={{item.id}}" class="client_content clearfix" style="left:{{select_checkbox}}px">
-        <image image src="{{item.image ? item.image : '../../../images/image_none.png'}}" mode="aspectFill" class="client_tx" />
-        <view class="clearfix">
-          <view class="client_info">
-            <view class="client_name one_line">{{item.remarkName||item.reallyName||item.nickName}}</view>
-            <view class="client_phone">{{item.telephone}}</view>
+      <view class="client_content clearfix" style="left:{{select_checkbox}}px">
+        <navigator url="clientInfo/clientInfo?clientId={{item.id}}" style="padding:30rpx 0 30rpx 30rpx;">
+          <image image src="{{item.image ? item.image : '../../../images/image_none.png'}}" mode="aspectFill" class="client_tx" />
+          <view class="clearfix">
+            <view class="client_info">
+              <view class="client_name one_line">{{item.remarkName||item.reallyName||item.nickName}}</view>
+              <view class="client_phone">{{item.telephone}}</view>
+            </view>
+            <view class="client_info2">
+              <text class="client_info2_text" wx:if="{{client!=2}}">{{item.cate}}会员</text>
+              <text class="client_info2_text">积分：5</text>
+              <view class="client_info2_text">区域：{{item.address?item.address:'暂无'}}</view>
+            </view>
           </view>
-          <view class="client_info2">
-            <text class="client_info2_text" wx:if="{{client!=2}}">{{item.cate}}会员</text>
-            <text class="client_info2_text">积分：5</text>
-            <view class="client_info2_text">区域：{{item.address?item.address:'暂无'}}</view>
-          </view>
-        </view>
+        </navigator>
         <navigator url="account/account?client={{client}}&clientId={{item.id}}" class="client_button client_button2">对账</navigator>
         <navigator url="replenishment/replenishment?id={{item.id}}&type={{item.type}}&name={{item.remarkName||item.reallyName||item.nickName}}&cate={{item.catenum}}&image={{item.image}}" class="client_button client_button1">补货</navigator>
         <navigator url="clientAdd/clientAdd?client={{client}}&clientId={{item.id}}">
           <image image src="../../../images/update.png" mode="aspectFill" class="client_updata"/>
         </navigator>
-      </navigator>
+      </view>
     </view>
   </scroll-view>
   <!--批量删除按钮-->
@@ -92,5 +94,5 @@
 <!--扫码添加-->
 <modal title="请扫码" hidden="{{scanModal}}" confirm-text="扫好了" bindconfirm="confirm" bindcancel="cancel">
   <image src="{{scan?scan:'../../../images/image_none.png'}}" mode="widthFix" class="scan_modal_image" />
-  <view class="scan_modal_text">请用微信扫一扫上面的团,扫好了后点击“扫好了”</view>
+  <view class="scan_modal_text">请用微信扫一扫上面的图片,扫好了后点击“扫好了”</view>
 </modal>
