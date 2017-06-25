@@ -103,32 +103,32 @@
 </view>
 
 <view class="openorder_info one_line clearfix" style="bottom:{{keyHidden?0:keyboard_height*3 + 20}}px;background-color:#e5e5e5;padding:6px 4px 0;" hidden="{{!orderid}}">
-  <view bindtap="changeInputSale" class="keyboard_top {{colorChange ==2 ? 'saleColor' : ''}}" style="width:{{keyboard_width}}px;">{{GoodsDetail.showPrice}}元</view>
-  <view class="keyboard_top" wx:if="{{type == 1}}" style="width:{{keyboard_width}}px;" bindtap="changeSale">{{saleName}}</view>
-   <view class="keyboard_top" wx:if="{{type == 2}}" style="width:{{keyboard_width}}px;">{{saleName}}</view>
-  <view class="keyboard_top {{colorChange ==1 ? 'saleColor' : ''}}" style="width:{{keyboard_width}}px;" bindtap="changeGroup">
+  <view bindtap="changeInputSale" class="keyboard_top {{colorChange ==2 ? 'saleColor' : ''}}" style="">{{GoodsDetail.showPrice}}元</view>
+  <view class="keyboard_top" wx:if="{{type == 1}}" style="" bindtap="changeSale">{{saleName}}</view>
+   <view class="keyboard_top" wx:if="{{type == 2}}" style="">{{saleName}}</view>
+  <view class="keyboard_top {{colorChange ==1 ? 'saleColor' : ''}}" style="" bindtap="changeGroup">
   <block wx:if="{{!keyboardNum2}}">{{oneKeyshow}}</block>{{keyboardNum2}}
   <block wx:if="{{unitChange}}">手/{{GoodsDetail.handcount}}</block>{{GoodsDetail.unit}}</view>
-  <view class="keyboard_top" style="width:{{keyboard_width}}px;" bindtap="order_back">返回</view>
+  <view class="keyboard_top" style="" bindtap="order_back">返回</view>
 </view>
 
 
 <!--键盘-->
 <view class="keyboard" hidden="{{keyHidden}}">
-    <view class="keyboard_view" style="width:{{keyboard_width}}px;height:{{keyboard_height}}px;line-height:{{keyboard_height}}px;" data-index="1" bindtap="keyboardtap">1</view>
-    <view class="keyboard_view" style="width:{{keyboard_width}}px;height:{{keyboard_height}}px;line-height:{{keyboard_height}}px;" data-index="2" bindtap="keyboardtap">2</view>
-    <view class="keyboard_view" style="width:{{keyboard_width}}px;height:{{keyboard_height}}px;line-height:{{keyboard_height}}px;" data-index="3" bindtap="keyboardtap">3</view>
-    <view class="keyboard_view" style="width:{{keyboard_width}}px;height:{{keyboard_height}}px;line-height:{{keyboard_height}}px;" data-index="clear" bindtap="keyboardtap">
+    <view class="keyboard_view" style="height:{{keyboard_height}}px;line-height:{{keyboard_height}}px;" data-index="1" bindtap="keyboardtap">1</view>
+    <view class="keyboard_view" style="height:{{keyboard_height}}px;line-height:{{keyboard_height}}px;" data-index="2" bindtap="keyboardtap">2</view>
+    <view class="keyboard_view" style="height:{{keyboard_height}}px;line-height:{{keyboard_height}}px;" data-index="3" bindtap="keyboardtap">3</view>
+    <view class="keyboard_view" style="height:{{keyboard_height}}px;line-height:{{keyboard_height}}px;" data-index="clear" bindtap="keyboardtap">
      <image src="../../../images/retreat.png" data-index="clear" mode="aspectFit" style="width:50%;height:100%" class="image_down" />
     </view>
-    <view class="keyboard_view" style="width:{{keyboard_width}}px;height:{{keyboard_height}}px;line-height:{{keyboard_height}}px;" data-index="4" bindtap="keyboardtap">4</view>
-    <view class="keyboard_view" style="width:{{keyboard_width}}px;height:{{keyboard_height}}px;line-height:{{keyboard_height}}px;" data-index="5" bindtap="keyboardtap">5</view>
-    <view class="keyboard_view" style="width:{{keyboard_width}}px;height:{{keyboard_height}}px;line-height:{{keyboard_height}}px;" data-index="6" bindtap="keyboardtap">6</view>
-    <view class="keyboard_view" style="width:{{keyboard_width}}px;height:{{keyboard_height}}px;line-height:{{keyboard_height}}px;" data-index="-" bindtap="keyboardtap">—</view>
-    <view class="keyboard_view" style="width:{{keyboard_width}}px;height:{{keyboard_height}}px;line-height:{{keyboard_height}}px;" data-index="7" bindtap="keyboardtap">7</view>
-    <view class="keyboard_view" style="width:{{keyboard_width}}px;height:{{keyboard_height}}px;line-height:{{keyboard_height}}px;" data-index="8" bindtap="keyboardtap">8</view>
-    <view class="keyboard_view" style="width:{{keyboard_width}}px;height:{{keyboard_height}}px;line-height:{{keyboard_height}}px;" data-index="9" bindtap="keyboardtap">9</view>
-    <view class="keyboard_view" style="width:{{keyboard_width}}px;height:{{keyboard_height}}px;line-height:{{keyboard_height}}px;" data-index="0" bindtap="keyboardtap">0</view>
+    <view class="keyboard_view" style="height:{{keyboard_height}}px;line-height:{{keyboard_height}}px;" data-index="4" bindtap="keyboardtap">4</view>
+    <view class="keyboard_view" style="height:{{keyboard_height}}px;line-height:{{keyboard_height}}px;" data-index="5" bindtap="keyboardtap">5</view>
+    <view class="keyboard_view" style="height:{{keyboard_height}}px;line-height:{{keyboard_height}}px;" data-index="6" bindtap="keyboardtap">6</view>
+    <view class="keyboard_view" style="height:{{keyboard_height}}px;line-height:{{keyboard_height}}px;" data-index="-" bindtap="keyboardtap">—</view>
+    <view class="keyboard_view" style="height:{{keyboard_height}}px;line-height:{{keyboard_height}}px;" data-index="7" bindtap="keyboardtap">7</view>
+    <view class="keyboard_view" style="height:{{keyboard_height}}px;line-height:{{keyboard_height}}px;" data-index="8" bindtap="keyboardtap">8</view>
+    <view class="keyboard_view" style="height:{{keyboard_height}}px;line-height:{{keyboard_height}}px;" data-index="9" bindtap="keyboardtap">9</view>
+    <view class="keyboard_view" style="height:{{keyboard_height}}px;line-height:{{keyboard_height}}px;" data-index="0" bindtap="keyboardtap">0</view>
     <view class="clear:both;"></view>
   </view>
 <!--更多功能-->
