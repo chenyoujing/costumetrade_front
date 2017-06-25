@@ -164,7 +164,7 @@ Page({
        payorderno: options.payorderno,
        ordertype: options.ordertype,
        ordertype2: options.ordertype2,
-       update: 1,
+       update: options.update,
        logisticFees: app.logisticFees,
      })
      this.orderDetail_request();
