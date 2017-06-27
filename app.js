@@ -40,6 +40,7 @@ App({
             that.globalData.discount = res.data.data.employee.discount;
             console.log(res.data.data.query )
             console.log(res.data.data.query.storeList)
+           
           }
         })
       }

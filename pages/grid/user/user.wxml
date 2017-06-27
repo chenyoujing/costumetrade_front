@@ -2,7 +2,7 @@
   <!--头部-->
   <view class="my_title clearfix">
     <navigator url="storeUpdate/storeUpdate">
-      <image src="{{myselfStord.image[0]?storeInfo.image[0]:'../../../images/image_none.png'}}" mode="aspectFill" class="my_tx" />
+      <image src="{{myselfStord.image[0]?storeInfo.image[0]:'../../../images/shop1_tx.png'}}" mode="aspectFill" class="my_tx" />
     </navigator>
     <view class="my_info clearfix">
       <navigator url="storeUpdate/storeUpdate" class="my_name one_line">{{myselfStord.name}}</navigator>
