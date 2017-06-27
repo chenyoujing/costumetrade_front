@@ -13,9 +13,11 @@ App({
   getOpenid: function () {
     var that = this;
     this.globalData.userInfo = {
+      // appid:'wx0f02d5eacaf954e7',
+      // secret:'8d7f55d6a5008b7f8efead72672008a6',
       appid:'wx82428b2ac752c6a3',
-      secret : 'ed8c5aa16cf56f66339fcb4be3377e30'
-    } 
+      secret:'ed8c5aa16cf56f66339fcb4be3377e30'
+    }
     wx.login({
       success: function (loginCode) {
         wx.request({

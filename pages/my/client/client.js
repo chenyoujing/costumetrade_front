@@ -87,7 +87,11 @@ Page({
         var booleanre = that.data.requestSwitch;
 
         if (that.data.pageNum == 1) {
-          data = res.data;
+          if (res.data == 1000) {
+            data = data
+          }else{
+            data = res.data;
+          }
         } else {
           for (var p in res.data) {
             data.push(res.data[p])
@@ -98,6 +102,8 @@ Page({
         } else {
           booleanre = true;
         }
+        console.log(data)
+
         that.setData({
           ClientsList: data,
           loadMore: true,
@@ -280,9 +286,7 @@ Page({
   },
   // 获取二维码
   scan: function () {
-    this.setData({
-      scanModal: false,
-    })
+    var that = this
     var client = this.data.client
     var that = this
     var id = util.api.DateFormat(new Date())
@@ -299,6 +303,10 @@ Page({
         'content-type': 'application/json'
       },
       success: function (res) {
+        that.setData({
+          scanModal: false,
+        })
+
         wx.hideNavigationBarLoading();
         that.setData({
           scan: res.data,

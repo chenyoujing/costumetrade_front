@@ -49,9 +49,8 @@
         </view>
       </navigator>
     </view>
-    <button open-type="contact" class="shop_content_service"  session-from="1">
-      <image src="../../../images/customer_service.png" mode="aspectFit" />
-    </button>
+    <image src="../../../images/customer_service.png"  class="shop_content_service" mode="aspectFit" />
+    <contact-button class="shop_content_service" style="opacity:0;" size="20" session-from="weapp"></contact-button>
   </view>
 
   <view class="shop_content">
@@ -79,8 +78,7 @@
         </view>
       </navigator>
     </view>
-    <button open-type="contact" class="shop_content_service"  session-from="1">
-      <image src="../../../images/customer_service.png" mode="aspectFit" />
-    </button>
+    <image src="../../../images/customer_service.png"  class="shop_content_service" mode="aspectFit" />
+    <contact-button class="shop_content_service" style="opacity:0;" size="20" session-from="weapp"></contact-button>
   </view>
 </scroll-view>

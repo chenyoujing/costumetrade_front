@@ -13,44 +13,45 @@
     <image src="{{true?'../../../../images/shop1_tx.png':'../../../../images/image_none.png'}}" mode="aspectFill" class="store_image" bindtap="tx" />
     <view class="store_input">
       <view class="store_input_text clearfix">店铺名称：</view>
-      <input type="text" class="store_input1" placeholder="*" placeholder-class="required" value="{{shopInfo.name}}" name="name"/>
+      <input type="text" class="store_input1" placeholder="*" placeholder-class="required" value="{{storeInfo.name}}" name="name"/>
     </view>
     <view class="store_input">
       <view class="store_input_text clearfix">移动电话：</view>
-      <input type="text" class="store_input1" placeholder="*" placeholder-class="required" name="cphone"/>
-    </view>
-    <view class="store_input clearfix">
-      <view class="store_input_text">固定电话：</view>
-      <input type="text" class="store_input1" name="phone"/>
-    </view>
-    <view class="store_input clearfix">
-      <view class="store_input_text">企业地址：</view>
-      <input type="text" class="store_input1" placeholder="*" placeholder-class="required" value="{{shopInfo.address}}" name="address"/>
+      <input type="text" class="store_input1" placeholder="*" placeholder-class="required" value="{{storeInfo.cphone}}" name="cphone"/>
     </view>
     <view class="store_input clearfix">
       <view class="store_input_text">微信号：</view>
-      <input type="text" class="store_input1" name="wechat"/>
+      <input type="text" class="store_input1" value="{{storeInfo.wechat}}" name="wechat"/>
     </view>
     <view class="store_input clearfix">
       <view class="store_input_text">所属地区：</view>
-        <input type="text" class="store_input1" />
-        <image src="../../../../images/map.png" mode="aspectFit" class="image_map" bindtap="address" name="region"/>
+        <input type="text" class="store_input1" value="{{storeInfo.region}}" name="region" disabled/>
+        <image src="../../../../images/map.png" mode="aspectFit" class="image_map" bindtap="address"/>
     </view>
     <view class="store_input clearfix">
-      <view class="store_input_text">生日：</view>
-      <input type="text" class="store_input1" name="birthday"/>
+      <view class="store_input_text">企业地址：</view>
+      <input type="text" class="store_input1" placeholder="*" placeholder-class="required" value="{{storeInfo.address}}" name="address"/>
     </view>
     <view class="store_input clearfix">
       <view class="store_input_text">联系人：</view>
-      <input type="text" class="store_input1" name="contact"/>
+      <input type="text" class="store_input1" value="{{storeInfo.contact}}" name="contact"/>
+    </view>
+    <view class="store_input clearfix">
+      <view class="store_input_text">联系电话：</view>
+      <input type="text" class="store_input1" value="{{storeInfo.phone}}" name="phone"/>
+    </view>
+
+    <view class="store_input clearfix">
+      <view class="store_input_text">生日：</view>
+      <input type="text" class="store_input1" value="{{storeInfo.birthday}}" name="birthday"/>
     </view>
     <view class="store_input clearfix">
       <view class="store_input_text">店铺介绍：</view>
-      <input type="text" class="store_input1" name="description"/>
+      <input type="text" class="store_input1" value="{{storeInfo.description}}" name="description"/>
     </view>
     <view class="store_input clearfix">
       <view class="store_input_text">银行信息：</view>
-      <textarea type="text" class="store_input1 store_textarea" name="name"/>
+      <textarea type="text" class="store_input1 store_textarea" value="{{storeInfo.name}}" name="name"/>
     </view>
 
   </view>

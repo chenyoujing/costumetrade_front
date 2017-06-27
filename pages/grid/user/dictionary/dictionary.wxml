@@ -185,7 +185,7 @@
             <block wx:for="{{payProduct}}">
               <view class="pay_view">
                 <text>{{index+1}}.</text>{{item.dictText}}
-                <image src="../../../../images/delete_2.png" mode="aspectFit" class="image_setting" />
+                <image src="../../../../images/delete_2.png" mode="aspectFit" class="image_setting" bindtap="{{}}" />
               </view>
             </block>
           </view>
@@ -232,16 +232,19 @@
             首页推荐照片
           </view>
           <view class="image_view">
-            <image src="../../../../images/add_image.png" class="image_view_add" />
-            <image src="" class="index_image" />
+            <image src="../../../../images/add_image.png" class="image_view_add"  wx:if="{{!images[0]}}"/>
+            <image src="{{images[0]}}" class="index_image" />
+            <view class="bindtap_cover" bindtap="index_images" data-index="0"></view>
           </view>
           <view class="image_view">
-            <image src="../../../../images/add_image.png" class="image_view_add" />
-            <image src="" class="index_image" />
+            <image src="../../../../images/add_image.png" class="image_view_add"  wx:if="{{!images[1]}}"/>
+            <image src="{{images[1]}}" class="index_image" />
+            <view class="bindtap_cover" bindtap="index_images" data-index="1"></view>
           </view>
           <view class="image_view">
-            <image src="../../../../images/add_image.png" class="image_view_add" />
-            <image src="" class="index_image" />
+            <image src="../../../../images/add_image.png" class="image_view_add"  wx:if="{{!images[2]}}"/>
+            <image src="{{images[2]}}" class="index_image" />
+            <view class="bindtap_cover" bindtap="index_images" data-index="2"></view>
           </view>
         </view>
 
@@ -250,71 +253,40 @@
           <view class="pay_title">
             运费规则
           </view>
-          <view class="pay_view" style="padding:5px 20px;">
-            <text>1.</text>顺丰
-            <image src="../../../../images/right-thrust.png" mode="aspectFit" class="image_setting {{freight==1?'right_active':''}}" />
-            <view class="bindtap_cover" bindtap="freight" data-freight="1"></view>
-          </view>
-          <scroll-view scroll-y class="freight clearfix {{freight==1?'freight_active':''}}">
-            <view class="freight_explain">
-              <view class="freight_explain_title">说明:</view>
-              <image src="../../../../images/update.png" mode="aspectFit" class="freight_explain_right" />
-              <view class="freight_explain_text">江浙沪地区8元；新疆，西藏，青海，甘肃，海南五省20元；其他地域15元</view>
+          <block wx:for="{{logisticFees}}">
+            <view class="pay_view" style="padding:5px 20px;">
+              <text>{{index+1}}.</text>{{item.logisticName}}
+              <image src="../../../../images/right-thrust.png" mode="aspectFit" class="image_setting {{freight===index?'right_active':''}}" />
+              <view class="bindtap_cover" bindtap="freight" data-freight="{{index}}"></view>
             </view>
-            <view class="freight_content" style="padding-bottom:5px;">
-              <view class="freight_content_title">1. 运费：</view>
-              <view class="setting_button_view" style="height:30px;overflow:hidden;width:unset;float:unset;">
-                <view class="setting_button">
-                  <view class="setting_button_small"></view>
-                  <view class="setting_button_text1" style="font-size:14px;">手动修改</view>
-                  <view class="setting_button_text2" style="font-size:14px;">固定运费</view>
-                </view>
+            <scroll-view scroll-y class="freight clearfix {{freight===index?'freight_active':''}}">
+              <view class="freight_explain">
+                <view class="freight_explain_title">说明:</view>
+                <image src="../../../../images/update.png" mode="aspectFit" class="freight_explain_right" />
+                <view class="freight_explain_text">江浙沪地区8元；新疆，西藏，青海，甘肃，海南五省20元；其他地域15元</view>
               </view>
-              <view class="clear"></view>
-              <view class="freight_content_text">手动修改：客户下单后（审核时），手动修改运费</view>
-              <view class="freight_content_text">固定运费：客户下单后，自动添加运费</view>
-            </view>
-            <view class="freight_content clearfix">
-              <view class="freight_content_title">2. 固定运费：<text style="padding: 0 10px 0 20px;">8</text>元</view>
-            </view>
-            <view class="freight_content clearfix">
-              <view class="freight_content_title">3. 免邮金额：<text style="padding: 0 10px 0 20px;">300</text>元</view>
-            </view>
-            <view class="freight_button">保存</view>
-          </scroll-view>
-
-          <view class="pay_view" style="padding:5px 20px;">
-            <text>2.</text>韵达
-            <image src="../../../../images/right-thrust.png" mode="aspectFit" class="image_setting {{freight==2?'right_active':''}}" />
-            <view class="bindtap_cover" bindtap="freight" data-freight="2"></view>
-          </view>
-          <scroll-view scroll-y class="freight clearfix {{freight==2?'freight_active':''}}">
-            <view class="freight_explain">
-              <view class="freight_explain_title">说明:</view>
-              <image src="../../../../images/update.png" mode="aspectFit" class="freight_explain_right" />
-              <view class="freight_explain_text">江浙沪地区8元；新疆，西藏，青海，甘肃，海南五省20元；其他地域15元</view>
-            </view>
-            <view class="freight_content" style="padding-bottom:5px;">
-              <view class="freight_content_title">1. 运费：</view>
-              <view class="setting_button_view" style="height:30px;overflow:hidden;width:unset;float:unset;">
-                <view class="setting_button">
-                  <view class="setting_button_small"></view>
-                  <view class="setting_button_text1" style="font-size:14px;">手动修改</view>
-                  <view class="setting_button_text2" style="font-size:14px;">固定运费</view>
+              <view class="freight_content" style="padding-bottom:5px;">
+                <view class="freight_content_title">1. 运费：</view>
+                <view class="setting_button_view" style="height:30px;overflow:hidden;width:unset;float:unset;">
+                  <view class="setting_button">
+                    <view class="setting_button_small"></view>
+                    <view class="setting_button_text1" style="font-size:14px;">手动修改</view>
+                    <view class="setting_button_text2" style="font-size:14px;">固定运费</view>
+                  </view>
                 </view>
+                <view class="clear"></view>
+                <view class="freight_content_text">手动修改：客户下单后（审核时），手动修改运费</view>
+                <view class="freight_content_text">固定运费：客户下单后，自动添加运费</view>
               </view>
-              <view class="clear"></view>
-              <view class="freight_content_text">手动修改：客户下单后（审核时），手动修改运费</view>
-              <view class="freight_content_text">固定运费：客户下单后，自动添加运费</view>
-            </view>
-            <view class="freight_content clearfix">
-              <view class="freight_content_title">2. 固定运费：<text style="padding: 0 10px 0 20px;">8</text>元</view>
-            </view>
-            <view class="freight_content clearfix">
-              <view class="freight_content_title">3. 免邮金额：<text style="padding: 0 10px 0 20px;">300</text>元</view>
-            </view>
-            <view class="freight_button">保存</view>
-          </scroll-view>
+              <view class="freight_content clearfix">
+                <view class="freight_content_title">2. 固定运费：<text style="padding: 0 10px 0 20px;">{{item.fixedFee}}</text>元</view>
+              </view>
+              <view class="freight_content clearfix">
+                <view class="freight_content_title">3. 免邮金额：<text style="padding: 0 10px 0 20px;">{{item.freeFee}}</text>元</view>
+              </view>
+              <view class="freight_button">保存</view>
+            </scroll-view>
+          </block>
         </view>
       </scroll-view>
       <button class="submit">保存</button>
@@ -349,9 +321,9 @@
         <view class="goods_level clearfix">
           <view class="goods_level_title">客户种类</view>
           <view class="goods_level_title">折扣率</view>
-          <block wx:for="{{goods_level3}}">
-            <view class="goods_level_view">{{item.name}}</view>
-            <view class="goods_level_view">{{item.value}}</view>
+          <block wx:for="{{customerCusts}}">
+            <view class="goods_level_view">{{item.custtypename}}会员</view>
+            <view class="goods_level_view">{{item.custpricejson}}%</view>
           </block>
         </view>
 
@@ -361,16 +333,8 @@
             物流公司
             <image src="../../../../images/append.png" mode="aspectFit" class="image_setting0" />
           </view>
-          <view class="pay_view">
-            <text>1.</text>顺丰
-            <image src="../../../../images/delete_2.png" mode="aspectFit" class="image_setting" />
-          </view>
-          <view class="pay_view">
-            <text>2.</text>汇通
-            <image src="../../../../images/delete_2.png" mode="aspectFit" class="image_setting" />
-          </view>
-          <view class="pay_view">
-            <text>3.</text>韵达
+          <view class="pay_view" wx:for="{{logisticFees}}">
+            <text>{{index+1}}.</text>{{item.logisticName}}
             <image src="../../../../images/delete_2.png" mode="aspectFit" class="image_setting" />
           </view>
         </view>

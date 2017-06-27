@@ -278,6 +278,7 @@ swiper{
   display: block;
   margin: auto;
   border: 1px solid #999999;
+  z-index: 1;
 }
 .image_view_add{
   width: 25px;

@@ -20,10 +20,31 @@ Page({
       scanModal: true,
     })
   },
-  onLoad:function(){
-    this.setData({
-      myselfStord: app.globalData.storeInfo[0]
+  request_page:function(){
+    var that = this
+    wx.showNavigationBarLoading()
+    util.api.request({
+      url: 'store/getStore',
+      data: {
+        storeId: app.globalData.storeInfo[0].id,
+      },
+      method: 'POST',
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      success: function (res) {
+        wx.hideNavigationBarLoading();
+        that.setData({
+          storeInfo:res.data
+        })
+        app.storeInfo = res.data
+      }
     })
+
+    
+  },
+  onLoad:function(){
+    this.request_page()
   }
 
 })

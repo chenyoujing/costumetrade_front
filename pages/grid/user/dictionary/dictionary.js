@@ -187,37 +187,46 @@ Page({
       },
       success: function (res) {
         wx.hideNavigationBarLoading();
-        console.log(res.data)
+        console.log(res.data.datas)
         var payProduct = []
         var feeProduct = []
         var sellingProduct = []
         var customerProduct = []
         var productGrade = []
-        for (var p in res.data){
-          switch (res.data[p].dictGroup){
+        for (var p in res.data.datas){
+          switch (res.data.datas[p].dictGroup){
             case "PAY_TYPE":
-              payProduct.push(res.data[p])
+              payProduct.push(res.data.datas[p])
               break;
             case "FEE_TYPE":
-              feeProduct.push(res.data[p])
+              feeProduct.push(res.data.datas[p])
               break;
             case "SELLING_METHOD":
-              sellingProduct.push(res.data[p])
+              sellingProduct.push(res.data.datas[p])
               break;
             case "CUSTOMER_TYPE":
-              customerProduct.push(res.data[p])
+              customerProduct.push(res.data.datas[p])
               break;
             case "PRODUCT_GRADE":
-              productGrade.push(res.data[p])
+              productGrade.push(res.data.datas[p])
               break;
           }
         }
+        var customerCusts = res.data.customerCusts
+        for (var p in res.data.images) {
+          res.data.images[p] = util.api.imgUrl + res.data.images[p]
+        }
+        var images = res.data.images
+        var logisticFees = res.data.logisticFees
         that.setData({
           payProduct: payProduct,
           feeProduct: feeProduct,
           sellingProduct: sellingProduct,
           customerProduct: customerProduct,
           productGrade: productGrade,
+          customerCusts: customerCusts,
+          images: images,
+          logisticFees: logisticFees,
         })
         console.log(that.data)
       }
@@ -237,7 +246,7 @@ Page({
   // 运费规则
   freight:function(e){
     var freight = e.target.dataset.freight
-    if (freight == this.data.freight){
+    if (freight === this.data.freight){
       freight = ''
     }
     this.setData({

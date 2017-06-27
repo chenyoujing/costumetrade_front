@@ -17,8 +17,15 @@ Page({
     })
   },
   address:function(){
+    var that = this
     wx.chooseAddress({
       success: function (res) {
+        that.setData({
+          "storeInfo.address": res.detailInfo,
+          "storeInfo.contact": res.userName,
+          "storeInfo.region": res.provinceName + ',' + res.cityName + ',' + res.countyName,
+          "storeInfo.phone": res.telNumber,
+        })
         console.log(res.userName)
         console.log(res.postalCode)
         console.log(res.provinceName)
@@ -34,7 +41,7 @@ Page({
     var that = this;
     var object = e.detail.value
     object.storeId = app.globalData.storeInfo[0].id
-    object.userId = app.globalData.openid
+    object.userId = 1
     console.log(object)
     wx.showNavigationBarLoading()
     util.api.request({
@@ -56,9 +63,9 @@ Page({
   },
 
   onLoad: function (e) {
-    console.log(app.globalData.storeInfo)
+    console.log(app.storeInfo)
     this.setData({
-      shopInfo: app.globalData.storeInfo,
+      storeInfo: app.storeInfo,
     })
   }
 })
