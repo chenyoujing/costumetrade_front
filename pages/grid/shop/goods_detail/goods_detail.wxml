@@ -18,7 +18,7 @@
   <swiper current="{{infoid}}" bindchange="detail_info_swiper" class="detail_info_swiper">
     <swiper-item style="overflow:auto;">
       <view class="detail_info_view">商品描述：{{GoodsInfoData.year}}{{GoodsInfoData.season}} {{GoodsInfoData.producttype}}</view>
-      <view class="detail_info_view">商品颜色{{GoodsInfoData.colors}}</view>
+      <view class="detail_info_view">商品颜色：{{GoodsInfoData.colors}}</view>
       <view class="detail_info_view">商品尺码：{{GoodsInfoData.sizes}}</view>
       <view class="clear"></view>
     </swiper-item>
@@ -77,23 +77,23 @@
       </view>
       <view class="goods_container">
         <view class="goods_title">颜色分类</view>
-        <view class="goods_check {{color == '1' ? 'goods_checked' : ''}}" bindtap="color_checked" data-color="1">选颜色</view>
-        <view class="goods_check {{color == '2' ? 'goods_checked' : ''}}" bindtap="color_checked" data-color="2">选颜色</view>
-        <view class="goods_check {{color == '3' ? 'goods_checked' : ''}}" bindtap="color_checked" data-color="3">选颜色</view>
+        <block wx:for="{{colorArray}}">
+          <view class="goods_check {{color == item ? 'goods_checked' : ''}}" bindtap="color_checked" data-name="color" data-color="{{item}}">{{item}}</view>
+       </block>
         <view class="clear"></view>
       </view>
-      <view class="goods_container">
-        <view class="goods_title">尺码</view>
-        <view class="goods_check {{size == '1' ? 'goods_checked' : ''}}" bindtap="size_checked" data-size="1">XXS</view>
-        <view class="goods_check {{size == '2' ? 'goods_checked' : ''}}" bindtap="size_checked" data-size="2">44</view>
-        <view class="goods_check {{size == '3' ? 'goods_checked' : ''}}" bindtap="size_checked" data-size="3">38</view>
+      <view class="goods_container" wx:if="{{sizes == '1' }}">
+        <view class="goods_title">尺码分类</view>
+           <block wx:for="{{sizeArray}}">
+        <view class="goods_check {{size == item ? 'goods_checked' : ''}}" bindtap="color_checked" data-name="size" data-size="{{item}}">{{item}}</view>
+          </block>
         <view class="clear"></view>
       </view>
-      <view class="goods_price"><text style="color:#000000;">零售价：</text>639.6元</view>
+      <view class="goods_price"><text style="color:#000000;">零售价：</text>{{GoodsInfoData.salePrice}}元</view>
       <view class="goods_number clearfix">
-        <view class="goods_number_view subtract">-</view>
-        <view class="goods_number_view number">1</view>
-        <view class="goods_number_view add">+</view>
+        <view class="goods_number_view subtract" bindtap="countAddorSub" data-type="sub">-</view>
+        <view class="goods_number_view number">{{count}}</view>
+        <view class="goods_number_view add" bindtap="countAddorSub"   data-type="add">+</view>
         <view class="goods_number_text">件数</view>
       </view>
     </view>
@@ -105,6 +105,6 @@
 
 <!--底部浮动-->
 <view class="shopping_cart_container">
-  <navigator url="../shoppingcard/shoppingcard" open-type="redirect" class="shopping_cart">购物车</navigator>
+  <navigator url="../shoppingcard/shoppingcard?stordId={{stordId}}" class="shopping_cart">购物车</navigator>
   <view class="shopping_cart active_red" bindtap="join">加入购物车</view>
 </view>

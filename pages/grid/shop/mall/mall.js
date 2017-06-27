@@ -14,12 +14,15 @@ Page({
       value: 'timeUpOp',
       op: 'desc'
     },
-    name: "店铺详情"
+    name: "店铺详情",
+    requeseName:'',
+    code:'',
+    getFilterData: []
   },
   // 跳转搜索页面
   bindfocus:function(){
     wx.navigateTo({
-      url: '../mallScreen/mallScreen',
+      url: '../../../my/Goods/GoodsScreen/GoodsScreen?type=shop'
     })
     this.setData({
       inputFocus: false,
@@ -56,6 +59,8 @@ Page({
         sort: that.data.getSortData,
         rules: that.data.getFilterData,
         pageNum: that.data.pageNum,
+        name: that.data.requeseName,
+        code: that.data.code
       },
       method: 'POST',
       header: {
@@ -140,6 +145,23 @@ Page({
     });
     console.log(app.globalData)
     console.log(options.id)
-    this.page_request()
+    this.page_request();
+  },
+  onShow:function(){
+    if (app.getFilterData || app.searchValue) {
+      console.log(11)
+      this.setData({
+        pageNum: 1,
+        product: [],
+        requestSwitch: true,
+        code: app.searchValue ? app.searchValue : '',
+        requeseName: app.searchValue ? app.searchValue : '',
+        getFilterData: app.getFilterData ? app.getFilterData : undefined
+      })
+      this.page_request();
+      app.getFilterData = [];
+      app.searchValue = "";
+      
+    }
   }
 })

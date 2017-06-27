@@ -1,4 +1,4 @@
-<view class="mall">
+ <view class="mall">
   <view class="mall_title">
     <image src="../../../../images/image_none.png" mode="aspectFill" class="mall_title_bg" />
     <view class="title_view">
@@ -56,57 +56,6 @@
         </view>
       </navigator>
     </view>
-    <!--<view class="mall_container {{rank}}">
-      <navigator url="../goods_detail/goods_detail?orderid=1" class="content_container clearfix">
-        <image src="{{true?'../../../../images/shop1_2.png': '../../../../images/image_none.png'}}" mode="aspectFill" style="width:{{image_width}}px;height:{{image_width}}px;" />
-        <view class="content_container_text">
-          <view class="clear"></view>
-          <view class="content_container_title">1{{item.name}}</view>
-          <view class="content_container_info clearfix">
-            <view class="price">{{item.price}}</view>
-            <view class="info_other">
-              <view class="volume" wx:if="{{!item.volume}}">0</view>
-              <view class="volume" wx:if="{{item.volume}}">{{item.volume}}</view>
-              <view class="date">0{{item.timeUp}}</view>
-            </view>
-          </view>
-        </view>
-      </navigator>
-    </view>
-    <view class="mall_container {{rank}}">
-      <navigator url="../goods_detail/goods_detail?orderid=1" class="content_container clearfix">
-        <image src="{{true?'../../../../images/shop2_3.png': '../../../../images/image_none.png'}}" mode="aspectFill" style="width:{{image_width}}px;height:{{image_width}}px;" />
-        <view class="content_container_text">
-          <view class="clear"></view>
-          <view class="content_container_title">1{{item.name}}</view>
-          <view class="content_container_info clearfix">
-            <view class="price">{{item.price}}</view>
-            <view class="info_other">
-              <view class="volume" wx:if="{{!item.volume}}">0</view>
-              <view class="volume" wx:if="{{item.volume}}">{{item.volume}}</view>
-              <view class="date">0{{item.timeUp}}</view>
-            </view>
-          </view>
-        </view>
-      </navigator>
-    </view>
-    <view class="mall_container {{rank}}">
-      <navigator url="../goods_detail/goods_detail?orderid=1" class="content_container clearfix">
-        <image src="{{true?'../../../../images/shop2_2.png': '../../../../images/image_none.png'}}" mode="aspectFill" style="width:{{image_width}}px;height:{{image_width}}px;" />
-        <view class="content_container_text">
-          <view class="clear"></view>
-          <view class="content_container_title">1{{item.name}}</view>
-          <view class="content_container_info clearfix">
-            <view class="price">{{item.price}}</view>
-            <view class="info_other">
-              <view class="volume" wx:if="{{!item.volume}}">0</view>
-              <view class="volume" wx:if="{{item.volume}}">{{item.volume}}</view>
-              <view class="date">0{{item.timeUp}}</view>
-            </view>
-          </view>
-        </view>
-      </navigator>
-    </view>-->
   </scroll-view>
 </view>
 

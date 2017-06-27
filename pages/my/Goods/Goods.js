@@ -203,9 +203,6 @@ Page({
     }
   },
   bindKeyInput: function (e) {
-    // this.setData({
-    //   code: e.detail.value
-    // })
     wx.navigateTo({
       url: '../Goods/GoodsScreen/GoodsScreen'
     })

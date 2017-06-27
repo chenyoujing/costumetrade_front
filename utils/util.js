@@ -60,10 +60,9 @@ var api = {
             app.globalData.discount = res.data.data.employee.discount;
             console.log(app.globalData.openid)
             console.log(res.data);
-            callback();
-            wx.navigateTo({
-              url: '../pages/grid/user/user'
-            })
+            if (callback){
+              callback();
+            }
           }
         })
       }

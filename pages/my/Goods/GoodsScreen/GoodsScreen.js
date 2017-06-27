@@ -24,7 +24,8 @@ Page({
     enterValue:'',
     product:[],
     keyArray:[],
-    changeBoolean:false
+    changeBoolean:false,
+    type:""
   },
   // 输入框操作
   bindKeyInput:function(e){
@@ -122,20 +123,24 @@ Page({
       })
     }
   },
- 
+ callback:function(){
+   var that = this;
+   wx.getStorage({
+     key: 'GoodsData',
+     success: function (res) {
+       that.setData({
+         product: res.data
+       })
+     }
+   })
+ },
   downData:function(){
-    util.api.supplierRefresh('product/getProducts',"GoodsData", 'updataTime');
-    var that = this;
-    wx.getStorage({
-      key: 'GoodsData',
-      success: function (res) {
-        that.setData({
-          product: res.data
-        })
-      }
-    })
+    util.api.supplierRefresh('product/getProducts', "GoodsData", 'updataTime', this.callback);
   },
   onLoad: function (options) {
+    this.setData({
+      type: options.type
+    })
     this.downData();
     var screen_content1 = app.screen_brandList;
     var screen_content2 = app.screen_productTypeList;

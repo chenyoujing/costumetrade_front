@@ -579,6 +579,7 @@ Page({
         }
         res.data.showPrice = res.data[that.data.saleChangeName];
         res.data.image = res.data.image ? util.api.imgUrl + res.data.image:""; 
+        GoodsDetail.handcount = sizeArray.length;
         that.setData({
           GoodsDetail: res.data,
           size: sizeArray,
@@ -667,7 +668,7 @@ Page({
       shopCart: shopCart
     });
   },
-  // 还原本地数据
+  // 本地数据
   localData:function(product){
     var name = 'shopCartLowe' + this.data.type;
     wx.setStorage({
