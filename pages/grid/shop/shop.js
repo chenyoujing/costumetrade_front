@@ -1,3 +1,4 @@
+import socket from '../../../utils/socket.js'
 var util = require('../../../utils/util.js')
 var app = getApp()
 Page({
@@ -45,13 +46,45 @@ Page({
     })
   },
   onShow:function(){
+    var socketOpen = false
+    var socketMsgQueue = ['']
+    var openidList = ['oDy7t0GCpfxdFdFyNPhu_VYVufS4','oDy7t0HjUcYhdFMgiFbuFHCqSEGo']
+    if (app.globalData.openid == openidList[0]){
+      var openid1 = openidList[0]
+      var openid2 = openidList[1]
+    }else{
+      var openid2 = openidList[0]
+      var openid1 = openidList[1]
+    }
     wx.connectSocket({
-      url: 'wss://touchart.cn:8443/socketHander',
-      header: {
-        'content-type': 'application/x-www-form-urlencoded'
-      },
-      method: "POST"
+      url: 'wss://touchart.cn:8443/socketHander?fUserName=' + openid2 + '&tUserName=' + openid1,
+      method: "GET"
     })
+
+    wx.onSocketOpen(function (res) {
+      wx.sendSocketMessage({
+        data: '123',
+        success: function () {
+          console.log('123')
+        }
+      })
+    })
+    wx.sendSocketMessage({
+      data: '123',
+      success:function(){
+        console.log('123')
+      }
+    })
+    function sendSocketMessage(msg) {
+      if (socketOpen) {
+        wx.sendSocketMessage({
+          data: msg
+        })
+        console.log(msg)
+      } else {
+        socketMsgQueue.push(msg)
+      }
+    }
     wx.onSocketOpen(function (res) {
       console.log('WebSocket连接已打开！')
     })
@@ -64,31 +97,15 @@ Page({
 
   },
   aa:function(){
-    wx.onSocketOpen(function (res) {
-      wx.sendSocketMessage({
-        data: 'msg',
-        success:function(){
-          console.log(msg)
-        }
-      })
-    })
-
-    function sendSocketMessage(msg) {
-      if (socketOpen) {
-        wx.sendSocketMessage({
-          data: msg
-        })
-        console.log(msg)
-      } else {
-        socketMsgQueue.push(msg)
+    wx.sendSocketMessage({
+      data: "{userName: '123',text: '456',}",
+      success: function () {
+        console.log('123')
       }
-    }
-    console.log(1)
+    })
   },
   bb:function(){
-    wx.onSocketOpen(function () {
       wx.closeSocket()
-    })
 
     wx.onSocketClose(function (res) {
       console.log('WebSocket 已关闭！')
