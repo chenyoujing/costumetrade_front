@@ -89,7 +89,8 @@ Page({
       productsize: this.data.size,
       producttype: this.data.GoodsInfoData.producttype,
       handtag: this.data.GoodsInfoData.handcount,
-      image: this.data.GoodsInfoData.image
+      image: this.data.GoodsInfoData.image,
+      iSselect:true
     };
     if (this.data.sizes == 2) {
       object.productsize = '全尺码';

@@ -4,7 +4,9 @@ Page({
   data: {
     shopCart:[],
     totalnum:0,
-    totalPrice: 0
+    totalPrice: 0,
+    aa:false,
+    stordId:0
   },
   // 得到缓存本地数据
   getData: function () {
@@ -33,32 +35,69 @@ Page({
     }
     this.setData({
       shopCart: shopCart
-    })
+    });
+    this.salePriceTotal();
   },
   // 计算价格
   salePriceTotal:function(){
-    var totalPrice = this.data.totalPrice;
-    var totalnum = this.data.totalnum;
+    var totalPrice = 0;
+    var totalnum = 0;
     var shopCart = this.data.shopCart;
     for (var p in shopCart){
-      if (shopCart[p].productsize == '全尺码'){
-        shopCart[p].image = util.api.imgUrl + shopCart[p].image;
+      shopCart[p].image1 = shopCart[p].image ? util.api.imgUrl + shopCart[p].image : "";
+      if (shopCart[p].productsize == '全尺码' && shopCart[p].iSselect == true){
         var sizeArray = shopCart[p].sizeGroup.split(',')
         for(var g in sizeArray){
           totalnum += 1;
-          totalPrice += parseFloat(shopCart[p].sizeRaiseArray[g]);
+          totalPrice = (parseFloat(totalPrice)+parseFloat(shopCart[p].sizeRaiseArray[g]) * shopCart[p].count).toFixed(2);
         }
-      }else{
+      } else if (shopCart[p].productsize !== '全尺码' && shopCart[p].iSselect == true){
         totalnum += 1;
-        totalPrice += parseFloat(shopCart[p].price);
+        totalPrice = (parseFloat(totalPrice) + parseFloat(shopCart[p].price) * shopCart[p].count).toFixed(2);
       }
     }
-    console.log(parseInt(totalnum))
-    console.log(parseInt(totalPrice))
     this.setData({
       totalnum: parseInt(totalnum),
       totalPrice: totalPrice,
       shopCart: shopCart
+    })
+  },
+  // 取消选择
+  saleCanle:function(e){
+    var index = e.target.dataset.index;
+    var shopCart = this.data.shopCart;
+    shopCart[index].iSselect = !shopCart[index].iSselect;
+    this.setData({
+      shopCart: shopCart
+    });
+    this.salePriceTotal();
+  },
+  // 全选全不选
+  iSselectAll:function(e){
+    console.log(e)
+    var shopCart = this.data.shopCart;
+    var aa = this.data.aa;
+    aa = !aa;
+    for (var p in shopCart) {
+      shopCart[p].iSselect = aa
+    }
+    this.setData({
+      aa:aa,
+      shopCart: shopCart
+    })
+    this.salePriceTotal();
+  },
+  // 缓存
+  localData: function (product) {
+    var name = 'shopCartUp' + this.data.stordId;
+    wx.setStorage({
+      key: name,
+      data: product
+    })
+    wx.showToast({
+      title: '成功',
+      mask: true,
+      duration: 2000
     })
   },
   // 删除商品
@@ -69,11 +108,16 @@ Page({
     this.setData({
       shopCart: shopCart
     })
+    this.salePriceTotal()
+    
   },
   onLoad:function(e){
     this.setData({
       stordId: e.stordId
     })
     this.getData()
+  },
+  onUnload:function(){
+    this.localData(this.data.shopCart)
   }
 })
