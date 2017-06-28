@@ -10,7 +10,7 @@
     <navigator url="../storeDetails/storeDetails">
       <image src="{{true?'../../../../images/shop1_tx.png':'../../../../images/image_none.png'}}" mode="aspectFill" class="shop_image" />
     </navigator>
-    <view class="shop_name">店铺名称</view>
+    <view class="shop_name">{{name}}</view>
     <view class="shop_goods">全部货品：105件</view>
     <view class="clear"></view>
     <button open-type="contact" class="shop_content_service"  session-from="1">
@@ -20,23 +20,13 @@
     </button>
   </view>
   <view class="evaluate_container">
-    商品评价(171)
-    <view class="evaluate_content">
-      <view class="evaluate_content_header">
+    商品评价({{countReview}})
+   <view class="evaluate_content" wx:for="{{productReviews}}">
+      <view class="evaluate_content_header clearfix">
         <image src="{{true?'../../../../images/shop2_tx.png':'../../../../images/image_none.png'}}" mode="aspectFill" class="client_tx" />
-        <view class="client_name">客户名称</view>
-        <view class="clear"></view>
+        <view class="client_name">{{item.contactname}}</view>
       </view>
-      <view class="evaluate_content_body">评价内容。。。。。。</view>
-      <view class="evaluate_content_footer">2017-02-16 颜色分类：藏蓝色 尺码：M</view>
-    </view>
-    <view class="evaluate_content">
-      <view class="evaluate_content_header">
-        <image src="{{true?'../../../../images/shop2_tx.png':'../../../../images/image_none.png'}}" mode="aspectFill" class="client_tx" />
-        <view class="client_name">客户名称</view>
-        <view class="clear"></view>
-      </view>
-      <view class="evaluate_content_body">评价内容。。。。。。</view>
-      <view class="evaluate_content_footer">2017-02-16 颜色分类：藏蓝色 尺码：M</view>
+      <view class="evaluate_content_body">{{item.msg}}</view>
+      <view class="evaluate_content_footer">{{item.createTime}}</view>
     </view>
   </view>

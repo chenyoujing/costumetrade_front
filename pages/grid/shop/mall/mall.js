@@ -172,7 +172,7 @@ Page({
   onLoad: function (options) {
     this.setData({
       id: options.id,
-      // name: app.globalData.storeInfo[0].name
+      name: app.globalData.storeInfo[0].name
     });
     this.promptNum();
     console.log(app.globalData)

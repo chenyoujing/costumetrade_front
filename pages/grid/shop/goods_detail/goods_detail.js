@@ -26,7 +26,8 @@ Page({
     priceRaise:[],
     originalPrice:'',
     sizeRaiseArray:[],
-    averagePrice:""
+    averagePrice:"",
+    productReviews:[]
   },
   //请求并显示货品详情
   showGoodsInfo: function () {
@@ -50,6 +51,7 @@ Page({
         var imgUrls = that.data.imgUrls;
         var priceRaise = answerData.raise_price;
         var sizeArray = answerData.sizes.split(',');
+        var productReviews = that.data.productReviews;
         answerData.timeDown = answerData.timeDown?util.toDate(answerData.timeDown) : "";
         answerData.timeUp = answerData.timeUp?util.toDate(answerData.timeUp): "";
         imgUrls[0] = answerData.image ? util.api.imgUrl + answerData.image : '';
@@ -58,6 +60,11 @@ Page({
         imgUrls[3] = answerData.image3 ? util.api.imgUrl + answerData.image3 : '';
         imgUrls[4] = answerData.image4 ? util.api.imgUrl + answerData.image4 : '';
         answerData.handcount = sizeArray.length;
+        productReviews = answerData.productReviews;
+        for (var p in productReviews){
+          productReviews[p].headphoto = productReviews[p].headphoto ? util.api.imgUrl + productReviews[p].headphoto :''
+          productReviews[p].createTime = answerData.createTime ? util.toDate(answerData.createTime) : "";
+        }
         that.setData({
           soruceData: util.api.Clone(answerData),
           GoodsInfoData: answerData,
@@ -66,7 +73,7 @@ Page({
           originalPrice: answerData.salePrice,
           sizeArray: sizeArray,
           colorArray: answerData.colors.split(','),
-          
+          productReviews: productReviews,
           priceRaise: answerData.priceJsons
         });
       }
@@ -303,6 +310,7 @@ Page({
       title: e.name,
       stordId: e.strod
     });
+    console.log(e.name)
     this.showGoodsInfo();
   },
   onShareAppMessage: function () {
