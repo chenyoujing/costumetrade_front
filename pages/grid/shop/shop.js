@@ -46,7 +46,7 @@ Page({
   },
   onShow:function(){
     wx.connectSocket({
-      url: 'wss://touchart.cn:8443/socketHander'
+      url: 'wss://touchart.cn:84s43/socketHander'
     })
     wx.onSocketOpen(function (res) {
       console.log('WebSocket连接已打开！')

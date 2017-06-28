@@ -8,26 +8,26 @@
     <image src="../../../../images/customer_service.png" mode="aspectFit" />
   </button>
   <image src="{{true?'../../../../images/shop1_tx.png':'../../../../images/image_none.png'}}" mode="aspectFill" class="store_image" />
-  <view class="store_name">小雨家服装</view>
+  <view class="store_name">{{storeInfo.name}}</view>
   <view class="store_info clearfix">
     <view class="info1">联系人:</view>
-    <view class="info2">小雨</view>
+    <view class="info2">{{storeInfo.contact}}</view>
   </view>
   <view class="store_info clearfix">
     <view class="info1">固定电话:</view>
-    <view class="info2">8393743947</view>
+    <view class="info2">{{storeInfo.phone}}</view>
   </view>
   <view class="store_info clearfix">
     <view class="info1">移动电话:</view>
-    <view class="info2">13333333333</view>
+    <view class="info2">{{storeInfo.cphone}}</view>
   </view>
   <view class="store_info clearfix">
     <view class="info1">邮箱:</view>
-    <view class="info2">1000000000@qq.com</view>
+    <view class="info2">接口中没有{{storeInfo.email}}</view>
   </view>
   <view class="store_info clearfix">
     <view class="info1">地址:</view>
-    <view class="info2">杭州市萧山区建设一路76号</view>
+    <view class="info2">{{storeInfo.address}}</view>
   </view>
   <view class="store_info clearfix">
     <view class="info1">银行账号:</view>
@@ -35,6 +35,6 @@
   </view>
   <view class="store_info clearfix">
     <view class="info1">店铺介绍:</view>
-    <view class="info2">字太长了不想打字太长了不想打字太长了不想打字太长了不想打字太长了不想打字太长了不想打</view>
+    <view class="info2">{{storeInfo.description}}</view>
   </view>
 </view>
