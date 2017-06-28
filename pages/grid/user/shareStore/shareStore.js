@@ -6,10 +6,13 @@ Page({
   },
   onLoad: function (options) {
     console.log(app.storeInfo)
-    var images = app.globalData.storeInfo[0].images
-    for (var p in images){
+    var image = app.globalData.storeInfo[0].images
+    var images = []
+    for (var p in image){
       if(images[p]){
-        images[p] = util.api.imgUrl + images[p]
+        images.push(util.api.imgUrl + images[p])
+      }else{
+        images.push(images[p])
       }
     }
     this.setData({

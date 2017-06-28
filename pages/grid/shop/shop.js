@@ -46,13 +46,52 @@ Page({
   },
   onShow:function(){
     wx.connectSocket({
-      url: 'wss://touchart.cn:84s43/socketHander'
+      url: 'wss://touchart.cn:8443/socketHander',
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      method: "POST"
     })
     wx.onSocketOpen(function (res) {
       console.log('WebSocket连接已打开！')
     })
-    wx.onSocketError(function (res) {
-      console.log(res)
+    wx.onSocketMessage(function (res) {
+      console.log('收到服务器内容：' + res.data)
+    })
+    wx.onSocketClose(function (res) {
+      console.log('WebSocket 已关闭！')
+    })
+
+  },
+  aa:function(){
+    wx.onSocketOpen(function (res) {
+      wx.sendSocketMessage({
+        data: 'msg',
+        success:function(){
+          console.log(msg)
+        }
+      })
+    })
+
+    function sendSocketMessage(msg) {
+      if (socketOpen) {
+        wx.sendSocketMessage({
+          data: msg
+        })
+        console.log(msg)
+      } else {
+        socketMsgQueue.push(msg)
+      }
+    }
+    console.log(1)
+  },
+  bb:function(){
+    wx.onSocketOpen(function () {
+      wx.closeSocket()
+    })
+
+    wx.onSocketClose(function (res) {
+      console.log('WebSocket 已关闭！')
     })
   },
   onShareAppMessage: function () {
