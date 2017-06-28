@@ -38,9 +38,9 @@
     </view>
 
     <view class="orderinfo">
-      <view class="orderinfo_title clearfix">
+      <view class="orderinfo_title clearfix" bindtap="changeLogisticFees">
         <view class="orderinfo_text" style="float:left;font-size:16px;">配送方式</view>
-        <view class="orderinfo_text" style="float:right;">顺丰快递（免运费）
+        <view class="orderinfo_text" style="float:right;" >{{logisticName}}
           <image src="../../../../images/right-thrust.png" mode="aspectFit" class="orderinfo_text_image" />
         </view>
       </view>
@@ -50,8 +50,8 @@
       </view>
       <view class="clearfix">
         <view class="orderinfo_text" style="float:left;padding:0 5px;">运费</view>
-        <view class="orderinfo_text" style="float:right;color:#FE2D04;padding:0 5px;" wx:if="{{false}}">￥{{freight}}</view>
-        <view class="orderinfo_text" style="float:right;padding:0 5px;" wx:if="{{true}}">运费待审核</view>
+        <view class="orderinfo_text" style="float:right;color:#FE2D04;padding:0 5px;" wx:if="{{freight > 0}}">￥{{freight}}</view>
+        <view class="orderinfo_text" style="float:right;padding:0 5px;" wx:if="{{freight == 0}}">运费待审核</view>
       </view>
       <view class="orderinfo_footer clearfix">
         <view class="orderinfo_footer_text" style="float:right;color:#FE2D04;">￥{{totalPrice+freight}}</view>
@@ -63,11 +63,8 @@
 
 <!--选择快递公司-->
 <modal title="选择快递公司" hidden="{{expressModal}}" confirm-text="取消" no-cancel bindconfirm="cancel" bindcancel="cancel" >
-  <view class="logistics_choose">
-    <navigator url="express/express?orderNo={{selectLogistics.orderNo}}" class="choose_view">顺丰</navigator>
-  </view>
-  <view class="logistics_choose">
-    <navigator url="express/express?orderNo={{selectLogistics.orderNo}}" class="choose_view">韵达</navigator>
+  <view class="logistics_choose" wx:for="{{logisticFees}}">
+    <view class="choose_view" bindtap="logistic" data-name="{{item.logisticName}}"  data-code="{{item.logisticCode}}" data-fixedFee="{{item.fixedFee}}">{{item.logisticName}}</view>
   </view>
 </modal>
 <!--底部浮动-->

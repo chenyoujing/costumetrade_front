@@ -45,13 +45,13 @@ Page({
     var shopCart = this.data.shopCart;
     for (var p in shopCart){
       shopCart[p].image1 = shopCart[p].image ? util.api.imgUrl + shopCart[p].image : "";
-      if (shopCart[p].productsize == '全尺码' && shopCart[p].iSselect == true){
+      if (shopCart[p].sizeGroup && shopCart[p].iSselect == true){
         var sizeArray = shopCart[p].sizeGroup.split(',')
         for(var g in sizeArray){
           totalnum += 1;
           totalPrice = (parseFloat(totalPrice)+parseFloat(shopCart[p].sizeRaiseArray[g]) * shopCart[p].count).toFixed(2);
         }
-      } else if (shopCart[p].productsize !== '全尺码' && shopCart[p].iSselect == true){
+      } else if (!shopCart[p].sizeGroup && shopCart[p].iSselect == true){
         totalnum += 1;
         totalPrice = (parseFloat(totalPrice) + parseFloat(shopCart[p].price) * shopCart[p].count).toFixed(2);
       }

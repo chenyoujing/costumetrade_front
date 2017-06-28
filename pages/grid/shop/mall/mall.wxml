@@ -5,9 +5,9 @@
       <navigator url="../storeDetails/storeDetails?storeId=1">
         <image src="{{true?'../../../../images/shop1_tx.png':'../../../../images/image_none.png'}}" mode="scaleToFill" class="shop_tx" />
       </navigator>
-      <navigator url="../shoppingcard/shoppingcard?storeId=1">
+      <navigator url="../shoppingcard/shoppingcard?stordId={{id}}">
         <image src="../../../../images/shoppingcard.png" mode="aspectFit" class="shoppingcard_image" style="margin-left:3%;">
-          <view class="prompt">3</view>
+          <view class="prompt" wx:if="{{prompt>0}}">{{prompt}}</view>
         </image>
       </navigator>
       <input class="search_input" type="text" placeholder="请输入货号搜索货品..." bindfocus="bindfocus" focus="{{inputFocus}}" >

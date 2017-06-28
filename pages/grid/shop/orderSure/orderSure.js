@@ -7,7 +7,11 @@ Page({
     totalnum: 0,
     address:{},
     freight:10,
-    expressModal:true
+    expressModal:true,
+    shopCartOrigin:[],
+    logisticFees:[],
+    logisticCode: 0,
+    logisticName: ''
   },
   // 更改地址
   address:function(){
@@ -58,10 +62,19 @@ Page({
           submitData.stoDetails = [];
           submitData.order = {};
           submitData.order.ordertype = 1;
-          submitData.order.realcostArray = that.data.totalPrice;
+          var price = (that.data.totalPrice + that.data.freight).toFixed(2);
+          submitData.order.realcostArray = price;
+          console.log(price)
+          console.log(that.data.totalPrice)
+          console.log(that.data.freight)
           submitData.openid = app.globalData.openid;
+          submitData.order.shipcontact = that.data.address.contact;
+          submitData.order.shipphone = that.data.address.phone;
+          submitData.order.shipaddress = that.data.address.address;
+          submitData.order.logisticCode = that.data.logisticCode;
+          submitData.order.freight = that.data.freight;
           for (var p in shopCart) {
-            if (shopCart[p].productsize == '全尺码') {
+            if (shopCart[p].sizeGroup) {
               var sizeGroup = shopCart[p].sizeGroup.split(",");
               for (var g in sizeGroup) {
                 newShopCart.push({
@@ -100,7 +113,7 @@ Page({
   // 得到缓存本地数据
   getData: function () {
     var that = this;
-    var name = 'shopCartUp' + this.data.stordId;
+    var name = this.data.name;
     var selectCart = []
     wx.getStorage({
       key: name,
@@ -112,6 +125,7 @@ Page({
           }
         }
         that.setData({
+          shopCartOrigin: res.data,
           shopCart: selectCart
         })
       }
@@ -146,6 +160,7 @@ Page({
               title: '自家店铺不能下单',
             })
           }else{
+            that.delectShop()
             wx.showToast({
               title: '下单成功',
             })
@@ -153,12 +168,54 @@ Page({
         }
       })
    },
-// 删除
+ // 删除已提交过得商品
+  delectShop:function(){
+    var shopCart = this.data.shopCartOrigin;
+    var name = this.data.name;
+    for (var p in shopCart){
+      if (shopCart[p].iSselect){
+        shopCart.splice(p,1)
+      }
+    }
+    wx.setStorage({
+      key: this.data.name,
+      data: shopCart
+    })
+  },
+  // 更改运费
+  changeLogisticFees:function(){
+    this.setData({
+      expressModal:false
+    })
+  },
+  // 选择更改后的快递
+  logistic:function(e){
+    var logisticName = e.target.dataset.logisticName;
+    var logisticCode = e.target.dataset.logisticCode;
+    var fixedFee = e.target.dataset.fixedFee;
+    console.log(e)
+    this.setData({
+      logisticName: logisticName,
+      logisticCode: logisticCode,
+      fixedFee: fixedFee
+    })
+  },
+  // 取消快递选择
+  cancel:function(){
+    this.setData({
+      expressModal: true
+    })
+  },
   onLoad: function (options) {
     this.setData({
       stordId: options.stordId,
-      totalPrice: options.totalPrice,
-      totalnum: options.totalnum
+      totalPrice: parseFloat(options.totalPrice),
+      totalnum: options.totalnum,
+      name: 'shopCartUp' + options.stordId,
+      logisticFees: app.logisticFees,
+      freight: parseFloat(app.logisticFees[0].fixedFee),
+      logisticCode: app.logisticFees[0].logisticCode,
+      logisticName: app.logisticFees[0].logisticName
     })
     this.orderInitAddress();
     this.getData()

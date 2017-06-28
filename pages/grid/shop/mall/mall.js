@@ -17,7 +17,8 @@ Page({
     name: "店铺详情",
     requeseName:'',
     code:'',
-    getFilterData: []
+    getFilterData: [],
+    prompt:0
   },
   // 跳转搜索页面
   bindfocus:function(){
@@ -133,16 +134,47 @@ Page({
     let data = e.target.dataset
     console.log(data.orderid)
   },
+
   onShareAppMessage: function () {
     return {
       title: this.data.name+"的推荐"
     }
+  },
+  // 判断有多少件商品 购物车里面
+  promptNum:function(){
+    var that = this;
+    var name = 'shopCartUp' +this.data.id;
+    var prompt = 0;
+    wx.getStorage({
+      key: name,
+      complete: function(res) {
+        console.log(res)
+        if(res.data){
+          for(var p in res.data){
+            if (res.data[p].sizeGroup){
+              prompt += res.data[p].count * res.data[p].handtag
+            }else{
+              prompt += res.data[p].count 
+            }
+          }
+          console.log(prompt)
+        } else {
+          prompt = 0;
+        }
+        that.setData({
+          prompt: parseInt(prompt)
+        })
+      }
+    })
+    console.log(prompt)
+    
   },
   onLoad: function (options) {
     this.setData({
       id: options.id,
       // name: app.globalData.storeInfo[0].name
     });
+    this.promptNum();
     console.log(app.globalData)
     console.log(options.id)
     this.page_request();
