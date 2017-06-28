@@ -13,23 +13,23 @@
   <view class="store_info_view">
     <view class="store_info">
       <image src="../../../../images/image_none.png" class="store_tx" />
-      <view class="store_name">点艺信息科技</view>
-      <view class="store_content">不想打字不想打字不想打字不想打字不想打字不想打字不想打字不想打字不想打字</view>
+      <view class="store_name">{{storeInfo.name}}</view>
+      <view class="store_content">{{storeInfo.description}}</view>
       <view class="clear"></view>
     </view>
     <view class="image_view">
-      <image src="../../../../images/image_none.png" class="store_image" style="margin-left:8rpx;" />
+      <image src="{{images[0]?images[0]:'../../../../images/image_none.png'}}" class="store_image" style="margin-left:8rpx;" />
     </view>
     <view class="image_view">
-      <image src="../../../../images/image_none.png" class="store_image" />
+      <image src="{{images[1]?images[01]:'../../../../images/image_none.png'}}" class="store_image" />
     </view>
     <view class="image_view">
-      <image src="../../../../images/image_none.png" class="store_image" style="margin-right:8rpx;" />
+      <image src="{{images[2]?images[2]:'../../../../images/image_none.png'}}" class="store_image" style="margin-right:8rpx;" />
     </view>
     <view class="clear"></view>
     <view class="store_address">
       <image src="../../../../images/localization.png" mode="aspectFit" class="address_image" />
-      <view class="address_text">浙江省杭州市萧山区建设一路</view>
+      <view class="address_text">{{storeInfo.address}}</view>
       <view class="clear"></view>
     </view>
   </view>

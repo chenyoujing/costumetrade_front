@@ -34,17 +34,42 @@ Page({
       },
       success: function (res) {
         wx.hideNavigationBarLoading();
+        res.data.birthday = util.formatTime(new Date(res.data.birthday))
         that.setData({
           storeInfo:res.data
         })
         app.storeInfo = res.data
       }
     })
-
-    
+  },
+  canvas: function () {
+    var that = this
+    wx.showNavigationBarLoading()
+    util.api.request({
+      url: 'report/financeReport',
+      data: {
+        openid: app.globalData.openid,
+        // timeFrom: new Date((new Date(Date.now() - 864000000000))),
+        // timeTo: new Date,
+        payCate: 'CASH_PAY',
+      },
+      method: 'POST',
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      success: function (res) {
+        wx.hideNavigationBarLoading();
+        console.log(res.data)
+      }
+    })
   },
   onLoad:function(){
     this.request_page()
+    this.canvas()
+  },
+  onShow:function(){
+    this.setData({
+      storeInfo: app.storeInfo
+    })
   }
-
 })

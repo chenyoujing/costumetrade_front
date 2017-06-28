@@ -40,10 +40,11 @@
       <view class="store_input_text">联系电话：</view>
       <input type="text" class="store_input1" value="{{storeInfo.phone}}" name="phone"/>
     </view>
-
     <view class="store_input clearfix">
       <view class="store_input_text">生日：</view>
-      <input type="text" class="store_input1" value="{{storeInfo.birthday}}" name="birthday"/>
+      <picker mode="date" class="store_input1" style="overflow:hidden" bindchange="bindDateChange" value="{{storeInfo.birthday}}" name="birthday">
+          {{storeInfo.birthday}}
+      </picker>
     </view>
     <view class="store_input clearfix">
       <view class="store_input_text">店铺介绍：</view>
@@ -51,7 +52,7 @@
     </view>
     <view class="store_input clearfix">
       <view class="store_input_text">银行信息：</view>
-      <textarea type="text" class="store_input1 store_textarea" value="{{storeInfo.name}}" name="name"/>
+      <textarea type="text" class="store_input1 store_textarea" value="{{storeInfo.bank}}" name="bank"/>
     </view>
 
   </view>

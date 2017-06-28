@@ -15,14 +15,13 @@
 .my_info{
   min-width: 120px;
   height: 60px;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 120px;
   margin: auto;
+  overflow: hidden;
+  float:left;
+  max-width: calc(100% - 165px);
 }
 .my_name{
-  width: 100%;
+  min-width: 120px;
   border-bottom: 2px solid #DBF4F1;
   margin-bottom: 8px;
   font-size: 16px;

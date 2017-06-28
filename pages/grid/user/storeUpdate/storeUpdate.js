@@ -3,7 +3,7 @@ var app = getApp()
 Page({
 
   data: {
-  
+    date: '2016-09-01',
   },
   tx:function(){
     wx.chooseImage({
@@ -26,42 +26,53 @@ Page({
           "storeInfo.region": res.provinceName + ',' + res.cityName + ',' + res.countyName,
           "storeInfo.phone": res.telNumber,
         })
-        console.log(res.userName)
-        console.log(res.postalCode)
-        console.log(res.provinceName)
-        console.log(res.cityName)
-        console.log(res.countyName)
-        console.log(res.detailInfo)
-        console.log(res.nationalCode)
-        console.log(res.telNumber)
       }
     })
   },
   update_storeInfo: function (e) {
     var that = this;
+    e.detail.value.birthday = Date.parse(new Date(e.detail.value.birthday))
     var object = e.detail.value
     object.storeId = app.globalData.storeInfo[0].id
-    object.userId = 1
-    console.log(object)
     wx.showNavigationBarLoading()
     util.api.request({
       url: 'user/saveUserOrStore',
       data: object,
       method: 'POST',
       header: {
-        'content-type': 'application/x-www-form-urlencoded'
+        'content-type': 'application/json'
       },
       success: function (res) {
         wx.hideNavigationBarLoading();
+        var storeInfo = app.storeInfo
+        storeInfo.name = object.name
+        storeInfo.cphone = object.cphone
+        storeInfo.wechat = object.wechat
+        storeInfo.region = object.region
+        storeInfo.address = object.address
+        storeInfo.contact = object.contact
+        storeInfo.phone = object.phone
+        storeInfo.birthday = object.birthday
+        storeInfo.description = object.description
+        app.storeInfo = storeInfo
         wx.showToast({
-          title: '成功',
+          title: '修改成功',
           mask: true,
           duration: 2000
         })
+        setTimeout(() => {
+          wx.navigateBack({
+            delta: 1,
+          })
+        }, 2000)
       }
     })
   },
-
+  bindDateChange: function (e) {
+    this.setData({
+      "storeInfo.birthday": e.detail.value
+    })
+  },
   onLoad: function (e) {
     console.log(app.storeInfo)
     this.setData({

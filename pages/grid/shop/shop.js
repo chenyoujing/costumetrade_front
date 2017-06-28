@@ -22,7 +22,7 @@ Page({
     if (otherStord.length == 1) {
       otherStord = [];
     } else {
-      otherStord = otherStord.split(0, 1);
+      otherStord = otherStord.splice(0, 1);
     }
     this.setData({
       myselfStord: app.globalData.storeInfo[0],
@@ -42,6 +42,17 @@ Page({
       withShareTicket: true,
       success() {
       }
+    })
+  },
+  onShow:function(){
+    wx.connectSocket({
+      url: 'wss://touchart.cn:8443/socketHander'
+    })
+    wx.onSocketOpen(function (res) {
+      console.log('WebSocket连接已打开！')
+    })
+    wx.onSocketError(function (res) {
+      console.log(res)
     })
   },
   onShareAppMessage: function () {

@@ -4,14 +4,14 @@
     <navigator url="storeUpdate/storeUpdate">
       <image src="{{storeInfo.image?storeInfo.image:'../../../images/shop1_tx.png'}}" mode="aspectFill" class="my_tx" />
     </navigator>
+    <view class="my_code">
+      <image src="../../../images/QR_code.png" mode="aspectFill" bindtap="scan" />
+      <view class="my_code_text">+粉</view>
+    </view>
     <view class="my_info clearfix">
       <navigator url="storeUpdate/storeUpdate" class="my_name one_line">{{storeInfo.name}}</navigator>
       <view class="my_fans">200</view>
       <navigator url="shareStore/shareStore" class="my_share">分享</navigator>
-    </view>
-    <view class="my_code">
-      <image src="../../../images/QR_code.png" mode="aspectFill" bindtap="scan" />
-      <view class="my_code_text">+粉</view>
     </view>
   </view>
   <!--店铺功能-->
