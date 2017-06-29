@@ -199,12 +199,14 @@ Page({
               payProduct.push(res.data.datas[p])
               break;
             case "FEE_TYPE":
+              console.log(res.data.datas[p])
               feeProduct.push(res.data.datas[p])
               break;
             case "SELLING_METHOD":
               sellingProduct.push(res.data.datas[p])
               break;
             case "CUSTOMER_TYPE":
+              console.log(res.data.datas[p])
               customerProduct.push(res.data.datas[p])
               break;
             case "PRODUCT_GRADE":
@@ -212,6 +214,7 @@ Page({
               break;
           }
         }
+
         var customerCusts = res.data.customerCusts
         for (var p in res.data.images) {
           res.data.images[p] = util.api.imgUrl + res.data.images[p]

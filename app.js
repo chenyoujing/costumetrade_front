@@ -40,6 +40,7 @@ App({
             that.globalData.modifyPrice = res.data.data.employee.modifyPrice;
             that.globalData.zeroPrice = res.data.data.employee.zeroPrice;
             that.globalData.discount = res.data.data.employee.discount;
+            that.globalData.storeId = res.data.data.storeId;
             console.log(res.data )
             console.log(res.data.data.query.storeList)
            

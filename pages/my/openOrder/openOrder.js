@@ -682,7 +682,8 @@ Page({
       productcolor: this.data.selectColor,
       productsize: this.data.selectSize,
       producttype: this.data.GoodsDetail.producttype,
-      handtag: this.data.GoodsDetail.handcount
+      handtag: this.data.GoodsDetail.handcount,
+      storeid: app.globalData.storeId
     }
     if (this.data.unitChange){
       object.countnum = object.count * this.data.GoodsDetail.handcount;

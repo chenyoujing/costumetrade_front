@@ -83,7 +83,8 @@ Page({
                   productcolor: shopCart[p].productcolor,
                   productsize: sizeGroup[g],
                   producttype: shopCart[p].producttype,
-                  handtag: shopCart[p].handtag
+                  handtag: shopCart[p].handtag,
+                  storeid: app.globalData.storeId
                 })
               }
             } else {
@@ -96,7 +97,8 @@ Page({
                 productcolor: shopCart[p].productcolor,
                 productsize: shopCart[p].productsize,
                 producttype: shopCart[p].producttype,
-                handtag: shopCart[p].handtag
+                handtag: shopCart[p].handtag,
+                storeid: app.globalData.storeId
               })
             }
           }

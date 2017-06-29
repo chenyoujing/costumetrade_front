@@ -230,7 +230,8 @@ Page({
             productcolor: this.data.shopCart[p].productcolor,
             productsize: sizebill[index],
             producttype: this.data.shopCart[p].producttype,
-            handtag: this.data.shopCart[p].handcount
+            handtag: this.data.shopCart[p].handtag,
+            storeid: app.globalData.storeId
           })
           console.log(this.data.shopCart[p].sizeRaiseArray[index])
         }

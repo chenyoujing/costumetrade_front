@@ -371,7 +371,7 @@
       <image src="../../../images/down.png" mode="aspectFit" class="picker_image" />
       <view class="bindtap_cover"></view>
     </picker>
-    <view class="order_input_button" data-clear="true" data-paycate="paycate1" bindtap="update_priceInput">清零</view>
+    <view class="order_input_button" data-num="{{payCost1}}" data-type="payCost1" bindtap="clear">清零</view>
     <input class="pay_input" type="digit" placeholder="输入金额" value="{{payInfo.paycost1}}" bindinput="update_priceInput" data-paycate="paycate1"/>
   </view>
   <view class="clearfix" style="margin-top:10px;">
@@ -380,7 +380,7 @@
       <image src="../../../images/down.png" mode="aspectFit" class="picker_image" />
       <view class="bindtap_cover"></view>
     </picker>
-    <view class="order_input_button" data-clear="true" data-paycate="paycate2" bindtap="update_priceInput">清零</view>
+    <view class="order_input_button" data-num="{{payCost2}}" data-type="payCost2" bindtap="clear">清零</view>
     <input class="pay_input" type="digit" placeholder="输入金额" value="{{payInfo.paycost2}}" bindinput="update_priceInput" data-paycate="paycate2"/>
   </view>
 </modal>

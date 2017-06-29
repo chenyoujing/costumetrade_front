@@ -231,30 +231,6 @@ Page({
       }
     })
   },
-  update_priceInput:function(e){
-    // for (var p in this.data.product) {
-    //   if (this.data.product[p].payorderno == this.data.payorderno) {
-    //     var totalamt = this.data.product[p].totalamt
-    //   }
-    // }
-    var value = e.detail.value
-    if (e.target.dataset.clear){
-      value = 0
-    }
-    switch (e.target.dataset.paycate) {
-      case ('paycate1'):
-        this.setData({
-          "payInfo.paycost1": value,
-        })
-        break;
-      case ('paycate2'):
-        this.setData({
-          "payInfo.paycost2": value,
-        })
-        break;
-    }
-
-  },
   // 修改
   updateOrder:function(){
     var that = this;
@@ -303,6 +279,38 @@ Page({
         })
         that.cancel()
       }
+    })
+  },
+  // 清零
+  clear: function (e) {
+    var num = e.target.dataset.num;
+    var type = e.target.dataset.type;
+    var param = {};
+    param.debet = (parseInt(num) + parseInt(this.data.debet)).toFixed(2);
+    if (param.debet > parseInt(this.data.reallyPay)) {
+      param.debet = this.data.reallyPay;
+    }
+    param[type] = "";
+    console.log(param)
+    this.setData(param);
+  },
+  changePaycost: function (e) {
+    var type = e.target.dataset.type;
+    var param = {};
+    param[type] = e.detail.value;
+    if (type == 'payCost2') {
+      param.payCost1 = (this.data.reallyPay - e.detail.value).toFixed(2);
+    };
+    this.setData(param);
+    this.debet()
+  },
+  debet: function () {
+    var debet = (this.data.reallyPay - this.data.payCost1 - this.data.payCost2).toFixed(2);
+    if (debet < 0 && this.data.reallyPay >= 0) {
+      debet = 0;
+    }
+    this.setData({
+      debet: debet,
     })
   },
   // 订单操作

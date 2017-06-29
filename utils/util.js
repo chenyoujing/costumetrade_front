@@ -21,6 +21,7 @@ function toDate(number) {
   var D = date.getDate() < 10 ? '0' + date.getDate() : date.getDate();
   return (Y + M + D)
 }
+console.log(app.globalData) 
 //请求接口公共方法
 var api = {
   host: 'http://192.168.2.221:8088/',
@@ -60,6 +61,7 @@ var api = {
             app.globalData.modifyPrice = res.data.data.employee.modifyPrice;
             app.globalData.zeroPrice = res.data.data.employee.zeroPrice;
             app.globalData.discount = res.data.data.employee.discount;
+            app.globalData.storeId = res.data.data.storeId;
             console.log(app.globalData.openid)
             console.log(res.data);
             if (callback){
@@ -428,10 +430,10 @@ var api = {
     }
     wx.request(para);
   },
-  fail: function () {
+  fail: function (res) {
     wx.hideNavigationBarLoading()
     wx.showToast({
-      title: '请稍后重试',
+      title: res.data,
       mask: true,
       duration: 2000
     })
