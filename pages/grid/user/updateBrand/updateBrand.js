@@ -99,7 +99,7 @@ Page({
         geturl = options.url;
         addname = 'colorname';
         addurl = 'color/saveColor',
-        deleteUrl = "color/sdeleteUrl"
+        deleteUrl = "color/deleteUrl"
         break;
     }
     this.setData({

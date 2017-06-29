@@ -194,8 +194,9 @@ Page({
     this.setData({
       logisticName: logisticName,
       logisticCode: logisticCode,
-      fixedFee: fixedFee
+      freight: fixedFee
     })
+    console.log(e)
     this.cancel()
   },
   // 取消快递选择
