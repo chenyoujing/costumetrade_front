@@ -4,7 +4,7 @@
     <image src="../../../images/back-away.png" mode="aspectFit" class="title_image_back" />
   </navigator>
   <view class="title_text">目录</view>
-  <image src="../../../../images/more.png" mode="aspectFit" class="title_more" bindtap="more_function" />
+  <image src="../../../images/more.png" mode="aspectFit" class="title_more" bindtap="more_function" />
 </view>
 
 <scroll-view scroll-y class="report_catalog">

@@ -56,14 +56,14 @@ Page({
       var openid2 = openidList[0]
       var openid1 = openidList[1]
     }
-    wx.connectSocket({
-      url: 'wss://touchart.cn:8443/socketHander',
-      data:{
-        fUserName:openid2,
-        tUserName:openid1,
-      },
-      method: "GET"
-    })
+    // wx.connectSocket({
+    //   url: 'wss://touchart.cn:8443/socketHander',
+    //   data:{
+    //     fUserName:openid2,
+    //     tUserName:openid1,
+    //   },
+    //   method: "GET"
+    // })
     wx.onSocketOpen(function (res) {
       console.log('WebSocket连接已打开！')
     })

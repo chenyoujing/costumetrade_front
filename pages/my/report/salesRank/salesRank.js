@@ -6,7 +6,8 @@ Page({
   data: {
     title: '销售排行',
     more_function_display: 'none',
-    selected: 0
+    selected: 0,
+    categories: ['连衣裙', '报喜鸟', '衬衣'],
   },
   // 打开多功能键
   more_function: function () {
@@ -38,53 +39,60 @@ Page({
     this.updateData(e.target.dataset.index)
   },
   updateData: function (p) {
+    var that = this
     var data = [
-      [10, 10, 5, 30, 25, 25, 20, 10],
-      [35, 40, 82, 46, 78, 62, 45, 70],
-      [57, 56, 27, 68, 90, 12, 57],
-      [24, 45, 34, 21, 70, 46, 36]
-    ]
-    var categories = [
-      ['8:00', '10:00', '12:00', '14:00', '16:00', '18:00', '20:00', '22:00'],
-      ['7日前', '6日前', '5日前', '4日前', '3日前', '2日前', '1日前', '今日'],
-      ['30日前', '25日前', '20日前', '15日前', '10日前', '5日前', '今日'],
-      ['90日前', '75日前', '60日前', '45日前', '30日前', '15日前', '今日'],
+      [5, 1, 3],
+      [30, 25, 31],
+      [150, 102, 140],
+      [520, 420, 560]
     ]
     var series = [{
-      name: '入库量',
+      name: '销售量',
       data: data[p],
       color: "#52CAC1"
     }];
     columnChart.updateData({
-      categories: categories[p],
+      categories: that.data.categories,
+
       series: series
     });
   },
   touchHandler: function (e) {
-    columnChart.showToolTip(e, {
-      // background: '#7cb5ec'
-    });
+    var that = this
+    var index = columnChart.getCurrentDataIndex(e);
+    if (index > -1 && index < that.data.categories.length) {
+      columnChart.updateData({
+        type: 'line',
+        categories: ['8:00', '10:00', '12:00', '14:00', '16:00', '18:00', '20:00', '22:00'],
+        series: [{
+          name: that.data.categories[index],
+          data: [10, 10, 5, 30, 25, 25, 20, 10],
+        }]
+      });
+
+    }
   },
 
   // 创建报表
   chart: function () {
+    var that = this
     columnChart = new wxCharts({
       canvasId: 'columnCanvas',
       type: 'column',
-      categories: ['8:00', '10:00', '12:00', '14:00', '16:00', '18:00', '20:00', '22:00'],
+      categories: that.data.categories,
       animation: true,
       background: '#52CAC1',
       legend: false,
       series: [{
-        name: '入库量',
-        data: [10, 10, 5, 30, 25, 25, 20, 10],
+        name: '销售量',
+        data: [5, 1, 3],
         color: "#52CAC1"
       }],
       xAxis: {
         disableGrid: true
       },
       yAxis: {
-        title: '入库数量 (件)',
+        title: '销售数量 (件)',
         min: 0
       },
       width: 375,
