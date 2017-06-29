@@ -47,7 +47,7 @@
         <view style="width:100%;" bindtap="orderid" data-id="{{item.productid}}" data-num="{{item.count}}" data-index="{{index}}">
           <view style="width:8%;" data-id="{{item.productid}}">{{index+1}}</view>
           <view style="width:26%;" data-id="{{item.productid}}">{{item.productName}}</view>
-          <view style="width:8%;" data-id="{{item.productid}}">{{item.count}}</view>
+          <view style="width:8%;" data-id="{{item.productid}}">{{item.countnum||item.count}}</view>
           <view style="width:15%;" data-id="{{item.productid}}">{{item.productcolor}}</view>
           <view style="width:15%;" data-id="{{item.productid}}">{{item.productsize}}</view>
           <view style="width:16%;" data-id="{{item.productid}}">{{item.price}}</view>

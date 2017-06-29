@@ -27,7 +27,8 @@ Page({
     originalPrice:'',
     sizeRaiseArray:[],
     averagePrice:"",
-    productReviews:[]
+    productReviews:[],
+    GoodsInfoData:[]
   },
   //请求并显示货品详情
   showGoodsInfo: function () {
@@ -66,7 +67,6 @@ Page({
           productReviews[p].createTime = answerData.createTime ? util.toDate(answerData.createTime) : "";
         }
         that.setData({
-          soruceData: util.api.Clone(answerData),
           GoodsInfoData: answerData,
           id: answerData.id,
           imgUrls: imgUrls,
@@ -83,9 +83,7 @@ Page({
   enterShopCart: function () {
     var shopCart = this.data.shopCart; 
     var add = true;
-    if (this.data.GoodsInfoData.isPattern == 1 && this.data.sizes == 2) {
-      this.sizeRaiseArray();
-    }
+    this.saleAver(this.data.sizes)
     var object = {
       count: this.data.count,
       productName: this.data.GoodsInfoData.name,
@@ -103,6 +101,7 @@ Page({
       object.productsize = '全尺码';
       object.sizeGroup = this.data.GoodsInfoData.sizes;
       object.sizeRaiseArray = this.data.sizeRaiseArray;
+      object.isPattern = this.data.GoodsInfoData.isPattern
     }
     for (var p in shopCart) {
       if (shopCart[p].productId == object.productId && shopCart[p].productcolor == object.productcolor && shopCart[p].productsize == object.productsize) {
@@ -223,41 +222,20 @@ Page({
       this.setData({
         sizes: data.sizes
       })
-      this.sizeRaiseArray()
-    }
-  },
-// 加价尺码表
-  sizeRaiseArray:function(){
-    var sizeRaiseArray = [];
-    var sizeArray = this.data.sizeArray;
-    var average = 0;
-    var GoodsInfoData = this.data.GoodsInfoData;
-    var priceArry = [];
-    for (var p in sizeArray){
-      var add = false;
-      for (var g in this.data.priceRaise.sizeLists) {
-        if (sizeArray[p] == this.data.priceRaise.sizeLists[g].name) {
-          sizeRaiseArray.push(this.data.priceRaise.sizeLists[g].priceRaise);
-          add = true;
-        }
-      };
-      if(!add){
-        sizeRaiseArray.push(0)
+      if (this.data.GoodsInfoData.isPattern == 1){
+        this.saleAver(this.data.sizes)
       }
     }
-    // 计算平均値
-    for (var j in sizeRaiseArray){
-      var total = parseFloat(sizeRaiseArray[p]) + parseFloat(this.data.colorRaise) + parseFloat(this.data.originalPrice);
-      average += total;
-      priceArry.push(total)
+  },
+  // 调用函数请求方法
+  saleAver: function (unitString) {
+    if (unitString==2 && this.data.GoodsDetail.isPattern == 1) {
+      var object = util.api.sizeRaiseArray(this.data.sizeArray, this.data.GoodsInfoData, this.data.priceRaise.sizeLists, this.data.originalPrice, this.data.colorRaise, 'salePrice');
+      this.setData({
+        GoodsInfoData: object.GoodsInfoData,
+        sizeRaiseArray: object.sizeRaiseArray
+      })
     }
-    console.log(average);
-    GoodsInfoData.salePrice = (average / sizeArray.length).toFixed(2);
-    this.setData({
-      sizeRaiseArray: priceArry,
-      averagePrice: (average / sizeArray.length).toFixed(2),
-      GoodsInfoData: GoodsInfoData
-    })
   },
 // 颜色尺码选择同时计算加价
   color_checked: function (e) {
@@ -287,14 +265,12 @@ Page({
         }
       }
     }
-    this.setData(param);
-    GoodsInfoData.salePrice = (parseFloat(originalPrice) + parseFloat(this.data.colorRaise) + parseFloat(this.data.sizeRaise)).toFixed(2);
+    GoodsInfoData.salePrice = (parseFloat(originalPrice) + parseFloat(colorRaise) + parseFloat(sizeRaise)).toFixed(2);
     param['GoodsInfoData'] = GoodsInfoData;
     this.setData(param);
     if (this.data.GoodsInfoData.isPattern == 1 && this.data.sizes == 2){
-     this.sizeRaiseArray()
+      this.saleAver(this.data.sizes)
     }
-    
   },
   onLoad: function (e) {
     var that = this

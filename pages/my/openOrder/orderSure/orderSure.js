@@ -217,15 +217,14 @@ Page({
     submitData.order.paycate2 = this.data.payCate2;
     submitData.order.paycost2 = this.data.payCost2;
     for (var p in this.data.shopCart){
-      if (this.data.shopCart[p].productsize == "全尺码"){
+      if (this.data.shopCart[p].sizeGroup){
         console.log(this.data.shopCart[p])
         var sizebill = this.data.shopCart[p].sizeGroup.split(',');
-       
         for (var index in sizebill) {
           submitData.stoDetails.push({
             count: this.data.shopCart[p].count,
             productName: this.data.shopCart[p].productName,
-            price: this.data.shopCart[p].price,
+            price: this.data.shopCart[p].isPattern == 1 ? this.data.shopCart[p].sizeRaiseArray[index]:this.data.shopCart[p].price,
             productid: this.data.shopCart[p].productid,
             productunit: this.data.shopCart[p].productunit,
             productcolor: this.data.shopCart[p].productcolor,
@@ -233,12 +232,16 @@ Page({
             producttype: this.data.shopCart[p].producttype,
             handtag: this.data.shopCart[p].handcount
           })
+          console.log(this.data.shopCart[p].sizeRaiseArray[index])
         }
       }else{
         submitData.stoDetails.push(this.data.shopCart[p])
       }
     }
     console.log(submitData);
+    this.ajaxChange(submitData)
+  },
+  ajaxChange: function (submitData){
     var that = this;
     wx.showNavigationBarLoading()
     util.api.request({
@@ -250,12 +253,24 @@ Page({
       },
       success: function (res) {
         wx.hideNavigationBarLoading();
-
-        // var name = 'shopCartLowe' + that.data.type;
-        // wx.setStorage({
-        //   key: name,
-        //   data: product
-        // })
+        if (res.data == 1013) {
+          wx.showModal({
+            title: '提示',
+            content: '缺少库存,是否继续操作?',
+            success: function (res) {
+              if (res.confirm) {
+                submitData.isContinue = true;
+                that.ajaxChange(submitData);
+              }
+            }
+          })
+        } else {
+          // var name = 'shopCartLowe' + that.data.type;
+          // wx.setStorage({
+          // key: name,
+          // data: product
+          // })
+        }
       }
     })
   },

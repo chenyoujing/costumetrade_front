@@ -49,11 +49,15 @@ Page({
         var sizeArray = shopCart[p].sizeGroup.split(',')
         for(var g in sizeArray){
           totalnum += 1;
-          totalPrice = (parseFloat(totalPrice)+parseFloat(shopCart[p].sizeRaiseArray[g]) * shopCart[p].count).toFixed(2);
+          if (shopCart[p].isPattern ==1){
+            totalPrice += Number(Number(shopCart[p].sizeRaiseArray[g]) * shopCart[p].count);
+          }else{
+            totalPrice += Number(Number(shopCart[p].price) * shopCart[p].count);
+          }
         }
-      } else if (!shopCart[p].sizeGroup && shopCart[p].iSselect == true){
+    } else if (!shopCart[p].sizeGroup && shopCart[p].iSselect == true){
         totalnum += 1;
-        totalPrice = (parseFloat(totalPrice) + parseFloat(shopCart[p].price) * shopCart[p].count).toFixed(2);
+        totalPrice += Number(Number(shopCart[p].price) * shopCart[p].count);
       }
     }
     this.setData({

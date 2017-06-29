@@ -47,7 +47,9 @@ Page({
     priceRaise:{},
     sizeRaise:0,
     colorRaise:0,
-    showPrice:0
+    showPrice:0,
+    sizeRaiseArray:[],
+    showPrice2:0
   },
   // 几个权限判断
   authorityPurchaseprice: function () {
@@ -103,7 +105,6 @@ Page({
   },
   // 进入详情
   orderid:function(e){
-    console.log(e)
     this.detail(e.target.dataset.index, e.target.dataset.id, e.currentTarget.dataset.num)
   },
   // 打开详情页面
@@ -128,7 +129,9 @@ Page({
     this.setData({
       orderid: "",
       selectSize:'',
-      selectColor:""
+      selectColor:"",
+      sizeRaise: 0,
+      colorRaise: 0
     })
   },
   // 键盘事件
@@ -221,13 +224,15 @@ Page({
     var GoodsDetail = this.data.GoodsDetail;
     var showPrice2 = this.data.showPrice2;
     var judgeSalePrice = this.data.judgeSalePrice + this.data.sizeRaise + this.data.colorRaise;
+    console.log(this.data.GoodsDetail.showPrice)
+    console.log(judgeSalePrice)
     if (this.data.GoodsDetail.showPrice < judgeSalePrice){
       wx.showToast({
         title: '您的权限不够，不能更改价格！',
         icon: 'warn',
         duration: 2000
       })
-       GoodsDetail.showPrice = parseFloat(showPrice2) + parseFloat(colorRaise) + parseFloat(sizeRaise);
+      GoodsDetail.showPrice = parseFloat(showPrice2) + parseFloat(this.data.colorRaise) + parseFloat(this.data.sizeRaise);
        this.setData({
         GoodsDetail: GoodsDetail
       })
@@ -275,7 +280,8 @@ Page({
     }
     GoodsDetail.showPrice = parseFloat(showPrice2) + parseFloat(colorRaise) + parseFloat(sizeRaise);
     param.GoodsDetail = GoodsDetail;
-    this.setData(param)
+    this.setData(param);
+    this.saleAver(this.data.unitChange);
   },
   // 手动更改价格
   changeInputSale: function () {
@@ -433,7 +439,6 @@ Page({
         keyHidden: true
       })
     }
-    console.log(this.data.keyHidden)
   },
   // keyShow显示键盘
   keyShow:function(e){
@@ -491,11 +496,30 @@ Page({
   // 手件切换
   changeGroup: function () {
     var unitString = !this.data.unitChange;
+    var GoodsDetail = this.data.GoodsDetail;
+    if (!unitString){
+      GoodsDetail.showPrice = this.data.showPrice2
+    }
     this.setData({
       unitChange: unitString,
       disabled: unitString,
-      colorChange:1
+      colorChange:1,
+      aa:false,
+      colorRaise:0,
+      sizeRaise:0,
+      GoodsDetail: GoodsDetail
     })
+    this.saleAver(unitString);
+  },
+  // 调用函数请求方法
+  saleAver: function (unitString){
+    if (unitString && this.data.GoodsDetail.isPattern == 1) {
+      var object = util.api.sizeRaiseArray(this.data.size, this.data.GoodsDetail, this.data.priceRaise.sizeLists, this.data.showPrice2, this.data.colorRaise, 'showPrice');
+      this.setData({
+        GoodsDetail: object.GoodsInfoData,
+        sizeRaiseArray: object.sizeRaiseArray
+      })
+    }
   },
   // 请求库存
   stock_request: function (id) {
@@ -579,7 +603,8 @@ Page({
         }
         res.data.showPrice = res.data[that.data.saleChangeName];
         res.data.image = res.data.image ? util.api.imgUrl + res.data.image:""; 
-        GoodsDetail.handcount = sizeArray.length;
+        res.data.handcount = sizeArray.length;
+
         that.setData({
           GoodsDetail: res.data,
           size: sizeArray,
@@ -589,7 +614,8 @@ Page({
           showPrice2: res.data.showPrice
         })
         that.stock_request(id);
-        that.judgeSalePass()
+        that.judgeSalePass();
+        that.saleAver(that.data.unitChange) //判断加价是否存在
       }
     })
   },
@@ -614,13 +640,25 @@ Page({
     var realcostArray = 0;
     var totalNum = 0; 
     for(var p in product){
-      realcostArray += parseFloat((product[p].price * product[p].count).toFixed(1));
-      totalNum += parseInt(product[p].count);
+      if (product[p].sizeGroup){
+        var sizeArray = product[p].sizeGroup.split(',')
+        for (var g in sizeArray) {
+          if (product[p].isPattern == 1) {
+            realcostArray += Number(Number(product[p].sizeRaiseArray[g]) * product[p].count);
+          } else {
+            realcostArray += Number(Number(product[p].price) * product[p].count);
+          }
+          totalNum += parseInt(product[p].count);
+        }
+      }else{
+        realcostArray += Number((product[p].price * product[p].count).toFixed(1));
+        totalNum += parseInt(product[p].count);
+      }
     }
     this.setData({
       totalData:{
         totalNum: totalNum,
-        realcostArray: (realcostArray).toFixed(2)
+        realcostArray: (realcostArray).toFixed(1)
       }
     })
     var that = this;
@@ -634,6 +672,7 @@ Page({
   enterShopCart: function (){
     var add = true;
     var shopCart = this.data.shopCart;
+    this.saleAver(this.data.unitChange)
     var object = {
       count: this.data.keyboardNum2 ? this.data.keyboardNum2 : this.data.oneKeyshow,
       productName: this.data.GoodsDetail.name,
@@ -646,9 +685,11 @@ Page({
       handtag: this.data.GoodsDetail.handcount
     }
     if (this.data.unitChange){
-      object.count = object.count * this.data.GoodsDetail.handcount;
+      object.countnum = object.count * this.data.GoodsDetail.handcount;
       object.productsize =  '全尺码';
       object.sizeGroup = this.data.GoodsDetail.sizes;
+      object.sizeRaiseArray = this.data.sizeRaiseArray;
+      object.isPattern = 1
     }
     for(var p in shopCart){
       if (shopCart[p].upData){

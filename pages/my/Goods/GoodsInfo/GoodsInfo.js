@@ -381,29 +381,30 @@ Page({
             key: 'GoodsData',
             success: function (res) {
               totalProduct = res.data ? res.data:[];
+              if (that.data.id) {
+                // 更新货品缓存
+                for (var p in totalProduct) {
+                  if (totalProduct[p].id = that.data.id) {
+                    for (var j in objectSubmit) {
+                      totalProduct[p][j] = objectSubmit[j]
+                    }
+                    break;
+                  }
+                }
+                if (objectSubmit.name || objectSubmit.image) {
+                  app.updataGoodsInfo = that.data.GoodsInfoData;
+                }
+              } else {
+                totalProduct.unshift(objectSubmit)
+              }
+              wx.setStorage({
+                key: "GoodsData",
+                data: totalProduct
+              })
             }
           })
           app.newid = that.data.id == "" ? res.data : null;
-          if (that.data.id){
-            // 更新货品缓存
-            for (var p in totalProduct){
-              if (totalProduct[p].id = that.data.id){
-                for (var j in objectSubmit){
-                  totalProduct[p][j] = objectSubmit[j]
-                }
-                break;
-              }
-            }
-            if (objectSubmit.name || objectSubmit.image) {
-              app.updataGoodsInfo = that.data.GoodsInfoData;
-            }
-          }else{
-            totalProduct.unshift(objectSubmit)
-          }
-          wx.setStorage({
-            key: "GoodsData",
-            data: totalProduct
-          })
+         
           wx.navigateBack({
             delta: 1
           })

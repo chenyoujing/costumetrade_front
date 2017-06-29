@@ -182,6 +182,7 @@ var api = {
     }
     return updated;
   },
+  // 排序
   by : function (name) {
      return function (o, p) {
          var a, b;
@@ -434,7 +435,43 @@ var api = {
       mask: true,
       duration: 2000
     })
-  }
+  },
+  // 加价尺码表,商城里面用
+  // sizeArray 尺码数据
+  // GoodsInfoData 商品详情
+  // sizeLists  加价表
+  // originalPrice 原始价格
+  // colorRaise 颜色加价
+  // typeName 价格 在详情里面的名字
+  sizeRaiseArray: function (sizeArray, GoodsInfoData, sizeLists, originalPrice, colorRaise, typeName) {
+    var sizeRaiseArray = [];
+    var average = 0;
+    var priceArry = [];
+    for (var p in sizeArray) {
+      var add = false;
+      for (var g in sizeLists) {
+        if (sizeArray[p].size == sizeLists[g].name) {
+          sizeRaiseArray.push(sizeLists[g].priceRaise);
+          add = true;
+        }
+      };
+      if (!add) {
+        sizeRaiseArray.push(0)
+      }
+    }
+    // 计算平均値
+    for (var j in sizeRaiseArray) {
+      var total = parseFloat(sizeRaiseArray[j]) + parseFloat(colorRaise) + parseFloat(originalPrice);
+      average += total;
+      priceArry.push(total)
+    }
+    GoodsInfoData[typeName] = (average / sizeArray.length).toFixed(2);
+    return {
+      sizeRaiseArray: priceArry,
+      averagePrice: (average / sizeArray.length).toFixed(2),
+      GoodsInfoData: GoodsInfoData
+    }
+  },
 }
 module.exports = {
   formatTime: formatTime,

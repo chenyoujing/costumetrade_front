@@ -59,14 +59,11 @@ Page({
           var submitData = {};
           var shopCart = that.data.shopCart;
           var newShopCart = [];
+          var price = (that.data.totalPrice + that.data.freight).toFixed(2);
+          submitData.order.realcostArray = price;
           submitData.stoDetails = [];
           submitData.order = {};
           submitData.order.ordertype = 1;
-          var price = (that.data.totalPrice + that.data.freight).toFixed(2);
-          submitData.order.realcostArray = price;
-          console.log(price)
-          console.log(that.data.totalPrice)
-          console.log(that.data.freight)
           submitData.openid = app.globalData.openid;
           submitData.order.shipcontact = that.data.address.contact;
           submitData.order.shipphone = that.data.address.phone;
@@ -80,7 +77,7 @@ Page({
                 newShopCart.push({
                   count: shopCart[p].count,
                   productname: shopCart[p].productName,
-                  price: shopCart[p].sizeRaiseArray[g],
+                  price: shopCart[p].isPattern == 1 ? shopCart[p].sizeRaiseArray[g] : shopCart[p].price,
                   productid: shopCart[p].productid,
                   productunit: shopCart[p].productunit,
                   productcolor: shopCart[p].productcolor,
@@ -104,7 +101,6 @@ Page({
             }
           }
           submitData.stoDetails = newShopCart;
-          console.log(submitData)
           that.submitData(submitData);
         }
       }
