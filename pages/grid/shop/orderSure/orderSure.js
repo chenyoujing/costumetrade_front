@@ -188,17 +188,19 @@ Page({
       expressModal:false
     })
   },
+
   // 选择更改后的快递
   logistic:function(e){
-    var logisticName = e.target.dataset.logisticName;
-    var logisticCode = e.target.dataset.logisticCode;
-    var fixedFee = e.target.dataset.fixedFee;
+    var logisticName = e.target.dataset.name;
+    var logisticCode = e.target.dataset.code;
+    var fixedFee = e.target.dataset.fixedfee;
     console.log(e)
     this.setData({
       logisticName: logisticName,
       logisticCode: logisticCode,
       fixedFee: fixedFee
     })
+    this.cancel()
   },
   // 取消快递选择
   cancel:function(){
