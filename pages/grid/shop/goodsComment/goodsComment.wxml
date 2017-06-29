@@ -27,6 +27,6 @@
         <view class="client_name">{{item.contactname}}</view>
       </view>
       <view class="evaluate_content_body">{{item.msg}}</view>
-      <view class="evaluate_content_footer">{{item.createTime}}</view>
+      <view class="evaluate_content_footer">{{item.createtime}}</view>
     </view>
   </view>

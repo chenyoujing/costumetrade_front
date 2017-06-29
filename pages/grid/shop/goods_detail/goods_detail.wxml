@@ -52,7 +52,7 @@
         <view class="client_name">{{item.contactname}}</view>
       </view>
       <view class="evaluate_content_body">{{item.msg}}</view>
-      <view class="evaluate_content_footer">{{item.createTime}}</view>
+      <view class="evaluate_content_footer">{{item.createtime}}</view>
     </view>
     <navigator url="../goodsComment/goodsComment?name={{title}}&stordId={{stordId}}&id={{id}}&comment={{GoodsInfoData.countReview}}" class="evaluate_more">查看更多评论</navigator>
   </view>

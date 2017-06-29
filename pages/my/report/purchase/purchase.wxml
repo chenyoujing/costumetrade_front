@@ -1,0 +1,25 @@
+<!--头部-->
+<view class="title clearfix">
+  <navigator open-type="navigateBack">
+    <image src="../../../../images/back-away.png" mode="aspectFit" class="title_image_back" />
+  </navigator>
+  <view class="title_text">{{title}}</view>
+  <image src="../../../../images/more.png" mode="aspectFit" class="title_more" bindtap="more_function" />
+</view>
+
+<view class="time_select">
+  <view class="select_view {{selected==0?'selected':''}}" bindtap="select" data-index="0">今日</view>
+  <view class="select_view {{selected==1?'selected':''}}" bindtap="select" data-index="1">7日</view>
+  <view class="select_view {{selected==2?'selected':''}}" bindtap="select" data-index="2">30日</view>
+  <view class="select_view {{selected==3?'selected':''}}" bindtap="select" data-index="3">90日</view>
+  <view class="select_view {{selected==4?'selected':''}}" bindtap="select" data-index="4">...</view>
+</view>
+<canvas class="canvas" canvas-id="lineCanvas" bindtouchmove="touchHandler" bindtouchstart="touchHandler"/>
+
+<!--更多功能-->
+<view class="more_function_cover {{animation}}" bindtap="more_function_close" style="display:{{more_function_display}};"></view>
+<view class="more_function {{animation}}" style="display:{{more_function_display}};">
+  <view class="more_function_view" data-type="1" bindtap="batchType">123</view>
+  <view class="more_function_view" data-type="2" bindtap="batchType">112</view>
+  <view class="more_function_view" data-type="3" bindtap="batchType">111</view>
+</view>

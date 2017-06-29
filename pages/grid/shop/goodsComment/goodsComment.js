@@ -22,10 +22,13 @@ Page({
       },
       method: 'POST',
       header: {
-        'content-type': 'application/json'
+        'content-type': 'application/x-www-form-urlencoded'
       },
       success: function (res) {
         wx.hideNavigationBarLoading();
+        for(var p in res.data){
+          res.data[p].createtime = res.data[p].createtime ? util.toDate(res.data[p].createtime) : "";
+        }
         that.setData({
           productReviews: res.data
         })

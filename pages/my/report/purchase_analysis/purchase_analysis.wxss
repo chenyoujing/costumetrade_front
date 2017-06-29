@@ -1,0 +1,6 @@
+/*头部*/
+@import "../../../../css/report.wxss";
+
+.canvas{
+  height: 300px;
+}

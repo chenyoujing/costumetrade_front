@@ -9,10 +9,10 @@ Page({
     var image = app.globalData.storeInfo[0].images
     var images = []
     for (var p in image){
-      if(images[p]){
-        images.push(util.api.imgUrl + images[p])
+      if(image[p]){
+        images.push(util.api.imgUrl + image[p])
       }else{
-        images.push(images[p])
+        images.push(image[p])
       }
     }
     this.setData({
