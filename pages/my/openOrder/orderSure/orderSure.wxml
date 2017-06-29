@@ -31,7 +31,7 @@
             {{paycact[paycact_index1].dictText}}：
             <image src="../../../../images/down.png" mode="aspectFit" class="picker_image" />
           </picker>
-            <button class="order_input_button"  data-num="{{payCost1}}" data-type="payCost1" bindtap="clear">清零</button>
+            <button class="order_input_button" data-num="{{payCost1}}" data-type="payCost1" bindtap="clear">清零</button>
             <input type="digit" data-type="payCost1" value="{{payCost1}}" class="order_input2" name="name"  bindinput="changePaycost"/>
             <view class="clear"></view>
           </view>

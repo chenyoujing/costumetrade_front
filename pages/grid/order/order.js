@@ -232,15 +232,24 @@ Page({
     })
   },
   update_priceInput:function(e){
+    // for (var p in this.data.product) {
+    //   if (this.data.product[p].payorderno == this.data.payorderno) {
+    //     var totalamt = this.data.product[p].totalamt
+    //   }
+    // }
+    var value = e.detail.value
+    if (e.target.dataset.clear){
+      value = 0
+    }
     switch (e.target.dataset.paycate) {
       case ('paycate1'):
         this.setData({
-          paycost1: e.detail.value
+          "payInfo.paycost1": value,
         })
         break;
       case ('paycate2'):
         this.setData({
-          paycost2: e.detail.value
+          "payInfo.paycost2": value,
         })
         break;
     }
@@ -257,10 +266,10 @@ Page({
         order.sellerstoreid = this.data.product[p].sellerstoreid
         order.buyerstoreid = this.data.product[p].buyerstoreid
         order.logisticsCode = this.data.product[p].logisticsCode  
-        order.paycate1 = that.data.paycact[that.data.paycact_index1] ? that.data.paycact[that.data.paycact_index1].dictValue : null
-        order.paycost1 = that.data.paycost1
-        order.paycate2 = that.data.paycact[that.data.paycact_index2] ? that.data.paycact[that.data.paycact_index2].dictValue : null
-        order.paycost2 = that.data.paycost2  
+        order.paycate1 = that.data.paycact[that.data.payInfo.paycact_index1] ? that.data.paycact[that.data.payInfo.paycact_index1].dictValue : null
+        order.paycost1 = that.data.payInfo.paycost1
+        order.paycate2 = that.data.paycact[that.data.payInfo.paycact_index2] ? that.data.paycact[that.data.payInfo.paycact_index2].dictValue : null
+        order.paycost2 = that.data.payInfo.paycost2  
         
         stoDetails.id = this.data.product[p].id
         stoDetails.price = that.data.update_price
@@ -460,8 +469,6 @@ Page({
     
     for (var p in that.data.product) {
       if (that.data.product[p].payorderno == payorderno) {
-        var paycost1 = that.data.product[p].paycost1
-        var paycost2 = that.data.product[p].paycost2
         for (var j in that.data.paycact) {
           if (that.data.product[p].paycate1 == that.data.paycact[j].dictValue) {
             var paycact_index1 = j
@@ -470,14 +477,19 @@ Page({
             var paycact_index2 = j
           }
         }
+        var payInfo = {
+          paycact_index1: paycact_index1 || null,
+          paycact_index2: paycact_index2 || null,
+          paycost1: that.data.product[p].paycost1,
+          paycost2: that.data.product[p].paycost2,
+          totalamt: that.data.product[p].totalamt,
+          debetamt: that.data.product[p].debetamt,
+        }
       }
     }
     this.setData({
       updateModal: false,
-      paycact_index1: paycact_index1 || null,
-      paycact_index2: paycact_index2 || null,
-      paycost1: paycost1,
-      paycost2: paycost2,
+      payInfo: payInfo,
       payorderno: payorderno
     })
   },
@@ -510,12 +522,12 @@ Page({
     switch (e.target.dataset.paycate){
       case ('paycate1'):
         this.setData({
-          paycact_index1: e.detail.value
+          "payInfo.paycact_index1": e.detail.value,
         })
         break;
       case ('paycate2'):
         this.setData({
-          paycact_index2: e.detail.value
+          "payInfo.paycact_index2": e.detail.value,
         })
         break;
     }

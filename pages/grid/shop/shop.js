@@ -57,7 +57,11 @@ Page({
       var openid1 = openidList[1]
     }
     wx.connectSocket({
-      url: 'wss://touchart.cn:8443/socketHander?fUserName='+openid2+'&tUserName='+openid1,
+      url: 'wss://touchart.cn:8443/socketHander',
+      data:{
+        fUserName:openid2,
+        tUserName:openid1,
+      },
       method: "GET"
     })
     wx.onSocketOpen(function (res) {
@@ -67,7 +71,7 @@ Page({
       console.log('收到服务器内容：' + res.data)
     })
     wx.onSocketClose(function (res) {
-      console.log('WebSocket 已关闭！')
+      console.log('WebSocket 连接打开失败')
     })
     // wx.onSocketOpen(function (res) {
     //   wx.sendSocketMessage({

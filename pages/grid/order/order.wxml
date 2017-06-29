@@ -358,19 +358,29 @@
 <!--销售-全部-修改-->
 <modal title="修改" hidden="{{updateModal}}" confirm-text="确定" cancel-text="取消"  bindconfirm="updateOrder" bindcancel="cancel" >
   <view class="clearfix" style="margin-top:10px;">
-    <picker class="modal_pay one_line" range="{{paycact}}" range-key="dictText" bindchange="paycactPicker" value="{{paycact_index1}}" data-paycate="paycate1">
-      {{paycact[paycact_index1].dictText}}
-      <image src="../../../images/down.png" mode="aspectFit" class="picker_image" />
-      <view class="bindtap_cover"></view>
-    </picker>
-     <input class="pay_input" type="digit" placeholder="输入金额" value="{{paycost1}}" bindinput="update_priceInput" data-paycate="paycate1"/>
+    <view class="modal_pay one_line" style="border:none;width:50%;margin:0;">
+      总金额：{{payInfo.totalamt}}
+    </view>
+    <view class="modal_pay one_line" style="border:none;width:50%;margin:0;">
+      未付：{{payInfo.debetamt}}
+    </view>
   </view>
   <view class="clearfix" style="margin-top:10px;">
-    <picker class="modal_pay one_line" range="{{paycact}}" range-key="dictText" bindchange="paycactPicker" value="{{paycact_index2}}" data-paycate="paycate2">
-      {{paycact[paycact_index2].dictText}}
+    <picker class="modal_pay one_line" range="{{paycact}}" range-key="dictText" bindchange="paycactPicker" value="{{payInfo.paycact_index1}}" data-paycate="paycate1">
+      {{paycact[payInfo.paycact_index1].dictText}}
       <image src="../../../images/down.png" mode="aspectFit" class="picker_image" />
       <view class="bindtap_cover"></view>
     </picker>
-     <input class="pay_input" type="digit" placeholder="输入金额" value="{{paycost2}}" bindinput="update_priceInput" data-paycate="paycate2"/>
+    <view class="order_input_button" data-clear="true" data-paycate="paycate1" bindtap="update_priceInput">清零</view>
+    <input class="pay_input" type="digit" placeholder="输入金额" value="{{payInfo.paycost1}}" bindinput="update_priceInput" data-paycate="paycate1"/>
+  </view>
+  <view class="clearfix" style="margin-top:10px;">
+    <picker class="modal_pay one_line" range="{{paycact}}" range-key="dictText" bindchange="paycactPicker" value="{{payInfo.paycact_index2}}" data-paycate="paycate2">
+      {{paycact[payInfo.paycact_index2].dictText}}
+      <image src="../../../images/down.png" mode="aspectFit" class="picker_image" />
+      <view class="bindtap_cover"></view>
+    </picker>
+    <view class="order_input_button" data-clear="true" data-paycate="paycate2" bindtap="update_priceInput">清零</view>
+    <input class="pay_input" type="digit" placeholder="输入金额" value="{{payInfo.paycost2}}" bindinput="update_priceInput" data-paycate="paycate2"/>
   </view>
 </modal>
