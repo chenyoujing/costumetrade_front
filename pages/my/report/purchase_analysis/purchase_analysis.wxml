@@ -14,7 +14,11 @@
   <view class="select_view {{selected==3?'selected':''}}" bindtap="select" data-index="3">90日</view>
   <view class="select_view {{selected==4?'selected':''}}" bindtap="select" data-index="4">...</view>
 </view>
+<input type="text" class="search_input">
+  <image src="../../../../images/search.png" mode="aspectFit" class="search_input_image" />
+</input>
 <canvas class="canvas" canvas-id="pieCanvas" bindtouchstart="touchHandler"/>
+
 
 <!--更多功能-->
 <view class="more_function_cover {{animation}}" bindtap="more_function_close" style="display:{{more_function_display}};"></view>

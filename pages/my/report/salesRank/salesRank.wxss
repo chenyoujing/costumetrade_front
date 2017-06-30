@@ -2,26 +2,5 @@
 @import "../../../../css/report.wxss";
 
 .report_form{
-  border: 1px solid #DDDDDD;
-}
-.form_title,.form_content{
-  display: flex;
-  
-}
-.form_title{
-  background-color: #52CAC1;
-  color: #ffffff;
-}
-.form_content{
-  border-bottom: 1px solid #EEEEEE;
-}
-.form_view{
-  flex-grow: 1;
-  text-align: center;
-  font-size: 16px;
-  line-height: 36px;
-  height: 36px;
-}
-.form_active{
-  background-color: #EEEEEE;
+  margin: 20px 100rpx;
 }
