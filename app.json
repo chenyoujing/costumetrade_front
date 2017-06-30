@@ -54,7 +54,11 @@
     "pages/grid/shop/storeDetails/storeDetails",
     "pages/grid/shop/orderSure/orderSure",
     "pages/grid/shop/payOrder/payOrder",
-    "pages/index/index"
+    "pages/index/index",
+    "pages/my/report/purchase/purchase",
+    "pages/my/report/purchase_analysis/purchase_analysis",
+    "pages/my/report/salesRank/salesRank",
+    "pages/my/report/report"
   ],
   "window": {
     "backgroundTextStyle": "light",
