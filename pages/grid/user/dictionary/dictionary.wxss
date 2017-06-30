@@ -604,3 +604,9 @@ swiper{
   height: 16px;
   padding: 7px;
 }
+
+
+.modal_input{
+  border: 1px solid #dddddd;
+  color: #000000;
+}

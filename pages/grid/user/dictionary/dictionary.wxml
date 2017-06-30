@@ -180,7 +180,7 @@
           <view class="setting_pay">
             <view class="pay_title">
               付款方式
-              <image src="../../../../images/append.png" mode="aspectFit" class="image_setting0" />
+              <image src="../../../../images/append.png" mode="aspectFit" class="image_setting0" bindtap="modal" data-type="pay" />
             </view>
             <block wx:for="{{payProduct}}">
               <view class="pay_view">
@@ -356,7 +356,7 @@
         <view class="setting_view" style="padding-right:20px;">
           <view class="pay_title" style="font-size:18px;">
             费用单项目
-            <image src="../../../../images/append.png" mode="aspectFit" class="image_setting0" />
+            <image src="../../../../images/append.png" mode="aspectFit" class="image_setting0" bindtap="modal" data-type="fee" />
           </view>
           <block wx:for="{{feeProduct}}">
             <view class="pay_view">
@@ -421,3 +421,6 @@
   </swiper>
 </view>
 
+<modal title="{{modalTitle}}" hidden="{{modal}}" bindconfirm="confirm" bindcancel="cancel">
+  <input type="text" class="modal_input" />
+</modal>
