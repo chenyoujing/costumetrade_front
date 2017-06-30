@@ -16,7 +16,8 @@ Page({
     originalEmployeeDetails:{},
     privilegeIdsArray:[],
     employeesId:"",
-    print:'wifi'
+    print:'wifi',
+    modal: true
   },
   swiper_change: function (e) {
     this.setData({
@@ -255,6 +256,30 @@ Page({
     this.setData({
       freight: freight
 
+    })
+  },
+  modal: function (e) {
+    var title = ''
+    switch (e.target.dataset.type) {
+      case ('pay'):
+        title = "添加付款方式";
+        break;
+      case ('fee'):
+        title = "添加费用单类型";
+        break;
+    }
+
+    this.setData({
+      modal: false,
+      modalTitle: title
+    })
+  },
+  confirm: function () {
+
+  },
+  cancel: function () {
+    this.setData({
+      modal: true
     })
   },
   onLoad: function() {
