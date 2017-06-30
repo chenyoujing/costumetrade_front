@@ -17,7 +17,9 @@ Page({
     privilegeIdsArray:[],
     employeesId:"",
     print:'wifi',
-    modal: true
+    modal: true,
+    submitData:[],
+    addObject:{}
   },
   swiper_change: function (e) {
     this.setData({
@@ -31,6 +33,10 @@ Page({
       current: data.dictionary,
     })
   },
+  /***********
+   * 员工开始
+   ***********/
+
   //请求员工详情
   staff_updata: function (e) {
     var id = e.target.dataset.id;
@@ -173,6 +179,14 @@ Page({
       }
     })
   },
+
+  /***********
+   * 员工结束
+   ***********/
+
+  /***********
+   * 基础高级开始
+   ***********/
   // 请求数据
   dictionary_request: function (id) {
     var that = this;
@@ -180,7 +194,7 @@ Page({
     util.api.request({
       url: 'dictionary/getDataDictionarys',
       data: {
-        storeId: String(1)
+        storeId: app.globalData.storeId 
       },
       method: 'POST',
       header: {
@@ -200,14 +214,12 @@ Page({
               payProduct.push(res.data.datas[p])
               break;
             case "FEE_TYPE":
-              console.log(res.data.datas[p])
               feeProduct.push(res.data.datas[p])
               break;
             case "SELLING_METHOD":
               sellingProduct.push(res.data.datas[p])
               break;
             case "CUSTOMER_TYPE":
-              console.log(res.data.datas[p])
               customerProduct.push(res.data.datas[p])
               break;
             case "PRODUCT_GRADE":
@@ -215,11 +227,17 @@ Page({
               break;
           }
         }
-
-        var customerCusts = res.data.customerCusts
+        var customerCusts = res.data.customerCusts;
+        for (var g in customerCusts){
+          for (var j in productGrade){
+            if (customerCusts[g].prodgrade == productGrade[j].dictValue){
+              customerCusts[g].prodgradeName = productGrade[j].dictText
+            }
+          }
+        }
         for (var p in res.data.images) {
           res.data.images[p] = util.api.imgUrl + res.data.images[p]
-        }
+        } 
         var images = res.data.images
         var logisticFees = res.data.logisticFees
         that.setData({
@@ -236,6 +254,122 @@ Page({
       }
     })
   },
+  // 删除费用单、分店、支付方式
+  dictionaryDelet:function(e){
+    var submitData = this.data.submitData;
+    var index = e.target.dataset.index;
+    var name = e.target.dataset.name;
+    var product = this.data[name];
+    var param = {};
+    product.splice(index,1);
+    param[name] = product;
+    submitData[name] = product;
+    param['submitData'] = submitData;
+    this.setData(param)
+  },
+  // input
+  newName:function(e){
+    this.setData({
+      newName:e.detail.value
+    })
+  },
+  // 添加费用单、分店、支付方式
+  dictionaryAdd: function () {
+    var addObject = this.data.addObject;
+    var product = this.data[addObject.name]
+    var newName = this.data.newName;
+    var submitData = this.data.submitData;
+    var param = {};
+    var add = true;
+    if (!newName){
+      wx.showToast({
+        title: '请输入内容',
+        mask: true,
+        duration: 2000
+      })
+    }else {
+      for (var p in product){
+        if (product[p].dictText == newName){
+          wx.showToast({
+            title: '已存在，请修改',
+            mask: true,
+            duration: 2000
+          })
+          add = false
+        }
+      }
+      if (add){
+        addObject.datas.dictText = newName;
+        addObject.datas.dictValue = newName;
+        addObject.datas.storeId = app.globalData.storeId;
+        product.push(addObject.datas);
+        submitData[addObject.name] = product;
+        param[addObject.name] = product;
+        param["submitData"] = submitData;
+        this.setData(param)
+        wx.showToast({
+          title: "添加成功！",
+          mask: true,
+          duration: 2000
+        })
+        this.cancel();
+      }
+    }
+  },
+  // 运费规则
+  freight: function (e) {
+    var freight = e.target.dataset.freight
+    if (freight === this.data.freight) {
+      freight = ''
+    }
+    this.setData({
+      freight: freight
+
+    })
+  },
+  modal: function (e) {
+    var title = '';
+    var addObject = this.data.addObject;
+    var dictGroup = "";
+    var dictGroupName = "";
+    var name = '';
+    switch (e.target.dataset.type) {
+      case ('pay'):
+        title = "添加付款方式";
+        dictGroup = "PAY_TYPE";
+        dictGroupName = "支付方式";
+        name = "payProduct"
+        break;
+      case ('fee'):
+        title = "添加费用单类型";
+        dictGroup = "FEE_TYPE";
+        dictGroupName = "费用类型";
+        name = "feeProduct"
+        break;
+    }
+    addObject.name = name;
+    addObject.datas = {
+      dictGroup: dictGroup,
+      dictGroupName: dictGroupName
+    };
+    this.setData({
+      modal: false,
+      modalTitle: title,
+      addObject: addObject
+    })
+  },
+  cancel: function () {
+    this.setData({
+      modal: true
+    })
+  },
+  /***********
+   * 基础高级结束
+   ***********/
+
+   /***********
+   * 打印开始 *
+   ***********/
   // 选择打印
   print:function(e){
     var print = e.target.dataset.print
@@ -247,47 +381,34 @@ Page({
 
     })
   },
-  // 运费规则
-  freight:function(e){
-    var freight = e.target.dataset.freight
-    if (freight === this.data.freight){
-      freight = ''
-    }
-    this.setData({
-      freight: freight
-
-    })
-  },
-  modal: function (e) {
-    var title = ''
-    switch (e.target.dataset.type) {
-      case ('pay'):
-        title = "添加付款方式";
-        break;
-      case ('fee'):
-        title = "添加费用单类型";
-        break;
-    }
-
-    this.setData({
-      modal: false,
-      modalTitle: title
-    })
-  },
-  confirm: function () {
-
-  },
-  cancel: function () {
-    this.setData({
-      modal: true
-    })
-  },
+ /***********
+   * 打印结束 *
+   ***********/
+    /***********
+   * 提交方法 *
+   ***********/
+   submitData:function(){
+     var that = this;
+     wx.showNavigationBarLoading()
+     util.api.request({
+       url: 'dictionary/saveDataDictionarys',
+       data: {
+         storeId: app.globalData.storeId
+       },
+       method: 'POST',
+       header: {
+         'content-type': 'application/x-www-form-urlencoded'
+       },
+       success: function (res) {
+         wx.hideNavigationBarLoading();
+       }
+     })
+   },
   onLoad: function() {
     var that = this;
     if (!app.privilegeEmployees) {
       util.api.getProductInit();
     }
-    console.log(app)
     this.employee_request()
     this.dictionary_request()
   },

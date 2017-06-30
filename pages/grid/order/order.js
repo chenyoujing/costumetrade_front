@@ -243,9 +243,10 @@ Page({
         order.buyerstoreid = this.data.product[p].buyerstoreid
         order.logisticsCode = this.data.product[p].logisticsCode  
         order.paycate1 = that.data.paycact[that.data.payInfo.paycact_index1] ? that.data.paycact[that.data.payInfo.paycact_index1].dictValue : null
-        order.paycost1 = that.data.payInfo.paycost1
+        order.paycost1 = that.data.payInfo.payCost1
         order.paycate2 = that.data.paycact[that.data.payInfo.paycact_index2] ? that.data.paycact[that.data.payInfo.paycact_index2].dictValue : null
-        order.paycost2 = that.data.payInfo.paycost2  
+        order.paycost2 = that.data.payInfo.payCost2 
+        order.debetamt = that.data.payInfo.debetamt  
         stoDetails.id = this.data.product[p].id
         stoDetails.price = that.data.update_price
       }
@@ -271,6 +272,7 @@ Page({
             that.data.product[p].paycost1 = order.paycost1
             that.data.product[p].paycate2 = order.paycate2
             that.data.product[p].paycost2 = order.paycost2
+            that.data.product[p].debetamt = order.debetamt
           }
         }
         that.setData({

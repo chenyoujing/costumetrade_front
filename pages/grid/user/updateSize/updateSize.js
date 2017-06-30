@@ -38,32 +38,49 @@ Page({
       }
     })
   },
-  add: function (e) {
+  // 删除按钮
+  delete: function (e) {
+    var ids = [];
     var size = e.target.dataset.size;
-    var selected = this.data.selected;
-    selected.push(size);
-    this.setData({
-      selected: selected
-    })
-  },
-  reduce: function (e) {
-    var size = e.target.dataset.size;
-    var selected = this.data.selected;
-    for (var index in selected) {
-      var row = selected[index];
-      if (row == size) {
-        selected.splice(index, 1);
-        break;
+    var id = e.target.dataset.id;
+    var index = e.target.dataset.index;
+    console.log(Boolean(size))
+    var url = size == "true" ? 'size/deleteSize' :'size/deleteSizeCustom';
+    var that = this;
+    ids.push(id)
+    wx.showNavigationBarLoading();
+    util.api.request({
+      url: url,
+      data: {
+        ids: ids
+      },
+      method: 'POST',
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      success: function (res) {
+        wx.hideNavigationBarLoading();
+        var product = size == "true" ? that.data.size : that.data.sizeProduct;
+        var name = size == "true" ? 'size' :"sizeProduct"
+        var param = {};
+        product.splice(index, 1)
+        param[name] = product
+        that.setData(param)
       }
-    }
-    this.setData({
-      selected: selected
     })
   },
-  saveData: function () {
-    app.nameChange = '尺码';
-    app.changeData = util.api.getFilterArray(this.data.selected);
-    this.back()
+  // 删除询问
+  questSure: function (e) {
+    var that = this;
+    wx.showModal({
+      title: '提示',
+      content: '确定删除吗?',
+      success: function (res) {
+        if (res.confirm) {
+          that.delete(e);
+        }
+      }
+    })
   },
   onLoad: function (options) {
     this.request_data(this.data.url, 'size');

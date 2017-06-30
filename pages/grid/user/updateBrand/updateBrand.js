@@ -111,14 +111,19 @@ Page({
       geturl: geturl,
       deleteUrl: deleteUrl
     });
-    console.log({
-      title: options.title,
-      url: options.url,
-      titlename: titlename,
-      addurl: addurl,
-      addname: addname,
-      geturl: geturl
-    })
     this.request_dadta()
   },
+  onShow: function () {
+    if (app.changeData) {
+      var arry = this.data.product;
+      var object = {
+        id: app.changeId
+      };
+      object[this.data.addname] = app.changeData;
+      arry.push(object)
+      this.setData({
+        product: arry
+      })
+    }
+  }
 })

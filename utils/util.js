@@ -433,7 +433,7 @@ var api = {
   fail: function (res) {
     wx.hideNavigationBarLoading()
     wx.showToast({
-      title: res.data,
+      title: res.data.msg,
       mask: true,
       duration: 2000
     })

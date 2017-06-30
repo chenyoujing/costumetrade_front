@@ -185,7 +185,7 @@
             <block wx:for="{{payProduct}}">
               <view class="pay_view">
                 <text>{{index+1}}.</text>{{item.dictText}}
-                <image src="../../../../images/delete_2.png" mode="aspectFit" class="image_setting" bindtap="{{}}" />
+                <image src="../../../../images/delete_2.png" mode="aspectFit" class="image_setting" bindtap="dictionaryDelet" data-index="{{index}}" data-name="payProduct"/>
               </view>
             </block>
           </view>
@@ -361,7 +361,7 @@
           <block wx:for="{{feeProduct}}">
             <view class="pay_view">
               <text>{{index+1}}.</text>{{item.dictText}}
-              <image src="../../../../images/delete_2.png" mode="aspectFit" class="image_setting" />
+              <image src="../../../../images/delete_2.png" mode="aspectFit" class="image_setting" bindtap="dictionaryDelet" data-index="{{index}}" data-name="feeProduct"/>
             </view>
           </block>
         </view>
@@ -372,13 +372,11 @@
             客户种类数量:
             <text class="slider_text_text">选择使用的客户种类</text>
           </view>
-          <view class="slider_view slider_checked">处理货品</view>
-          <view class="slider_view">活动货品</view>
-          <view class="slider_view">在销货品</view>
-          <view class="slider_view">新款货品</view>
-          <view class="slider_view">专供货品</view>
+           <block  wx:for="{{customerCusts}}">
+             <view class="slider_view slider_checked">{{item.custtypename}}</view>
+          </block>
           <view class="clear"></view>
-          <slider activeColor="#52CAC1" max="4" style="margin:10px 10%;"/>
+          <slider activeColor="#52CAC1" bindchange="" max="4" value="2"  style="margin:10px 10%;"/>
         </view>
 
         <!--客户种类-->
@@ -390,24 +388,13 @@
             <view class="setting_text">启用</view>
             <view class="setting_text">编辑</view>
           </view>
-          <view class="setting_content clearfix">
-            <view class="setting_text" style="width:30%;">普通会员</view>
-            <view class="setting_text" style="width:40%;">处理货品</view>
+          <view class="setting_content clearfix" wx:for="{{customerCusts}}">
+            <view class="setting_text" style="width:30%;">{{item.custtypename}}</view>
+            <view class="setting_text" style="width:40%;">{{item.prodgradeName}}</view>
             <view class="setting_text">是</view>
             <navigator url="../customerType/customerType" class="setting_text" style="color:#286561;">修改</navigator>
           </view>
-          <view class="setting_content clearfix">
-            <view class="setting_text" style="width:30%;">银卡会员</view>
-            <view class="setting_text" style="width:40%;">活动货品</view>
-            <view class="setting_text">否</view>
-            <navigator url="../customerType/customerType" class="setting_text" style="color:#286561;">修改</navigator>
-          </view>
-          <view class="setting_content clearfix">
-            <view class="setting_text" style="width:30%;">金卡会员</view>
-            <view class="setting_text" style="width:40%;">在销货品</view>
-            <view class="setting_text">否</view>
-            <navigator url="../customerType/customerType" class="setting_text" style="color:#286561;">修改</navigator>
-          </view>
+       
         </view>
 
         <!--钱包管理-->
@@ -421,6 +408,7 @@
   </swiper>
 </view>
 
-<modal title="{{modalTitle}}" hidden="{{modal}}" bindconfirm="confirm" bindcancel="cancel">
-  <input type="text" class="modal_input" />
+<modal title="{{modalTitle}}" hidden="{{modal}}" bindconfirm="dictionaryAdd" bindcancel="cancel">
+  <label> 请输入名称：</label>
+  <input type="text" class="modal_input" value="{{newName}}" bindblur="newName"/>
 </modal>
