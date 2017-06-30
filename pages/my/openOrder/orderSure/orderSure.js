@@ -141,8 +141,8 @@ Page({
     var type = e.target.dataset.type;
     var param = {};
     param[type] = e.detail.value;
-    if (type == 'payCost2'){
-      param.payCost1 = (this.data.reallyPay - e.detail.value).toFixed(2);
+    if (type == 'payCost2' && this.data.debet==0){
+      param.payCost1 = (this.data.reallyPay - e.detail.value- this.data.debet).toFixed(2);
     };
     this.setData(param);
     this.debet()

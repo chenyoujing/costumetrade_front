@@ -246,7 +246,6 @@ Page({
         order.paycost1 = that.data.payInfo.paycost1
         order.paycate2 = that.data.paycact[that.data.payInfo.paycact_index2] ? that.data.paycact[that.data.payInfo.paycact_index2].dictValue : null
         order.paycost2 = that.data.payInfo.paycost2  
-        
         stoDetails.id = this.data.product[p].id
         stoDetails.price = that.data.update_price
       }
@@ -281,38 +280,7 @@ Page({
       }
     })
   },
-  // 清零
-  clear: function (e) {
-    var num = e.target.dataset.num;
-    var type = e.target.dataset.type;
-    var param = {};
-    param.debet = (parseInt(num) + parseInt(this.data.debet)).toFixed(2);
-    if (param.debet > parseInt(this.data.reallyPay)) {
-      param.debet = this.data.reallyPay;
-    }
-    param[type] = "";
-    console.log(param)
-    this.setData(param);
-  },
-  changePaycost: function (e) {
-    var type = e.target.dataset.type;
-    var param = {};
-    param[type] = e.detail.value;
-    if (type == 'payCost2') {
-      param.payCost1 = (this.data.reallyPay - e.detail.value).toFixed(2);
-    };
-    this.setData(param);
-    this.debet()
-  },
-  debet: function () {
-    var debet = (this.data.reallyPay - this.data.payCost1 - this.data.payCost2).toFixed(2);
-    if (debet < 0 && this.data.reallyPay >= 0) {
-      debet = 0;
-    }
-    this.setData({
-      debet: debet,
-    })
-  },
+ 
   // 订单操作
   changeOrderStatus:function(e){
      var orderInfo = e.target.dataset;
@@ -474,7 +442,6 @@ Page({
   updateModal:function(e){
     var that = this
     var payorderno = e.target.dataset.no
-    
     for (var p in that.data.product) {
       if (that.data.product[p].payorderno == payorderno) {
         for (var j in that.data.paycact) {
@@ -488,10 +455,10 @@ Page({
         var payInfo = {
           paycact_index1: paycact_index1 || null,
           paycact_index2: paycact_index2 || null,
-          paycost1: that.data.product[p].paycost1,
-          paycost2: that.data.product[p].paycost2,
+          payCost1: that.data.product[p].paycost1,
+          payCost2: that.data.product[p].paycost2,
           totalamt: that.data.product[p].totalamt,
-          debetamt: that.data.product[p].debetamt,
+          debetamt: that.data.product[p].debetamt
         }
       }
     }
@@ -499,6 +466,42 @@ Page({
       updateModal: false,
       payInfo: payInfo,
       payorderno: payorderno
+    })
+  },
+  // 清零
+  clear: function (e) {
+    var num = e.target.dataset.num;
+    var type = e.target.dataset.type;
+    var payInfo = this.data.payInfo;
+    payInfo.debetamt = (parseInt(num) + parseInt(payInfo.debetamt)).toFixed(2);
+    if (payInfo.debetamt > parseInt(payInfo.totalamt)) {
+      payInfo.debetamt = payInfo.totalamt;
+    }
+    payInfo[type] = "";
+    this.setData({
+      payInfo: payInfo
+    });
+  },
+  changePaycost: function (e) {
+    var type = e.target.dataset.type;
+    var payInfo = this.data.payInfo;
+    payInfo[type] = e.detail.value;
+    if (type == 'payCost2' && payInfo['debetamt'] == 0) {
+      payInfo.payCost1 = (payInfo.totalamt - e.detail.value).toFixed(2);
+    };
+    this.setData({
+        payInfo: payInfo
+      });
+    this.debet()
+  },
+  debet: function () {
+    var payInfo = this.data.payInfo;
+    payInfo.debetamt = (payInfo.totalamt - (payInfo.payCost1 || 0) - (payInfo.payCost2||0)).toFixed(2);
+    if (payInfo.debetamt < 0 && payInfo.totalamt >= 0) {
+      payInfo.debetamt = 0;
+    }
+    this.setData({
+      payInfo: payInfo,
     })
   },
   // 关闭模态框
