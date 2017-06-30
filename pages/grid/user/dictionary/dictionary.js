@@ -19,7 +19,9 @@ Page({
     print:'wifi',
     modal: true,
     submitData:[],
-    addObject:{}
+    addObject:{},
+    cusDictValue:0,
+    prodDictValue: 0
   },
   swiper_change: function (e) {
     this.setData({
@@ -207,7 +209,10 @@ Page({
         var feeProduct = []
         var sellingProduct = []
         var customerProduct = []
-        var productGrade = []
+        var productGrade = [];
+        var customerCusts = [];
+        var pointExchange = [];
+        var cusDictValue = 0;
         for (var p in res.data.datas){
           switch (res.data.datas[p].dictGroup){
             case "PAY_TYPE":
@@ -220,14 +225,19 @@ Page({
               sellingProduct.push(res.data.datas[p])
               break;
             case "CUSTOMER_TYPE":
-              customerProduct.push(res.data.datas[p])
+              customerProduct = res.data.datas[p]
               break;
             case "PRODUCT_GRADE":
               productGrade.push(res.data.datas[p])
               break;
+            case "POINT_EXCHANGE":
+              pointExchange = res.data.datas[p]
+              break;
           }
         }
-        var customerCusts = res.data.customerCusts;
+        cusDictValue = customerProduct.dictValue.split(',');
+        // 可见货品等级
+        customerCusts = res.data.customerCusts;
         for (var g in customerCusts){
           for (var j in productGrade){
             if (customerCusts[g].prodgrade == productGrade[j].dictValue){
@@ -249,10 +259,21 @@ Page({
           customerCusts: customerCusts,
           images: images,
           logisticFees: logisticFees,
+          cusDictValue: cusDictValue[cusDictValue.length-1],
+          pointExchange: pointExchange
         })
         console.log(that.data)
       }
     })
+  },
+  // 货品售价生成方式
+  
+  // 更改启用的客户种类
+  cusgradeChange:function(e){
+    var name = e.target.dataset.name;
+    var param = {};
+    param[name] = e.detail.value + 1;
+    this.setData(param);
   },
   // 删除费用单、分店、支付方式
   dictionaryDelet:function(e){
@@ -389,6 +410,16 @@ Page({
    ***********/
    submitData:function(){
      var that = this;
+     var submitData = this.data.submitData;
+     var customerProduct = this.data.customerProduct;
+     var num = [];
+     for (var p in 'custo'){
+       if (p <= this.data.cusDictValue-1){
+         num.push(p+1)
+       }
+     }
+     customerProduct.dictValue = num.join(",");
+     submitData.customerProduct = customerProduct;
      wx.showNavigationBarLoading()
      util.api.request({
        url: 'dictionary/saveDataDictionarys',

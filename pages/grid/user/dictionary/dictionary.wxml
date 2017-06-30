@@ -346,9 +346,9 @@
             <navigator class="goods_update" style="margin:10px;">修改</navigator>
           </view>
           <view class="integral clearfix">
-            <view class="integral_title">1积分=</view>
+            <view class="integral_title">{{pointExchange.dictText}}=</view>
             <view class="integral_unit">元</view>
-            <input type="number" class="integral_input" />
+            <input type="number" value="{{pointExchange.dictValue}}" class="integral_input" />
           </view>
         </view>
 
@@ -376,7 +376,7 @@
              <view class="slider_view slider_checked">{{item.custtypename}}</view>
           </block>
           <view class="clear"></view>
-          <slider activeColor="#52CAC1" bindchange="" max="4" value="2"  style="margin:10px 10%;"/>
+          <slider activeColor="#52CAC1" bindchange="cusgradeChange" max="4" value="{{cusDictValue-1}}" data-name="cusDictValue" style="margin:10px 10%;"/>
         </view>
 
         <!--客户种类-->
@@ -388,7 +388,7 @@
             <view class="setting_text">启用</view>
             <view class="setting_text">编辑</view>
           </view>
-          <view class="setting_content clearfix" wx:for="{{customerCusts}}">
+          <view class="setting_content clearfix" wx:for="{{customerCusts}}" wx:if="{{index <= cusDictValue-1}}">
             <view class="setting_text" style="width:30%;">{{item.custtypename}}</view>
             <view class="setting_text" style="width:40%;">{{item.prodgradeName}}</view>
             <view class="setting_text">是</view>
