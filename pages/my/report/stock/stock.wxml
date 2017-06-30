@@ -8,17 +8,31 @@
 </view>
 
 <scroll-view scroll-y class="report_scroll">
-  <view class="time_select">
-    <view class="select_view {{selected==0?'selected':''}}" bindtap="select" data-index="0">今日</view>
-    <view class="select_view {{selected==1?'selected':''}}" bindtap="select" data-index="1">7日</view>
-    <view class="select_view {{selected==2?'selected':''}}" bindtap="select" data-index="2">30日</view>
-    <view class="select_view {{selected==3?'selected':''}}" bindtap="select" data-index="3">90日</view>
-    <view class="select_view {{selected==4?'selected':''}}" bindtap="select" data-index="4">...</view>
-  </view>
   <input type="text" class="search_input">
     <image src="../../../../images/search.png" mode="aspectFit" class="search_input_image" />
   </input>
-  <canvas class="canvas" canvas-id="pieCanvas" bindtouchstart="touchHandler"/>
+  <!--<canvas class="canvas" canvas-id="columnCanvas" bindtouchmove="touchHandler" bindtouchstart="touchHandler"/>-->
+  <view class="report_form">
+    <view class="form_title">
+      <view class="form_view">商品品名称</view>
+      <view class="form_view">
+        库存数量
+        <image src="../../../../images/sort.png" mode="aspectFit" class="form_sort" />
+      </view>
+    </view>
+    <view class="form_content form_active">
+      <view class="form_view">268 雅戈尔</view>
+      <view class="form_view">-5</view>
+    </view>
+    <view class="form_content">
+      <view class="form_view">779 红豆</view>
+      <view class="form_view">0</view>
+    </view>
+    <view class="form_content">
+      <view class="form_view">305 森马</view>
+      <view class="form_view">5</view>
+    </view>
+  </view>
 </scroll-view>
 
 

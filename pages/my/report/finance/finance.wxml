@@ -8,17 +8,27 @@
 </view>
 
 <scroll-view scroll-y class="report_scroll">
-  <view class="time_select">
-    <view class="select_view {{selected==0?'selected':''}}" bindtap="select" data-index="0">今日</view>
-    <view class="select_view {{selected==1?'selected':''}}" bindtap="select" data-index="1">7日</view>
-    <view class="select_view {{selected==2?'selected':''}}" bindtap="select" data-index="2">30日</view>
-    <view class="select_view {{selected==3?'selected':''}}" bindtap="select" data-index="3">90日</view>
-    <view class="select_view {{selected==4?'selected':''}}" bindtap="select" data-index="4">...</view>
+  <view class="finance_time">
+    <view>时间：2017-05-04 00:00:00</view>
+    <view>至2017-05-04 23:59:59</view>
   </view>
-  <input type="text" class="search_input">
-    <image src="../../../../images/search.png" mode="aspectFit" class="search_input_image" />
-  </input>
-  <canvas class="canvas" canvas-id="pieCanvas" bindtouchstart="touchHandler"/>
+  <view class="finance_info">
+    <view class="info_title">刷卡</view>
+    <view class="finance_info_content">
+      <view class="content_title">
+        <view class="content_title_text">支付详情</view>
+        <view class="content_title_text"></view>
+        <view class="content_title_text">金额(元)</view>
+      </view>
+      <block wx:for="111111">
+        <view class="content_view">
+          <view class="content_view_text">销售收入</view>
+          <view class="content_view_text"></view>
+          <view class="content_view_text" style="color:#CE2726;">0</view>
+        </view>
+      </block>
+    </view>
+  </view>
 </scroll-view>
 
 

@@ -7,6 +7,13 @@
   padding: 12px;
 }
 
+.report_scroll{
+  position: absolute;
+  top: 40px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
 .time_select{ 
   display: flex;
   justify-content: center;
@@ -59,10 +66,10 @@
 }
 .form_view{
   flex-grow: 1;
+  display: flex;
   align-items: center;
-  text-align: center;
+  justify-content: center;
   font-size: 16px;
-  line-height: 36px;
   height: 36px;
 }
 .form_sort{

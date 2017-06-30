@@ -58,6 +58,10 @@
     "pages/my/report/purchase/purchase",
     "pages/my/report/purchase_analysis/purchase_analysis",
     "pages/my/report/salesRank/salesRank",
+    "pages/my/report/finance/finance",
+    "pages/my/report/stock/stock",
+    "pages/my/report/allreport/allreport",
+    
     "pages/my/report/report"
   ],
   "window": {

@@ -7,40 +7,42 @@
   <image src="../../../../images/more.png" mode="aspectFit" class="title_more" bindtap="more_function" />
 </view>
 
-<view class="time_select">
-  <view class="select_view {{selected==0?'selected':''}}" bindtap="select" data-index="0">今日</view>
-  <view class="select_view {{selected==1?'selected':''}}" bindtap="select" data-index="1">7日</view>
-  <view class="select_view {{selected==2?'selected':''}}" bindtap="select" data-index="2">30日</view>
-  <view class="select_view {{selected==3?'selected':''}}" bindtap="select" data-index="3">90日</view>
-  <view class="select_view {{selected==4?'selected':''}}" bindtap="select" data-index="4">...</view>
-</view>
-<input type="text" class="search_input">
-  <image src="../../../../images/search.png" mode="aspectFit" class="search_input_image" />
-</input>
-<canvas class="canvas" canvas-id="lineCanvas" bindtouchmove="touchHandler" bindtouchstart="touchHandler"/>
-<view class="report_form">
-  <view class="form_title">
-    <view class="form_view">货品名称</view>
-    <view class="form_view">
-      数量
-      <image src="../../../../images/sort.png" mode="aspectFit" class="form_sort" />
+<scroll-view scroll-y class="report_scroll">
+  <view class="time_select">
+    <view class="select_view {{selected==0?'selected':''}}" bindtap="select" data-index="0">今日</view>
+    <view class="select_view {{selected==1?'selected':''}}" bindtap="select" data-index="1">7日</view>
+    <view class="select_view {{selected==2?'selected':''}}" bindtap="select" data-index="2">30日</view>
+    <view class="select_view {{selected==3?'selected':''}}" bindtap="select" data-index="3">90日</view>
+    <view class="select_view {{selected==4?'selected':''}}" bindtap="select" data-index="4">...</view>
+  </view>
+  <input type="text" class="search_input">
+    <image src="../../../../images/search.png" mode="aspectFit" class="search_input_image" />
+  </input>
+  <canvas class="canvas" canvas-id="lineCanvas" bindtouchmove="touchHandler" bindtouchstart="touchHandler"/>
+  <view class="report_form">
+    <view class="form_title">
+      <view class="form_view">货品名称</view>
+      <view class="form_view">
+        数量
+        <image src="../../../../images/sort.png" mode="aspectFit" class="form_sort" />
+      </view>
+      <view class="form_view">
+        金额
+        <image src="../../../../images/sort.png" mode="aspectFit" class="form_sort" />
+      </view>
     </view>
-    <view class="form_view">
-      金额
-      <image src="../../../../images/sort.png" mode="aspectFit" class="form_sort" />
+    <view class="form_content form_active">
+      <view class="form_view">喇叭裤</view>
+      <view class="form_view">3</view>
+      <view class="form_view">280</view>
+    </view>
+    <view class="form_content">
+      <view class="form_view">牛仔裤</view>
+      <view class="form_view">5</view>
+      <view class="form_view">300</view>
     </view>
   </view>
-  <view class="form_content form_active">
-    <view class="form_view">喇叭裤</view>
-    <view class="form_view">3</view>
-    <view class="form_view">280</view>
-  </view>
-  <view class="form_content">
-    <view class="form_view">牛仔裤</view>
-    <view class="form_view">5</view>
-    <view class="form_view">300</view>
-  </view>
-</view>
+</scroll-view>
 
 
 <!--更多功能-->

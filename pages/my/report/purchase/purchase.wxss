@@ -1,2 +1,6 @@
 /*头部*/
 @import "../../../../css/report.wxss";
+
+.report_form{
+  margin: 20px 100rpx;
+}

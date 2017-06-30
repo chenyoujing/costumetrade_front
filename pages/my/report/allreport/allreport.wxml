@@ -1,0 +1,113 @@
+<!--头部-->
+<view class="title clearfix">
+  <navigator open-type="navigateBack">
+    <image src="../../../../images/back-away.png" mode="aspectFit" class="title_image_back" />
+  </navigator>
+  <view class="title_text">{{title}}</view>
+  <image src="../../../../images/more.png" mode="aspectFit" class="title_more" bindtap="more_function" />
+</view>
+
+<scroll-view scroll-y class="report_scroll">
+  <view class="time_select">
+    <view class="select_view {{selected==0?'selected':''}}" bindtap="select" data-index="0">今日</view>
+    <view class="select_view {{selected==1?'selected':''}}" bindtap="select" data-index="1">7日</view>
+    <view class="select_view {{selected==2?'selected':''}}" bindtap="select" data-index="2">30日</view>
+    <view class="select_view {{selected==3?'selected':''}}" bindtap="select" data-index="3">90日</view>
+    <view class="select_view {{selected==4?'selected':''}}" bindtap="select" data-index="4">...</view>
+  </view>
+
+  <view class="report_container">
+    <view class="business_volume">
+      营业额：<text>838.00</text>元
+    </view>
+    <view class="business_info">
+      <view class="business_info_view">仓库进货：92.00元</view>
+      <view class="business_info_view">来往款项：0元</view>
+      <view class="business_info_view">费用款项：0元</view>
+    </view>
+    <view class="business_title">
+      <view class="business_title_view">支付方式</view>
+      <view class="business_title_view">付款金额</view>
+      <view class="business_title_view">明细</view>
+    </view>
+    <view class="business_content">
+      <view class="business_title_view">刷卡</view>
+      <view class="business_title_view" style="color:#FE4040;">0</view>
+      <navigator url="../finance/finance" class="business_title_view" style="color:#286561;">明细</navigator>
+    </view>
+    <view class="business_content">
+      <view class="business_title_view">现金</view>
+      <view class="business_title_view" style="color:#FE4040;">746</view>
+      <view class="business_title_view" style="color:#286561;">明细</view>
+    </view>
+    <view class="business_content">
+      <view class="business_title_view">微信</view>
+      <view class="business_title_view" style="color:#FE4040;">0</view>
+      <view class="business_title_view" style="color:#286561;">明细</view>
+    </view>
+  </view>
+
+  <view class="order_title">
+    <view class="order_title_text">总单数:4/单</view>
+    <view class="order_title_container">
+      <view class="order_title_view">
+        <view class="order_title_view_text">采购入库</view>
+        <view class="order_title_view_button button_active">共1笔</view>
+      </view>
+      <view class="order_title_view">
+        <view class="order_title_view_text">销售出库</view>
+        <view class="order_title_view_button">共3笔</view>
+      </view>
+      <view class="order_title_view">
+        <view class="order_title_view_text">往来款项</view>
+        <view class="order_title_view_button">共0笔</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="order_content">
+    <view class="order_content_text">详情</view>
+    <view class="order_content_container">
+      <view class="order_content_view">入库数量：10</view>
+      <view class="order_content_view">库存数量：5</view>
+    </view>
+  </view>
+
+  <view wx:for="1" class="order_container_view">
+    <navigator url="orderDetails/orderDetails?ordertype={{ordertype}}&payorderno={{item.payorderno}}&ordertype2=1">
+    <view class="order_container_title clearfix" >
+      <view class="order_container_name">供应商：{{item.seller}}</view>
+      <view class="order_container_Bill">商城订单</view>
+      <image src="../../../../images/right-thrust.png" mode="aspectFit" class="order_content_right" />
+    </view>
+   </navigator>
+      <view class="order_container_content_left">
+        <view class="order_container_number">单号：{{item.payorderno}}</view>
+        <view class="order_container_text">数量：{{item.totalnum}}</view>
+        <view class="order_container_text" wx:if="{{item.debetamt}}">未付：￥{{item.debetamt}}</view>
+        <view class="order_container_text" style="margin-top:5px;" wx:if="{{item.freight>0}}">{{item.logisticName}}：{{item.freight}}元</view>
+        <view class="order_container_text" style="margin-top:5px;" wx:if="{{item.freight==0}}">{{item.logisticName}}:包邮</view>
+      </view>
+      <view class="order_container_content_right">
+        <view class="order_container_text">{{item.ordertime}}</view>
+        <view class="order_container_text">合计金额：<text style="color:#ff0000;">￥{{item.totalamt}}</text></view>
+        <view class="order_container_text" wx:if="{{item.paycost1>0}}">{{item.paycate_1||item.paycate1}}：￥{{item.paycost1}}</view>
+        <view class="order_container_text" wx:if="{{item.paycost2>0}}">{{item.paycate_2||item.paycate2}}：￥{{item.paycost2}}</view>
+        <view class="order_container_text" style="margin-top:5px;">经手人：{{item.operator}}</view>
+      </view>
+      <view class="clear"></view>
+      <navigator url="payOrder/payOrder?operate=2&orderno={{item.payorderno}}&buyerid={{item.buyerstoreid}}&sellerid={{item.sellerstoreid}}&pay={{item.debetamt}}"  wx:if="{{item.orderstatus == 3}}">
+        <view class="order_container_button btn_1">付款</view>      
+      </navigator>
+    <view class="clear"></view>
+  </view>
+
+</scroll-view>
+
+<!--更多功能-->
+<view class="more_function_cover {{animation}}" bindtap="more_function_close" style="display:{{more_function_display}};"></view>
+<view class="more_function {{animation}}" style="display:{{more_function_display}};">
+  <view class="more_function_view" data-type="1" bindtap="batchType">123</view>
+  <view class="more_function_view" data-type="2" bindtap="batchType">112</view>
+  <view class="more_function_view" data-type="3" bindtap="batchType">111</view>
+</view>
