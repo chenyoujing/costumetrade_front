@@ -40,10 +40,6 @@
     会员报表
     <image src="../../../images/right-thrust.png" mode="aspectFit" class="my_content_right" />
   </view>
-  <navigator url="finance/finance" class="catalog_view">
-    财务报表
-    <image src="../../../images/right-thrust.png" mode="aspectFit" class="my_content_right" />
-  </navigator>
 </scroll-view>
 
 

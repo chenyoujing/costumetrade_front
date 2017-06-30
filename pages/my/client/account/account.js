@@ -8,9 +8,9 @@ Page({
     accounttype:'0',
     billtype: [
       { name: 1, value: "收客户欠款" },
-      { name: 2, value: "还供应商欠款" },
-      // { name: 3, value: "应收调账" },
-      // { name: 4, value: "应付调账" },
+      { name: 2, value: "还客户欠款" },
+      { name: 3, value: "收供应商欠款" },
+      { name: 4, value: "收供应商欠款" },
     ],
     billtype_index: 0,
     paytype: [
@@ -191,13 +191,34 @@ Page({
     })
   },
   onLoad: function (e) {
+    var billtype = [
+      { name: 1, value: "收客户欠款" },
+      { name: 2, value: "还客户欠款" },
+      { name: 3, value: "收供应商欠款" },
+      { name: 4, value: "收供应商欠款" },
+    ]
+    switch (e.client){
+      case ("1"):
+        billtype = [
+          { name: 1, value: "收客户欠款" },
+          { name: 2, value: "还客户欠款" },
+        ]
+        break;
+      case ("2"):
+        billtype = [
+          { name: 3, value: "收供应商欠款" },
+          { name: 4, value: "收供应商欠款" },
+        ]
+        break;
+    }
+    
     this.setData({
-      client: e.client,
       date_start: util.formatTime(new Date(Date.now() - 86400000)),
       date_end: util.formatTime(new Date(Date.now())),
       account_date: util.formatTime(new Date(Date.now())),
       client:e.client,
       clientId:e.clientId,
+      billtype: billtype,
     })
     this.financialCounting()
     this.initAccountInfo()
