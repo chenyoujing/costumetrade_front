@@ -24,7 +24,7 @@ function toDate(number) {
 console.log(app.globalData) 
 //请求接口公共方法
 var api = {
-  host: 'http://192.168.2.221:8088/',
+  host: 'http://192.168.2.221:8080/',
   pageNum :1,
   publicProduct:[],
   imgUrl: "http://117.149.24.42:8788",
@@ -87,6 +87,24 @@ var api = {
       return false
     }   
     return true
+  },
+  // 报表切换时间
+  tiemFilter: function (e) {
+    var number = e.target.dataset.number;
+    var timebool = 1;
+    if (number == 'false') {
+      timebool = -1;
+    } else {
+      var myDate = new Date();
+      var endTime = toDate(myDate) + " 23:23:23";
+      myDate.setDate(myDate.getDate() - number);
+      var beginTime = toDate(myDate) + " 00:00:00";
+      return {
+        beginTime: beginTime,
+        endTime: endTime,
+        timebool: timebool
+      }
+    }
   },
   // 支付方式转换。。。
   paycact: function (dictText) {

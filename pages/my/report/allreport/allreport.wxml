@@ -9,11 +9,11 @@
 
 <scroll-view scroll-y class="report_scroll">
   <view class="time_select">
-    <view class="select_view {{selected==0?'selected':''}}" bindtap="select" data-index="0">今日</view>
-    <view class="select_view {{selected==1?'selected':''}}" bindtap="select" data-index="1">7日</view>
-    <view class="select_view {{selected==2?'selected':''}}" bindtap="select" data-index="2">30日</view>
-    <view class="select_view {{selected==3?'selected':''}}" bindtap="select" data-index="3">90日</view>
-    <view class="select_view {{selected==4?'selected':''}}" bindtap="select" data-index="4">...</view>
+    <view class="select_view {{selected==0?'selected':''}}" bindtap="select" data-index="0" data-number="0">今日</view>
+    <view class="select_view {{selected==1?'selected':''}}" bindtap="select" data-index="1" data-number="7">7日</view>
+    <view class="select_view {{selected==2?'selected':''}}" bindtap="select" data-index="2" data-number="30">30日</view>
+    <view class="select_view {{selected==3?'selected':''}}" bindtap="select" data-index="3" data-number="90">90日</view>
+    <view class="select_view {{selected==4?'selected':''}}" bindtap="select" data-index="4"  data-number="false">...</view>
   </view>
 
   <view class="report_container">
