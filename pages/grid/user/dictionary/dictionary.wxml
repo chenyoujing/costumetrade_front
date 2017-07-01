@@ -264,10 +264,11 @@
             <scroll-view scroll-y class="freight clearfix {{freight===index?'freight_active':''}}">
               <view class="freight_explain">
                 <view class="freight_explain_title">说明:</view>
-                <image src="../../../../images/update.png" mode="aspectFit" class="freight_explain_right" />
-                <view class="freight_explain_text">江浙沪地区8元；新疆，西藏，青海，甘肃，海南五省20元；其他地域15元</view>
+                <image src="../../../../images/update.png" mode="aspectFit" class="freight_explain_right" bindtap="freightUpdate" />
+                <view class="freight_explain_text" wx:if="{{!freightUpdate}}">江浙沪地区8元；新疆，西藏，青海，甘肃，海南五省20元；其他地域15元</view>
+                <input type="text" class="freight_explain_text freight_explain_input" wx:if="{{freightUpdate}}"/>
               </view>
-              <view class="freight_content" style="padding-bottom:5px;">
+              <view class="freight_content">
                 <view class="freight_content_title">1. 运费：</view>
                 <view class="setting_button_view" style="height:30px;overflow:hidden;width:unset;float:unset;">
                   <view class="setting_button" bindtap="goodsPrice" data-type="logisticFees" data-index="{{index}}">
@@ -281,10 +282,20 @@
                 <view class="freight_content_text">固定运费：客户下单后，自动添加运费</view>
               </view>
               <view class="freight_content clearfix">
-                <view class="freight_content_title">2. 固定运费：<text style="padding: 0 10px 0 20px;">{{item.fixedFee}}</text>元</view>
+                <view class="freight_content_title">
+                  2. 固定运费：
+                  <text style="padding: 0 10px 0 20px;" wx:if="{{!freightUpdate}}">{{item.fixedFee}}</text>
+                  <input type="text" class="freight_explain_input" style="width:80px;margin:0 10px;" wx:if="{{freightUpdate}}"/>
+                  元
+                </view>
               </view>
               <view class="freight_content clearfix">
-                <view class="freight_content_title">3. 免邮金额：<text style="padding: 0 10px 0 20px;">{{item.freeFee}}</text>元</view>
+                <view class="freight_content_title">
+                  3. 免邮金额：
+                  <text style="padding: 0 10px 0 20px;" wx:if="{{!freightUpdate}}">{{item.freeFee}}</text>
+                  <input type="text" class=" freight_explain_input" style="width:80px;margin:0 10px;" wx:if="{{freightUpdate}}"/>
+                  元
+                </view>
               </view>
               <view class="freight_button">保存</view>
             </scroll-view>

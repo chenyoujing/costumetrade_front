@@ -431,7 +431,13 @@ Page({
       freight = ''
     }
     this.setData({
-      freight: freight
+      freight: freight,
+      freightUpdate: false,
+    })
+  },
+  freightUpdate:function(){
+    this.setData({
+      freightUpdate: true
     })
   },
   // 货品售价生成方式

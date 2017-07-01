@@ -321,15 +321,20 @@ swiper{
   margin-left: 60px;
   margin-right: 40px;
 }
+.freight_explain_input{
+  background-color: #ffffff;
+}
 .freight_content{
   padding-left: 30px;
   padding-right: 20px;
+  padding-bottom: 5px;
 }
 .freight_content_title{
   font-size: 15px;
   line-height: 30px;
   float: left;
   overflow: hidden;
+  display: flex;
 }
 .freight_content_text{
   font-size: 12px;
