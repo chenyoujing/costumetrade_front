@@ -145,6 +145,7 @@ Page({
       }
     })
   },
+  
   // 选择图片
   chooseImg: function (e) {
     var that = this;
