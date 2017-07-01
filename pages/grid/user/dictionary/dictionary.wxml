@@ -408,7 +408,7 @@
           <view class="setting_content" wx:for="{{customerCusts}}" wx:if="{{index <= cusDictValue-1}}">
             <view class="setting_text">{{item.custtypename}}</view>
             <view class="setting_text" style="flex:4;">{{item.prodgradeName}}</view>
-            <view class="setting_text" style="color:#286561;" bindtap="customerModal" data-index="{{index}}">修改</view>
+            <navigator url="../customerType/customerType?index={{index}}" class="setting_text" style="color:#286561;" bindtap="customerModal" data-index="{{index}}">修改</navigator>
           </view>
        
         </view>
@@ -447,7 +447,7 @@
 </modal>
 
 <!--修改客户种类-->
-<modal title="{{customerCusts[customerIndex].custtypename}}会员" hidden="{{customerModal}}" bindconfirm="customerUpdate" bindcancel="cancel">
+<!--<modal title="{{customerCusts[customerIndex].custtypename}}会员" hidden="{{customerModal}}" bindconfirm="customerUpdate" bindcancel="cancel">
 
   <view class="update_name">
     <view class="name_text">会员种类名称</view>
@@ -462,4 +462,4 @@
     <view class="clear"></view>
     <slider activeColor="#52CAC1"  bindchange="cusgradeChange" max="4" data-name="customerCusts"  value="{{customerCusts[customerIndex].prodgrade -1}}" style="margin:10px 10%;"/>
   </view>
-</modal>
+</modal>-->

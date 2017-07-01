@@ -1,11 +1,8 @@
-.customer_title{
-  font-size: 18px;
-  line-height: 30px;
-  text-align: center;
-}
+/*修改客户种类*/
 .update_name,.update_level{
-  padding: 10px 20px;
+  padding: 10px 0;
   border-bottom: 5px solid #DBF4F1;
+  color: #000000;
 }
 .name_text{
   float: left;
@@ -42,37 +39,4 @@
 }
 .slider_checked{
   color: #000000;
-}
-.update_discount{
-  padding: 10px 20px;
-}
-.discount_title{
-  font-size: 16px;
-  line-height: 50px;
-}
-.discount_table{
-  margin: 0 20px;
-}
-.table_title1,.table_title2{
-  box-sizing: border-box;
-  float: left;
-  width: 60%;
-  background-color: #52CAC1;
-  color: #ffffff;
-  font-size: 18px;
-  line-height: 30px;
-  border: 1px solid #E3E3E3;
-  text-align: center;
-}
-.table_text1,.table_text2{
-  box-sizing: border-box;
-  float: left;
-  width: 60%;
-  font-size: 18px;
-  line-height: 40px;
-  border: 1px solid #E3E3E3;
-  text-align: center;
-}
-.table_title2,.table_text2{
-  width: 40%;
 }

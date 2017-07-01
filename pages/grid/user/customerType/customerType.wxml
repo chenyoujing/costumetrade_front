@@ -1,33 +1,13 @@
-<view class="customer_title">普通会员</view>
-<view class="update_name">
-  <view class="name_text">会员种类名称</view>
-  <input type="text" class="name_input" value="普通会员" />
-</view>
-<view class="update_level">
-  <view class="level_title">可见货品级别:</view>
-  <view class="level_text">3级以下可见</view>
-  <view class="slider_view slider_checked">处理货品</view>
-  <view class="slider_view">活动货品</view>
-  <view class="slider_view">在销货品</view>
-  <view class="slider_view">新款货品</view>
-  <view class="slider_view">专供货品</view>
-  <view class="clear"></view>
-  <slider activeColor="#52CAC1" max="4" style="margin:10px 10%;"/>
-</view>
-<view class="update_discount">
-  <view class="discount_title">设置货品级别折扣率</view>
-  <view class="discount_table">
-    <view class="table_title1">货品级别</view>
-    <view class="table_title2">毛利率</view>
-    <view class="table_text1">处理货品</view>
-    <view class="table_text2">50%</view>
-    <view class="table_text1">活动货品</view>
-    <view class="table_text2">60%</view>
-    <view class="table_text1">在销货品</view>
-    <view class="table_text2">70%</view>
-    <view class="table_text1">新款货品</view>
-    <view class="table_text2">90%</view>
-    <view class="table_text1">专供货品</view>
-    <view class="table_text2">80%</view>
-    </view>
-</view>
+  <view class="update_name">
+    <view class="name_text">会员种类名称</view>
+    <input type="text" class="name_input" value="{{customerCusts[customerIndex].custtypename}}会员" />
+  </view>
+  <view class="update_level">
+    <view class="level_title">可见货品级别:</view>
+    <view class="level_text">{{customerCusts[customerIndex].prodgrade}}级以下可见</view>
+     <block  wx:for="{{productGrade}}">
+        <view class="slider_view slider_checked">{{item.dictText}}</view>
+     </block>
+    <view class="clear"></view>
+    <slider activeColor="#52CAC1"  bindchange="cusgradeChange" max="4" data-name="customerCusts"  value="{{customerCusts[customerIndex].prodgrade -1}}" style="margin:10px 10%;"/>
+  </view>

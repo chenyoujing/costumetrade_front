@@ -256,6 +256,7 @@ Page({
         } 
         var images = res.data.images
         var logisticFees = res.data.logisticFees
+        app.customerCusts = customerCusts
         that.setData({
           payProduct: payProduct,
           feeProduct: feeProduct,

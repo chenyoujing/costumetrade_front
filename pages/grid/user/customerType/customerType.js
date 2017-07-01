@@ -1,66 +1,33 @@
 // pages/grid/user/customerType/customerType.js
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
   
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-  
+  // 更改启用的客户种类
+  cusgradeChange: function (e) {
+    var name = e.target.dataset.name;
+    var product = this.data[name];
+    var submitData = this.data.submitData;
+    var param = {};
+    if (name == "customerCusts") {
+      product[this.data.customerIndex].prodgrade = e.detail.value + 1;
+      console.log(e.detail.value)
+      console.log(e.detail.value)
+      submitData[name] = product;
+      param[name] = product;
+      param.submitData = submitData;
+    } else {
+      param[name] = e.detail.value + 1;
+    }
+
+    this.setData(param);
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-  
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-  
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-  
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-  
+  onLoad:function(e){
+    this.setData({
+      cusgradeChange: app.cusgradeChange,
+      customerIndex: e.index,
+    })
   }
 })
