@@ -125,62 +125,63 @@ Page({
       filePath: file[i],
       name: 'file',
       success: function (res) {
-        console.log(JSON.stringify(res));
-        var url = util.api.imgUrl + JSON.parse(res.data).data.url;
-        var resizeFixUrl = util.api.imgUrl + JSON.parse(res.data).data.resizeFixUrl;
-       
-        var param = that.data.GoodsInfoData;
-        var fileArray = that.data.fileList;
-        param[that.data.perImgSrc] = url;
-        for (var p in fileArray){
-          if (fileArray[p].filename == that.data.perImgSrc){
-            fileArray[p].url = JSON.parse(res.data).data.url;
-            fileArray[p].resizeFixUrl = JSON.parse(res.data).data.resizeFixUrl;
+        if (JSON.parse(res.data).code == 0) {
+          var url = util.api.imgUrl + JSON.parse(res.data).data.url;
+          var resizeFixUrl = util.api.imgUrl + JSON.parse(res.data).data.resizeFixUrl;
+          var param = that.data.GoodsInfoData;
+          var fileArray = that.data.fileList;
+          param[that.data.perImgSrc] = url;
+          for (var p in fileArray) {
+            if (fileArray[p].filename == that.data.perImgSrc) {
+              fileArray[p].url = JSON.parse(res.data).data.url;
+              fileArray[p].resizeFixUrl = JSON.parse(res.data).data.resizeFixUrl;
+            }
           }
+          that.setData({
+            GoodsInfoData: param,
+            fileList: fileArray
+          }) 
+          wx.showToast({
+            title: '上传成功',
+            mask: true,
+            duration: 2000
+          })
+        }else{
+          wx.showToast({
+            title: '失败',
+            mask: true,
+            duration: 2000
+          })
         }
-        that.setData({
-          GoodsInfoData:param,
-          fileList: fileArray
-        }) 
+        console.log(JSON.stringify(res));
+       
       }
     })
   },
-  
-  // 选择图片
-  chooseImg: function (e) {
-    var that = this;
-    wx.chooseImage({
-      count: 1, // 默认9
-      sizeType: ['original'], // 可以指定是原图还是压缩图，默认二者都有
-      sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
-      success: function (res) {
-        // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
-        var tempFilePaths = res.tempFilePaths;
-        that.photoSubmit(tempFilePaths, 0);
-        that.setData({
-          perImgSrc:e.target.dataset.index
-        })
-      }
+  // 上传图片
+  imageCallback:function(e,res){
+    var tempFilePaths = res.tempFilePaths;
+    this.photoSubmit(tempFilePaths, 0);
+    this.setData({
+      perImgSrc: e.target.dataset.index
     })
-  }, 
-  // 选择视频
-  chooseVideo:function(e){
-    var that = this;
-    wx.chooseVideo({
-      count: 1, // 默认9
-      sizeType: ['original'], // 可以指定是原图还是压缩图，默认二者都有
-      sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
-      success: function (res) {
-        // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
-        var tempFilePaths = [];
-        tempFilePaths.push(res.tempFilePath);
-        that.photoSubmit(tempFilePaths, 0);
-        that.setData({
-          perImgSrc: e.target.dataset.index
-        })
-        console.log(e.target.dataset.index)
-      }
+  },
+  // 上传视频
+  chooseVideoCallback: function (e, res){
+    var tempFilePaths = [];
+    tempFilePaths.push(res.tempFilePath);
+    this.photoSubmit(tempFilePaths, 0);
+    this.setData({
+      perImgSrc: e.target.dataset.index
     })
+  },
+  chooseImg: function (e){
+    var name = e.target.dataset.name;
+    if (name){
+      util.api.chooseVideo(e, this.chooseVideoCallback)
+    }else{
+      util.api.chooseImg(e, this.imageCallback)
+    }
   },
   //请求并显示货品详情
   showGoodsInfo:function(){

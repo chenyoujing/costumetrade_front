@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/grid/user/dictionary/dictionary",
     
     "pages/grid/shop/shop",
     "pages/grid/user/user",
@@ -21,7 +22,6 @@
     "pages/grid/user/helpInfo/helpInfo",
     "pages/grid/user/notecase/notecase",
     "pages/grid/user/branch/branch",
-    "pages/grid/user/dictionary/dictionary",
     "pages/my/openOrder/openOrder",
     "pages/my/openOrder/goodsDetails/goodsDetails",
     "pages/my/openOrder/Billing/Billing",

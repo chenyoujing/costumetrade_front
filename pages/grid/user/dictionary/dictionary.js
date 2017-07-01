@@ -212,6 +212,7 @@ Page({
         var productGrade = [];
         var customerCusts = [];
         var pointExchange = [];
+        var payQrcode = [];
         var cusDictValue = 0;
         for (var p in res.data.datas){
           switch (res.data.datas[p].dictGroup){
@@ -232,6 +233,9 @@ Page({
               break;
             case "POINT_EXCHANGE":
               pointExchange = res.data.datas[p]
+              break;
+            case "PAY_QRCODE":
+              payQrcode.push(res.data.datas[p])
               break;
           }
         }
@@ -260,7 +264,8 @@ Page({
           images: images,
           logisticFees: logisticFees,
           cusDictValue: cusDictValue[cusDictValue.length-1],
-          pointExchange: pointExchange
+          pointExchange: pointExchange,
+          payQrcode: payQrcode
         })
         console.log(that.data)
       }
@@ -287,6 +292,56 @@ Page({
     submitData[name] = product;
     param['submitData'] = submitData;
     this.setData(param)
+  },
+  // 上传图片
+  photoSubmit: function (file, i,e) {
+    var name = e.target.dataset.name;
+    var index = e.target.dataset.index;
+    var images = this.data.images;
+    var payQrcode = this.data.payQrcode;
+    var that = this;
+    var submitData = this.data.submitData;
+    var param = {};
+    wx.uploadFile({
+      url: util.api.host + 'product/uploadImage',
+      filePath: file[i],
+      name: 'file',
+      success: function (res) {
+       
+        if (JSON.parse(res.data).code == 0){
+          if (name == "images") {
+            images[index] = util.api.imgUrl + JSON.parse(res.data).data.url;
+            param.images = images;
+            submitData.images = images;
+          } else {
+            payQrcode[index].dictValue = JSON.parse(res.data).data.url;
+            param.payQrcode = payQrcode;
+            submitData.payQrcode = payQrcode;
+          }
+          param.submitData = submitData
+          that.setData(param);
+          wx.showToast({
+            title: '上传成功',
+            mask: true,
+            duration: 2000
+          })
+        }else{
+          wx.showToast({
+            title: '失败',
+            mask: true,
+            duration: 2000
+          })
+        }
+      }
+    })
+  },
+  // 上传图片
+  chooseVideoCallback: function (e, res){
+    var tempFilePaths = res.tempFilePaths;
+    this.photoSubmit(tempFilePaths,0,e);
+  },
+  choosImage:function(e){
+    util.api.chooseImg(e, this.chooseVideoCallback)
   },
   // input
   newName:function(e){
