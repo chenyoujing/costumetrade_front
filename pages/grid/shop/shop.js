@@ -87,7 +87,19 @@ Page({
     //     console.log('123')
     //   }
     // })
-
+    wx.getSetting({
+      success(res) {
+        if (!res['scope.writePhotosAlbum']) {
+          wx.authorize({
+            scope: 'scope.writePhotosAlbum',
+            success() {
+              // 用户已经同意小程序使用录音功能，后续调用 wx.startRecord 接口不会弹窗询问
+              wx.saveImageToPhotosAlbum()
+            }
+          })
+        }
+      }
+    })
   },
   aa:function(){
     var openidList = ['oDy7t0GCpfxdFdFyNPhu_VYVufS4', 'oDy7t0HjUcYhdFMgiFbuFHCqSEGo']
