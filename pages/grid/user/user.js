@@ -43,7 +43,9 @@ Page({
     })
   },
   onLoad:function(){
-    this.request_page()
+    if (app.globalData.userIdentity == 1){
+      this.request_page()
+    }
   },
   onShow:function(){
     this.setData({
