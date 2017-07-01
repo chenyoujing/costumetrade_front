@@ -4,7 +4,8 @@ Page({
   data: {
     url: "color/getAllColors",
     deleteUrl:"",
-    product:[]
+    product:[],
+    modal:true
   },
   request_dadta: function () {
     var that = this;
@@ -64,6 +65,21 @@ Page({
           that.delete(e);
         }
       }
+    })
+  },
+  update:function(e) {
+    var id = e.target.dataset.id;
+    var name = e.target.dataset.name;
+    this.setData({
+      modal: false,
+      name: name,
+      id: id
+    })
+  },
+  confirm:function(){},
+  cancel:function(){
+    this.setData({
+      modal: true
     })
   },
   onLoad: function (options) {

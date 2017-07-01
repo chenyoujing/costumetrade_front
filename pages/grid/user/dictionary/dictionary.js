@@ -17,7 +17,9 @@ Page({
     privilegeIdsArray:[],
     employeesId:"",
     print:'wifi',
-    modal: true,
+    addModal: true,
+    discountModal: true,
+    customerModal: true,
     submitData:[],
     addObject:{},
     cusDictValue:0,
@@ -403,7 +405,20 @@ Page({
 
     })
   },
-  modal: function (e) {
+  // 货品售价生成方式
+  goodsPrice:function(){
+    var goodsPrice
+    if (this.data.goodsPrice===2){
+      goodsPrice = 1
+    }else{
+      goodsPrice = 2
+    }
+    this.setData({
+      goodsPrice: goodsPrice
+    })
+  },
+  // 模态框
+  addModal: function (e) {
     var title = '';
     var addObject = this.data.addObject;
     var dictGroup = "";
@@ -429,14 +444,26 @@ Page({
       dictGroupName: dictGroupName
     };
     this.setData({
-      modal: false,
+      addModal: false,
       modalTitle: title,
       addObject: addObject
     })
   },
+  customerModal:function(){
+    this.setData({
+      customerModal: false,
+    })
+  },
+  discountModal:function(){
+    this.setData({
+      discountModal: false,
+    })
+  },
   cancel: function () {
     this.setData({
-      modal: true
+      addModal: true,
+      discountModal: true,
+      customerModal: true,
     })
   },
   /***********

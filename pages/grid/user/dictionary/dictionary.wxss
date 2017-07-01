@@ -388,6 +388,7 @@ swiper{
   height: 24px;
   border-radius: 12px;
   position: relative;
+  left: 0;
   transition: all 0.3s;
 }
 .button_selected{
@@ -424,24 +425,42 @@ swiper{
   padding: 0 20px;
   margin-bottom: 10px;
 }
+.goods_level_content{
+  display: flex;
+}
 .goods_level_title{
-  float: left;
+  flex: 1;
   font-size: 14px;
   text-align: center;
   height: 30px;
   line-height: 30px;
-  width: 50%;
+  color: #000000;
 }
 .goods_level_view{
-  box-sizing: border-box;
+  flex: 1;
   border: 0.5px solid #ffffff;
   background-color: #E7F7F6;
   font-size: 14px;
   line-height: 30px;
   height: 32px;
   text-align: center;
-  width: 50%;
-  float: left;
+  color: #000000;
+}
+.goods_level_modal .goods_level_title{
+  border: 0.5px solid #E3E3E3;
+  background-color: #E7F7F6;
+}
+.goods_level_modal .goods_level_view{
+  border: 0.5px solid #E3E3E3;
+  background-color: #ffffff;
+  padding: 0;
+  position: relative;
+}
+.goods_level_input_text{
+  position: absolute;
+  right: 8px;
+  top: 0;
+  bottom: 0;
 }
 
 .setting_title3{
@@ -610,7 +629,7 @@ swiper{
   padding: 7px;
 }
 
-
+/*修改默认折扣率*/
 .modal_text{
   float: left;
   text-align: center;
@@ -618,5 +637,48 @@ swiper{
 }
 .modal_input{
   border: 1px solid #dddddd;
+  color: #000000;
+}
+
+/*修改客户种类*/
+.update_name,.update_level{
+  padding: 10px 0;
+  border-bottom: 5px solid #DBF4F1;
+  color: #000000;
+}
+.name_text{
+  float: left;
+  font-size: 16px;
+  line-height: 30px;
+  width: 40%;
+}
+.name_input{
+  padding: 0 10px;
+  border: 1px solid #52CAC1;
+  font-size: 16px;
+  line-height: 28px;
+  height: 28px;
+  margin-right: 20%;
+}
+.level_title{
+  float: left;
+  font-size: 16px;
+  line-height: 30px;
+  width: 40%;
+}
+.level_text{
+  font-size: 12px;
+  line-height: 30px;
+  text-decoration: underline;
+}
+.slider_view{
+  float: left;
+  width: 20%;
+  text-align: center;
+  font-size: 12px;
+  line-height: 40px;
+  color: #999999;
+}
+.slider_checked{
   color: #000000;
 }

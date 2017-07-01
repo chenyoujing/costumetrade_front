@@ -61,3 +61,14 @@
   right: 0;
   color: #ffffff;
 }
+
+
+.modal_text{
+  float: left;
+  text-align: center;
+  line-height:1.4rem;
+}
+.modal_input{
+  border: 1px solid #dddddd;
+  color: #000000;
+}
