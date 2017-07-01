@@ -8,6 +8,58 @@ Page({
     more_function_display: 'none',
     selected: 0
   },
+  purchase_request: function () {
+    var that = this
+    wx.showNavigationBarLoading()
+    util.api.request({
+      url: 'report/purchaseReport',
+      data: {
+        openid: app.globalData.openid,
+        // timeFrom: new Date((new Date(Date.now() - 864000000000))),
+        // timeTo: new Date,
+        reportType: that.data.payCate,
+      },
+      method: 'POST',
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      success: function (res) {
+        wx.hideNavigationBarLoading();
+        console.log(res.data)
+        var data = [{
+          name: '销售收入',
+          value: res.data.saleIncome
+        }, {
+          name: '销售支出',
+          value: res.data.salePay
+        }, {
+          name: '采购收入',
+          value: res.data.purchaseIncome
+        }, {
+          name: '采购支出',
+          value: res.data.purchasePay
+        }, {
+          name: '客户还款',
+          value: res.data.customerRepay
+        }, {
+          name: '供货还款',
+          value: res.data.suppierRepay
+        }, {
+          name: '费用收入',
+          value: res.data.feeIncome
+        }, {
+          name: '费用支出',
+          value: res.data.feePay
+        }, {
+          name: '-合计-',
+          value: res.data.days
+        }]
+        that.setData({
+          data: data
+        })
+      }
+    })
+  },
   // 打开多功能键
   more_function: function () {
     this.setData({
@@ -97,6 +149,7 @@ Page({
     });
   },
   onLoad: function (e) {
+    this.purchase_request()
     this.chart()
   }
 })

@@ -20,11 +20,11 @@
         <view class="content_title_text"></view>
         <view class="content_title_text">金额(元)</view>
       </view>
-      <block wx:for="111111">
+      <block wx:for="{{data}}">
         <view class="content_view">
-          <view class="content_view_text">销售收入</view>
+          <view class="content_view_text">{{item.name}}</view>
           <view class="content_view_text"></view>
-          <view class="content_view_text" style="color:#CE2726;">0</view>
+          <view class="content_view_text" style="color:#CE2726;">{{item.value}}</view>
         </view>
       </block>
     </view>

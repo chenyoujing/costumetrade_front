@@ -27,23 +27,31 @@
     </view>
     <view class="business_title">
       <view class="business_title_view">支付方式</view>
-      <view class="business_title_view">付款金额</view>
+      <view class="business_title_view"></view>
+      <view class="business_title_view">收款</view>
+      <view class="business_title_view">付款</view>
       <view class="business_title_view">明细</view>
     </view>
     <view class="business_content">
-      <view class="business_title_view">刷卡</view>
+      <view class="business_title_view">支付宝</view>
+      <view class="business_title_view"></view>
       <view class="business_title_view" style="color:#FE4040;">0</view>
-      <navigator url="../finance/finance" class="business_title_view" style="color:#286561;">明细</navigator>
+      <view class="business_title_view" style="color:#FE4040;">100</view>
+      <navigator url="../finance/finance?payType=ALI_PAY" class="business_title_view" style="color:#286561;">明细</navigator>
     </view>
     <view class="business_content">
       <view class="business_title_view">现金</view>
+      <view class="business_title_view"></view>
       <view class="business_title_view" style="color:#FE4040;">746</view>
-      <view class="business_title_view" style="color:#286561;">明细</view>
+      <view class="business_title_view" style="color:#FE4040;">200</view>
+      <navigator url="../finance/finance?payType=CASH_PAY" class="business_title_view" style="color:#286561;">明细</navigator>
     </view>
     <view class="business_content">
       <view class="business_title_view">微信</view>
+      <view class="business_title_view"></view>
       <view class="business_title_view" style="color:#FE4040;">0</view>
-      <view class="business_title_view" style="color:#286561;">明细</view>
+      <view class="business_title_view" style="color:#FE4040;">0</view>
+      <navigator url="../finance/finance?payType=WE_PAY" class="business_title_view" style="color:#286561;">明细</navigator>
     </view>
   </view>
 

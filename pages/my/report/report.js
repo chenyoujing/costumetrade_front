@@ -7,24 +7,24 @@ Page({
   },
   canvas: function () {
     var that = this
-    wx.showNavigationBarLoading()
-    util.api.request({
-      url: 'report/financeReport',
-      data: {
-        openid: app.globalData.openid,
-        // timeFrom: new Date((new Date(Date.now() - 864000000000))),
-        // timeTo: new Date,
-        payCate: 'CASH_PAY',
-      },
-      method: 'POST',
-      header: {
-        'content-type': 'application/x-www-form-urlencoded'
-      },
-      success: function (res) {
-        wx.hideNavigationBarLoading();
-        console.log(res.data)
-      }
-    })
+    // wx.showNavigationBarLoading()
+    // util.api.request({
+    //   url: 'report/financeReport',
+    //   data: {
+    //     openid: app.globalData.openid,
+    //     // timeFrom: new Date((new Date(Date.now() - 864000000000))),
+    //     // timeTo: new Date,
+    //     payCate: 'CASH_PAY',
+    //   },
+    //   method: 'POST',
+    //   header: {
+    //     'content-type': 'application/x-www-form-urlencoded'
+    //   },
+    //   success: function (res) {
+    //     wx.hideNavigationBarLoading();
+    //     console.log(res.data)
+    //   }
+    // })
   },
   // 打开多功能键
   more_function: function () {
