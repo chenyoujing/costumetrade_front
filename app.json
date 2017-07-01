@@ -1,6 +1,6 @@
 {
   "pages": [
-    
+    "pages/my/report/report",
     "pages/grid/shop/shop",
     "pages/grid/user/user",
     "pages/grid/info/info",
@@ -21,7 +21,6 @@
     "pages/grid/user/helpInfo/helpInfo",
     "pages/grid/user/notecase/notecase",
     "pages/grid/user/dictionary/dictionary",
-    
     "pages/grid/user/branch/branch",
     "pages/my/openOrder/openOrder",
     "pages/my/openOrder/goodsDetails/goodsDetails",
@@ -62,9 +61,8 @@
     "pages/my/report/salesRank/salesRank",
     "pages/my/report/finance/finance",
     "pages/my/report/stock/stock",
-    "pages/my/report/allreport/allreport",
+    "pages/my/report/allreport/allreport"
     
-    "pages/my/report/report"
   ],
   "window": {
     "backgroundTextStyle": "light",
