@@ -387,6 +387,11 @@ swiper{
   background-color: #ffffff;
   height: 24px;
   border-radius: 12px;
+  position: relative;
+  transition: all 0.3s;
+}
+.button_selected{
+  left: 50%;
 }
 .setting_button_text1{
   position: absolute;
@@ -606,6 +611,11 @@ swiper{
 }
 
 
+.modal_text{
+  float: left;
+  text-align: center;
+  line-height:1.4rem;
+}
 .modal_input{
   border: 1px solid #dddddd;
   color: #000000;
