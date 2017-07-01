@@ -99,7 +99,7 @@
     </view>
   </scroll-view>
   <image src="../../../../images/close.png" mode="aspectFit" class="modal_close" bindtap="modal_close" />
-  <button class="modal_submit" bindtap="modal_close">确定</button>
+  <button class="modal_submit" bindtap="getData">确定</button>
 </view>
 
 

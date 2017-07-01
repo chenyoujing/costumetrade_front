@@ -145,6 +145,7 @@ Page({
         that.enterShopCart();
       }
     })
+    this.modal_close()
   },
   // 数量加减
   countAddorSub:function(e){
@@ -203,7 +204,6 @@ Page({
         modal: "none",
       })
     }, 300)
-    this.getData()
   },
   sizes_checked: function (e) {
     let data = e.target.dataset;

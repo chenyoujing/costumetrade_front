@@ -60,6 +60,7 @@ Page({
           var shopCart = that.data.shopCart;
           var newShopCart = [];
           var price = (that.data.totalPrice + that.data.freight).toFixed(2);
+          console.log(price)
           submitData.order.realcostArray = price;
           submitData.stoDetails = [];
           submitData.order = {};

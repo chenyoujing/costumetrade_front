@@ -389,14 +389,14 @@
         <!--客户种类-->
         <view class="setting_view">
           <view class="setting_title" style="margin-bottom:10px;">客户种类</view>
-          <view class="setting_title3 clearfix">
-            <view class="setting_text" style="width:30%;">客户名称</view>
-            <view class="setting_text" style="width:40%;">可见货品级别</view>
+          <view class="setting_title3">
+            <view class="setting_text">客户名称</view>
+            <view class="setting_text" style="flex:4;">可见货品级别</view>
             <view class="setting_text">编辑</view>
           </view>
-          <view class="setting_content clearfix" wx:for="{{customerCusts}}" wx:if="{{index <= cusDictValue-1}}">
-            <view class="setting_text" style="width:30%;">{{item.custtypename}}</view>
-            <view class="setting_text" style="width:40%;">{{item.prodgradeName}}</view>
+          <view class="setting_content" wx:for="{{customerCusts}}" wx:if="{{index <= cusDictValue-1}}">
+            <view class="setting_text">{{item.custtypename}}</view>
+            <view class="setting_text" style="flex:4;">{{item.prodgradeName}}</view>
             <view class="setting_text" style="color:#286561;" bindtap="customerModal" data-index="{{index}}">修改</view>
           </view>
        

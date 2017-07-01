@@ -56,6 +56,24 @@ Page({
       var openid2 = openidList[0]
       var openid1 = openidList[1]
     }
+    // wx.downloadFile({
+    //   url: 'http://117.149.24.42:8788/original/201706/8492fdfa45f443b1b0636540851a4141.png',
+    //   header: {},
+    //   success: function (res) {
+    //     wx.saveImageToPhotosAlbum({
+    //       filePath: res.tempFilePath,
+    //       success: function (ress) {
+    //         console.log(ress)
+    //         console.log(res.tempFilePath)
+    //       },
+    //       fail: function (res) {
+    //         console.log(res)
+    //       }
+    //     })
+    //     console.log(2)
+    //   },
+    // })
+
     // wx.connectSocket({
     //   url: 'wss://touchart.cn:8443/socketHander',
     //   data:{
