@@ -53,6 +53,7 @@
 
 .report_form{
   border: 1px solid #DDDDDD;
+  margin: 10px 50rpx;
 }
 .form_title,.form_content{
   display: flex;
