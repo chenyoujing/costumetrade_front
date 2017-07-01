@@ -219,16 +219,16 @@ Page({
         for (var p in res.data.datas){
           switch (res.data.datas[p].dictGroup){
             case "PAY_TYPE":
-              payProduct.push(res.data.datas[p])
+              payProduct.push(res.data.datas[p]);
               break;
             case "FEE_TYPE":
-              feeProduct.push(res.data.datas[p])
+              feeProduct.push(res.data.datas[p]);
               break;
             case "SELLING_METHOD":
-              sellingProduct.push(res.data.datas[p])
+              sellingProduct = res.data.datas[p];
               break;
             case "CUSTOMER_TYPE":
-              customerProduct = res.data.datas[p]
+              customerProduct = res.data.datas[p];
               break;
             case "PRODUCT_GRADE":
               productGrade.push(res.data.datas[p])
@@ -273,13 +273,24 @@ Page({
       }
     })
   },
-  // 货品售价生成方式
   
   // 更改启用的客户种类
   cusgradeChange:function(e){
     var name = e.target.dataset.name;
+    var product = this.data[name];
+    var submitData = this.data.submitData;
     var param = {};
-    param[name] = e.detail.value + 1;
+    if (name == "customerCusts"){
+      product[this.data.customerIndex].prodgrade = e.detail.value + 1;
+      console.log(e.detail.value)
+      console.log(e.detail.value)
+      submitData[name] = product;
+      param[name] = product;
+      param.submitData = submitData;
+    }else{
+      param[name] = e.detail.value + 1;
+    }
+
     this.setData(param);
   },
   // 删除费用单、分店、支付方式
@@ -351,11 +362,30 @@ Page({
       newName:e.detail.value
     })
   },
+  // 更改input
+  changIput:function(e){
+    var name = e.currentTarget.dataset.name;
+    var product = this.data[name];
+    var submitData = this.data.submitData;
+    var index = e.currentTarget.dataset.index;
+    var sellingProduct = this.data.sellingProduct; 
+    var param = {};
+    if (name == "pointExchange"){
+      product.dictText = e.detail.value;
+    } else if (name == "customerCusts"){
+      var type = sellingProduct.dictValue == 1 ? "custpricejson" :"discpricejson";
+      product[index][type] = e.detail.value;
+    }
+    param[name] = product;
+    submitData[name] = product;
+    param['submitData'] = submitData;
+    this.setData(param)
+  },
   // 添加费用单、分店、支付方式
   dictionaryAdd: function () {
     var addObject = this.data.addObject;
     var product = this.data[addObject.name]
-    var newName = this.data.newName;
+    var newName = this.data.newName.replace(/ /g, '');
     var submitData = this.data.submitData;
     var param = {};
     var add = true;
@@ -402,20 +432,22 @@ Page({
     }
     this.setData({
       freight: freight
-
     })
   },
   // 货品售价生成方式
-  goodsPrice:function(){
-    var goodsPrice
-    if (this.data.goodsPrice===2){
-      goodsPrice = 1
-    }else{
-      goodsPrice = 2
+  goodsPrice:function(e){
+    console.log(e)
+    var type = e.currentTarget.dataset.type;
+    var product = this.data[type];
+    var submitData = this.data.submitData;
+    var param = {};
+    if (type == "sellingProduct"){
+      product.dictValue = product.dictValue == 1 ? product.dictValue = 2 : product.dictValue = 1;
+      product.dictText = product.dictValue == 1 ? product.dictText = "成本价*毛利率" : product.dictText = "吊牌价*折扣率";
     }
-    this.setData({
-      goodsPrice: goodsPrice
-    })
+    submitData[type] = product;
+    param[type] = product;
+    this.setData(param)
   },
   // 模态框
   addModal: function (e) {
@@ -449,9 +481,10 @@ Page({
       addObject: addObject
     })
   },
-  customerModal:function(){
+  customerModal:function(e){
     this.setData({
       customerModal: false,
+      customerIndex:e.target.dataset.index
     })
   },
   discountModal:function(){

@@ -270,8 +270,8 @@
               <view class="freight_content" style="padding-bottom:5px;">
                 <view class="freight_content_title">1. 运费：</view>
                 <view class="setting_button_view" style="height:30px;overflow:hidden;width:unset;float:unset;">
-                  <view class="setting_button">
-                    <view class="setting_button_small button_selected"></view>
+                  <view class="setting_button" bindtap="goodsPrice" data-type="logisticFees" data-index="{{index}}">
+                    <view class="setting_button_small  {{logisticFees.feeType == 1?'button_selected':''}}"></view>
                     <view class="setting_button_text1" style="font-size:14px;">手动修改</view>
                     <view class="setting_button_text2" style="font-size:14px;">固定运费</view>
                   </view>
@@ -302,8 +302,8 @@
         <view class="setting_view">
           <view class="setting_title2">货品售价生成方式</view>
           <view class="setting_button_view">
-            <view class="setting_button" bindtap="goodsPrice">
-              <view class="setting_button_small {{goodsPrice == 2?'button_selected':''}}"></view>
+            <view class="setting_button" data-type="sellingProduct" bindtap="goodsPrice">
+              <view  class="setting_button_small {{sellingProduct.dictValue == 2?'button_selected':''}}"></view>
               <view class="setting_button_text1">成本价*毛利率</view>
               <view class="setting_button_text2">吊牌价*折扣率</view>
             </view>
@@ -318,16 +318,19 @@
         <!--货品级别-->
         <view class="print_info" style="border-bottom:1px solid #52CAC1;">
           <view class="goods_update" bindtap="discountModal">修改</view>
-          默认折扣率
+          默认<block wx:if="{{sellingProduct.dictValue == 2}}">折扣率</block>
+              <block wx:if="{{sellingProduct.dictValue == 1}}">毛利率</block>
         </view>
         <view class="goods_level clearfix">
           <view class="goods_level_content">
             <view class="goods_level_title">客户种类</view>
-            <view class="goods_level_title">折扣率</view>
+            <view class="goods_level_title"  wx:if="{{sellingProduct.dictValue == 1}}">毛利率</view>
+             <view class="goods_level_title"  wx:if="{{sellingProduct.dictValue == 2}}">折扣率</view>
           </view>
           <view class="goods_level_content" wx:for="{{customerCusts}}">
             <view class="goods_level_view">{{item.custtypename}}会员</view>
-            <view class="goods_level_view">{{item.custpricejson}}%</view>
+            <view class="goods_level_view" wx:if="{{sellingProduct.dictValue == 1}}">{{item.custpricejson}}%</view>
+            <view class="goods_level_view" wx:if="{{sellingProduct.dictValue == 2}}">{{item.discpricejson}}%</view>
           </view>
         </view>
 
@@ -352,7 +355,7 @@
           <view class="integral clearfix">
             <view class="integral_title">{{pointExchange.dictText}}=</view>
             <view class="integral_unit">元</view>
-            <input type="number" value="{{pointExchange.dictValue}}" class="integral_input" />
+            <input type="number" bindblur="changIput" data-name="pointExchange" value="{{pointExchange.dictValue}}" class="integral_input" />
           </view>
         </view>
 
@@ -389,14 +392,12 @@
           <view class="setting_title3 clearfix">
             <view class="setting_text" style="width:30%;">客户名称</view>
             <view class="setting_text" style="width:40%;">可见货品级别</view>
-            <view class="setting_text">启用</view>
             <view class="setting_text">编辑</view>
           </view>
           <view class="setting_content clearfix" wx:for="{{customerCusts}}" wx:if="{{index <= cusDictValue-1}}">
             <view class="setting_text" style="width:30%;">{{item.custtypename}}</view>
             <view class="setting_text" style="width:40%;">{{item.prodgradeName}}</view>
-            <view class="setting_text">是</view>
-            <view class="setting_text" style="color:#286561;" bindtap="customerModal">修改</view>
+            <view class="setting_text" style="color:#286561;" bindtap="customerModal" data-index="{{index}}">修改</view>
           </view>
        
         </view>
@@ -422,11 +423,12 @@
   <view class="goods_level clearfix">
     <view class="goods_level_content goods_level_modal">
       <view class="goods_level_title">客户种类</view>
-      <view class="goods_level_title">折扣率</view>
+       <view class="goods_level_title"  wx:if="{{sellingProduct.dictValue == 1}}">毛利率</view>
+             <view class="goods_level_title"  wx:if="{{sellingProduct.dictValue == 2}}">折扣率</view>
     </view>
     <view class="goods_level_content goods_level_modal" wx:for="{{customerCusts}}">
       <view class="goods_level_view">{{item.custtypename}}会员</view>
-      <input type="number" class="goods_level_view" style="" value="{{item.custpricejson}}">
+      <input type="number" bindblur="changIput" data-name="customerCusts" data-index="{{index}}" class="goods_level_view" style="" value="{{sellingProduct.dictValue == 1 ?item.custpricejson:item.discpricejson}}">
         <view class="goods_level_input_text">%</view>
       </input>
     </view>
@@ -434,21 +436,19 @@
 </modal>
 
 <!--修改客户种类-->
-<modal title="普通会员" hidden="{{customerModal}}" bindconfirm="customerUpdate" bindcancel="cancel">
+<modal title="{{customerCusts[customerIndex].custtypename}}会员" hidden="{{customerModal}}" bindconfirm="customerUpdate" bindcancel="cancel">
 
   <view class="update_name">
     <view class="name_text">会员种类名称</view>
-    <input type="text" class="name_input" value="普通会员" />
+    <input type="text" class="name_input" value="{{customerCusts[customerIndex].custtypename}}会员" />
   </view>
   <view class="update_level">
     <view class="level_title">可见货品级别:</view>
-    <view class="level_text">3级以下可见</view>
-    <view class="slider_view slider_checked">处理货品</view>
-    <view class="slider_view">活动货品</view>
-    <view class="slider_view">在销货品</view>
-    <view class="slider_view">新款货品</view>
-    <view class="slider_view">专供货品</view>
+    <view class="level_text">{{customerCusts[customerIndex].prodgrade}}级以下可见</view>
+     <block  wx:for="{{productGrade}}">
+        <view class="slider_view slider_checked">{{item.dictText}}</view>
+     </block>
     <view class="clear"></view>
-    <slider activeColor="#52CAC1" max="4" style="margin:10px 10%;"/>
+    <slider activeColor="#52CAC1"  bindchange="cusgradeChange" max="4" data-name="customerCusts"  value="{{customerCusts[customerIndex].prodgrade -1}}" style="margin:10px 10%;"/>
   </view>
 </modal>
