@@ -141,7 +141,7 @@ var api = {
     };
     format = o["Y+"] + o["M+"]+ o["d+"]+ o["h+"] + o["m+"] + o["s+"] + o["S"];
     format = (new Date()).getTime();
-    format = String(66666) + format;
+    format = String(66666) + format
     return format;
   },
   // 选择图片上传

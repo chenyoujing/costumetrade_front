@@ -433,7 +433,7 @@
 </modal>
 
 <!--修改默认折扣率-->
-<modal title="修改默认折扣率" hidden="{{discountModal}}" bindconfirm="discountUpdate" bindcancel="cancel">
+<modal title="修改默认折扣率" hidden="{{discountModal}}" bindconfirm="submitData" bindcancel="cancel">
   <view class="goods_level clearfix">
     <view class="goods_level_content goods_level_modal">
       <view class="goods_level_title">客户种类</view>

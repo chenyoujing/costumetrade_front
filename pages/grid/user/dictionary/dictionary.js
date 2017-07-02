@@ -254,7 +254,7 @@ Page({
         for (var p in res.data.images) {
           res.data.images[p] = util.api.imgUrl + res.data.images[p]
         } 
-        var images = res.data.images
+        var images = res.data.images || [];
         var logisticFees = res.data.logisticFees
         app.customerCusts = customerCusts
         that.setData({
@@ -290,9 +290,19 @@ Page({
       param.submitData = submitData;
     }else{
       param[name] = e.detail.value + 1;
+      var customerProduct = this.data.customerProduct;
+      var num = [];
+      for (var p in 'custo') {
+        if (p <= this.data.cusDictValue - 1) {
+          num.push(p + 1)
+        }
+      }
+      customerProduct.dictValue = num.join(",");
+      submitData.customerProduct = customerProduct;
     }
 
     this.setData(param);
+    that.submitData()
   },
   // 删除费用单、分店、支付方式
   dictionaryDelet:function(e){
@@ -306,6 +316,7 @@ Page({
     submitData[name] = product;
     param['submitData'] = submitData;
     this.setData(param)
+    that.submitData()
   },
   // 上传图片
   photoSubmit: function (file, i,e) {
@@ -321,10 +332,12 @@ Page({
       filePath: file[i],
       name: 'file',
       success: function (res) {
-       
+        console.log(JSON.parse(res.data))
         if (JSON.parse(res.data).code == 0){
           if (name == "images") {
+            console.log(images)
             images[index] = util.api.imgUrl + JSON.parse(res.data).data.url;
+            console.log(images)
             param.images = images;
             submitData.images = images;
           } else {
@@ -334,11 +347,7 @@ Page({
           }
           param.submitData = submitData
           that.setData(param);
-          wx.showToast({
-            title: '上传成功',
-            mask: true,
-            duration: 2000
-          })
+          that.submitData()
         }else{
           wx.showToast({
             title: '失败',
@@ -372,7 +381,7 @@ Page({
     var sellingProduct = this.data.sellingProduct; 
     var param = {};
     if (name == "pointExchange"){
-      product.dictText = e.detail.value;
+      product.dictValue = e.detail.value;
     } else if (name == "customerCusts"){
       var type = sellingProduct.dictValue == 1 ? "custpricejson" :"discpricejson";
       product[index][type] = e.detail.value;
@@ -381,6 +390,9 @@ Page({
     submitData[name] = product;
     param['submitData'] = submitData;
     this.setData(param)
+    if (name == "pointExchange") {
+      this.submitData()
+    }
   },
   // 添加费用单、分店、支付方式
   dictionaryAdd: function () {
@@ -416,11 +428,8 @@ Page({
         param[addObject.name] = product;
         param["submitData"] = submitData;
         this.setData(param)
-        wx.showToast({
-          title: "添加成功！",
-          mask: true,
-          duration: 2000
-        })
+       
+        this.submitData()
         this.cancel();
       }
     }
@@ -454,7 +463,8 @@ Page({
     }
     submitData[type] = product;
     param[type] = product;
-    this.setData(param)
+    this.setData(param);
+    this.submitData()
   },
   // 模态框
   addModal: function (e) {
@@ -533,27 +543,55 @@ Page({
    submitData:function(){
      var that = this;
      var submitData = this.data.submitData;
-     var customerProduct = this.data.customerProduct;
-     var num = [];
-     for (var p in 'custo'){
-       if (p <= this.data.cusDictValue-1){
-         num.push(p+1)
+     var newSubmitData = [];
+     var url = "dictionary/saveDataDictionary"
+     console.log(submitData)
+     for (var p in submitData){
+       console.log(submitData[p])
+       if(p == 'images'){
+         newSubmitData = [{
+           storeId: app.globalData.storeId,
+           dictGroup:'IMAGE',
+           dictValue: submitData[p].join(',').replace(/http:\/\/117.149.24.42:8788/g, ''),
+           dictGroupName:'商品推广图片'
+         }]
+       } else if (p == 'sellingProduct' || p == "pointExchange"){
+          submitData[p].storeId = app.globalData.storeId
+          newSubmitData.push(submitData[p])
+          
+       }else{
+         for (var j in submitData[p]) {
+           console.log(submitData[p])
+          //  submitData[p][j].storeId = app.globalData.storeId
+           newSubmitData.push(submitData[p][j])
+           if (p == 'customerCusts'){
+             url = 'dictionary/saveTypeOrGradeRate'
+           }
+         }
        }
      }
-     customerProduct.dictValue = num.join(",");
-     submitData.customerProduct = customerProduct;
+     console.log(newSubmitData)
      wx.showNavigationBarLoading()
      util.api.request({
-       url: 'dictionary/saveDataDictionarys',
-       data: {
-         storeId: app.globalData.storeId
-       },
+       url: url,
+       data: newSubmitData,
        method: 'POST',
        header: {
-         'content-type': 'application/x-www-form-urlencoded'
+         'content-type': 'application/josn'
        },
        success: function (res) {
+        that.setData({
+          submitData:[]
+        })
+        if (p == 'customerCusts'){
+          that.cancel()
+        }
          wx.hideNavigationBarLoading();
+         wx.showToast({
+           title: "添加成功！",
+           mask: true,
+           duration: 2000
+         })
        }
      })
    },
