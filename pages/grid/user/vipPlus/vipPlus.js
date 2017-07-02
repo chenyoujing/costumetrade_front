@@ -44,11 +44,15 @@ Page({
         wx.hideNavigationBarLoading();
         console.log(res.data);
         app.globalData.storeId = res.data;
-        wx.navigateTo({
-          url: '../../user/storeUpdate/storeUpdate',
-          success: function (res) { }
-        })
+        util.api.getOpenid(that.callback)
       }
+    })
+  },
+  // skip
+  callback:function(){
+    wx.navigateTo({
+      url: '../../user/storeUpdate/storeUpdate',
+      success: function (res) { }
     })
   },
   onLoad: function (options) {
