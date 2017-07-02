@@ -60,6 +60,7 @@ App({
           wx.getUserInfo({
             success: function (res) {
               console.log(res.userInfo.avatarUrl)
+              console.log(res.encryptedData)
               console.log(res.userInfo.nickName)
               that.globalData.userInfo = res.userInfo;
               typeof cb == "function" && cb(that.globalData.userInfo)
