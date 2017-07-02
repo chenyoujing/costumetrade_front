@@ -1,6 +1,4 @@
 var util = require('../../../utils/util.js')
-// var util = require('../../../utils/demo.js')
-// var util = require('../../../utils/WXBizDataCrypt.js')
 var app = getApp()
 Page({
   data: {
