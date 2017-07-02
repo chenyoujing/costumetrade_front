@@ -108,7 +108,7 @@ Page({
     util.api.request({
       url: 'employee/getAllEmployees',
       data: {
-        storeId: String(1)
+        storeId: app.globalData.storeId
       },
       method: 'POST',
       header: {
@@ -166,7 +166,7 @@ Page({
     }
     var objectSubmit = util.api.getEntityModified(this.data.originalEmployeeDetails, this.data.employeeDetails);
     objectSubmit.privilegeEmployees = privilegeIdsArray;
-    objectSubmit.storeId = 1;
+    objectSubmit.storeId = app.globalData.storeId;
     objectSubmit.employeesId = this.data.employeesId;
     wx.showNavigationBarLoading()
     util.api.request({

@@ -75,8 +75,8 @@
         </view>
       </view>
       <view class="upload_input">
-        <view class="upload_input_text">货号:</view>
-        <input type="number" class="upload_input1" name="code"  value="{{GoodsInfoData.code}}"/>
+        <view class="upload_input_text" >货号:</view>
+        <input type="number" bindinput="blurInput" data-name="code"  class="upload_input1" name="code"  value="{{GoodsInfoData.code}}"/>
         <view class="clear"></view>
       </view>
       <view class="upload_input">

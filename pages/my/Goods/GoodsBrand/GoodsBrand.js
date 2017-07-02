@@ -55,6 +55,7 @@ Page({
       arryid.push(arryvalue[p].split('|')[1])
     }
     console.log(arryname)
+    console.log(arryid)
     this.setData({
       selectOption: arryname,
       selectOptionID: arryid

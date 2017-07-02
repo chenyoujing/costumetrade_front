@@ -642,7 +642,10 @@ Page({
           producttype: app.changeData,
           GoodsInfoData: param
         });  
-        console.log(param.colors)
+        console.log({
+          producttype: app.changeData,
+          GoodsInfoData: param
+        })
       } else if (app.nameChange == '品牌名称'){
         param.brandid = util.api.getFilterArray(app.changeData);   
         console.log(app.changeData)

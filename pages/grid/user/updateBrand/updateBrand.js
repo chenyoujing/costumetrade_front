@@ -13,7 +13,7 @@ Page({
     util.api.request({
       url: that.data.url,
       data: {
-        storeId: 1
+        storeId: app.globalData.storeId
       },
       method: 'POST',
       header: {

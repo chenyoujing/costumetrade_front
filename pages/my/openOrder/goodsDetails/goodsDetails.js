@@ -48,7 +48,7 @@ Page({
     util.api.request({
       url: 'product/takingStock',
       data: {
-        storeId: 1,
+        storeId: app.globalData.storeId,
         id: id
       },
       method: 'POST',
@@ -75,7 +75,7 @@ Page({
     util.api.request({
       url: 'product/getProductInit',
       data: {
-        storeId: 1,
+        storeId: app.globalData.storeId,
         id: id
       },
       method: 'POST',

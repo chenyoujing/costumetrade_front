@@ -47,11 +47,12 @@ Page({
     var that = this;
     if (this.data.envalue) {
       wx.showNavigationBarLoading();
-      var param = { storeId: 1 };
+      var param = { storeId: app.globalData.storeId };
       param[this.data.addname] = this.data.envalue;
       if (this.data.addname =='customname'){
         param['value'] = util.api.getFilterArray(this.data.selected);
       }
+      console.log(app.globalData.storeId)
       util.api.request({
         url: this.data.url,
         data: param,
@@ -62,6 +63,29 @@ Page({
         success: function (res) {
           app.changeData = that.data.envalue;
           app.changeId = res.data;
+          var object = {
+            id: res.data,
+            storeId: app.globalData.storeId
+          }
+          var name = '';
+          var appname = ''
+          console.log(app.changeId);
+          switch (that.data.addname){
+            case 'catename':
+              name = 'catename';
+              appname = 'screen_productTypeList'
+              break;
+            case 'brandname':
+              name = 'brandname';
+              appname = 'screen_brandList'
+              break;
+            case 'unit':
+              name = 'unit'
+              appname = 'screen_unitList'
+              break;
+          }
+          object[name] = that.data.envalue;
+          app[appname].push(object)
           if (that.data.addname == 'customname') {
             app.changesizename = 'customname';
             app.changeId = param;
@@ -90,7 +114,7 @@ Page({
        name: options.name,
        addname: options.addname
      })
-     console.log(options.addname)
+     console.log(options.name)
   },
   onShow:function(){
     this.setData({

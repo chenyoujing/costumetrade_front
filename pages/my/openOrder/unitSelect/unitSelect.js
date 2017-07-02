@@ -96,7 +96,7 @@ Page({
       url: 'client/scanQRCode',
       data: {
         type: client,
-        storeId: "1",
+        storeId: app.globalData.storeId,
         id: id
       },
       method: 'POST',
@@ -128,7 +128,7 @@ Page({
       url: 'client/scanQRCodeOk',
       data: {
         type: client,
-        storeId: "1",
+        storeId: app.globalData.storeId,
         id: id
       },
       method: 'POST',
