@@ -228,7 +228,7 @@ Page({
               sellingProduct = res.data.datas[p];
               break;
             case "CUSTOMER_TYPE":
-              customerProduct = res.data.datas[p];
+              customerProduct = res.data.datas[p]; 
               break;
             case "PRODUCT_GRADE":
               productGrade.push(res.data.datas[p])
@@ -302,7 +302,7 @@ Page({
     }
 
     this.setData(param);
-    that.submitData()
+    this.submitData()
   },
   // 删除费用单、分店、支付方式
   dictionaryDelet:function(e){
@@ -555,7 +555,7 @@ Page({
            dictValue: submitData[p].join(',').replace(/http:\/\/117.149.24.42:8788/g, ''),
            dictGroupName:'商品推广图片'
          }]
-       } else if (p == 'sellingProduct' || p == "pointExchange"){
+       } else if (p == 'sellingProduct' || p == "pointExchange" ||p=="customerProduct"){
           submitData[p].storeId = app.globalData.storeId
           newSubmitData.push(submitData[p])
           
