@@ -33,7 +33,18 @@ Page({
     var that = this;
     e.detail.value.birthday = Date.parse(new Date(e.detail.value.birthday))
     var object = e.detail.value
-    object.storeId = app.globalData.storeInfo[0].id
+    switch (app.globalData.userIdentity == 1){
+      case ('1'):
+        object.storeId = app.globalData.storeId
+        object.type = 1
+        break;
+      case ('2'):
+        object.userid = app.globalData.userid
+        object.type = 2
+        break;
+      case ('3'):
+        break;
+    }
     wx.showNavigationBarLoading()
     util.api.request({
       url: 'user/saveUserOrStore',
@@ -54,6 +65,7 @@ Page({
         storeInfo.phone = object.phone
         storeInfo.birthday = object.birthday
         storeInfo.description = object.description
+        storeInfo.type = 1
         app.storeInfo = storeInfo
         wx.showToast({
           title: '修改成功',
@@ -77,6 +89,7 @@ Page({
     console.log(app.storeInfo)
     this.setData({
       storeInfo: app.storeInfo,
+      userInfo: app.globalData.userInfo,
     })
   }
 })
