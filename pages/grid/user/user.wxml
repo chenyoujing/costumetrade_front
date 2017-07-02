@@ -9,7 +9,7 @@
       <view class="my_code_text">+粉</view>
     </view>
     <view class="my_info clearfix">
-      <navigator url="storeUpdate/storeUpdate" class="my_name one_line">{{userInfo.nickName||storeInfo.name}}</navigator>
+      <navigator url="storeUpdate/storeUpdate" class="my_name one_line">{{storeInfo.name||userInfo.nickName}}</navigator>
       <view class="my_fans">200</view>
       <navigator url="shareStore/shareStore" class="my_share">分享</navigator>
     </view>
