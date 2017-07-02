@@ -17,6 +17,13 @@
 .time_select{ 
   display: flex;
   justify-content: center;
+  align-items: center;
+}
+.time_select_line{
+  height: 2px;
+  background-color: #000000;
+  width: 15px;
+  margin: 0 5px;
 }
 .select_view{
   box-sizing: border-box;

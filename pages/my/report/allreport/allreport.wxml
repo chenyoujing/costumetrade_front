@@ -15,6 +15,15 @@
     <view class="select_view {{selected==3?'selected':''}}" bindtap="select" data-index="3" data-number="90">90日</view>
     <view class="select_view {{selected==4?'selected':''}}" bindtap="select" data-index="4"  data-number="false">...</view>
   </view>
+  <view class="time_select">
+    <picker class="select_view" bindchange="time_start" mode="date" value="{{time_start}}">
+      {{time_start}}
+    </picker>
+    <view class="time_select_line"></view>
+    <picker class="select_view" bindchange="time_start" mode="date" value="{{end_start}}">
+      {{end_start}}
+    </picker>
+  </view>
 
   <view class="report_container">
     <view class="business_volume">
