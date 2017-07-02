@@ -52,7 +52,7 @@ Page({
     })
   },
   onLoad: function (options) {
-    // this.vipPlusSuccess()
+    this.vipPlusSuccess()
   },
   onShow: function () {
   
