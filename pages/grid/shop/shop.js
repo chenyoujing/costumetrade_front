@@ -36,7 +36,7 @@ Page({
     }else{
       this.initialize()
     }
-    if (!app.logisticFees) {
+    if (!app.logisticFees && app.globalData.userIdentity!==2) {
       util.api.getProductInit()
     }
     wx.updateShareMenu({
