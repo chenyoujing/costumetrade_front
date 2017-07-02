@@ -78,7 +78,7 @@ Page({
       stoDetails.push(obj)
     }
     var object = {
-      openid: 1,
+      openid: app.globalData.openid,
       order: order,
       stoDetails: stoDetails
     }
@@ -174,6 +174,7 @@ Page({
        ordertype2: options.ordertype2,
        update: options.update,
        logisticFees: app.logisticFees,
+       openid: app.globalData.openid
      })
      this.orderDetail_request();
   }

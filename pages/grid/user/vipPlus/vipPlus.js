@@ -11,7 +11,10 @@ Page({
     util.api.request({
       url: 'wxpay/pay',
       data:{
-
+        total_fee:0.01,
+        body:"注册金额",
+        product_id:'4545',
+        openid : app.globalData.openid
       },
       method: 'POST',
       header: {
@@ -23,9 +26,9 @@ Page({
       }
     })
   },
- 
+   // 升级支付
+
   // 升级成功
-  // 升级支付
   vipPlusSuccess: function () {
     var that = this;
     wx.showNavigationBarLoading()
@@ -56,7 +59,8 @@ Page({
     })
   },
   onLoad: function (options) {
-    this.vipPlusSuccess()
+    // this.vipPlusSuccess()
+    this.vipPlus()
   },
   onShow: function () {
   

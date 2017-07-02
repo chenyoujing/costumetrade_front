@@ -24,7 +24,7 @@ function toDate(number) {
 console.log(app.globalData) 
 //请求接口公共方法
 var api = {
-  host: 'http://192.168.2.221:8080/',
+  host: 'http://192.168.2.221:8088/',
   pageNum :1,
   publicProduct:[],
   imgUrl: "http://117.149.24.42:8788",
@@ -120,6 +120,7 @@ var api = {
   },
   DateFormat:function (format) {
     var o = {
+      "Y+": format.getYear(),
       "M+": format.getMonth() + 1, //month
       "d+": format.getDate(), //day
       "h+": format.getHours(), //hour
@@ -138,8 +139,8 @@ var api = {
     } else if (o["S"] <= 100) {
       o["S"] = String(0) + o["S"];
     };
-    format = String(7) + o["M+"]+ o["d+"]+ o["h+"] + o["m+"] + o["s+"] + o["S"];
-    console.log(o)
+    format = o["Y+"] + o["M+"]+ o["d+"]+ o["h+"] + o["m+"] + o["s+"] + o["S"];
+    format = (new Date()).getTime();
     return format;
   },
   // 选择图片上传

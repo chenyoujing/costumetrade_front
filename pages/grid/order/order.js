@@ -252,7 +252,7 @@ Page({
       }
     }
     var object = {}
-    object.openid = 1
+    object.openid = app.globalData.openid
     object.order = order
     object.stoDetails = stoDetails
     console.log(object)
@@ -292,7 +292,7 @@ Page({
        operate: orderInfo.status,
        sellerstoreid: orderInfo.sellerstoreid,
        buyerstoreid: orderInfo.buyerstoreid,
-       openid: 1
+       openid: app.globalData.openid
      };
      console.log(orderInfo)
      wx.showModal({
@@ -313,7 +313,7 @@ Page({
     util.api.request({
       url: "order/countOrders",
       data: {
-        openid:1,
+        openid: app.globalData.openid,
       },
       method: 'POST',
       header: {
@@ -338,7 +338,7 @@ Page({
       operate: orderInfo.status,
       sellerstoreid: orderInfo.sellerstoreid,
       buyerstoreid: orderInfo.buyerstoreid,
-      openid: 1
+      openid: app.globalData.openid
     };
     this.setData({
       colloctNum: orderInfo.debet,
@@ -358,7 +358,7 @@ Page({
         operate: that.data.incomeData.operate,
         buyerid: that.data.incomeData.buyerstoreid,
         sellerid: that.data.incomeData.sellerstoreid,
-        openid: 1,
+        openid: app.globalData.openid,
         income: that.data.colloctNum
       },
       method: 'POST',
@@ -565,7 +565,8 @@ Page({
     this.countOrders();
     this.setData({
       logisticFees: app.logisticFees,
-      paycact: app.payTypeList
+      paycact: app.payTypeList,
+      openid:app.globalData.openid
     })
     console.log(app.logisticFees)
   },

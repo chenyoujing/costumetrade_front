@@ -157,7 +157,8 @@
   <view wx-if="{{ordertype==1 && ordertype2==5}}" wx:for="{{product}}" class="order_container_view">
      <navigator url="orderDetails/orderDetails?ordertype={{ordertype}}&payorderno={{item.payorderno}}&ordertype2=5">
     <view class="order_container_title" >
-      <view class="order_container_name">供应商：{{item.seller}}</view>
+      <view class="order_container_name" wx:if="{{item.seller}}">供应商：{{item.seller}}</view>
+      <view class="order_container_name"  wx:if="{{!item.seller}}">供应商：游客</view>
       <view class="order_container_Bill" wx:if="{{item.ordertype==1}}">商城订单</view>
        <view class="order_container_Bill" wx:if="{{item.ordertype==2}}">线下单据</view>
        <view class="order_container_Bill" style="color:#ff011f;" wx:if="{{item.ordertype==3}}">作废单据</view>
@@ -291,7 +292,8 @@
   <view wx-if="{{ordertype==2 && ordertype2==5}}" wx:for="{{product}}" class="order_container_view clearfix">
     <navigator url="orderDetails/orderDetails?ordertype={{ordertype}}&payorderno={{item.payorderno}}& ordertype2=5">
     <view class="order_container_title" >
-      <view class="order_container_name">客户：{{item.buyer}}</view>
+      <view class="order_container_name" wx:if="{{item.buyer}}">客户：{{item.buyer}}</view>
+       <view class="order_container_name" wx:if="{{!item.buyer}}">客户：游客</view>
       <view class="order_container_Bill" wx:if="{{item.ordertype==1}}">商城订单</view>
        <view class="order_container_Bill" wx:if="{{item.ordertype==2}}">线下单据</view>
       <image src="../../../images/right-thrust.png" mode="aspectFit" class="order_content_right" />

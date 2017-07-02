@@ -17,7 +17,7 @@ Page({
       data: {
         payorderno: this.data.orderno,
         ordertype: this.data.ordertype,
-        openid: 1,
+        openid: app.globalData.openid,
       },
       method: 'POST',
       header: {
