@@ -323,8 +323,6 @@ swiper{
 }
 .freight_explain_input{
   background-color: #ffffff;
-  min-height: 1.4rem;
-  height: unset;
 }
 .freight_content{
   padding-left: 30px;

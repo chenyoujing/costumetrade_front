@@ -51,7 +51,7 @@ Page({
   },
   onShow:function(){
     this.setData({
-      storeInfo: app.globalData.storeInfo,
+      storeInfo: app.globalData.storeInfo[0],
       userInfo: app.globalData.userInfo,
     })
   }

@@ -6,16 +6,42 @@ Page({
     date: '2016-09-01',
     storeInfo: [],
   },
-  tx:function(){
-    wx.chooseImage({
-      count: 1, // 默认9
-      sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
-      sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
+  // 上传图片
+  photoSubmit: function (file, i) {
+    var that = this;
+    wx.uploadFile({
+      url: util.api.host + 'product/uploadImage',
+      filePath: file[i],
+      name: 'file',
       success: function (res) {
-        // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
-        var tempFilePaths = res.tempFilePaths
+        if (JSON.parse(res.data).code == 0) {
+          var url = util.api.imgUrl + JSON.parse(res.data).data.url;
+          that.setData({
+            tx: url,
+          })
+          wx.showToast({
+            title: '上传成功',
+            mask: true,
+            duration: 2000
+          })
+        } else {
+          wx.showToast({
+            title: '失败',
+            mask: true,
+            duration: 2000
+          })
+        }
+
       }
     })
+  },
+  // 上传图片
+  imageCallback: function (e, res) {
+    var tempFilePaths = res.tempFilePaths;
+    this.photoSubmit(tempFilePaths, 0);
+  },
+  tx:function(e){
+    util.api.chooseImg(e, this.imageCallback)    
   },
   address:function(){
     var that = this
@@ -61,24 +87,26 @@ Page({
         if (app.globalData.userIdentity === 2) {
           var userInfo = app.globalData.userInfo
           userInfo.nickName = object.name
+          userInfo.avatarUrl = object.storephoto
           userInfo.cphone = object.cphone
           userInfo.wechat = object.wechat
           userInfo.region = object.region
           userInfo.address = object.address
           userInfo.contact = object.contact
           userInfo.phone = object.phone
-          userInfo.birthday = object.birthday
+          userInfo.birthday = util.formatTime(new Date(object.birthday))
           app.globalData.userInfo = userInfo
         }else{
           var storeInfo = app.globalData.storeInfo[0]
           storeInfo.name = object.name
+          storeInfo.storephoto = object.storephoto
           storeInfo.cphone = object.cphone
           storeInfo.wechat = object.wechat
           storeInfo.region = object.region
           storeInfo.address = object.address
           storeInfo.contact = object.contact
           storeInfo.phone = object.phone
-          storeInfo.birthday = object.birthday
+          storeInfo.birthday = util.formatTime(new Date(object.birthday))
           storeInfo.description = object.description
           app.globalData.storeInfo[0] = storeInfo
         }
