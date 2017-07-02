@@ -22,25 +22,27 @@ Page({
   },
   request_page:function(){
     var that = this
-    wx.showNavigationBarLoading()
-    util.api.request({
-      url: 'store/getStore',
-      data: {
-        storeId: app.globalData.storeInfo[0].id,
-      },
-      method: 'POST',
-      header: {
-        'content-type': 'application/x-www-form-urlencoded'
-      },
-      success: function (res) {
-        wx.hideNavigationBarLoading();
-        res.data.birthday = util.formatTime(new Date(res.data.birthday))
-        that.setData({
-          storeInfo:res.data
-        })
-        app.storeInfo = res.data
-      }
-    })
+    if(app.globalData.storeInfo[0]){
+      wx.showNavigationBarLoading()
+      util.api.request({
+        url: 'store/getStore',
+        data: {
+          storeId: app.globalData.storeInfo[0].id,
+        },
+        method: 'POST',
+        header: {
+          'content-type': 'application/x-www-form-urlencoded'
+        },
+        success: function (res) {
+          wx.hideNavigationBarLoading();
+          res.data.birthday = util.formatTime(new Date(res.data.birthday))
+          that.setData({
+            storeInfo:res.data
+          })
+          app.storeInfo = res.data
+        }
+      })
+    }
   },
   onLoad:function(){
     if (app.globalData.userIdentity == 1){
@@ -49,7 +51,8 @@ Page({
   },
   onShow:function(){
     this.setData({
-      storeInfo: app.storeInfo
+      storeInfo: app.globalData.storeInfo,
+      userInfo: app.globalData.userInfo,
     })
   }
 })
