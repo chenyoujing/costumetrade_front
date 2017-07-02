@@ -31,7 +31,9 @@ Page({
     util.api.request({
       url: 'wxpay/paySuccess',
       data: {
-        openid:app.globalData.openid
+        openid:app.globalData.openid,
+        name: app.globalData.userInfo.nickName,
+        image: app.globalData.userInfo.avatarUrl
       },
       method: 'POST',
       header: {

@@ -32,7 +32,7 @@ Page({
   },
   onLoad:function(){
     if (!app.globalData.openid){
-      util.api.getOpenid(this.initialize);
+      // util.api.getOpenid(this.initialize);
     }else{
       this.initialize()
     }
