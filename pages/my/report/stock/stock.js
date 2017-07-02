@@ -6,6 +6,8 @@ Page({
   data: {
     title: '库存报表',
     more_function_display: 'none',
+    beginTime: "",//开始时间
+    endTime: ""//结束时间
   },
   // 打开多功能键
   more_function: function () {

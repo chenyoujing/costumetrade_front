@@ -17,8 +17,8 @@ Page({
       url: 'report/financeReport',
       data: {
         openid: app.globalData.openid,
-        // timeFrom: new Date((new Date(Date.now() - 864000000000))),
-        // timeTo: new Date,
+        timeFrom: that.data.beginTime,
+        timeTo: that.data.endTime,
         payCate: that.data.payCate,
       },
       method: 'POST',

@@ -6,7 +6,9 @@ Page({
   data: {
     title:'采购报表',
     more_function_display: 'none',
-    selected: 0
+    selected: 0,
+    beginTime: "",//开始时间
+    endTime: ""//结束时间
   },
   purchase_request: function () {
     var that = this
@@ -15,9 +17,13 @@ Page({
       url: 'report/purchaseReport',
       data: {
         openid: app.globalData.openid,
-        // timeFrom: new Date((new Date(Date.now() - 864000000000))),
-        // timeTo: new Date,
-        reportType: that.data.payCate,
+        timeFrom: that.data.beginTime,
+        timeTo: that.data.endTime,
+        reportType: 1,
+        filter: [{
+          field: "productName",
+          value: 10,
+        }]
       },
       method: 'POST',
       header: {
@@ -83,10 +89,10 @@ Page({
     }, 300)
   },
   // 选择时间
-  select:function(e){
-    this.setData({
-      selected: e.target.dataset.index
-    })
+  select: function (e) {
+    var object = util.api.tiemFilter(e);
+    object.selected = e.target.dataset.index;
+    this.setData(object);
     this.updateData(e.target.dataset.index)
   },
   updateData: function (p) {
@@ -149,6 +155,12 @@ Page({
     });
   },
   onLoad: function (e) {
+    var myDate = new Date();
+    var Time = util.toDate(myDate);
+    this.setData({
+      beginTime: Time + " 00:00:00",
+      endTime: Time + " 23:23:23",
+    })
     this.purchase_request()
     this.chart()
   }

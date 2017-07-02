@@ -8,6 +8,8 @@ Page({
     more_function_display: 'none',
     selected: 0,
     categories: ['连衣裙', '报喜鸟', '衬衣'],
+    beginTime: "",//开始时间
+    endTime: ""//结束时间
   },
   // 打开多功能键
   more_function: function () {
@@ -33,9 +35,9 @@ Page({
   },
   // 选择时间
   select: function (e) {
-    this.setData({
-      selected: e.target.dataset.index
-    })
+    var object = util.api.tiemFilter(e);
+    object.selected = e.target.dataset.index;
+    this.setData(object);
     this.updateData(e.target.dataset.index)
   },
   updateData: function (p) {
@@ -105,6 +107,12 @@ Page({
     });
   },
   onLoad: function (e) {
+    var myDate = new Date();
+    var Time = util.toDate(myDate);
+    this.setData({
+      beginTime: Time + " 00:00:00",
+      endTime: Time + " 23:23:23",
+    })
     this.chart()
   }
 })

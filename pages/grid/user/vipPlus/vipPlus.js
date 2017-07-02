@@ -59,8 +59,8 @@ Page({
     })
   },
   onLoad: function (options) {
-    // this.vipPlusSuccess()
-    this.vipPlus()
+    this.vipPlusSuccess()
+    // this.vipPlus()
   },
   onShow: function () {
   
