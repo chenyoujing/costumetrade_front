@@ -23,6 +23,7 @@ Page({
       }
     })
   },
+ 
   // 升级成功
   // 升级支付
   vipPlusSuccess: function () {
@@ -41,12 +42,17 @@ Page({
       },
       success: function (res) {
         wx.hideNavigationBarLoading();
-        console.log(res.data)
+        console.log(res.data);
+        app.globalData.storeId = res.data;
+        wx.navigateTo({
+          url: '../../user/storeUpdate/storeUpdate',
+          success: function (res) { }
+        })
       }
     })
   },
   onLoad: function (options) {
-    this.vipPlusSuccess()
+    // this.vipPlusSuccess()
   },
   onShow: function () {
   
