@@ -111,7 +111,7 @@ Page({
     var Time = util.toDate(myDate);
     this.setData({
       beginTime: Time + " 00:00:00",
-      endTime: Time + " 23:23:23",
+      endTime: Time + " 23:59:59",
     })
     this.chart()
   }

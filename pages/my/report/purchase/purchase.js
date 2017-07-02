@@ -17,17 +17,14 @@ Page({
       url: 'report/purchaseReport',
       data: {
         openid: app.globalData.openid,
-        timeFrom: that.data.beginTime,
-        timeTo: that.data.endTime,
+        // timeFrom: that.data.beginTime,
+        // timeTo: that.data.endTime,
         reportType: 1,
-        filter: [{
-          field: "productName",
-          value: 10,
-        }]
+        filter: { field: "productName", value: null }
       },
       method: 'POST',
       header: {
-        'content-type': 'application/x-www-form-urlencoded'
+        'content-type': 'application/json'
       },
       success: function (res) {
         wx.hideNavigationBarLoading();
@@ -159,7 +156,7 @@ Page({
     var Time = util.toDate(myDate);
     this.setData({
       beginTime: Time + " 00:00:00",
-      endTime: Time + " 23:23:23",
+      endTime: Time + " 23:59:59",
     })
     this.purchase_request()
     this.chart()

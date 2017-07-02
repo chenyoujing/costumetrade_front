@@ -15,6 +15,28 @@ Page({
     beginTime: "",//开始时间
     endTime: ""//结束时间
   },
+  purchase_request: function () {
+    var that = this
+    wx.showNavigationBarLoading()
+    util.api.request({
+      url: 'report/purchaseAnalysisReport',
+      data: {
+        openid: app.globalData.openid,
+        timeFrom: that.data.beginTime,
+        timeTo: that.data.endTime,
+        filter: { field: "productName", value: null },
+      },
+      method: 'POST',
+      header: {
+        'content-type': 'application/json'
+      },
+      success: function (res) {
+        wx.hideNavigationBarLoading();
+        console.log(res.data)
+      }
+    })
+  },
+
   // 打开多功能键
   more_function: function () {
     this.setData({
@@ -109,8 +131,9 @@ Page({
     var Time = util.toDate(myDate);
     this.setData({
       beginTime: Time + " 00:00:00",
-      endTime: Time + " 23:23:23",
+      endTime: Time + " 23:59:59",
     })
     this.chart()
+    this.purchase_request()
   }
 })

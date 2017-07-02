@@ -17,8 +17,8 @@ Page({
       url: 'report/financeReport',
       data: {
         openid: app.globalData.openid,
-        timeFrom: that.data.beginTime,
-        timeTo: that.data.endTime,
+        // timeFrom: that.data.beginTime,
+        // timeTo: that.data.endTime,
         payCate: that.data.payCate,
       },
       method: 'POST',
@@ -96,7 +96,7 @@ Page({
     var Time = util.toDate(myDate);
     this.setData({
       beginTime: Time + " 00:00:00",
-      endTime: Time + " 23:23:23",
+      endTime: Time + " 23:59:59",
       payCate: e.payType
     })
     this.finance_request()
