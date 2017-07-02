@@ -27,7 +27,7 @@ Page({
       util.api.request({
         url: 'store/getStore',
         data: {
-          storeId: app.globalData.storeInfo[0].id,
+          storeId: that.globalData.storeId,
         },
         method: 'POST',
         header: {

@@ -98,7 +98,7 @@ Page({
       object.remarkName = this.null(object.remarkName)
       object.reallyName = this.null(object.reallyName)
       object.nickName = this.null(object.nickName)
-      object.storeId = 1
+      object.storeId = app.globalData.storeId
       object.type = this.data.client
       object.cate = this.data.initCustomerList[this.data.type_index].id
       console.log(object)

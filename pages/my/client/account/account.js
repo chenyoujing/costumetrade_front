@@ -110,7 +110,7 @@ Page({
         url: 'client/saveAccountInfo',
         data: {
           clientId: that.data.clientId,
-          storeid: "1",
+          storeid: app.globalData.storeId,
           payobjtype: that.data.account.payobjtype,
           payno: that.data.account.payno,
           paytype: that.data.paytype[that.data.paytype_index].dictValue,

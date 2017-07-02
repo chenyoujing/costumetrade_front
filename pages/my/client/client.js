@@ -30,7 +30,7 @@ Page({
       url: 'client/initCustomer',
       data: {
         type: client,
-        storeId: 1,
+        storeId: app.globalData.storeId,
       },
       method: 'POST',
       header: {
@@ -59,7 +59,7 @@ Page({
     util.api.request({
       url: 'client/getClients',
       data: {
-        storeId:1,
+        storeId: app.globalData.storeId,
         type: client,
         sort: that.data.getSortData,
         rules: app.getClientData,
@@ -295,7 +295,7 @@ Page({
       url: 'client/scanQRCode',
       data: {
         type: client,
-        storeId: "1",
+        storeId: app.globalData.storeId,
         id: id
       },
       method: 'POST',
@@ -331,7 +331,7 @@ Page({
       url: 'client/scanQRCodeOk',
       data: {
         type: client,
-        storeId: "1",
+        storeId: app.globalData.storeId,
         id: id
       },
       method: 'POST',

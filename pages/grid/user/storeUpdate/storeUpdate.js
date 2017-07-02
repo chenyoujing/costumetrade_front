@@ -4,7 +4,7 @@ Page({
 
   data: {
     date: '2016-09-01',
-    storeInfo: {},
+    storeInfo: [],
   },
   tx:function(){
     wx.chooseImage({
@@ -19,16 +19,17 @@ Page({
   },
   address:function(){
     var that = this
-      wx.chooseAddress({
-        success: function (res) {
-          that.setData({
-            "storeInfo.address": res.detailInfo,
-            "storeInfo.contact": res.userName,
-            "storeInfo.region": res.provinceName + ',' + res.cityName + ',' + res.countyName,
-            "storeInfo.phone": res.telNumber,
-          })
-        }
-      })
+    wx.chooseAddress({
+      success: function (res) {
+        that.setData({
+          "storeInfo.address": res.detailInfo,
+          "storeInfo.contact": res.userName,
+          "storeInfo.region": res.provinceName + ',' + res.cityName + ',' + res.countyName,
+          "storeInfo.phone": res.telNumber,
+        })
+        console.log(that.data.storeInfo)
+      }
+    })
   },
   update_storeInfo: function (e) {
     var that = this;
@@ -57,18 +58,30 @@ Page({
       },
       success: function (res) {
         wx.hideNavigationBarLoading();
-        var storeInfo = app.storeInfo
-        storeInfo.name = object.name
-        storeInfo.cphone = object.cphone
-        storeInfo.wechat = object.wechat
-        storeInfo.region = object.region
-        storeInfo.address = object.address
-        storeInfo.contact = object.contact
-        storeInfo.phone = object.phone
-        storeInfo.birthday = object.birthday
-        storeInfo.description = object.description
-        storeInfo.type = 1
-        app.storeInfo = storeInfo
+        if (app.globalData.userIdentity == 2) {
+          var userInfo = app.globalData.userInfo
+          userInfo.nickName = object.name
+          userInfo.cphone = object.cphone
+          userInfo.wechat = object.wechat
+          userInfo.region = object.region
+          userInfo.address = object.address
+          userInfo.contact = object.contact
+          userInfo.phone = object.phone
+          userInfo.birthday = object.birthday
+          app.globalData.userInfo = userInfo
+        }else{
+          var storeInfo = app.storeInfo
+          storeInfo.name = object.name
+          storeInfo.cphone = object.cphone
+          storeInfo.wechat = object.wechat
+          storeInfo.region = object.region
+          storeInfo.address = object.address
+          storeInfo.contact = object.contact
+          storeInfo.phone = object.phone
+          storeInfo.birthday = object.birthday
+          storeInfo.description = object.description
+          app.storeInfo = storeInfo
+        }
         wx.showToast({
           title: '修改成功',
           mask: true,
@@ -84,14 +97,24 @@ Page({
   },
   bindDateChange: function (e) {
     this.setData({
-      "storeInfo.birthday": e.detail.value
+      date: e.detail.value
     })
   },
   onLoad: function (e) {
     console.log(app.storeInfo)
+    var date
+    if (app.storeInfo){
+      date = app.storeInfo.birthday
+    } else if (app.globalData.userInfo){
+      date = app.globalData.userInfo.birthday
+    } else{
+      date = '2016-09-01'
+    }
     this.setData({
-      storeInfo: app.storeInfo||{},
+      storeInfo: app.storeInfo||[],
       userInfo: app.globalData.userInfo,
+      date: date,
+      userIdentity: app.globalData.userIdentity,
     })
   }
 })
