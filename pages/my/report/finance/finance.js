@@ -7,6 +7,8 @@ Page({
     title: '财务报表',
     more_function_display: 'none',
     selected: 0,
+    beginTime: "",//开始时间
+    endTime: ""//结束时间
   },
   finance_request: function () {
     var that = this
@@ -85,13 +87,16 @@ Page({
   },
   // 选择时间
   select: function (e) {
-    this.setData({
-      selected: e.target.dataset.index
-    })
-    this.updateData(e.target.dataset.index)
+    var object = util.api.tiemFilter(e);
+    object.selected = e.target.dataset.index;
+    this.setData(object);
   },
   onLoad: function (e) {
+    var myDate = new Date();
+    var Time = util.toDate(myDate);
     this.setData({
+      beginTime: Time + " 00:00:00",
+      endTime: Time + " 23:23:23",
       payCate: e.payType
     })
     this.finance_request()
