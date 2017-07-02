@@ -181,7 +181,7 @@ var api = {
    this.request({
       url: 'product/getProductInit',
       data: {
-        storeId: 1
+        storeId: app.globalData.storeId
       },
       method: 'POST',
       header: {
@@ -272,7 +272,7 @@ var api = {
     var that = this;
     wx.showNavigationBarLoading();
     var param = {
-      storeId: 1,
+      storeId: app.globalData.storeId,
       pageNum: that.pageNum
     }
     if (url2=="client/getClients"){
@@ -323,7 +323,9 @@ var api = {
             duration: 2000
           })
         }
-        callback();
+        if (callback){
+          callback();
+        }
       }
     })
   },

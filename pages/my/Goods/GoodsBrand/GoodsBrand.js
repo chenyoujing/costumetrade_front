@@ -19,7 +19,7 @@ Page({
     util.api.request({
       url: this.data.geturl,
       data: {
-        storeId: 1
+        storeId: app.globalData.storeId
       },
       method: 'POST',
       header: {

@@ -50,7 +50,7 @@ Page({
   showInput:function(e){
     var saveOrderFee = this.data.saveOrderFee;
     var object = {
-      storeid:1,
+      storeid: app.globalData.storeId,
       cate:e.target.dataset.id,
       catename: e.target.dataset.text,
       paycate:"",

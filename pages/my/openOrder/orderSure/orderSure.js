@@ -197,10 +197,10 @@ Page({
     submitData.stoDetails = [];
     submitData.order = {};
     if(this.data.type == 1){
-      submitData.order.sellerstoreid = 1;
+      submitData.order.sellerstoreid = app.globalData.storeId;
       submitData.order.buyerstoreid = app.selectName?undefined:""
     }else{
-      submitData.order.buyerstoreid = 1;
+      submitData.order.buyerstoreid = app.globalData.storeId;
       submitData.order.sellerstoreid = app.selectName?undefined : ""
     }
     submitData.order.ordertype = 2;

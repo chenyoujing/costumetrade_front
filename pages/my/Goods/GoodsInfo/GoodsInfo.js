@@ -34,35 +34,35 @@ Page({
     perImgSrc:'image',
     fileList:[
       {
-        storeId: 1,
+        storeId: app.globalData.storeId,
         filename: 'image',
         url: '',
         productName: '',
         resizeFixUrl:""
       },
       {
-        storeId: 1,
+        storeId: app.globalData.storeId,
         filename: 'image1',
         url: '',
         productName: '',
         resizeFixUrl: ""
       },
       {
-        storeId: 1,
+        storeId: app.globalData.storeId,
         filename: 'image2',
         url: '',
         productName: '',
         resizeFixUrl: ""
       },
       {
-        storeId: 1,
+        storeId: app.globalData.storeId,
         filename: 'image3',
         url: '',
         productName: '',
         resizeFixUrl: ""
       },
       {
-        storeId: 1,
+        storeId: app.globalData.storeId,
         filename: 'image4',
         url: '',
         productName: '',
@@ -190,7 +190,7 @@ Page({
     util.api.request({
       url: 'product/getProductInit',
       data: {
-        storeId: 1,
+        storeId: app.globalData.storeId,
         id:that.data.id
       },
       method: 'POST',
@@ -353,10 +353,10 @@ Page({
     if(this.data.id !== ''){
       objectSubmit = util.api.getEntityModified(this.data.soruceData,target);
       objectSubmit.id = this.data.id;
-      objectSubmit.storeId = 1
+      objectSubmit.storeId = app.globalData.storeId
     }else{
       objectSubmit = target;
-      objectSubmit.storeId = 1,
+      objectSubmit.storeId = app.globalData.storeId,
       objectSubmit.id = undefined,
       target.name = target.code + target.name
     }
@@ -588,6 +588,8 @@ Page({
           privilegeEmployees = true;
         }
       }
+    } else if (userIdentity == 1){
+      privilegeEmployees = true;
     }
     this.setData({
       privilegeEmployees: privilegeEmployees
@@ -602,19 +604,20 @@ Page({
       screen_productSize: app.screen_productSize,
       userIdentity: app.globalData.userIdentity,
       GoodsInfoData: {
-        brandid: app.screen_brandList[0].id,
-        sizes: app.screen_productSize[0].value,
-        grade: app.screen_gradeList[0].dictValue,
-        unit: app.screen_unitList[0].unit,
-        producttype: app.screen_productTypeList[0].id,
+        brandid: app.screen_brandList[0]?app.screen_brandList[0].id:"",
+        sizes: app.screen_productSize[0]?app.screen_productSize[0].value:"",
+        grade: app.screen_gradeList[0]?app.screen_gradeList[0].dictValue:"",
+        unit: app.screen_unitList[0] ?app.screen_unitList[0].unit:"",
+        producttype: app.screen_productTypeList[0] ?app.screen_productTypeList[0].id:"",
         timeDown: util.formatTime(new Date),
         timeUp: util.formatTime(new Date),
         year: new Date().getFullYear()
       },
-      brand: app.screen_brandList[0].brandname,
+      brand: app.screen_brandList[0]?app.screen_brandList[0].brandname:'',
       // sizes: app.screen_productSize[0].value,
-      unit: app.screen_unitList[0].unit,
-      producttype: app.screen_productTypeList[0].catename,
+      unit: app.screen_unitList[0] ?app.screen_unitList[0].unit:'',
+      producttype: app.screen_productTypeList[0] ?app.screen_productTypeList[0].catename:""
+    
     });
     this.authorityPurchaseprice();
     if (options.ID !== 'null'){

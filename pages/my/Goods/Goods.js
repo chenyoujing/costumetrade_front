@@ -41,7 +41,7 @@ Page({
     share_button: '0',
     ids: [],
     name: '',
-    storeId:1,
+    storeId: app.globalData.storeId,
     aa:false,
     type:1
   },
@@ -282,7 +282,7 @@ Page({
   // 进入分享页面
   batch_share_sure: function () {
     var idsArray = this.data.ids;
-    var storeId = app.globalData.storeInfo[0].id;
+    var storeId = app.globalData.storeId;
     if (idsArray.length == 0) {
       wx.showToast({
         title: '请勾选要分享的货品',
@@ -369,7 +369,7 @@ Page({
   },
   onLoad() {
     this.setData({
-      storeId: app.globalData.storeInfo[0].id
+      storeId: app.globalData.storeId
     })
     this.page_request();
     util.api.getProductInit();
