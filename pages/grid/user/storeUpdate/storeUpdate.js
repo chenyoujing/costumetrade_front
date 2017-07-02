@@ -4,6 +4,7 @@ Page({
 
   data: {
     date: '2016-09-01',
+    storeInfo: {},
   },
   tx:function(){
     wx.chooseImage({
@@ -18,31 +19,32 @@ Page({
   },
   address:function(){
     var that = this
-    wx.chooseAddress({
-      success: function (res) {
-        that.setData({
-          "storeInfo.address": res.detailInfo,
-          "storeInfo.contact": res.userName,
-          "storeInfo.region": res.provinceName + ',' + res.cityName + ',' + res.countyName,
-          "storeInfo.phone": res.telNumber,
-        })
-      }
-    })
+      wx.chooseAddress({
+        success: function (res) {
+          that.setData({
+            "storeInfo.address": res.detailInfo,
+            "storeInfo.contact": res.userName,
+            "storeInfo.region": res.provinceName + ',' + res.cityName + ',' + res.countyName,
+            "storeInfo.phone": res.telNumber,
+          })
+        }
+      })
   },
   update_storeInfo: function (e) {
     var that = this;
     e.detail.value.birthday = Date.parse(new Date(e.detail.value.birthday))
     var object = e.detail.value
-    switch (app.globalData.userIdentity == 1){
-      case ('1'):
+    switch (app.globalData.userIdentity) {
+      case 1:
         object.storeId = app.globalData.storeId
-        object.type = 1
+        object.type = 1;
         break;
-      case ('2'):
+      case 2:
         object.userid = app.globalData.userid
         object.type = 2
         break;
-      case ('3'):
+      case 3:
+        object.storeId = app.globalData.storeId
         break;
     }
     wx.showNavigationBarLoading()
@@ -88,7 +90,7 @@ Page({
   onLoad: function (e) {
     console.log(app.storeInfo)
     this.setData({
-      storeInfo: app.storeInfo,
+      storeInfo: app.storeInfo||{},
       userInfo: app.globalData.userInfo,
     })
   }
