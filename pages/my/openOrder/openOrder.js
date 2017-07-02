@@ -69,6 +69,10 @@ Page({
           supplierPrivilege = true;
         }
       }
+    } else if (userIdentity == 1){
+      supplierPrivilege = true;
+      cusmPrivilege = true;
+      privilegeEmployees = true;
     }
     this.setData({
       purchasePrivilege: privilegeEmployees,
@@ -100,7 +104,7 @@ Page({
   //买单
   order: function () {
     wx.navigateTo({
-      url: './orderSure/orderSure?type='+this.data.type
+      url: './orderSure/orderSure?type=' + this.data.type + "&totalNum=" + this.data.totalData.totalNum
     })
   },
   // 进入详情
@@ -641,10 +645,13 @@ Page({
     var totalNum = 0; 
     for(var p in product){
       if (product[p].sizeGroup){
+        console.log()
         var sizeArray = product[p].sizeGroup.split(',')
         for (var g in sizeArray) {
+          console.log(product[p].isPattern)
           if (product[p].isPattern == 1) {
             realcostArray += Number(Number(product[p].sizeRaiseArray[g]) * product[p].count);
+            console.log(realcostArray)
           } else {
             realcostArray += Number(Number(product[p].price) * product[p].count);
           }
@@ -690,7 +697,7 @@ Page({
       object.productsize =  '全尺码';
       object.sizeGroup = this.data.GoodsDetail.sizes;
       object.sizeRaiseArray = this.data.sizeRaiseArray;
-      object.isPattern = 1
+      object.isPattern = this.data.GoodsDetail.isPattern
     }
     for(var p in shopCart){
       if (shopCart[p].upData){

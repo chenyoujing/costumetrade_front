@@ -57,7 +57,7 @@ var api = {
             app.globalData.openid = res.data.data.query.openid;
             app.globalData.privilegeEmployees = res.data.data.employee.privilegeEmployees;
             app.globalData.userIdentity = res.data.data.userIdentity;
-            app.globalData.storeInfo = res.data.data.query.storeList;
+            app.globalData.storeInfo = res.data.data.query.storeList || [];
             app.globalData.modifyPrice = res.data.data.employee.modifyPrice;
             app.globalData.zeroPrice = res.data.data.employee.zeroPrice;
             app.globalData.discount = res.data.data.employee.discount;
@@ -192,16 +192,16 @@ var api = {
         wx.hideNavigationBarLoading();
         app.screen_brandList = res.data.brandList;//品牌
         console.log(app.screen_brandList)
-        app.screen_productTypeList = res.data.productTypeList;//种类
-        app.screen_productSize = res.data.productSize,//尺码组
-        app.screen_gradeList = res.data.gradeList,//等级
-        app.screen_unitList = res.data.unitList,//单位
-        app.custOrDiscTag = res.data.custOrDiscTag,//折扣or打折
-        app.custProdPrice = res.data.custProdPrice,//启用的价格
-        app.privilegeEmployees = res.data.privileges,//员工权限
-        app.customerTypeList = res.data.customerTypeList,//待确定
-        app.logisticFees = res.data.logisticFees,//快递
-        app.payTypeList = res.data.payTypeList,//支付方式
+        app.screen_productTypeList = res.data.productTypeList || [];//种类
+        app.screen_productSize = res.data.productSize || [],//尺码组
+          app.screen_gradeList = res.data.gradeList || [],//等级
+          app.screen_unitList = res.data.unitList || [],//单位
+          app.custOrDiscTag = res.data.custOrDiscTag || [],//折扣or打折
+          app.custProdPrice = res.data.custProdPrice || [],//启用的价格
+          app.privilegeEmployees = res.data.privileges || [],//员工权限
+          app.customerTypeList = res.data.customerTypeList || [],//待确定
+          app.logisticFees = res.data.logisticFees || [],//快递
+          app.payTypeList = res.data.payTypeList || [],//支付方式
         app.getProductInit = true;
         console.log(res.data)
       }

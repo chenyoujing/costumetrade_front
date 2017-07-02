@@ -216,6 +216,8 @@ Page({
     submitData.order.debetamt = this.data.debet;
     submitData.order.paycate2 = this.data.payCate2;
     submitData.order.paycost2 = this.data.payCost2;
+    submitData.order.totalnum = this.data.totalNum;
+    console.log(this.data.totalNum)
     for (var p in this.data.shopCart){
       if (this.data.shopCart[p].sizeGroup){
         console.log(this.data.shopCart[p])
@@ -253,14 +255,16 @@ Page({
         'content-type': 'application/json'
       },
       success: function (res) {
+        console.log(JSON.stringify(submitData))
         wx.hideNavigationBarLoading();
         if (res.data == 1013) {
           wx.showModal({
             title: '提示',
             content: '缺少库存,是否继续操作?',
             success: function (res) {
+
               if (res.confirm) {
-                submitData.isContinue = true;
+                submitData.order.isContinue = true;
                 that.ajaxChange(submitData);
               }
             }
@@ -313,7 +317,8 @@ Page({
       type:options.type,
       discountAut: app.globalData.discount || 0,
       zeroPrice: app.globalData.zeroPrice || Infinity,
-      paycact: app.payTypeList
+      paycact: app.payTypeList,
+      totalNum: options.totalNum
     })
     this.getData();
   }

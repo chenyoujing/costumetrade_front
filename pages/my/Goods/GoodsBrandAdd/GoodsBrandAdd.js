@@ -84,8 +84,13 @@ Page({
               appname = 'screen_unitList'
               break;
           }
-          object[name] = that.data.envalue;
-          app[appname].push(object)
+          console.log(appname)
+          
+          if (appname){
+            object[name] = that.data.envalue;
+            console.log(app[appname])
+            app[appname].push(object)
+          }
           if (that.data.addname == 'customname') {
             app.changesizename = 'customname';
             app.changeId = param;

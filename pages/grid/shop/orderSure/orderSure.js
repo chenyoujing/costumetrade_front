@@ -70,6 +70,7 @@ Page({
           submitData.order.shipaddress = that.data.address.address;
           submitData.order.logisticCode = that.data.logisticCode;
           submitData.order.freight = that.data.freight;
+          submitData.order.totalnum = that.data.totalnum;
           for (var p in shopCart) {
             if (shopCart[p].sizeGroup) {
               var sizeGroup = shopCart[p].sizeGroup.split(",");
@@ -148,7 +149,7 @@ Page({
               content: '缺少库存,是否继续操作?',
               success: function (res) {
                 if (res.confirm) {
-                  submitData.isContinue = true;
+                  submitData.order.isContinue = true;
                   that.ajaxChange(submitData);
                 }
               }
