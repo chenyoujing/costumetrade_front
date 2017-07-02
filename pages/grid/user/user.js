@@ -27,7 +27,7 @@ Page({
       util.api.request({
         url: 'store/getStore',
         data: {
-          storeId: that.globalData.storeId,
+          storeId: app.globalData.storeId,
         },
         method: 'POST',
         header: {
@@ -39,7 +39,7 @@ Page({
           that.setData({
             storeInfo:res.data
           })
-          app.storeInfo = res.data
+          app.globalData.storeInfo[0] = res.data
         }
       })
     }

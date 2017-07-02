@@ -58,7 +58,7 @@ Page({
       },
       success: function (res) {
         wx.hideNavigationBarLoading();
-        if (app.globalData.userIdentity == 2) {
+        if (app.globalData.userIdentity === 2) {
           var userInfo = app.globalData.userInfo
           userInfo.nickName = object.name
           userInfo.cphone = object.cphone
@@ -70,7 +70,7 @@ Page({
           userInfo.birthday = object.birthday
           app.globalData.userInfo = userInfo
         }else{
-          var storeInfo = app.storeInfo
+          var storeInfo = app.globalData.storeInfo[0]
           storeInfo.name = object.name
           storeInfo.cphone = object.cphone
           storeInfo.wechat = object.wechat
@@ -80,7 +80,7 @@ Page({
           storeInfo.phone = object.phone
           storeInfo.birthday = object.birthday
           storeInfo.description = object.description
-          app.storeInfo = storeInfo
+          app.globalData.storeInfo[0] = storeInfo
         }
         wx.showToast({
           title: '修改成功',
@@ -101,17 +101,17 @@ Page({
     })
   },
   onLoad: function (e) {
-    console.log(app.storeInfo)
+    console.log(app.globalData.storeInfo[0])
     var date
-    if (app.storeInfo){
-      date = app.storeInfo.birthday
+    if (app.globalData.storeInfo[0]){
+      date = app.globalData.storeInfo[0].birthday
     } else if (app.globalData.userInfo){
       date = app.globalData.userInfo.birthday
     } else{
       date = '2016-09-01'
     }
     this.setData({
-      storeInfo: app.storeInfo||[],
+      storeInfo: app.globalData.storeInfo[0]||[],
       userInfo: app.globalData.userInfo,
       date: date,
       userIdentity: app.globalData.userIdentity,

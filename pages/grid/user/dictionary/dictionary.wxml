@@ -266,7 +266,7 @@
                 <view class="freight_explain_title">说明:</view>
                 <image src="../../../../images/update.png" mode="aspectFit" class="freight_explain_right" bindtap="freightUpdate" />
                 <view class="freight_explain_text" wx:if="{{!freightUpdate}}">江浙沪地区8元；新疆，西藏，青海，甘肃，海南五省20元；其他地域15元</view>
-                <input type="text" class="freight_explain_text freight_explain_input" wx:if="{{freightUpdate}}"/>
+                <textarea type="text" class="freight_explain_text freight_explain_input" wx:if="{{freightUpdate}}">江浙沪地区8元；新疆，西藏，青海，甘肃，海南五省20元；其他地域15元</textarea>
               </view>
               <view class="freight_content">
                 <view class="freight_content_title">1. 运费：</view>
