@@ -26,10 +26,9 @@
     <view class="select_view">返回</view>
   </view>
   <view class="search_input_view">
-    <input type="text" class="search_input">
-    </input>
+    <input type="text" class="search_input" bindfocus="screen" />
     <image src="../../../../images/search.png" mode="aspectFit" class="search_input_image" />
-    <scroll-view scroll-y class="screen_scroll">
+    <scroll-view scroll-y class="screen_scroll {{screen}}">
       <view class="screen_title">供货商名称</view>
       <scroll-view scroll-y class="screen_content">
         <block wx:for="{{10}}">
@@ -39,6 +38,7 @@
     </scroll-view>
   </view>
   <canvas class="canvas" canvas-id="pieCanvas" bindtouchstart="touchHandler"/>
+  <view class="bindtap_cover" bindtap="screen_colse"></view>
 </scroll-view>
 
 

@@ -71,6 +71,17 @@ Page({
     var object = util.api.timeChange(e, this.data.beginTime, this.data.endTime);
     this.setData(object)
   },
+  // 打开筛选界面
+  screen:function(){
+    this.setData({
+      screen: 'screen'
+    })
+  },
+  screen_colse:function(){
+    this.setData({
+      screen: ''
+    })
+  },
   // 改变入库、出库、往来款项
   changeType: function (e) {
     var type = e.currentTarget.dataset.type;
