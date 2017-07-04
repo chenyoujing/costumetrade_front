@@ -40,9 +40,28 @@ App({
             that.globalData.zeroPrice = res.data.data.employee.zeroPrice;
             that.globalData.discount = res.data.data.employee.discount;
             that.globalData.storeId = res.data.data.storeId; 
+            that.globalData.sessionKey = res.data.data.sessionKey; 
             console.log(res.data )
             console.log(res.data.data.query.storeList)
-           
+            wx.getUserInfo({
+              success: function (res) {
+                wx.request({
+                  url: 'http://192.168.2.221:8088/user/getUnionId',
+                  header: {
+                    'content-type': 'application/x-www-form-urlencoded'
+                  },
+                  data: {
+                    encryptedData: res.encryptedData,
+                    iv: res.iv,
+                    sessionKey: that.globalData.sessionKey
+                  },
+                  method: 'POST',
+                  success: function (res) {
+                    console.log(res)
+                  }
+                })
+              }
+            })
           }
         })
       }
