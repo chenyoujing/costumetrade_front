@@ -1,6 +1,6 @@
 {
   "pages": [
-    "pages/my/Goods/Goods",
+    "pages/my/report/allreport/allreport",
     
     "pages/grid/shop/shop",
     "pages/grid/info/info",
@@ -39,6 +39,7 @@
     "pages/my/client/clientScreen/clientScreen",
     "pages/my/client/clientInfo/clientInfo",
 
+    "pages/my/Goods/Goods",
     "pages/my/Goods/GoodsInfo/GoodsInfo",
     "pages/my/Goods/GoodsBrand/GoodsBrand",
     "pages/my/Goods/GoodsBrandAdd/GoodsBrandAdd",
@@ -62,7 +63,6 @@
     "pages/grid/shop/orderSure/orderSure",
     "pages/grid/shop/payOrder/payOrder",
     "pages/index/index",
-    "pages/my/report/allreport/allreport",
     
     "pages/my/report/report",
     "pages/my/report/purchase/purchase",

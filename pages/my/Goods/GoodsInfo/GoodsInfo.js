@@ -282,6 +282,7 @@ Page({
       console.log(check)
       app.changeData = GoodsInfoData.priceJsons;
       app.nameChange = '加价表';
+      app.changeData = 'false';//默认false
       wx.navigateTo({
         url: '../styleMarkup/styleMarkup?colors=' + GoodsInfoData.colors + '&sizes=' + GoodsInfoData.sizes + '&name=' + GoodsInfoData.name
       })
@@ -688,10 +689,9 @@ Page({
           GoodsInfoData: param
         });
       } else if (app.nameChange == "加价表"){
-        console.log(22222)
         param.priceJsons = app.changeData;
-        if (!app.changeData){
-          GoodsInfoData.isPattern = 2;
+        if (app.changeData == "false"){
+          param.isPattern = 2;
         }
         this.setData({
           GoodsInfoData: param
