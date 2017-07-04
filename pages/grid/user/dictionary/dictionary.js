@@ -288,21 +288,24 @@ Page({
       submitData[name] = product;
       param[name] = product;
       param.submitData = submitData;
+      this.setData(param);
+      
     }else{
-      param[name] = e.detail.value + 1;
+      console.log(e.detail.value)
+      var max = e.detail.value + 1;
       var customerProduct = this.data.customerProduct;
       var num = [];
       for (var p in 'custo') {
-        if (p <= this.data.cusDictValue - 1) {
-          num.push(p + 1)
+        if (p <= max - 1) {
+          num.push(Number(p) + Number(1))
         }
       }
       customerProduct.dictValue = num.join(",");
       submitData.customerProduct = customerProduct;
+      this.setData(param);
+      this.submitData()
     }
 
-    this.setData(param);
-    this.submitData()
   },
   // 删除费用单、分店、支付方式
   dictionaryDelet:function(e){
