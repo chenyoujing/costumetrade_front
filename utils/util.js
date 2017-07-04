@@ -88,58 +88,6 @@ var api = {
     }   
     return true
   },
-  // 获取二维码。。。
-  scan: function (client, setdata) {
-    wx.showNavigationBarLoading()
-    var id = this.DateFormat(new Date())
-    this.request({
-      url: 'client/scanQRCode',
-      data: {
-        type: client,
-        storeId: app.globalData.storeId,
-        id: id
-      },
-      method: 'POST',
-      header: {
-        'content-type': 'application/json'
-      },
-      success: function (res) {
-        wx.hideNavigationBarLoading();
-        var data = {
-          scanModal: false,
-          scan: res.data,
-          id: id
-        }
-        setdata(data)
-      }
-    })
-  },
-  // 二维码扫好了。。。
-  scanOk: function (client, id, callback) {
-    wx.showNavigationBarLoading()
-    this.request({
-      url: 'client/scanQRCodeOk',
-      data: {
-        type: client,
-        storeId: app.globalData.storeId,
-        id: id
-      },
-      method: 'POST',
-      header: {
-        'content-type': 'application/json'
-      },
-      success: function (res) {
-        wx.hideNavigationBarLoading();
-        if (!res.data.id) {
-          wx.showToast({
-            title: res.msg,
-          })
-        } else {
-          callback(res.data)
-        }
-      }
-    })
-  },
   // 报表切换时间
   tiemFilter: function (e) {
     var number = e.target.dataset.number;
