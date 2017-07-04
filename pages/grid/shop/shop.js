@@ -128,7 +128,7 @@ Page({
       data: {
         // osp3q0FNSOFEpuSpDSuaH7__TXDY,
         // osp3q0IO2fCv11iCOM9eRtiCOqLc,
-        touser: "oDy7t0IKwk7Ko6wpa0clZ9WdqnQo",
+        touser: app.globalData.openid,
         template_id: "fYO5us4tA7W6MITP4o7FcwhS6FeECr3gdcfuiTYB_5k",
         form_id: e.detail.formId,
         data: {
