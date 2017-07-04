@@ -109,9 +109,9 @@ Page({
     function setdata(data) {
       that.setData(data)
     }
-    util.api.scan(4, setdata)
+    util.api.scan("4", setdata)
   },
-  // 获取二维码
+  // 二维码扫好了
   scanOk: function () {
     var that = this
     function callback(data) {
@@ -120,7 +120,7 @@ Page({
         staff_updata: "0",
       })
     }
-    util.api.scanOk(that.data.client, that.data.id, callback)
+    util.api.scanOk("4", that.data.id, callback)
     this.cancel()
 
   },

@@ -55,12 +55,13 @@ swiper{
   border-radius: 30px;
   margin: 10px;
   margin-right: 0;
+  float: left;
 }
 .staff_info{
   position: absolute;
   top: 0;
   left: 70px;
-  right: 40px;
+  right: 60px;
 }
 .staff_info_name,.staff_info_num,.staff_info_state{
   margin: 10px;
@@ -68,11 +69,10 @@ swiper{
   font-size: 14px;
 }
 .staff_modify{
-  width: 15px;
-  height: 15px;
-  position: absolute;
-  top: 15px;
-  right: 15px;
+  float: right;
+  width: 16px;
+  height: 16px;
+  padding: 7px;
 }
 .staff_updata{
   position: absolute;

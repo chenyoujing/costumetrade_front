@@ -30,14 +30,15 @@
         <view class="prompt_none" wx:if="{{employeeProduct == 0}}">
           <text>您还没有添加店员</text>
         </view>
-        <view style="padding:10px;" wx:for="{{employeeProduct}}">
-          <view class="staff">
+        <view style="padding:10px;" wx:for="{{12}}">
+          <view class="staff clearfix">
             <image src="{{item.image ? item.image : '../../../../images/image_none.png'}}" mode="aspectFill" class="staff_tx" />
             <view class="staff_info clearfix">
               <view class="staff_info_name">名称：{{item.reallyName}}</view>
               <view class="staff_info_num">编号：{{item.id}}</view>
               <view class="staff_info_state">在职状态：在职</view>
             </view>
+            <image src="../../../../images/update.png" mode="aspectFit" class="staff_modify" bindtap="staff_updata" data-id="{{item.id}}" />
             <image src="../../../../images/update.png" mode="aspectFit" class="staff_modify" bindtap="staff_updata" data-id="{{item.id}}" />
           </view>
         </view>
@@ -469,7 +470,7 @@
 </modal>-->
 
 <!--扫码添加-->
-<modal title="请扫码" hidden="{{scanModal}}" confirm-text="扫好了" bindconfirm="confirm" bindcancel="cancel">
+<modal title="请扫码" hidden="{{scanModal}}" confirm-text="扫好了" bindconfirm="scanOk" bindcancel="cancel">
   <image src="{{scan?scan:'../../../../images/image_none.png'}}" mode="widthFix" class="scan_modal_image" />
   <view class="scan_modal_text">请用微信扫一扫上面的图片,扫好了后点击“扫好了”</view>
 </modal>
