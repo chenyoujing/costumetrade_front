@@ -44,6 +44,7 @@
 .search_input_view{
   margin: 10px 100rpx;
   position: relative;
+  z-index: 1;
 }
 .search_input{
   border: 1px solid #D7D7D7;
@@ -58,6 +59,10 @@
 }
 .screen_scroll{
   box-shadow: 1px 1px 4px #000000;
+  max-height: 0;
+  position: absolute;
+  background-color: #ffffff;
+  transition: all 0.3s;
 }
 .screen_title{
   font-size: 16px;
@@ -78,6 +83,9 @@
   border-radius: 12px;
   background-color: #E9E9E9;
   font-size: 12px;
+}
+.screen{
+  max-height: 50vh;
 }
 .canvas{
   width: 100%;
