@@ -16,8 +16,8 @@ function formatNumber(n) {
 function toDate(number) {
   var n = number;
   var date = new Date(n);
-  var Y = date.getFullYear() + '/';
-  var M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '/';
+  var Y = date.getFullYear() + '-';
+  var M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '-';
   var D = date.getDate() < 10 ? '0' + date.getDate() : date.getDate();
   return (Y + M + D)
 }
@@ -95,11 +95,13 @@ var api = {
     var object = {};
     if (number == 'false') {
       object.timebool = -1;
-    } else {
+    } else if (number == "true") {
+      object.timebool = 1;
+    }else {
       var myDate = new Date();
-      var endTime = toDate(myDate) + " 23:59:59";
+      var endTime = toDate(myDate);
       myDate.setDate(myDate.getDate() - number);
-      var beginTime = toDate(myDate) + " 00:00:00";
+      var beginTime = toDate(myDate);
       object =  {
         beginTime: beginTime,
         endTime: endTime,
@@ -113,7 +115,7 @@ var api = {
     var newbenginTime = (new Date(benginTime)).getTime();
     var newendTime = (new Date(endTime)).getTime()
     if (newbenginTime > newendTime) {
-      endTime = benginTime.split(' ')[0] + " 23:59:59";
+      endTime = benginTime.split(' ')[0];
     }
     return endTime
   },
@@ -124,9 +126,9 @@ var api = {
     param.beginTime = beginTime;
     param.endTime = endTime;
     if (style == 'beginTime') {
-      param.beginTime = e.detail.value + " 00:00:00";
+      param.beginTime = e.detail.value;
     } else {
-      param.endTime = e.detail.value + " 23:59:59";
+      param.endTime = e.detail.value ;
     }
     param.endTime = this.endTimeiSchange(param.beginTime, param.endTime);
     return param;

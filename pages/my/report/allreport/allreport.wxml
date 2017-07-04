@@ -23,7 +23,7 @@
     <picker class="select_view" value="{{endTime}}" name="endTime" bindchange="timeChange" mode="date" data-name="endTime">
       {{endTime}}
     </picker>
-    <view class="select_view">返回</view>
+    <view class="select_view"  bindtap="select" data-number="true">返回</view>
   </view>
 
   <view class="report_container">

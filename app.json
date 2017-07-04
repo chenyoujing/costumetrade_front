@@ -1,6 +1,6 @@
 {
   "pages": [
-    "pages/grid/user/dictionary/dictionary",
+    "pages/my/report/report",
     
     "pages/grid/shop/shop",
     "pages/grid/info/info",
@@ -23,6 +23,7 @@
     "pages/grid/user/helpInfo/helpInfo",
     "pages/grid/user/notecase/notecase",
     "pages/grid/user/branch/branch",
+    "pages/grid/user/dictionary/dictionary",
     
     "pages/my/openOrder/openOrder",
     "pages/my/openOrder/goodsDetails/goodsDetails",
@@ -63,7 +64,6 @@
     "pages/grid/shop/payOrder/payOrder",
     "pages/index/index",
     
-    "pages/my/report/report",
     "pages/my/report/purchase/purchase",
     "pages/my/report/purchase_analysis/purchase_analysis",
     "pages/my/report/salesRank/salesRank",

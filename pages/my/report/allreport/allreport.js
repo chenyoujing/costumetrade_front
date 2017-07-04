@@ -60,8 +60,8 @@ Page({
      url: "report/generalReport",
      data: {
        openid: app.globalData.openid,
-       timeFrom: that.data.beginTime,
-       timeTo: that.data.endTime
+       timeFrom: that.data.beginTime + " 00:00:00",
+       timeTo: that.data.endTime + " 23:59:59"
      },
      method: 'POST',
      header: {
@@ -84,8 +84,8 @@ Page({
     var myDate = new Date();
     var Time = util.toDate(myDate);
     this.setData({
-      beginTime: Time+" 00:00:00",
-      endTime: Time + " 23:59:59"
+      beginTime: Time,
+      endTime: Time
     })
     this.generalReport()
   }
