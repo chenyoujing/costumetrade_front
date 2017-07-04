@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/my/report/report",
     
     "pages/grid/shop/shop",
     "pages/grid/user/user",
@@ -57,7 +58,6 @@
     "pages/grid/shop/orderSure/orderSure",
     "pages/grid/shop/payOrder/payOrder",
     "pages/index/index",
-    "pages/my/report/report",
     
     "pages/my/report/purchase/purchase",
     "pages/my/report/purchase_analysis/purchase_analysis",

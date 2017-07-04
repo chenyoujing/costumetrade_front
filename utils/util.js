@@ -118,19 +118,22 @@ var api = {
   tiemFilter: function (e) {
     var number = e.target.dataset.number;
     var timebool = 1;
+    var object = {};
     if (number == 'false') {
-      timebool = -1;
+      object.timebool = -1;
+      
     } else {
       var myDate = new Date();
       var endTime = toDate(myDate) + " 23:23:23";
       myDate.setDate(myDate.getDate() - number);
       var beginTime = toDate(myDate) + " 00:00:00";
-      return {
+      object =  {
         beginTime: beginTime,
         endTime: endTime,
         timebool: timebool
       }
     }
+    return object;
   },
   // 支付方式转换。。。
   paycact: function (dictText) {

@@ -8,20 +8,20 @@
 </view>
 
 <scroll-view scroll-y class="report_scroll">
-  <view class="time_select">
+  <view class="time_select" wx:if="{{timebool == 1}}">
     <view class="select_view {{selected==0?'selected':''}}" bindtap="select" data-index="0" data-number="0">今日</view>
     <view class="select_view {{selected==1?'selected':''}}" bindtap="select" data-index="1" data-number="7">7日</view>
     <view class="select_view {{selected==2?'selected':''}}" bindtap="select" data-index="2" data-number="30">30日</view>
     <view class="select_view {{selected==3?'selected':''}}" bindtap="select" data-index="3" data-number="90">90日</view>
     <view class="select_view {{selected==4?'selected':''}}" bindtap="select" data-index="4"  data-number="false">...</view>
   </view>
-  <view class="time_select" wx:if="{{}}">
-    <picker class="select_view" bindchange="time_start" mode="date" value="{{time_start}}">
-      {{time_start}}
+  <view class="time_select" wx:if="{{timebool !== 1}}">
+    <picker class="select_view" value="{{beginTime}}" name="beginTime"  data-name="beginTime" bindchange="timeChange" mode="date" >
+      {{beginTime}}
     </picker>
     <view class="time_select_line"></view>
-    <picker class="select_view" bindchange="time_start" mode="date" value="{{end_start}}">
-      {{end_start}}
+    <picker class="select_view" value="{{endTime}}" name="endTime" bindchange="timeChange" mode="date" data-name="endTime">
+      {{endTime}}
     </picker>
   </view>
 
