@@ -38,7 +38,7 @@
               <view class="staff_info_num">编号：{{item.id}}</view>
               <view class="staff_info_state">在职状态：在职</view>
             </view>
-            <image src="../../../../images/update.png" mode="aspectFit" class="staff_modify" bindtap="staff_updata" data-id="{{item.id}}" />
+            <image src="../../../../images/update.png" mode="aspectFit" class="staff_modify" bindtap="staff_delete" data-id="{{item.id}}" />
             <image src="../../../../images/update.png" mode="aspectFit" class="staff_modify" bindtap="staff_updata" data-id="{{item.id}}" />
           </view>
         </view>
