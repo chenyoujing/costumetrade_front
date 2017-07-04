@@ -545,11 +545,13 @@ Page({
         newPicker[p].discPriceJson = (newPicker[p].price / tagprice *100).toFixed(1);
        
       }else{
+        console.log(newPicker[p])
         newPicker[p].discPriceJson = (newPicker[p].price / tagprice * 100).toFixed(1);
         if (purchaseprice !== 0) {
           newPicker[p].custPriceJson = ((newPicker[p].price - purchaseprice) / purchaseprice * 100).toFixed(1)
         }
       }
+      console.log(newPicker[p].discPriceJson)
       newPicker[p].discPriceJson = newPicker[p].discPriceJson == "Infinity" ? 100 : newPicker[p].discPriceJson;
       newPicker[p].discPriceJson = newPicker[p].discPriceJson == "NaN" ? 0 : newPicker[p].discPriceJson;
     }
@@ -563,6 +565,7 @@ Page({
     var newPicker = this.data.picker_view;
     var name = app.custOrDiscTag == 1 ? 'custPriceJson' :'discPriceJson';
    for (var p in app.custProdPrice){
+     console.log(app.custProdPrice[p].custpricejson)
      newPicker[p][name] = app.custProdPrice[p].custpricejson;
      newPicker[p].name = app.custProdPrice[p].custtypename;
      newPicker[p].isUse = true;
@@ -633,6 +636,7 @@ Page({
    
   },
   onShow:function() {
+    console.log(app.nameChange )
     if (app.changeData) {
       console.log(app.nameChange == "加价表")
       var param = this.data.GoodsInfoData;

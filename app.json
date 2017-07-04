@@ -1,8 +1,8 @@
 {
   "pages": [
-    "pages/grid/shop/shop",
+    "pages/my/Goods/Goods",
     
-    "pages/my/report/allreport/allreport",
+    "pages/grid/shop/shop",
     "pages/grid/info/info",
     "pages/grid/order/order",
     "pages/grid/order/express/express",
@@ -39,7 +39,6 @@
     "pages/my/client/clientScreen/clientScreen",
     "pages/my/client/clientInfo/clientInfo",
 
-    "pages/my/Goods/Goods",
     "pages/my/Goods/GoodsInfo/GoodsInfo",
     "pages/my/Goods/GoodsBrand/GoodsBrand",
     "pages/my/Goods/GoodsBrandAdd/GoodsBrandAdd",
@@ -63,7 +62,8 @@
     "pages/grid/shop/orderSure/orderSure",
     "pages/grid/shop/payOrder/payOrder",
     "pages/index/index",
-
+    "pages/my/report/allreport/allreport",
+    
     "pages/my/report/report",
     "pages/my/report/purchase/purchase",
     "pages/my/report/purchase_analysis/purchase_analysis",

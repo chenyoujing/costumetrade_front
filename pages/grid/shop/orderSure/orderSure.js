@@ -71,6 +71,7 @@ Page({
           submitData.order.logisticCode = that.data.logisticCode;
           submitData.order.freight = that.data.freight;
           submitData.order.totalnum = that.data.totalnum;
+          submitData.order.sellerstoreid = that.data.stordId;
           for (var p in shopCart) {
             if (shopCart[p].sizeGroup) {
               var sizeGroup = shopCart[p].sizeGroup.split(",");
