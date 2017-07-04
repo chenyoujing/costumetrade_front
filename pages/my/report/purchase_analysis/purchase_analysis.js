@@ -62,9 +62,21 @@ Page({
   // 选择时间
   select: function (e) {
     var object = util.api.tiemFilter(e);
+    console.log(object)
     object.selected = e.target.dataset.index;
     this.setData(object);
-    this.updateData(e.target.dataset.index)
+  },
+  // 时间改变
+  timeChange: function (e) {
+    var object = util.api.timeChange(e, this.data.beginTime, this.data.endTime);
+    this.setData(object)
+  },
+  // 改变入库、出库、往来款项
+  changeType: function (e) {
+    var type = e.currentTarget.dataset.type;
+    this.setData({
+      changeType: type
+    })
   },
   updateData: function (p) {
     
@@ -103,6 +115,7 @@ Page({
       animation: true,
       canvasId: 'pieCanvas',
       type: 'pie',
+      legend: false,
       series: [{
         name: '裤子',
         data: 50,

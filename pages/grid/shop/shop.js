@@ -56,24 +56,25 @@ Page({
       var openid2 = openidList[0]
       var openid1 = openidList[1]
     }
-    // wx.downloadFile({
-    //   url: 'http://117.149.24.42:8788/original/201706/8492fdfa45f443b1b0636540851a4141.png',
-    //   header: {},
-    //   success: function (res) {
-    //     wx.saveImageToPhotosAlbum({
-    //       filePath: res.tempFilePath,
-    //       success: function (ress) {
-    //         console.log(ress)
-    //         console.log(res.tempFilePath)
-    //       },
-    //       fail: function (res) {
-    //         console.log(res)
-    //       }
-    //     })
-    //     console.log(2)
+    // wx.request({
+    //   url: 'https://api.weixin.qq.com/cgi-bin/token',
+    //   data: {
+    //     grant_type: "client_credential",
+    //     appid: "wx82428b2ac752c6a3",
+    //     secret: "ed8c5aa16cf56f66339fcb4be3377e30",
     //   },
+    //   method: 'GET',
+    //   header: {
+    //     'content-type': 'application/x-www-form-urlencoded'
+    //   },
+    //   success: function (res) {
+    //     console.log(res.data.access_token)
+    //     app.access_token = res.data.access_token
+
+    //   }
     // })
 
+    
     // wx.connectSocket({
     //   url: 'wss://touchart.cn:8443/socketHander',
     //   data:{
@@ -119,7 +120,42 @@ Page({
       }
     })
   },
-  aa:function(){
+  aa:function(e){
+    // console.log(e.detail.formId)
+    // wx.request({
+    //   url: 'https://api.weixin.qq.com/cgi-bin/message/wxopen/template/send?access_token=' + app.access_token,
+    //   data: {
+    //     touser: app.globalData.openid,
+    //     template_id: "fYO5us4tA7W6MITP4o7FcwhS6FeECr3gdcfuiTYB_5k",
+    //     form_id: e.detail.formId,
+    //     data: {
+    //       "keyword1": {
+    //         "value": "339208499",
+    //         "color": "#173177"
+    //       },
+    //       "keyword2": {
+    //         "value": "2015年01月05日 12:30",
+    //         "color": "#173177"
+    //       },
+    //       "keyword3": {
+    //         "value": "粤海喜来登酒店",
+    //         "color": "#173177"
+    //       },
+    //       "keyword4": {
+    //         "value": "广州市天河区天河路208号",
+    //         "color": "#173177"
+    //       }
+    //     },
+    //   },
+    //   method: 'POST',
+    //   header: {
+    //     'content-type': 'application/json'
+    //   },
+    //   success: function (res) {
+    //     console.log(res.data)
+    //   }
+    // })
+
     var openidList = ['oDy7t0GCpfxdFdFyNPhu_VYVufS4', 'oDy7t0HjUcYhdFMgiFbuFHCqSEGo']
     if (app.globalData.openid == openidList[0]) {
       var openid1 = openidList[0]

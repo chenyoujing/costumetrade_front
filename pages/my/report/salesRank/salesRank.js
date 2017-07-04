@@ -38,7 +38,18 @@ Page({
     var object = util.api.tiemFilter(e);
     object.selected = e.target.dataset.index;
     this.setData(object);
-    this.updateData(e.target.dataset.index)
+  },
+  // 时间改变
+  timeChange:function(e){
+    var object = util.api.timeChange(e, this.data.beginTime, this.data.endTime);
+    this.setData(object)
+  },
+  // 改变入库、出库、往来款项
+  changeType:function(e){
+    var type = e.currentTarget.dataset.type;
+    this.setData({
+      changeType:type
+    })
   },
   updateData: function (p) {
     var that = this

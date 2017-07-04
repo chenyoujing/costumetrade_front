@@ -18,7 +18,7 @@
       <view class="form_view">商品品名称</view>
       <view class="form_view">
         库存数量
-        <image src="../../../../images/sort.png" mode="aspectFit" class="form_sort" />
+        <image src="../../../../images/sort_report.png" mode="aspectFit" class="form_sort" />
       </view>
     </view>
     <view class="form_content form_active">

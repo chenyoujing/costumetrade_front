@@ -8,12 +8,22 @@
 </view>
 
 <scroll-view scroll-y class="report_scroll">
-  <view class="time_select">
-    <view class="select_view {{selected==0?'selected':''}}" bindtap="select" data-index="0">今日</view>
-    <view class="select_view {{selected==1?'selected':''}}" bindtap="select" data-index="1">7日</view>
-    <view class="select_view {{selected==2?'selected':''}}" bindtap="select" data-index="2">30日</view>
-    <view class="select_view {{selected==3?'selected':''}}" bindtap="select" data-index="3">90日</view>
-    <view class="select_view {{selected==4?'selected':''}}" bindtap="select" data-index="4">...</view>
+  <view class="time_select" wx:if="{{timebool == 1}}">
+    <view class="select_view {{selected==0?'selected':''}}" bindtap="select" data-index="0" data-number="0">今日</view>
+    <view class="select_view {{selected==1?'selected':''}}" bindtap="select" data-index="1" data-number="7">7日</view>
+    <view class="select_view {{selected==2?'selected':''}}" bindtap="select" data-index="2" data-number="30">30日</view>
+    <view class="select_view {{selected==3?'selected':''}}" bindtap="select" data-index="3" data-number="90">90日</view>
+    <view class="select_view {{selected==4?'selected':''}}" bindtap="select" data-index="4"  data-number="false">...</view>
+  </view>
+  <view class="time_select" wx:if="{{timebool !== 1}}">
+    <picker class="select_view" value="{{beginTime}}" name="beginTime"  data-name="beginTime" bindchange="timeChange" mode="date" >
+      {{beginTime}}
+    </picker>
+    <view class="time_select_line"></view>
+    <picker class="select_view" value="{{endTime}}" name="endTime" bindchange="timeChange" mode="date" data-name="endTime">
+      {{endTime}}
+    </picker>
+    <view class="select_view">返回</view>
   </view>
   <input type="text" class="search_input">
     <image src="../../../../images/search.png" mode="aspectFit" class="search_input_image" />
@@ -24,11 +34,11 @@
       <view class="form_view">货品名称</view>
       <view class="form_view">
         数量
-        <image src="../../../../images/sort.png" mode="aspectFit" class="form_sort" />
+        <image src="../../../../images/sort_report.png" mode="aspectFit" class="form_sort" />
       </view>
       <view class="form_view">
         金额
-        <image src="../../../../images/sort.png" mode="aspectFit" class="form_sort" />
+        <image src="../../../../images/sort_report.png" mode="aspectFit" class="form_sort" />
       </view>
     </view>
     <view class="form_content form_active">

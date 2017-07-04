@@ -12,18 +12,18 @@
     经营报表
     <image src="../../../images/right-thrust.png" mode="aspectFit" class="my_content_right" />
   </navigator>
-  <view class="catalog_view">
+  <navigator url="purchase_analysis/purchase_analysis" class="catalog_view">
     利润分析
     <image src="../../../images/right-thrust.png" mode="aspectFit" class="my_content_right" />
-  </view>
+  </navigator>
   <navigator url="salesRank/salesRank" class="catalog_view">
     销售排行
     <image src="../../../images/right-thrust.png" mode="aspectFit" class="my_content_right" />
   </navigator>
-  <view class="catalog_view">
+  <navigator url="purchase/purchase" class="catalog_view">
     销售报表
     <image src="../../../images/right-thrust.png" mode="aspectFit" class="my_content_right" />
-  </view>
+  </navigator>
   <navigator url="purchase_analysis/purchase_analysis" class="catalog_view">
     采购分析
     <image src="../../../images/right-thrust.png" mode="aspectFit" class="my_content_right" />
@@ -36,10 +36,10 @@
     库存报表
     <image src="../../../images/right-thrust.png" mode="aspectFit" class="my_content_right" />
   </navigator>
-  <view class="catalog_view">
+  <navigator url="purchase/purchase" class="catalog_view">
     会员报表
     <image src="../../../images/right-thrust.png" mode="aspectFit" class="my_content_right" />
-  </view>
+  </navigator>
 </scroll-view>
 
 
