@@ -111,6 +111,19 @@ Page({
     }
     util.api.scan(4, setdata)
   },
+  // 获取二维码
+  scanOk: function () {
+    var that = this
+    function callback(data) {
+      this.setData({
+        employeeDetails: data,
+        staff_updata: "0",
+      })
+    }
+    util.api.scanOk(that.data.client, that.data.id, callback)
+    this.cancel()
+
+  },
 
   staff_updata_close: function (e) {
     this.setData({

@@ -301,35 +301,13 @@ Page({
   // 扫好了
   confirm: function () {
     var that = this
-    wx.showNavigationBarLoading()
-    var client = this.data.client
-    var id = this.data.id
-    util.api.request({
-      url: 'client/scanQRCodeOk',
-      data: {
-        type: client,
-        storeId: app.globalData.storeId,
-        id: id
-      },
-      method: 'POST',
-      header: {
-        'content-type': 'application/json'
-      },
-      success: function (res) {
-        wx.hideNavigationBarLoading();
-        if (!res.data.id) {
-          wx.showToast({
-            title: res.msg,
-            duration: 2000
-          })
-        }else{
-          app.addCustomerInfo = res.data
-          wx.navigateTo({
-            url: 'clientAdd/clientAdd?client=' + that.data.client
-          })
-        }
-      }
-    })
+    function callback(data){
+      app.addCustomerInfo = data
+      wx.navigateTo({
+        url: 'clientAdd/clientAdd?client=' + that.data.client
+      })
+    }
+    util.api.scanOk(that.data.client, that.data.id, callback)
     this.cancel()
   },
   onLoad: function (e) {
