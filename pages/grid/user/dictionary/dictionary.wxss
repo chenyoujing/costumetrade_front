@@ -1,7 +1,12 @@
 /* pages/my/Goods/Goods.wxss */
 /*头部*/
 @import "../../../../css/title.wxss";
-
+.employee_add{
+  float: right;
+  width: 16px;
+  height: 16px;
+  padding: 12px;
+}
 
 .dictionary{
   width: 100%;

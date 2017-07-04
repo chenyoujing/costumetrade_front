@@ -53,6 +53,7 @@ Page({
     this.setData({
       storeInfo: app.globalData.storeInfo[0],
       userInfo: app.globalData.userInfo,
+      userIdentity: app.globalData.userIdentity
     })
   }
 })

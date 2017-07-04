@@ -84,7 +84,7 @@
         <view class="my_content_text">升级</view>
         <image src="../../../images/right-thrust.png" mode="aspectFit" class="my_content_right" />
       </navigator>
-      <navigator class="clearfix" url="dictionary/dictionary">
+      <navigator class="clearfix" url="dictionary/dictionary" wx:if="{{userIdentity==1}}">
         <image src="../../../images/set.png" mode="aspectFit" class="my_content_image" />
         <view class="my_content_text">设置</view>
         <image src="../../../images/right-thrust.png" mode="aspectFit" class="my_content_right" />

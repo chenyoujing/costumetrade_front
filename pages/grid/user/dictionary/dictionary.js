@@ -20,6 +20,7 @@ Page({
     addModal: true,
     discountModal: true,
     customerModal: true,
+    scanModal: true,
     submitData:[],
     addObject:{},
     cusDictValue:0,
@@ -96,6 +97,21 @@ Page({
       }
     })
   },
+  staff_add:function(){
+    this.setData({
+      staff_updata: "0",
+    })
+  },
+
+  // 获取二维码
+  scan: function () {
+    var that = this
+    function setdata(data) {
+      that.setData(data)
+    }
+    util.api.scan(4, setdata)
+  },
+
   staff_updata_close: function (e) {
     this.setData({
       staff_updata: "100%"
@@ -455,19 +471,24 @@ Page({
   },
   // 货品售价生成方式
   goodsPrice:function(e){
-    console.log(e)
-    var type = e.currentTarget.dataset.type;
-    var product = this.data[type];
-    var submitData = this.data.submitData;
-    var param = {};
-    if (type == "sellingProduct"){
-      product.dictValue = product.dictValue == 1 ? product.dictValue = 2 : product.dictValue = 1;
-      product.dictText = product.dictValue == 1 ? product.dictText = "成本价*毛利率" : product.dictText = "吊牌价*折扣率";
-    }
+    var that = this
+    wx.showModal({
+      title: '是否改变货品价格生成方式',
+      success:function(){
+        var type = e.currentTarget.dataset.type;
+        var product = that.data[type];
+        var submitData = that.data.submitData;
+        var param = {};
+        if(type == "sellingProduct") {
+          product.dictValue = product.dictValue == 1 ? product.dictValue = 2 : product.dictValue = 1;
+          product.dictText = product.dictValue == 1 ? product.dictText = "成本价*毛利率" : product.dictText = "吊牌价*折扣率";
+        }
     submitData[type] = product;
-    param[type] = product;
-    this.setData(param);
-    this.submitData()
+        param[type] = product;
+        that.setData(param);
+        that.submitData()
+      }
+    })
   },
   // 模态框
   addModal: function (e) {
@@ -517,6 +538,7 @@ Page({
       addModal: true,
       discountModal: true,
       customerModal: true,
+      scanModal: true,
     })
   },
   /***********

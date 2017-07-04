@@ -287,34 +287,10 @@ Page({
   // 获取二维码
   scan: function () {
     var that = this
-    var client = this.data.client
-    var that = this
-    var id = util.api.DateFormat(new Date())
-    wx.showNavigationBarLoading()
-    util.api.request({
-      url: 'client/scanQRCode',
-      data: {
-        type: client,
-        storeId: app.globalData.storeId,
-        id: id
-      },
-      method: 'POST',
-      header: {
-        'content-type': 'application/json'
-      },
-      success: function (res) {
-        console.log(res.data)
-        that.setData({
-          scanModal: false,
-        })
-
-        wx.hideNavigationBarLoading();
-        that.setData({
-          scan: res.data,
-          id: id
-        })
-      }
-    })
+    function setdata(data){
+      that.setData(data)
+    }
+    util.api.scan(that.data.client, setdata)
   },
   // 关闭扫码模态框
   cancel: function () {
