@@ -58,25 +58,17 @@ Page({
     })
     console.log(val)
   },
-  saveData:function(){
-    console.log({
-      storeId: 1,
-      idArray: this.data.ids,
-      year: this.data.year,
-      grade: this.data.grade,
-      status: this.data.status,
-      isDiscount: this.data.isDiscount
-    })
-    this.updataRequest();
-  },
+ 
   updataRequest: function () {
     var that = this;
+    var ids = that.data.ids;
+    ids = ids.length == 0 ? null : ids;
     wx.showNavigationBarLoading()
     util.api.request({
       url: 'product/updateProducts',
       data: {
-        storeId: 1,
-        idArray: that.data.ids,
+        storeId: app.globalData.storeId,
+        idArray: ids,
         checkAllTag: that.data.checkAllTag,
         year: that.data.year,
         grade: that.data.grade,
@@ -98,10 +90,12 @@ Page({
     })
   },
   onLoad: function (options) {
+    console.log(options.ids)
     this.setData({
-      ids:options.ids,
+      ids: options.ids?options.ids.split(','):[],
       screen_gradeList:app.screen_gradeList,
       checkAllTag: options.checkAllTag
     })
+    console.log(options.ids.split(','))
   }
 })

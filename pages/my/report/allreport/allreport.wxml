@@ -67,17 +67,17 @@
   <view class="order_title">
     <view class="order_title_text">总单数:4/单</view>
     <view class="order_title_container">
-      <view class="order_title_view">
+      <view class="order_title_view" data-type = "1" bindtap="changeType">
         <view class="order_title_view_text">采购入库</view>
-        <view class="order_title_view_button button_active">共1笔</view>
+        <view class="order_title_view_button {{changeType==1?'button_active':''}}">共1笔</view>
       </view>
-      <view class="order_title_view">
+      <view class="order_title_view" data-type = "2" bindtap="changeType">
         <view class="order_title_view_text">销售出库</view>
-        <view class="order_title_view_button">共3笔</view>
+        <view class="order_title_view_button  {{changeType==2?'button_active':''}}">共3笔</view>
       </view>
-      <view class="order_title_view">
+      <view class="order_title_view" data-type = "3" bindtap="changeType">
         <view class="order_title_view_text">往来款项</view>
-        <view class="order_title_view_button">共0笔</view>
+        <view class="order_title_view_button  {{changeType==3?'button_active':''}}">共0笔</view>
       </view>
     </view>
   </view>

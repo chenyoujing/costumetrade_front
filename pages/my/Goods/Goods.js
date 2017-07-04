@@ -278,13 +278,23 @@ Page({
     })
   },
   batch_delete_sure: function () {
-    this.delectRequest();
+    var idsArray = this.data.ids;
+    if (idsArray.length == 0 && !this.data.checkAllTag) {
+      wx.showToast({
+        title: '请勾选要删除的货品',
+        mask: true,
+        duration: 2000
+      })
+    } else {
+      this.batchOperationsOk();
+      this.delectRequest();
+    }
   },
   // 进入分享页面
   batch_share_sure: function () {
     var idsArray = this.data.ids;
     var storeId = app.globalData.storeId;
-    if (idsArray.length == 0) {
+    if (idsArray.length == 0 && !this.data.checkAllTag) {
       wx.showToast({
         title: '请勾选要分享的货品',
         mask: true,
@@ -302,11 +312,20 @@ Page({
   },
   // 进入批量修改页面
   batch_update_sure: function () {
-    var ids = this.data.ids.join(',');
-    wx.navigateTo({
-      url: 'GoodsUpdate/GoodsUpdate?ids=' + ids + "&checkAllTag=" + this.data.checkAllTag,
-    })
-    this.batchOperationsOk()
+    var idsArray = this.data.ids;
+    if (idsArray.length == 0 && !this.data.checkAllTag) {
+      wx.showToast({
+        title: '请勾选要修改的货品',
+        mask: true,
+        duration: 2000
+      })
+    } else {
+      this.batchOperationsOk();
+      var ids = this.data.ids.join(',');
+      wx.navigateTo({
+        url: 'GoodsUpdate/GoodsUpdate?ids=' + ids + "&checkAllTag=" + this.data.checkAllTag,
+      })
+    }
   },
   // 全选全不选
   SelectallOrNot:function(){
@@ -338,22 +357,32 @@ Page({
   },
   delectRequest: function () {
     var that = this;
+    var ids = that.data.ids; 
+    ids = ids.length == 0 ? null : ids;
     wx.showNavigationBarLoading()
     util.api.request({
       url: 'product/updateProducts',
       data: {
-        openid: app.globalData.openid,
-        idArray: that.data.ids,
-        checkAllTag: that.data.checkAllTag
+        storeId: app.globalData.storeId,
+        idArray: ids,
+        checkAllTag: that.data.checkAllTag,
+        status:3
       },
       method: 'POST',
       header: {
         'content-type': 'application/x-www-form-urlencoded'
       },
       success: function (res) {
+        console.log({
+          storeId: app.globalData.storeId,
+          idArray: ids,
+          checkAllTag: that.data.checkAllTag,
+          status: 3
+        })
         wx.hideNavigationBarLoading();
         var product = that.data.product;
         var totalProduct = [];
+       
         // 货品
         wx.getStorage({
           key: 'GoodsData',
@@ -377,7 +406,7 @@ Page({
             })
           }
         })
-        if (checkAllTag){
+        if (that.data.checkAllTag){
           product = [];
         }else{
           for (var p in ids) {

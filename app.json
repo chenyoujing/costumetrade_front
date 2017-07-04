@@ -1,8 +1,8 @@
 {
   "pages": [
+    "pages/my/report/report",
     
     "pages/grid/shop/shop",
-    "pages/grid/user/user",
     "pages/grid/info/info",
     "pages/grid/order/order",
     "pages/grid/order/express/express",
@@ -10,6 +10,8 @@
     "pages/grid/order/orderDetails/orderDetails",
     "pages/grid/order/logistics/logistics",
     "pages/grid/order/payOrder/payOrder",
+
+    "pages/grid/user/user",
     "pages/grid/user/goodsLevel/goodsLevel",
     "pages/grid/user/customerType/customerType",
     "pages/grid/user/shareStore/shareStore",
@@ -21,15 +23,16 @@
     "pages/grid/user/helpInfo/helpInfo",
     "pages/grid/user/notecase/notecase",
     "pages/grid/user/branch/branch",
+    "pages/grid/user/dictionary/dictionary",
+    
     "pages/my/openOrder/openOrder",
     "pages/my/openOrder/goodsDetails/goodsDetails",
     "pages/my/openOrder/Billing/Billing",
     "pages/my/openOrder/orderSure/orderSure",
     "pages/my/openOrder/unitSelect/unitSelect",
     "pages/my/openOrder/expenses/expenses",
-    "pages/my/client/client",
-    "pages/grid/user/dictionary/dictionary",
     
+    "pages/my/client/client",
     "pages/my/client/account/account",
     "pages/my/client/replenishment/replenishment",
     "pages/my/client/clientAdd/clientAdd",
@@ -61,7 +64,6 @@
     "pages/grid/shop/payOrder/payOrder",
     "pages/index/index",
     
-    "pages/my/report/report",
     
     "pages/my/report/purchase/purchase",
     "pages/my/report/purchase_analysis/purchase_analysis",

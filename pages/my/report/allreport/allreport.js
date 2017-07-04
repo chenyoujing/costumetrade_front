@@ -8,7 +8,8 @@ Page({
     selected: 0,
     timebool:1,//确定显示按钮还是input
     beginTime:"",//开始时间
-    endTime: ""//结束时间
+    endTime: "",//结束时间
+    changeType:1
   },
   // 打开多功能键
   more_function: function () {
@@ -43,6 +44,13 @@ Page({
   timeChange:function(e){
     var object = util.api.timeChange(e, this.data.beginTime, this.data.endTime);
     this.setData(object)
+  },
+  // 改变入库、出库、往来款项
+  changeType:function(e){
+    var type = e.currentTarget.dataset.type;
+    this.setData({
+      changeType:type
+    })
   },
   // 请求数据
  generalReport:function(){

@@ -42,5 +42,5 @@
       </radio-group>
       <view class="clear"></view>
     </view>
-    <button class="modal_submit" bindtap="saveData">确定</button>
+    <button class="modal_submit" bindtap="updataRequest">确定</button>
 </view>
