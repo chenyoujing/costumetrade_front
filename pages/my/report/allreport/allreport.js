@@ -36,7 +36,6 @@ Page({
   // 选择时间
   select: function (e) {
     var object = util.api.tiemFilter(e);
-    console.log(object)
     object.selected = e.target.dataset.index;
     this.setData(object);
     this.generalReport()
@@ -66,9 +65,13 @@ Page({
      },
      method: 'POST',
      header: {
-       'content-type': 'application/x-www-form-urlencoded'
+       'content-type': 'application/json'
      },
      success: function (res) {
+       var total = { payAmount: 0, payType: "总计", receiptAmount: 0 };
+       total.payAmount = res.data.payAmount;
+       total.reciptAmount = res.data.reciptAmount;
+       res.data.payTypeQuery.push(total);
        that.setData({
          submitData: res.data
        })
@@ -81,6 +84,7 @@ Page({
      }
    })
  },
+//  
   onLoad: function (e) {
     var myDate = new Date();
     var Time = util.toDate(myDate);

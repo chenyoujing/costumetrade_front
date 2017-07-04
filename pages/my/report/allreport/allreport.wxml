@@ -28,11 +28,11 @@
 
   <view class="report_container">
     <view class="business_volume">
-      营业额：<text>838.00</text>元
+      营业额：<text>{{submitData.saleAmount}}</text> 元
     </view>
     <view class="business_info">
-      <view class="business_info_view">仓库进货：92.00元</view>
-      <view class="business_info_view">来往款项：0元</view>
+      <view class="business_info_view">仓库进货：{{submitData.purchaseAmount}}元</view>
+      <view class="business_info_view">来往款项：{{submitData.clientAmount}}元</view>
       <view class="business_info_view">费用款项：{{submitData.feeAmount}}元</view>
     </view>
     <view class="business_title">
@@ -48,7 +48,7 @@
         <view class="business_title_view"></view>
         <view class="business_title_view" style="color:#FE4040;">{{item.receiptAmount}}</view>
         <view class="business_title_view" style="color:#FE4040;">{{item.payAmount}}</view>
-        <navigator url="../finance/finance?payType=ALI_PAY" class="business_title_view" style="color:#286561;">明细</navigator>
+        <navigator url="../finance/finance?payType={{item.payType}}" class="business_title_view" style="color:#286561;" >明细</navigator>
       </view>
     </block>
   </view>
@@ -58,7 +58,7 @@
     <view class="order_title_container">
       <view class="order_title_view" data-type = "1" bindtap="changeType">
         <view class="order_title_view_text">采购入库</view>
-        <view class="order_title_view_button {{changeType==1?'button_active':''}}">共1笔</view>
+        <view class="order_title_view_button {{changeType==1?'button_active':''}}">共{{submitData.puchaseCount}}笔</view>
       </view>
       <view class="order_title_view" data-type = "2" bindtap="changeType">
         <view class="order_title_view_text">销售出库</view>
@@ -66,7 +66,7 @@
       </view>
       <view class="order_title_view" data-type = "3" bindtap="changeType">
         <view class="order_title_view_text">往来款项</view>
-        <view class="order_title_view_button  {{changeType==3?'button_active':''}}">共0笔</view>
+        <view class="order_title_view_button  {{changeType==3?'button_active':''}}">共{{submitData.clientOrderCount}}笔</view>
       </view>
     </view>
   </view>

@@ -12,6 +12,7 @@ Page({
         name: '其他', data: 526, color: "#DDDDDD"
       }]
     ],
+    timebool:1,
     beginTime: "",//开始时间
     endTime: ""//结束时间
   },
@@ -59,7 +60,7 @@ Page({
       })
     }, 300)
   },
-  // 选择时间
+  // 选择时间 select
   select: function (e) {
     var object = util.api.tiemFilter(e);
     console.log(object)
@@ -154,10 +155,10 @@ Page({
     var myDate = new Date();
     var Time = util.toDate(myDate);
     this.setData({
-      beginTime: Time + " 00:00:00",
-      endTime: Time + " 23:59:59",
+      beginTime: Time,
+      endTime: Time,
     })
     this.chart()
-    this.purchase_request()
+    // this.purchase_request()
   }
 })
