@@ -1,6 +1,6 @@
 /*修改客户种类*/
 .update_name,.update_level{
-  padding: 10px 0;
+  padding: 10px 20px;
   border-bottom: 5px solid #DBF4F1;
   color: #000000;
 }
@@ -39,4 +39,19 @@
 }
 .slider_checked{
   color: #000000;
+}
+
+.submit{
+  font-size: 18px;
+  border-radius: 0;
+  background-color: #52CAC1;
+  line-height: 40px;
+  height: 40px;
+  text-align: center;
+  padding: 0;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  color: #ffffff;
 }

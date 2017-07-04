@@ -39,6 +39,7 @@ Page({
     console.log(object)
     object.selected = e.target.dataset.index;
     this.setData(object);
+    this.generalReport()
   },
   // 时间改变
   timeChange:function(e){
@@ -69,7 +70,7 @@ Page({
      },
      success: function (res) {
        that.setData({
-         submitData: []
+         submitData: res.data
        })
        wx.hideNavigationBarLoading();
        wx.showToast({

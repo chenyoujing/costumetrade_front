@@ -33,7 +33,7 @@
     <view class="business_info">
       <view class="business_info_view">仓库进货：92.00元</view>
       <view class="business_info_view">来往款项：0元</view>
-      <view class="business_info_view">费用款项：0元</view>
+      <view class="business_info_view">费用款项：{{submitData.feeAmount}}元</view>
     </view>
     <view class="business_title">
       <view class="business_title_view">支付方式</view>
@@ -42,31 +42,19 @@
       <view class="business_title_view">付款</view>
       <view class="business_title_view">明细</view>
     </view>
-    <view class="business_content">
-      <view class="business_title_view">支付宝</view>
-      <view class="business_title_view"></view>
-      <view class="business_title_view" style="color:#FE4040;">0</view>
-      <view class="business_title_view" style="color:#FE4040;">100</view>
-      <navigator url="../finance/finance?payType=ALI_PAY" class="business_title_view" style="color:#286561;">明细</navigator>
-    </view>
-    <view class="business_content">
-      <view class="business_title_view">现金</view>
-      <view class="business_title_view"></view>
-      <view class="business_title_view" style="color:#FE4040;">746</view>
-      <view class="business_title_view" style="color:#FE4040;">200</view>
-      <navigator url="../finance/finance?payType=CASH_PAY" class="business_title_view" style="color:#286561;">明细</navigator>
-    </view>
-    <view class="business_content">
-      <view class="business_title_view">微信</view>
-      <view class="business_title_view"></view>
-      <view class="business_title_view" style="color:#FE4040;">0</view>
-      <view class="business_title_view" style="color:#FE4040;">0</view>
-      <navigator url="../finance/finance?payType=WE_PAY" class="business_title_view" style="color:#286561;">明细</navigator>
-    </view>
+    <block wx:for="{{submitData.payTypeQuery}}">
+      <view class="business_content">
+        <view class="business_title_view">{{item.payType}}</view>
+        <view class="business_title_view"></view>
+        <view class="business_title_view" style="color:#FE4040;">{{item.receiptAmount}}</view>
+        <view class="business_title_view" style="color:#FE4040;">{{item.payAmount}}</view>
+        <navigator url="../finance/finance?payType=ALI_PAY" class="business_title_view" style="color:#286561;">明细</navigator>
+      </view>
+    </block>
   </view>
 
   <view class="order_title">
-    <view class="order_title_text">总单数:4/单</view>
+    <view class="order_title_text">总单数:{{submitData.ordersCount}}/单</view>
     <view class="order_title_container">
       <view class="order_title_view" data-type = "1" bindtap="changeType">
         <view class="order_title_view_text">采购入库</view>
@@ -74,7 +62,7 @@
       </view>
       <view class="order_title_view" data-type = "2" bindtap="changeType">
         <view class="order_title_view_text">销售出库</view>
-        <view class="order_title_view_button  {{changeType==2?'button_active':''}}">共3笔</view>
+        <view class="order_title_view_button  {{changeType==2?'button_active':''}}">共{{submitData.saleOrderCount}}笔</view>
       </view>
       <view class="order_title_view" data-type = "3" bindtap="changeType">
         <view class="order_title_view_text">往来款项</view>
@@ -86,8 +74,8 @@
   <view class="order_content">
     <view class="order_content_text">详情</view>
     <view class="order_content_container">
-      <view class="order_content_view">入库数量：10</view>
-      <view class="order_content_view">库存数量：5</view>
+      <view class="order_content_view">入库数量：{{submitData.puchaseCount}}</view>
+      <view class="order_content_view">库存数量：{{submitData.stockNum}}</view>
     </view>
   </view>
 

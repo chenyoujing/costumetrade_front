@@ -11,3 +11,5 @@
     <view class="clear"></view>
     <slider activeColor="#52CAC1" max="4" data-name="customerCusts"  value="{{grade - 1}}" bindchange="cusgradeChange" style="margin:10px 10%;"/>
   </view>
+
+  <view class="submit" bindtap="saveData">保存</view>
