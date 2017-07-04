@@ -30,7 +30,7 @@
         <view class="prompt_none" wx:if="{{employeeProduct == 0}}">
           <text>您还没有添加店员</text>
         </view>
-        <view style="padding:10px;" wx:for="{{12}}">
+        <view style="padding:10px;" wx:for="{{employeeProduct}}">
           <view class="staff clearfix">
             <image src="{{item.image ? item.image : '../../../../images/image_none.png'}}" mode="aspectFill" class="staff_tx" />
             <view class="staff_info clearfix">
@@ -38,7 +38,7 @@
               <view class="staff_info_num">编号：{{item.id}}</view>
               <view class="staff_info_state">在职状态：在职</view>
             </view>
-            <image src="../../../../images/update.png" mode="aspectFit" class="staff_modify" bindtap="staff_delete" data-id="{{item.id}}" />
+            <image src="../../../../images/delete_2.png" mode="aspectFit" class="staff_modify" bindtap="staff_delete" data-id="{{item.id}}" />
             <image src="../../../../images/update.png" mode="aspectFit" class="staff_modify" bindtap="staff_updata" data-id="{{item.id}}" />
           </view>
         </view>
@@ -276,8 +276,8 @@
               <view class="freight_content">
                 <view class="freight_content_title">1. 运费：</view>
                 <view class="setting_button_view" style="height:30px;overflow:hidden;width:unset;float:unset;">
-                  <view class="setting_button" bindtap="goodsPrice" data-type="logisticFees" data-index="{{index}}">
-                    <view class="setting_button_small  {{logisticFees.feeType == 1?'button_selected':''}}"></view>
+                  <view class="setting_button" bindtap="logisticFees" data-type="logisticFees" data-index="{{index}}">
+                    <view class="setting_button_small  {{item.feeType == 2?'button_selected':''}}"></view>
                     <view class="setting_button_text1" style="font-size:14px;">手动修改</view>
                     <view class="setting_button_text2" style="font-size:14px;">固定运费</view>
                   </view>
@@ -351,14 +351,26 @@
         </view>
 
         <!--物流公司-->
-        <view class="setting_view" style="padding-right:20px;">
-          <view class="pay_title" style="font-size:18px;">
-            物流公司
-            <image src="../../../../images/append.png" mode="aspectFit" class="image_setting0" />
+        <view class="setting_view">
+          <view class="branch" style="height:40px;">
+            <view class="branch_view" style="font-size:16px;flex:3;">分店管理</view>
+            <view class="branch_view">共享库存</view>
+            <view class="branch_view">共享会员</view>
+            <view class="branch_view">共享货品</view>
+            <view class="branch_view" style="flex:1;">
+              <image src="../../../../images/append.png" mode="aspectFit" class="branch_image" />
+              <view class="bindtap_cover" bindtap="branch"></view>
+            </view>
           </view>
-          <view class="pay_view" wx:for="{{logisticFees}}">
-            <text>{{index+1}}.</text>{{item.logisticName}}
-            <image src="../../../../images/delete_2.png" mode="aspectFit" class="image_setting" />
+          <view class="branch" wx:for="{{2}}">
+            <view class="branch_view" style="flex:3;"><text>{{index+1}}.</text>店铺一</view>
+            <view class="branch_view">是</view>
+            <view class="branch_view">是</view>
+            <view class="branch_view">是</view>
+            <view class="branch_view" style="flex:1;">
+              <image src="../../../../images/update.png" mode="aspectFit" class="branch_image"/>
+              <view class="bindtap_cover" bindtap="branch" data-id="id"></view>
+            </view>
           </view>
         </view>
 
@@ -473,4 +485,24 @@
 <modal title="请扫码" hidden="{{scanModal}}" confirm-text="扫好了" bindconfirm="scanOk" bindcancel="cancel">
   <image src="{{scan?scan:'../../../../images/image_none.png'}}" mode="widthFix" class="scan_modal_image" />
   <view class="scan_modal_text">请用微信扫一扫上面的图片,扫好了后点击“扫好了”</view>
+</modal>
+
+<!--分店管理-->
+<modal title="分店管理" hidden="{{branchModal}}" confirm-text="保存" bindconfirm="branchOk" bindcancel="cancel">
+  <view class="branchModal">
+    <view class="branchModal_title">
+      <view class="branchModal_input_view">
+        <view style="float:left;padding-right:8px;">1.</view>
+        <input type="text" class="branchModal_input" />
+      </view>
+      <view class="branchModal_delete_view">
+        <image src="../../../../images/delete_2.png" mode="aspectFit" class="branchModal_delete" />
+      </view>
+    </view>
+    <radio-group class="branchModal_content" wx:for="{{3}}">
+      <view class="branchModal_content_view">共享库存</view>
+      <label class="branchModal_content_view"><radio/>是</label>
+      <label class="branchModal_content_view"><radio/>否</label>
+    </radio-group>
+  </view>
 </modal>

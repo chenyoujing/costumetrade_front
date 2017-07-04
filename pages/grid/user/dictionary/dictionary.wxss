@@ -61,7 +61,7 @@ swiper{
   position: absolute;
   top: 0;
   left: 70px;
-  right: 60px;
+  right: 80px;
 }
 .staff_info_name,.staff_info_num,.staff_info_state{
   margin: 10px;
@@ -72,7 +72,7 @@ swiper{
   float: right;
   width: 16px;
   height: 16px;
-  padding: 7px;
+  padding: 12px;
 }
 .staff_updata{
   position: absolute;
@@ -422,7 +422,68 @@ swiper{
   font-size: 12px;
   text-align: center;
 }
-
+/*分店管理*/
+.branch{
+  display: flex;
+  align-items: center;
+}
+.branch_view{
+  flex: 2;
+  font-size: 13px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 30px;
+  position: relative;
+}
+.branch_image{
+  width: 12px;
+  height: 12px;
+}
+.branch_view text{
+  padding: 0 10px;
+}
+.branchModal{
+  color: #000000;
+  padding: 5px 0;
+}
+.branchModal_title{
+  display: flex;
+}
+.branchModal_input_view{
+  flex: 5;
+  height: 40px;
+  display: flex;
+  align-items: center;
+}
+.branchModal_input{
+  border: 1px solid #DCDCDC;
+  border-radius: 3px;
+}
+.branchModal_delete_view{
+  flex: 4;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.branchModal_delete{
+  width: 16px;
+  height: 16px;
+}
+.branchModal_delete_view::before{
+  content: ' ';
+  flex: 3;
+  height: 40px;
+}
+.branchModal_content{
+  display: flex;
+  height: 30px;
+  align-items: center;
+}
+.branchModal_content_view{
+  flex: 1;
+}
 
 .goods_update{
   color: #286561;

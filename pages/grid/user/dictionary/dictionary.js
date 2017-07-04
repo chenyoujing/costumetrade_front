@@ -21,6 +21,7 @@ Page({
     discountModal: true,
     customerModal: true,
     scanModal: true,
+    branchModal: true,
     submitData:[],
     addObject:{},
     cusDictValue:0,
@@ -482,6 +483,27 @@ Page({
       freightUpdate: true
     })
   },
+  logisticFees:function(e){
+    var that = this
+    wx.showModal({
+      title: '是否改变运费规则',
+      success: function () {
+        var index =  e.currentTarget.dataset.index
+        var type = e.currentTarget.dataset.type;
+        var product = that.data[type][index];
+        console.log(product)
+        var submitData = that.data.submitData;
+        var param = {};
+        if (type == "logisticFees") {
+          product.feeType = product.feeType == 1 ? product.feeType = 2 : product.feeType = 1;
+        }
+        submitData[type][index] = product;
+        param[type][index] = product;
+        that.setData(param);
+        that.submitData()
+      }
+    })
+  },
   // 货品售价生成方式
   goodsPrice:function(e){
     var that = this
@@ -502,6 +524,15 @@ Page({
         that.submitData()
       }
     })
+  },
+  // 分店管理
+  branch:function(){
+    this.setData({
+      branchModal: false,
+    })
+  },
+  branchOk:function(){
+    this.cancel()
   },
   // 模态框
   addModal: function (e) {
@@ -552,6 +583,7 @@ Page({
       discountModal: true,
       customerModal: true,
       scanModal: true,
+      branchModal: true,
     })
   },
   /***********
