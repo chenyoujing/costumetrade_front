@@ -349,7 +349,7 @@ Page({
     submitData[name] = product;
     param['submitData'] = submitData;
     this.setData(param)
-    that.submitData()
+    this.submitData()
   },
   // 上传图片
   photoSubmit: function (file, i,e) {
@@ -418,10 +418,15 @@ Page({
     } else if (name == "customerCusts"){
       var type = sellingProduct.dictValue == 1 ? "custpricejson" :"discpricejson";
       product[index][type] = e.detail.value;
+    } else if (name == "logisticFees"){
+      var type = e.currentTarget.dataset.type;
+      console.log(index);
+      product[index][type] = e.detail.value;
     }
     param[name] = product;
     submitData[name] = product;
     param['submitData'] = submitData;
+    console.log(param)
     this.setData(param)
     if (name == "pointExchange") {
       this.submitData()
@@ -483,45 +488,33 @@ Page({
       freightUpdate: true
     })
   },
-  logisticFees:function(e){
-    var that = this
-    wx.showModal({
-      title: '是否改变运费规则',
-      success: function () {
-        var index =  e.currentTarget.dataset.index
-        var type = e.currentTarget.dataset.type;
-        var product = that.data[type][index];
-        console.log(product)
-        var submitData = that.data.submitData;
-        var param = {};
-        if (type == "logisticFees") {
-          product.feeType = product.feeType == 1 ? product.feeType = 2 : product.feeType = 1;
-        }
-        submitData[type][index] = product;
-        param[type][index] = product;
-        that.setData(param);
-        that.submitData()
-      }
-    })
-  },
   // 货品售价生成方式
   goodsPrice:function(e){
     var that = this
     wx.showModal({
-      title: '是否改变货品价格生成方式',
-      success:function(){
-        var type = e.currentTarget.dataset.type;
-        var product = that.data[type];
-        var submitData = that.data.submitData;
-        var param = {};
-        if(type == "sellingProduct") {
-          product.dictValue = product.dictValue == 1 ? product.dictValue = 2 : product.dictValue = 1;
-          product.dictText = product.dictValue == 1 ? product.dictText = "成本价*毛利率" : product.dictText = "吊牌价*折扣率";
+      title: '改变提示',
+      content: '是否改变信息?',
+      success: function (res){
+        if (res.confirm) {
+          var type = e.currentTarget.dataset.type;
+          var product = that.data[type];
+          var submitData = that.data.submitData;
+          var index = e.currentTarget.dataset.index;
+          var param = {};
+          if (type == "sellingProduct") {
+            product.dictValue = product.dictValue == 1 ? 2 : 1;
+            product.dictText = product.dictValue == 1 ? "成本价*毛利率" : "吊牌价*折扣率";
+            submitData[type] = product;
+            param[type] = product;
+          } else if (type == "logisticFees"){
+            submitData[type] = product;
+            product[index].feeType = product[index].feeType == 1 ? 2 : 1;
+            submitData[index] = product;
+            param[type] = product;
+          }
+          that.setData(param);
+          that.submitData()
         }
-    submitData[type] = product;
-        param[type] = product;
-        that.setData(param);
-        that.submitData()
       }
     })
   },
@@ -567,9 +560,14 @@ Page({
     })
   },
   customerModal:function(e){
-    this.setData({
-      customerModal: false,
-      customerIndex:e.target.dataset.index
+    var customerCusts = JSON.stringify(this.data.customerCusts[e.target.dataset.index]); 
+    var name = [];
+    for (var p in this.data.customerCusts){
+      name.push(this.data.customerCusts[p].custtypename)
+    }
+    console.log(name)
+    wx.navigateTo({
+      url: "../customerType/customerType?customerCusts=" + customerCusts + "&name=" + name.join(','),
     })
   },
   discountModal:function(){
@@ -632,7 +630,6 @@ Page({
        }else{
          for (var j in submitData[p]) {
            console.log(submitData[p])
-          //  submitData[p][j].storeId = app.globalData.storeId
            newSubmitData.push(submitData[p][j])
            if (p == 'customerCusts'){
              url = 'dictionary/saveTypeOrGradeRate'
@@ -658,7 +655,7 @@ Page({
         }
          wx.hideNavigationBarLoading();
          wx.showToast({
-           title: "添加成功！",
+           title: "成功！",
            mask: true,
            duration: 2000
          })

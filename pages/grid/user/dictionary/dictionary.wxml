@@ -271,12 +271,12 @@
                 <view class="freight_explain_title">说明:</view>
                 <image src="../../../../images/update.png" mode="aspectFit" class="freight_explain_right" bindtap="freightUpdate" />
                 <view class="freight_explain_text" wx:if="{{!freightUpdate}}">江浙沪地区8元；新疆，西藏，青海，甘肃，海南五省20元；其他地域15元</view>
-                <textarea type="text" class="freight_explain_text freight_explain_input" style="width:unset;height:40px;" wx:if="{{freightUpdate}}" value="江浙沪地区8元；新疆，西藏，青海，甘肃，海南五省20元；其他地域15元" />
+                <textarea type="text" class="freight_explain_text freight_explain_input" data-type="fixedFee"  data-index="{{index}}" style="width:unset;height:40px;" wx:if="{{freightUpdate}}" value="江浙沪地区8元；新疆，西藏，青海，甘肃，海南五省20元；其他地域15元" />
               </view>
               <view class="freight_content">
                 <view class="freight_content_title">1. 运费：</view>
                 <view class="setting_button_view" style="height:30px;overflow:hidden;width:unset;float:unset;">
-                  <view class="setting_button" bindtap="logisticFees" data-type="logisticFees" data-index="{{index}}">
+                  <view class="setting_button"  data-type="logisticFees" bindtap="goodsPrice"  data-index="{{index}}">
                     <view class="setting_button_small  {{item.feeType == 2?'button_selected':''}}"></view>
                     <view class="setting_button_text1" style="font-size:14px;">手动修改</view>
                     <view class="setting_button_text2" style="font-size:14px;">固定运费</view>
@@ -290,7 +290,7 @@
                 <view class="freight_content_title">
                   2. 固定运费：
                   <text style="padding: 0 10px 0 20px;" wx:if="{{!freightUpdate}}">{{item.fixedFee}}</text>
-                  <input type="text" class="freight_explain_input" style="width:80px;margin:0 10px;" wx:if="{{freightUpdate}}" value="{{item.fixedFee}}"/>
+                  <input type="text" data-name="logisticFees" data-type="fixedFee" bindblur="changIput"  data-index="{{index}}" class="freight_explain_input" style="width:80px;margin:0 10px;" wx:if="{{freightUpdate}}" value="{{item.fixedFee}}"/>
                   元
                 </view>
               </view>
@@ -298,11 +298,11 @@
                 <view class="freight_content_title">
                   3. 免邮金额：
                   <text style="padding: 0 10px 0 20px;" wx:if="{{!freightUpdate}}">{{item.freeFee}}</text>
-                  <input type="text" class="freight_explain_input" style="width:80px;margin:0 10px;" wx:if="{{freightUpdate}}" value="{{item.freeFee}}"/>
+                  <input type="text"  data-name="logisticFees" data-type="freeFee" bindblur="changIput" data-index="{{index}}" class="freight_explain_input" style="width:80px;margin:0 10px;" wx:if="{{freightUpdate}}" value="{{item.freeFee}}"/>
                   元
                 </view>
               </view>
-              <view class="freight_button">保存</view>
+              <view class="freight_button" bindtap="submitData">保存</view>
             </scroll-view>
           </block>
         </view>
@@ -425,7 +425,7 @@
           <view class="setting_content" wx:for="{{customerCusts}}" wx:if="{{index <= cusDictValue-1}}">
             <view class="setting_text">{{item.custtypename}}</view>
             <view class="setting_text" style="flex:4;">{{item.prodgradeName}}</view>
-            <navigator url="../customerType/customerType?index={{index}}" class="setting_text" style="color:#286561;" bindtap="customerModal" data-index="{{index}}">修改</navigator>
+            <view class="setting_text" style="color:#286561;" bindtap="customerModal" data-index="{{index}}">修改</view>
           </view>
        
         </view>
