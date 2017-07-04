@@ -85,7 +85,7 @@ Page({
                   productsize: sizeGroup[g],
                   producttype: shopCart[p].producttype,
                   handtag: shopCart[p].handtag,
-                  storeid: app.globalData.storeId
+                  storeid: that.data.stordId
                 })
               }
             } else {
@@ -99,7 +99,7 @@ Page({
                 productsize: shopCart[p].productsize,
                 producttype: shopCart[p].producttype,
                 handtag: shopCart[p].handtag,
-                storeid: app.globalData.storeId
+                storeid: that.data.stordId
               })
             }
           }
@@ -133,6 +133,7 @@ Page({
   // 提交数据
   submitData: function (submitData){
       var that = this;
+      console.log(JSON.stringify(submitData))
       wx.showNavigationBarLoading()
       util.api.request({
         url: 'order/saveOrders',

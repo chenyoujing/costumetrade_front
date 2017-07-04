@@ -55,7 +55,7 @@
 
   <view class="shop_content" wx:for="{{otherStord}}">
    <view url="mall/mall" class="shop_content_view">
-      <navigator url="storeDetails/storeDetails?id={{myselfStord.id}}" class="shop_content_title">
+      <navigator url="storeDetails/storeDetails?id={{item.id}}" class="shop_content_title">
         <image src="{{true?'../../../images/shop1_tx.png':'../../../images/image_none.png'}}" mode="aspectFill" class="shop_content_tx" />
         <view class="shop_content_info">
           <view class="shop_content_name">{{item.name}}</view>

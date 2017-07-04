@@ -66,7 +66,7 @@ Page({
      },
      method: 'POST',
      header: {
-       'content-type': 'application/josn'
+       'content-type': 'application/x-www-form-urlencoded'
      },
      success: function (res) {
        that.setData({

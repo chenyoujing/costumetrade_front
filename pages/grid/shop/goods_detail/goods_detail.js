@@ -12,9 +12,9 @@ Page({
     modal_opacity: "",
     modal_top: "100%",
     modal_bottom: "-100%",
-    size: "1",
+    size: "",
     sizes: "1",
-    color: "1",
+    color: "",
     id: "",
     title: "",
     stordId: 0,
@@ -135,17 +135,32 @@ Page({
   getData: function () {
     var that = this;
     var name = 'shopCartUp' + this.data.stordId;
-    wx.getStorage({
-      key: name,
-      complete: function (res) {
-        res.data = res.data ? res.data : [];
-        that.setData({
-          shopCart: res.data
-        })
-        that.enterShopCart();
-      }
-    })
-    this.modal_close()
+    console.log(this.data.color)
+    if(!this.data.color){
+      wx.showToast({
+        title: '颜色没有更改',
+        mask: true,
+        duration: 500
+      })
+    } else if (this.data.sizes !== 2 && !this.data.size){
+      wx.showToast({
+        title: '尺码没有更新',
+        mask: true,
+        duration: 500
+      })
+    } else {
+      wx.getStorage({
+        key: name,
+        complete: function (res) {
+          res.data = res.data ? res.data : [];
+          that.setData({
+            shopCart: res.data
+          })
+          that.enterShopCart();
+        }
+      })
+      this.modal_close()
+    }
   },
   // 数量加减
   countAddorSub:function(e){
@@ -211,8 +226,8 @@ Page({
     if (data.sizes == 1){
       GoodsInfoData.salePrice = this.data.originalPrice;
       this.setData({
-        size: 1,
-        color:1,
+        size: "",
+        color:"",
         sizes: data.sizes,
         GoodsInfoData: GoodsInfoData,
         sizeRaise: 0,
@@ -229,12 +244,16 @@ Page({
   },
   // 调用函数请求方法
   saleAver: function (unitString) {
-    if (unitString==2 && this.data.GoodsDetail.isPattern == 1) {
-      var object = util.api.sizeRaiseArray(this.data.sizeArray, this.data.GoodsInfoData, this.data.priceRaise.sizeLists, this.data.originalPrice, this.data.colorRaise, 'salePrice');
-      this.setData({
-        GoodsInfoData: object.GoodsInfoData,
-        sizeRaiseArray: object.sizeRaiseArray
-      })
+    console.log(this.data.GoodsInfoData)
+    if (unitString == 2 && this.data.GoodsInfoData.isPattern == 1) {
+      if (this.data.priceRaise){
+        var object = util.api.sizeRaiseArray(this.data.sizeArray, this.data.GoodsInfoData, this.data.priceRaise.sizeLists, this.data.originalPrice, this.data.colorRaise, 'salePrice');
+        this.setData({
+          GoodsInfoData: object.GoodsInfoData,
+          sizeRaiseArray: object.sizeRaiseArray
+        })
+      }
+    
     }
   },
 // 颜色尺码选择同时计算加价
@@ -247,7 +266,11 @@ Page({
     var GoodsInfoData = this.data.GoodsInfoData;
     var sizeRaise = this.data.sizeRaise;
     var colorRaise = this.data.colorRaise; 
-    if (this.data.GoodsInfoData.isPattern==1 && name=='color'){
+    console.log(this.data.priceRaise)
+    if (this.data.GoodsInfoData.isPattern == 1 && this.data.priceRaise == undefined){
+      sizeRaise = 0;
+      colorRaise = 0;
+    }else if(this.data.GoodsInfoData.isPattern==1 && name=='color'){
       for (var g in this.data.priceRaise.colorLists) {
         if (data == this.data.priceRaise.colorLists[g].name) {
           colorRaise = this.data.priceRaise.colorLists[g].priceRaise;
@@ -286,6 +309,7 @@ Page({
       title: e.name,
       stordId: e.strod
     });
+    console.log(e.strod)
     console.log(e.name)
     this.showGoodsInfo();
   },

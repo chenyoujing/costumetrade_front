@@ -684,7 +684,11 @@ Page({
           GoodsInfoData: param
         });
       } else if (app.nameChange == "加价表"){
+        console.log(22222)
         param.priceJsons = app.changeData;
+        if (!app.changeData){
+          GoodsInfoData.isPattern = 2;
+        }
         this.setData({
           GoodsInfoData: param
         });
