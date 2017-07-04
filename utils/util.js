@@ -95,10 +95,9 @@ var api = {
     var object = {};
     if (number == 'false') {
       object.timebool = -1;
-      
     } else {
       var myDate = new Date();
-      var endTime = toDate(myDate) + " 23:23:23";
+      var endTime = toDate(myDate) + " 23:59:59";
       myDate.setDate(myDate.getDate() - number);
       var beginTime = toDate(myDate) + " 00:00:00";
       object =  {

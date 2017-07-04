@@ -9,8 +9,8 @@
 <view class="update_content">
   <view class="upload_input clearfix">
     <view class="upload_input_text">级别:</view>
-    <picker style="margin-right:0" data-style = 'grade_index' bindchange="bindSelectorChange" value="{{grade}}" range="{{screen_gradeList}}" name="grade" mode="selector" range-key="custtypename" >
-        {{screen_gradeList[grade_index].custtypename}}
+    <picker style="margin-right:0" data-style = 'grade_index' bindchange="bindSelectorChange" value="{{grade}}" range="{{screen_gradeList}}" name="grade" mode="selector" range-key="dictText" >
+        {{screen_gradeList[grade_index].dictText}}
         <image src="../../../../images/down.png" mode="aspectFit" class="picker_image" />
     </picker>
   </view>

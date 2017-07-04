@@ -43,7 +43,8 @@ Page({
     name: '',
     storeId: app.globalData.storeId,
     aa:false,
-    type:1
+    type:1,
+    checkAllTag:false
   },
   // 请求数据函数
   page_request: function () {
@@ -301,17 +302,19 @@ Page({
   },
   // 进入批量修改页面
   batch_update_sure: function () {
+    var ids = this.data.ids.join(',');
     wx.navigateTo({
-      url: 'GoodsUpdate/GoodsUpdate',
+      url: 'GoodsUpdate/GoodsUpdate?ids=' + ids + "&checkAllTag=" + this.data.checkAllTag,
     })
     this.batchOperationsOk()
   },
   // 全选全不选
   SelectallOrNot:function(){
     this.setData({
-      aa:!this.data.aa
+      aa:!this.data.aa,
+      checkAllTag: !this.data.aa,
+      ids: []
     })
-    console.log(!this.data.aa)
   },
   SelectContainer: function (e) {
     var ids = e.target.dataset.id;
@@ -340,7 +343,8 @@ Page({
       url: 'product/updateProducts',
       data: {
         openid: app.globalData.openid,
-        idArray: that.data.ids
+        idArray: that.data.ids,
+        checkAllTag: that.data.checkAllTag
       },
       method: 'POST',
       header: {
@@ -349,13 +353,42 @@ Page({
       success: function (res) {
         wx.hideNavigationBarLoading();
         var product = that.data.product;
-        for (var p in ids) {
-          for (var j in product) {
-            if (ids[p] = product[j].id) {
-              product[j].splice(j, 1)
+        var totalProduct = [];
+        // 货品
+        wx.getStorage({
+          key: 'GoodsData',
+          success: function (res) {
+            totalProduct = res.data ? res.data : [];
+              // 更新货品缓存
+            if (that.data.checkAllTag){
+              totalProduct = [];
+            }else{
+              for (var p in ids) {
+                for (var j in totalProduct) {
+                  if (ids[p] = totalProduct[j].id) {
+                    totalProduct.splice(j, 1)
+                  }
+                }
+              }
+            }
+            wx.setStorage({
+              key: "GoodsData",
+              data: totalProduct
+            })
+          }
+        })
+        if (checkAllTag){
+          product = [];
+        }else{
+          for (var p in ids) {
+            for (var j in product) {
+              if (ids[p] = product[j].id) {
+                product.splice(j, 1)
+              }
             }
           }
         }
+        
         that.setData({
           product: product
         })

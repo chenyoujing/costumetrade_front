@@ -41,27 +41,37 @@ Page({
   },
   // 时间改变
   timeChange:function(e){
-    var param = {};
-    var style = e.currentTarget.dataset.name;
-    param.beginTime = this.data.beginTime;
-    param.endTime = this.data.endTime;
-    if (style == 'beginTime') {
-      param.beginTime = e.detail.value + " 00:00:00";
-    } else {
-      param.endTime = e.detail.value +" 23:59:59";
-    } 
-    param.endTime = this.endTimeiSchange(param.beginTime, param.endTime);
-    this.setData(param)
+    var object = util.api.timeChange(e, this.data.beginTime, this.data.endTime);
+    this.setData(object)
   },
-  // 报表检测结束时间是否要更改
-  endTimeiSchange:function(benginTime,endTime){
-    var newbenginTime = (new Date(benginTime)).getTime();
-    var newendTime = (new Date(endTime)).getTime()
-    if (newbenginTime > newendTime){
-      endTime = benginTime.split(' ')[0] +" 23:59:59";
-    }
-    return endTime
-  },
+  // 请求数据
+ generalReport:function(){
+   var that = this;
+   wx.showNavigationBarLoading()
+   util.api.request({
+     url: "report/generalReport",
+     data: {
+       openid: app.globalData.openid,
+       timeFrom: that.data.beginTime,
+       timeTo: that.data.endTime
+     },
+     method: 'POST',
+     header: {
+       'content-type': 'application/josn'
+     },
+     success: function (res) {
+       that.setData({
+         submitData: []
+       })
+       wx.hideNavigationBarLoading();
+       wx.showToast({
+         title: "添加成功！",
+         mask: true,
+         duration: 2000
+       })
+     }
+   })
+ },
   onLoad: function (e) {
     var myDate = new Date();
     var Time = util.toDate(myDate);
@@ -69,5 +79,6 @@ Page({
       beginTime: Time+" 00:00:00",
       endTime: Time + " 23:59:59"
     })
+    this.generalReport()
   }
 })

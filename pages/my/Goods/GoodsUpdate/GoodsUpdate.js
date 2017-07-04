@@ -36,7 +36,7 @@ Page({
     var style = e.currentTarget.dataset.style;
     switch (style) {
       case 'grade_index':
-        var grade = this.data.screen_gradeList[e.detail.value].id;
+        var grade = this.data.screen_gradeList[e.detail.value].dictValue;
         this.setData({
           grade_index: e.detail.value,
           grade: grade
@@ -77,6 +77,7 @@ Page({
       data: {
         storeId: 1,
         idArray: that.data.ids,
+        checkAllTag: that.data.checkAllTag,
         year: that.data.year,
         grade: that.data.grade,
         status: that.data.status
@@ -99,7 +100,8 @@ Page({
   onLoad: function (options) {
     this.setData({
       ids:options.ids,
-      screen_gradeList:app.screen_gradeList
+      screen_gradeList:app.screen_gradeList,
+      checkAllTag: options.checkAllTag
     })
   }
 })
