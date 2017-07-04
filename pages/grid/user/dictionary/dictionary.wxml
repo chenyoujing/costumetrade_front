@@ -237,21 +237,21 @@
             首页推荐照片
           </view>
           <view class="image_view">
-            <image src="../../../../images/add_image.png" class="image_view_add"  wx:if="{{!images[0]}}"/>
-            <image src="{{images[0]}}" class="index_image" />
+            <image src="../../../../images/add_image.png" class="image_view_add"  wx:if="{{!imageurl[0]}}"/>
+            <image src="{{imageurl[0]}}" class="index_image" />
             <view class="bindtap_cover" bindtap="choosImage" data-index="0"
             bindtap="choosImage" data-name="images" ></view>
           </view>
           <view class="image_view">
-            <image src="../../../../images/add_image.png" class="image_view_add"  wx:if="{{!images[1]}}"/>
-            <image src="{{images[1]}}"  class="index_image" />
+            <image src="../../../../images/add_image.png" class="image_view_add"  wx:if="{{!imageurl[1]}}"/>
+            <image src="{{imageurl[1]}}"  class="index_image" />
             <view class="bindtap_cover" bindtap="choosImage" data-index="1"
             bindtap="choosImage" data-name="images" ></view>
           </view>
           <view class="image_view">
-            <image src="../../../../images/add_image.png" class="image_view_add"  wx:if="{{!images[2]}}"/>
-            <image src="{{images[2]}}" class="index_image" />
-            <view class="bindtap_cover"  bindtap="choosImage" data-index="2" data-name="images"></view>
+            <image src="../../../../images/add_image.png" class="image_view_add"  wx:if="{{!imageurl[2]}}"/>
+            <image src="{{imageurl[2]}}" class="index_image" />
+            <view class="bindtap_cover"  bindtap="choosImage" data-index="2" data-name="imageurl"></view>
           </view>
         </view>
 
@@ -270,8 +270,8 @@
               <view class="freight_explain">
                 <view class="freight_explain_title">说明:</view>
                 <image src="../../../../images/update.png" mode="aspectFit" class="freight_explain_right" bindtap="freightUpdate" />
-                <view class="freight_explain_text" wx:if="{{!freightUpdate}}">江浙沪地区8元；新疆，西藏，青海，甘肃，海南五省20元；其他地域15元</view>
-                <textarea type="text" class="freight_explain_text freight_explain_input" data-type="fixedFee"  data-index="{{index}}" style="width:unset;height:40px;" wx:if="{{freightUpdate}}" value="江浙沪地区8元；新疆，西藏，青海，甘肃，海南五省20元；其他地域15元" />
+                <view class="freight_explain_text" wx:if="{{!freightUpdate}}">{{item.description}}</view>
+                <textarea type="text" class="freight_explain_text freight_explain_input" data-type="description" bindblur="changIput" data-index="{{index}}" style="width:unset;height:40px;" wx:if="{{freightUpdate}}" value="{{item.description}}" />
               </view>
               <view class="freight_content">
                 <view class="freight_content_title">1. 运费：</view>

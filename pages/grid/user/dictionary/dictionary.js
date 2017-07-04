@@ -246,6 +246,8 @@ Page({
         var pointExchange = [];
         var payQrcode = [];
         var cusDictValue = 0;
+       var images =  [];
+       var imageurl = [];
         for (var p in res.data.datas){
           switch (res.data.datas[p].dictGroup){
             case "PAY_TYPE":
@@ -269,6 +271,9 @@ Page({
             case "PAY_QRCODE":
               payQrcode.push(res.data.datas[p])
               break;
+            case "IMAGE":
+              images = res.data.datas[p]
+              break;
           }
         }
         cusDictValue = customerProduct.dictValue.split(',');
@@ -281,10 +286,14 @@ Page({
             }
           }
         }
-        for (var p in res.data.images) {
-          res.data.images[p] = util.api.imgUrl + res.data.images[p]
+        console.log(images)
+        console.log(images.dictValue)
+        imageurl = images.dictValue.split(',')
+        for (var p in imageurl) {
+          console.log(imageurl[p])
+          imageurl[p] = util.api.imgUrl + imageurl[p]
         } 
-        var images = res.data.images || [];
+      
         var logisticFees = res.data.logisticFees
         app.customerCusts = customerCusts
         that.setData({
@@ -298,7 +307,8 @@ Page({
           logisticFees: logisticFees,
           cusDictValue: cusDictValue[cusDictValue.length-1],
           pointExchange: pointExchange,
-          payQrcode: payQrcode
+          payQrcode: payQrcode,
+          imageurl: imageurl
         })
         console.log(that.data)
       }
@@ -355,7 +365,7 @@ Page({
   photoSubmit: function (file, i,e) {
     var name = e.target.dataset.name;
     var index = e.target.dataset.index;
-    var images = this.data.images;
+    var images = this.data.imageurl;
     var payQrcode = this.data.payQrcode;
     var that = this;
     var submitData = this.data.submitData;
@@ -371,8 +381,9 @@ Page({
             console.log(images)
             images[index] = util.api.imgUrl + JSON.parse(res.data).data.url;
             console.log(images)
-            param.images = images;
-            submitData.images = images;
+            param.imageurl = images;
+            submitData.imageurl = images;
+    
           } else {
             payQrcode[index].dictValue = JSON.parse(res.data).data.url;
             param.payQrcode = payQrcode;
@@ -616,13 +627,10 @@ Page({
      console.log(submitData)
      for (var p in submitData){
        console.log(submitData[p])
-       if(p == 'images'){
-         newSubmitData = [{
-           storeId: app.globalData.storeId,
-           dictGroup:'IMAGE',
-           dictValue: submitData[p].join(',').replace(/http:\/\/117.149.24.42:8788/g, ''),
-           dictGroupName:'商品推广图片'
-         }]
+       if (p == 'imageurl'){
+         var array = this.data.images;
+         array.dictValue = submitData[p].join(',').replace(/http:\/\/117.149.24.42:8788/g, '');
+         newSubmitData.push(array)
        } else if (p == 'sellingProduct' || p == "pointExchange" ||p=="customerProduct"){
           submitData[p].storeId = app.globalData.storeId
           newSubmitData.push(submitData[p])
@@ -633,6 +641,8 @@ Page({
            newSubmitData.push(submitData[p][j])
            if (p == 'customerCusts'){
              url = 'dictionary/saveTypeOrGradeRate'
+           } else if (p == 'logisticFees'){
+             url = "dictionary/updateLogistics"
            }
          }
        }
