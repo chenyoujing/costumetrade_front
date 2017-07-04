@@ -109,6 +109,81 @@ var api = {
     }
     return object;
   },
+  // 报表检测结束时间是否要更改
+  endTimeiSchange: function (benginTime, endTime) {
+    var newbenginTime = (new Date(benginTime)).getTime();
+    var newendTime = (new Date(endTime)).getTime()
+    if (newbenginTime > newendTime) {
+      endTime = benginTime.split(' ')[0] + " 23:59:59";
+    }
+    return endTime
+  },
+  // 报表时间改变
+  timeChange: function (e, beginTime, endTime) {
+    var param = {};
+    var style = e.currentTarget.dataset.name;
+    param.beginTime = beginTime;
+    param.endTime = endTime;
+    if (style == 'beginTime') {
+      param.beginTime = e.detail.value + " 00:00:00";
+    } else {
+      param.endTime = e.detail.value + " 23:59:59";
+    }
+    param.endTime = this.endTimeiSchange(param.beginTime, param.endTime);
+    return param;
+  },
+  // 获取二维码。。。
+  scan: function (client, setdata) {
+    wx.showNavigationBarLoading()
+    var id = this.DateFormat(new Date())
+    this.request({
+      url: 'client/scanQRCode',
+      data: {
+        type: client,
+        storeId: app.globalData.storeId,
+        id: id
+      },
+      method: 'POST',
+      header: {
+        'content-type': 'application/json'
+      },
+      success: function (res) {
+        wx.hideNavigationBarLoading();
+        var data = {
+          scanModal: false,
+          scan: res.data,
+          id: id
+        }
+        setdata(data)
+      }
+    })
+  },
+  // 二维码扫好了。。。
+  scanOk: function (client, id, callback) {
+    wx.showNavigationBarLoading()
+    this.request({
+      url: 'client/scanQRCodeOk',
+      data: {
+        type: client,
+        storeId: app.globalData.storeId,
+        id: id
+      },
+      method: 'POST',
+      header: {
+        'content-type': 'application/json'
+      },
+      success: function (res) {
+        wx.hideNavigationBarLoading();
+        if (!res.data.id) {
+          wx.showToast({
+            title: res.msg,
+          })
+        } else {
+          callback(res.data)
+        }
+      }
+    })
+  },
   // 支付方式转换。。。
   paycact: function (dictText) {
     for (var p in app.paycact) {
