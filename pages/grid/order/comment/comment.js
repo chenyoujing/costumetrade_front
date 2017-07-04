@@ -82,7 +82,7 @@ Page({
     util.api.request({
       url: this.data.url,
       data: {
-        storeId: 1,
+        storeId: app.globalData.storeId,
         productid: this.data.productid,
         url: this.data.fileList,
         msg: this.data.msg
