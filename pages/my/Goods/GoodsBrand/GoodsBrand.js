@@ -127,7 +127,8 @@ Page({
       object[this.data.addname] = app.changeData;
       arry.push(object)
       this.setData({
-        product: arry
+        product: arry,
+        productstring: JSON.stringify(arry)
       })
     }
   }

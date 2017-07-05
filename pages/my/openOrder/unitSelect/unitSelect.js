@@ -39,14 +39,12 @@ Page({
       }
     }
     contacts = contacts.sort(util.api.by('type'));
-    console.log(contacts)
     this.setData({
       contacts: contacts
     })
   },
   selectName:function(e){
     app.selectName = e.target.dataset;
-    console.log(app.selectName)
     wx.navigateBack({
       delta: 1,
     })
@@ -70,12 +68,10 @@ Page({
     if (e.detail.value == "" || e.detail.value == " ") {
       this.callback()
     } else {
-      console.log(this.data.product)
       var endArray4 = util.api.objectPushArry(this.data.product, e.detail.value)
       this.setData({
         product: endArray4
       })
-      console.log(endArray4)
       this.classifyFastcode(endArray4)
     }
   },

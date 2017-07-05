@@ -198,11 +198,13 @@ Page({
     submitData.order = {};
     if(this.data.type == 1){
       submitData.order.sellerstoreid = app.globalData.storeId;
-      submitData.order.buyerstoreid = app.selectName?undefined:""
+      submitData.order.buyerstoreid = ""
+     
     }else{
       submitData.order.buyerstoreid = app.globalData.storeId;
-      submitData.order.sellerstoreid = app.selectName?undefined : ""
+      submitData.order.sellerstoreid = ""
     }
+    submitData.order.clientId = app.selectName ? app.selectName.id :"";
     submitData.order.ordertype = 2;
     submitData.order.realcostArray = this.data.reallyPay;
     submitData.openid = app.globalData.openid;
