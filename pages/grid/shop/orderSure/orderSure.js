@@ -62,7 +62,7 @@ Page({
           var price = (that.data.totalPrice + that.data.freight).toFixed(2);
           submitData.stoDetails = [];
           submitData.order = {};
-          submitData.order.realcostArray = price;
+          submitData.order.totalamt = price;
           submitData.order.ordertype = 1;
           submitData.openid = app.globalData.openid;
           submitData.order.shipcontact = that.data.address.contact;
