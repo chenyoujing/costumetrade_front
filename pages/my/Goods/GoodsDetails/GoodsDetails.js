@@ -3,15 +3,27 @@ Page({
   data: {
     titlename: '商品详情',
     textModal: true,
+    goodsDetails: [],
   },
   text:function(){
     this.setData({
       textModal:false,
     })
   },
-  textarea:function(){},
+  textarea:function(e){
+    this.setData({
+      text: e.detail.value
+    })
+  },
   textModal:function(){
-    
+    var goodsDetails = this.data.goodsDetails
+    goodsDetails.push({
+      text: this.data.text
+    })
+    this.setData({
+      text: "",
+      goodsDetails: goodsDetails
+    })
   },
   cancel:function(){
     this.setData({

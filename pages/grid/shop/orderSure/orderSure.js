@@ -68,7 +68,7 @@ Page({
           submitData.order.shipcontact = that.data.address.contact;
           submitData.order.shipphone = that.data.address.phone;
           submitData.order.shipaddress = that.data.address.address;
-          submitData.order.logisticCode = that.data.logisticCode;
+          submitData.order.logisticsCode = that.data.logisticCode;
           submitData.order.freight = that.data.freight;
           submitData.order.totalnum = that.data.totalnum;
           submitData.order.sellerstoreid = that.data.stordId;
