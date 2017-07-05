@@ -62,7 +62,7 @@ Page({
   onLoad: function (e) {
     this.setData({
       storeId: e.storeId,
-      idArray: e.ids,
+      idArray: JSON.parse(e.ids),
       title: app.globalData.storeInfo[0].name
     })
     this.selected_goods(e.ids, e.storeId)

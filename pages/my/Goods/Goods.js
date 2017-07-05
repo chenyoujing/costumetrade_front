@@ -302,11 +302,8 @@ Page({
       })
     } else {
       this.batchOperationsOk();
-      this.setData({
-        aa: false
-      })
       wx.navigateTo({
-        url: 'GoodsShare/GoodsShare?ids=' + idsArray + '&storeId=' + storeId,
+        url: 'GoodsShare/GoodsShare?ids=' + JSON.stringify(idsArray) + '&storeId=' + storeId,
       })
     }
   },
