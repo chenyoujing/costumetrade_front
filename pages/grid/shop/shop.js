@@ -19,11 +19,13 @@ Page({
   // 初始化数据
   initialize:function(){
     console.log('initialize')
+    console.log(app.globalData.storeInfo)
     var otherStord = app.globalData.storeInfo;
     if (otherStord.length == 1) {
       otherStord = [];
     } else {
-      otherStord = otherStord.splice(0, 1);
+      otherStord = otherStord.splice(1, );
+      console.log(otherStord)
     }
     this.setData({
       myselfStord: app.globalData.storeInfo[0],
@@ -31,6 +33,9 @@ Page({
     })
   },
   onLoad:function(){
+    this.setData({
+      url: util.api.imgUrl
+    })
     if (!app.globalData.openid){
       util.api.getOpenid(this.initialize);
     }else{

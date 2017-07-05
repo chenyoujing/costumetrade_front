@@ -12,7 +12,7 @@
   <!--店铺信息-->
   <view class="store_info_view">
     <view class="store_info">
-      <image src="{{url + storeInfo.storephoto}}" class="store_tx" />
+      <image src="{{storeInfo.storephoto?url + storeInfo.storephoto:'../../../../images/image_none.png'}}" class="store_tx" />
       <view class="store_name">{{storeInfo.name}}</view>
       <view class="store_content">{{storeInfo.description}}</view>
       <view class="clear"></view>
