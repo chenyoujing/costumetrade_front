@@ -244,6 +244,10 @@ Page({
         newPicker[2].price = answerData.thirdPrice;
         newPicker[3].price = answerData.fourthPrice;
         newPicker[4].price = answerData.fifthPrice;
+        if (answerData.description){
+          var description = JSON.parse(answerData.description)
+        }
+        app.description = description
         that.setData({
           soruceData: util.api.Clone(answerData),
           GoodsInfoData: answerData, 
@@ -254,7 +258,8 @@ Page({
           grade_index: gradeNumber,
           picker_view: newPicker,
           brand_index: brandNumber,
-          firstBoolean: true
+          firstBoolean: true,
+          description: description
         });
         that.initializeData();
         that.GoodsImage();
@@ -365,9 +370,11 @@ Page({
     if(this.data.id !== ''){
       objectSubmit = util.api.getEntityModified(this.data.soruceData,target);
       objectSubmit.id = this.data.id;
+      objectSubmit.description = JSON.stringify(app.description)
       objectSubmit.storeId = app.globalData.storeId
     }else{
       objectSubmit = target;
+      objectSubmit.description = JSON.stringify(app.description)
       objectSubmit.storeId = app.globalData.storeId,
       objectSubmit.id = undefined,
       target.name = target.code + target.name
@@ -648,6 +655,11 @@ Page({
    
   },
   onShow:function() {
+    if (app.description){
+      this.setData({
+        description: app.description
+      })
+    }
     console.log(app.nameChange )
     if (app.changeData) {
       console.log(app.nameChange == "加价表")
@@ -710,5 +722,8 @@ Page({
       }
       app.changeData = "";
     }
+  },
+  onUnload:function(){
+    app.description = ""
   }
 })

@@ -48,7 +48,7 @@ Page({
   },
   // 一级标签切换
   ordertype:function(e){
-    var num = e.target.dataset.ordertype;
+    var num = e.currentTarget.dataset.ordertype;
     var ordertype2
     if (num == 1) {
       ordertype2 = 1
@@ -64,7 +64,7 @@ Page({
   },
    // 二级标签切换
   ordertype2:function(e){
-    var num = e.target.dataset.ordertypetwo;
+    var num = e.currentTarget.dataset.ordertypetwo;
     this.setData({
       ordertype2: num,
       page: 1,
@@ -79,7 +79,7 @@ Page({
     util.api.request({
       url: this.data.url,
       data: {
-        openid: this.data.openid,
+        openid: app.globalData.openid,
         ordertype: this.data.ordertype,
         orderstatus: this.data.ordertype2,
         pageNum: this.data.page
@@ -94,12 +94,7 @@ Page({
         var booleanre = that.data.requestSwitch;
         for (var p in res.data) {
           res.data[p].ordertime = util.toDate(res.data[p].ordertime);
-          // 转换物流公司
-          for (var j in that.data.logisticFees){
-            if (that.data.logisticFees[j].logisticCode == res.data[p].logisticsCode){
-              res.data[p].logisticName = that.data.logisticFees[j].logisticName
-            }
-          }
+
           for (var j in that.data.paycact) {
             if (res.data[p].paycate1 == that.data.paycact[j].dictValue) {
               res.data[p].paycate_1 = that.data.paycact[j].dictText

@@ -11,7 +11,7 @@
       <image src="../../../../images/comment_add.png" mode="aspectFit" />
       输入文字
     </view>
-    <view class="details_button" bindtap="image">
+    <view class="details_button" bindtap="chooseImg">
       <image src="../../../../images/comment_add.png" mode="aspectFit" />
       添加图片
     </view>
@@ -23,13 +23,15 @@
   <view class="text_align" bindtap="text_align" data-align="right">右对齐</view>
 </view>
 <scroll-view scroll-y class="details_content {{align}}">
-  <view>123</view>
-  <view><image src="../../../../images/comment_add.png" mode="aspectFit" style="height:20px;width:20px;"/></view>
+  <view wx:for="{{description}}">
+    {{item.text}}
+    <image src="{{url+item.image}}" mode="widthFix" wx:if="{{item.image}}"/>
+  </view>
 </scroll-view>
 <navigator open-type="navigateBack" class="reset">取消</navigator>
-<view class="submit">提交</view>
+<view class="submit" bindtap="submit">提交</view>
 
 
 <modal title="输入文字" hidden="{{textModal}}" confirm-text="确定" bindconfirm="textModal" bindcancel="cancel" >
-  <textarea class="details_input" maxlength="-1" bindinput="textarea" />
+  <textarea class="details_input" maxlength="-1" bindinput="textarea" value="{{textarea}}" />
 </modal>

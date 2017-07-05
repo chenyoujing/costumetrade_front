@@ -1,9 +1,10 @@
-// pages/my/Goods/GoodsDetails/GoodsDetails.js
+var util = require('../../../../utils/util.js')
+var app = getApp()
 Page({
   data: {
     titlename: '商品详情',
     textModal: true,
-    goodsDetails: [],
+    description: [],
   },
   text:function(){
     this.setData({
@@ -16,38 +17,82 @@ Page({
     })
   },
   textModal:function(){
-    var goodsDetails = this.data.goodsDetails
-    goodsDetails.push({
+    var description = this.data.description
+    description.push({
       text: this.data.text
     })
     this.setData({
-      text: "",
-      goodsDetails: goodsDetails
+      textarea: "",
+      description: description
     })
+    this.cancel()
   },
   cancel:function(){
     this.setData({
       textModal: true,
     })
   },
-  image:function(){
-    wx.chooseImage({
-      count: 9, // 默认9
-      sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
-      sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
+  // 上传图片
+  photoSubmit: function (file, i) {
+    var that = this;
+    console.log(file[i])
+    wx.uploadFile({
+      url: util.api.host + 'product/uploadImage',
+      filePath: file[i],
+      name: 'file',
       success: function (res) {
-        // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
-        var tempFilePaths = res.tempFilePaths
+        if (JSON.parse(res.data).code == 0) {
+          var url =  JSON.parse(res.data).data.url;
+          var description = that.data.description
+          description.push({
+            image: url,
+          })
+          that.setData({
+            description: description,
+          })
+          wx.showToast({
+            title: '上传成功',
+            mask: true,
+            duration: 2000
+          })
+        } else {
+          wx.showToast({
+            title: '失败',
+            mask: true,
+            duration: 2000
+          })
+        }
+        console.log(JSON.stringify(res));
+
       }
     })
   },
-  text_align:function(e){
+  // 上传图片
+  imageCallback: function (e, res) {
+    var tempFilePaths = res.tempFilePaths;
+    this.photoSubmit(tempFilePaths, 0);
+  },
+  chooseImg: function (e) {
+    util.api.chooseImg(e, this.imageCallback)
+  },
+  text_align: function (e) {
     var align = e.currentTarget.dataset.align
     this.setData({
       align: align,
     })
   },
+  submit:function(){
+    app.description = this.data.description
+    wx.navigateBack({
+      delta: 1,
+    })
+  },
   onLoad: function (options) {
-  
+    if (app.description){
+      this.setData({
+        url: util.api.imgUrl,
+        description: app.description
+      })
+    }
   },
 })

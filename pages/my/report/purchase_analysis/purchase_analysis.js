@@ -23,8 +23,8 @@ Page({
       url: 'report/purchaseAnalysisReport',
       data: {
         openid: app.globalData.openid,
-        timeFrom: that.data.beginTime,
-        timeTo: that.data.endTime,
+        timeFrom: that.data.beginTime + " 00:00:00",
+        timeTo: that.data.endTime + " 23:59:59",
         filter: { field: "productName", value: null },
       },
       method: 'POST',
@@ -159,6 +159,6 @@ Page({
       endTime: Time,
     })
     this.chart()
-    // this.purchase_request()
+    this.purchase_request()
   }
 })

@@ -66,6 +66,9 @@ Page({
           productReviews[p].headphoto = productReviews[p].headphoto ? util.api.imgUrl + productReviews[p].headphoto :''
           productReviews[p].createTime = answerData.createTime ? util.toDate(answerData.createTime) : "";
         }
+        if (answerData.description){
+          answerData.description = JSON.parse(answerData.description)
+        }
         that.setData({
           GoodsInfoData: answerData,
           id: answerData.id,
@@ -307,7 +310,8 @@ Page({
     this.setData({
       id: e.ID,
       title: e.name,
-      stordId: e.strod
+      stordId: e.strod,
+      url: util.api.imgUrl,
     });
     console.log(e.strod)
     console.log(e.name)

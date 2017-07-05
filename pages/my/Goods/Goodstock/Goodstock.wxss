@@ -2,6 +2,7 @@
 @import "../../../../css/title.wxss";
 .title{
   background-color: #ffffff;
+  color: #000000;
 }
 .image_service{
   position: absolute;

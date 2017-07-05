@@ -75,6 +75,20 @@ swiper image{
 /*商品评论*/
 @import "../../../../css/goodsComment.wxss";
 
+/*商品详情*/
+.description{
+  width: auto;
+}
+.description image{
+  display: block;
+  width: 100%;
+}
+.description view{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
 .modal_cover{
   position: fixed;
   top: 0;

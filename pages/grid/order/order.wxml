@@ -77,8 +77,8 @@
         <view class="order_container_number">单号：{{item.payorderno}}</view>
         <view class="order_container_text">数量：{{item.totalnum}}</view>
         <view class="order_container_text" wx:if="{{item.debetamt}}">未付：￥{{item.debetamt}}</view>
-        <view class="order_container_text" style="margin-top:5px;" wx:if="{{item.freight>0}}">{{item.logisticName}}：{{item.freight}}元</view>
-        <view class="order_container_text" style="margin-top:5px;" wx:if="{{item.freight==0}}">{{item.logisticName}}:包邮</view>
+        <view class="order_container_text" style="margin-top:5px;" wx:if="{{item.freight>0}}">{{item.logisticsCode}}：{{item.freight}}元</view>
+        <view class="order_container_text" style="margin-top:5px;" wx:if="{{item.freight==0}}">{{item.logisticsCode}}:包邮</view>
       </view>
       <view class="order_container_content_right">
         <view class="order_container_text">{{item.ordertime}}</view>
@@ -106,8 +106,8 @@
         <view class="order_container_number">单号：{{item.payorderno}}</view>
         <view class="order_container_text">数量：{{item.totalnum}}</view>
         <view class="order_container_text" wx:if="{{item.debetamt}}">未付：￥{{item.debetamt}}</view>
-        <view class="order_container_text" style="margin-top:5px;" wx:if="{{item.freight>0}}">{{item.logisticName}}：{{item.freight}}元</view>
-        <view class="order_container_text" style="margin-top:5px;" wx:if="{{item.freight==0}}">{{item.logisticName}}:包邮</view>
+        <view class="order_container_text" style="margin-top:5px;" wx:if="{{item.freight>0}}">{{item.logisticsCode}}：{{item.freight}}元</view>
+        <view class="order_container_text" style="margin-top:5px;" wx:if="{{item.freight==0}}">{{item.logisticsCode}}:包邮</view>
       </view>
       <view class="order_container_content_right">
         <view class="order_container_text">{{item.ordertime}}</view>
@@ -134,8 +134,8 @@
         <view class="order_container_number">单号：{{item.payorderno}}</view>
         <view class="order_container_text">数量：{{item.totalnum}}</view>
         <view class="order_container_text" wx:if="{{item.debetamt}}">未付：￥{{item.debetamt}}</view>
-        <view class="order_container_text" style="margin-top:5px;" wx:if="{{item.freight>0}}">{{item.logisticName}}：{{item.freight}}元</view>
-        <view class="order_container_text" style="margin-top:5px;" wx:if="{{item.freight==0}}">{{item.logisticName}}:包邮</view>
+        <view class="order_container_text" style="margin-top:5px;" wx:if="{{item.freight>0}}">{{item.logisticsCode}}：{{item.freight}}元</view>
+        <view class="order_container_text" style="margin-top:5px;" wx:if="{{item.freight==0}}">{{item.logisticsCode}}:包邮</view>
       </view>
       <view class="order_container_content_right">
         <view class="order_container_text">{{item.ordertime}}</view>
@@ -169,8 +169,8 @@
         <view class="order_container_number">单号：{{item.payorderno}}</view>
         <view class="order_container_text">数量：{{item.totalnum}}</view>
         <view class="order_container_text" wx:if="{{item.debetamt}}">未付：￥{{item.debetamt}}</view>
-        <view class="order_container_text" style="margin-top:5px;" wx:if="{{item.freight>0}}">{{item.logisticName}}：{{item.freight}}元</view>
-        <view class="order_container_text" style="margin-top:5px;" wx:if="{{item.freight==0}}">{{item.logisticName}}:包邮</view>
+        <view class="order_container_text" style="margin-top:5px;" wx:if="{{item.freight>0}}">{{item.logisticsCode}}：{{item.freight}}元</view>
+        <view class="order_container_text" style="margin-top:5px;" wx:if="{{item.freight==0}}">{{item.logisticsCode}}:包邮</view>
       </view>
       <view class="order_container_content_right">
         <view class="order_container_text">{{item.ordertime}}</view>
@@ -198,8 +198,8 @@
         <view class="order_container_number">单号：{{item.payorderno}}</view>
         <view class="order_container_text">数量：{{item.totalnum}}</view>
         <view class="order_container_text" wx:if="{{item.debetamt}}">未付：￥{{item.debetamt}}</view>
-        <view class="order_container_text" style="margin-top:5px;" wx:if="{{item.freight>0}}">{{item.logisticName}}：{{item.freight}}元</view>
-        <view class="order_container_text" style="margin-top:5px;" wx:if="{{item.freight==0}}">{{item.logisticName}}:包邮</view>
+        <view class="order_container_text" style="margin-top:5px;" wx:if="{{item.freight>0}}">{{item.logisticsCode}}：{{item.freight}}元</view>
+        <view class="order_container_text" style="margin-top:5px;" wx:if="{{item.freight==0}}">{{item.logisticsCode}}:包邮</view>
 
       </view>
       <view class="order_container_content_right">
@@ -229,8 +229,8 @@
         <view class="order_container_number">单号：{{item.payorderno}}</view>
         <view class="order_container_text">数量：{{item.totalnum}}</view>
         <view class="order_container_text" wx:if="{{item.debetamt}}">未付：￥{{item.debetamt}}</view>
-        <view class="order_container_text" style="margin-top:5px;" wx:if="{{item.freight>0}}">{{item.logisticName}}：{{item.freight}}元</view>
-        <view class="order_container_text" style="margin-top:5px;" wx:if="{{item.freight==0}}">{{item.logisticName}}:包邮</view>
+        <view class="order_container_text" style="margin-top:5px;" wx:if="{{item.freight>0}}">{{item.logisticsCode}}：{{item.freight}}元</view>
+        <view class="order_container_text" style="margin-top:5px;" wx:if="{{item.freight==0}}">{{item.logisticsCode}}:包邮</view>
       </view>
       <view class="order_container_content_right">
         <view class="order_container_text">{{item.ordertime}}</view>
@@ -272,8 +272,8 @@
         <view class="order_container_number">单号：{{item.payorderno}}</view>
         <view class="order_container_text">数量：{{item.totalnum}}</view>
         <view class="order_container_text" wx:if="{{item.debetamt}}">未付：￥{{item.debetamt}}</view>
-        <view class="order_container_text" style="margin-top:5px;" wx:if="{{item.freight>0}}">{{item.logisticName}}：{{item.freight}}元</view>
-        <view class="order_container_text" style="margin-top:5px;" wx:if="{{item.freight==0}}">{{item.logisticName}}:包邮</view>
+        <view class="order_container_text" style="margin-top:5px;" wx:if="{{item.freight>0}}">{{item.logisticsCode}}：{{item.freight}}元</view>
+        <view class="order_container_text" style="margin-top:5px;" wx:if="{{item.freight==0}}">{{item.logisticsCode}}:包邮</view>
       </view>
       <view class="order_container_content_right">
         <view class="order_container_text">{{item.ordertime}}</view>
@@ -303,8 +303,8 @@
         <view class="order_container_number">单号：{{item.payorderno}}</view>
         <view class="order_container_text">数量：{{item.totalnum}}</view>
         <view class="order_container_text" wx:if="{{item.debetamt}}">未付：￥{{item.debetamt}}</view>
-        <view class="order_container_text" style="margin-top:5px;" wx:if="{{item.freight>0}}">{{item.logisticName}}：{{item.freight}}元</view>
-        <view class="order_container_text" style="margin-top:5px;" wx:if="{{item.freight==0}}">{{item.logisticName}}:包邮</view>
+        <view class="order_container_text" style="margin-top:5px;" wx:if="{{item.freight>0}}">{{item.logisticsCode}}：{{item.freight}}元</view>
+        <view class="order_container_text" style="margin-top:5px;" wx:if="{{item.freight==0}}">{{item.logisticsCode}}:包邮</view>
       </view>
       <view class="order_container_content_right">
         <view class="order_container_text">{{item.ordertime}}</view>

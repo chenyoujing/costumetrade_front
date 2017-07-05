@@ -288,7 +288,9 @@ Page({
         }
         console.log(images)
         console.log(images.dictValue)
-        imageurl = images.dictValue.split(',')
+        if (images.dictValue){
+          imageurl = images.dictValue.split(',')
+        }
         for (var p in imageurl) {
           console.log(imageurl[p])
           imageurl[p] = util.api.imgUrl + imageurl[p]
@@ -658,7 +660,8 @@ Page({
        },
        success: function (res) {
         that.setData({
-          submitData:[]
+          submitData:[],
+          freightUpdate:'',
         })
         if (p == 'customerCusts'){
           that.cancel()

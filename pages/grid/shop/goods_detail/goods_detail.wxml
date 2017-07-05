@@ -56,6 +56,13 @@
     </view>
     <navigator url="../goodsComment/goodsComment?name={{title}}&stordId={{stordId}}&id={{id}}&comment={{GoodsInfoData.countReview}}" class="evaluate_more">查看更多评论</navigator>
   </view>
+  
+  <view class="description">
+    <view wx:for="{{GoodsInfoData.description}}">
+      {{item.text}}
+      <image src="{{url+item.image}}" mode="widthFix" wx:if="{{item.image}}"/>
+    </view>
+  </view>
 </scroll-view>
 
 

@@ -20,6 +20,11 @@ Page({
       scanModal: true,
     })
   },
+  address:function(){
+    wx.chooseAddress({
+      success: function(res) {},
+    })
+  },
   request_page:function(){
     var that = this
     if(app.globalData.storeInfo[0]){

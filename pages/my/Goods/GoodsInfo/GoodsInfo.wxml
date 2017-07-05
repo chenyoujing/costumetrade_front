@@ -124,7 +124,7 @@
       </view>
       <view class="upload_input">
         <view class="upload_input_text">商品详情:</view>
-        <input type="number" class="upload_input2" style="padding-right:30px;" />
+        <input type="number" disabled="true" class="upload_input2" style="padding-right:30px;" value="{{description[0].text}}"  />
         <navigator url="../GoodsDetails/GoodsDetails?id={{GoodsInfoData.id}}">
           <image src="../../../../images/update.png" mode="aspectFit" class="update_image" />
         </navigator>
