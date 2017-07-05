@@ -18,6 +18,7 @@ Page({
           var url = util.api.imgUrl + JSON.parse(res.data).data.url;
           that.setData({
             tx: url,
+            storephoto: JSON.parse(res.data).data.url,
           })
           wx.showToast({
             title: '上传成功',
@@ -143,6 +144,7 @@ Page({
       userInfo: app.globalData.userInfo,
       date: date,
       userIdentity: app.globalData.userIdentity,
+      url: util.api.imgUrl
     })
   }
 })

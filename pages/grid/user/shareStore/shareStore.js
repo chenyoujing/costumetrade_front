@@ -5,7 +5,7 @@ Page({
   
   },
   onLoad: function (options) {
-    console.log(app.storeInfo)
+    console.log(app.globalData.storeInfo[0])
     var image = app.globalData.storeInfo[0].images
     var images = []
     for (var p in image){
@@ -16,8 +16,9 @@ Page({
       }
     }
     this.setData({
-      storeInfo: app.storeInfo,
-      images: images
+      storeInfo: app.globalData.storeInfo[0],
+      images: images,
+      url: util.api.imgUrl,
     })
   },
 })

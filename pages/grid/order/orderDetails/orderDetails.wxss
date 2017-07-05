@@ -221,15 +221,3 @@ modal{
   margin: 0 -20px;
   padding: 20px 0;
 }
-.logistics_choose{
-  text-align: center;
-  margin: 10px 20px;
-}
-.choose_view{
-  background-color: #DCDCDC;
-  color: #000000;
-  font-size: 16px;
-  line-height: 40px;
-  padding: 0 8px;
-  width: auto;
-}

@@ -87,6 +87,22 @@ Page({
       delta: 1,
     })
   },
+  delete:function(e){
+    var that = this
+    var index = e.currentTarget.dataset.index
+    wx.showActionSheet({
+      itemList: ['删除'],
+      success: function (res) {
+        if (res.tapIndex == 0){
+          var description = that.data.description
+          description.splice(index, 1)
+          that.setData({
+            description: description,
+          })
+        }
+      }
+    })
+  },
   onLoad: function (options) {
     if (app.description){
       this.setData({

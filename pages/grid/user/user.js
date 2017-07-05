@@ -55,6 +55,9 @@ Page({
     if (app.globalData.userIdentity == 1){
       this.request_page()
     }
+    this.setData({
+      url: util.api.imgUrl,
+    })
   },
   onShow:function(){
     var object = util.api.authorityPurchaseprice();

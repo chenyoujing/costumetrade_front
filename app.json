@@ -52,7 +52,7 @@
     "pages/my/Goods/GoodsScreen/GoodsScreen",
     "pages/my/Goods/priceUpdate/priceUpdate",
     "pages/my/Goods/styleMarkup/styleMarkup",
-
+    "pages/my/Goods/GoodsDetails/GoodsDetails",
 
     "pages/grid/shop/mall/mall",
     "pages/grid/shop/shoppingcard/shoppingcard",

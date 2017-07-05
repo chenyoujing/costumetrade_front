@@ -23,7 +23,7 @@
   <view class="text_align" bindtap="text_align" data-align="right">右对齐</view>
 </view>
 <scroll-view scroll-y class="details_content {{align}}">
-  <view wx:for="{{description}}">
+  <view wx:for="{{description}}" bindlongtap="delete" data-index="{{index}}">
     {{item.text}}
     <image src="{{url+item.image}}" mode="widthFix" wx:if="{{item.image}}"/>
   </view>
