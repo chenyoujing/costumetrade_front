@@ -125,14 +125,14 @@
       <view class="upload_input">
         <view class="upload_input_text">商品详情:</view>
         <input type="number" class="upload_input2" style="padding-right:30px;" />
-        <navigator url="../GoodsDetails/GoodsDetails">
+        <navigator url="../GoodsDetails/GoodsDetails?id={{GoodsInfoData.id}}">
           <image src="../../../../images/update.png" mode="aspectFit" class="update_image" />
         </navigator>
         <view class="clear"></view>
       </view>
       <view class="upload_input">
         <view class="upload_input_text">单位:</view>
-        <input type="number" disabled="true" data-name="unit"  class="upload_input2" name="unit" style="padding-right:30px;" value="{{unit}}"/>
+        <input type="number" disabled="true" data-name="unit"   class="upload_input2" name="unit" style="padding-right:30px;" value="{{unit}}"/>
         <navigator  url="../GoodsBrand/GoodsBrand?url=unit/getAllUnits&title=单位" hover-class="navigator-hover">
         <image src="../../../../images/update.png" mode="aspectFit" class="update_image" />
         </navigator>      
@@ -163,7 +163,7 @@
       <view class="upload_input">
         <view class="upload_input_text">主条码:</view>
         <input type="number" bindblur="blurInput" data-name="barcode"  class="upload_input2" name="barcode" value = "{{GoodsInfoData.barcode}}" style="padding-right:30px;" />
-        <image src="../../../../images/scan_black.png" mode="aspectFit" class="code_image" />
+        <image src="../../../../images/scan_black.png" mode="aspectFit" class="code_image" bindtap="scan" />
         <view class="clear"></view>
       </view>
       <view class="upload_input">

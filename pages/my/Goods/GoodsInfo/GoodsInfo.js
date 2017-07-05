@@ -261,6 +261,17 @@ Page({
       }
     })
   },
+  // 扫码
+  scan:function(){
+    var that = this
+    wx.scanCode({
+      success: (res) => {
+        that.setData({
+          "GoodsInfoData.barcode": res.result
+        })
+      }
+    })
+  },
   // 更改单选框
   radioChange:function(e){
     var check = e.detail.value;

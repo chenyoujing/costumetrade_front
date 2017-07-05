@@ -1,21 +1,35 @@
-  <view class="title clearfix">
-    {{titlename}}
-    <navigator open-type="navigateBack">
-      <image src="../../../../images/amputate.png" mode="aspectFit" class="title_image_close" />
-    </navigator>
-  </view>
-
+<view class="title clearfix">
+  {{titlename}}
+  <navigator open-type="navigateBack">
+    <image src="../../../../images/amputate.png" mode="aspectFit" class="title_image_close" />
+  </navigator>
+</view>
+<view class="details_title clearfix">
   <view class="details_text">输入商品详情内容</view>
   <view class="details_button_view clearfix">
-    <view class="details_button">
+    <view class="details_button" bindtap="text">
       <image src="../../../../images/comment_add.png" mode="aspectFit" />
       输入文字
     </view>
-    <view class="details_button">
+    <view class="details_button" bindtap="image">
       <image src="../../../../images/comment_add.png" mode="aspectFit" />
       添加图片
     </view>
   </view>
-  <view class="text_align">左对齐</view>
-  <view class="text_align">居中对齐</view>
-  <view class="text_align">右对齐</view>
+</view>
+<view class="text_align_view">
+  <view class="text_align" bindtap="text_align" data-align="left">左对齐</view>
+  <view class="text_align" bindtap="text_align" data-align="center">居中对齐</view>
+  <view class="text_align" bindtap="text_align" data-align="right">右对齐</view>
+</view>
+<scroll-view scroll-y class="details_content {{align}}">
+  <view>123</view>
+  <view><image src="../../../../images/comment_add.png" mode="aspectFit" style="height:20px;width:20px;"/></view>
+</scroll-view>
+<navigator open-type="navigateBack" class="reset">取消</navigator>
+<view class="submit">提交</view>
+
+
+<modal title="输入文字" hidden="{{textModal}}" confirm-text="确定" bindconfirm="textModal" bindcancel="cancel" >
+  <textarea class="details_input" maxlength="-1" bindinput="textarea" />
+</modal>
