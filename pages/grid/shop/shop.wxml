@@ -68,13 +68,13 @@
       </navigator>
       <navigator url="mall/mall?id={{item.id}}" class="shop_goods clearfix">
         <view class="shop_picture">
-          <image src="{{true?'../../../images/shop1_1.png':'../../../images/image_none.png'}}" mode="aspectFill" style="margin-left:0;" />
+          <image src="{{item.images[0]?url+item.images[0]:'../../../images/image_none.png'}}" mode="aspectFill" style="margin-left:0;" />
         </view>
         <view class="shop_picture">
-          <image src="{{true?'../../../images/shop1_2.png':'../../../images/image_none.png'}}" mode="aspectFill" />
+          <image src="{{item.images[1]?url+item.images[1]:'../../../images/image_none.png'}}" mode="aspectFill" />
         </view>
         <view class="shop_picture">
-          <image src="{{true?'../../../images/shop1_1.png':'../../../images/image_none.png'}}" mode="aspectFill" style="margin-right:0;" />
+          <image src="{{item.images[2]?url+item.images[2]:'../../../images/image_none.png'}}" mode="aspectFill" style="margin-right:0;" />
         </view>
       </navigator>
     </view>
