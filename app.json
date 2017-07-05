@@ -23,14 +23,14 @@
     "pages/grid/user/notecase/notecase",
     "pages/grid/user/branch/branch",
     "pages/grid/user/dictionary/dictionary",
-    
     "pages/my/openOrder/openOrder",
+    
     "pages/my/openOrder/goodsDetails/goodsDetails",
     "pages/my/openOrder/Billing/Billing",
     "pages/my/openOrder/orderSure/orderSure",
     "pages/my/openOrder/unitSelect/unitSelect",
     "pages/my/openOrder/expenses/expenses",
-    
+
     "pages/my/client/client",
     "pages/my/client/account/account",
     "pages/my/client/replenishment/replenishment",

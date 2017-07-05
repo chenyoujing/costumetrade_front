@@ -28,7 +28,7 @@
     <view class="size_code_view">
       <view class="size_code_text">条码</view>
       <view class="size_code_button">
-        <image src="../../../../images/scan_black.png" mode="aspectFit" class="image_scan" />
+        <image src="../../../../images/scan_black.png" bindtap="scan" mode="aspectFit" class="image_scan" />
       </view>
       <input type="text" class="size_code_input" value='{{barcode}}' bindblur="EventHandle"/>
       <view class="clear"></view>

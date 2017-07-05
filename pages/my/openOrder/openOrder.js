@@ -51,33 +51,28 @@ Page({
     sizeRaiseArray:[],
     showPrice2:0
   },
-  // 几个权限判断
-  authorityPurchaseprice: function () {
-    var userIdentity = app.globalData.userIdentity;
-    var privilegeEmployees = false;
-    var cusmPrivilege = false;
-    var supplierPrivilege = false;
-    if (userIdentity == 3) {
-      for (var p in app.globalData.privilegeEmployees) {
-        if (app.globalData.privilegeEmployees[p].privilegeId == 1) {
-          privilegeEmployees = true;
-        }
-        if (app.globalData.privilegeEmployees[p].privilegeId == 3) {
-          cusmPrivilege = true;
-        }
-        if (app.globalData.privilegeEmployees[p].privilegeId == 5) {
-          supplierPrivilege = true;
+  // 扫码 只写了主条码。。。。。
+  scan: function (e) {
+    var that = this
+    wx.scanCode({
+      success: (res) => {
+        for (var p in that.data.shopCart){
+          if (shopCart[p].barcode == res.data){
+            that.detail(null, shopCart[p].id,null)
+          } else if (shopCart[p].barcodes && shopCart[p].barcodes.indexOf(res.data) > -1){
+
+          }
         }
       }
-    } else if (userIdentity == 1){
-      supplierPrivilege = true;
-      cusmPrivilege = true;
-      privilegeEmployees = true;
-    }
+    })
+  },
+  // 几个权限判断
+  authorityPurchaseprice: function () {
+    var object = util.api.authorityPurchaseprice();
     this.setData({
-      purchasePrivilege: privilegeEmployees,
-      cusmPrivilege: cusmPrivilege,
-      supplierPrivilege: supplierPrivilege
+      purchasePrivilege: object.privilegeEmployees,
+      cusmPrivilege: object.cusmPrivilege,
+      supplierPrivilege: object.supplierPrivilege
     })
   },
   // 判断有没有权限看进货价、客户、供应商
@@ -126,7 +121,6 @@ Page({
       keyboardNum2:num,
       shopCart: shopCart
     })
-    
     this.showGoodsInfo(id);
   },
   order_back:function(){
@@ -747,9 +741,8 @@ Page({
   // 得到缓存本地数据
   getData:function(){
     var that = this;
-    var name = 'shopCartLowe'+this.data.type;
     wx.getStorage({
-      key: name,
+      key: that.data.name,
       complete: function (res) {
         res.data = res.data ? res.data:[];
         that.setData({
@@ -771,14 +764,6 @@ Page({
     this.localData(product);
     this.totalData()
   },
-    // 扫一扫
-  scan:function(){
-    wx.scanCode({
-      success: (res) => {
-        console.log(res)
-      }
-    })
-  },
   onLoad: function (e) {
     var that = this;
     this.downData();
@@ -796,11 +781,15 @@ Page({
       }
     })
     console.log(e)
+    // 补货打开详情
     if (e.ClientData){
       this.detail("", e.id, "")
     }
   },
   onShow: function (options) {
+    this.setData({
+      name: 'shopCartLowe' + this.data.type
+    })
     // 防止没有客户时报错
     app.selectName = app.selectName ? app.selectName:{cate:0};
     if (!app.screen_unitList) {

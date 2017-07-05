@@ -15,7 +15,7 @@
     </view>
   </view>
   <!--店铺功能-->
-  <view class="operation clearfix">
+  <view class="operation clearfix"  wx:if="{{userIdentity !== 2}}">
     <navigator url="../../my/openOrder/openOrder">
       <image src="../../../images/My-orders.png" mode="aspectFit" class="operation_image" />
       <view class="operation_text">开单</view>
@@ -24,11 +24,11 @@
       <image src="../../../images/My-goods.png" mode="aspectFit" class="operation_image" />
       <view class="operation_text">货品</view>
     </navigator>
-    <navigator url="../../my/client/client">
+    <navigator url="../../my/client/client" wx:if="{{cusmPrivilege ||supplierPrivilege}}">
       <image src="../../../images/consumer.png" mode="aspectFit" class="operation_image" />
-      <view class="operation_text">客户</view>
+      <view class="operation_text" >客户</view>
     </navigator>
-    <navigator url="../../my/report/report">
+    <navigator url="../../my/report/report"  wx:if="{{report}}">
       <image src="../../../images/report-forms.png" mode="aspectFit" class="operation_image" />
       <view class="operation_text">报表</view>
     </navigator>
@@ -54,11 +54,11 @@
     </view>
 
     <view class="my_content_view">
-      <navigator class="clearfix" url="branch/branch">
+      <!--<navigator class="clearfix" url="branch/branch">
         <image src="../../../images/home-page.png" mode="aspectFit" class="my_content_image" />
         <view class="my_content_text">分店管理</view>
         <image src="../../../images/right-thrust.png" mode="aspectFit" class="my_content_right" />
-      </navigator>
+      </navigator>-->
       <!--<navigator class="clearfix" url="notecase/notecase">
         <image src="../../../images/notecase.png" mode="aspectFit" class="my_content_image" />
         <view class="my_content_text">钱包管理</view>
@@ -84,7 +84,7 @@
         <view class="my_content_text">升级</view>
         <image src="../../../images/right-thrust.png" mode="aspectFit" class="my_content_right" />
       </navigator>
-      <navigator class="clearfix" url="dictionary/dictionary" wx:if="{{userIdentity==1}}">
+      <navigator class="clearfix" url="dictionary/dictionary" wx:if="{{setUp}}">
         <image src="../../../images/set.png" mode="aspectFit" class="my_content_image" />
         <view class="my_content_text">设置</view>
         <image src="../../../images/right-thrust.png" mode="aspectFit" class="my_content_right" />

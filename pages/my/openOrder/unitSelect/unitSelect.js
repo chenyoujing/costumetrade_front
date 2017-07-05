@@ -9,7 +9,7 @@ Page({
     nameSearch:"",
     supplier_type:'A',
     nav_right: ['↑', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '#',],
-    scanModal: true,
+    scanModal: true
   },
   supplier_select:function(e){
     let data = e.target.dataset
@@ -78,35 +78,12 @@ Page({
   downData: function (type) {
     util.api.supplierRefresh('client/getClients', "UnitData", 'updataTimeunit', this.callback);
   },
-  // 获取二维码/添加客户、供应商
-  scan: function (e) {
-    this.setData({
-      scanModal: false,
-    })
-    let data = e.target.dataset
-    var client = this.data.type
-    var that = this
-    var id = util.api.DateFormat(new Date())
-    wx.showNavigationBarLoading()
-    util.api.request({
-      url: 'client/scanQRCode',
-      data: {
-        type: client,
-        storeId: app.globalData.storeId,
-        id: id
-      },
-      method: 'POST',
-      header: {
-        'content-type': 'application/json'
-      },
-      success: function (res) {
-        wx.hideNavigationBarLoading();
-        that.setData({
-          scan: res.data,
-          id: id
-        })
-      }
-    })
+  setdata: function (data) {
+    this.setData(data)
+  },
+  // 获取二维码
+  scan: function () {
+    util.api.scan(this.data.type, this.setdata)
   },
   // 关闭扫码模态框
   cancel: function () {
@@ -114,38 +91,17 @@ Page({
       scanModal: true
     })
   },
+  // 扫描成功的回调
+  callback2: function (data) {
+    app.addCustomerInfo = data
+    wx.navigateTo({
+      url: '../../client/clientAdd/clientAdd?client=' + this.data.type + "&clientId=" + this.data.id + "&scan=" + true
+    })
+  },
   // 扫好了
   confirm: function () {
     var that = this
-    wx.showNavigationBarLoading()
-    var client = this.data.type
-    var id = this.data.id
-    util.api.request({
-      url: 'client/scanQRCodeOk',
-      data: {
-        type: client,
-        storeId: app.globalData.storeId,
-        id: id
-      },
-      method: 'POST',
-      header: {
-        'content-type': 'application/json'
-      },
-      success: function (res) {
-        wx.hideNavigationBarLoading();
-        if (!res.data.id) {
-          wx.showToast({
-            title: res.msg,
-            duration: 2000
-          })
-        } else {
-          app.addCustomerInfo = res.data
-          wx.navigateTo({
-            url: '../../client/clientAdd/clientAdd?client=' + that.data.client
-          })
-        }
-      }
-    })
+    util.api.scanOk(that.data.client, that.data.id, this.callback2)
     this.cancel()
   },
   onLoad: function (options) {

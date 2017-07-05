@@ -16,7 +16,7 @@
               <text>款式：{{item.productcolor}}</text>
               <text>尺码：{{item.productsize}}</text>
             </view>
-            <view class="price">{{item.totalPrice}}</view>
+            <view class="price">{{item.price}}</view>
             <view class="info_other">
               <view class="num">{{item.count}}{{item.productunit}}</view>
               <view class="date">{{item.modifytime}}</view>
@@ -27,13 +27,13 @@
     </view>
 
     <view class="orderinfo">
-      <view class="orderinfo_title clearfix">
+      <view class="orderinfo_title clearfix"  bindtap="changeLogisticFees">
         <view class="orderinfo_text" style="float:left;font-size:16px;">配送方式</view>
         <view class="orderinfo_text" style="float:right;">{{logisticName}}快递
           <image src="../../../../images/right-thrust.png" mode="aspectFit" class="orderinfo_text_image" />
         </view>
       </view>
-      <view class="clearfix">
+      <view class="clearfix" >
         <view class="orderinfo_text" style="float:left;padding:0 5px;">金额</view>
         <view class="orderinfo_text" style="float:right;color:#FE2D04;padding:0 5px;">￥{{price}}</view>
       </view>
@@ -47,7 +47,12 @@
       </view>
     </view>
 </scroll-view>
-
+<!--选择快递公司-->
+<modal title="选择快递公司" hidden="{{expressModal}}" confirm-text="取消" no-cancel bindconfirm="cancel" bindcancel="cancel" >
+  <view class="logistics_choose" wx:for="{{logisticFees}}">
+    <view class="choose_view" bindtap="logistic" data-name="{{item.logisticName}}"  data-code="{{item.logisticCode}}" data-fixedFee="{{item.fixedFee}}">{{item.logisticName}}</view>
+  </view>
+</modal>
 <navigator url="../../shop/payOrder/payOrder?operate=2&orderno={{orderno}}&buyerid={{buyerid}}&sellerid={{sellerid}}&pay={{price+freight}}&payType='WE_PAY'" class="sure_button1 bg_g">微信支付</navigator>
 <navigator url="../../shop/payOrder/payOrder?operate=2&orderno={{orderno}}&buyerid={{buyerid}}&sellerid={{sellerid}}&pay={{price+freight}}&payType='ALI_PAY'" class="sure_button2">支付宝支付</navigator>
 <navigator url="../../shop/payOrder/payOrder?operate=2&orderno={{orderno}}&buyerid={{buyerid}}&sellerid={{sellerid}}&pay={{price+freight}}&payType='WE_PAY'" class="sure_button3">转账</navigator>

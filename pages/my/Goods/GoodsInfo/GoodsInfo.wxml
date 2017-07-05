@@ -163,7 +163,7 @@
       <view class="upload_input">
         <view class="upload_input_text">主条码:</view>
         <input type="number" bindblur="blurInput" data-name="barcode"  class="upload_input2" name="barcode" value = "{{GoodsInfoData.barcode}}" style="padding-right:30px;" />
-        <image src="../../../../images/scan_black.png" mode="aspectFit" class="code_image" bindtap="scan" />
+        <image src="../../../../images/scan_black.png" mode="aspectFit" class="code_image" data-name = "barcode" bindtap="scan" />
         <view class="clear"></view>
       </view>
       <view class="upload_input">

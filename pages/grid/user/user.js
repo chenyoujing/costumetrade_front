@@ -49,16 +49,22 @@ Page({
       })
     }
   },
+
+ 
   onLoad:function(){
     if (app.globalData.userIdentity == 1){
       this.request_page()
     }
   },
   onShow:function(){
+    var object = util.api.authorityPurchaseprice();
+    console.log(object)
+    this.setData(object)
     this.setData({
       storeInfo: app.globalData.storeInfo[0],
       userInfo: app.globalData.userInfo,
       userIdentity: app.globalData.userIdentity
     })
+   
   }
 })

@@ -7,7 +7,11 @@ Page({
     paycact: [],
     logisticFees: [],
     buyerid:'',
-    sellerid: ''
+    sellerid: '',
+    expressModal: true,
+    logisticCode: 0,
+    logisticName: '',
+    freight: 10
   },
   getOrderInfo:function(){
     var that = this;
@@ -16,7 +20,7 @@ Page({
       url: "order/getOrder",
       data: {
         payorderno: this.data.orderno,
-        ordertype: this.data.ordertype,
+        ordertype: 1,
         openid: app.globalData.openid,
       },
       method: 'POST',
@@ -43,9 +47,35 @@ Page({
           ssStoDetail: ssStoDetail,
           price: res.data.ssStoOrder.debetamt,
           freight: freight,
-          logisticName: logisticName
+          logisticName: logisticName,
+          logisticCode: that.data.logisticFees[j].logisticCode
         })
       }
+    })
+  },
+  // 更改运费
+  changeLogisticFees: function () {
+    this.setData({
+      expressModal: false
+    })
+  },
+  // 选择更改后的快递
+  logistic: function (e) {
+    var logisticName = e.target.dataset.name;
+    var logisticCode = e.target.dataset.code;
+    var fixedFee = e.target.dataset.fixedfee;
+    console.log(fixedFee)
+    this.setData({
+      logisticName: logisticName,
+      logisticCode: logisticCode,
+      freight: fixedFee
+    })
+    this.cancel()
+  },
+  // 取消快递选择
+  cancel: function () {
+    this.setData({
+      expressModal: true
     })
   },
   onLoad:function(e){

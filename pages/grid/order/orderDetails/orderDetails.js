@@ -19,7 +19,7 @@ Page({
       url: this.data.detailUrl,
       data: {
         openid: this.data.openid,
-        ordertype: this.data.ordertype,
+        ordertype: 1,
         payorderno: this.data.payorderno
       },
       method: 'POST',

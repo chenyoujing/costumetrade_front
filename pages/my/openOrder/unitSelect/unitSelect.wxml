@@ -5,7 +5,7 @@
   </navigator>
   <view class="title_text">{{title}}</view>
   <image src="../../../../images/search.png" class="title_search" mode="aspectFit" />
-  <image src="../../../../images/scan.png" class="title_add" mode="aspectFit" bindtap="scan" />
+  <image src="../../../../images/add.png" class="title_add" mode="aspectFit" bindtap="scan" />
   <input type="text" class="title_input" value="{{nameSearch}}" bindinput="search"/>
 </view>
 

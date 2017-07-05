@@ -35,8 +35,6 @@ var api = {
     app.globalData.userInfo = {
       appid:'wx0f02d5eacaf954e7',
       secret:'8d7f55d6a5008b7f8efead72672008a6',
-      // appid:'wx82428b2ac752c6a3',
-      // secret:'ed8c5aa16cf56f66339fcb4be3377e30',
       storeInfo: ''
     }
     wx.login({
@@ -159,8 +157,37 @@ var api = {
       }
     })
   },
+  // 判断有没有，没有的话push 更新缓存
+  updataStorage: function (object) {
+    var name = "";
+    if (this.data.client !== 2) {
+      name = "UnitData1";
+    } else {
+      name = "UnitData2";
+    }
+    wx.getStorage({
+      key: name,
+      success: function (res) {
+        var add = true;
+        for (var p in res.data) {
+          if (res.data[p].id == object.id) {
+            add = false;
+            res.data[p] = object;
+          }
+        }
+        if (add) {
+          res.data.push(object)
+        }
+        wx.setStorage({
+          key: name,
+          data: res.data
+        })
+      },
+    })
+  },
   // 二维码扫好了。。。
   scanOk: function (client, id, callback) {
+    var that = this;
     wx.showNavigationBarLoading()
     this.request({
       url: 'client/scanQRCodeOk',
@@ -174,6 +201,9 @@ var api = {
         'content-type': 'application/json'
       },
       success: function (res) {
+        console.log(res)
+    
+        that.updataStorage(res.data)
         wx.hideNavigationBarLoading();
         if (!res.data.id) {
           wx.showToast({
@@ -380,18 +410,16 @@ var api = {
           that.downData(url2, objectName, timeName,callback);
         }else{
           wx.hideNavigationBarLoading();
-          console.log(url2 == "client/getClients")  
-          if (url2 == "client/getClients"){
-            console.log(res)            
+          if (url2 == "client/getClients"){           
             that.unitType(that.publicProduct)
           }else{
             wx.setStorage({
               key: objectName,
               data: that.publicProduct
             })
-            that.pageNum = 1;
-            that.publicProduct = [];
           }
+          that.pageNum = 1;
+          that.publicProduct = [];
           var myDate = new Date();
           myDate.getTime();
           wx.setStorage({
@@ -598,6 +626,52 @@ var api = {
       sizeRaiseArray: priceArry,
       averagePrice: (average / sizeArray.length).toFixed(2),
       GoodsInfoData: GoodsInfoData
+    }
+  },
+  // 几个权限判断
+  authorityPurchaseprice: function () {
+    var userIdentity = app.globalData.userIdentity;
+    var privilegeEmployees = true;//进货价
+    var cusmPrivilege = true;//客户
+    var supplierPrivilege = true;//供应商
+    var setUp = true;//设置
+    var report = true;//报表
+    if (userIdentity == 3) {
+      privilegeEmployees = false;//进货价
+      cusmPrivilege = false;//客户
+      supplierPrivilege = false;//供应商
+      setUp = false;//设置
+      report = false;//报表
+      for (var p in app.globalData.privilegeEmployees) {
+        if (app.globalData.privilegeEmployees[p].privilegeId == 1) {
+          privilegeEmployees = true;
+        }
+        if (app.globalData.privilegeEmployees[p].privilegeId == 3) {
+          cusmPrivilege = true;
+        }
+        if (app.globalData.privilegeEmployees[p].privilegeId == 2) {
+          report = true;
+        }
+        if (app.globalData.privilegeEmployees[p].privilegeId == 4) {
+          setUp = true;
+        }
+        if (app.globalData.privilegeEmployees[p].privilegeId == 5) {
+          supplierPrivilege = true;
+        }
+      }
+    } else if (userIdentity == 2) {
+      privilegeEmployees = false;//进货价
+      cusmPrivilege = false;//客户
+      supplierPrivilege = false;//供应商
+      setUp = false;//设置
+      report = false;//报表
+    }
+    return {
+      purchasePrivilege: privilegeEmployees,
+      cusmPrivilege: cusmPrivilege,
+      supplierPrivilege: supplierPrivilege,
+      setUp: setUp,
+      report: report
     }
   },
 }

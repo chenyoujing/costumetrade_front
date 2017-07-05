@@ -284,13 +284,12 @@ Page({
   batch_points_sure: function () {
     
   },
+  setdata:function(data){
+    this.setData(data)
+  },
   // 获取二维码
   scan: function () {
-    var that = this
-    function setdata(data){
-      that.setData(data)
-    }
-    util.api.scan(that.data.client, setdata)
+    util.api.scan(this.data.client, this.setdata)
   },
   // 关闭扫码模态框
   cancel: function () {
@@ -298,16 +297,17 @@ Page({
       scanModal: true
     })
   },
+  // 扫描成功的回调
+   callback:function(data){
+    app.addCustomerInfo = data
+      wx.navigateTo({
+        url: 'clientAdd/clientAdd?client=' + this.data.client + "&clientId=" + this.data.id + "&scan=" + true
+    })
+  },
   // 扫好了
   confirm: function () {
     var that = this
-    function callback(data){
-      app.addCustomerInfo = data
-      wx.navigateTo({
-        url: 'clientAdd/clientAdd?client=' + that.data.client
-      })
-    }
-    util.api.scanOk(that.data.client, that.data.id, callback)
+    util.api.scanOk(that.data.client, that.data.id, this.callback)
     this.cancel()
   },
   onLoad: function (e) {

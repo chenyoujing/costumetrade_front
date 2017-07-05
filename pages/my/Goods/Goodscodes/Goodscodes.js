@@ -8,7 +8,7 @@ Page({
     size:[],
     color:[],
     enterData:'',
-    barcode:'456432132165'
+    barcode:''
   },
   back: function () {
     wx.navigateBack({
@@ -53,6 +53,17 @@ Page({
       })
     }
   },
+  // 扫码
+  scan: function (e) {
+    var that = this
+    wx.scanCode({
+      success: (res) => {
+        that.setData({
+          barcode: res.result
+        })
+      }
+    })
+  },
   enterBefore:function(){
     var boolean1 = true;
     var object1 = this.data.barcodes;
@@ -79,6 +90,7 @@ Page({
       enterData: '',
       color: '',
       size: '',
+      barcode:"",
       aa: false
     });
   },

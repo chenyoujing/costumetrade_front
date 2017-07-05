@@ -243,7 +243,7 @@ Page({
         submitData.stoDetails.push(this.data.shopCart[p])
       }
     }
-    console.log(submitData);
+    console.log(JSON.stringify(submitData) );
     this.ajaxChange(submitData)
   },
   ajaxChange: function (submitData){

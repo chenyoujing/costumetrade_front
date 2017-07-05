@@ -2,7 +2,7 @@ var util = require('../../../../utils/util.js')
 var app = getApp()
 Page({
   data: {
-    type_index:'0',
+    type_index:0,
     title:'',
     client:'',
     clientId:'',
@@ -11,15 +11,7 @@ Page({
   // 标题内容
   client_add_title: function (){
     var client = this.data.client
-    var clientId = this.data.clientId
-    var title1 = ''
     var title2 = ''
-    var title3 = ''
-    if (clientId){
-      title3 = '信息'
-    }else{
-      title1 = '添加'
-    }
     switch (client){
       case '1':
         title2 = '客户';
@@ -32,7 +24,7 @@ Page({
         break;
     }
     this.setData({
-      title: title1 + title2 + title3
+      title: "修改" + title2 + "信息"
     })
   },
   // 修改客户界面查询
@@ -59,7 +51,6 @@ Page({
             })
           }
         }
-        
         that.setData({
           CustomerInfo: res.data
         })
@@ -88,13 +79,8 @@ Page({
       boolean = false;
     }
     if (boolean){
-      //判断id，是上传还是修改
-      if (this.data.clientId){
-        object.id = this.data.clientId
-      }else{
-        object.id = this.data.id || util.api.DateFormat(new Date())
-      }
       // 备注名如果为空值为null
+      object.id = this.data.clientId
       object.remarkName = this.null(object.remarkName)
       object.reallyName = this.null(object.reallyName)
       object.nickName = this.null(object.nickName)
@@ -112,13 +98,9 @@ Page({
         },
         success: function (res) {
           wx.hideNavigationBarLoading();
-          if(that.data.clientId){
-            var title = '修改'
-          }else{
-            var title = '添加'
-          }
+          util.api.updataStorage(res.data)
           wx.showToast({
-            title: title+'成功',
+            title: '成功',
             icon: 'success',
             duration: 2000
           })
@@ -172,16 +154,17 @@ Page({
     this.setData({
       client: e.client,
       clientId: e.clientId,
-      initCustomerList: app.custProdPriceList
+      initCustomerList: app.custProdPriceList,
+      scan: e.scan||""
     })
-    if (e.clientId){
+    if (!this.data.scan){
       this.getClient()
     }else{
       this.setData({
         CustomerInfo: app.addCustomerInfo
       })
     }
+    console.log(e.client)
     this.client_add_title()
-
   },
 })

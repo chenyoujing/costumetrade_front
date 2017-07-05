@@ -267,10 +267,11 @@ Page({
     })
   },
   // 扫码
-  scan:function(){
+  scan:function(e){
     var that = this
     wx.scanCode({
       success: (res) => {
+        console.log()
         that.setData({
           "GoodsInfoData.barcode": res.result
         })
@@ -412,9 +413,7 @@ Page({
                     break;
                   }
                 }
-                if (objectSubmit.name || objectSubmit.image) {
-                  app.updataGoodsInfo = that.data.GoodsInfoData;
-                }
+                
               } else {
                 totalProduct.unshift(objectSubmit)
               }
@@ -425,7 +424,9 @@ Page({
             }
           })
           app.newid = that.data.id == "" ? res.data : null;
-         
+          if (objectSubmit.name || objectSubmit.image || objectSubmit.tagprice) {
+            app.updataGoodsInfo = that.data.GoodsInfoData;
+          }
           wx.navigateBack({
             delta: 1
           })
@@ -602,19 +603,9 @@ Page({
   },
   // 判断是否有权限看进货价
   authorityPurchaseprice:function(){
-    var userIdentity = app.globalData.userIdentity;
-    var privilegeEmployees = false;
-    if(userIdentity == 3){
-      for (var p in app.globalData.privilegeEmployees){
-        if (app.globalData.privilegeEmployees[p].privilegeId == 1){
-          privilegeEmployees = true;
-        }
-      }
-    } else if (userIdentity == 1){
-      privilegeEmployees = true;
-    }
+    var object = util.api.authorityPurchaseprice();
     this.setData({
-      privilegeEmployees: privilegeEmployees
+      privilegeEmployees: object.privilegeEmployees
     })
   },
   onLoad: function (options) {

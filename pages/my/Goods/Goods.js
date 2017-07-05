@@ -382,7 +382,7 @@ Page({
         wx.hideNavigationBarLoading();
         var product = that.data.product;
         var totalProduct = [];
-       
+        var newData = [];
         // 货品
         wx.getStorage({
           key: 'GoodsData',
@@ -390,7 +390,14 @@ Page({
             totalProduct = res.data ? res.data : [];
               // 更新货品缓存
             if (that.data.checkAllTag){
-              totalProduct = [];
+              for (var p in ids) {
+                for (var j in totalProduct) {
+                  if (ids[p] = totalProduct[j].id) {
+                    newData.push(totalProduct.splice(j, 1))
+                  }
+                }
+              }
+              totalProduct = newData;
             }else{
               for (var p in ids) {
                 for (var j in totalProduct) {
@@ -407,7 +414,15 @@ Page({
           }
         })
         if (that.data.checkAllTag){
-          product = [];
+          var newArray = [];
+          for (var p in ids) {
+            for (var j in totalProduct) {
+              if (ids[p] = totalProduct[j].id) {
+                newArray.push(totalProduct.splice(j, 1))
+              }
+            }
+          }
+          product = newArray;
         }else{
           for (var p in ids) {
             for (var j in product) {
@@ -446,7 +461,10 @@ Page({
       this.page_request();
       app.newid = "";
     } else if (app.updataGoodsInfo) {
+      console.log(5)
       for (var p in newProduct) {
+        console.log(newProduct[p].id)
+        console.log(app.updataGoodsInfo.id)
         if (newProduct[p].id == app.updataGoodsInfo.id) {
           newProduct[p].name = app.updataGoodsInfo.name;
           newProduct[p].image = app.updataGoodsInfo.image;
@@ -454,6 +472,7 @@ Page({
           break;
         }
       }
+      console.log(newProduct[p].name)
       this.setData({
         product: newProduct
       })

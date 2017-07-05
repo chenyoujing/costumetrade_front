@@ -6,7 +6,7 @@
     </navigator>
     <view class="title_scan" bindtap="scan">
       <image src="../../../images/scan-wiht.png" mode="aspectFit" class="title_image_scan" />
-      <view class="title_scan_text">扫一扫</view>
+      <view class="title_scan_text" bindtap="scan">扫一扫</view>
     </view>
 
     <image src="../../../images/more.png" mode="aspectFit" class="title_more_image" bindtap="more_function" />
