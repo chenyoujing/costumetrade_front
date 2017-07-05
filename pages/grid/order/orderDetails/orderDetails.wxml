@@ -8,11 +8,11 @@
   <view class="order_container">
     <block wx:if="{{ordertype==2}}">
       <view class="seller_info clearfix">
-        <image src="../../../../images/image_none.png" class="seller_tx" />
+        <image src="{{product.ssStoOrder.receiverImage||'../../../../images/image_none.png'}}" class="seller_tx" />
         <view>
-          <view class="seller_text" style="font-size:16px;">name</view>
+          <view class="seller_text" style="font-size:16px;">{{product.ssStoOrder.buyer}}</view>
           <view class="seller_text">订单号：{{product.ssStoOrder.payorderno}}</view>
-          <view class="seller_text">address</view>
+          <view class="seller_text">{{product.ssStoOrder.shipaddress}}</view>
         </view>
       </view>
       <view class="orderinfo">

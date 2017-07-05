@@ -5,7 +5,7 @@
   <view class="size_title clearfix">
     <view class="size_title_text">尺码</view>
     <view class="size_title_button">
-    <navigator url="../GoodsBrandAdd/GoodsBrandAdd?url=size/saveSize&name=尺码&addname=sizename">
+    <navigator url="../GoodsBrandAdd/GoodsBrandAdd?url=size/saveSize&name=尺码&addname=sizename&productstring={{sizeString}}">
       <image class="image_add" src="../../../../images/add_small.png"      mode="aspectFit" />
     </navigator>
     <image src="../../../../images/amputate.png" bindtap="back" mode="aspectFit" class="image_close" />
@@ -38,7 +38,7 @@
 
     <view class="size_title2">
       选择尺码组
-      <navigator url="../GoodsBrandAdd/GoodsBrandAdd?url=size/saveSizeCustom&name=尺码组&addname=customname">
+      <navigator url="../GoodsBrandAdd/GoodsBrandAdd?url=size/saveSizeCustom&name=尺码组&addname=customname&productstring={{sizeProductString}}">
    <image class="image_add2" src="../../../../images/add_small.png"      mode="aspectFit" />
   </navigator>
     </view>

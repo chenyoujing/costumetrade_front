@@ -20,6 +20,35 @@ Page({
       envalue:e.detail.value
     })
   },
+  // 加入之前的判断
+  jude:function(){
+    if (!this.data.envalue) {
+      wx.showToast({
+        title: '请填写内容',
+        mask: true,
+        duration: 1000
+      })
+    } else {
+      var add = true;
+      for (var p in this.data.productstring){
+        if (this.data.productstring[p][this.data.addname] == this.data.envalue){
+          wx.showToast({
+            title: '已存在，请更改',
+            mask: true,
+            duration: 1000
+          })
+          add = false;
+          this.setData({
+            envalue:""
+          })
+          break;
+        }
+      }
+      if (add){
+        this.addOptions()
+      }
+    }
+  },
   add: function (e) {
     var size = e.target.dataset.size;
     var selected = this.data.selected;
@@ -45,79 +74,76 @@ Page({
   // 添加新选项
   addOptions: function () {
     var that = this;
-    if (this.data.envalue) {
-      wx.showNavigationBarLoading();
-      var param = { storeId: app.globalData.storeId };
-      param[this.data.addname] = this.data.envalue;
-      if (this.data.addname =='customname'){
-        param['value'] = util.api.getFilterArray(this.data.selected);
-      }
-      console.log(app.globalData.storeId)
-      util.api.request({
-        url: this.data.url,
-        data: param,
-        method: 'POST',
-        header: {
-          'content-type': 'application/x-www-form-urlencoded'
-        },
-        success: function (res) {
-          app.changeData = that.data.envalue;
-          app.changeId = res.data;
-          var object = {
-            id: res.data,
-            storeId: app.globalData.storeId
-          }
-          var name = '';
-          var appname = ''
-          console.log(app.changeId);
-          switch (that.data.addname){
-            case 'catename':
-              name = 'catename';
-              appname = 'screen_productTypeList'
-              break;
-            case 'brandname':
-              name = 'brandname';
-              appname = 'screen_brandList'
-              break;
-            case 'unit':
-              name = 'unit'
-              appname = 'screen_unitList'
-              break;
-          }
-          console.log(appname)
-          
-          if (appname){
-            object[name] = that.data.envalue;
-            console.log(app[appname])
-            app[appname].push(object)
-          }
-          if (that.data.addname == 'customname') {
-            app.changesizename = 'customname';
-            app.changeId = param;
-          }
-          app.changesizename = 'sizename';
-          wx.hideNavigationBarLoading();
-          wx.showToast({
-            title: '添加成功',
-            mask: true,
-            duration: 2000
-          })
-          that.back();
-        }
-      })
-    } else {
-      wx.showToast({
-        title: '请填写内容',
-        mask: true,
-        duration: 2000
-      })
+    
+    wx.showNavigationBarLoading();
+    var param = { storeId: app.globalData.storeId };
+    param[this.data.addname] = this.data.envalue;
+    if (this.data.addname == 'customname') {
+      param['value'] = util.api.getFilterArray(this.data.selected);
     }
+    console.log(app.globalData.storeId)
+    util.api.request({
+      url: this.data.url,
+      data: param,
+      method: 'POST',
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      success: function (res) {
+        app.changeData = that.data.envalue;
+        app.changeId = res.data;
+        var object = {
+          id: res.data,
+          storeId: app.globalData.storeId
+        }
+        var name = '';
+        var appname = ''
+        console.log(app.changeId);
+        switch (that.data.addname) {
+          case 'catename':
+            name = 'catename';
+            appname = 'screen_productTypeList'
+            break;
+          case 'brandname':
+            name = 'brandname';
+            appname = 'screen_brandList'
+            break;
+          case 'unit':
+            name = 'unit'
+            appname = 'screen_unitList'
+            break;
+        }
+        console.log(appname)
+
+        if (appname) {
+          object[name] = that.data.envalue;
+          console.log(app[appname])
+          app[appname].push(object)
+        }
+        if (that.data.addname == 'customname') {
+          app.changesizename = 'customname';
+          app.changeId = param;
+        } else if (that.data.addname == 'sizename'){
+          app.changesizename = 'sizename';
+          app.changeId = param;
+        }
+        //
+        wx.hideNavigationBarLoading();
+        wx.showToast({
+          title: '添加成功',
+          mask: true,
+          duration: 2000
+        })
+        that.back();
+      }
+    })
   },
   onLoad: function (options) {
      this.setData({
        url: options.url,
        name: options.name,
-       addname: options.addname
+       addname: options.addname,
+       productstring: JSON.parse(options.productstring) 
      })
      console.log(options.name)
   },

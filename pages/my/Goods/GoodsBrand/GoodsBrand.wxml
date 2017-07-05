@@ -3,7 +3,7 @@
   <view class="title clearfix">
     {{titlename}}
     <image src="../../../../images/amputate.png" mode="aspectFit" class="title_image_close"  bindtap="back" />
-    <navigator url="../GoodsBrandAdd/GoodsBrandAdd?url={{addurl}}&name={{titlename}}&addname={{addname}}">
+    <navigator url="../GoodsBrandAdd/GoodsBrandAdd?url={{addurl}}&productstring={{productstring}}&name={{titlename}}&addname={{addname}}">
       <image class="title_image_add" src="../../../../images/add_small.png"      mode="aspectFit" />
     </navigator>
   </view>

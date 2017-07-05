@@ -11,7 +11,8 @@ Page({
     selectOptionID: [],
     addurl: '',
     geturl:'',
-    addname: ''
+    addname: '',
+    productstring:""
   },
   request_dadta: function () {
     var that = this;
@@ -27,9 +28,12 @@ Page({
       },
       success: function (res) {
         wx.hideNavigationBarLoading();
+        var productstring = JSON.stringify(res.data)
         that.setData({
-          product: res.data
+          product: res.data,
+          productstring: productstring
         })
+        console.log(productstring)
       }
     })
   },
@@ -40,7 +44,6 @@ Page({
   },
   // 单选框切换
   checkboxChange: function (e) {
-    console.log(e)
     var arryname = [];
     var arryid = [];
     var arryvalue = [];
@@ -49,13 +52,10 @@ Page({
     } else {
       arryvalue = e.detail.value
     }
-    console.log(arryname)
     for (var p in arryvalue) {
       arryname.push(arryvalue[p].split('|')[0]);
       arryid.push(arryvalue[p].split('|')[1])
     }
-    console.log(arryname)
-    console.log(arryid)
     this.setData({
       selectOption: arryname,
       selectOptionID: arryid

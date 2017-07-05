@@ -38,6 +38,8 @@ Page({
           app.sizeArray = res.data
         }
         param[arrayName] = res.data;
+        param[arrayName+"String"] = JSON.stringify(res.data);
+        console.log(JSON.stringify(res.data))
         that.setData(param);
         console.log(param)
       }
@@ -47,20 +49,6 @@ Page({
     var size = e.target.dataset.size;
     var selected = this.data.selected;
     selected.push(size);
-    this.setData({
-      selected: selected
-    })
-  },
-  reduce: function (e) {
-    var size = e.target.dataset.size;
-    var selected = this.data.selected;
-    for (var index in selected) {
-      var row = selected[index];
-      if (row == size) {
-        selected.splice(index,1);
-        break;
-      }
-    }
     this.setData({
       selected: selected
     })
@@ -84,8 +72,10 @@ Page({
         object[app.changesizename] = app.changeData;
         arry.push(object);
         this.setData({
-          size: arry
+          size: arry,
+          sizeString: JSON.stringify(arry)
         })
+        app.sizeArray = arry;
         app.changesizename = ""
       }else{
         console.log(app.changeId)
@@ -97,7 +87,8 @@ Page({
         arry.push(object);
         console.log(object)
         this.setData({
-          sizeProduct: arry
+          sizeProduct: arry,
+          sizeProductString: JSON.stringify(arry)
         })
         app.changeId = ''
       } 

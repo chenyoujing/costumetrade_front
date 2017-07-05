@@ -38,5 +38,5 @@
   </scroll-view>
 
   <button class="modal_reset" bindtap="back">取消</button>
-  <button class="modal_submit"  bindtap="addOptions">确定</button>
+  <button class="modal_submit"  bindtap="jude">确定</button>
 </view>
