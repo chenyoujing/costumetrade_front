@@ -14,10 +14,7 @@ Page({
   // 获取选中的货品
   selected_goods: function () {
     var that = this;
-    app.globalData.userInfo = {
-      appid: 'wx82428b2ac752c6a3',
-      secret: 'ed8c5aa16cf56f66339fcb4be3377e30'
-    } 
+
     wx.login({
       success: function (loginCode) {
         wx.showNavigationBarLoading()
@@ -29,7 +26,7 @@ Page({
             appId: app.globalData.userInfo.appid,
             appSecret: app.globalData.userInfo.secret,
             code: loginCode.code,
-            checkAllTag: that.data.checkAllTag
+            checkAllTag: that.data.checkAllTag,
           },
           method: 'POST',
           header: {

@@ -57,16 +57,20 @@ Page({
     })
   },
   onShow:function(){
-    var socketOpen = false
-    var socketMsgQueue = ['']
-    var openidList = ['oDy7t0GCpfxdFdFyNPhu_VYVufS4','oDy7t0HjUcYhdFMgiFbuFHCqSEGo']
-    if (app.globalData.openid == openidList[0]){
-      var openid1 = openidList[0]
-      var openid2 = openidList[1]
-    }else{
-      var openid2 = openidList[0]
-      var openid1 = openidList[1]
-    }
+    this.setData({
+      myselfStord: app.globalData.storeInfo[0]
+    })
+    // var socketOpen = false
+    // var socketMsgQueue = ['']
+    // var openidList = ['oDy7t0GCpfxdFdFyNPhu_VYVufS4','oDy7t0HjUcYhdFMgiFbuFHCqSEGo']
+    // if (app.globalData.openid == openidList[0]){
+    //   var openid1 = openidList[0]
+    //   var openid2 = openidList[1]
+    // }else{
+    //   var openid2 = openidList[0]
+    //   var openid1 = openidList[1]
+    // }
+
     // wx.request({
     //   url: 'https://api.weixin.qq.com/cgi-bin/token',
     //   data: {

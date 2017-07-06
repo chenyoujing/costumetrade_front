@@ -1,9 +1,9 @@
   <view class="mall_title">
     <image src="../../images/image_none.png" mode="aspectFill" class="mall_title_bg" />
-    <navigator url="../grid/shop/mall/mall" class="shop_back">
+    <navigator url="../grid/shop/mall/mall?id={{storeId}}" class="shop_back">
       <image src="../../images/return.png" mode="aspectFit" />
     </navigator>
-    <navigator url="../grid/shop/storeDetails/storeDetails" class="shop_info clearfix">
+    <navigator url="../grid/shop/storeDetails/storeDetails?id={{storeId}}" class="shop_info clearfix">
       <view class="shop_tx"><image src="../../images/image_none.png" mode="scaleToFill" class="shop_tx" /></view>
       <view class="shop_name">{{name}}</view>
       <image src="../../images/return.png" mode="aspectFit" class="shop_into" />

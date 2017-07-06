@@ -89,6 +89,10 @@ Page({
           var userInfo = app.globalData.userInfo
           userInfo.nickName = object.name
           userInfo.avatarUrl = object.storephoto
+          var reg = /^\//;
+          if (reg.test(object.storephoto)) {
+            userInfo.avatarUrl = util.api.imgUrl + object.storephoto
+          }
           userInfo.cphone = object.cphone
           userInfo.wechat = object.wechat
           userInfo.region = object.region
@@ -100,7 +104,10 @@ Page({
         }else{
           var storeInfo = app.globalData.storeInfo[0]
           storeInfo.name = object.name
-          storeInfo.storephoto = object.storephoto
+          var reg = /^\//;
+          if (reg.test(object.storephoto)) {
+            storeInfo.storephoto = util.api.imgUrl + object.storephoto
+          }
           storeInfo.cphone = object.cphone
           storeInfo.wechat = object.wechat
           storeInfo.region = object.region

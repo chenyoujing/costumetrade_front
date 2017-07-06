@@ -12,34 +12,27 @@ Page({
   selected_goods:function(){
     var that = this;
     wx.showNavigationBarLoading()
-    wx.login({
-      success: function(res) {
-        util.api.request({
-          url: 'product/getShareProduct',
-          data: {
-            storeId: that.data.storeId,
-            code: res.code,
-            appId: app.globalData.userInfo.appid,
-            appSecret: app.globalData.userInfo.secret,
-            idArray: that.data.idArray,
-            checkAllTag: that.data.checkAllTag,
-          },
-          method: 'POST',
-          header: {
-            'content-type': 'application/x-www-form-urlencoded'
-          },
-          success: function (res) {
-            wx.hideNavigationBarLoading();
-            for (var p in res.data){
-              res.data[p].timeUp = util.toDate(res.data[p].timeUp)
-              res.data[p].image = res.data[p].image ? util.api.imgUrl + res.data[p].image : ""
-            }
-            that.setData({
-              product: res.data
-            })
-          }
-        })
+    util.api.request({
+      url: 'product/enterShareProducts',
+      data: {
+        openid: app.globalData.openid,
+        idArray: that.data.idArray,
+        checkAllTag: that.data.checkAllTag,
       },
+      method: 'POST',
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      success: function (res) {
+        wx.hideNavigationBarLoading();
+        for (var p in res.data){
+          res.data[p].timeUp = util.toDate(res.data[p].timeUp)
+          res.data[p].image = res.data[p].image ? util.api.imgUrl + res.data[p].image : ""
+        }
+        that.setData({
+          product: res.data
+        })
+      }
     })
 
   },
@@ -50,6 +43,7 @@ Page({
   },
   // 分享
   onShareAppMessage: function (e) {
+    var that = this
     var title = this.data.share_text;
     var ids = this.data.idArray;
     var storeId = this.data.storeId;
@@ -58,9 +52,9 @@ Page({
     }
     return {
       title: title,
-      path: '/pages/index/index?ids=' + ids + '&storeId=' + storeId + "&title=" + title + '&name=' + this.data.title,
+      path: '/pages/index/index?ids=' + ids + '&storeId=' + storeId + "&title=" + title + '&name=' + this.data.title + '&checkAllTag=' + this.data.checkAllTag,
       success: function (res) {
-        // 转发成功
+        console.log('/pages/index/index?ids=' + ids + '&storeId=' + storeId + "&title=" + title + '&name=' + that.data.title + '&checkAllTag=' + that.data.checkAllTag)
       },
       fail: function (res) {
         // 转发失败
