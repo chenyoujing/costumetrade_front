@@ -314,6 +314,40 @@ Page({
       payCate2: this.data.paycact[e.detail.value].dictValue
     })
   },
+
+
+
+  // 打印账单
+  stringSendFunction: function (type, num) {
+    var now = new Date();
+    var nowStr = util.formatTime(now);
+    //获取账单数据
+    var serial = '时间：' + nowStr;
+    var uname = '';
+    if (app.selectName.name) {
+      uname = '姓名：' + app.selectName.name;
+    }
+    var address = '';
+    // if (buyVue.address) {
+    //   address = '收货地址：' + buyVue.address;
+    // }
+    var xian = type == 'type1' ? '-------------------------------------------------------' : '--------------------------------';
+    var title = type == 'type1' ? '数量     单价      名称' : '数量  单价      名称';
+    var rows = '';
+    var totleCount = '总数量：' + this.data.totalNum;
+    var payCost1 = this.payCost1 ? this.payCost1 : 0;
+    var payCost2 = this.payCost2 ? this.payCost2 : 0;
+    var realCost = '实付金额：' + (parseFloat(payCost1) + parseFloat(payCost2)).toFixed(2) + '元';
+    var totleCost = '应付金额：' + realCost + '元';
+    for (var p in buyVue.rows) {
+      var str1 = type == 'type1' ? '        ' : '    ';
+      var str2 = type == 'type1' ? '                   ' : '           ';
+      str1 = "  " + buyVue.rows[p].conutnum + str1.substring(0, str1.length - (buyVue.rows[p].count.toString().length * num) - 1);
+      str2 = (buyVue.rows[p].count * buyVue.rows[p].price).toFixed(2) + str2.substring(0, str2.length - ((buyVue.rows[p].count * buyVue.rows[p].price).toFixed(2).length * num) - 1);
+      rows += str1 + str2 + buyVue.rows[p].pname + '\n';
+    }
+    this.stringSend = uname + '\n' + serial + '\n' + xian + '\n' + title + '\n' + rows + xian + '\n' + totleCount + '\n' + realCost + '\n' + totleCost + '\n' + address + '\n' + '\n';
+  },
   onLoad:function(options){
     this.setData({
       type:options.type,
