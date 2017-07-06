@@ -51,7 +51,7 @@ var api = {
           },
           method: 'POST',
           success: function (res) {
-            that.globalData.sessionKey = res.data.data.sessionKey;
+            app.globalData.sessionKey = res.data.data.sessionKey;
             wx.getUserInfo({
               success: function (res) {
                 wx.request({
@@ -62,19 +62,19 @@ var api = {
                   data: {
                     encryptedData: res.encryptedData,
                     iv: res.iv,
-                    sessionKey: that.globalData.sessionKey
+                    sessionKey: app.globalData.sessionKey
                   },
                   method: 'POST',
                   success: function (res) {
-                    that.globalData.userInfo.code = loginCode.code
-                    that.globalData.openid = res.data.data.query.openid;
-                    that.globalData.privilegeEmployees = res.data.data.employee.privilegeEmployees;
-                    that.globalData.userIdentity = res.data.data.userIdentity;
-                    that.globalData.storeInfo = res.data.data.query.storeList || [];
-                    that.globalData.modifyPrice = res.data.data.employee.modifyPrice;
-                    that.globalData.zeroPrice = res.data.data.employee.zeroPrice;
-                    that.globalData.discount = res.data.data.employee.discount;
-                    that.globalData.storeId = res.data.data.storeId;
+                    app.globalData.userInfo.code = loginCode.code
+                    app.globalData.openid = res.data.data.query.openid;
+                    app.globalData.privilegeEmployees = res.data.data.employee.privilegeEmployees;
+                    app.globalData.userIdentity = res.data.data.userIdentity;
+                    app.globalData.storeInfo = res.data.data.query.storeList || [];
+                    app.globalData.modifyPrice = res.data.data.employee.modifyPrice;
+                    app.globalData.zeroPrice = res.data.data.employee.zeroPrice;
+                    app.globalData.discount = res.data.data.employee.discount;
+                    app.globalData.storeId = res.data.data.storeId;
                     if (callback) {
                       callback();
                     }
