@@ -20,6 +20,12 @@ Page({
   initialize:function(){
     console.log('initialize')
     console.log(app.globalData.storeInfo)
+    for (var p in app.globalData.storeInfo){
+      var reg = /^\//;
+      if (reg.test(app.globalData.storeInfo[p].storephoto)) {
+        app.globalData.storeInfo[p].storephoto = util.api.imgUrl + app.globalData.storeInfo[p].storephoto
+      }   
+    }
     var otherStord = app.globalData.storeInfo;
     if (otherStord.length == 1) {
       otherStord = [];

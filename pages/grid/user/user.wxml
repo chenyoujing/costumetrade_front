@@ -2,7 +2,7 @@
   <!--头部-->
   <view class="my_title clearfix">
     <navigator url="storeUpdate/storeUpdate">
-      <image src="{{url+storeInfo.storephoto||userInfo.avatarUrl||'../../../images/shop1_tx.png'}}" mode="aspectFill" class="my_tx" />
+      <image src="{{storeInfo.storephoto||userInfo.avatarUrl||'../../../images/shop1_tx.png'}}" mode="aspectFill" class="my_tx" />
     </navigator>
     <view class="my_code">
       <image src="../../../images/QR_code.png" mode="aspectFill" bindtap="scan" />

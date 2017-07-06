@@ -38,7 +38,7 @@ Page({
     var object = util.api.tiemFilter(e);
     object.selected = e.target.dataset.index;
     this.setData(object);
-    this.generalReport()
+    this.data.selected == 4 ? this.generalReport():''
   },
   // 时间改变
   timeChange:function(e){

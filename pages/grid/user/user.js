@@ -41,6 +41,12 @@ Page({
         success: function (res) {
           wx.hideNavigationBarLoading();
           res.data.birthday = util.formatTime(new Date(res.data.birthday))
+
+          var reg = /^\//;
+          if (reg.test(res.data.storephoto)) {
+            res.data.storephoto = util.api.imgUrl + res.data.storephoto
+          }   
+
           that.setData({
             storeInfo:res.data
           })
@@ -55,9 +61,6 @@ Page({
     if (app.globalData.userIdentity == 1){
       this.request_page()
     }
-    this.setData({
-      url: util.api.imgUrl,
-    })
   },
   onShow:function(){
     var object = util.api.authorityPurchaseprice();

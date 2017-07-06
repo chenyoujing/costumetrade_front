@@ -27,7 +27,7 @@
   <view class="shop_content" wx:if="{{myselfStord.id}}">
     <view url="mall/mall" class="shop_content_view">
       <navigator url="storeDetails/storeDetails?id={{myselfStord.id}}" class="shop_content_title">
-        <image src="{{myselfStord.storephoto?url+myselfStord.storephoto:'../../../images/image_none.png'}}" mode="aspectFill" class="shop_content_tx" />
+        <image src="{{myselfStord.storephoto||'../../../images/image_none.png'}}" mode="aspectFill" class="shop_content_tx" />
         <view class="shop_content_info">
           <view class="shop_content_name">{{myselfStord.name}}</view>
           <view class="shop_content_address">
@@ -39,13 +39,13 @@
       </navigator>
       <navigator url="mall/mall?id={{myselfStord.id}}" class="shop_goods clearfix">
         <view class="shop_picture">
-          <image src="{{true?'../../../images/shop1_1.png':'../../../images/image_none.png'}}" mode="aspectFill" style="margin-left:0;" />
+          <image src="{{myselfStord.images[0]?url+myselfStord.images[0]:'../../../images/shop1_1.png'}}" mode="aspectFill" style="margin-left:0;" />
         </view>
         <view class="shop_picture">
-          <image src="{{true?'../../../images/shop1_2.png':'../../../images/image_none.png'}}" mode="aspectFill" />
+          <image src="{{myselfStord.images[1]?url+myselfStord.images[0]:'../../../images/shop1_1.png'}}" mode="aspectFill" />
         </view>
         <view class="shop_picture">
-          <image src="{{true?'../../../images/shop1_1.png':'../../../images/image_none.png'}}" mode="aspectFill" style="margin-right:0;" />
+          <image src="{{myselfStord.images[2]?url+myselfStord.images[0]:'../../../images/shop1_1.png'}}" mode="aspectFill" style="margin-right:0;" />
         </view>
       </navigator>
     </view>
@@ -56,7 +56,7 @@
   <view class="shop_content" wx:for="{{otherStord}}">
    <view url="mall/mall" class="shop_content_view">
       <navigator url="storeDetails/storeDetails?id={{item.id}}" class="shop_content_title">
-        <image src="{{true?'../../../images/shop1_tx.png':'../../../images/image_none.png'}}" mode="aspectFill" class="shop_content_tx" />
+        <image src="{{item.storephoto||'../../../images/image_none.png'}}" mode="aspectFill" class="shop_content_tx" />
         <view class="shop_content_info">
           <view class="shop_content_name">{{item.name}}</view>
           <view class="shop_content_address">
@@ -68,13 +68,13 @@
       </navigator>
       <navigator url="mall/mall?id={{item.id}}" class="shop_goods clearfix">
         <view class="shop_picture">
-          <image src="{{item.images[0]?url+item.images[0]:'../../../images/image_none.png'}}" mode="aspectFill" style="margin-left:0;" />
+          <image src="{{item.images[0]?url+item.images[0]:'../../../images/shop1_1.png'}}" mode="aspectFill" style="margin-left:0;" />
         </view>
         <view class="shop_picture">
-          <image src="{{item.images[1]?url+item.images[1]:'../../../images/image_none.png'}}" mode="aspectFill" />
+          <image src="{{item.images[1]?url+item.images[1]:'../../../images/shop1_1.png'}}" mode="aspectFill" />
         </view>
         <view class="shop_picture">
-          <image src="{{item.images[2]?url+item.images[2]:'../../../images/image_none.png'}}" mode="aspectFill" style="margin-right:0;" />
+          <image src="{{item.images[2]?url+item.images[2]:'../../../images/shop1_1.png'}}" mode="aspectFill" style="margin-right:0;" />
         </view>
       </navigator>
     </view>
