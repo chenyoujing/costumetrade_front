@@ -29,18 +29,7 @@ App({
           },
           method: 'POST',
           success: function (res) {
-            that.globalData.userInfo.code= loginCode.code 
-            that.globalData.openid = res.data.data.query.openid;
-            that.globalData.privilegeEmployees = res.data.data.employee.privilegeEmployees;
-            that.globalData.userIdentity = res.data.data.userIdentity;
-            that.globalData.storeInfo = res.data.data.query.storeList || [];
-            that.globalData.modifyPrice = res.data.data.employee.modifyPrice;
-            that.globalData.zeroPrice = res.data.data.employee.zeroPrice;
-            that.globalData.discount = res.data.data.employee.discount;
-            that.globalData.storeId = res.data.data.storeId; 
             that.globalData.sessionKey = res.data.data.sessionKey; 
-            console.log(res.data )
-            console.log(res.data.data.query.storeList)
             wx.getUserInfo({
               success: function (res) {
                 wx.request({
@@ -55,7 +44,15 @@ App({
                   },
                   method: 'POST',
                   success: function (res) {
-                    console.log(res)
+                    that.globalData.userInfo.code= loginCode.code 
+                    that.globalData.openid = res.data.data.query.openid;
+                    that.globalData.privilegeEmployees = res.data.data.employee.privilegeEmployees;
+                    that.globalData.userIdentity = res.data.data.userIdentity;
+                    that.globalData.storeInfo = res.data.data.query.storeList || [];
+                    that.globalData.modifyPrice = res.data.data.employee.modifyPrice;
+                    that.globalData.zeroPrice = res.data.data.employee.zeroPrice;
+                    that.globalData.discount = res.data.data.employee.discount;
+                    that.globalData.storeId = res.data.data.storeId; 
                   }
                 })
               }
@@ -79,7 +76,7 @@ App({
               console.log(res.userInfo.avatarUrl)
               console.log(res.encryptedData)
               console.log(res.userInfo.nickName)
-              that.globalData.userInfo = res.userInfo;
+              that.globalData.myInfo = res.userInfo;
               typeof cb == "function" && cb(that.globalData.userInfo)
             }
           })

@@ -294,6 +294,7 @@ Page({
   batch_share_sure: function () {
     var idsArray = this.data.ids;
     var storeId = app.globalData.storeId;
+    var checkAllTag = this.data.checkAllTag;
     if (idsArray.length == 0 && !this.data.checkAllTag) {
       wx.showToast({
         title: '请勾选要分享的货品',
@@ -303,7 +304,7 @@ Page({
     } else {
       this.batchOperationsOk();
       wx.navigateTo({
-        url: 'GoodsShare/GoodsShare?ids=' + JSON.stringify(idsArray) + '&storeId=' + storeId,
+        url: 'GoodsShare/GoodsShare?ids=' + JSON.stringify(idsArray) + '&storeId=' + storeId + '&checkAllTag=' + checkAllTag,
       })
     }
   },

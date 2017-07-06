@@ -58,7 +58,7 @@ Page({
 
  
   onLoad:function(){
-    if (app.globalData.userIdentity == 1){
+    if (app.globalData.userIdentity == 1) {
       this.request_page()
     }
   },
@@ -68,7 +68,7 @@ Page({
     this.setData(object)
     this.setData({
       storeInfo: app.globalData.storeInfo[0],
-      userInfo: app.globalData.userInfo,
+      userInfo: app.globalData.myInfo,
       userIdentity: app.globalData.userIdentity
     })
    

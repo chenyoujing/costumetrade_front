@@ -9,29 +9,37 @@ Page({
     title:''
   },
   // 获取选中的货品
-  selected_goods:function(ids,storeId){
+  selected_goods:function(){
     var that = this;
     wx.showNavigationBarLoading()
-    util.api.request({
-      url: 'product/getShareProduct',
-      data: {
-        storeId: storeId,
-        idArray: ids
-      },
-      method: 'POST',
-      header: {
-        'content-type': 'application/x-www-form-urlencoded'
-      },
-      success: function (res) {
-        wx.hideNavigationBarLoading();
-        for (var p in res.data){
-          res.data[p].timeUp = util.toDate(res.data[p].timeUp)
-          res.data[p].image = res.data[p].image ? util.api.imgUrl + res.data[p].image : ""
-        }
-        that.setData({
-          product: res.data
+    wx.login({
+      success: function(res) {
+        util.api.request({
+          url: 'product/getShareProduct',
+          data: {
+            storeId: that.data.storeId,
+            code: res.code,
+            appId: app.globalData.userInfo.appid,
+            appSecret: app.globalData.userInfo.secret,
+            idArray: that.data.idArray,
+            checkAllTag: that.data.checkAllTag,
+          },
+          method: 'POST',
+          header: {
+            'content-type': 'application/x-www-form-urlencoded'
+          },
+          success: function (res) {
+            wx.hideNavigationBarLoading();
+            for (var p in res.data){
+              res.data[p].timeUp = util.toDate(res.data[p].timeUp)
+              res.data[p].image = res.data[p].image ? util.api.imgUrl + res.data[p].image : ""
+            }
+            that.setData({
+              product: res.data
+            })
+          }
         })
-      }
+      },
     })
 
   },
@@ -63,8 +71,9 @@ Page({
     this.setData({
       storeId: e.storeId,
       idArray: JSON.parse(e.ids),
+      checkAllTag: e.checkAllTag,
       title: app.globalData.storeInfo[0].name
     })
-    this.selected_goods(e.ids, e.storeId)
+    this.selected_goods()
   },
 })

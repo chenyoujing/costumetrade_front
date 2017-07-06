@@ -63,9 +63,9 @@ Page({
   // 选择时间 select
   select: function (e) {
     var object = util.api.tiemFilter(e);
-    console.log(object)
     object.selected = e.target.dataset.index;
     this.setData(object);
+    this.data.selected != 4 ? this.purchase_request() : ''
   },
   // 时间改变
   timeChange: function (e) {

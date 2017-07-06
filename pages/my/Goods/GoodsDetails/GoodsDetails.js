@@ -104,9 +104,11 @@ Page({
     })
   },
   onLoad: function (options) {
+    this.setData({
+      url: util.api.imgUrl,
+    })
     if (app.description){
       this.setData({
-        url: util.api.imgUrl,
         description: app.description
       })
     }

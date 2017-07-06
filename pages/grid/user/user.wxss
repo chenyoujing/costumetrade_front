@@ -73,6 +73,7 @@
   padding-top: 10px;
   float: left;
   text-align: center;
+  position: relative;
 }
 .operation_image{
   width: 100%;

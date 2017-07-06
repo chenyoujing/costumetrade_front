@@ -42,10 +42,10 @@
           <image src="{{myselfStord.images[0]?url+myselfStord.images[0]:'../../../images/shop1_1.png'}}" mode="aspectFill" style="margin-left:0;" />
         </view>
         <view class="shop_picture">
-          <image src="{{myselfStord.images[1]?url+myselfStord.images[0]:'../../../images/shop1_1.png'}}" mode="aspectFill" />
+          <image src="{{myselfStord.images[1]?url+myselfStord.images[1]:'../../../images/shop1_1.png'}}" mode="aspectFill" />
         </view>
         <view class="shop_picture">
-          <image src="{{myselfStord.images[2]?url+myselfStord.images[0]:'../../../images/shop1_1.png'}}" mode="aspectFill" style="margin-right:0;" />
+          <image src="{{myselfStord.images[2]?url+myselfStord.images[2]:'../../../images/shop1_1.png'}}" mode="aspectFill" style="margin-right:0;" />
         </view>
       </navigator>
     </view>

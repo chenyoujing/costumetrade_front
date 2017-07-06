@@ -28,7 +28,8 @@ Page({
             idArray: that.data.ids,
             appId: app.globalData.userInfo.appid,
             appSecret: app.globalData.userInfo.secret,
-            code: loginCode.code
+            code: loginCode.code,
+            checkAllTag: that.data.checkAllTag
           },
           method: 'POST',
           header: {
@@ -55,10 +56,11 @@ Page({
   },
   onLoad: function (e) {
     this.setData({
-      ids: e.ids || 'b68e360b015f4a11b1cb93a98c3a8d8b,676d3c1863ca4e9584c829fd536cab6b,aa410b29a85f46a597d05dc78fc5c6c7',
-      storeId: e.storeId||1,
-      title: e.title||1,
-      name:e.name||1
+      ids: e.ids,
+      storeId: e.storeId,
+      title: e.title,
+      name:e.name,
+      checkAllTag: e.checkAllTag
     })
     console.log(e)
     this.selected_goods();

@@ -134,17 +134,16 @@ Page({
     var date
     if (app.globalData.storeInfo[0]){
       date = app.globalData.storeInfo[0].birthday
-    } else if (app.globalData.userInfo){
-      date = app.globalData.userInfo.birthday
+    } else if (app.globalData.myInfo){
+      date = app.globalData.myInfo.birthday
     } else{
       date = '2016-09-01'
     }
     this.setData({
       storeInfo: app.globalData.storeInfo[0]||[],
-      userInfo: app.globalData.userInfo,
+      userInfo: app.globalData.myInfo,
       date: date,
       userIdentity: app.globalData.userIdentity,
-      url: util.api.imgUrl
     })
   }
 })
