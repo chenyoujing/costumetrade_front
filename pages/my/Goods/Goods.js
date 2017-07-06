@@ -294,7 +294,6 @@ Page({
   batch_share_sure: function () {
     var idsArray = this.data.ids;
     var storeId = app.globalData.storeId;
-    var checkAllTag = this.data.checkAllTag;
     if (idsArray.length == 0 && !this.data.checkAllTag) {
       wx.showToast({
         title: '请勾选要分享的货品',
@@ -304,7 +303,7 @@ Page({
     } else {
       this.batchOperationsOk();
       wx.navigateTo({
-        url: 'GoodsShare/GoodsShare?ids=' + JSON.stringify(idsArray) + '&storeId=' + storeId + '&checkAllTag=' + checkAllTag,
+        url: 'GoodsShare/GoodsShare?ids=' + JSON.stringify(idsArray) + '&storeId=' + storeId,
       })
     }
   },
@@ -371,12 +370,6 @@ Page({
         'content-type': 'application/x-www-form-urlencoded'
       },
       success: function (res) {
-        console.log({
-          storeId: app.globalData.storeId,
-          idArray: ids,
-          checkAllTag: that.data.checkAllTag,
-          status: 3
-        })
         wx.hideNavigationBarLoading();
         var product = that.data.product;
         var totalProduct = [];
@@ -385,18 +378,23 @@ Page({
         wx.getStorage({
           key: 'GoodsData',
           success: function (res) {
+            console.log(res)
             totalProduct = res.data ? res.data : [];
+            console.log(totalProduct[0])
               // 更新货品缓存
-            totalProduct = deleteGoodsorClient(ids, totalProduct, that.data.checkAllTag);
+            totalProduct = util.api.deleteGoodsorClient(ids, totalProduct, that.data.checkAllTag);
+            console.log(totalProduct)
             wx.setStorage({
               key: "GoodsData",
               data: totalProduct
             })
           }
         })
-        product = deleteGoodsorClient(ids, product,that.data.checkAllTag);
+        product = util.api.deleteGoodsorClient(ids, product,that.data.checkAllTag)
         that.setData({
-          product: product
+          product: product,
+          ids:[],
+          checkAllTag:false
         })
         wx.showToast({
           title: '成功',
@@ -406,32 +404,7 @@ Page({
       }
     })
   },
-  // 删除东西
-  deleteGoodsorClient: function (ids, product, checkAllTag){
-    if (checkAllTag) {
-      console.log(222)
-      var newArray = [];
-      for (var p in ids) {
-        for (var j = product.length - 1; j >= 0; j--) {
-          if (ids[p] == product[j].id) {
-            var aa = product.splice(j, 1);
-            console.log(product.splice(j, 1))
-            newArray.push(aa)
-          }
-        }
-      }
-      product = newArray;
-    } else {
-      for (var p in ids) {
-        for (var j in product) {
-          if (ids[p] = product[j].id) {
-            product.splice(j, 1)
-          }
-        }
-      }
-    }
-    return product;
-  },
+ 
   onLoad() {
     this.setData({
       storeId: app.globalData.storeId
@@ -460,7 +433,6 @@ Page({
           break;
         }
       }
-      console.log(newProduct[p].name)
       this.setData({
         product: newProduct
       })

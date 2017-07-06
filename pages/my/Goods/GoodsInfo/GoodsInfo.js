@@ -413,13 +413,24 @@ Page({
                     break;
                   }
                 }
-                
               } else {
+                objectSubmit.id = res.data;
                 totalProduct.unshift(objectSubmit)
+                console.log(totalProduct)
               }
               wx.setStorage({
                 key: "GoodsData",
-                data: totalProduct
+                data: totalProduct,
+                complete: function (res) {
+                  console.log(res)
+                },
+                fail: function (res) {
+                  wx.showToast({
+                    title: "缓存失败",
+                    mask: true,
+                    duration: 2000
+                  })
+                }
               })
             }
           })

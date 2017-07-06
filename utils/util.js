@@ -204,6 +204,31 @@ var api = {
       },
     })
   },
+  // 删除东西
+  deleteGoodsorClient: function (ids, product, checkAllTag) {
+    if (checkAllTag) {
+      var newArray = [];
+      for (var p in ids) {
+        for (var j = product.length - 1; j >= 0; j--) {
+          console.log(product[j].id)
+          if (ids[p] == product[j].id) {
+            var aa = product.splice(j, 1);
+            newArray.push(aa[0])
+          }
+        }
+      }
+      product = newArray;
+    } else {
+      for (var p in ids) {
+        for (var j in product) {
+          if (ids[p] = product[j].id) {
+            product.splice(j, 1)
+          }
+        }
+      }
+    }
+    return product;
+  }, 
   // 二维码扫好了。。。
   scanOk: function (client, id, callback) {
     var that = this;

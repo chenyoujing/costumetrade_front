@@ -65,17 +65,17 @@
     </view>
   </scroll-view>
   <!--批量删除按钮-->
-  <checkbox-group class="batch_button_all" style="height:{{delete_button}}px;">
+  <checkbox-group class="batch_button_all"  bindchange="SelectallOrNot"  style="height:{{delete_button}}px;">
     <label class="checkbox">
-      <checkbox />全选
+      <checkbox checked="{{checkedClear}}"/>全选
     </label>
   </checkbox-group>
   <view class="batch_button_ok bg_g" bindtap="batch_ok" style="height:{{delete_button}}px;">完成</view>
   <view class="batch_button" bindtap="batch_delete_sure" style="height:{{delete_button}}px;">删除</view>
   <!--清空积分按钮-->
-  <checkbox-group class="batch_button_all" style="height:{{points_button}}px;">
+  <checkbox-group class="batch_button_all" bindchange="SelectallOrNot"  style="height:{{points_button}}px;">
     <label class="checkbox">
-      <checkbox />全选
+      <checkbox  checked="{{checkedClear}}"/>全选
     </label>
   </checkbox-group>
   <view class="batch_button_ok" bindtap="batch_ok" style="height:{{points_button}}px;">取消</view>

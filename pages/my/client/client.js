@@ -20,6 +20,8 @@ Page({
     requestSwitch: true,
     pageNum:1,
     scanModal: true,
+    checkedClear: false,
+    checkAllTag: false
   },
   // 客户等级查询/地区,全局变量
   initCustomer: function () {
@@ -173,6 +175,7 @@ Page({
     var ids = e.target.dataset.id;
     var boolean2 = true;
     var idsArray = this.data.ids;
+   
     for (var p in idsArray) {
       if (idsArray[p] == ids) {
         idsArray.splice(p, 1);
@@ -183,6 +186,7 @@ Page({
     if (boolean2) {
       idsArray.push(ids)
     }
+    console.log(idsArray)
     this.setData({
       ids: idsArray
     })
@@ -190,14 +194,15 @@ Page({
   // 批量删除
   delectRequest: function () {
     var that = this;
-    var ids = this.data.ids
+    var ids = this.data.ids;
     var ClientsList = this.data.ClientsList
     wx.showNavigationBarLoading()
     util.api.request({
       url: 'client/updateClients',
       data: {
         idArray: ids,
-        status:1
+        status:1,
+        checkAllTag: that.data.checkAllTag
       },
       method: 'POST',
       header: {
@@ -206,17 +211,23 @@ Page({
       success: function (res) {
         wx.hideNavigationBarLoading();
         var ClientsList = that.data.ClientsList;
-        for (var p in ids) {
-          for (var j in ClientsList) {
-            if (ids[p] == ClientsList[j].id) {
-              ClientsList.splice(j, 1)
-            }
-          }
+        // 缓存
+        if (that.data.client == 3) {
+          that.clearStorage("UnitData1")
+          that.clearStorage("UnitData2")
+        }else{
+          var name = that.data.client == 1 ? "UnitData1" : "UnitData2";
+          that.clearStorage(name)
         }
+      // 操作界面
+
+        ClientsList = util.api.deleteGoodsorClient(ids, ClientsList, that.data.checkAllTag)
+
         that.setData({
           ClientsList: ClientsList,
           ids:[],
-          checkedClear:false
+          checkedClear:false,
+          checkAllTag:false
         })
         wx.showToast({
           title: '成功删除',
@@ -226,6 +237,32 @@ Page({
       }
     })
   },
+  // 清除客户缓存
+clearStorage:function(name){
+  var that = this;
+  var ids = this.data.ids;
+  var totalProduct = [];
+  wx.getStorage({
+    key: name,
+    success: function (res) {
+      totalProduct = res.data ? res.data : [];
+      // 更新缓存
+      totalProduct = util.api.deleteGoodsorClient(ids, totalProduct, that.data.checkAllTag);
+      console.log(totalProduct)
+      wx.setStorage({
+        key: name,
+        data: totalProduct,
+         fail: function (res) {
+          wx.showToast({
+            title: "缓存失败",
+            mask: true,
+            duration: 2000
+          })
+        }
+      })
+    }
+  })
+},
   // 打开多功能键
   more_function: function () {
     this.setData({
@@ -257,6 +294,14 @@ Page({
     })
     this.more_function_close();
   },
+  // 全选全不选
+  SelectallOrNot: function () {
+    this.setData({
+      checkedClear: !this.data.checkedClear,
+      checkAllTag: !this.data.checkedClear,
+      ids: []
+    })
+  },
   // 完成批量删除
   batch_ok: function () {
     this.setData({
@@ -269,7 +314,17 @@ Page({
   },
   // 批量删除
   batch_delete_sure: function () {
-    this.delectRequest();
+    var idsArray = this.data.ids;
+    if (idsArray.length == 0 && !this.data.checkAllTag) {
+      wx.showToast({
+        title: '请勾选要删除的货品',
+        mask: true,
+        duration: 2000
+      })
+    } else {
+      this.delectRequest();
+      this.batch_ok();
+    }
   },
   // 清空积分
   batch_points: function () {
