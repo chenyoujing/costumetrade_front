@@ -19,7 +19,7 @@
             <view class="price">{{item.price}}</view>
             <view class="info_other">
               <view class="num">{{item.count}}{{item.productunit}}</view>
-              <view class="date">{{item.modifytime}}</view>
+              <view class="date">{{item.createtime}}</view>
             </view>
           </view>
         </view>

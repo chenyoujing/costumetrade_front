@@ -93,15 +93,23 @@ Page({
   },
   // 扫描成功的回调
   callback2: function (data) {
-    app.addCustomerInfo = data
-    wx.navigateTo({
-      url: '../../client/clientAdd/clientAdd?client=' + this.data.type + "&clientId=" + this.data.id + "&scan=" + true
-    })
+    if (data.id !== this.data.id){
+      data.name = data.remarkName || data.name || data.nickName;
+      app.selectName = data;
+      wx.navigateBack({
+        delta: 1,
+      })
+    }else{
+      app.addCustomerInfo = data;
+      wx.navigateTo({
+        url: '../../client/clientAdd/clientAdd?client=' + this.data.type + "&clientId=" + this.data.id + "&scan=" + true+"&openOrder="+true
+      })
+    }
   },
   // 扫好了
   confirm: function () {
     var that = this
-    util.api.scanOk(that.data.client, that.data.id, this.callback2)
+    util.api.scanOk(this.data.type, this.data.id, this.callback2)
     this.cancel()
   },
   onLoad: function (options) {

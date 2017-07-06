@@ -36,7 +36,7 @@ Page({
               operate: orderInfo.pay,
               buyerid: that.data.buyerid,
               sellerid: that.data.sellerid,
-              openid: 1,
+              openid: app.globalData.openid,
               pay: that.data.pay
             },
             method: 'POST',

@@ -34,21 +34,21 @@ Page({
         var price = 0
         var freight = res.data.ssStoOrder.freight || 0;
         for (var p in ssStoDetail){
-          ssStoDetail[p].modifytime = util.toDate(ssStoDetail[p].modifytime)
+          ssStoDetail[p].createtime = util.toDate(ssStoDetail[p].createtime)
           // price += ssStoDetail[p].price
         }
         // 转换物流公司
-        for (var j in that.data.logisticFees) {
-          if (that.data.logisticFees[j].logisticCode == res.data.ssStoOrder.logisticsCode) {
-           var logisticName = that.data.logisticFees[j].logisticName
-          }
-        }
+        // for (var j in that.data.logisticFees) {
+        //   if (that.data.logisticFees[j].logisticCode == res.data.ssStoOrder.logisticsCode) {
+        //    var logisticName = that.data.logisticFees[j].logisticName
+        //   }
+        // }
         that.setData({
           ssStoDetail: ssStoDetail,
           price: res.data.ssStoOrder.debetamt,
           freight: freight,
-          logisticName: logisticName,
-          logisticCode: that.data.logisticFees[j].logisticCode
+          logisticName: res.data.ssStoOrder.logisticsCode,
+          logisticCode: res.data.ssStoOrder.logisticsCode
         })
       }
     })
@@ -66,7 +66,7 @@ Page({
     var fixedFee = e.target.dataset.fixedfee;
     console.log(fixedFee)
     this.setData({
-      logisticName: logisticName,
+      // logisticName: logisticName,
       logisticCode: logisticCode,
       freight: fixedFee
     })

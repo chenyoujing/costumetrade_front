@@ -98,15 +98,19 @@ Page({
         },
         success: function (res) {
           wx.hideNavigationBarLoading();
-          util.api.updataStorage(res.data)
+          util.api.updataStorage(res.data, that.data.client)
           wx.showToast({
             title: '成功',
             icon: 'success',
             duration: 2000
           })
+          if (that.data.openOrder){
+            res.data.name = res.data.remarkName || res.data.name || res.data.nickName;
+            app.selectName = res.data;
+          }
           setTimeout(() => {
             wx.navigateBack({
-              delta: 1
+              delta: that.data.openOrder?2:1
             })
           }, 2000)
         }
@@ -155,7 +159,8 @@ Page({
       client: e.client,
       clientId: e.clientId,
       initCustomerList: app.custProdPriceList,
-      scan: e.scan||""
+      scan: e.scan||"",
+      openOrder: e.openOrder||""
     })
     if (!this.data.scan){
       this.getClient()

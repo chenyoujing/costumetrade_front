@@ -176,11 +176,12 @@ var api = {
     })
   },
   // 判断有没有，没有的话push 更新缓存
-  updataStorage: function (object) {
+  updataStorage: function (object, client) {
     var name = "";
-    if (this.data.client !== 2) {
+    if (client !== 2) {
       name = "UnitData1";
-    } else {
+    } 
+    if (client !== 1){
       name = "UnitData2";
     }
     wx.getStorage({
@@ -221,7 +222,7 @@ var api = {
       success: function (res) {
         console.log(res)
     
-        that.updataStorage(res.data)
+        that.updataStorage(res.data, client  )
         wx.hideNavigationBarLoading();
         if (!res.data.id) {
           wx.showToast({

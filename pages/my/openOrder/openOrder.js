@@ -52,16 +52,51 @@ Page({
     showPrice2:0
   },
   // 扫码 只写了主条码。。。。。
-  scan: function (e) {
-    var that = this
+  scan: function () {
+    var that = this;
+    var shopCart = this.data.product;
+    console.log(11111)
     wx.scanCode({
       success: (res) => {
-        for (var p in that.data.shopCart){
-          if (shopCart[p].barcode == res.data){
-            that.detail(null, shopCart[p].id,null)
-          } else if (shopCart[p].barcodes && shopCart[p].barcodes.indexOf(res.data) > -1){
-
+        console.log(res.result)
+        console.log(shopCart)
+        var Isthere = false;
+        for (var p in shopCart){
+          if (shopCart[p].barcode == res.result){
+            console.log("主条码进来了")
+            that.detail(null, shopCart[p].id,null);
+            break;
+            Isthere = true;
+          } else if (shopCart[p].barcodes && shopCart[p].barcodes.indexOf(res.result) > -1){
+            console.log("分条码进来了")
+            var barcodes = shopCart[p].barcodes.split(';');
+            for (var j in barcodes){
+              barcodes[j] = barcodes[j].split(",");
+              if (barcodes[j][0] == res.result){
+                that.setData({
+                  selectColor: barcodes[j][1],
+                  selectSize: barcodes[j][2],
+                  GoodsDetail: shopCart[p],
+                  isPattern: shopCart[p].isPattern,
+                  priceRaise: shopCart[p].priceJsons
+                });
+                // 第一个是确定加价
+                // 第二个是确定价格
+                this.sizeColorRaise(barcodes[j][2], barcodes[j][1]);
+                that.endChage(that.data.cate, shopCart[p]);
+                that.enterShopCart();
+                Isthere = true;
+                break;
+              }
+            }
           }
+        }
+        if (!false){
+          wx.showToast({
+            title: "没有找到你要的条码",
+            mask: true,
+            duration: 1000
+          })
         }
       }
     })
@@ -148,7 +183,6 @@ Page({
         num = num ==""? "": parseInt(-num);
         break;
       case 'clear':
-        console.log(num.length)
         num = String(num);
         num = num.substring(0,num.length-1);
         boolean2 = num?true: false;
@@ -162,7 +196,6 @@ Page({
       // 改价格的时候
       if (this.data.colorChange == 2){
         GoodsDetail.showPrice = num;
-        console.log(num)
         this.setData({
           GoodsDetail: GoodsDetail
         })
@@ -185,37 +218,32 @@ Page({
   judgeSalePass:function(){
     var modifyPrice = app.globalData.modifyPrice;
     var salPrice = 'tagprice';
-    var name = '标签价';
+    console.log(modifyPrice)
     switch (modifyPrice) {
-      case '1':
+      case 1:
         salPrice = 'firsthPrice';
-        name = app.custProdPrice[0].custtypename;
         break;
-      case '2':
+      case 2:
         salPrice = 'secondPrice';
-        name = app.custProdPrice[1].custtypename;
         break;
-      case '3':
+      case 3:
         salPrice = 'thirdPrice';
-        name = app.custProdPrice[2].custtypename;
         break;
-      case '4':
+      case 4:
         salPrice = 'fourthPrice';
-        name = app.custProdPrice[3].custtypename;
         break;
-      case '5':
+      case 5:
         salPrice = 'fifthPrice';
-        name = app.custProdPrice[4].custtypename;
         break;
       default:
         salPrice = 'tagprice';
-        name = '标签价';
         break;
     }
     this.setData({
       judgeSalePrice: this.data.GoodsDetail[salPrice]
     })
     console.log(this.data.GoodsDetail[salPrice])
+    console.log(salPrice)
   },
   // 判断是否可以更改
   SalePassOrNot:function(){
@@ -224,7 +252,7 @@ Page({
     var judgeSalePrice = this.data.judgeSalePrice + this.data.sizeRaise + this.data.colorRaise;
     console.log(this.data.GoodsDetail.showPrice)
     console.log(judgeSalePrice)
-    if (this.data.GoodsDetail.showPrice < judgeSalePrice){
+    if (app.globalData.modifyPrice > this.data.cate && this.data.GoodsDetail.showPrice <= judgeSalePrice){
       wx.showToast({
         title: '您的权限不够，不能更改价格！',
         icon: 'warn',
@@ -241,32 +269,11 @@ Page({
   // 更改颜色尺码
   EventHandle: function (e) {
     var index = e.target.dataset.index;
-    var sizeRaise = this.data.sizeRaise;
-    var colorRaise = this.data.colorRaise;
-    var showPrice2 = this.data.showPrice2;
-    var GoodsDetail = this.data.GoodsDetail;
     var param = {};
     param[index] = e.detail.value;
-    // 判断是否加价,分尺码颜色加价
-    if (this.data.isPattern && index == "selectColor"){
-      for (var g in this.data.priceRaise.colorLists){
-        if (e.detail.value == this.data.priceRaise.colorLists[g].name){
-          colorRaise = this.data.priceRaise.colorLists[g].priceRaise;
-          param.colorRaise = parseFloat(colorRaise);
-        }
-      }
-    } else if (this.data.isPattern && index == "selectSize"){
-      for (var g in this.data.priceRaise.sizeLists) {
-        if (e.detail.value == this.data.priceRaise.sizeLists[g].name) {
-          sizeRaise = this.data.priceRaise.sizeLists[g].priceRaise;
-          param.sizeRaise = parseFloat(sizeRaise);
-        }
-      }
-    }
     if (index == "selectColor") {
       var stockArray = this.data.stockArray;
       var size = this.data.size;
-      console.log(size)
       for (var p in stockArray) {
         for (var j in size) {
           if (stockArray[p].productcolor == e.detail.value && stockArray[p].productsize == size[j].size) {
@@ -276,8 +283,36 @@ Page({
       }
       param.size = size
     }
+    this.setData(param);
+    this.sizeColorRaise(this.data.selectSize, this.data.selectColor);
+  },
+  // 加价表
+  sizeColorRaise: function (size, color){
+    var sizeRaise = this.data.sizeRaise;
+    var colorRaise = this.data.colorRaise;
+    var showPrice2 = this.data.showPrice2;
+    var GoodsDetail = this.data.GoodsDetail;
+    var param = {};
+    // 判断是否加价,分尺码颜色加价
+    if (this.data.isPattern == 1) {
+      for (var g in this.data.priceRaise.colorLists) {
+        if (color == this.data.priceRaise.colorLists[g].name) {
+          colorRaise = this.data.priceRaise.colorLists[g].priceRaise;
+          param.colorRaise = parseFloat(colorRaise);
+        }
+      }
+    } 
+    if (this.data.isPattern == 1) {
+      for (var g in this.data.priceRaise.sizeLists) {
+        if (size == this.data.priceRaise.sizeLists[g].name) {
+          sizeRaise = this.data.priceRaise.sizeLists[g].priceRaise;
+          param.sizeRaise = parseFloat(sizeRaise);
+        }
+      }
+    }
     GoodsDetail.showPrice = parseFloat(showPrice2) + parseFloat(colorRaise) + parseFloat(sizeRaise);
-    param.GoodsDetail = GoodsDetail;
+    param["GoodsDetail.showPrice"] = GoodsDetail.showPrice;
+    console.log("jiage")
     this.setData(param);
     this.saleAver(this.data.unitChange);
   },
@@ -370,6 +405,7 @@ Page({
     cate= String(cate)
     var name = this.data.saleName;
     var salPrice = 'tagprice';
+    console.log(cate)
     switch (cate){
       case '1':
         salPrice = 'firsthPrice';
@@ -409,6 +445,7 @@ Page({
       // 所有货品列表显示的价格
       this.setData({
         saleChangeName: salPrice,
+        saleChangeName2: saleChangeName2,
         saleName: name
       })
     }
@@ -417,18 +454,14 @@ Page({
   // 搜索货品
   searchGoods:function(){
     var value = this.data.keyboardNum;
-    console.log(value)
     var endArray4 = util.api.objectPushArry(this.data.product, value)
     for (var p in endArray4){
       endArray4[p].timeUp = util.toDate(endArray4[p].timeUp);
       endArray4[p].showPrice = endArray4[p][this.data.saleChangeName];
-      console.log(endArray4[p]['purchaseprice'])
-      console.log(this.data.saleChangeName)
     }
     this.setData({
       keyArray: endArray4
     })
-    console.log(endArray4)
   },
   // 隐藏键盘
   keyHidden:function(){
@@ -535,7 +568,6 @@ Page({
       },
       success: function (res) {
         wx.hideNavigationBarLoading();
-        console.log(res.data)
         var num = 0;
         var color = that.data.color;
         for (var p in res.data) {
@@ -546,7 +578,6 @@ Page({
             }
           }
         }
-        console.log(color)
         that.setData({
           stockNum: num,
           color: color,
@@ -599,7 +630,8 @@ Page({
             num: 0
           })
         }
-        res.data.showPrice = res.data[that.data.saleChangeName];
+        res.data.showPrice = res.data[that.data.saleChangeName2];
+        console.log(res.data.showPrice)
         res.data.image = res.data.image ? util.api.imgUrl + res.data.image:""; 
         res.data.handcount = sizeArray.length;
 
@@ -617,6 +649,7 @@ Page({
       }
     })
   },
+  //切换后的价格
   endChage: function (cate, GoodsDetail){
     this.sale(cate);
     if (GoodsDetail[this.data.saleChangeName2] == 0) {
@@ -625,11 +658,15 @@ Page({
       })
       this.changeSale();
     } else {
-      GoodsDetail.showPrice = GoodsDetail[this.data.saleChangeName2]
+      GoodsDetail.showPrice = Number(GoodsDetail[this.data.saleChangeName2]) + Number(this.data.sizeRaise) + Number(this.data.colorRaise);
       this.setData({
         GoodsDetail: GoodsDetail,
-        cate: cate
+        cate: cate,
+        showPrice2: Number(GoodsDetail[this.data.saleChangeName2])
       })
+      console.log(Number(GoodsDetail[this.data.saleChangeName2]))
+      console.log(Number(this.data.colorRaise))
+      console.log(Number(this.data.sizeRaise))
     }
   },
   // 计算总的价格和数量
@@ -721,7 +758,6 @@ Page({
   },
   // 加入之前的判断
   checkEnterBefore:function(){
-    console.log(this.data.selectColor)
     if (!this.data.selectColor){
       wx.showToast({
         title: '请选择颜色',
@@ -795,6 +831,7 @@ Page({
     if (!app.screen_unitList) {
       util.api.getProductInit();
     }
+    console.log(app.selectName)
     this.setData({
       selectName: app.selectName,
       cate: app.selectName.cate

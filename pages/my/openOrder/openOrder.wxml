@@ -11,7 +11,7 @@
 
     <image src="../../../images/more.png" mode="aspectFit" class="title_more_image" bindtap="more_function" />
     <view class="classname" bindtap="authorityJudge"  class="title_supplier">
-      <image src="{{headImage}}"  mode="aspectFill" class="title_supplier_tx" />
+      <image src="{{selectName.image||'../../../../images/image_none.png'}}"  mode="aspectFill" class="title_supplier_tx" />
       <view class="title_supplier_text" wx:if="{{type == 1}}">{{selectName.name}}</view>
        <view class="title_supplier_text" wx:if="{{type == 1 && !selectName.name}}">选客户</view>
       <view class="title_supplier_text" wx:if="{{type == 2}}">{{selectName.name}}</view>

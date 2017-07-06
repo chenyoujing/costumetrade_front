@@ -387,50 +387,14 @@ Page({
           success: function (res) {
             totalProduct = res.data ? res.data : [];
               // 更新货品缓存
-            if (that.data.checkAllTag){
-              for (var p in ids) {
-                for (var j in totalProduct) {
-                  if (ids[p] = totalProduct[j].id) {
-                    newData.push(totalProduct.splice(j, 1))
-                  }
-                }
-              }
-              totalProduct = newData;
-            }else{
-              for (var p in ids) {
-                for (var j in totalProduct) {
-                  if (ids[p] = totalProduct[j].id) {
-                    totalProduct.splice(j, 1)
-                  }
-                }
-              }
-            }
+            totalProduct = deleteGoodsorClient(ids, totalProduct, that.data.checkAllTag);
             wx.setStorage({
               key: "GoodsData",
               data: totalProduct
             })
           }
         })
-        if (that.data.checkAllTag){
-          var newArray = [];
-          for (var p in ids) {
-            for (var j in totalProduct) {
-              if (ids[p] = totalProduct[j].id) {
-                newArray.push(totalProduct.splice(j, 1))
-              }
-            }
-          }
-          product = newArray;
-        }else{
-          for (var p in ids) {
-            for (var j in product) {
-              if (ids[p] = product[j].id) {
-                product.splice(j, 1)
-              }
-            }
-          }
-        }
-        
+        product = deleteGoodsorClient(ids, product,that.data.checkAllTag);
         that.setData({
           product: product
         })
@@ -441,6 +405,32 @@ Page({
         })
       }
     })
+  },
+  // 删除东西
+  deleteGoodsorClient: function (ids, product, checkAllTag){
+    if (checkAllTag) {
+      console.log(222)
+      var newArray = [];
+      for (var p in ids) {
+        for (var j = product.length - 1; j >= 0; j--) {
+          if (ids[p] == product[j].id) {
+            var aa = product.splice(j, 1);
+            console.log(product.splice(j, 1))
+            newArray.push(aa)
+          }
+        }
+      }
+      product = newArray;
+    } else {
+      for (var p in ids) {
+        for (var j in product) {
+          if (ids[p] = product[j].id) {
+            product.splice(j, 1)
+          }
+        }
+      }
+    }
+    return product;
   },
   onLoad() {
     this.setData({
