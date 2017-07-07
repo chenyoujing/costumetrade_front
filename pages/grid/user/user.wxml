@@ -64,11 +64,11 @@
         <view class="my_content_text">钱包管理</view>
         <image src="../../../images/right-thrust.png" mode="aspectFit" class="my_content_right" />
       </navigator>-->
-      <navigator class="clearfix" bindtap="address">
+      <view class="navigator clearfix" bindtap="address">
         <image src="../../../images/localization.png" mode="aspectFit" class="my_content_image" />
         <view class="my_content_text">收货地址</view>
         <image src="../../../images/right-thrust.png" mode="aspectFit" class="my_content_right" />
-      </navigator>
+      </view>
       <navigator class="clearfix" url="Help/Help">
         <image src="../../../images/assist.png" mode="aspectFit" class="my_content_image" />
         <view class="my_content_text">帮助</view>

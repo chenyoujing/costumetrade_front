@@ -71,9 +71,9 @@ Page({
     var id = this.data.id;
     var url = "";
     if (this.data.clientType == 1) {
-      url = "../../openOrder/openOrder?clientId=" + this.data.clientId + "&id=" + id + '&ClientData=true'
+      url = "../../openOrder/openOrder?id=" + id + '&ClientData=true'
     } else {
-      url = "../../../grid/shop/goods_detail/goods_detail?clientId=" + this.data.clientId + "&id=" + id + '&ClientData=true'
+      url = "../../../grid/shop/goods_detail/goods_detail?id=" + id + '&ClientData=true'
     };
     wx.navigateTo({
       url: url

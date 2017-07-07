@@ -303,7 +303,7 @@ Page({
     } else {
       this.batchOperationsOk();
       wx.navigateTo({
-        url: 'GoodsShare/GoodsShare?ids=' + JSON.stringify(idsArray) + '&storeId=' + storeId,
+        url: 'GoodsShare/GoodsShare?ids=' + JSON.stringify(idsArray) + '&storeId=' + storeId +'&checkAllTag=' + this.data.checkAllTag,
       })
     }
   },

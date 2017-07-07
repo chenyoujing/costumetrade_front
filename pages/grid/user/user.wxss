@@ -68,7 +68,7 @@
   padding: 0 10px;
   background-color: #EBEBEB;
 }
-.operation navigator{
+.operation navigator,.operation .navigator{
   width: 25%;
   padding-top: 10px;
   float: left;
