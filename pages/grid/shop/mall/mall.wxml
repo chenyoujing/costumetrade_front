@@ -1,6 +1,6 @@
  <view class="mall">
   <view class="mall_title">
-    <image src="../../../../images/image_none.png" mode="aspectFill" class="mall_title_bg" />
+    <image src="../../../../images/mall_bg.png" mode="aspectFill" class="mall_title_bg" />
     <view class="title_view">
       <navigator url="../storeDetails/storeDetails?storeId=1">
         <image src="{{'../../../../images/shop1_tx.png'}}" mode="scaleToFill" class="shop_tx" />

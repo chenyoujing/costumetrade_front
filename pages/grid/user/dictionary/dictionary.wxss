@@ -97,6 +97,8 @@ swiper{
   top: 0;
   bottom: 40px;
 }
+
+/*打印设置*/
 .print_titel{
   background-color: #EEEEEE;
 }
@@ -114,6 +116,34 @@ swiper{
   line-height: 20px;
   position: relative;
 }
+/*打印账单模态框*/
+.modal_header_content{
+  font-size: 13px;
+  color: #000000;
+  margin:0 -10px;
+  text-align: center;
+  border-top: 1px solid #52CAC1;
+  line-height: 20px;
+}
+.bill_number{
+  color: #000000;
+  padding-top: 20px;
+}
+.order_input_text{
+  width: 30%;
+  float: left;
+  text-align: center;
+  font-size: 14px;
+  line-height: 30px;
+  padding-right: 20px;
+}
+.order_input1{
+  border: 1px solid #52CAC1;
+  font-size: 14px;
+  padding-left: 7px; 
+  height: 28px;
+}
+
 .dictionary_input{
   padding-right: 30px;
   margin: 5px 0;

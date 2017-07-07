@@ -1,8 +1,8 @@
   <view class="mall_title">
-    <image src="../../images/image_none.png" mode="aspectFill" class="mall_title_bg" />
-    <navigator url="../grid/shop/mall/mall?id={{storeId}}" class="shop_back">
+    <image src="../../images/mall_bg.png" mode="aspectFill" class="mall_title_bg" />
+    <!--<navigator url="../grid/shop/mall/mall?id={{storeId}}" class="shop_back">
       <image src="../../images/return.png" mode="aspectFit" />
-    </navigator>
+    </navigator>-->
     <navigator url="../grid/shop/storeDetails/storeDetails?id={{storeId}}" class="shop_info clearfix">
       <view class="shop_tx"><image src="../../images/image_none.png" mode="scaleToFill" class="shop_tx" /></view>
       <view class="shop_name">{{name}}</view>
@@ -18,7 +18,7 @@
       <view class="content_container_text">
         <view class="content_container_title">{{item.name}}</view>
         <view class="content_container_info">
-          <view class="price">{{item.price}}</view>
+          <view class="price">{{item.salePrice}}</view>
           <view class="info_other">
             <view class="volume" wx:if="{{!item.volume}}">0</view>
             <view class="volume" wx:if="{{item.volume}}">{{item.volume}}</view>

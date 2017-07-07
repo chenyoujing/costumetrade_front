@@ -104,7 +104,7 @@
           <view class="print_info">打印信息</view>
           <view class="dictionary_input clearfix">
             <view class="dictionary_input_text1">编号：</view>
-            <input type="number" class="dictionary_input1" />
+            <view class="dictionary_input1" bindtap="printModal"></view>
           </view>
           <view class="dictionary_input clearfix">
             <view class="dictionary_input_text2">默认打印店铺二维码：</view>
@@ -136,7 +136,7 @@
           <view class="print_info">打印信息</view>
           <view class="dictionary_input clearfix">
             <view class="dictionary_input_text1">编号：</view>
-            <input type="number" class="dictionary_input1" />
+            <view class="dictionary_input1" bindtap="printModal"></view>
           </view>
           <view class="dictionary_input clearfix">
             <view class="dictionary_input_text2">默认打印店铺二维码：</view>
@@ -166,6 +166,15 @@
       </scroll-view>
       <button class="submit">保存</button>
     </swiper-item>
+
+    <!--打印模态框-->
+    <modal title="打印账单" hidden="{{bill_modal}}" confirm-text="确定" bindconfirm="bill_confirm" bindcancel="cancel">
+      <view class="modal_header_content">请输入打印机的设备编号(双击设备出来设备编号)</view>
+      <view class="bill_number">
+        <view class="order_input_text">编号：</view>
+        <input type="number" class="order_input1" name="handcount" placeholder="请输入金额" />
+      </view>
+    </modal>
 
     <!--基础设置-->
     <swiper-item>

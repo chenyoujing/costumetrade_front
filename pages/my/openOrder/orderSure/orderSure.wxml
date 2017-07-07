@@ -50,7 +50,7 @@
         <view class="info_title">账单操作</view>
         <view class="bill_content">
           <view class="bill_content_button" bindtap="bill_wechat">微信账单</view>
-          <view class="bill_content_button" bindtap="bill_print" bindtap="SendPrintBill">打印账单</view>
+          <view class="bill_content_button" bindtap="SendPrintBill">打印账单</view>
           <view class="clear"></view>
         </view>
       </view>
@@ -66,23 +66,13 @@
 
 
 <!--打印账单-->
-<view class="modal_cover" bindtap="bill_modal_close" animation="{{bill_modal_opacity}}" style="display:{{bill_modal}};"></view>
-<view class="modal" animation="{{bill_modal_opacity}}" style="display:{{bill_modal}};">
-  <view class="modal_header">
-    <view class="modal_header_title">打印账单</view>
-    <view class="modal_header_content">请输入打印机的设备编号(双击设备出来设备编号)</view>
+<modal title="打印账单" hidden="{{bill_modal}}" confirm-text="确定" bindconfirm="bill_confirm" bindcancel="cancel">
+  <view class="modal_header_content">请输入打印机的设备编号(双击设备出来设备编号)</view>
+  <view class="bill_number">
+    <view class="order_input_text">编号：</view>
+    <input type="number" class="order_input1" name="handcount" placeholder="请输入金额" />
   </view>
-  <view class="modal_close" bindtap="bill_modal_close">×</view>
-
-  <scroll-view scroll-y="true" class="modal_content">
-    <view class="bill_number">
-      <view class="order_input_text">编号：</view>
-      <input type="number" class="order_input1" name="handcount" placeholder="请输入金额" />
-    </view>
-  </scroll-view>
-  <view class="bill_close" bindtap="bill_modal_close">取消</view>
-  <view class="bill_submit" >确定</view>
-</view>
+</modal>
 
 <!--微信账单-->
 <modal title="请扫码" hidden="{{bill_wechat}}" confirm-text="扫好了，发账单" bindconfirm="wechat_confirm" bindcancel="cancel">

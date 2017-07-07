@@ -1,6 +1,6 @@
 <!--商城头部-->
 <view class="shop_title clearfix">
-  <navigator url="../../index/index?ids=&storeId=1499331806102&title=王尔迪的分享&name=王尔迪&checkAllTag=true">
+  <navigator url="../order/order" open-type="switchTab">
     <image src="../../../images/order-form.png" mode="aspectFit" class="shop_title_image" >
       <view class="prompt">3</view>
     </image>

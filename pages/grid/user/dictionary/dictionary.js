@@ -18,6 +18,7 @@ Page({
     employeesId:"",
     print:'wifi',
     addModal: true,
+    bill_modal: true,
     discountModal: true,
     customerModal: true,
     scanModal: true,
@@ -591,6 +592,7 @@ Page({
   cancel: function () {
     this.setData({
       addModal: true,
+      bill_modal: true,
       discountModal: true,
       customerModal: true,
       scanModal: true,
@@ -615,6 +617,12 @@ Page({
 
     })
   },
+  printModal: function () {
+    this.setData({
+      bill_modal: false
+    })
+  },
+
  /***********
    * 打印结束 *
    ***********/

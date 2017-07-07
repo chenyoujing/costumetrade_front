@@ -2,8 +2,7 @@ var util = require('../../../../utils/util.js')
 var app = getApp()
 Page({
   data: {
-    bill_modal: "none",
-    bill_modal_opacity: "",
+    bill_modal: true,
     bill_wechat:true,
     shopCart:[],
     type:1,
@@ -26,36 +25,10 @@ Page({
     zeroPrice:0
   },
   //打印账单
-  bill_print: function (e) {
-    var that = this
-    let data = e.target.dataset
-
+  bill_print: function () {
     this.setData({
-      bill_modal: "block",
+      bill_modal: false
     })
-    var animation = wx.createAnimation({
-      duration: 300,
-      timingFunction: 'ease',
-    })
-    animation.opacity(1).step()
-    this.setData({
-      bill_modal_opacity: animation.export()
-    })
-  },
-  bill_modal_close: function () {
-    var animation = wx.createAnimation({
-      duration: 300,
-      timingFunction: 'ease',
-    })
-    animation.opacity(0).step()
-    this.setData({
-      bill_modal_opacity: animation.export()
-    })
-    setTimeout(() => {
-      this.setData({
-        bill_modal: "none",
-      })
-    }, 300)
   },
   //微信账单
   bill_wechat: function (e) {
@@ -65,7 +38,8 @@ Page({
   },
   cancel: function () {
     this.setData({
-      bill_wechat: true
+      bill_wechat: true,
+      bill_modal: true
     })
   },
   //单据时间
@@ -317,6 +291,7 @@ Page({
 
  // 打印账单
   SendPrintBill:function(){
+    this.bill_print()
     this.stringSendFunction("type1",2)
   },
 

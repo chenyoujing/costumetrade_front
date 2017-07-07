@@ -61,7 +61,8 @@ Page({
       success: function (res) {
         wx.hideNavigationBarLoading();
         that.setData({
-          product: res.data
+          product: res.data.stocks,
+          sellers: res.data.sellers
         })
       }
     })
@@ -73,7 +74,13 @@ Page({
     if (this.data.clientType == 1) {
       url = "../../openOrder/openOrder?id=" + id + '&ClientData=true'
     } else {
-      url = "../../../grid/shop/goods_detail/goods_detail?id=" + id + '&ClientData=true'
+      if (this.data.sellers){
+        url = "../../../grid/shop/goods_detail/goods_detail?id=" + id + '&ClientData=true'
+      }else{
+        wx.showToast({
+          title: '该货品没有供货商',
+        })
+      }
     };
     wx.navigateTo({
       url: url
