@@ -99,8 +99,20 @@ swiper{
 }
 
 /*打印设置*/
-.print_titel{
-  background-color: #EEEEEE;
+.print_title{
+  height: 50px;
+  margin: 0 25px;
+  border-bottom: 2px solid #E5E5E5;
+  display: flex;
+  align-items: center;
+  font: 18px;
+  justify-content: space-between;
+}
+.print_down{
+  float: right;
+  width: 16px;
+  height: 16px;
+  padding: 17px;
 }
 .print_scroll{
   max-height: 0;
