@@ -386,7 +386,14 @@ Page({
             console.log(totalProduct)
             wx.setStorage({
               key: "GoodsData",
-              data: totalProduct
+              data: totalProduct,
+              fail:function(){
+                wx.showToast({
+                  title: '失败',
+                  mask: true,
+                  duration: 2000
+                })
+              }
             })
           }
         })

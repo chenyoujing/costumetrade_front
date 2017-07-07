@@ -71,7 +71,12 @@ Page({
     console.log(saveOrderFee)
     this.total()
   },
-  
+  changeType:function(e){
+    var type = e.target.dataset.type;
+    wx.navigateTo({
+      url: '../openOrder?type='+type    
+    })
+  },
   // 计算数量
   total:function(){
     var saveOrderFee = this.data.saveOrderFee;
@@ -148,7 +153,10 @@ Page({
           mask: true,
           duration: 2000
         })
-        that.cancel()
+        that.cancel();
+        wx.navigateBack({
+          delta: 1,
+        })
       }
     })
   },

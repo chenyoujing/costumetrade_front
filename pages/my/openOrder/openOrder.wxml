@@ -135,7 +135,7 @@
 <view class="more_function_cover {{animation}}" bindtap="more_function_close" style="display:{{more_function_display}};"></view>
 <view class="more_function {{animation}}" style="display:{{more_function_display}};">
   <view class="more_function_view" data-type= "1" bindtap="changeType">销售单</view>
-  <view class="more_function_view" data-type= "2" hidden="{{!purchasePrivilege}}" bindtap="changeType">采购单</view>
+  <view class="more_function_view" data-type= "2" hidden="{{purchasePrivilege}}" bindtap="changeType">采购单</view>
   <navigator url="expenses/expenses" class="more_function_view" bindtap="batch_update">费用单</navigator>
 </view>
   

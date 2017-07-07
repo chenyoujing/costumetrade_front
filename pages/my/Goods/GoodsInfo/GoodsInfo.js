@@ -392,6 +392,7 @@ Page({
         },
         success: function (res) {
           var totalProduct = []
+          var newid = res.data;
           wx.hideNavigationBarLoading();
           wx.showToast({
             title: '保存成功',
@@ -414,16 +415,13 @@ Page({
                   }
                 }
               } else {
-                objectSubmit.id = res.data;
+                objectSubmit.id = newid;
                 totalProduct.unshift(objectSubmit)
                 console.log(totalProduct)
               }
               wx.setStorage({
                 key: "GoodsData",
                 data: totalProduct,
-                complete: function (res) {
-                  console.log(res)
-                },
                 fail: function (res) {
                   wx.showToast({
                     title: "缓存失败",
@@ -434,7 +432,7 @@ Page({
               })
             }
           })
-          app.newid = that.data.id == "" ? res.data : null;
+          app.newid = that.data.id == "" ? newid : null;
           if (objectSubmit.name || objectSubmit.image || objectSubmit.tagprice) {
             app.updataGoodsInfo = that.data.GoodsInfoData;
           }

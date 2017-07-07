@@ -104,6 +104,7 @@ Page({
   // 几个权限判断
   authorityPurchaseprice: function () {
     var object = util.api.authorityPurchaseprice();
+    console.log(object)
     this.setData({
       purchasePrivilege: object.privilegeEmployees,
       cusmPrivilege: object.cusmPrivilege,
@@ -133,9 +134,17 @@ Page({
   },
   //买单
   order: function () {
-    wx.navigateTo({
-      url: './orderSure/orderSure?type=' + this.data.type + "&totalNum=" + this.data.totalData.totalNum
-    })
+    if (this.data.shopCart.length > 0){
+      wx.navigateTo({
+        url: './orderSure/orderSure?type=' + this.data.type + "&totalNum=" + this.data.totalData.totalNum
+      })
+    }else{
+      wx.showToast({
+        title: '请先选择货品',
+        mask: true,
+        duration: 2000
+      })
+    }
   },
   // 进入详情
   orderid:function(e){
@@ -394,8 +403,10 @@ Page({
     this.localData(this.data.shopCart);
     this.setData({
       type: type,
-      shopCart:[]
+      shopCart:[],
+      selectName:{}
     })
+    app.selectName.cate = {};
     this.getData();
     console.log(e.target.dataset.type)
     this.more_function_close()
@@ -777,8 +788,9 @@ Page({
   // 得到缓存本地数据
   getData:function(){
     var that = this;
+    var name = 'shopCartLowe' + this.data.type;
     wx.getStorage({
-      key: that.data.name,
+      key: name,
       complete: function (res) {
         res.data = res.data ? res.data:[];
         that.setData({
@@ -801,13 +813,16 @@ Page({
     this.totalData()
   },
   onLoad: function (e) {
-    var that = this;
+    var that= this;
     this.downData();
     setTimeout(() => {
       this.setData({
         scrollTop: this.data.scrollTop,
       })
     }, 1000)
+    this.setData({
+      type: e.type||1
+    })
     wx.getSystemInfo({
       success: function (res) {
         that.setData({
@@ -823,9 +838,6 @@ Page({
     }
   },
   onShow: function (options) {
-    this.setData({
-      name: 'shopCartLowe' + this.data.type
-    })
     // 防止没有客户时报错
     app.selectName = app.selectName ? app.selectName:{cate:0};
     if (!app.screen_unitList) {
@@ -834,7 +846,9 @@ Page({
     console.log(app.selectName)
     this.setData({
       selectName: app.selectName,
-      cate: app.selectName.cate
+      cate: app.selectName.cate,
+     
+      name: 'shopCartLowe' + this.data.type
     })
     this.sale(app.selectName.cate);
     this.getData();

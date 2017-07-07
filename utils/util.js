@@ -206,6 +206,7 @@ var api = {
   },
   // 删除东西
   deleteGoodsorClient: function (ids, product, checkAllTag) {
+    console.log(checkAllTag)
     if (checkAllTag) {
       var newArray = [];
       for (var p in ids) {
@@ -221,7 +222,7 @@ var api = {
     } else {
       for (var p in ids) {
         for (var j in product) {
-          if (ids[p] = product[j].id) {
+          if (ids[p] == product[j].id) {
             product.splice(j, 1)
           }
         }
