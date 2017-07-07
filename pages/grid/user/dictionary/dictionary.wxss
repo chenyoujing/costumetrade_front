@@ -108,11 +108,42 @@ swiper{
   font: 18px;
   justify-content: space-between;
 }
+.print_title_text{
+   display: flex;
+   align-items: center;
+   position: relative;
+}
+.print_title_text::before{
+  content: '';
+  float: left;
+  width: 16px;
+  height: 16px;
+  margin: 0 10px;
+  border: 1px solid #52CAC1;
+  border-radius: 100%;
+}
+.print_active .print_title_text::after{
+  content: '';
+  position: absolute;
+  left: 15px;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  width: 8px;
+  height: 8px;
+  background-color: #52CAC1;
+  border-radius: 100%;
+}
 .print_down{
   float: right;
   width: 16px;
   height: 16px;
   padding: 17px;
+  transform: rotate(-90deg);
+  transition: all 0.3s;
+}
+.print_active .print_down{
+  transform: rotate(0);
 }
 .print_scroll{
   max-height: 0;
