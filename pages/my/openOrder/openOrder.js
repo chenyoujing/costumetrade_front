@@ -252,7 +252,7 @@ Page({
     var judgeSalePrice = this.data.judgeSalePrice + this.data.sizeRaise + this.data.colorRaise;
     console.log(this.data.GoodsDetail.showPrice)
     console.log(judgeSalePrice)
-    if (app.globalData.modifyPrice > this.data.cate && this.data.GoodsDetail.showPrice <= judgeSalePrice){
+    if (app.globalData.modifyPrice > this.data.cate && this.data.cate !==0 &&this.data.GoodsDetail.showPrice <= judgeSalePrice){
       wx.showToast({
         title: '您的权限不够，不能更改价格！',
         icon: 'warn',

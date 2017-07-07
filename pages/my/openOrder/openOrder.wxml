@@ -66,7 +66,7 @@
     <block wx:for="{{keyArray}}" wx:key="id">
       <view class="products_info clearfix" data-id="{{item.id}}" style="position: absolute;left: 0;right: 0;">
         <image src="{{item.image ? item.image : '../../../images/image_none.png'}}" mode="aspectFill" class="products_info_image" />
-        <view class="products_info_name">{{item.code}}{{item.name}}</view>
+        <view class="products_info_name">{{item.name}}</view>
         <view class="products_info_price">{{item.showPrice}}</view>
         <view class="products_info_time">{{item.timeUp}}</view>
       </view>

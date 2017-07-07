@@ -633,8 +633,8 @@ Page({
         grade: app.screen_gradeList[0]?app.screen_gradeList[0].dictValue:"",
         unit: app.screen_unitList[0] ?app.screen_unitList[0].unit:"",
         producttype: app.screen_productTypeList[0] ?app.screen_productTypeList[0].id:"",
-        timeDown: util.formatTime(new Date),
-        timeUp: util.formatTime(new Date),
+        timeDown: util.toDate(new Date),
+        timeUp: util.toDate(new Date),
         year: new Date().getFullYear()
       },
       brand: app.screen_brandList[0]?app.screen_brandList[0].brandname:'',

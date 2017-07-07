@@ -50,7 +50,7 @@
         <view class="info_title">账单操作</view>
         <view class="bill_content">
           <view class="bill_content_button" bindtap="bill_wechat">微信账单</view>
-          <view class="bill_content_button" bindtap="bill_print">打印账单</view>
+          <view class="bill_content_button" bindtap="bill_print" bindtap="SendPrintBill">打印账单</view>
           <view class="clear"></view>
         </view>
       </view>

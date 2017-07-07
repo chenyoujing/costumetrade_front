@@ -193,13 +193,13 @@ Page({
      this.reallyPayTotal()
   },
   submitData:function(){
+    console.log(this.data.shopCart)
     var submitData = {};
     submitData.stoDetails = [];
     submitData.order = {};
     if(this.data.type == 1){
       submitData.order.sellerstoreid = app.globalData.storeId;
       submitData.order.buyerstoreid = ""
-     
     }else{
       submitData.order.buyerstoreid = app.globalData.storeId;
       submitData.order.sellerstoreid = ""
@@ -315,9 +315,12 @@ Page({
     })
   },
 
+ // 打印账单
+  SendPrintBill:function(){
+    this.stringSendFunction("type1",2)
+  },
 
-
-  // 打印账单
+  // 打印账单 num=1 打印账单，num=2 是微信账单 type1 微信账单 type2是打印账单
   stringSendFunction: function (type, num) {
     var now = new Date();
     var nowStr = util.formatTime(now);
@@ -338,15 +341,16 @@ Page({
     var payCost1 = this.payCost1 ? this.payCost1 : 0;
     var payCost2 = this.payCost2 ? this.payCost2 : 0;
     var realCost = '实付金额：' + (parseFloat(payCost1) + parseFloat(payCost2)).toFixed(2) + '元';
-    var totleCost = '应付金额：' + realCost + '元';
-    for (var p in buyVue.rows) {
+    var totleCost = '应付金额：' + this.data.reallyPay + '元';
+    for (var p in this.data.shopCart) {
       var str1 = type == 'type1' ? '        ' : '    ';
       var str2 = type == 'type1' ? '                   ' : '           ';
-      str1 = "  " + buyVue.rows[p].conutnum + str1.substring(0, str1.length - (buyVue.rows[p].count.toString().length * num) - 1);
-      str2 = (buyVue.rows[p].count * buyVue.rows[p].price).toFixed(2) + str2.substring(0, str2.length - ((buyVue.rows[p].count * buyVue.rows[p].price).toFixed(2).length * num) - 1);
-      rows += str1 + str2 + buyVue.rows[p].pname + '\n';
+      str1 = "  " + (this.data.shopCart[p].countnum || this.data.shopCart[p].count) + str1.substring(0, str1.length - (this.data.shopCart[p].count.toString().length * num) - 1);
+      str2 = ((this.data.shopCart[p].countnum || this.data.shopCart[p].count) * this.data.shopCart[p].price).toFixed(2) + str2.substring(0, str2.length - (((this.data.shopCart[p].countnum || this.data.shopCart[p].count) * this.data.shopCart[p].price).toFixed(2).length * num) - 1);
+      rows += str1 + str2 + this.data.shopCart[p].productName + '\n';
     }
-    this.stringSend = uname + '\n' + serial + '\n' + xian + '\n' + title + '\n' + rows + xian + '\n' + totleCount + '\n' + realCost + '\n' + totleCost + '\n' + address + '\n' + '\n';
+   var stringSend = uname + '\n' + serial + '\n' + xian + '\n' + title + '\n' + rows + xian + '\n' + totleCount + '\n' + realCost + '\n' + totleCost + '\n' + address + '\n' + '\n';
+   console.log(stringSend)
   },
   onLoad:function(options){
     this.setData({
