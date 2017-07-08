@@ -608,7 +608,7 @@ Page({
    ***********/
   // 选择打印
   print:function(e){
-    var print = e.target.dataset.print
+    var print = e.currentTarget.dataset.print
     if (print == this.data.print) {
       print = ''
     }

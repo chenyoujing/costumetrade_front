@@ -99,7 +99,10 @@
     <!--打印信息-->
     <swiper-item>
       <scroll-view scroll-y class="setting_scroll">
-        <view class="print_title" bindtap="print" data-print="wifi">wifi打印</view>
+        <view class="print_title {{print=='wifi'?'print_active':''}}" bindtap="print" data-print="wifi">
+          <view class="print_title_text">wifi打印</view>
+          <image src="../../../../images/down.png" mode="aspectFit" class="print_down " />
+        </view>
         <scroll-view scroll-y class="print_scroll {{print=='wifi'?'print_scroll_active':''}}">
           <view class="print_info">打印信息</view>
           <view class="dictionary_input clearfix">
@@ -131,7 +134,10 @@
             <view class="image_operation_button">上传店铺logo图片</view>
           </view>
         </scroll-view>
-        <view class="print_title" bindtap="print" data-print="ly">蓝牙打印</view>
+        <view class="print_title {{print=='ly'?'print_active':''}}" bindtap="print" data-print="ly">
+          <view class="print_title_text">蓝牙打印</view>
+          <image src="../../../../images/down.png" mode="aspectFit" class="print_down " />
+        </view>
         <scroll-view scroll-y class="print_scroll {{print=='ly'?'print_scroll_active':''}}">
           <view class="print_info">打印信息</view>
           <view class="dictionary_input clearfix">
