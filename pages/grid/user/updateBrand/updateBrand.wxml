@@ -5,7 +5,7 @@
     <navigator open-type="navigateBack">
       <image src="../../../../images/amputate.png" mode="aspectFit" class="title_image_close"  bindtap="back" />
     </navigator>
-    <navigator url="../../../my/Goods/GoodsBrandAdd/GoodsBrandAdd?url={{addurl}}&name={{titlename}}&addname={{addname}}">
+    <navigator url="../../../my/Goods/GoodsBrandAdd/GoodsBrandAdd?url={{addurl}}&name={{titlename}}&addname={{addname}}&productstring={{productstring}}">
       <image class="title_image_add" src="../../../../images/add_small.png"      mode="aspectFit" />
     </navigator>
   </view>

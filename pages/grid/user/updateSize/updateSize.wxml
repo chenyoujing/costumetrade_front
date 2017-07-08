@@ -4,7 +4,7 @@
   <!--头部-->
   <view class="size_title clearfix">
     尺码
-    <navigator url="../../../my/Goods/GoodsBrandAdd/GoodsBrandAdd?url=size/saveSize&name=尺码&addname=sizename">
+    <navigator url="../../../my/Goods/GoodsBrandAdd/GoodsBrandAdd?url=size/saveSize&name=尺码&addname=sizename&productstring={{sizeString}}">
       <image class="image_add" src="../../../../images/add_small.png"      mode="aspectFit" />
     </navigator>
     <navigator open-type="navigateBack">
@@ -32,7 +32,7 @@
 
   <view class="size_title2">
       尺码组
-    <navigator url="../../../my/Goods/GoodsBrandAdd/GoodsBrandAdd?url=size/saveSizeCustom&name=尺码组&addname=customname">
+    <navigator url="../../../my/Goods/GoodsBrandAdd/GoodsBrandAdd?url=size/saveSizeCustom&name=尺码组&addname=customname&productstring={{sizeProductString}}">
       <image class="image_add2" src="../../../../images/add_small.png"      mode="aspectFit" />
     </navigator>
   </view>

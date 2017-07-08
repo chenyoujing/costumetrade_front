@@ -92,42 +92,36 @@ Page({
       success: function (res) {
         app.changeData = that.data.envalue;
         app.changeId = res.data;
-        var object = {
-          id: res.data,
-          storeId: app.globalData.storeId
-        }
+        param.id = res.data;
         var name = '';
         var appname = ''
         console.log(app.changeId);
         switch (that.data.addname) {
           case 'catename':
-            name = 'catename';
             appname = 'screen_productTypeList'
             break;
           case 'brandname':
-            name = 'brandname';
             appname = 'screen_brandList'
             break;
           case 'unit':
-            name = 'unit'
             appname = 'screen_unitList'
             break;
         }
         console.log(appname)
 
         if (appname) {
-          object[name] = that.data.envalue;
-          console.log(app[appname])
-          app[appname].push(object)
+          // object[name] = that.data.envalue;
+          // console.log(app[appname])
+          app[appname].push(param)
         }
         if (that.data.addname == 'customname') {
           app.changesizename = 'customname';
           app.changeId = param;
         } else if (that.data.addname == 'sizename'){
           app.changesizename = 'sizename';
-          app.changeId = param;
+          // app.changeId = param;
         }
-        //
+        
         wx.hideNavigationBarLoading();
         wx.showToast({
           title: '添加成功',

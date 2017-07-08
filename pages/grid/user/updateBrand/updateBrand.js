@@ -22,7 +22,8 @@ Page({
       success: function (res) {
         wx.hideNavigationBarLoading();
         that.setData({
-          product: res.data
+          product: res.data,
+          productstring: JSON.stringify(res.data)
         })
       }
     })
@@ -138,7 +139,8 @@ Page({
       object[this.data.addname] = app.changeData;
       arry.push(object)
       this.setData({
-        product: arry
+        product: arry,
+        productstring: JSON.stringify(arry)
       })
     }
   }
