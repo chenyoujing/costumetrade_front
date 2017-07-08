@@ -91,7 +91,7 @@ var printObject = {
         url: 'print/getPrintUserId',
         data: {
           printid: printObject.deviceNumber,
-          storeId: app.globalData.storeId,
+          storeid: app.globalData.storeId,
         },
         method: 'POST',
         header: {
