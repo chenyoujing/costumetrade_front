@@ -60,8 +60,6 @@ Page({
     this.setData({
       myselfStord: app.globalData.storeInfo[0]
     })
-
-    
     // wx.connectSocket({
     //   url: 'wss://touchart.cn:8443/socketHander',
     //   data:{
@@ -95,6 +93,57 @@ Page({
     // })
   },
   aa:function(e){
+    wx.openBluetoothAdapter({
+      success: function (res) {
+        console.log("初始化蓝牙适配器成功")
+        wx.onBluetoothAdapterStateChange(function (res) {
+          console.log("蓝牙适配器状态变化", res)
+          that.setData({
+            isbluetoothready: res.available,
+            searchingstatus: res.discovering
+          })
+        })
+        wx.onBluetoothDeviceFound(function (devices) {
+          console.log(devices)
+          temp.push(devices.devices[0])
+          that.setData({
+            devices: temp
+          })
+          console.log('发现新蓝牙设备')
+          console.log('设备id' + devices.devices[0].deviceId)
+          console.log('设备name' + devices.devices[0].name)
+        })
+        wx.onBLECharacteristicValueChange(function (characteristic) {
+          console.log('characteristic value comed:')
+          let buffer = characteristic.value
+          let dataView = new DataView(buffer)
+          console.log("接收字节长度:" + dataView.byteLength)
+          var str = ""
+          for (var i = 0; i < dataView.byteLength; i++) {
+            str += String.fromCharCode(dataView.getUint8(i))
+          }
+          str = getNowFormatDate() + "收到数据:" + str;
+          that.setData({
+            receivedata: that.data.receivedata + "\n" + str,
+            onreceiving: true
+          })
+        })
+      },
+      fail: function (res) {
+        console.log("初始化蓝牙适配器失败")
+        wx.showModal({
+          title: '提示',
+          content: '请检查手机蓝牙是否打开',
+          success: function (res) {
+            that.setData({
+              isbluetoothready: false,
+              searchingstatus: false
+            })
+          }
+        })
+      }
+    })
+    
     // console.log(e.detail)
     // wx.request({
     //   url: 'https://api.weixin.qq.com/cgi-bin/message/wxopen/template/send?access_token=' + app.access_token,
@@ -149,6 +198,16 @@ Page({
     })
   },
   bb:function(){
+    wx.startBluetoothDevicesDiscovery({
+      services: ['FEE7'],
+      success: function (res) {
+        console.log(res)
+      }
+    })
+wx.onBluetoothDeviceFound(function(devices) {
+  console.log('new device list has founded')
+  console.dir(devices)
+})
       wx.closeSocket()
 
     wx.onSocketClose(function (res) {

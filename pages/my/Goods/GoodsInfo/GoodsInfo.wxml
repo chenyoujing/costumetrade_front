@@ -1,3 +1,4 @@
+<import src="../../../../template/template.wxml"/>
 
 <!--货品详情-->
 <view class="upload" style="top:{{upload}}; bottom:-{{upload}};">
@@ -17,7 +18,6 @@
         <view class="upload_input_text">名称:</view>
         <input type="text" class="upload_input1" bindinput="blurInput" data-name="name" name="name" value="{{GoodsInfoData.name}}" placeholder="*" placeholder-class="required" />
       </view>
-       <view class="upload_input_text" wx:if="{{regobject.name == false}}">名称不能为空</view>
       <view class="upload_input clearfix">
         <navigator url="../GoodsImage/GoodsImage" class="imagesearch">
           <image src="../../../../images/search.png" mode="aspectFit" class="imagesearch_image" />
@@ -43,10 +43,12 @@
           </view>
         </scroll-view>
       </view>
+      <template is="reg" wx:if="{{regobject.image == false}}" data="{{text: '图片至少上传一个'}}"/>
       <view class="upload_input clearfix">
         <view class="upload_input_text">吊牌价:</view>
         <input type="digit" bindinput="blurInput" data-name="tagprice" class="upload_input1" bindblur="reg" name="tagprice" value="{{GoodsInfoData.tagprice}}" placeholder="*" placeholder-class="required" />
       </view>
+      <template is="reg" wx:if="{{regobject.tagprice == false}}" data="{{text: '吊牌价不能为空'}}"/>
       <!--<view class="">请输入吊牌价</view>-->
       <view class="upload_input clearfix">
         <view class="upload_input_text">进货价:</view>
@@ -81,6 +83,7 @@
         <input type="text" bindblur="reg"  bindinput="blurInput" data-name="code"  class="upload_input1" name="code"  value="{{GoodsInfoData.code}}"/>
         <view class="clear"></view>
       </view>
+      <template is="reg" wx:if="{{regobject.code == false}}" data="{{text: '货号不能为空'}}"/>
       <view class="upload_input">
         <view class="upload_input_text">品牌:</view>
         <input type="number" disabled="true" data-name="brand"  class="upload_input2" name="brandid" style="padding-right:30px;" value="{{brand}}"/>

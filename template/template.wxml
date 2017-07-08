@@ -1,0 +1,3 @@
+<template name="reg">
+  <view class="template_reg_text">{{text}}</view>
+</template>

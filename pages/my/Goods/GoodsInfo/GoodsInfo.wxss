@@ -13,17 +13,22 @@
   transition: all 0.5s;
 }
 
+.template_reg_text{
+  margin-left: calc(20% + 10px);
+}
+
 .upload_container{
   position: absolute;
   top: 40px;
   bottom: 40px;
 }
 .upload_input{
-  padding: 0 10px 10px;
+  padding: 0 10px;
+  margin-top: 10px;
   position: relative;
 }
-.upload_input:first-child{
-  padding-top: 15px;
+.upload_input:last-child{
+  padding-bottom: 15px;
 }
 .upload_input_text{
   width: 20%;

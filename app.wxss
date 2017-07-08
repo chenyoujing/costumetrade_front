@@ -194,3 +194,11 @@ title_image_back{
   padding: 0 8px;
   width: auto;
 }
+
+/*template模板*/
+.template_reg_text{
+  color: #FE2D04;
+  font-size: 14px;
+  display: flex;
+  justify-content: flex-start;
+}

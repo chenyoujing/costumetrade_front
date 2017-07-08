@@ -45,6 +45,27 @@ Page({
       })
     }
   },
+  // 选择供货商
+  sellers:function(){
+    if (this.data.sellers_scroll_active){
+      var active = ""
+    }else{
+      var active = "sellers_scroll_active"
+    }
+    this.setData({
+      sellers_scroll_active: active
+    })
+  },
+  sellers_cover:function(){
+    this.setData({
+      sellers_scroll_active: ""
+    })
+  },
+  sellers_select:function(e){
+    this.setData({
+      sellers_index: e.currentTarget.dataset.index
+    })
+  },
   // 请求库存
   stock_request:function(){
     var that = this;
@@ -52,7 +73,7 @@ Page({
     util.api.request({
       url: 'product/takingStock',
       data: {
-        storeId: 1,
+        storeId: app.globalData.storeId,
         id:that.data.id
       },
       method: 'POST',
