@@ -74,7 +74,6 @@ Page({
     userIdentity: '',
     privilegeEmployees: false,
     regobject:{
-      // name:true
     }
   },
   // 正则验证
@@ -86,11 +85,17 @@ Page({
     var param = {};
     if(name == "code"){
       boolean = reg.iSChinese(e.detail.value);
+    }else if(name == "saleprice"){
+      boolean = reg.iSsale(this.data.picker_view);
+      if (boolean) {
+        this.setData({
+          priceUpdate: true
+        })
+      }
     }else{
       boolean = reg.iSnull(e.detail.value);
     }
     param[regobject] = boolean;
-    console.log(param)
     this.setData(param)
   },
   // 返回
@@ -328,41 +333,65 @@ Page({
       GoodsInfoData: GoodsInfoData
     })
   },
-   // 提交修改或新增货品
-  submitGoodsInfo:function(e){
-    var that = this;
+  // 提交货品之前的验证
+  regBeforeSnb:function(e){
     var target = e.detail.value;
-    target.firsthPrice = this.data.picker_view[0].price ? this.data.picker_view[0].price:0;
+    var GoodsInfoData = this.data.GoodsInfoData;
+    //处理name 空size 空color
+    target.name = target.name || (target.brandid + target.producttype);
+    target.colors = target.colors || "图片色";
+    target.sizes = target.sizes || "均码";
+    if (!target.code){
+      var regobject = "regobject.code";
+      this.setData({
+        "regobject.code":false
+      })
+    } else if (!target.tagprice){
+      this.setData({
+        "regobject.tagprice": false
+      })
+    } else if (!GoodsInfoData.image && !GoodsInfoData.image1 && !GoodsInfoData.image2 && !GoodsInfoData.image3 && !GoodsInfoData.image4){
+      this.setData({
+        "regobject.image": false
+      })
+    }else{
+      this.submitGoodsInfo(target)
+    }
+  },
+   // 提交修改或新增货品
+  submitGoodsInfo: function (target){
+    var that = this;
+    target.firsthPrice = this.data.picker_view[0].price ? this.data.picker_view[0].price : 0;
     target.secondPrice = this.data.picker_view[1].price ? this.data.picker_view[1].price : 0;
     target.thirdPrice = this.data.picker_view[2].price ? this.data.picker_view[2].price : 0;
     target.fourthPrice = this.data.picker_view[3].price ? this.data.picker_view[3].price : 0;
     target.fifthPrice = this.data.picker_view[4].price ? this.data.picker_view[4].price : 0;
-    if (this.data.GoodsInfoData.image){
+    if (this.data.GoodsInfoData.image) {
       target.image = this.data.GoodsInfoData.image.replace(/http:\/\/117.149.24.42:8788/g, '');
     }
-    if (this.data.GoodsInfoData.image1){
+    if (this.data.GoodsInfoData.image1) {
       target.image1 = this.data.GoodsInfoData.image1.replace(/http:\/\/117.149.24.42:8788/g, '');
       console.log(this.data.GoodsInfoData)
     }
-    if (this.data.GoodsInfoData.image2){
+    if (this.data.GoodsInfoData.image2) {
       target.image2 = this.data.GoodsInfoData.image2.replace(/http:\/\/117.149.24.42:8788/g, '');
     }
-    if (this.data.GoodsInfoData.image3){
+    if (this.data.GoodsInfoData.image3) {
       console.log(this.data.GoodsInfoData)
       target.image3 = this.data.GoodsInfoData.image3.replace(/http:\/\/117.149.24.42:8788/g, '');
     }
-    if (this.data.GoodsInfoData.image4){
+    if (this.data.GoodsInfoData.image4) {
       target.image4 = this.data.GoodsInfoData.image4.replace(/http:\/\/117.149.24.42:8788/g, '');
     }
-    if (this.data.GoodsInfoData.video1){
+    if (this.data.GoodsInfoData.video1) {
       target.video1 = this.data.GoodsInfoData.video1.replace(/http:\/\/117.149.24.42:8788/g, '');
     }
-    if (this.data.GoodsInfoData.video2){
+    if (this.data.GoodsInfoData.video2) {
       target.video2 = this.data.GoodsInfoData.video2.replace(/http:\/\/117.149.24.42:8788/g, '');
     }
-    if (this.data.GoodsInfoData.video3){
+    if (this.data.GoodsInfoData.video3) {
       target.video3 = this.data.GoodsInfoData.video3.replace(/http:\/\/117.149.24.42:8788/g, '');
-    } 
+    }
     target.raise_price = this.data.GoodsInfoData.priceJsons;
     target.fileList = this.data.fileList;
     for (var p = target.fileList.length - 1; p >= 0; p--) {
@@ -388,17 +417,17 @@ Page({
       }
     }
     var objectSubmit = {};
-    if(this.data.id !== ''){
-      objectSubmit = util.api.getEntityModified(this.data.soruceData,target);
+    if (this.data.id !== '') {
+      objectSubmit = util.api.getEntityModified(this.data.soruceData, target);
       objectSubmit.id = this.data.id;
       objectSubmit.description = JSON.stringify(app.description)
       objectSubmit.storeId = app.globalData.storeId
-    }else{
+    } else {
       objectSubmit = target;
       objectSubmit.description = JSON.stringify(app.description)
       objectSubmit.storeId = app.globalData.storeId,
-      objectSubmit.id = undefined,
-      target.name = target.code + target.name
+        objectSubmit.id = undefined,
+        objectSubmit.name = target.code + target.name
     }
     console.log(objectSubmit);
     if (objectSubmit !== null){
@@ -471,13 +500,14 @@ Page({
   },
     // 检测吊牌价与进货价是否存在
   checkboxChange: function (e) {
-    if (!this.data.GoodsInfoData.purchaseprice && this.data.privilegeEmployees) {
-      wx.showToast({
-        title: '请先输入进货价',
-        mask: true,
-        duration: 2000
-      })
-    } else if (!this.data.GoodsInfoData.tagprice) {
+    // if (!this.data.GoodsInfoData.purchaseprice && this.data.privilegeEmployees) {
+    //   wx.showToast({
+    //     title: '请先输入进货价',
+    //     mask: true,
+    //     duration: 2000
+    //   })
+    // } else 
+    if (!this.data.GoodsInfoData.tagprice) {
       wx.showToast({
         title: '请先输入吊牌价',
         mask: true,
@@ -487,13 +517,7 @@ Page({
       this.setData({
         priceUpdate: false
       })
-      
     }
-  },
-  cancel: function () {
-    this.setData({
-      priceUpdate: true
-    })
   },
   // 搜索图片
   GoodsImage: function () {

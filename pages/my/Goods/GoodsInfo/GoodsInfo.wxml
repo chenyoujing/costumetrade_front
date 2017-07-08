@@ -8,14 +8,14 @@
     </navigator>
   </view>
 
-  <form class="upload_content" bindsubmit="submitGoodsInfo" data-id="{{id}}">
+  <form class="upload_content" bindsubmit="regBeforeSnb" data-id="{{id}}">
     <scroll-view scroll-y="true" class="upload_container">
       <view class="upload_input">
         <input type="text"  hidden="true" name="id" value="{{GoodsInfoData.id}}" />
       </view>
       <view class="upload_input clearfix">
         <view class="upload_input_text">名称:</view>
-        <input type="text" class="upload_input1" bindinput="blurInput" data-name="name" bindblur="reg" name="name" value="{{GoodsInfoData.name}}" placeholder="*" placeholder-class="required" />
+        <input type="text" class="upload_input1" bindinput="blurInput" data-name="name" name="name" value="{{GoodsInfoData.name}}" placeholder="*" placeholder-class="required" />
       </view>
        <view class="upload_input_text" wx:if="{{regobject.name == false}}">名称不能为空</view>
       <view class="upload_input clearfix">
@@ -142,7 +142,7 @@
       </view>
       <view class="upload_input">
         <view class="upload_input_text">颜色:</view>
-        <input type="number"  disabled="true" bindblur="blurInput" data-name="colors"  class="upload_input2" bindblur="reg" name="colors" style="padding-right:30px;" value="{{GoodsInfoData.colors}}"/>
+        <input type="number"  disabled="true" bindblur="blurInput" data-name="colors"  class="upload_input2" name="colors" style="padding-right:30px;" value="{{GoodsInfoData.colors}}"/>
         <navigator  url="../GoodsBrand/GoodsBrand?url=color/getAllColors&title=颜色选择" hover-class="navigator-hover">
         <image src="../../../../images/update.png" mode="aspectFit" class="update_image" />
         </navigator>
@@ -151,7 +151,7 @@
       
       <view class="upload_input">
         <view class="upload_input_text">尺码:</view>
-         <input type="number"  disabled="true" bindblur="blurInput" data-name="colors"  class="upload_input2"  bindblur="reg" name="sizes" style="padding-right:30px;" value="{{GoodsInfoData.sizes}}"/>
+         <input type="number"  disabled="true" bindblur="blurInput" data-name="colors"  class="upload_input2" name="sizes" style="padding-right:30px;" value="{{GoodsInfoData.sizes}}"/>
         <navigator  url="../GoodsSize/GoodsSize?url=size/getAllSizes&title=尺码选择" hover-class="navigator-hover">
         <image src="../../../../images/update.png" mode="aspectFit" class="update_image" />
         </navigator>
@@ -265,7 +265,7 @@
 </view>
 
 <!--手动修改销售价-->
-<modal title="修改销售价" hidden="{{priceUpdate}}" bindconfirm="cancel" no-cancel="true">
+<modal title="修改销售价" hidden="{{priceUpdate}}"  data-name = "saleprice" bindconfirm="reg" no-cancel="true">
   <view class="table clearfix">
     <view class="table_text bg_g">客户种类</view>
     <view class="table_text bg_gray">销售价</view>
