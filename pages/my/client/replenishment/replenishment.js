@@ -42,7 +42,7 @@ Page({
       url = "../../openOrder/openOrder?clientId=" + this.data.clientId + "&id=" + id+'&ClientData=true';
       app.selectName = e.target.dataset;
     }else{
-      url = "../../../gird/shop/goods_detail/goods_detail?clientId=" + this.data.clientId + "&id=" + id + '&ClientData=true'
+      url = "../../../grid/shop/goods_detail/goods_detail?clientId=" + this.data.clientId + "&id=" + id + '&ClientData=true'
     };
     console.log(e)
     wx.navigateTo({

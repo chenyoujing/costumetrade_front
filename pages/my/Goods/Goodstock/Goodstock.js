@@ -104,9 +104,11 @@ Page({
         })
       }
     };
-    wx.navigateTo({
-      url: url
-    })
+    if(url){
+      wx.navigateTo({
+        url: url
+      })
+    }
   },
   // 点击保存
   saveStock:function(){
