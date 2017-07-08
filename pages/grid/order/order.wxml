@@ -242,7 +242,7 @@
       <view class="clear"></view>
    
     <view class="order_container_button btn_2" wx:if="{{item.debetamt >0}}" bindtap="collectView" data-status='2' data-orderNo="{{item.payorderno}}" data-debet="{{item.debetamt}}" data-sellerstoreid="{{item.sellerstoreid}}" data-buyerstoreid="{{item.buyerstoreid}}">收付款</view>
-     <view class="order_container_button btn_2" wx:if="{{item.debetamt==0 || !item.debetamt}}" data-status='3' data-orderNo="{{item.payorderno}}"  data-sellerstoreid="{{item.sellerstoreid}}" data-buyerstoreid="{{item.buyerstoreid}}" bindtap="changeOrderStatus">配货</view>
+     <view class="order_container_button btn_2" data-status='3' data-orderNo="{{item.payorderno}}"  data-sellerstoreid="{{item.sellerstoreid}}" data-buyerstoreid="{{item.buyerstoreid}}" bindtap="changeOrderStatus">配货</view>
     <view class="order_container_button" bindtap="changeOrderStatus" data-status='6' data-orderNo="{{item.payorderno}}" data-sellerstoreid="{{item.sellerstoreid}}" data-buyerstoreid="{{item.buyerstoreid}}">取消</view>
     <view class="clear"></view>
   </view>

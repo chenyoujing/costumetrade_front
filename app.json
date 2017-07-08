@@ -9,7 +9,8 @@
     "pages/grid/order/orderDetails/orderDetails",
     "pages/grid/order/logistics/logistics",
     "pages/grid/order/payOrder/payOrder",
-    
+
+
     "pages/grid/user/user",
     "pages/grid/user/goodsLevel/goodsLevel",
     "pages/grid/user/customerType/customerType",
@@ -23,6 +24,9 @@
     "pages/grid/user/notecase/notecase",
     "pages/grid/user/branch/branch",
     "pages/grid/user/dictionary/dictionary",
+    
+
+
     "pages/my/openOrder/openOrder",
     
     "pages/my/openOrder/goodsDetails/goodsDetails",
@@ -39,7 +43,6 @@
     "pages/my/client/clientInfo/clientInfo",
 
     "pages/my/Goods/Goods",
-    
     "pages/my/Goods/GoodsInfo/GoodsInfo",
     "pages/my/Goods/GoodsBrand/GoodsBrand",
     "pages/my/Goods/GoodsBrandAdd/GoodsBrandAdd",

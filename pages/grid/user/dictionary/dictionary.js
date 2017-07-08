@@ -1,4 +1,5 @@
 var util = require('../../../../utils/util.js')
+var printContent = require('../../../../utils/printContent.js')
 var app = getApp()
 Page({
   data: {
@@ -26,8 +27,10 @@ Page({
     submitData:[],
     addObject:{},
     cusDictValue:0,
-    prodDictValue: 0
+    prodDictValue: 0,
+    printNumber:""
   },
+  
   swiper_change: function (e) {
     this.setData({
       current: e.detail.current
@@ -317,7 +320,6 @@ Page({
       }
     })
   },
-  
   // 更改启用的客户种类
   cusgradeChange:function(e){
     var name = e.target.dataset.name;
@@ -628,7 +630,15 @@ Page({
       bill_modal: false
     })
   },
-
+  printNumber:function(e){
+    this.setData({
+      printNumber: e.detail.value
+    })
+  },
+  // 打印配置
+  printSet:function(){
+    printContent.layerDe(null, this.data.printNumber);
+  },
  /***********
    * 打印结束 *
    ***********/

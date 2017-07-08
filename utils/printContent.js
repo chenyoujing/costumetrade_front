@@ -10,14 +10,15 @@
  * @param mbImage ： 图片转码成功后的字符串(付款二维码)
  * @param mbImageLogo ： 图片转码成功后的字符串(LOGO)
  */
-
-var   mydate = new Date();
+var util = require('./util.js')
+var app = getApp()
+var mydate = new Date();
 var printObject = {
-    showapi_userid : localStorage.getItem('showapi_userid'),
-    deviceNumber:localStorage.getItem('deviceNumber'),
+    showapi_userid : "",
+    deviceNumber:"",
     data:null,
-    imgupdata:localStorage.getItem('imgupdata')?localStorage.getItem('imgupdata'):true,
-    imgupdataLogo:localStorage.getItem('imgupdataLogo')?localStorage.getItem('imgupdataLogo'):true,
+    imgupdata:"",
+    imgupdataLogo: "",
     mbImage: '',
     mbImageLogo:'',
     getBmimgage:function () {
@@ -25,92 +26,141 @@ var printObject = {
       wx.getStorage({
         key: 'mbImage',
         success: function(res) {
-          that.mbImage = res.data;
+          that.setData({
+            mbImage:res.data
+          })
         },
       })
       wx.getStorage({
         key: 'mbImageLogo',
         success: function (res) {
-          that.mbImageLogo = res.data;
+          that.setData({
+            mbImageLogo: res.data
+          })
         },
       })
+      wx.getStorage({
+        key: 'imgupdataLogo',
+        success: function (res) {
+          that.setData({
+            imgupdataLogo: res.data
+          })
+        },
+      })
+      wx.getStorage({
+        key: 'imgupdata',
+        success: function (res) {
+         that.setData({
+           imgupdata: res.data
+          })
+        }
+      })
+      wx.getStorage({
+        key: 'showapi_userid',
+        success: function (res) {
+          that.setData({
+            showapi_userid: res.data
+          })
+        }
+      })
+      wx.getStorage({
+        key: 'deviceNumber',
+        success: function (res) {
+          that.setData({
+            deviceNumber: res.data
+          })
+        }
+      })
     },
+    // data 要打印的数据
     refresh:function (data) {
-        var sel = $('#printInner').html();
-        this.data = data;
+        this.data = data
         if(!this.deviceNumber){
           printObject.layerDe('data')
         }else if(!printObject.showapi_userid){
-            printObject.userID('data');
+          printObject.userID('data');
         }
         else {
-            this.endSendGbk(data)
+          this.endSendGbk(data)
         }
-
     },
     // 向我们自己的接口请求userID，成功之后存到本地
     userID:function (type) {
-        window.api.request({
-            url: 'api/v1/print/memobird?mbid='+window.printObject.deviceNumber,
-            type:'post',
-            success: function (data)
-            {
-                localStorage.setItem('showapi_userid',data.mbUser);
-                window.printObject.showapi_userid = data.mbUser;
-                if(type=='img'){
-                    printObject.updataimg(data.mbUser,window.printObject.deviceNumber,umll);
-                }else{
-                    printObject.endSendGbk(window.printObject.data)
-
-                }
-
-            }
-        });
+      var that = this;
+      util.api.request({
+        url: 'print/getPrintUserId',
+        data: {
+          printid: printObject.deviceNumber,
+          storeId: app.globalData.storeId,
+        },
+        method: 'POST',
+        header: {
+          'content-type': 'application/x-www-form-urlencoded'
+        },
+        success: function (res) {
+          wx.hideNavigationBarLoading();
+          wx.setStorage({
+            key: 'showapi_userid',
+            data: res.data.mbUser
+          })
+          printObject.showapi_userid = res.data.mbUser;
+          if (type == 'img') {
+            printObject.updataimg(res.data.mbUser, printObject.deviceNumber, umll);
+          } else if (type == 'data'){
+            printObject.endSendGbk(printObject.data)
+          }
+        }
+      })
     },
     //我们自己的接口 汉字图片转成gbk
     endSendGbk:function (data) {
         var th = this;
-        window.api.request({
-            url: '/api/v1/print/gbk',
-            type:'post',
-            dataType:"JSON",
-            contentType:'application/json',
-            data:JSON.stringify(data),
-            success: function (data)
-            {
-                console.log(th.imgupdata == 'true')
-                console.log(th.imgupdataLogo == 'true')
-                if(th.imgupdata == 'false'&& th.imgupdataLogo == 'false'){
-                    window.printObject.printcontent('T:'+data,window.printObject.showapi_userid);
-                }else if(th.imgupdata == 'false'&& th.imgupdataLogo == 'true')
-                {
-                    window.printObject.printcontent('P:'+window.printObject.mbImageLogo+'|T:'+data,window.printObject.showapi_userid);
-                }else if(th.imgupdata == 'true'&& th.imgupdataLogo == 'false'){
-                    window.printObject.printcontent('T:'+data+'|P:'+window.printObject.mbImage,window.printObject.showapi_userid);
-                }else {
-                    window.printObject.printcontent('P:'+window.printObject.mbImageLogo+'|T:'+data+'|P:'+window.printObject.mbImage,window.printObject.showapi_userid);
-                }
-                layer.open({
-                    content: '打印中，请稍等'
-                    ,skin: 'msg'
-                    ,time: 5 //2秒后自动关闭
-                });
+        util.api.request({
+          url: 'print/gbk',
+          data: {
+            image:"",
+            text:""
+          },
+          method: 'POST',
+          header: {
+            'content-type': 'application/x-www-form-urlencoded'
+          },
+          success: function (res) {
+            wx.hideNavigationBarLoading();
+            console.log(th.imgupdata == 'true')
+            console.log(th.imgupdataLogo == 'true')
+            if (th.imgupdata == 'false' && th.imgupdataLogo == 'false') {
+              printObject.printcontent('T:' + data, printObject.showapi_userid);
+            } else if (th.imgupdata == 'false' && th.imgupdataLogo == 'true') {
+              printObject.printcontent('P:' +printObject.mbImageLogo + '|T:' + data, printObject.showapi_userid);
+            } else if (th.imgupdata == 'true' && th.imgupdataLogo == 'false') {
+              printObject.printcontent('T:' + data + '|P:' + printObject.mbImage, printObject.showapi_userid);
+            } else {
+              printObject.printcontent('P:' + printObject.mbImageLogo + '|T:' + data + '|P:' + printObject.mbImage, printObject.showapi_userid);
             }
-        });
+            wx.showToast({
+              title: "打印中，请稍等",
+              mask: true,
+              duration: 1000
+            })
+          }
+        })
+      
     },
     //最后的打印，咕咕机的接口，ak一定要传，是固定值
     printcontent:function (content,showapi_userid) {
-        var url = 'http://open.memobird.cn/home/printpaper?ak=2ee8fdef2aff4871be0b45c824772c52&timestamp='+mydate.format("yyyy-MM-dd hh:mm:ss") +'&memobirdID='+window.printObject.deviceNumber+'&userID='+showapi_userid;
-        $.ajax({
-            url:url ,
-            type: 'post',
-            data:{
-                printcontent: content
-            },
-            success: function (data) {
-
-            }
-        });
+      var url = 'http://open.memobird.cn/home/printpaper?ak=2ee8fdef2aff4871be0b45c824772c52&timestamp=' + util.formatTime(mydate) +'&memobirdID='+ printObject.deviceNumber+'&userID='+showapi_userid;
+      wx.request({
+        url: url,
+        data: {
+          printcontent: content
+        },
+        method: 'POST',
+        header: {
+          'content-type': 'application/x-www-form-urlencoded'
+        },
+        success: function(res) {}
+      })
     },
     //上传图片给后台
     updataimg:function(mbuser,mbid,idName)
@@ -136,7 +186,7 @@ var printObject = {
                     }else if(idName == "#logofile"){
                         th.mbImageLogo = data.value.mbImage;
                         console.log(th.mbImageLogo)
-                        localforage.setItem('mbImageLogo',data.value.mbImage,null);
+                      localforage.setItem('mbImageLogo',data.value.mbImage,null);
                         $('.logodata').text('已上传');
                     }
                    
@@ -153,37 +203,29 @@ var printObject = {
         });
     },
     // type 是”img“指的是图片，data指的是文本
-    layerDe:function(type){
+    layerDe: function (type, deviceNumber){
         var th = this;
-        var sel = $('#printInner').html();
-        layer.open({
-            content: sel
-            ,btn: ['确定', '取消']
-            ,title: [
-                '请输入打印机的设备编号(双击设备吐出来的设备编号)',
-                'background-color: #78cde5;margin:0;color: #fff;font-size:12px'
-            ]
-            ,yes: function(index){
-                var deviceNumber = $('.printNumber').val();
-                localStorage.setItem('deviceNumber',deviceNumber);
-                window.printObject.deviceNumber =deviceNumber;
-              if(type =='img'){
-                  if(!localStorage.getItem('showapi_userid')){
-                    th.userID('img');
-                  }else{
-                    th.updataimg(window.printObject.showapi_userid,deviceNumber);
-                  }
-              }else{
-                  if(!printObject.showapi_userid){
-                      printObject.userID('data');
-                  }else {
-                      printObject.endSendGbk(printObject.data);
-                  }
-
-              }
-                layer.close(index);
-            }
-        });
+       wx.setStorage({
+         key: 'deviceNumber',
+         data: deviceNumber,
+       })
+        printObject.deviceNumber = deviceNumber;
+        if (!printObject.showapi_userid){
+          th.userID(null);
+        }
+        // if (type == 'img') {
+        //   if (!printObject.showapi_userid) {
+        //     th.userID('img');
+        //   } else {
+        //     th.updataimg(printObject.showapi_userid, deviceNumber);
+        //   }
+        // } else {
+        //   if (!printObject.showapi_userid) {
+        //     printObject.userID('data');
+        //   } else {
+        //     printObject.endSendGbk(printObject.data);
+        //   }
+        // }
     }
 };
-printObject.getBmimgage();
+module.exports = printObject;
