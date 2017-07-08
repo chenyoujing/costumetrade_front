@@ -78,10 +78,10 @@ Page({
         app.sizeArray = arry;
         app.changesizename = ""
       }else{
-        console.log(app.changeId)
         var arry = this.data.sizeProduct;
         var object = {
-          value: app.changeId.value
+          value: app.changeId.value,
+          id: app.changeId.id
         };
         object[app.changesizename] = app.changeData;
         arry.push(object);

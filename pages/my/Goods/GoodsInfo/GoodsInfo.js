@@ -1,4 +1,5 @@
 var util = require('../../../../utils/util.js')
+var reg = require('../../../../utils/reg.js')
 var app = getApp()
 Page({
   data:{
@@ -72,6 +73,25 @@ Page({
     priceUpdate: true,
     userIdentity: '',
     privilegeEmployees: false,
+    regobject:{
+      // name:true
+    }
+  },
+  // 正则验证
+  reg:function(e){
+    var name = e.target.dataset.name;
+    console.log(reg)
+    var boolean = false;
+    var regobject = "regobject."+name;
+    var param = {};
+    if(name == "code"){
+      boolean = reg.iSChinese(e.detail.value);
+    }else{
+      boolean = reg.iSnull(e.detail.value);
+    }
+    param[regobject] = boolean;
+    console.log(param)
+    this.setData(param)
   },
   // 返回
   backdelta: function () {
@@ -614,8 +634,9 @@ Page({
   authorityPurchaseprice:function(){
     var object = util.api.authorityPurchaseprice();
     this.setData({
-      privilegeEmployees: object.privilegeEmployees
+      privilegeEmployees: object.purchasePrivilege
     })
+    console.log(object)
   },
   onLoad: function (options) {
     this.setData({

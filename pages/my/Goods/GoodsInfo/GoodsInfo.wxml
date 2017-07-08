@@ -15,8 +15,9 @@
       </view>
       <view class="upload_input clearfix">
         <view class="upload_input_text">名称:</view>
-        <input type="text" class="upload_input1" bindinput="blurInput" data-name="name" name="name" value="{{GoodsInfoData.name}}" placeholder="*" placeholder-class="required" />
+        <input type="text" class="upload_input1" bindinput="blurInput" data-name="name" bindblur="reg" name="name" value="{{GoodsInfoData.name}}" placeholder="*" placeholder-class="required" />
       </view>
+       <view class="upload_input_text" wx:if="{{regobject.name == false}}">名称不能为空</view>
       <view class="upload_input clearfix">
         <navigator url="../GoodsImage/GoodsImage" class="imagesearch">
           <image src="../../../../images/search.png" mode="aspectFit" class="imagesearch_image" />
@@ -44,11 +45,12 @@
       </view>
       <view class="upload_input clearfix">
         <view class="upload_input_text">吊牌价:</view>
-        <input type="digit" bindinput="blurInput" data-name="tagprice" class="upload_input1" name="tagprice" value="{{GoodsInfoData.tagprice}}" placeholder="*" placeholder-class="required" />
+        <input type="digit" bindinput="blurInput" data-name="tagprice" class="upload_input1" bindblur="reg" name="tagprice" value="{{GoodsInfoData.tagprice}}" placeholder="*" placeholder-class="required" />
       </view>
+      <!--<view class="">请输入吊牌价</view>-->
       <view class="upload_input clearfix">
         <view class="upload_input_text">进货价:</view>
-        <input type = "{{privilegeEmployees?'digit':'password'}}" disabled="{{!privilegeEmployees}}" bindinput="blurInput" data-name="purchaseprice"  class="upload_input1"  name="purchaseprice" value="{{GoodsInfoData.purchaseprice}}" />
+        <input type = "{{privilegeEmployees?'digit':'password'}}" disabled="{{!privilegeEmployees}}"   bindinput="blurInput" data-name="purchaseprice"  class="upload_input1"  name="purchaseprice" value="{{GoodsInfoData.purchaseprice}}" />
       </view>
       <view class="upload_input clearfix">
         <view class="upload_input_text">销售价:</view>
@@ -76,7 +78,7 @@
       </view>
       <view class="upload_input">
         <view class="upload_input_text" >货号:</view>
-        <input type="number" bindinput="blurInput" data-name="code"  class="upload_input1" name="code"  value="{{GoodsInfoData.code}}"/>
+        <input type="text" bindblur="reg"  bindinput="blurInput" data-name="code"  class="upload_input1" name="code"  value="{{GoodsInfoData.code}}"/>
         <view class="clear"></view>
       </view>
       <view class="upload_input">
@@ -140,7 +142,7 @@
       </view>
       <view class="upload_input">
         <view class="upload_input_text">颜色:</view>
-        <input type="number"  disabled="true" bindblur="blurInput" data-name="colors"  class="upload_input2" name="colors" style="padding-right:30px;" value="{{GoodsInfoData.colors}}"/>
+        <input type="number"  disabled="true" bindblur="blurInput" data-name="colors"  class="upload_input2" bindblur="reg" name="colors" style="padding-right:30px;" value="{{GoodsInfoData.colors}}"/>
         <navigator  url="../GoodsBrand/GoodsBrand?url=color/getAllColors&title=颜色选择" hover-class="navigator-hover">
         <image src="../../../../images/update.png" mode="aspectFit" class="update_image" />
         </navigator>
@@ -149,7 +151,7 @@
       
       <view class="upload_input">
         <view class="upload_input_text">尺码:</view>
-         <input type="number"  disabled="true" bindblur="blurInput" data-name="colors"  class="upload_input2" name="sizes" style="padding-right:30px;" value="{{GoodsInfoData.sizes}}"/>
+         <input type="number"  disabled="true" bindblur="blurInput" data-name="colors"  class="upload_input2"  bindblur="reg" name="sizes" style="padding-right:30px;" value="{{GoodsInfoData.sizes}}"/>
         <navigator  url="../GoodsSize/GoodsSize?url=size/getAllSizes&title=尺码选择" hover-class="navigator-hover">
         <image src="../../../../images/update.png" mode="aspectFit" class="update_image" />
         </navigator>

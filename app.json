@@ -39,6 +39,7 @@
     "pages/my/client/clientInfo/clientInfo",
 
     "pages/my/Goods/Goods",
+    
     "pages/my/Goods/GoodsInfo/GoodsInfo",
     "pages/my/Goods/GoodsBrand/GoodsBrand",
     "pages/my/Goods/GoodsBrandAdd/GoodsBrandAdd",
