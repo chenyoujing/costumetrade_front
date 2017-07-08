@@ -1,13 +1,13 @@
 <!--盘点库存模态框-->
 <view class="modal">
   <view class="title clearfix">
-    {{title}}
-    <!--<picker class="sellers" bindchange="sellers" value="{{sellers_index}}" range="{{sellers}}">
-      当前选择：{{sellers[sellers_index]}}
+    <view class="title_text">{{title}}</view>
+    <view class="sellers">
+      {{sellers[sellers_index]}}
       <image src="../../../../images/down.png" mode="aspectFit" class="picker_image" />
-    </picker>-->
-    <image src="../../../../images/close.png" bindtap="backdelta" mode="aspectFit" class="title_image_close" />
-    <image src="../../../../images/customer_service.png" mode="aspectFit" class="image_service" />
+    </view>
+    <image src="../../../../images/close.png" bindtap="backdelta" mode="aspectFit" class="image_srock" />
+    <image src="../../../../images/customer_service.png" mode="aspectFit" class="image_srock" />
   </view>
   <view class="tr bg-w">
     <view class="th th1">序号</view>

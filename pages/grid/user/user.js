@@ -50,7 +50,9 @@ Page({
           that.setData({
             storeInfo:res.data
           })
+          var images = app.globalData.storeInfo[0].images
           app.globalData.storeInfo[0] = res.data
+          app.globalData.storeInfo[0].images = images
         }
       })
     }

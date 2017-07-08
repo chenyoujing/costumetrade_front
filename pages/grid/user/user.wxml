@@ -78,7 +78,7 @@
         <image src="../../../images/Suggestions.png" mode="aspectFit" class="my_content_image" />
         <view class="my_content_text">意见反馈</view>
         <image src="../../../images/right-thrust.png" mode="aspectFit" class="my_content_right" />
-        <button open-type="contact" class="bindtap_cover"></button>
+        <button open-type="contact" class="bindtap_cover" style="opacity: 0.3;"></button>
       </view>
       <navigator class="clearfix" url="vipPlus/vipPlus">
         <image src="../../../images/vip.png" mode="aspectFit" class="my_content_image" />

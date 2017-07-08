@@ -21,8 +21,8 @@
   left: 0;
   right: 0;
   bottom: 0;
-  width: unset;
-  height: unset;
+  width:auto;
+  height:auto;
   z-index:-1;
 }
 .mall_title_bg::after{

@@ -361,6 +361,9 @@ Page({
     param[name] = product;
     submitData[name] = product;
     param['submitData'] = submitData;
+    if (name = "payProduct"){
+      app.payTypeList = submitData.payProduct
+    }
     this.setData(param)
     this.submitData()
   },
@@ -480,7 +483,10 @@ Page({
         param[addObject.name] = product;
         param["submitData"] = submitData;
         this.setData(param)
-       
+        if (addObject.name = "payProduct") {
+          app.payTypeList = submitData.payProduct
+        }
+
         this.submitData()
         this.cancel();
       }

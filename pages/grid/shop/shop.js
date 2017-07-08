@@ -60,35 +60,6 @@ Page({
     this.setData({
       myselfStord: app.globalData.storeInfo[0]
     })
-    // var socketOpen = false
-    // var socketMsgQueue = ['']
-    // var openidList = ['oDy7t0GCpfxdFdFyNPhu_VYVufS4','oDy7t0HjUcYhdFMgiFbuFHCqSEGo']
-    // if (app.globalData.openid == openidList[0]){
-    //   var openid1 = openidList[0]
-    //   var openid2 = openidList[1]
-    // }else{
-    //   var openid2 = openidList[0]
-    //   var openid1 = openidList[1]
-    // }
-
-    // wx.request({
-    //   url: 'https://api.weixin.qq.com/cgi-bin/token',
-    //   data: {
-    //     grant_type: "client_credential",
-    //     appid: "wx82428b2ac752c6a3",
-    //     secret: "ed8c5aa16cf56f66339fcb4be3377e30",
-    //   },
-    //   method: 'GET',
-    //   header: {
-    //     'content-type': 'application/x-www-form-urlencoded'
-    //   },
-    //   success: function (res) {
-    //     console.log(res.data.access_token)
-    //     console.log(1)
-    //     app.access_token = res.data.access_token
-
-    //   }
-    // })
 
     
     // wx.connectSocket({
@@ -120,19 +91,6 @@ Page({
     //   data: '123',
     //   success:function(){
     //     console.log('123')
-    //   }
-    // })
-    // wx.getSetting({
-    //   success(res) {
-    //     if (!res['scope.writePhotosAlbum']) {
-    //       wx.authorize({
-    //         scope: 'scope.writePhotosAlbum',
-    //         success() {
-    //           // 用户已经同意小程序使用录音功能，后续调用 wx.startRecord 接口不会弹窗询问
-    //           wx.saveImageToPhotosAlbum()
-    //         }
-    //       })
-    //     }
     //   }
     // })
   },

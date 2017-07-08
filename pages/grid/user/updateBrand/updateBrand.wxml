@@ -24,7 +24,7 @@
       <view class="option_text one_line">{{item.brandname||item.catename||item.unit||item.colorname}}</view>
     </view>
   </scroll-view>
-  <button class="modal_submit" bindtap="saveData">确定</button>
+  <navigator open-type="navigateBack" class="modal_submit" bindtap="saveData">确定</navigator>
 </view>
 
 <modal title="修改{{titlename}}" hidden="{{modal}}" bindconfirm="confirm" bindcancel="cancel">

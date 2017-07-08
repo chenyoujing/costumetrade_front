@@ -4,27 +4,22 @@
   background-color: #ffffff;
   color: #000000;
 }
-.image_service{
-  position: absolute;
-  top: 0;
-  left: 50%;
-  right: 0;
-  bottom: 0;
-  margin: auto;
+.image_srock{
+  float: right;
   width: 16px;
   height: 16px;
   padding: 12px 10px;
 }
 .sellers{
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 50%;
-  bottom: 0;
   margin: auto;
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  justify-content: center;
+  width: 120px;
+  height: 30px;
+  font-size: 16px;
+  border: 1px solid #DCDCDC;
+  line-height:24px;
+  padding: 0 8px;
 }
 
 /*模态框*/

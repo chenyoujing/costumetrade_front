@@ -5,7 +5,8 @@ Page({
     id:'',
     title:'',
     product:[],
-    sequenceNum:null
+    sequenceNum:null,
+    sellers_index:0,
   },
   // 返回
   backdelta:function(){
@@ -74,7 +75,7 @@ Page({
     if (this.data.clientType == 1) {
       url = "../../openOrder/openOrder?id=" + id + '&ClientData=true'
     } else {
-      if (this.data.sellers){
+      if (this.data.sellers[this.data.sellers_index]){
         url = "../../../grid/shop/goods_detail/goods_detail?id=" + id + '&ClientData=true'
       }else{
         wx.showToast({
