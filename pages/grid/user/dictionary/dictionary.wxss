@@ -95,7 +95,7 @@ swiper{
 .setting_scroll{
   position: absolute;
   top: 0;
-  bottom: 40px;
+  bottom: 0;
 }
 
 /*打印设置*/

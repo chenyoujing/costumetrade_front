@@ -26,7 +26,7 @@
 
     <!--员工管理-->
     <swiper-item>
-      <scroll-view scroll-y class="setting_scroll" style="bottom:0;">
+      <scroll-view scroll-y class="setting_scroll">
         <view class="prompt_none" wx:if="{{employeeProduct == 0}}">
           <text>您还没有添加店员</text>
         </view>
@@ -44,7 +44,7 @@
         </view>
       </scroll-view>
       <view class="staff_updata" style="left:-{{staff_updata}};right:{{staff_updata}};">
-        <scroll-view scroll-y class="setting_scroll" >
+        <scroll-view scroll-y class="setting_scroll" style="bottom:0;">
           <view class="staff_updata_top">
             <view class="dictionary_input">
               <view class="dictionary_input_text1 clearfix">昵称：</view>
@@ -98,7 +98,7 @@
 
     <!--打印信息-->
     <swiper-item>
-      <scroll-view scroll-y class="setting_scroll">
+      <scroll-view scroll-y class="setting_scroll" style="bottom:40px;">
         <view class="print_title {{print=='wifi'?'print_active':''}}" bindtap="print" data-print="wifi">
           <view class="print_title_text">wifi打印</view>
           <image src="../../../../images/down.png" mode="aspectFit" class="print_down " />
@@ -322,7 +322,6 @@
           </block>
         </view>
       </scroll-view>
-      <button class="submit">保存</button>
     </swiper-item>
 
     <!--高级设置-->
@@ -451,7 +450,6 @@
           <view class="notecase_text">钱包管理</view>
         </navigator>
       </scroll-view>
-      <button class="submit">保存</button>
     </swiper-item>
   </swiper>
 </view>

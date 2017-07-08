@@ -6,7 +6,6 @@ Page({
     title:'',
     client:'',
     clientId:'',
-    scanModal:true,
   },
   // 标题内容
   client_add_title: function (){
