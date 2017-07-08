@@ -1,4 +1,5 @@
 var util = require('../../../../utils/util.js')
+var printContent = require('../../../../utils/printContent.js')
 var app = getApp()
 Page({
   data: {
@@ -290,9 +291,56 @@ Page({
   },
 
  // 打印账单
+  printNumber: function (e) {
+    this.setData({
+      printNumber: e.detail.value
+    })
+    console.log(55)
+  },
+  printSet: function () {
+    var that = this;
+    wx.getStorage({
+      key: 'deviceNumber',
+      success: function (res) {
+        console.log()
+        if (!res.data) {
+          wx.setStorage({
+            key: "deviceNumber",
+            data: that.data.printNumber
+          })
+        }
+      },
+      fail: function () {
+        wx.setStorage({
+          key: "deviceNumber",
+          data: that.data.printNumber
+        })
+      }
+    })
+    printContent.guguPrint(this.data.printNumber);
+    this.cancel()
+  },
   SendPrintBill:function(){
-    this.bill_print()
-    this.stringSendFunction("type1",2)
+    var stringSend = this.stringSendFunction("type1",2);
+    var that = this;
+    wx.getStorage({
+      key: 'deviceNumber',
+      success: function(res) {
+        console.log(111)
+        if (!res.data){
+          that.bill_print();
+        }else{
+          printContent.getBmimgage();
+          printContent.refresh(stringSend);
+        }
+      },
+      fail: function () {
+        console.log(222)
+        that.bill_print();
+      }
+    })
+   
+    
   },
 
   // 打印账单 num=1 打印账单，num=2 是微信账单 type1 微信账单 type2是打印账单
@@ -325,7 +373,7 @@ Page({
       rows += str1 + str2 + this.data.shopCart[p].productName + '\n';
     }
    var stringSend = uname + '\n' + serial + '\n' + xian + '\n' + title + '\n' + rows + xian + '\n' + totleCount + '\n' + realCost + '\n' + totleCost + '\n' + address + '\n' + '\n';
-   console.log(stringSend)
+   return stringSend;
   },
   onLoad:function(options){
     this.setData({

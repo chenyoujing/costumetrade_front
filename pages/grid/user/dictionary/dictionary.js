@@ -28,7 +28,9 @@ Page({
     addObject:{},
     cusDictValue:0,
     prodDictValue: 0,
-    printNumber:""
+    printNumber:"",
+    logopicked:false,
+    codepicked:false
   },
   
   swiper_change: function (e) {
@@ -630,14 +632,60 @@ Page({
       bill_modal: false
     })
   },
+  // 单选框
+  printchange:function(e){
+    var name = e.target.dataset.name;
+    var param = {};
+    param[name] = e.detail.value;
+    console.log(param)
+    // this.setData(param)
+  },
   printNumber:function(e){
     this.setData({
       printNumber: e.detail.value
     })
+    wx.getStorage({
+      key: 'deviceNumber',
+      success: function (res) {
+        if (!res.data) {
+          wx.setStorage({
+            key: "deviceNumber",
+            data: e.detail.value
+          })
+        }
+      },
+    })
+  },
+  chooseImg: function (e) {
+     util.api.chooseImg(e, this.imageCallback)
+  },
+
+  // 上传图片
+  imageCallback: function (e, res) {
+    var tempFilePaths = res.tempFilePaths;
+    this.photoSubmit(tempFilePaths, 0,e);
+  },
+  // 上传图片 gbk
+  photoSubmit: function (file, i,e) {
+    console.log(e)
+    var name = e.target.dataset.name;
+    var that = this;
+    wx.uploadFile({
+      url: util.api.host + 'print/gbk',
+      filePath: file[i],
+      name: 'image',
+      success: function (res) {
+        wx.setStorage({
+          key: name,
+          data: JSON.parse(res.data).data
+        })
+      }
+    })
   },
   // 打印配置
   printSet:function(){
-    printContent.layerDe(null, this.data.printNumber);
+    printContent.guguPrint(this.data.printNumber);
+    this.printModal();
   },
  /***********
    * 打印结束 *

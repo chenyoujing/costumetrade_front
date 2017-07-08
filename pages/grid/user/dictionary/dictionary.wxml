@@ -111,27 +111,27 @@
           </view>
           <view class="dictionary_input clearfix">
             <view class="dictionary_input_text2">默认打印店铺二维码：</view>
-            <radio-group>
-              <label class="radio">
-                <radio value="true" />是
+            <radio-group data-name="codepicked" bindchange="printchange">
+              <label class="radio" >
+                <radio value="true"  checked="{{codepicked}}"/>是
               </label>
               <label class="radio">
-                <radio value="false" checked />否
+                <radio value="false" checked="{{!codepicked}}" />否
               </label>
             </radio-group>
-            <view class="image_operation_button">上传店铺二维码</view>
+            <view class="image_operation_button" data-name="mbImage" bindtap="chooseImg">上传店铺二维码</view>
           </view>
           <view class="dictionary_input clearfix">
             <view class="dictionary_input_text2">默认打印店铺logo：</view>
-            <radio-group>
-              <label class="radio">
-                <radio value="true" />是
+              <radio-group data-name="logopicked" bindchange="printchange">
+              <label class="radio" >
+                <radio value="true"  checked="{{logopicked}}"/>是
               </label>
               <label class="radio">
-                <radio value="false" checked />否
+                <radio value="false" checked="{{!logopicked}}" />否
               </label>
             </radio-group>
-            <view class="image_operation_button">上传店铺logo图片</view>
+            <view class="image_operation_button" data-name="mbImageLogo" bindtap="chooseImg">上传店铺logo图片</view>
           </view>
         </scroll-view>
         <view class="print_title {{print=='ly'?'print_active':''}}" bindtap="print" data-print="ly">
