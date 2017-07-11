@@ -1,3 +1,5 @@
+<import src="../../../../template/template.wxml"/>
+
 <!--头部-->
 <view class="title clearfix">
   <navigator open-type="navigateBack">
@@ -8,35 +10,10 @@
 </view>
 
 <scroll-view scroll-y class="report_scroll">
-  <view class="time_select" wx:if="{{timebool == 1}}">
-    <view class="select_view {{selected==0?'selected':''}}" bindtap="select" data-index="0" data-number="0">今日</view>
-    <view class="select_view {{selected==1?'selected':''}}" bindtap="select" data-index="1" data-number="7">7日</view>
-    <view class="select_view {{selected==2?'selected':''}}" bindtap="select" data-index="2" data-number="30">30日</view>
-    <view class="select_view {{selected==3?'selected':''}}" bindtap="select" data-index="3" data-number="90">90日</view>
-    <view class="select_view {{selected==4?'selected':''}}" bindtap="select" data-index="4"  data-number="false">...</view>
-  </view>
-  <view class="time_select" wx:if="{{timebool !== 1}}">
-    <picker class="select_view" value="{{beginTime}}" name="beginTime"  data-name="beginTime" bindchange="timeChange" mode="date" >
-      {{beginTime}}
-    </picker>
-    <view class="time_select_line"></view>
-    <picker class="select_view" value="{{endTime}}" name="endTime" bindchange="timeChange" mode="date" data-name="endTime">
-      {{endTime}}
-    </picker>
-    <view class="select_view"   bindtap="select" data-number="true">返回</view>
-  </view>
-  <view class="search_input_view">
-    <input type="text" class="search_input" bindfocus="screen" />
-    <image src="../../../../images/search.png" mode="aspectFit" class="search_input_image" />
-    <scroll-view scroll-y class="screen_scroll {{screen}}">
-      <view class="screen_title">供货商名称</view>
-      <scroll-view scroll-y class="screen_content">
-        <block wx:for="{{10}}">
-          <view class="screen_view {{index==1?'screen_selected':''}}">连衣裙</view>
-        </block>
-      </scroll-view>
-    </scroll-view>
-  </view>
+  <template is="report_date" data="{{timebool:timebool,selected:selected,beginTime:beginTime,endTime:endTime}}"></template>
+
+  <template is="report_search" data="{{screen:screen,index:index,screen_selected:screen_selected}}"></template>
+
   <canvas class="canvas" canvas-id="pieCanvas" bindtouchstart="touchHandler"/>
   <view class="bindtap_cover" bindtap="screen_colse" hidden="{{!screen}}"></view>
 </scroll-view>

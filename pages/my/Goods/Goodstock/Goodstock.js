@@ -98,7 +98,7 @@ Page({
       url = "../../openOrder/openOrder?id=" + id + '&ClientData=true'
     } else {
       if (store){
-        url = "../../../grid/shop/goods_detail/goods_detail?strod=" + store.sellerstoreid + "ID=" + id + '&ClientData=true'
+        url = "../../../grid/shop/goods_detail/goods_detail?strod=" + store.sellerstoreid + "&ID=" + id + '&ClientData=true'
       }else{
         wx.showToast({
           title: '该货品没有供货商',

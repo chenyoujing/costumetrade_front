@@ -1,3 +1,5 @@
+<import src="../../../../template/template.wxml"/>
+
 <!--头部-->
 <view class="title clearfix">
   <navigator open-type="navigateBack">
@@ -9,9 +11,8 @@
 
 <scroll-view scroll-y class="report_scroll">
   <view style="height:1px;width:100%;"></view>
-  <input type="text" class="search_input">
-    <image src="../../../../images/search.png" mode="aspectFit" class="search_input_image" />
-  </input>
+  <template is="report_search" data="{{screen:screen,index:index,screen_selected:screen_selected}}"></template>
+
   <!--<canvas class="canvas" canvas-id="columnCanvas" bindtouchmove="touchHandler" bindtouchstart="touchHandler"/>-->
   <view class="report_form">
     <view class="form_title">
