@@ -52,8 +52,7 @@ Page({
         console.log(res.data)
        
         that.setData({
-          data: data,
-
+          data: res.data,
         })
       }
     })

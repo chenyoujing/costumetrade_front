@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/my/report/report",
     
     "pages/grid/shop/shop",
     "pages/grid/info/info",
@@ -68,7 +69,6 @@
     "pages/index/index",
     
 
-    "pages/my/report/report",
     "pages/my/report/allreport/allreport",
     "pages/my/report/purchase/purchase",
     "pages/my/report/purchase_analysis/purchase_analysis",
