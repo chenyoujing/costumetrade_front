@@ -35,7 +35,8 @@ Page({
   bill_wechat: function (e) {
     this.setData({
       bill_wechat: false
-    })
+    });
+    this.scan()
   },
   cancel: function () {
     this.setData({
@@ -374,6 +375,28 @@ Page({
     }
    var stringSend = uname + '\n' + serial + '\n' + xian + '\n' + title + '\n' + rows + xian + '\n' + totleCount + '\n' + realCost + '\n' + totleCost + '\n' + address + '\n' + '\n';
    return stringSend;
+  },
+  // 微信二维码
+  setdata: function (data) {
+    this.setData(data)
+  },
+  // 获取二维码
+  scan: function () {
+    var type = this.data.type == 1 ? 2 : 1;
+    util.api.scan(type, this.setdata)
+  },
+  // 扫描成功的回调
+  callback: function (data) {
+    // app.addCustomerInfo = data
+    // wx.navigateTo({
+    //   url: 'clientAdd/clientAdd?client=' + this.data.client + "&clientId=" + this.data.id + "&scan=" + true
+    // })
+  },
+  // 扫好了
+  confirm: function () {
+    var type = this.data.type == 1?2:1;
+    util.api.scanOk(type, null, this.callback)
+    this.cancel()
   },
   onLoad:function(options){
     this.setData({

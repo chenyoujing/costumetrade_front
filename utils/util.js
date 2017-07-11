@@ -246,8 +246,6 @@ var api = {
         'content-type': 'application/json'
       },
       success: function (res) {
-        console.log(res)
-    
         that.updataStorage(res.data, client  )
         wx.hideNavigationBarLoading();
         if (!res.data.id) {
@@ -344,22 +342,19 @@ var api = {
         'content-type': 'application/x-www-form-urlencoded'
       },
       success: function (res) {
-        console.log(res.data)
         wx.hideNavigationBarLoading();
         app.screen_brandList = res.data.brandList;//品牌
-        console.log(app.screen_brandList)
         app.screen_productTypeList = res.data.productTypeList || [];//种类
         app.screen_productSize = res.data.productSize || [],//尺码组
-          app.screen_gradeList = res.data.gradeList || [],//等级
-          app.screen_unitList = res.data.unitList || [],//单位
-          app.custOrDiscTag = res.data.custOrDiscTag || [],//折扣or打折
-          app.custProdPrice = res.data.custProdPrice || [],//启用的价格
-          app.privilegeEmployees = res.data.privileges || [],//员工权限
-          app.customerTypeList = res.data.customerTypeList || [],//待确定
-          app.logisticFees = res.data.logisticFees || [],//快递
-          app.payTypeList = res.data.payTypeList || [],//支付方式
+        app.screen_gradeList = res.data.gradeList || [],//等级
+        app.screen_unitList = res.data.unitList || [],//单位
+        app.custOrDiscTag = res.data.custOrDiscTag || [],//折扣or打折
+        app.custProdPrice = res.data.custProdPrice || [],//启用的价格
+        app.privilegeEmployees = res.data.privileges || [],//员工权限
+        app.customerTypeList = res.data.customerTypeList || [],//待确定
+        app.logisticFees = res.data.logisticFees || [],//快递
+        app.payTypeList = res.data.payTypeList || [],//支付方式
         app.getProductInit = true;
-        console.log(res.data)
       }
     })
   },

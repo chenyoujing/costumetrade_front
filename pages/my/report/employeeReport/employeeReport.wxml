@@ -1,0 +1,53 @@
+<!--头部-->
+<view class="title clearfix">
+  <navigator open-type="navigateBack">
+    <image src="../../../../images/back-away.png" mode="aspectFit" class="title_image_back" />
+  </navigator>
+  <view class="title_text">{{title}}</view>
+</view>
+
+<scroll-view scroll-y class="report_scroll">
+  <view class="time_select" wx:if="{{timebool == 1}}">
+    <view class="select_view {{selected==0?'selected':''}}" bindtap="select" data-index="0" data-number="0">今日</view>
+    <view class="select_view {{selected==1?'selected':''}}" bindtap="select" data-index="1" data-number="7">7日</view>
+    <view class="select_view {{selected==2?'selected':''}}" bindtap="select" data-index="2" data-number="30">30日</view>
+    <view class="select_view {{selected==3?'selected':''}}" bindtap="select" data-index="3" data-number="90">90日</view>
+    <view class="select_view {{selected==4?'selected':''}}" bindtap="select" data-index="4"  data-number="false">...</view>
+  </view>
+<view class="time_select" wx:if="{{timebool !== 1}}">
+    <picker class="select_view" value="{{beginTime}}" name="beginTime"  data-name="beginTime" bindchange="timeChange" mode="date" >
+      {{beginTime}}
+    </picker>
+    <view class="time_select_line"></view>
+    <picker class="select_view" value="{{endTime}}" name="endTime" bindchange="timeChange" mode="date" data-name="endTime">
+      {{endTime}}
+    </picker>
+    <view class="select_view"  bindtap="select" data-number="true">返回</view>
+  </view>
+
+  <input type="text" class="search_input" bindfocus="bindFaous">
+    <image src="../../../../images/search.png" mode="aspectFit" class="search_input_image" />
+  </input>
+
+  <canvas class="canvas" canvas-id="columnCanvas" />
+  
+  <view class="report_form">
+    <view class="form_title">
+      <view class="form_view">{{thTitle}}</view>
+     <view class="form_view" data-name="quantityOp" bindtap="sort">
+        数量
+        <image src="../../../../images/sort_report.png" mode="aspectFit" class="form_sort" />
+      </view>
+      <view class="form_view"  data-name="amountOp" bindtap="sort">
+        金额
+        <image src="../../../../images/sort_report.png" mode="aspectFit" class="form_sort" />
+      </view>
+    </view>
+    <view class="form_content form_active" wx:for="{{product}}">
+      <view class="form_view">{{item.createBy}}</view>
+      <view class="form_view">{{item.quantity}}</view>
+      <view class="form_view">{{item.amount}}</view>
+    </view>
+  
+  </view>
+</scroll-view>
