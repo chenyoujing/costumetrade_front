@@ -92,12 +92,13 @@ Page({
   // 相应的跳转
   skipUrl: function (e) {
     var id = this.data.id;
+    var store = this.data.sellers[this.data.sellers_index]
     var url = "";
     if (this.data.clientType == 1) {
       url = "../../openOrder/openOrder?id=" + id + '&ClientData=true'
     } else {
-      if (this.data.sellers[this.data.sellers_index]){
-        url = "../../../grid/shop/goods_detail/goods_detail?id=" + id + '&ClientData=true'
+      if (store){
+        url = "../../../grid/shop/goods_detail/goods_detail?strod=" + store.sellerstoreid + "ID=" + id + '&ClientData=true'
       }else{
         wx.showToast({
           title: '该货品没有供货商',

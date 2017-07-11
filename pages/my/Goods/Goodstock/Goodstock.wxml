@@ -8,7 +8,7 @@
 
       <scroll-view scroll-y class="sellers_scroll {{sellers_scroll_active}}">
         <block wx:for="{{sellers}}">
-          <view class="sellers_view" bindtap="sellers_select" data-index="{{index}}">{{sellers[index]}}</view>
+          <view class="sellers_view" bindtap="sellers_select" data-index="{{index}}">{{sellers[index].name}}</view>
         </block>
       </scroll-view>
     </view>
