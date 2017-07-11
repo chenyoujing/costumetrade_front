@@ -17,7 +17,8 @@ Page({
     quantityOp: { value:"quantityOp",op:"des"},
     amountOp: { value: "amountOp", op: "des" },
     categories:[],
-    data:[]
+    data1:[],
+    pageNum:1
   },
   purchase_request: function () {
     var that = this
@@ -30,7 +31,7 @@ Page({
         timeTo: that.data.endTime + " 23:59:59",
         reportType: that.data.reportType,
         filter: { field: "productName", value: null },
-        rules:[],
+        rules: that.data.rules,
         sort:that.data.sort
       },
       method: 'POST',
@@ -40,8 +41,8 @@ Page({
       success: function (res) {
         wx.hideNavigationBarLoading();
         var productReportQuerys = res.data.productReportQuerys;
-        var categories = [];
-        var dataReport = [];
+        var categories = that.data.pageNum==1?[]: that.data.categories;
+        var dataReport = that.data.pageNum == 1 ? [] : that.data.dataReport;
         for (var p in productReportQuerys){
           var time = '';
           productReportQuerys[p].timeTo = util.formatTime(new Date(productReportQuerys[p].timeTo));
@@ -49,11 +50,11 @@ Page({
           categories.push(time);
           dataReport.push(productReportQuerys[p].quantity || 0 );
         }
-        if (categories.length >0){
+        // if (categories.length >0){
           that.chart(dataReport, categories)
-        }
+        // }
         that.setData({
-          product: res.data.purchaseReportQuerys,
+          product: res.data.purchaseReportQuerys||[],
         })
       }
     })
@@ -139,5 +140,20 @@ Page({
     this.reportName(e.reportType)
     this.purchase_request()
     
+  },
+  onShow:function(){
+    if (app.getFilterData || app.searchValue) {
+      console.log(11)
+      this.setData({
+        pageNum: 1,
+        product: [],
+        // requestSwitch: true,
+        // code: app.searchValue ? app.searchValue : '',
+        // name: app.searchValue ? app.searchValue : '',
+        rules: app.getFilterData ? app.getFilterData : undefined
+      })
+      this.purchase_request();
+      app.getFilterData = [];
+    }
   }
 })

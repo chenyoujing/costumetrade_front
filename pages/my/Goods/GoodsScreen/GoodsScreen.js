@@ -59,7 +59,6 @@ Page({
     }
     this.setData(object)
   },
-  
    // 季节、状态单选
   radioSelect:function(e){
     var type = e.target.dataset.type;
@@ -96,6 +95,20 @@ Page({
         value: season
       })
     }  
+    if(this.data.type == "report"){
+      getFilterData.push({
+        filed: 'operatorArray',
+        value: this.data.operatorArray
+      })
+      getFilterData.push({
+        filed: 'productColorArray',
+        value: this.data.productColorArray
+      })
+      getFilterData.push({
+        filed: 'productSizeArray',
+        value: this.data.productSizeArray
+      })
+    }
     if (this.data.enterValue){
       app.searchValue = this.data.enterValue;     
     };
@@ -105,6 +118,7 @@ Page({
         value: status
       })
     };
+    console.log(getFilterData)
     app.getFilterData = getFilterData;
     wx.navigateBack({
       delta: 1
@@ -137,14 +151,42 @@ Page({
   downData:function(){
     util.api.supplierRefresh('product/getProducts', "GoodsData", 'updataTime', this.callback);
   },
+  // 报表里面的过滤条件
+  reportslect:function(){
+    var that = this
+    wx.showNavigationBarLoading()
+    util.api.request({
+      url: 'report/filterQuery',
+      data: {
+        openid: app.globalData.openid
+      },
+      method: 'POST',
+      header: {
+        'content-type': 'application/json'
+      },
+      success: function (res) {
+        wx.hideNavigationBarLoading();
+        console.log(res)
+        var clientCustomers = [];
+        var clientSuppliers = [];
+        var cplorList = [];
+        var employeeList = [];
+        var sizeList = [];
+        that.setData({
+          clientCustomers: res.data.clientCustomers,
+          clientSuppliers: res.data.clientSuppliers,
+          cplorList: res.data.cplorList,
+          employeeList: res.data.employeeList,
+          sizeList: res.data.sizeList,
+          product: res.data.purchaseReportQuerys,
+        })
+      }
+    })
+  },
   onLoad: function (options) {
     if (!app.logisticFees && app.globalData.userIdentity !== 2) {
       util.api.getProductInit()
     }
-    this.setData({
-      type: options.type
-    })
-    this.downData();
     var screen_content1 = app.screen_brandList;
     var screen_content2 = app.screen_productTypeList;
     for (var p in screen_content1){
@@ -155,7 +197,12 @@ Page({
     }
     this.setData({
       screen_content1: screen_content1,
-      screen_content2: screen_content2
+      screen_content2: screen_content2,
+      type: options.type
     })
+    this.downData();
+    if (options.type == 'report'){
+      this.reportslect();
+    }
   }
 })

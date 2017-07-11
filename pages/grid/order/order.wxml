@@ -180,7 +180,7 @@
         <view class="order_container_text" style="margin-top:5px;">经手人：{{item.operator}}</view>
       </view>
       <view class="clear"></view>
-    <navigator url="orderDetails/orderDetails?ordertype={{ordertype}}&payorderno={{item.payorderno}}&ordertype2=5" class="order_container_button btn_2" >评价</navigator>
+    <navigator url="orderDetails/orderDetails?ordertype={{ordertype}}&payorderno={{item.payorderno}}&ordertype2=5&storeId={{item.sellerstoreid}}" class="order_container_button btn_2" >评价</navigator>
     <view class="order_container_button"  wx:if="{{item.canCancellation}}"  bindtap="changeOrderStatus" data-status='7' data-orderNo="{{item.payorderno}}" data-sellerstoreid="{{item.sellerstoreid}}" data-buyerstoreid="{{item.buyerstoreid}}">作废</view>
     <view class="clear"></view>
   </view>

@@ -11,22 +11,22 @@
 
 <!--筛选-->
 <view class="screen"  wx:if="{{!changeBoolean}}">
- <view class="screen_title" wx:if="{{type == 'report'}}">供货商名称</view>
+ <!--<view class="screen_title" wx:if="{{type == 'report'}}">供货商名称</view>
   <scroll-view scroll-y class="screen_container clearfix" wx:if="{{type  == 'report'}}">
-    <block wx:for="{{screen_content4}}">
-      <view class="screen_view {{status == item.name?'screen_checked':''}}" data-type="status" data-name="{{item.name}}" bindtap="radioSelect">
-      {{item.value}}
+    <block wx:for="{{clientCustomers}}">
+      <view class="screen_view {{status == item.name?'screen_checked':''}}" data-type="productClientSuppierArray" data-name="{{item.name}}" bindtap="radioSelect">
+      {{item.nickName}}
       </view>
      </block>
   </scroll-view>
   <view class="screen_title" wx:if="{{type == 'report'}}">客户名称</view>
   <scroll-view scroll-y class="screen_container clearfix" wx:if="{{type  == 'report'}}">
     <block wx:for="{{screen_content4}}">
-      <view class="screen_view {{status == item.name?'screen_checked':''}}" data-type="status" data-name="{{item.name}}" bindtap="radioSelect">
+      <view class="screen_view {{status == item.name?'screen_checked':''}}" data-type="productClientCustomerArray" data-name="{{item.name}}" bindtap="radioSelect">
       {{item.value}}
       </view>
      </block>
-  </scroll-view>
+  </scroll-view>-->
   <view class="screen_title">类别</view>
   <scroll-view scroll-y class="screen_container clearfix">
     <block wx:for="{{screen_content2}}">
@@ -41,25 +41,25 @@
   </scroll-view>
    <view class="screen_title" wx:if="{{type == 'report'}}">颜色</view>
   <scroll-view scroll-y class="screen_container clearfix" wx:if="{{type  == 'report'}}">
-    <block wx:for="{{screen_content4}}">
-      <view class="screen_view {{status == item.name?'screen_checked':''}}" data-type="status" data-name="{{item.name}}" bindtap="radioSelect">
-      {{item.value}}
+    <block wx:for="{{cplorList}}">
+      <view class="screen_view {{productColorArray == item.colorname?'screen_checked':''}}" data-type="productColorArray" data-name="{{item.colorname}}" bindtap="radioSelect">
+      {{item.colorname}}
       </view>
      </block>
   </scroll-view>
   <view class="screen_title" wx:if="{{type == 'report'}}">尺码</view>
   <scroll-view scroll-y class="screen_container clearfix" wx:if="{{type  == 'report'}}">
-    <block wx:for="{{screen_content4}}">
-      <view class="screen_view {{status == item.name?'screen_checked':''}}" data-type="status" data-name="{{item.name}}" bindtap="radioSelect">
-      {{item.value}}
+    <block wx:for="{{sizeList}}">
+      <view class="screen_view {{productSizeArray == item.sizename?'screen_checked':''}}" data-type="productSizeArray" data-name="{{item.sizename}}" bindtap="radioSelect">
+      {{item.sizename}}
       </view>
      </block>
   </scroll-view>
   <view class="screen_title" wx:if="{{type == 'report'}}">创建人</view>
   <scroll-view scroll-y class="screen_container clearfix" wx:if="{{type  == 'report'}}">
-    <block wx:for="{{screen_content4}}">
-      <view class="screen_view {{status == item.name?'screen_checked':''}}" data-type="status" data-name="{{item.name}}" bindtap="radioSelect">
-      {{item.value}}
+    <block wx:for="{{employeeList}}">
+      <view class="screen_view {{operatorArray == item.id?'screen_checked':''}}" data-type="operatorArray" data-name="{{item.id}}" bindtap="radioSelect">
+      {{item.reallyName}}
       </view>
      </block>
   </scroll-view>
