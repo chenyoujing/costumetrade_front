@@ -1,1 +1,19 @@
 /* pages/grid/shop/Bluetooth/Bluetooth.wxss */
+
+page > view{
+  padding: 10px 20px;
+  border-bottom: 1px solid #DCDCDC;
+  font-size: 16px;
+}
+page{
+  counter-reset: number;
+}
+page > view::before{
+  counter-increment: number 1;
+  content:counters(number,"-") '.';
+}
+scroll-view view{
+  padding: 10px 40px;
+  font-size: 14px;
+  border-bottom: 1px solid #DCDCDC;
+}

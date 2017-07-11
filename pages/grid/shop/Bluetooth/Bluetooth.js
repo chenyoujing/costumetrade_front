@@ -123,6 +123,7 @@ wx.getBluetoothAdapterState({
 },  
 //断开与低功耗蓝牙设备的连接  
 closeBLEConnection:function(){  
+  var that = this
   wx.closeBLEConnection({  
     deviceId: that.data.deviceId, 
     success: function (res) {  
