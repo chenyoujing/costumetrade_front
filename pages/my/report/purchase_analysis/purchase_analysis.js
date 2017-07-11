@@ -16,6 +16,14 @@ Page({
     beginTime: "",//开始时间
     endTime: ""//结束时间
   },
+  updateData: function () {
+    var series = this.data.data.invReportQuerys;
+    console.log(series)
+    pieChart.updateData({
+      series: series
+    });
+  },
+
   purchase_request: function () {
     var that = this
     wx.showNavigationBarLoading()
@@ -23,8 +31,8 @@ Page({
       url: 'report/purchaseAnalysisReport',
       data: {
         openid: app.globalData.openid,
-        // timeFrom: that.data.beginTime + " 00:00:00",
-        // timeTo: that.data.endTime + " 23:59:59",
+        timeFrom: that.data.beginTime + " 00:00:00",
+        timeTo: that.data.endTime + " 23:59:59",
         filter: { field: "productName", value: null },
       },
       method: 'POST',
@@ -34,8 +42,12 @@ Page({
       success: function (res) {
         wx.hideNavigationBarLoading();
         console.log(res.data)
+        that.setData({
+          data: res.data
+        })
       }
     })
+    this.updateData()
   },
 
   // 打开多功能键

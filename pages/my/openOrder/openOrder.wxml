@@ -92,7 +92,7 @@
         </label>
       </radio-group>
     </scroll-view>
-    <view class="keyboard_name">{{GoodsDetail.name}}</view>
+    <view class="keyboard_name one_line">{{GoodsDetail.name}}</view>
     <view class="keyboard_join" bindtap="SalePassOrNot">加入</view>
   </view>
   

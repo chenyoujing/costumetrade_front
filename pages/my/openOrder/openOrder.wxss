@@ -115,17 +115,24 @@
 .order_view{
   color: #000000;
   position: relative;
+  display: flex;
 }
 .order_view view{
   float: left;
   font-size: 14px;
   text-align: center;
-  line-height: 30px;
-  height: 30px;
+  min-height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  word-break:break-all;
 }
 .order_view_delete{
   position: absolute;
   right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
   width: 12%;
 }
 .bg_w{

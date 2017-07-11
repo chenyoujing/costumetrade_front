@@ -1,9 +1,9 @@
 <!--盘点库存模态框-->
 <view class="modal">
   <view class="title clearfix">
-    <view class="title_text">{{title}}</view>
+    <view class="title_text one_line" style="max-width:calc(100% - 250px);">{{title}}</view>
     <view class="sellers" bindtap="sellers">
-      {{sellers[sellers_index]}}
+      {{sellers[sellers_index]||'无供应商'}}
       <image src="../../../../images/down.png" mode="aspectFit" class="picker_image" />
 
       <scroll-view scroll-y class="sellers_scroll {{sellers_scroll_active}}">
