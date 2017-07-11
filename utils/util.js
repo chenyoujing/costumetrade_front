@@ -231,16 +231,20 @@ var api = {
     return product;
   }, 
   // 二维码扫好了。。。
-  scanOk: function (client, id, callback) {
+  scanOk: function (client, id, callback, stringSend) {
     var that = this;
-    wx.showNavigationBarLoading()
+    wx.showNavigationBarLoading();
+    var data = {
+      type: client,
+      storeId: app.globalData.storeId,
+      id: id
+    };
+    if (stringSend){
+      data.context = stringSend;
+    }
     this.request({
       url: 'client/scanQRCodeOk',
-      data: {
-        type: client,
-        storeId: app.globalData.storeId,
-        id: id
-      },
+      data: data,
       method: 'POST',
       header: {
         'content-type': 'application/json'
@@ -252,7 +256,7 @@ var api = {
           wx.showToast({
             title: res.msg,
           })
-        } else {
+        } else if (callback){
           callback(res.data)
         }
       }

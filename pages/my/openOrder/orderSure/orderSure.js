@@ -385,17 +385,13 @@ Page({
     var type = this.data.type == 1 ? 2 : 1;
     util.api.scan(type, this.setdata)
   },
-  // 扫描成功的回调
-  callback: function (data) {
-    // app.addCustomerInfo = data
-    // wx.navigateTo({
-    //   url: 'clientAdd/clientAdd?client=' + this.data.client + "&clientId=" + this.data.id + "&scan=" + true
-    // })
-  },
+ 
   // 扫好了
   confirm: function () {
     var type = this.data.type == 1?2:1;
-    util.api.scanOk(type, this.data.id, this.callback ,this.stringSendFunction("type1",2))
+    var stringSend = this.stringSendFunction("type2", 1);
+    console.log(stringSend)
+    util.api.scanOk(type, this.data.id, null, stringSend)
     this.cancel()
   },
   onLoad:function(options){
