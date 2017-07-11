@@ -22,7 +22,10 @@
 <!--更多功能-->
 <view class="more_function_cover {{animation}}" bindtap="more_function_close" style="display:{{more_function_display}};"></view>
 <view class="more_function {{animation}}" style="display:{{more_function_display}};">
-  <view class="more_function_view" data-type="1" bindtap="batchType">123</view>
-  <view class="more_function_view" data-type="2" bindtap="batchType">112</view>
-  <view class="more_function_view" data-type="3" bindtap="batchType">111</view>
+  <view class="more_function_view" data-type="productName"  data-name="商品名称"  bindtap="batchType">商品名称</view>
+  <view class="more_function_view" data-type="clientName"  data-name="供应商" bindtap="batchType">供应商</view>
+  <view class="more_function_view" data-type="brandName"  data-name="品牌" bindtap="batchType">品牌</view>
+  <view class="more_function_view" data-type="productSize"  data-name="尺码" bindtap="batchType">尺码</view>
+  <view class="more_function_view" data-type="productColor"  data-name="颜色" bindtap="batchType">颜色</view>
+  <view class="more_function_view" data-type="createBy"  data-name="创建人" bindtap="batchType">创建人</view>
 </view>
