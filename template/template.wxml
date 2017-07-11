@@ -3,6 +3,9 @@
   <view class="template_reg_text">{{text}}</view>
 </template>
 
+
+<!----------报表---------->
+
 <!--报表-时间选择-->
 <template name="report_date">
   <view class="time_select" wx:if="{{timebool == 1}}">

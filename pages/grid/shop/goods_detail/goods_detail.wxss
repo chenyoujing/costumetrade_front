@@ -141,16 +141,15 @@ swiper image{
 }
 .goods_image{
   width: 120px;
+  min-width: 120px;
   height: 120px;
-  float: left;
 }
 .goods_name{
   padding: 0 20px;
   font-size: 18px;
-  vertical-align:middle;
-  display:table-cell;
-  height: 120px;
-  margin: auto;
+  display: flex;
+  align-items: center;
+  min-height: 120px;
 }
 .goods_container{
   border-bottom: 2px solid #DBF4F1;

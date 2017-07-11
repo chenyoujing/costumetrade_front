@@ -7,7 +7,7 @@
 </view>
   
   <view class="shop">
-    <navigator url="../storeDetails/storeDetails">
+    <navigator url="../storeDetails/storeDetails?id={{stordId}}">
       <image src="{{true?'../../../../images/shop1_tx.png':'../../../../images/image_none.png'}}" mode="aspectFill" class="shop_image" />
     </navigator>
     <view class="shop_name">{{name}}</view>

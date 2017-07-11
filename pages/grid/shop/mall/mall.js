@@ -29,6 +29,26 @@ Page({
       inputFocus: false,
     })
   },
+  // 返回时提示购物车未清空
+  mall_back:function(){
+    if (this.data.prompt){
+      wx.showModal({
+        title: '购物车未清空',
+        content: '您的购物车还有商品未支付，在别的店铺将不能看到该店铺购物车中的商品，您是否确认退出？',
+        success: function (res) {
+          if (res.confirm) {
+            wx.navigateBack({
+              delta: 1,
+            })
+          }
+        }
+      })
+    }else{
+      wx.navigateBack({
+        delta: 1,
+      })
+    }
+  },
   changeSortData:function(){
   },
   rank: function () {
@@ -174,12 +194,12 @@ Page({
       id: options.id,
       name: app.globalData.storeInfo[0].name
     });
-    this.promptNum();
     console.log(app.globalData)
     console.log(options.id)
     this.page_request();
   },
   onShow:function(){
+    this.promptNum();
     if (app.getFilterData || app.searchValue) {
       console.log(11)
       this.setData({
@@ -193,7 +213,6 @@ Page({
       this.page_request();
       app.getFilterData = [];
       app.searchValue = "";
-      
     }
   }
 })

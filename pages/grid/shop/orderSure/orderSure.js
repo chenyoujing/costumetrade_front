@@ -15,8 +15,17 @@ Page({
   },
   // 更改地址
   address:function(){
+    var that = this
     wx.chooseAddress({
       success: function (res) {
+        var address={
+          contact: res.userName,
+          phone: res.telNumber,
+          address: res.detailInfo,
+        }
+        that.setData({
+          address: address
+        })
         console.log(res.userName)
         console.log(res.postalCode)
         console.log(res.provinceName)
@@ -165,6 +174,12 @@ Page({
             wx.showToast({
               title: '下单成功',
             })
+            setTimeout(() => {
+              wx.navigateBack({
+                delta: 2
+              })
+            }, 1500)
+
           }
         }
       })

@@ -115,6 +115,20 @@ Page({
     this.salePriceTotal()
     
   },
+  // 跳转至确认订单
+  orderSure:function(){
+    var that = this
+    if (this.data.shopCart == 0) {
+      wx.showModal({
+        title: '没商品不能下订单',
+        showCancel: false,
+      })
+    } else {
+      wx.navigateTo({
+        url: '../orderSure/orderSure?stordId=' + that.data.stordId + '&totalnum=' + that.data.totalnum + '&totalPrice=' + that.data.totalPrice,
+      })
+    }
+  },
   onLoad:function(e){
     this.setData({
       stordId: e.stordId

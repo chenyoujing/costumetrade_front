@@ -2,7 +2,7 @@
   <view class="mall_title">
     <image src="../../../../images/mall_bg.png" mode="aspectFill" class="mall_title_bg" />
     <view class="title_view">
-      <navigator url="../storeDetails/storeDetails?storeId=1">
+      <navigator url="../storeDetails/storeDetails?id={{id}}">
         <image src="{{'../../../../images/shop1_tx.png'}}" mode="scaleToFill" class="shop_tx" />
       </navigator>
       <navigator url="../shoppingcard/shoppingcard?stordId={{id}}">
@@ -14,9 +14,7 @@
         <image src="../../../../images/search.png" mode="aspectFit" class="search_input_image" />
       </input>
     </view>
-    <navigator open-type="navigateBack">
-      <image src="../../../../images/back-away.png" mode="aspectFit" class="title_back" />
-    </navigator>
+    <image src="../../../../images/back-away.png" mode="aspectFit" class="title_back" bindtap="mall_back" />
   </view>
 
 
@@ -39,6 +37,10 @@
   </view>
 
   <scroll-view scroll-y="true" class="mall_scroll" lower-threshold="10" bindscrolltolower="{{loadMore?'onReachBottom':''}}" style="bottom:{{delete_button}}px;">
+    <view class="prompt_none" wx:if="{{product == 0}}">
+      <text>该店铺没东西！</text>
+    </view>
+
     <view class="mall_container {{rank}}" wx:for="{{product}}">
       <navigator url="../goods_detail/goods_detail?strod={{id}}&ID={{item.id}}&name={{name}}" hover-class="navigator-hover" class="content_container clearfix">
         <image src="{{item.image?item.image:'../../../../images/shop1_1.png'}}" mode="aspectFill" style="width:{{image_width}}px;height:{{image_width}}px;" />

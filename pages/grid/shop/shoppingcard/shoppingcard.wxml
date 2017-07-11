@@ -29,7 +29,7 @@
 
 <!--底部浮动-->
 <view class="shoppingcard_bottom">
-  <navigator url="../orderSure/orderSure?stordId={{stordId}}&totalnum={{totalnum}}&totalPrice={{totalPrice}}" open-type="redirect" class="bottom_button">去结算</navigator>
+  <view url="" bindtap="orderSure" class="bottom_button">去结算</view>
   <view class="bottom_info">
     <checkbox-group class="bottom_check" bindchange="iSselectAll">
       <label>

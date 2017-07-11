@@ -30,7 +30,7 @@
     </swiper-item>
   </swiper>
   <view class="shop clearfix">
-    <navigator url="../storeDetails/storeDetails">
+    <navigator url="../storeDetails/storeDetails?id={{stordId}}">
       <image src="{{true?'../../../../images/shop1_tx.png':'../../../../images/image_none.png'}}" mode="aspectFill" class="shop_image"></image>
     </navigator>
     <view style="float:left;">
@@ -71,8 +71,8 @@
 <view class="modal" style="top:{{modal_top}};bottom:{{modal_bottom}};">
   <scroll-view scroll-y="true">
     <view style="padding:10px; overflow:hidden;">
-      <view class="goods_container">
-        <image src="{{true?'../../../../images/shop1_1.png':'../../../../images/image_none.png'}}" mode="aspectFill" class="goods_image" />
+      <view class="goods_container" style="display: flex;">
+        <image src="{{item[0]?item[0]:'../../../../images/image_none.png'}}" mode="aspectFill" class="goods_image" />
         <view class="goods_name">{{GoodsInfoData.name}} {{GoodsInfoData.year}}{{GoodsInfoData.season}} {{GoodsInfoData.producttype}}</view>
         <view class="clear"></view>
       </view>
