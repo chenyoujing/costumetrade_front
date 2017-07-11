@@ -50,9 +50,9 @@ Page({
           categories.push(time);
           dataReport.push(productReportQuerys[p].quantity || 0 );
         }
-        // if (categories.length >0){
+        if (categories.length >0){
           that.chart(dataReport, categories)
-        // }
+        }
         that.setData({
           product: res.data.purchaseReportQuerys||[],
         })

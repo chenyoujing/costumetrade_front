@@ -35,6 +35,13 @@ Page({
     })
     this.keyup(value)
   },
+  // 清空输入框
+  clear:function(){
+    this.setData({
+      enterValue: ""
+    })
+    this.keyup(value)
+  },
   // 品牌、种类多选
   multipleSelect:function(e){
     var boolean2 = true;

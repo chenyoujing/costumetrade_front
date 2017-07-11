@@ -1,6 +1,6 @@
   <view class="title clearfix">
     <image bindtap="packPageFilterCode" mode="aspectFit" src="../../../../images/search.png" class="image_search" />
-    <icon type="clear" size="16" class="image_search"/>
+    <icon type="clear" size="16" class="image_search" wx:if="{{enterValue !==''}}" bindtap="clear"/>
     <navigator open-type="navigateBack" hover-class="navigator-hover">
       <image src="../../../../images/return.png" mode="aspectFit" class="image_back" />
     </navigator>
