@@ -53,6 +53,12 @@ Page({
         var priceRaise = answerData.raise_price;
         var sizeArray = answerData.sizes.split(',');
         var productReviews = that.data.productReviews;
+
+        var reg = /^\//;
+        if (reg.test(answerData.storeImage)) {
+          answerData.storeImage = util.api.imgUrl + answerData.storeImage
+        }
+
         answerData.timeDown = answerData.timeDown?util.toDate(answerData.timeDown) : "";
         answerData.timeUp = answerData.timeUp?util.toDate(answerData.timeUp): "";
         imgUrls[0] = answerData.image ? util.api.imgUrl + answerData.image : '';

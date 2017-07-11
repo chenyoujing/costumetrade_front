@@ -75,18 +75,16 @@
 .tr {
   width: 100%;
   justify-content: center;
-  height: 40px;
-  align-items: center;
-  text-align: center;
+  min-height: 40px;
   display: flex;
 }
-.td {
+.td,.th{
   font-size: 12px;
   text-align: center;
-  height: 40px;
   display: flex;
   justify-content: center;
   align-items: center;
+  word-break: break-all;
 }
 .th1{
   flex: 1;
@@ -103,17 +101,8 @@
   border-bottom: 1px solid #eeeeee; 
 }
 .th{
-  font-size: 12px;
-  justify-content: center;
   background-color: #52CAC1;
   color: #fff;
-  display: inline-block;
-  line-height: 40px;
-  align-items: center;
-  word-break:keep-all;
-  white-space:nowrap;
-  overflow:hidden;
-  text-overflow:ellipsis;
 }
 .stock_scroll{
   position: absolute;

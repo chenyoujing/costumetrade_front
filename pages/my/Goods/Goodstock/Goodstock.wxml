@@ -36,7 +36,7 @@
         <view class="td th1">{{index+1}}</view>
         <view class="td th2">{{item.name}}</view>
         <view class="td th1">
-          <view wx-if="{{sequenceNum !== item.id}}">{{item.stocknum}}</view>
+          <block wx-if="{{sequenceNum !== item.id}}">{{item.stocknum}}</block>
           <input wx-if="{{sequenceNum == item.id}}" data-id="{{item.id}}"  bindblur="bindblurInput" focus="true" type="number" maxlength="10" />
         </view>
         <view class="td th2">{{item.productcolor}}</view>

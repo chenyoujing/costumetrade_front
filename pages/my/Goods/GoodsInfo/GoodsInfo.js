@@ -188,7 +188,7 @@ Page({
     var tempFilePaths = res.tempFilePaths;
     this.photoSubmit(tempFilePaths, 0);
     this.setData({
-      perImgSrc: e.target.dataset.index
+      perImgSrc: e.currentTarget.dataset.index
     })
   },
   // 上传视频
@@ -197,11 +197,11 @@ Page({
     tempFilePaths.push(res.tempFilePath);
     this.photoSubmit(tempFilePaths, 0);
     this.setData({
-      perImgSrc: e.target.dataset.index
+      perImgSrc: e.currentTarget.dataset.index || e.target.dataset.index
     })
   },
   chooseImg: function (e){
-    var name = e.target.dataset.name;
+    var name = e.currentTarget.dataset.name || e.target.dataset.name;
     if (name){
       util.api.chooseVideo(e, this.chooseVideoCallback)
     }else{

@@ -512,8 +512,18 @@
         <image src="../../../../images/delete_2.png" mode="aspectFit" class="branchModal_delete" />
       </view>
     </view>
-    <radio-group class="branchModal_content" wx:for="{{3}}">
+    <radio-group class="branchModal_content">
       <view class="branchModal_content_view">共享库存</view>
+      <label class="branchModal_content_view"><radio/>是</label>
+      <label class="branchModal_content_view"><radio/>否</label>
+    </radio-group>
+    <radio-group class="branchModal_content">
+      <view class="branchModal_content_view">共享会员</view>
+      <label class="branchModal_content_view"><radio/>是</label>
+      <label class="branchModal_content_view"><radio/>否</label>
+    </radio-group>
+    <radio-group class="branchModal_content">
+      <view class="branchModal_content_view">共享货品</view>
       <label class="branchModal_content_view"><radio/>是</label>
       <label class="branchModal_content_view"><radio/>否</label>
     </radio-group>

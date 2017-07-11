@@ -4,6 +4,7 @@
     <block wx:for="{{imgUrls}}" wx:key="id">
       <swiper-item wx:if="{{item}}">
         <image src="{{item}}" class="slide_image" mode="aspectFill" style="height:100vw;"/>
+        <image src="{{item}}" class="slide_image" mode="aspectFill" style="height:100vw;"/>
       </swiper-item>
     </block>
   </swiper>
@@ -31,7 +32,7 @@
   </swiper>
   <view class="shop clearfix">
     <navigator url="../storeDetails/storeDetails?id={{stordId}}">
-      <image src="{{true?'../../../../images/shop1_tx.png':'../../../../images/image_none.png'}}" mode="aspectFill" class="shop_image"></image>
+      <image src="{{GoodsInfoData.storeImage?GoodsInfoData.storeImage:'../../../../images/image_none.png'}}" mode="aspectFill" class="shop_image"></image>
     </navigator>
     <view style="float:left;">
       <view class="shop_name">{{title}}</view>

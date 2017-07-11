@@ -1,7 +1,7 @@
 <import src="../../../../template/template.wxml"/>
 
 <!--货品详情-->
-<view class="upload" style="top:{{upload}}; bottom:-{{upload}};">
+<view class="upload">
   <view class="title clearfix">
     {{title}}
     <navigator open-type="navigateBack">
@@ -10,7 +10,7 @@
   </view>
 
   <form class="upload_content" bindsubmit="regBeforeSnb" data-id="{{id}}">
-    <scroll-view scroll-y="true" class="upload_container">
+    <view class="upload_container">
       <view class="upload_input">
         <input type="text"  hidden="true" name="id" value="{{GoodsInfoData.id}}" />
       </view>
@@ -25,23 +25,43 @@
         </navigator>
         <view class="upload_input_text">图片:</view>
         <scroll-view scroll-x="true" class="image_container">
-          <view class="image_content" bindtap="chooseImg">
+          <view class="image_content" bindtap="chooseImg" data-index="image">
            <image src="../../../../images/add_image.png" mode="aspectFit" class="image_bg" />
-           <image src="{{GoodsInfoData.image}}" mode="aspectFill" data-index="image" class="" />
+           <image src="{{GoodsInfoData.image}}" mode="aspectFill" class="" />
           </view>
-          <view class="image_content" bindtap="chooseImg">
-           <image src="{{GoodsInfoData.image1}}" mode="aspectFill" data-index="image1" class="" />
+          <view class="image_content" bindtap="chooseImg" data-index="image1">
+           <image src="{{GoodsInfoData.image1}}" mode="aspectFill" class="" />
           </view>
-          <view class="image_content" bindtap="chooseImg">
-          <image src="{{GoodsInfoData.image2}}" mode="aspectFill" data-index="image2" class="" />
+          <view class="image_content" bindtap="chooseImg" data-index="image2">
+          <image src="{{GoodsInfoData.image2}}" mode="aspectFill" class="" />
           </view>
-          <view class="image_content" bindtap="chooseImg">
-          <image src="{{GoodsInfoData.image3}}" mode="aspectFill" data-index="image3" class="" />
+          <view class="image_content" bindtap="chooseImg" data-index="image3">
+          <image src="{{GoodsInfoData.image3}}" mode="aspectFill" class="" />
           </view>
-          <view class="image_content" bindtap="chooseImg">
-          <image src="{{GoodsInfoData.image4}}" mode="aspectFill" data-index="image4" class="" />
+          <view class="image_content" bindtap="chooseImg" data-index="image4">
+          <image src="{{GoodsInfoData.image4}}" mode="aspectFill" class="" />
           </view>
         </scroll-view>
+      </view>
+      <view class="upload_input">
+        <navigator url="../GoodsImage/GoodsImage?productName={{GoodsInfoData.name}}" class="imagesearch">
+          <image src="../../../../images/search.png" mode="aspectFit" class="imagesearch_image" />
+          <view class="imagesearch_text">网上搜索</view>
+        </navigator>
+        <view class="upload_input_text">视频:</view>
+          <scroll-view scroll-x class="image_container">
+            <view class="image_content" bindtap="chooseImg" data-name="video">
+              <image src="../../../../images/add_image.png" mode="aspectFit" class="image_bg" />
+              <video controls="true" src="{{GoodsInfoData.video1}}" wx:if="{{GoodsInfoData.video1}}" data-index="video1" />
+            </view>
+            <view class="image_content" bindtap="chooseImg" data-name="video" data-index="video2">
+              <video src="{{GoodsInfoData.video2}}" wx:if="{{GoodsInfoData.video2}}" />
+            </view>
+            <view class="image_content" bindtap="chooseImg" data-name="video" data-index="video3">
+              <video src="{{GoodsInfoData.video3}}" wx:if="{{GoodsInfoData.video3}}" />
+            </view>
+          </scroll-view>
+        <view class="clear"></view>
       </view>
       <template is="reg" wx:if="{{regobject.image == false}}" data="{{text: '图片至少上传一个'}}"/>
       <view class="upload_input clearfix">
@@ -101,26 +121,7 @@
         <view class="clear"></view>
       </view>
       <view class="upload_input">
-        <navigator url="../GoodsImage/GoodsImage?productName={{GoodsInfoData.name}}" class="imagesearch">
-          <image src="../../../../images/search.png" mode="aspectFit" class="imagesearch_image" />
-          <view class="imagesearch_text">网上搜索</view>
-        </navigator>
-        <view class="upload_input_text">视频:</view>
-        <scroll-view scroll-x="true" class="image_container">
-          <view class="image_content" bindtap="chooseImg">
-              <video controls="true" data-name="video" src="{{GoodsInfoData.video1}}"  data-index="video1"></video>
-          </view>
-          <view class="image_content" bindtap="chooseImg" >
-              <video src="{{GoodsInfoData.video2}}" data-name="video" data-index="video2"></video>
-          </view>
-          <view class="image_content" bindtap="chooseImg" >
-              <video src="{{GoodsInfoData.video3}}" data-name="video" data-index="video3"></video>
-          </view>
-        </scroll-view>
-        <view class="clear"></view>
-      </view>
-      <view class="upload_input">
-      <view class="upload_input_text">商品种类:</view>
+        <view class="upload_input_text">商品种类:</view>
         <input type="number" disabled="true" data-name="producttype"  class="upload_input2" name="producttype" style="padding-right:30px;" value="{{producttype}}"/>
         <navigator  url="../GoodsBrand/GoodsBrand?url=cate/getAllCates&title=商品种类" hover-class="navigator-hover">
         <image src="../../../../images/update.png" mode="aspectFit" class="update_image" />
@@ -247,7 +248,7 @@
           </label>
         </radio-group>
       </view>
-    </scroll-view>
+    </view>
     <button class="submit" form-type="submit">提交</button>
   </form>
 </view>
