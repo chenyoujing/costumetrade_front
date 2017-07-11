@@ -5,7 +5,8 @@ Page({
     productid: "",
     msg: "",
     url: 'order/saveReview',
-    fileList: []
+    fileList: [],
+    storeId:""
   },
   back: function () {
     wx.navigateBack({
@@ -82,10 +83,10 @@ Page({
     util.api.request({
       url: this.data.url,
       data: {
-        storeId: app.globalData.storeId,
-        productid: this.data.productid,
-        url: this.data.fileList,
-        msg: this.data.msg
+        storeId: that.data.storeId,
+        productid: that.data.productid,
+        url: that.data.fileList,
+        msg: that.data.msg
       },
       method: 'POST',
       header: {
@@ -104,7 +105,8 @@ Page({
   },
   onLoad: function (options) {
     this.setData({
-      productid: options.productid
+      productid: options.productid,
+      storeId: options.storeId
     })
   }
 })

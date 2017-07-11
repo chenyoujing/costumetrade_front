@@ -13,11 +13,13 @@ Page({
     timebool: 1,//确定显示按钮还是input
     filter: { field: "productName", value: null },
     thTitle:"货品名称",
-    sort: {},
+    sort: { value: "quantityOp", op: "des" },
     reportType: 1,
     quantityOp: { value: "quantityOp", op: "des" },
     amountOp: { value: "amountOp", op: "des" },
-    pageNum:1
+    pageNum:1,
+    thTitle:"货品名称",
+    name:"productName"
   },
   // 打开多功能键
   more_function: function () {
@@ -45,21 +47,25 @@ Page({
   select: function (e) {
     var object = util.api.tiemFilter(e);
     object.selected = e.target.dataset.index;
-    console.log(object)
     this.setData(object);
+    this.chart();
   },
   // 时间改变
   timeChange:function(e){
     var object = util.api.timeChange(e, this.data.beginTime, this.data.endTime);
-    this.setData(object)
+    this.setData(object);
+    this.chart();
   },
   // 改变品牌、种类....
   batchType:function(e){
     var type = e.currentTarget.dataset.type;
     var filter = this.data.filter;
+    var name = e.currentTarget.dataset.name;
     filter.field = type;
     this.setData({
-      filter: filter
+      filter: filter,
+      thTitle: name,
+      name: type
     })
     this.chart();
   },
@@ -71,7 +77,8 @@ Page({
     object.op = object.op == "des" ?"asc" :"des";
     param[name] = object;
     param.sort = object;
-    this.setData(param)
+    this.setData(param);
+    this.chart()
   },
   updateData: function (p) {
     var that = this
@@ -126,8 +133,21 @@ Page({
         'content-type': 'application/json'
       },
       success: function (res) {
-       console.log(res.data)
         wx.hideNavigationBarLoading();
+        var categories = [];
+        var dataReport = [];
+        var name = that.data.sort.value == "quantityOp" ? "quantity" : "saleAmount";
+        for (var p in res.data) {
+          res.data[p].name = res.data[p][that.data.name];
+          categories.push(res.data[p][that.data.name]);
+          dataReport.push(res.data[p][name]);
+        }
+        that.setData({
+          dataReport: dataReport,
+          categories: categories,
+          product: res.data
+        });
+        that.chartShow(dataReport, categories)
         wx.showToast({
           title: "添加成功！",
           mask: true,
@@ -137,18 +157,18 @@ Page({
     })
    
   },
-  chartShow:function(){
+  chartShow: function (data1, categories){
     var that = this;
     columnChart = new wxCharts({
       canvasId: 'columnCanvas',
       type: 'column',
-      categories: that.data.categories,
+      categories: categories,
       animation: true,
       background: '#52CAC1',
       legend: false,
       series: [{
         name: '销售量',
-        data: [5, 1, 3],
+        data: data1,
         color: "#52CAC1"
       }],
       xAxis: {

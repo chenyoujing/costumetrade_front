@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/my/report/report",
     
     "pages/grid/shop/shop",
     "pages/grid/info/info",
@@ -67,7 +68,6 @@
     "pages/grid/shop/Bluetooth/Bluetooth",
     "pages/index/index",
     
-    "pages/my/report/report",
     
     "pages/my/report/allreport/allreport",
     "pages/my/report/purchase/purchase",

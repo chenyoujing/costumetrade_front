@@ -240,7 +240,6 @@ Page({
             title: '提示',
             content: '缺少库存,是否继续操作?',
             success: function (res) {
-
               if (res.confirm) {
                 submitData.order.isContinue = true;
                 that.ajaxChange(submitData);
@@ -248,11 +247,19 @@ Page({
             }
           })
         } else {
-          // var name = 'shopCartLowe' + that.data.type;
-          // wx.setStorage({
-          // key: name,
-          // data: product
-          // })
+          wx.showToast({
+            title: '成功！',
+            mask: true,
+            duration: 2000
+          })
+          wx.navigateBack({
+            delta: 1,
+          })
+          var name = 'shopCartLowe' + that.data.type;
+          wx.setStorage({
+            key: name,
+            data: []
+          })
         }
       }
     })
@@ -385,7 +392,6 @@ Page({
     var type = this.data.type == 1 ? 2 : 1;
     util.api.scan(type, this.setdata)
   },
- 
   // 扫好了
   confirm: function () {
     var type = this.data.type == 1?2:1;

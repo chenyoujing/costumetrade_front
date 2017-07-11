@@ -10,6 +10,9 @@
   <block wx:for="{{deviceList}}">
     <view bindtap="connct" data-id="{{item.deviceId}}">点击连接   名字：{{item.name}}；id:{{item.deviceId}}</view>
   </block>
+  <block wx:for="{{deviceList.length == 0}}">
+    <view >搜索不到蓝牙设备</view> 
+  </block>
  </scroll-view>
 
 <view  bindtap="onBluetoothDeviceFound">监听找到新设备时间</view>

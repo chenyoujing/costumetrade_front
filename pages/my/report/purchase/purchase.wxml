@@ -32,24 +32,23 @@
   <view class="report_form">
     <view class="form_title">
       <view class="form_view">货品名称</view>
-      <view class="form_view" data-name="quantityOp" bindtap="sort">
+      <view class="form_view">
         数量
         <image src="../../../../images/sort_report.png" mode="aspectFit" class="form_sort" />
       </view>
-      <view class="form_view"  data-name="amountOp" bindtap="sort">
+      <view class="form_view">
         金额
         <image src="../../../../images/sort_report.png" mode="aspectFit" class="form_sort" />
       </view>
     </view>
     <view class="form_content form_active">
-      <view class="form_view">喇叭裤</view>
-      <view class="form_view">3</view>
-      <view class="form_view">280</view>
-    </view>
-    <view class="form_content">
-      <view class="form_view">牛仔裤</view>
-      <view class="form_view">5</view>
-      <view class="form_view">300</view>
+       <view class="form_content form_active" wx:for="{{product}}">
+          <view class="form_view">{{item.productName}}</view>
+          
+          <view class="form_view">{{item.quantity}}</view>
+
+          <view class="form_view">{{item.amount}}</view>
+      </view>
     </view>
   </view>
 </scroll-view>

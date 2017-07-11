@@ -202,7 +202,8 @@ Page({
       data: {
         idArray: ids,
         status:1,
-        checkAllTag: that.data.checkAllTag
+        checkAllTag: that.data.checkAllTag,
+        storeId: app.globalData.storeId
       },
       method: 'POST',
       header: {

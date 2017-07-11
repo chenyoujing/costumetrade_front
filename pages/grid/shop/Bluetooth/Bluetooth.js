@@ -67,11 +67,16 @@ wx.getBluetoothAdapterState({
     wx.getBluetoothDevices({  
       success: function(res){  
         // success  
-        console.log(res);
-        console.log('发现新蓝牙设备' + res.devices[0].deviceId)
+        // console.log(res);
+        // console.log('发现新蓝牙设备' + res.devices[0].deviceId)
+        if (res.devices.length == 0){
+          wx.showToast({
+            title: "没有搜到蓝牙设备",
+            duration: 2000
+          }) 
+        }
         that.setData({
-          deviceId: res.devices[0].deviceId,
-          deviceList: res.devices
+           deviceList: res.devices
         })
         console.log(res)  
       },  
@@ -87,10 +92,8 @@ wx.getBluetoothAdapterState({
     var that = this;
     wx.onBluetoothDeviceFound(function (devices) {
       console.log(devices)
-      console.log('发现新蓝牙设备' + devices.devices[0].deviceId)
-      that.setData({
-        deviceId: devices.devices[0].deviceId
-      })
+      // console.log('发现新蓝牙设备' + devices.devices[0].deviceId)
+     
     })
   },  
   //根据 uuid 获取处于已连接状态的设备  

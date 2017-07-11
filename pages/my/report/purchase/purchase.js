@@ -12,7 +12,7 @@ Page({
     endTime: "",//结束时间
     timebool: 1,//确定显示按钮还是input
     rules:[],
-    sort: {},
+    sort: { value: "quantityOp", op: "des" },
     reportType:1,
     quantityOp: { value:"quantityOp",op:"des"},
     amountOp: { value: "amountOp", op: "des" },
@@ -21,23 +21,13 @@ Page({
   },
   purchase_request: function () {
     var that = this
-    console.log(JSON.stringify({
-      openid: app.globalData.openid,
-      timeFrom: that.data.beginTime,
-      timeTo: that.data.endTime,
-      reportType: that.data.reportType,
-      filter: { field: "productName", value: null },
-      rules: [],
-      sort: that.data.sort
-    }))
-    
     wx.showNavigationBarLoading()
     util.api.request({
       url: 'report/purchaseReport',
       data: {
         openid: app.globalData.openid,
-        timeFrom: that.data.beginTime,
-        timeTo: that.data.endTime,
+        timeFrom: that.data.beginTime +  " 00:00:00",
+        timeTo: that.data.endTime + " 23:59:59",
         reportType: that.data.reportType,
         filter: { field: "productName", value: null },
         rules:[],
@@ -49,35 +39,24 @@ Page({
       },
       success: function (res) {
         wx.hideNavigationBarLoading();
-        console.log(res.data)
-       
+        var productReportQuerys = res.data.productReportQuerys;
+        var categories = [];
+        var dataReport = [];
+        for (var p in productReportQuerys){
+          var time = '';
+          productReportQuerys[p].timeTo = util.formatTime(new Date(productReportQuerys[p].timeTo));
+          time = productReportQuerys[p].timeTo.split(" ")[1];
+          categories.push(time);
+          dataReport.push(productReportQuerys[p].quantity || 0 );
+        }
+        if (categories.length >0){
+          that.chart(dataReport, categories)
+        }
         that.setData({
-          data: res.data,
+          product: res.data.purchaseReportQuerys,
         })
       }
     })
-  },
-  // 打开多功能键
-  more_function: function () {
-    this.setData({
-      more_function_display: "block",
-    })
-    setTimeout(() => {
-      this.setData({
-        animation: "animation",
-      })
-    }, 10)
-  },
-  // 关闭多功能键
-  more_function_close: function () {
-    this.setData({
-      animation: "",
-    })
-    setTimeout(() => {
-      this.setData({
-        more_function_display: "none",
-      })
-    }, 300)
   },
   // 过滤框按钮
   bindFaous: function () {
@@ -91,72 +70,27 @@ Page({
     console.log(object)
     object.selected = e.target.dataset.index;
     this.setData(object);
+    this.purchase_request()
   },
   // 时间改变
   timeChange: function (e) {
     var object = util.api.timeChange(e, this.data.beginTime, this.data.endTime);
-    this.setData(object)
-  },
-  // 改变入库、出库、往来款项
-  changeType: function (e) {
-    var type = e.currentTarget.dataset.type;
-    this.setData({
-      changeType: type
-    })
-  },
-  updateData: function (p) {
-    var data = [
-      [10, 10, 5, 30, 25, 25, 20, 10], 
-      [35, 40, 82, 46, 78, 62, 45, 70], 
-      [57, 56, 27, 68, 90, 12, 57],
-      [24, 45, 34, 21, 70, 46, 36]
-    ]
-    var categories = [
-      ['8:00', '10:00', '12:00', '14:00', '16:00', '18:00', '20:00', '22:00'],
-      ['7日前', '6日前', '5日前', '4日前', '3日前', '2日前', '1日前', '今日'],
-      ['30日前', '25日前', '20日前', '15日前', '10日前', '5日前', '今日'],
-      ['90日前', '75日前', '60日前', '45日前', '30日前', '15日前', '今日'],
-    ]
-    var series = [{
-      name: this.data.reportTitle,
-      data: data[p],
-      color: "#52CAC1"
-    }];
-    lineChart.updateData({
-      categories: categories[p],
-      series: series
-    });
-  },
-  touchHandler: function (e) {
-    lineChart.showToolTip(e, {
-      // background: '#7cb5ec'
-    });
-  },    
-  // 改变排序方法
-  sort:function(e){
-    var name = e.target.dataset.name;
-    var object = this.data[name];
-    var param = {};
-    object.op  = object.op == "des" ?  "asc" : "des";
-    param[name] = object;
-    param.sort = object;
-    this.setData(param);
-    console.log(param)
+    this.setData(object);
     this.purchase_request()
-  },
+  },    
   // 创建报表
-  chart:function(){
+  chart: function (data1,categories){
     var that = this;
     lineChart = new wxCharts({
       canvasId: 'lineCanvas',
       type: 'line',
-      categories: that.data.categories||['8:00', '10:00', '12:00', '14:00', '16:00', '18:00', '20:00', '22:00'],
+      categories:categories,
       animation: true,
       background: '#52CAC1',
       legend: false,
       series: [{
         name: that.data.reportTitle,
-        data: [10, 10, 5, 30, 25, 25, 20, 10],
+        data: data1,
         color: "#52CAC1"
       }],
       xAxis: {
@@ -204,6 +138,6 @@ Page({
     })
     this.reportName(e.reportType)
     this.purchase_request()
-    this.chart()
+    
   }
 })

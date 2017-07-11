@@ -59,13 +59,6 @@ Page({
   // 创建报表
   chart: function () {
     var that = this;
-    console.log(JSON.stringify({
-      openid: app.globalData.openid,
-      timeFrom: that.data.beginTime + " 00:00:00",
-      timeTo: that.data.endTime + " 23:59:59",
-      filter: that.data.filter,
-      sort: that.data.sort
-    }))
     wx.showNavigationBarLoading()
     util.api.request({
       url: "report/employeeReport",
@@ -89,8 +82,6 @@ Page({
           categories.push(res.data.employeeQuerys[p].createBy);
           dataReport.push(res.data.employeeQuerys[p][name]);
         }
-        console.log(categories)
-        console.log(dataReport)
         that.setData({
           dataReport: dataReport,
           categories: categories,

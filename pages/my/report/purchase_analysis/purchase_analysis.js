@@ -7,6 +7,8 @@ Page({
     title: '采购分析',
     more_function_display: 'none',
     selected: 0,
+    thTitle: "货品名称",
+    name: "productName",
     data: [
       [{ name: '裤子', data: 50, color: "#FF8500" }, { name: '衣服', data: 40, color: "#8AE3DD" }, { name: '其他', data: 10, color: "#DDDDDD" }], [{ name: '裤子', data: 361, color: "#FF8500" }, { name: '衣服', data: 305, color: "#8AE3DD" }, { name: '其他', data: 100, color: "#DDDDDD" }], [{ name: '裤子', data: 1230, color: "#FF8500" }, { name: '衣服', data: 863, color: "#8AE3DD" }, { name: '其他', data: 324, color: "#DDDDDD" }], [{ name: '裤子', data: 3452, color: "#FF8500" }, { name: '衣服', data: 1963, color: "#8AE3DD" }, {
         name: '其他', data: 526, color: "#DDDDDD"
@@ -23,9 +25,15 @@ Page({
       series: series
     });
   },
-
   purchase_request: function () {
     var that = this
+    console.log(JSON.stringify({
+      openid: app.globalData.openid,
+      timeFrom: that.data.beginTime + " 00:00:00",
+      timeTo: that.data.endTime + " 23:59:59",
+      filter: { field: "productName", value: null },
+    }))
+    
     wx.showNavigationBarLoading()
     util.api.request({
       url: 'report/purchaseAnalysisReport',
@@ -95,15 +103,20 @@ Page({
       screen: ''
     })
   },
-  // 改变入库、出库、往来款项
-  changeType: function (e) {
+  // 改变品牌、种类....
+  batchType: function (e) {
     var type = e.currentTarget.dataset.type;
+    var filter = this.data.filter;
+    var name = e.currentTarget.dataset.name;
+    filter.field = type;
     this.setData({
-      changeType: type
+      filter: filter,
+      thTitle: name,
+      name: type
     })
+    this.purchase_request();
   },
   updateData: function (p) {
-    
     var data = this.data.data
     pieChart.updateData({
       series: data[p]
