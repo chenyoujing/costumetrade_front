@@ -76,5 +76,5 @@
 
 <!--微信账单-->
 <modal title="请扫码" hidden="{{bill_wechat}}" confirm-text="扫好了，发账单" bindconfirm="confirm" bindcancel="cancel">
-   <image src="{{scan?scan:'../../../images/image_none.png'}}" mode="widthFix" class="scan_modal_image" />
+   <image src="{{scan?scan:'../../../../images/image_none.png'}}" mode="widthFix" class="scan_modal_image" />
 </modal>

@@ -395,7 +395,7 @@ Page({
   // 扫好了
   confirm: function () {
     var type = this.data.type == 1?2:1;
-    util.api.scanOk(type, null, this.callback)
+    util.api.scanOk(type, this.data.id, this.callback ,this.stringSendFunction("type1",2))
     this.cancel()
   },
   onLoad:function(options){
