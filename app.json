@@ -64,6 +64,7 @@
     "pages/grid/shop/storeDetails/storeDetails",
     "pages/grid/shop/orderSure/orderSure",
     "pages/grid/shop/payOrder/payOrder",
+    "pages/grid/shop/Bluetooth/Bluetooth",
     "pages/index/index",
     
 

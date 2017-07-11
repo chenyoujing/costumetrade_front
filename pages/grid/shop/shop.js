@@ -121,6 +121,11 @@ Page({
             success: function (res) {
               console.log(res);
               console.log("连接成功");
+              wx.stopBluetoothDevicesDiscovery({
+                success: function (res) {
+                  console.log(res)
+                }
+              })
             },
             fail:function(res){
               console.log(res);
