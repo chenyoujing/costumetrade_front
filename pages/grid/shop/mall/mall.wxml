@@ -3,7 +3,7 @@
     <image src="../../../../images/mall_bg.png" mode="aspectFill" class="mall_title_bg" />
     <view class="title_view">
       <navigator url="../storeDetails/storeDetails?id={{id}}">
-        <image src="{{'../../../../images/shop1_tx.png'}}" mode="scaleToFill" class="shop_tx" />
+        <image src="{{storephoto||'../../../../images/shop1_tx.png'}}" mode="scaleToFill" class="shop_tx" />
       </navigator>
       <navigator url="../shoppingcard/shoppingcard?stordId={{id}}">
         <image src="../../../../images/shoppingcard.png" mode="aspectFit" class="shoppingcard_image" style="margin-left:3%;">
