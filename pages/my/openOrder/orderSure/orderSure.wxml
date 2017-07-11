@@ -66,15 +66,15 @@
 
 
 <!--打印账单-->
-<modal title="打印账单" hidden="{{bill_modal}}" confirm-text="确定" bindconfirm="printSet" bindcancel="cancel">
+<!--<modal title="打印账单" hidden="{{bill_modal}}" confirm-text="确定" bindconfirm="printSet" bindcancel="cancel">
   <view class="modal_header_content">请输入打印机的设备编号(双击设备出来设备编号)</view>
   <view class="bill_number">
     <view class="order_input_text">编号：</view>
     <input type="text" bindblur="printNumber" class="order_input1" name="handcount" placeholder="请输入" />
   </view>
-</modal>
+</modal>-->
 
 <!--微信账单-->
-<modal title="请扫码" hidden="{{bill_wechat}}" confirm-text="扫好了，发账单" bindconfirm="wechat_confirm" bindcancel="cancel">
-  <image src="{{scan?scan:'../../../../images/image_none.png'}}" mode="widthFix" class="scan_modal_image" />
+<modal title="请扫码" hidden="{{bill_wechat}}" confirm-text="扫好了，发账单" bindconfirm="scan" bindcancel="cancel">
+   <image src="{{scan?scan:'../../../images/image_none.png'}}" mode="widthFix" class="scan_modal_image" />
 </modal>

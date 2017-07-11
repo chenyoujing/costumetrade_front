@@ -4,23 +4,44 @@ var app = getApp()
 var lineChart = null;
 Page({
   data: {
-    title:'采购报表',
+    title:'入库报表',
+    reportTitle:"入库数量",
     more_function_display: 'none',
     selected: 0,
     beginTime: "",//开始时间
-    endTime: ""//结束时间
+    endTime: "",//结束时间
+    timebool: 1,//确定显示按钮还是input
+    rules:[],
+    sort: {},
+    reportType:1,
+    quantityOp: { value:"quantityOp",op:"des"},
+    amountOp: { value: "amountOp", op: "des" },
+    categories:[],
+    data:[]
   },
   purchase_request: function () {
     var that = this
+    console.log(JSON.stringify({
+      openid: app.globalData.openid,
+      timeFrom: that.data.beginTime,
+      timeTo: that.data.endTime,
+      reportType: that.data.reportType,
+      filter: { field: "productName", value: null },
+      rules: [],
+      sort: that.data.sort
+    }))
+    
     wx.showNavigationBarLoading()
     util.api.request({
       url: 'report/purchaseReport',
       data: {
         openid: app.globalData.openid,
-        // timeFrom: that.data.beginTime,
-        // timeTo: that.data.endTime,
-        reportType: 1,
-        filter: { field: "productName", value: null }
+        timeFrom: that.data.beginTime,
+        timeTo: that.data.endTime,
+        reportType: that.data.reportType,
+        filter: { field: "productName", value: null },
+        rules:[],
+        sort:that.data.sort
       },
       method: 'POST',
       header: {
@@ -29,36 +50,10 @@ Page({
       success: function (res) {
         wx.hideNavigationBarLoading();
         console.log(res.data)
-        var data = [{
-          name: '销售收入',
-          value: res.data.saleIncome
-        }, {
-          name: '销售支出',
-          value: res.data.salePay
-        }, {
-          name: '采购收入',
-          value: res.data.purchaseIncome
-        }, {
-          name: '采购支出',
-          value: res.data.purchasePay
-        }, {
-          name: '客户还款',
-          value: res.data.customerRepay
-        }, {
-          name: '供货还款',
-          value: res.data.suppierRepay
-        }, {
-          name: '费用收入',
-          value: res.data.feeIncome
-        }, {
-          name: '费用支出',
-          value: res.data.feePay
-        }, {
-          name: '-合计-',
-          value: res.data.days
-        }]
+       
         that.setData({
-          data: data
+          data: data,
+
         })
       }
     })
@@ -84,6 +79,12 @@ Page({
         more_function_display: "none",
       })
     }, 300)
+  },
+  // 过滤框按钮
+  bindFaous: function () {
+    wx.navigateTo({
+      url: '../../../my/Goods/GoodsScreen/GoodsScreen?type=report'
+    })
   },
   // 选择时间
   select: function (e) {
@@ -118,7 +119,7 @@ Page({
       ['90日前', '75日前', '60日前', '45日前', '30日前', '15日前', '今日'],
     ]
     var series = [{
-      name: '入库量',
+      name: this.data.reportTitle,
       data: data[p],
       color: "#52CAC1"
     }];
@@ -132,18 +133,30 @@ Page({
       // background: '#7cb5ec'
     });
   },    
-
+  // 改变排序方法
+  sort:function(e){
+    var name = e.target.dataset.name;
+    var object = this.data[name];
+    var param = {};
+    object.op  = object.op == "des" ?  "asc" : "des";
+    param[name] = object;
+    param.sort = object;
+    this.setData(param);
+    console.log(param)
+    this.purchase_request()
+  },
   // 创建报表
   chart:function(){
+    var that = this;
     lineChart = new wxCharts({
       canvasId: 'lineCanvas',
       type: 'line',
-      categories: ['8:00', '10:00', '12:00', '14:00', '16:00', '18:00', '20:00', '22:00'],
+      categories: that.data.categories||['8:00', '10:00', '12:00', '14:00', '16:00', '18:00', '20:00', '22:00'],
       animation: true,
       background: '#52CAC1',
       legend: false,
       series: [{
-        name: '入库量',
+        name: that.data.reportTitle,
         data: [10, 10, 5, 30, 25, 25, 20, 10],
         color: "#52CAC1"
       }],
@@ -151,7 +164,7 @@ Page({
         disableGrid: true
       },
       yAxis: {
-        title: '入库数量 (件)',
+        title: that.data.reportTitle,
         min: 0
       },
       width: 375,
@@ -163,13 +176,34 @@ Page({
       }
     });
   },
+  // 报表显示名称
+  reportName: function (reportType){
+    var reportTitle = "";
+    var title = "";
+    if (reportType == 1) {
+        reportTitle = '入库数量';
+        title = "采购报表";
+    } else if (reportType == 2){
+      reportTitle = "成交数量";
+      title = "销售报表";
+    }else{
+      reportTitle = "成交数量";
+      title = "会员报表";
+    };
+    this.setData({
+      reportTitle: reportTitle,
+      title: title
+    })
+  },
   onLoad: function (e) {
     var myDate = new Date();
     var Time = util.toDate(myDate);
     this.setData({
-      beginTime: Time + " 00:00:00",
-      endTime: Time + " 23:59:59",
+      beginTime: Time,
+      endTime: Time,
+      reportType: e.reportType
     })
+    this.reportName(e.reportType)
     this.purchase_request()
     this.chart()
   }

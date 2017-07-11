@@ -406,7 +406,7 @@ Page({
       shopCart:[],
       selectName:{}
     })
-    app.selectName.cate = {};
+    app.selectName = {};
     this.getData();
     console.log(e.target.dataset.type)
     this.more_function_close()

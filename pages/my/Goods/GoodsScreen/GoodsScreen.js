@@ -138,6 +138,9 @@ Page({
     util.api.supplierRefresh('product/getProducts', "GoodsData", 'updataTime', this.callback);
   },
   onLoad: function (options) {
+    if (!app.logisticFees && app.globalData.userIdentity !== 2) {
+      util.api.getProductInit()
+    }
     this.setData({
       type: options.type
     })

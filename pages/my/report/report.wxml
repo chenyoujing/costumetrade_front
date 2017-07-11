@@ -4,7 +4,6 @@
     <image src="../../../images/back-away.png" mode="aspectFit" class="title_image_back" />
   </navigator>
   <view class="title_text">目录</view>
-  <image src="../../../images/more.png" mode="aspectFit" class="title_more" bindtap="more_function" />
 </view>
 
 <scroll-view scroll-y class="report_catalog">
@@ -20,7 +19,11 @@
     销售排行
     <image src="../../../images/right-thrust.png" mode="aspectFit" class="my_content_right" />
   </navigator>
-  <navigator url="purchase/purchase" class="catalog_view">
+   <navigator url="employeeReport/employeeReport" class="catalog_view">
+    员工销售排行
+    <image src="../../../images/right-thrust.png" mode="aspectFit" class="my_content_right" />
+  </navigator>
+  <navigator url="purchase/purchase?reportType=2" class="catalog_view">
     销售报表
     <image src="../../../images/right-thrust.png" mode="aspectFit" class="my_content_right" />
   </navigator>
@@ -28,7 +31,7 @@
     采购分析
     <image src="../../../images/right-thrust.png" mode="aspectFit" class="my_content_right" />
   </navigator>
-  <navigator url="purchase/purchase" class="catalog_view">
+  <navigator url="purchase/purchase?reportType=1" class="catalog_view">
     采购报表
     <image src="../../../images/right-thrust.png" mode="aspectFit" class="my_content_right" />
   </navigator>
@@ -36,17 +39,8 @@
     库存报表
     <image src="../../../images/right-thrust.png" mode="aspectFit" class="my_content_right" />
   </navigator>
-  <navigator url="purchase/purchase" class="catalog_view">
+  <navigator url="purchase/purchase?reportType=3" class="catalog_view">
     会员报表
     <image src="../../../images/right-thrust.png" mode="aspectFit" class="my_content_right" />
   </navigator>
 </scroll-view>
-
-
-<!--更多功能-->
-<view class="more_function_cover {{animation}}" bindtap="more_function_close" style="display:{{more_function_display}};"></view>
-<view class="more_function {{animation}}" style="display:{{more_function_display}};">
-  <view class="more_function_view" data-type="1" bindtap="batchType">123</view>
-  <view class="more_function_view" data-type="2" bindtap="batchType">112</view>
-  <view class="more_function_view" data-type="3" bindtap="batchType">111</view>
-</view>

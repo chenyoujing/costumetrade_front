@@ -14,8 +14,9 @@
     <view class="select_view {{selected==2?'selected':''}}" bindtap="select" data-index="2" data-number="30">30日</view>
     <view class="select_view {{selected==3?'selected':''}}" bindtap="select" data-index="3" data-number="90">90日</view>
     <view class="select_view {{selected==4?'selected':''}}" bindtap="select" data-index="4"  data-number="false">...</view>
+     <view class="select_view selected" data-index="4" bindtap="more_function">分类</view>
   </view>
-  <view class="time_select" wx:if="{{timebool !== 1}}">
+<view class="time_select" wx:if="{{timebool !== 1}}">
     <picker class="select_view" value="{{beginTime}}" name="beginTime"  data-name="beginTime" bindchange="timeChange" mode="date" >
       {{beginTime}}
     </picker>
@@ -23,20 +24,22 @@
     <picker class="select_view" value="{{endTime}}" name="endTime" bindchange="timeChange" mode="date" data-name="endTime">
       {{endTime}}
     </picker>
-    <view class="select_view">返回</view>
+    <view class="select_view"  bindtap="select" data-number="true">返回</view>
   </view>
-  <input type="text" class="search_input">
+
+  <!--<input type="text" class="search_input" bindfocus="bindFaous">
     <image src="../../../../images/search.png" mode="aspectFit" class="search_input_image" />
-  </input>
+  </input>-->
+
   <canvas class="canvas" canvas-id="columnCanvas" bindtouchmove="touchHandler" bindtouchstart="touchHandler"/>
   <view class="report_form">
     <view class="form_title">
-      <view class="form_view">货品名称</view>
-      <view class="form_view">
+      <view class="form_view">{{thTitle}}</view>
+     <view class="form_view" data-name="quantityOp" bindtap="sort">
         数量
         <image src="../../../../images/sort_report.png" mode="aspectFit" class="form_sort" />
       </view>
-      <view class="form_view">
+      <view class="form_view"  data-name="amountOp" bindtap="sort">
         金额
         <image src="../../../../images/sort_report.png" mode="aspectFit" class="form_sort" />
       </view>
@@ -57,7 +60,10 @@
 <!--更多功能-->
 <view class="more_function_cover {{animation}}" bindtap="more_function_close" style="display:{{more_function_display}};"></view>
 <view class="more_function {{animation}}" style="display:{{more_function_display}};">
-  <view class="more_function_view" data-type="1" bindtap="batchType">123</view>
-  <view class="more_function_view" data-type="2" bindtap="batchType">112</view>
-  <view class="more_function_view" data-type="3" bindtap="batchType">111</view>
+  <view class="more_function_view" data-type="productName" bindtap="batchType">商品名称</view>
+  <view class="more_function_view" data-type="clientName" bindtap="batchType">供应商</view>
+  <view class="more_function_view" data-type="brandName" bindtap="batchType">品牌</view>
+  <view class="more_function_view" data-type="productSize" bindtap="batchType">尺码</view>
+  <view class="more_function_view" data-type="productColor" bindtap="batchType">颜色</view>
+  <view class="more_function_view" data-type="createBy" bindtap="batchType">创建人</view>
 </view>

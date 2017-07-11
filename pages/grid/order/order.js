@@ -94,14 +94,8 @@ Page({
         var booleanre = that.data.requestSwitch;
         for (var p in res.data) {
           res.data[p].ordertime = util.toDate(res.data[p].ordertime);
-
-          for (var j in that.data.paycact) {
-            if (res.data[p].paycate1 == that.data.paycact[j].dictValue) {
-              res.data[p].paycate_1 = that.data.paycact[j].dictText
-             }
-            if (res.data[p].paycate2 == that.data.paycact[j].dictValue) {
-              res.data[p].paycate_2 = that.data.paycact[j].dictText
-            }
+          if (res.data[p].debetamt > 0){
+            res.data[p].debetText = "收付款"
           }
         }
         if (that.data.page == 1) {
@@ -134,14 +128,13 @@ Page({
        if(type=="buy"){
          totole.pNoPayCount -= 1;
          totole.pNoShipCount += 1; 
-       }else{
-         totole.sNoShipCount += 1;
-         totole.sNoAuditCount -= 1; 
        }
+      //  else{
+      //    totole.sNoShipCount += 1;
+      //    totole.sNoAuditCount -= 1; 
+      //  }
          break;
       case '3':
-        console.log(totole)
-        console.log(11)
         totole.sNoShipCount += 1;
         totole.sNoAuditCount -= 1;
         break;
@@ -340,7 +333,6 @@ Page({
       collectModal: false,
       incomeData: param
     });
-    console.log(orderInfo.debet)
   },
   // 收款确定按钮
   sureCollect:function(){
@@ -363,19 +355,17 @@ Page({
       success: function (res) {
          wx.hideNavigationBarLoading();
          var product = that.data.product;
-         that.changecountOrders(2,'sal')
-          for(var p in product){
-              console.log(product[p].payorderno)
-              if (product[p].payorderno == that.data.incomeData.orderNo){
-                product.splice(p,1);
-                that.setData({
-                  product: product
-                })
-                break;
-              }
-            }
+         that.changecountOrders(2,'sal');
+         for (var p in product){
+           if (product[p].payorderno == that.data.incomeData.orderNo){
+             product[p].debetText = "已收款";
+             product[p].debetamt = Number(product[p].debetamt) - Number(that.data.colloctNum);
+             product[p].debeButton = true; 
+           }
+         }
          that.setData({
-           collectModal: true
+           collectModal: true,
+           product: product
          })
          wx.showToast({
             title: '成功',

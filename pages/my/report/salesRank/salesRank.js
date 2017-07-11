@@ -9,7 +9,15 @@ Page({
     selected: 0,
     categories: ['连衣裙', '报喜鸟', '衬衣'],
     beginTime: "",//开始时间
-    endTime: ""//结束时间
+    endTime: "",//结束时间
+    timebool: 1,//确定显示按钮还是input
+    filter: { field: "productName", value: null },
+    thTitle:"货品名称",
+    sort: {},
+    reportType: 1,
+    quantityOp: { value: "quantityOp", op: "des" },
+    amountOp: { value: "amountOp", op: "des" },
+    pageNum:1
   },
   // 打开多功能键
   more_function: function () {
@@ -37,6 +45,7 @@ Page({
   select: function (e) {
     var object = util.api.tiemFilter(e);
     object.selected = e.target.dataset.index;
+    console.log(object)
     this.setData(object);
   },
   // 时间改变
@@ -44,12 +53,25 @@ Page({
     var object = util.api.timeChange(e, this.data.beginTime, this.data.endTime);
     this.setData(object)
   },
-  // 改变入库、出库、往来款项
-  changeType:function(e){
+  // 改变品牌、种类....
+  batchType:function(e){
     var type = e.currentTarget.dataset.type;
+    var filter = this.data.filter;
+    filter.field = type;
     this.setData({
-      changeType:type
+      filter: filter
     })
+    this.chart();
+  },
+  // 改变排序方法
+  sort: function (e) {
+    var name = e.target.dataset.name;
+    var object = this.data[name];
+    var param = {};
+    object.op = object.op == "des" ?"asc" :"des";
+    param[name] = object;
+    param.sort = object;
+    this.setData(param)
   },
   updateData: function (p) {
     var that = this
@@ -82,13 +104,41 @@ Page({
           data: [10, 10, 5, 30, 25, 25, 20, 10],
         }]
       });
-
     }
   },
-
+  
   // 创建报表
   chart: function () {
-    var that = this
+    var that = this;
+    wx.showNavigationBarLoading()
+    util.api.request({
+      url: "report/saleSortReport",
+      data: {
+        openid: app.globalData.openid,
+        timeFrom: that.data.beginTime + " 00:00:00",
+        timeTo: that.data.endTime + " 23:59:59",
+        filter: that.data.filter,
+        sort: that.data.sort,
+        pageNum: that.data.pageNum
+      },
+      method: 'POST',
+      header: {
+        'content-type': 'application/json'
+      },
+      success: function (res) {
+       console.log(res.data)
+        wx.hideNavigationBarLoading();
+        wx.showToast({
+          title: "添加成功！",
+          mask: true,
+          duration: 2000
+        })
+      }
+    })
+   
+  },
+  chartShow:function(){
+    var that = this;
     columnChart = new wxCharts({
       canvasId: 'columnCanvas',
       type: 'column',
@@ -121,8 +171,8 @@ Page({
     var myDate = new Date();
     var Time = util.toDate(myDate);
     this.setData({
-      beginTime: Time + " 00:00:00",
-      endTime: Time + " 23:59:59",
+      beginTime: Time,
+      endTime: Time,
     })
     this.chart()
   }

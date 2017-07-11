@@ -65,6 +65,7 @@
     "pages/grid/shop/orderSure/orderSure",
     "pages/grid/shop/payOrder/payOrder",
     "pages/index/index",
+    
 
     "pages/my/report/report",
     "pages/my/report/allreport/allreport",
@@ -72,7 +73,8 @@
     "pages/my/report/purchase_analysis/purchase_analysis",
     "pages/my/report/salesRank/salesRank",
     "pages/my/report/finance/finance",
-    "pages/my/report/stock/stock"
+    "pages/my/report/stock/stock",
+    "pages/my/report/employeeReport/employeeReport"
     
   ],
   "window": {

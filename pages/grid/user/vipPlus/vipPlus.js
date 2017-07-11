@@ -2,7 +2,75 @@ var util = require('../../../../utils/util.js')
 var app = getApp()
 Page({
   data: {
-  
+  payOption:1,
+  count1:1,
+  count2:1,
+  count3:1,
+  payTotal:200,
+  getList:[],
+  id:1
+  },
+  // 选择支付
+  selectOptions:function(e){
+    var payOption = e.currentTarget.dataset.payoption;
+    var id = e.currentTarget.dataset.id;
+    var price = 200;
+    var name = "count1"
+    if (payOption == 1) {
+      price = 200;
+      name = "count1"
+    } else {
+      price = payOption == 2 ? 400 : 600
+      name = payOption == 2 ? "count2" : "count3"
+    }
+    this.setData({
+      payOption: payOption,
+      payTotal: this.data[name]*price,
+      id:id
+    })
+  },
+  // 请求列表
+  getList:function(){
+    var that = this;
+    wx.showNavigationBarLoading()
+    util.api.request({
+      url: 'product/getList',
+      method: 'POST',
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      success: function (res) {
+        wx.hideNavigationBarLoading();
+        console.log(res.data);
+        that.setData({
+          getList: res.data
+        })
+      }
+    })
+  },
+  // 数量加减
+  countAddorSub: function (e) {
+    var name = e.target.dataset.name;
+    var type = e.target.dataset.type;
+    var count = this.data[name];
+    var price = 200;
+    if (name == "count1"){
+      price = 200;
+    }else{
+      price = name == "count2" ? 400 : 600
+    }
+    if (type == 'sub') {
+      if (count >=2 ){
+        count = parseInt(count - 1)
+      }
+    } else {
+      count = parseInt(count + 1)
+    }
+    var param = {};
+    param[name] = count;
+    param.payTotal = parseInt(count) * price;
+    console.log(param)
+    this.setData(param)
   },
   // 升级支付
   vipPlus:function(){
@@ -11,10 +79,11 @@ Page({
     util.api.request({
       url: 'wxpay/pay',
       data:{
-        total_fee:0.01,
+        total_fee: that.data.payTotal/1000,
         body:"注册金额",
-        product_id:'4545',
-        openid : app.globalData.openid
+        product_id: that.data.id,
+        openid : app.globalData.openid,
+        storeId: app.globalData.storeId
       },
       method: 'POST',
       header: {
@@ -48,7 +117,6 @@ Page({
         that.vipPlusSuccess()
       }
     })
-  
   },
   // 升级成功
   vipPlusSuccess: function () {
@@ -81,7 +149,7 @@ Page({
     })
   },
   onLoad: function (options) {
-    this.vipPlus()
+    this.getList()
   },
   onShow: function () {
   

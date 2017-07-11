@@ -205,7 +205,7 @@ Page({
   },
   bindKeyInput: function (e) {
     wx.navigateTo({
-      url: '../Goods/GoodsScreen/GoodsScreen'
+      url: '../Goods/GoodsScreen/GoodsScreen?type=good'
     })
   },
   //重置
