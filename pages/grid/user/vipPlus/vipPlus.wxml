@@ -54,7 +54,7 @@
     <view class="vip_price">￥{{payTotal}}</view>
     <view class="clear"></view>
   </view>
-
+</scroll-view>
 
   <!--底部浮动-->
   <view class="vip_bottom">
@@ -64,4 +64,3 @@
     </view>
     <view class="clear"></view>
   </view>
-</scroll-view>
