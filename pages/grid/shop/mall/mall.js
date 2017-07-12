@@ -81,7 +81,8 @@ Page({
         rules: that.data.getFilterData,
         pageNum: that.data.pageNum,
         name: that.data.requeseName,
-        code: that.data.code
+        code: that.data.code,
+        openid:app.globalData.openid
       },
       method: 'POST',
       header: {

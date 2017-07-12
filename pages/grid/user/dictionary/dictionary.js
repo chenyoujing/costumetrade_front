@@ -30,7 +30,8 @@ Page({
     prodDictValue: 0,
     printNumber:"",
     logopicked:false,
-    codepicked:false
+    codepicked:false,
+    addStoreId:false
   },
   
   swiper_change: function (e) {
@@ -254,6 +255,7 @@ Page({
         var cusDictValue = 0;
        var images =  [];
        var imageurl = [];
+       var stores = [];
         for (var p in res.data.datas){
           switch (res.data.datas[p].dictGroup){
             case "PAY_TYPE":
@@ -292,8 +294,7 @@ Page({
             }
           }
         }
-        console.log(images)
-        console.log(images.dictValue)
+        
         if (images.dictValue){
           imageurl = images.dictValue.split(',')
         }
@@ -302,8 +303,9 @@ Page({
           imageurl[p] = util.api.imgUrl + imageurl[p]
         } 
       
-        var logisticFees = res.data.logisticFees
-        app.customerCusts = customerCusts
+        var logisticFees = res.data.logisticFees;
+        app.customerCusts = customerCusts;
+        stores = res.data.stores;
         that.setData({
           payProduct: payProduct,
           feeProduct: feeProduct,
@@ -316,7 +318,8 @@ Page({
           cusDictValue: cusDictValue[cusDictValue.length-1],
           pointExchange: pointExchange,
           payQrcode: payQrcode,
-          imageurl: imageurl
+          imageurl: imageurl,
+          stores : stores          
         })
         console.log(that.data)
       }
@@ -441,13 +444,11 @@ Page({
       product[index][type] = e.detail.value;
     } else if (name == "logisticFees"){
       var type = e.currentTarget.dataset.type;
-      console.log(index);
       product[index][type] = e.detail.value;
     }
     param[name] = product;
     submitData[name] = product;
     param['submitData'] = submitData;
-    console.log(param)
     this.setData(param)
     if (name == "pointExchange") {
       this.submitData()
@@ -543,13 +544,109 @@ Page({
     })
   },
   // 分店管理
-  branch:function(){
+  branch:function(e){
+    var addStoreId = e.target.dataset.add;
+    var item = e.target.dataset.item;
+    console.log(item)
     this.setData({
       branchModal: false,
+      addStoreId: addStoreId,
+      storeIdData: item||{}
     })
   },
   branchOk:function(){
-    this.cancel()
+    var addStoreId = this.data.addStoreId;
+    if (addStoreId){
+      console.log('添加')
+      this.saveChainStore()
+    }else{
+      console.log('更改')
+      this.storeIdDataChange();
+    }
+    this.cancel();
+  },
+  // 更改店铺
+  storeIdDataChange:function(e){
+    var name = e.target.dataset.name;
+    var storeIdData = this.data.storeIdData;
+    storeIdData[name] = e.detail.value;
+    console.log(e.detail.value)
+    console.log(storeIdData)
+    this.setData({
+      storeIdData: storeIdData
+    })
+  },
+  // 删除分店
+  deleteChainStore: function (e) {
+    this.cancel();
+    var that = this;
+    var id = e.target.dataset.id;
+    var stores = this.data.stores;
+    wx.showNavigationBarLoading()
+    util.api.request({
+      url: 'store/deleteChainStore',
+      data: {
+        id: id
+      },
+      method: 'POST',
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      success: function (res) {
+        wx.hideNavigationBarLoading();
+        for (var p in stores){
+          if (stores[p].id == id){
+            stores.splice(p,1)
+          }
+        }
+        that.setData({
+          stores: stores
+        })
+        console.log(res.data)
+      }
+    })
+  },
+  // 保存分店
+  saveChainStore:function(){
+    var that = this;
+    var storeIdData = this.data.storeIdData;
+    storeIdData.inventoryShare = storeIdData.inventoryShare || 2;
+    var stores = this.data.stores;
+    var object = {
+      parentid: app.globalData.storeId,
+      inventoryShare: storeIdData.inventoryShare,
+      name: storeIdData.name
+    };
+    if (this.data.addStoreId) {
+      object.id = storeIdData.id;
+    }
+    wx.showNavigationBarLoading()
+    util.api.request({
+      url: 'store/saveChainStore',
+      data: object,
+      method: 'POST',
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      success: function (res) {
+        if (that.data.addStoreId) {
+          for (var p in stores) {
+            if (stores[p].id == storeIdData.id) {
+              stores[p] = storeIdData
+            }
+          }
+        }else{
+          storeIdData.id = res.data;
+          stores.push(storeIdData)
+        }
+        that.setData({
+          stores: stores
+        })
+        console.log(stores)
+        wx.hideNavigationBarLoading();
+        console.log(res.data)
+      }
+    })
   },
   // 模态框
   addModal: function (e) {
@@ -752,6 +849,7 @@ Page({
     if (!app.privilegeEmployees) {
       util.api.getProductInit();
     }
+    // this.saveChainStore()
     this.employee_request()
     this.dictionary_request()
   },

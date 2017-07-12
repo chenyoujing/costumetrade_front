@@ -147,7 +147,9 @@ Page({
           categories: categories,
           product: res.data
         });
-        that.chartShow(dataReport, categories)
+        if (dataReport.length > 0){
+          that.chartShow(dataReport, categories)
+        }
         wx.showToast({
           title: "添加成功！",
           mask: true,
