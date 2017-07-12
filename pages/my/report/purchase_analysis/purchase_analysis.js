@@ -5,59 +5,15 @@ var pieChart = null;
 Page({
   data: {
     title: '采购分析',
-    more_function_display: 'none',
     selected: 0,
-    thTitle: "货品名称",
-    name: "productName",
-    data: [
-      [{ name: '裤子', data: 50, color: "#FF8500" }, { name: '衣服', data: 40, color: "#8AE3DD" }, { name: '其他', data: 10, color: "#DDDDDD" }], [{ name: '裤子', data: 361, color: "#FF8500" }, { name: '衣服', data: 305, color: "#8AE3DD" }, { name: '其他', data: 100, color: "#DDDDDD" }], [{ name: '裤子', data: 1230, color: "#FF8500" }, { name: '衣服', data: 863, color: "#8AE3DD" }, { name: '其他', data: 324, color: "#DDDDDD" }], [{ name: '裤子', data: 3452, color: "#FF8500" }, { name: '衣服', data: 1963, color: "#8AE3DD" }, {
-        name: '其他', data: 526, color: "#DDDDDD"
-      }]
-    ],
+    filter:{ field: "productName", value: null },
+    invReportQuerys:[],//库存
+    purchaseQuerys:[],//销售
     timebool:1,
+    name: "productName",
     beginTime: "",//开始时间
     endTime: ""//结束时间
   },
-  updateData: function () {
-    var series = this.data.data.invReportQuerys;
-    console.log(series)
-    pieChart.updateData({
-      series: series
-    });
-  },
-  purchase_request: function () {
-    var that = this
-    console.log(JSON.stringify({
-      openid: app.globalData.openid,
-      timeFrom: that.data.beginTime + " 00:00:00",
-      timeTo: that.data.endTime + " 23:59:59",
-      filter: { field: "productName", value: null },
-    }))
-    
-    wx.showNavigationBarLoading()
-    util.api.request({
-      url: 'report/purchaseAnalysisReport',
-      data: {
-        openid: app.globalData.openid,
-        timeFrom: that.data.beginTime + " 00:00:00",
-        timeTo: that.data.endTime + " 23:59:59",
-        filter: { field: "productName", value: null },
-      },
-      method: 'POST',
-      header: {
-        'content-type': 'application/json'
-      },
-      success: function (res) {
-        wx.hideNavigationBarLoading();
-        console.log(res.data)
-        that.setData({
-          data: res.data
-        })
-      }
-    })
-    this.updateData()
-  },
-
   // 打开多功能键
   more_function: function () {
     this.setData({
@@ -80,6 +36,80 @@ Page({
       })
     }, 300)
   },
+  // 改变品牌、种类....
+  batchType: function (e) {
+    var type = e.currentTarget.dataset.type;
+    var filter = this.data.filter;
+    var name = e.currentTarget.dataset.name;
+    filter.field = type;
+    this.setData({
+      filter: filter,
+      name: type
+    })
+    this.purchase_request();
+  },
+  purchase_request: function () {
+    var that = this;
+    wx.showNavigationBarLoading()
+    util.api.request({
+      url: that.data.url,
+      data: {
+        openid: app.globalData.openid,
+        timeFrom: that.data.beginTime + " 00:00:00",
+        timeTo: that.data.endTime + " 23:59:59",
+        filter: that.data.filter
+      },
+      method: 'POST',
+      header: {
+        'content-type': 'application/json'
+      },
+      success: function (res) {
+        wx.hideNavigationBarLoading();
+        console.log(res.data);
+        if (that.data.title == "采购分析"){
+          that.setData({
+            invReportQuerys: that.filterData(res.data.invReportQuerys, "quantity"),//库存 
+            purchaseQuerys: that.filterData(res.data.purchaseQuerys, "quantity")//销售
+          });
+          if (that.data.invReportQuerys.length > 0){
+            that.chart(that.data.invReportQuerys,"pieCanvas")
+          }
+          if (that.data.purchaseQuerys.length > 0) {
+            that.chart(that.data.purchaseQuerys,"pieCanvas2")
+          }
+        }else{
+          that.setData({
+            saleAmount: res.data.saleAmount,//总额
+            profitAmount: res.data.profitAmount,//利润
+            pucharseAmount: res.data.pucharseAmount,//成本
+            grossProfit: res.data.grossProfit,
+            invReportQuerys: that.filterData(res.data.querys, "profitAmount"),//利润 
+            purchaseQuerys: that.filterData(res.data.querys, "saleAmount")//销售额
+          });
+          if (that.data.invReportQuerys.length > 0) {
+            that.chart(that.data.invReportQuerys, "pieCanvas")
+          }
+          if (that.data.purchaseQuerys.length > 0) {
+            that.chart(that.data.purchaseQuerys, "pieCanvas2")
+          }
+        }
+      }
+    })
+  },
+// 数据过滤
+  filterData: function (data,quantity){
+    var newdata = [];
+    for(var p in data){
+      var object = {};
+      if (data[p][quantity] < 0){
+        data[p][quantity] = 0;
+      }
+      object.data = data[p][quantity];
+      object.name = data[p][this.data.name] || "无名";
+      newdata.push(object);
+    }
+    return newdata;
+  },
   // 选择时间 select
   select: function (e) {
     var object = util.api.tiemFilter(e);
@@ -92,80 +122,14 @@ Page({
     var object = util.api.timeChange(e, this.data.beginTime, this.data.endTime);
     this.setData(object)
   },
-  // 打开筛选界面
-  screen:function(){
-    this.setData({
-      screen: 'screen'
-    })
-  },
-  screen_colse:function(){
-    this.setData({
-      screen: ''
-    })
-  },
-  // 改变品牌、种类....
-  batchType: function (e) {
-    var type = e.currentTarget.dataset.type;
-    var filter = this.data.filter;
-    var name = e.currentTarget.dataset.name;
-    filter.field = type;
-    this.setData({
-      filter: filter,
-      thTitle: name,
-      name: type
-    })
-    this.purchase_request();
-  },
-  updateData: function (p) {
-    var data = this.data.data
-    pieChart.updateData({
-      series: data[p]
-    });
-  },
-  touchHandler: function (e) {
-    pieChart.showToolTip(e, {
-      // background: '#7cb5ec'
-    });
-    console.log(pieChart.getCurrentDataIndex(e));
-    var title
-    var content = this.data.data[this.data.selected][pieChart.getCurrentDataIndex(e)].data
-    switch (pieChart.getCurrentDataIndex(e)){
-      case (0):
-        title = '衣服';
-        break;
-      case (1):
-        title = '裤子';
-        break;
-      case (2):
-        title = '其他';
-        break;
-    }
-    wx.showModal({
-      title: title,
-      content: content+'件',
-    })
-  },
-
   // 创建报表
-  chart: function () {
+  chart: function (data1, canvasId) {
     pieChart = new wxCharts({
       animation: true,
-      canvasId: 'pieCanvas',
+      canvasId: canvasId,
       type: 'pie',
-      legend: false,
-      series: [{
-        name: '裤子',
-        data: 50,
-        color: "#FF8500"
-      }, {
-        name: '衣服',
-        data: 40,
-        color: "#8AE3DD"
-      }, {
-        name: '其他',
-        data: 10,
-        color: "#DDDDDD"
-     }],
+      legend: true,
+      series: data1,
       width: 375,
       height: 300,
       dataLabel: true,
@@ -182,8 +146,9 @@ Page({
     this.setData({
       beginTime: Time,
       endTime: Time,
+      url: e.url,
+      title:e.title
     })
-    this.chart()
-    this.purchase_request()
+    this.purchase_request(e.url)
   }
 })

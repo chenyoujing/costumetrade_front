@@ -13,10 +13,10 @@ Page({
     timebool: 1,//确定显示按钮还是input
     filter: { field: "productName", value: null },
     thTitle:"货品名称",
-    sort: { value: "quantityOp", op: "des" },
+    sort: { value: "quantityOp", op: "desc" },
     reportType: 1,
-    quantityOp: { value: "quantityOp", op: "des" },
-    amountOp: { value: "amountOp", op: "des" },
+    quantityOp: { value: "quantityOp", op: "desc" },
+    amountOp: { value: "amountOp", op: "desc" },
     pageNum:1,
     thTitle:"货品名称",
     name:"productName"
@@ -74,30 +74,11 @@ Page({
     var name = e.target.dataset.name;
     var object = this.data[name];
     var param = {};
-    object.op = object.op == "des" ?"asc" :"des";
+    object.op = object.op == "desc" ?"asc" :"desc";
     param[name] = object;
     param.sort = object;
     this.setData(param);
     this.chart()
-  },
-  updateData: function (p) {
-    var that = this
-    var data = [
-      [5, 1, 3],
-      [30, 25, 31],
-      [150, 102, 140],
-      [520, 420, 560]
-    ]
-    var series = [{
-      name: '销售量',
-      data: data[p],
-      color: "#52CAC1"
-    }];
-    columnChart.updateData({
-      categories: that.data.categories,
-
-      series: series
-    });
   },
   touchHandler: function (e) {
     var that = this

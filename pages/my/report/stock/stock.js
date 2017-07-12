@@ -6,90 +6,66 @@ Page({
   data: {
     title: '库存报表',
     more_function_display: 'none',
-    beginTime: "",//开始时间
-    endTime: ""//结束时间
+    rules: [],
+    sort: { value: "quantityOp", op: "desc" },
+    filter: { field: "productName", value: null }
   },
-  // 打开多功能键
-  more_function: function () {
-    this.setData({
-      more_function_display: "block",
-    })
-    setTimeout(() => {
-      this.setData({
-        animation: "animation",
-      })
-    }, 10)
-  },
-  // 关闭多功能键
-  more_function_close: function () {
-    this.setData({
-      animation: "",
-    })
-    setTimeout(() => {
-      this.setData({
-        more_function_display: "none",
-      })
-    }, 300)
-  },
-  updateData: function (p) {
-    var data = [
-      [10, 10, 5, 30, 25, 25, 20, 10],
-      [35, 40, 82, 46, 78, 62, 45, 70],
-      [57, 56, 27, 68, 90, 12, 57],
-      [24, 45, 34, 21, 70, 46, 36]
-    ]
-    var categories = [
-      ['8:00', '10:00', '12:00', '14:00', '16:00', '18:00', '20:00', '22:00'],
-      ['7日前', '6日前', '5日前', '4日前', '3日前', '2日前', '1日前', '今日'],
-      ['30日前', '25日前', '20日前', '15日前', '10日前', '5日前', '今日'],
-      ['90日前', '75日前', '60日前', '45日前', '30日前', '15日前', '今日'],
-    ]
-    var series = [{
-      name: '入库量',
-      data: data[p],
-      color: "#52CAC1"
-    }];
-    columnChart.updateData({
-      categories: categories[p],
-      series: series
-    });
-  },
-  touchHandler: function (e) {
-    columnChart.showToolTip(e, {
-      // background: '#7cb5ec'
-    });
-  },
-
-  // 创建报表
-  chart: function () {
-    columnChart = new wxCharts({
-      canvasId: 'columnCanvas',
-      type: 'column',
-      categories: ['268 雅戈尔', '779 红豆', '305 森马'],
-      animation: true,
-      background: '#52CAC1',
-      legend: false,
-      series: [{
-        name: '库存数量',
-        data: [-5, 0, 5],
-        color: "#52CAC1"
-      }],
-      xAxis: {
-        disableGrid: true
+  stock_request: function () {
+    var that = this
+    wx.showNavigationBarLoading()
+    util.api.request({
+      url: 'report/realTimeInventory',
+      data: {
+        openid: app.globalData.openid,
+        filter: that.data.filter,
+        rules: that.data.rules,
+        sort: that.data.sort
       },
-      yAxis: {
-        title: '库存数量 (件)',
+      method: 'POST',
+      header: {
+        'content-type': 'application/json'
       },
-      width: 375,
-      height: 200,
-      dataLabel: true,
-      dataPointShape: true,
-      extra: {
-        columnStyle: 'straight'
+      success: function (res) {
+        wx.hideNavigationBarLoading();
+        var data = typeof (res.data) == "Array" ? res.data:[];
+        that.setData({
+          product: data
+        })
       }
-    });
+    })
+  },
+  // 改变排序方法
+  sort: function (e) {
+    var name = e.target.dataset.name;
+    var object = this.data.sort;
+    var param = {};
+    object.op = object.op == "des" ? "asc" : "desc";
+    param.sort = object;
+    this.setData(param);
+    this.stock_request()
+  },
+  // 过滤框按钮
+  bindFaous: function () {
+    wx.navigateTo({
+      url: '../../../my/Goods/GoodsScreen/GoodsScreen?type=report'
+    })
   },
   onLoad: function (e) {
-    this.chart()
+    this.stock_request()
+  },
+  onShow:function(){
+    if (app.getFilterData || app.searchValue) {
+      var filter = this.data.filter;
+      console.log(this.data.filter)
+      filter.value = app.searchValue ? app.searchValue :null;
+      this.setData({
+        pageNum: 1,
+        product: [],
+        filter: filter,
+        rules: app.getFilterData ? app.getFilterData : undefined
+      })
+      this.stock_request();
+      app.getFilterData = [];
+    }
   }
 })

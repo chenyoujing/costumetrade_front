@@ -364,7 +364,7 @@
           </view>
         </view>
 
-        <!--物流公司-->
+        <!--分店管理-->
         <view class="setting_view">
           <view class="branch" style="height:40px;">
             <view class="branch_view" style="font-size:16px;flex:3;">分店管理</view>
@@ -373,20 +373,56 @@
             <view class="branch_view">共享货品</view>
             <view class="branch_view" style="flex:1;">
               <image src="../../../../images/append.png" mode="aspectFit" class="branch_image" />
-              <view class="bindtap_cover" bindtap="branch"></view>
+              <view class="bindtap_cover" data-add="true" bindtap="branch"></view>
             </view>
           </view>
-          <view class="branch" wx:for="{{2}}">
-            <view class="branch_view" style="flex:3;"><text>{{index+1}}.</text>店铺一</view>
-            <view class="branch_view">是</view>
-            <view class="branch_view">是</view>
-            <view class="branch_view">是</view>
+          <view class="branch" wx:for="{{stores}}">
+            <view class="branch_view" style="flex:3;"><text>{{index+1}}.</text>{{item.name}}</view>
+            <view class="branch_view">{{item.inventoryShare==1?'是':'否'}}</view>
+            <view class="branch_view">{{item.inventoryShare==1?'是':'否'}}</view>
+            <view class="branch_view">{{item.inventoryShare==1?'是':'否'}}</view>
             <view class="branch_view" style="flex:1;">
               <image src="../../../../images/update.png" mode="aspectFit" class="branch_image"/>
-              <view class="bindtap_cover" bindtap="branch" data-id="id"></view>
+        <view class="bindtap_cover" bindtap="branch"  data-add="false" data-item="{{item}}"></view>
             </view>
           </view>
         </view>
+
+<!--分店管理-->
+<modal title="分店管理" hidden="{{branchModal}}" confirm-text="保存" bindconfirm="branchOk" bindcancel="cancel">
+  <view class="branchModal">
+    <view class="branchModal_title">
+      <view class="branchModal_input_view">
+        <!--<view style="float:left;padding-right:8px;">1.</view>-->
+    <input type="text" value="{{storeIdData.name}}" data-name="name" bindblur="storeIdDataChange" class="branchModal_input"/>
+      </view>
+      <view class="branchModal_delete_view">
+        <image src="../../../../images/delete_2.png" mode="aspectFit" class="branchModal_delete" bindtap="deleteChainStore" data-id="{{storeIdData.id}}" wx:if="{{addStoreId == 'false'}}"/>
+      </view>
+    </view>
+    <radio-group class="branchModal_content" data-name="inventoryShare" bindchange="storeIdDataChange">
+      <view class="branchModal_content_view">共享库存</view>
+      <label class="branchModal_content_view">
+       <radio value="1"  checked="{{storeIdData.inventoryShare == 1}}"/>是
+       
+      </label>
+      <label class="branchModal_content_view">
+        <radio value="2" checked="{{storeIdData.inventoryShare == 2}}"/>否
+      </label>
+    </radio-group>
+     <radio-group class="branchModal_content">
+      <view class="branchModal_content_view">共享货品</view>
+      <label class="branchModal_content_view"><radio checked="{{storeIdData.inventoryShare == 1}}"/>是</label>
+      <label class="branchModal_content_view"><radio checked="{{storeIdData.inventoryShare !== 1}}"/>否</label>
+    </radio-group>
+     <radio-group class="branchModal_content">
+      <view class="branchModal_content_view">共享会员</view>
+      <label class="branchModal_content_view"><radio value="1" checked="{{storeIdData.inventoryShare == 1}}"/>是</label>
+      <label class="branchModal_content_view"><radio checked="{{storeIdData.inventoryShare !== 1}}"/>否</label>
+    </radio-group>
+  </view>
+</modal>
+
 
         <!--会员积分转换-->
         <view class="setting_view">
@@ -500,32 +536,3 @@
   <view class="scan_modal_text">请用微信扫一扫上面的图片,扫好了后点击“扫好了”</view>
 </modal>
 
-<!--分店管理-->
-<modal title="分店管理" hidden="{{branchModal}}" confirm-text="保存" bindconfirm="branchOk" bindcancel="cancel">
-  <view class="branchModal">
-    <view class="branchModal_title">
-      <view class="branchModal_input_view">
-        <view style="float:left;padding-right:8px;">1.</view>
-        <input type="text" class="branchModal_input" />
-      </view>
-      <view class="branchModal_delete_view">
-        <image src="../../../../images/delete_2.png" mode="aspectFit" class="branchModal_delete" />
-      </view>
-    </view>
-    <radio-group class="branchModal_content">
-      <view class="branchModal_content_view">共享库存</view>
-      <label class="branchModal_content_view"><radio/>是</label>
-      <label class="branchModal_content_view"><radio/>否</label>
-    </radio-group>
-    <radio-group class="branchModal_content">
-      <view class="branchModal_content_view">共享会员</view>
-      <label class="branchModal_content_view"><radio/>是</label>
-      <label class="branchModal_content_view"><radio/>否</label>
-    </radio-group>
-    <radio-group class="branchModal_content">
-      <view class="branchModal_content_view">共享货品</view>
-      <label class="branchModal_content_view"><radio/>是</label>
-      <label class="branchModal_content_view"><radio/>否</label>
-    </radio-group>
-  </view>
-</modal>

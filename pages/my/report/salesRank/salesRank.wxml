@@ -25,7 +25,7 @@
         <image src="../../../../images/sort_report.png" mode="aspectFit" class="form_sort" />
       </view>
     </view>
-    <view class="form_content form_active" wx:for="{{product}}">
+    <view class="form_content " wx:for="{{product}}">
       <view class="form_view">{{item.name}}</view>
       <view class="form_view">{{item.quantity}}</view>
       <view class="form_view">{{item.saleAmount}}</view>

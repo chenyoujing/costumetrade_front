@@ -13,6 +13,7 @@ Page({
     timebool: 1,//确定显示按钮还是input
     rules:[],
     sort: { value: "quantityOp", op: "des" },
+    filter: { field: "productName", value: null },
     reportType:1,
     quantityOp: { value:"quantityOp",op:"des"},
     amountOp: { value: "amountOp", op: "des" },
@@ -30,7 +31,7 @@ Page({
         timeFrom: that.data.beginTime +  " 00:00:00",
         timeTo: that.data.endTime + " 23:59:59",
         reportType: that.data.reportType,
-        filter: { field: "productName", value: null },
+        filter: that.data.filter,
         rules: that.data.rules,
         sort:that.data.sort
       },
@@ -143,13 +144,10 @@ Page({
   },
   onShow:function(){
     if (app.getFilterData || app.searchValue) {
-      console.log(11)
       this.setData({
         pageNum: 1,
         product: [],
-        // requestSwitch: true,
-        // code: app.searchValue ? app.searchValue : '',
-        // name: app.searchValue ? app.searchValue : '',
+        "filter.value": app.searchValue ? app.searchValue : null,
         rules: app.getFilterData ? app.getFilterData : undefined
       })
       this.purchase_request();

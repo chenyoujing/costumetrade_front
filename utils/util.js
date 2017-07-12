@@ -492,6 +492,7 @@ var api = {
         if (parseInt((myDate - res.data) / 1000 / 60 / 60) >= 1 || res.data == undefined) {
           that.downData(url,objectName,timeName,callback)
         }else{
+          console.log("callback")
           callback()
         }
       }

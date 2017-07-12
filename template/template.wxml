@@ -31,15 +31,7 @@
 <!--报表-添加选择/搜索-->
 <template name="report_search">
   <view class="search_input_view">
-    <input type="text" class="search_input" bindfocus="screen" />
+    <input type="text" class="search_input"  bindfocus="bindFaous" />
     <image src="../../../../images/search.png" mode="aspectFit" class="search_input_image" />
-    <scroll-view scroll-y class="screen_scroll {{screen}}">
-      <view class="screen_title">供货商名称</view>
-      <scroll-view scroll-y class="screen_content">
-        <block wx:for="{{10}}">
-          <view class="screen_view {{index==1?'screen_selected':''}}">连衣裙</view>
-        </block>
-      </scroll-view>
-    </scroll-view>
   </view>
 </template>

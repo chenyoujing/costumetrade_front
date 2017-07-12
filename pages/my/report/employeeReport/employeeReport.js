@@ -17,7 +17,8 @@ Page({
     reportType: 1,
     quantityOp: { value: "quantityOp", op: "des" },
     amountOp: { value: "amountOp", op: "des" },
-    product:[]
+    product:[],
+    rules: []
   },
   // 选择时间
   select: function (e) {
@@ -67,7 +68,8 @@ Page({
         timeFrom: that.data.beginTime + " 00:00:00",
         timeTo: that.data.endTime + " 23:59:59",
         filter: that.data.filter,
-        sort: that.data.sort
+        sort: that.data.sort,
+        rules: that.data.rules
       },
       method: 'POST',
       header: {
@@ -87,7 +89,9 @@ Page({
           categories: categories,
           product: res.data.employeeQuerys
         });
-        that.chartShow(dataReport, categories)
+        if (dataReport.length > 0){
+          that.chartShow(dataReport, categories)
+        }
         wx.showToast({
           title: "添加成功！",
           mask: true,
@@ -135,5 +139,17 @@ Page({
       endTime: Time,
     })
     this.chart()
+  },
+  onShow:function(){
+   if (app.getFilterData || app.searchValue) {
+      this.setData({
+        pageNum: 1,
+        product: [],
+        "filter.value": app.searchValue ? app.searchValue : null,
+        rules: app.getFilterData ? app.getFilterData : undefined
+      })
+      this.chart();
+      app.getFilterData = [];
+    }
   }
 })

@@ -33,6 +33,7 @@ Page({
     this.setData({
       enterValue: value
     })
+    console.log(value)
     this.keyup(value)
   },
   // 清空输入框
@@ -40,7 +41,7 @@ Page({
     this.setData({
       enterValue: ""
     })
-    this.keyup(value)
+    this.keyup("")
   },
   // 品牌、种类多选
   multipleSelect:function(e){
@@ -137,7 +138,9 @@ Page({
         changeBoolean:false
       })
     } else{
-      var endArray4 = util.api.objectPushArry(this.data.product,e)
+      console.log(this.data.product)
+      var endArray4 = util.api.objectPushArry(this.data.product,e);
+      console.log(endArray4)
       this.setData({
         keyArray: endArray4,
         changeBoolean: true
@@ -152,6 +155,7 @@ Page({
        that.setData({
          product: res.data
        })
+       console.log(res.data)
      }
    })
  },
@@ -185,7 +189,7 @@ Page({
           cplorList: res.data.cplorList,
           employeeList: res.data.employeeList,
           sizeList: res.data.sizeList,
-          product: res.data.purchaseReportQuerys,
+          // purchaseReportQuerys: res.data.purchaseReportQuerys,
         })
       }
     })

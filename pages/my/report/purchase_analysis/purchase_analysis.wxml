@@ -6,18 +6,25 @@
     <image src="../../../../images/back-away.png" mode="aspectFit" class="title_image_back" />
   </navigator>
   <view class="title_text">{{title}}</view>
-  <image src="../../../../images/more.png" mode="aspectFit" class="title_more" bindtap="more_function" />
+    <image src="../../../../images/more.png" mode="aspectFit" class="title_more" bindtap="more_function" />
 </view>
 
-<scroll-view scroll-y class="report_scroll">
-  <template is="report_date" data="{{timebool:timebool,selected:selected,beginTime:beginTime,endTime:endTime}}"></template>
+<scroll-view scroll-y class="report_scroll" >
 
-  <template is="report_search" data="{{screen:screen,index:index,screen_selected:screen_selected}}"></template>
+  <template is="report_date" data="{{timebool:timebool,selected:selected,beginTime:beginTime,endTime:endTime,select:true}}"></template>
 
-  <canvas class="canvas" canvas-id="pieCanvas" bindtouchstart="touchHandler"/>
+  <view class="pietitle" wx:if="{{title !== '利润分析'}}">库存</view> 
+  <view  class="pietitle" wx:if="{{title == '利润分析'}}">利润分布</view> 
+   <canvas class="canvas" canvas-id="pieCanvas" bindtouchstart="touchHandler"/>
+  <view  class="pietitle" wx:if="{{title !== '利润分析'}}">销售</view> 
+  <view class="pietitle" wx:if="{{title == '利润分析'}}">销售额</view>
+  <canvas class="canvas" canvas-id="pieCanvas2" bindtouchstart="touchHandler"/>
   <view class="bindtap_cover" bindtap="screen_colse" hidden="{{!screen}}"></view>
+    <view class="classname" wx:if="{{title == '利润分析'}}">
+ 总计<progress percent="40" stroke-width="36" /> 
+      <view> 总额：{{saleAmount}} 毛利率：{{grossProfit*100}}% </view>  
+    </view>
 </scroll-view>
-
 
 <!--更多功能-->
 <view class="more_function_cover {{animation}}" bindtap="more_function_close" style="display:{{more_function_display}};"></view>

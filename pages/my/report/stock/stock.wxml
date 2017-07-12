@@ -6,42 +6,24 @@
     <image src="../../../../images/back-away.png" mode="aspectFit" class="title_image_back" />
   </navigator>
   <view class="title_text">{{title}}</view>
-  <image src="../../../../images/more.png" mode="aspectFit" class="title_more" bindtap="more_function" />
 </view>
 
 <scroll-view scroll-y class="report_scroll">
   <view style="height:1px;width:100%;"></view>
-  <template is="report_search" data="{{screen:screen,index:index,screen_selected:screen_selected}}"></template>
+  <template is="report_search" data="{{bindFaous:bindFaous}}"></template>
 
-  <!--<canvas class="canvas" canvas-id="columnCanvas" bindtouchmove="touchHandler" bindtouchstart="touchHandler"/>-->
   <view class="report_form">
     <view class="form_title">
-      <view class="form_view">商品品名称</view>
-      <view class="form_view">
+      <view class="form_view">商品名称</view>
+      <view class="form_view" data-name="quantityOp" bindtap="sort">
         库存数量
         <image src="../../../../images/sort_report.png" mode="aspectFit" class="form_sort" />
       </view>
     </view>
-    <view class="form_content form_active">
-      <view class="form_view">268 雅戈尔</view>
-      <view class="form_view">-5</view>
+    <view class="form_content" wx:for="{{product}}">
+      <view class="form_view">{{item.name}}</view>
+      <view class="form_view">{{item.name}}</view>
     </view>
-    <view class="form_content">
-      <view class="form_view">779 红豆</view>
-      <view class="form_view">0</view>
-    </view>
-    <view class="form_content">
-      <view class="form_view">305 森马</view>
-      <view class="form_view">5</view>
-    </view>
+    
   </view>
 </scroll-view>
-
-
-<!--更多功能-->
-<view class="more_function_cover {{animation}}" bindtap="more_function_close" style="display:{{more_function_display}};"></view>
-<view class="more_function {{animation}}" style="display:{{more_function_display}};">
-  <view class="more_function_view" data-type="1" bindtap="batchType">123</view>
-  <view class="more_function_view" data-type="2" bindtap="batchType">112</view>
-  <view class="more_function_view" data-type="3" bindtap="batchType">111</view>
-</view>

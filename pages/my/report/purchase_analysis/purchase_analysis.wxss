@@ -4,3 +4,7 @@
 .canvas{
   height: 300px;
 }
+.pietitle{
+  text-align: center;
+  width:100%
+}
