@@ -11,7 +11,7 @@
     <text>收货人：{{address.contact}}</text>
     <text>电话：{{address.phone}}</text>
   </view>
-  <view class="one_line">收货地址：{{address.address}}</view>
+  <view class="one_line">收货地址：{{address.province}}{{address.city}}{{address.district}}{{address.address}}</view>
   <image src="../../../../images/update.png" mode="aspectFill" class="userinfo_update" bindtap="address" />
 </view>
 

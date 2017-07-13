@@ -36,7 +36,7 @@
     </navigator>
     <view style="float:left;">
       <view class="shop_name">{{title}}</view>
-      <view class="shop_goods">全部货品：105件</view>
+      <view class="shop_goods">全部货品：{{GoodsInfoData.stockNum || 0}}件</view>
     </view>
     <button open-type="contact" class="shop_content_service"  session-from="1">
       <image src="../../../../images/customer_service.png" mode="aspectFit" class="shop_service" >
@@ -55,7 +55,7 @@
       <view class="evaluate_content_body">{{item.msg}}</view>
       <view class="evaluate_content_footer">{{item.createtime}}</view>
     </view>
-    <navigator url="../goodsComment/goodsComment?name={{title}}&stordId={{stordId}}&id={{id}}&comment={{GoodsInfoData.countReview}}" class="evaluate_more">查看更多评论</navigator>
+    <navigator wx:if="{{GoodsInfoData.countReview >0}}" url="../goodsComment/goodsComment?name={{title}}&stordId={{stordId}}&id={{id}}&comment={{GoodsInfoData.countReview}}&stockNum={{GoodsInfoData.stockNum || 0}}&image={{GoodsInfoData.storeImage}}" class="evaluate_more">查看更多评论</navigator>
   </view>
   
   <view class="description">

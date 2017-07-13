@@ -197,7 +197,7 @@ Page({
       storephoto: options.storephoto
     });
     console.log(app.globalData)
-    console.log(options.id)
+    console.log(options.storephoto)
     this.page_request();
   },
   onShow:function(){

@@ -40,7 +40,9 @@ Page({
       countReview: e.comment,
       stordId: e.stordId,
       id: e.id,
-      name: e.name
+      name: e.name,
+      stockNum: e.stockNum,
+      image:e.image
     })
     console.log(e.stordId)
     this.page_request()

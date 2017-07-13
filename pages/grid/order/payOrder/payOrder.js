@@ -37,12 +37,7 @@ Page({
           ssStoDetail[p].createtime = util.toDate(ssStoDetail[p].createtime)
           // price += ssStoDetail[p].price
         }
-        // 转换物流公司
-        // for (var j in that.data.logisticFees) {
-        //   if (that.data.logisticFees[j].logisticCode == res.data.ssStoOrder.logisticsCode) {
-        //    var logisticName = that.data.logisticFees[j].logisticName
-        //   }
-        // }
+    
         that.setData({
           ssStoDetail: ssStoDetail,
           price: res.data.ssStoOrder.debetamt,
@@ -61,12 +56,13 @@ Page({
   },
   // 选择更改后的快递
   logistic: function (e) {
+   
     var logisticName = e.target.dataset.name;
     var logisticCode = e.target.dataset.code;
     var fixedFee = e.target.dataset.fixedfee;
     console.log(fixedFee)
     this.setData({
-      // logisticName: logisticName,
+      logisticName: logisticName,
       logisticCode: logisticCode,
       freight: fixedFee
     })

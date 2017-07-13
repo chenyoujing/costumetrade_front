@@ -130,6 +130,7 @@ Page({
         res.data = res.data ? res.data : [];
         for(var p in res.data){
           if (res.data[p].iSselect == true){
+            res.data[p].image1 = res.data[p].image ? util.api.imgUrl + res.data[p].image : "";
             selectCart.push(res.data[p])
           }
         }
@@ -233,6 +234,7 @@ Page({
       logisticCode: app.logisticFees[0].logisticCode,
       logisticName: app.logisticFees[0].logisticName
     })
+    console.log(app.logisticFees)
     this.orderInitAddress();
     this.getData()
   }

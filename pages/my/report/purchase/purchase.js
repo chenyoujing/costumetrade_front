@@ -59,6 +59,7 @@ Page({
           product: res.data.purchaseReportQuerys||[],
           categories: categories,
           dataReport: dataReport,
+          hasMore: res.data.purchaseReportQuerys.length == 10 ? true : false,
           'filter.value': res.data.purchaseReportQuerys ? res.data.purchaseReportQuerys[0].productName:null
         })
       }
