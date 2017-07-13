@@ -14,11 +14,22 @@
   <template is="report_date" data="{{timebool:timebool,selected:selected,beginTime:beginTime,endTime:endTime,select:true}}"></template>
 
   <view class="pietitle" wx:if="{{title !== '利润分析'}}">库存</view> 
-  <view  class="pietitle" wx:if="{{title == '利润分析'}}">利润分布</view> 
-   <canvas class="canvas" canvas-id="pieCanvas" bindtouchstart="touchHandler"/>
+  <view  class="pietitle" wx:if="{{title == '利润分析'}}">利润分布</view>
+
+
+  <view wx:if="{{total1 == 0}}" class="canvas" >
+   <image class="nodataImg" src="../../../../images/report-no-pie.png" mode="aspectFit"/>
+  </view>
+  <canvas class="canvas" wx:if="{{total1>0}}" canvas-id="pieCanvas" bindtouchstart="touchHandler"/>
+
   <view  class="pietitle" wx:if="{{title !== '利润分析'}}">销售</view> 
   <view class="pietitle" wx:if="{{title == '利润分析'}}">销售额</view>
-  <canvas class="canvas" canvas-id="pieCanvas2" bindtouchstart="touchHandler"/>
+
+<view wx:if="{{total2 == 0}}" class="canvas" >
+   <image class="nodataImg" src="../../../../images/report-no-pie.png" mode="aspectFit"/>
+  </view>
+  <canvas class="canvas"  wx:if="{{total2>0}}" canvas-id="pieCanvas2" bindtouchstart="touchHandler"/>
+
   <view class="bindtap_cover" bindtap="screen_colse" hidden="{{!screen}}"></view>
     <view class="classname" wx:if="{{title == '利润分析'}}">
  总计<progress percent="40" stroke-width="36" /> 
@@ -27,12 +38,4 @@
 </scroll-view>
 
 <!--更多功能-->
-<view class="more_function_cover {{animation}}" bindtap="more_function_close" style="display:{{more_function_display}};"></view>
-<view class="more_function {{animation}}" style="display:{{more_function_display}};">
-  <view class="more_function_view" data-type="productName"  data-name="商品名称"  bindtap="batchType">商品名称</view>
-  <view class="more_function_view" data-type="clientName"  data-name="供应商" bindtap="batchType">供应商</view>
-  <view class="more_function_view" data-type="brandName"  data-name="品牌" bindtap="batchType">品牌</view>
-  <view class="more_function_view" data-type="productSize"  data-name="尺码" bindtap="batchType">尺码</view>
-  <view class="more_function_view" data-type="productColor"  data-name="颜色" bindtap="batchType">颜色</view>
-  <view class="more_function_view" data-type="createBy"  data-name="创建人" bindtap="batchType">创建人</view>
-</view>
+ <template is="more_feature" data="{{animation:animation,more_function_close:more_function_close,more_function_display:more_function_display,productName:productName}}"></template>

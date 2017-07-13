@@ -94,8 +94,13 @@
 .canvas{
   width: 100%;
   height: 200px;
+  text-align: center
 }
-
+.nodataImg{
+  width:100%;
+  display: inline-block;
+  height: 100%
+}
 .more_function::before{
   right: 10px;
 }

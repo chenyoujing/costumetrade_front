@@ -11,8 +11,7 @@
 
 <scroll-view scroll-y class="report_scroll">
   <template is="report_date" data="{{timebool:timebool,selected:selected,beginTime:beginTime,endTime:endTime,select:true}}"></template>
-
-  <canvas class="canvas" canvas-id="columnCanvas" bindtouchmove="touchHandler" bindtouchstart="touchHandler"/>
+  <template is="report_no_line" data="{{dataReport:dataReport,dataReport:dataReport,touchHandler:touchHandler}}"></template>
   <view class="report_form">
     <view class="form_title">
       <view class="form_view">{{thTitle}}</view>
@@ -25,22 +24,19 @@
         <image src="../../../../images/sort_report.png" mode="aspectFit" class="form_sort" />
       </view>
     </view>
-    <view class="form_content " wx:for="{{product}}">
+     <view class="form_content" wx:for="{{product}}" data-name="{{item.name}}" bindtap="selectGoods">
       <view class="form_view">{{item.name}}</view>
       <view class="form_view">{{item.quantity}}</view>
       <view class="form_view">{{item.saleAmount}}</view>
     </view>
+    <view class="form_content form_active" wx:if="{{product.length == 0}}">
+      <view class="form_view">没有内容显示</view>
+    </view>
   
   </view>
+  <button class="btn btn-default btn-sm pull-right" wx:if="{{hasMore}}" bindtap="goNext" >下一页</button>
+  <button class="btn btn-default btn-sm pull-right" wx:if="{{pageNum>1}}" bindtap="goPreview">上一页</button>
 </scroll-view>
+ 
+ <template is="more_feature" data="{{animation:animation,more_function_close:more_function_close,more_function_display:more_function_display,productName:productName}}"></template>
 
-<!--更多功能-->
-<view class="more_function_cover {{animation}}" bindtap="more_function_close" style="display:{{more_function_display}};"></view>
-<view class="more_function {{animation}}" style="display:{{more_function_display}};">
-  <view class="more_function_view" data-type="productName"  data-name="商品名称"  bindtap="batchType">商品名称</view>
-  <view class="more_function_view" data-type="clientName"  data-name="供应商" bindtap="batchType">供应商</view>
-  <view class="more_function_view" data-type="brandName"  data-name="品牌" bindtap="batchType">品牌</view>
-  <view class="more_function_view" data-type="productSize"  data-name="尺码" bindtap="batchType">尺码</view>
-  <view class="more_function_view" data-type="productColor"  data-name="颜色" bindtap="batchType">颜色</view>
-  <view class="more_function_view" data-type="createBy"  data-name="创建人" bindtap="batchType">创建人</view>
-</view>

@@ -20,10 +20,13 @@
         <image src="../../../../images/sort_report.png" mode="aspectFit" class="form_sort" />
       </view>
     </view>
-    <view class="form_content" wx:for="{{product}}">
+  
+    <view class="form_content" wx:for="{{product}}" data-name="{{item.name}}" bindtap="selectGoods">
       <view class="form_view">{{item.name}}</view>
-      <view class="form_view">{{item.name}}</view>
+      <view class="form_view">{{item.quantity}}</view>
     </view>
-    
+    <view class="form_content form_active" wx:if="{{product.length == 0}}">
+      <view class="form_view">没有内容显示</view>
+    </view>
   </view>
 </scroll-view>

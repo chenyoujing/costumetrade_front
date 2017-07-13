@@ -33,13 +33,6 @@ Page({
     this.setData(object);
     this.chart()
   },
-  // 改变入库、出库、往来款项
-  changeType: function (e) {
-    var type = e.currentTarget.dataset.type;
-    this.setData({
-      changeType: type
-    })
-  },
   // 改变排序方法
   sort: function (e) {
     var name = e.target.dataset.name;

@@ -445,7 +445,6 @@ Page({
     } else if (name == "logisticFees"){
       var type = e.currentTarget.dataset.type;
       product[index][type] = e.detail.value;
-      console.log(product)
     }
     param[name] = product;
     submitData[name] = product;
@@ -684,8 +683,8 @@ Page({
   customerModal:function(e){
     var customerCusts = JSON.stringify(this.data.customerCusts[e.target.dataset.index]); 
     var name = [];
-    for (var p in this.data.customerCusts){
-      name.push(this.data.customerCusts[p].custtypename)
+    for (var p in this.data.productGrade){
+      name.push(this.data.productGrade[p].dictText)
     }
     console.log(name)
     wx.navigateTo({

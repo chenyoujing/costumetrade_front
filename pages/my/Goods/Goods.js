@@ -66,24 +66,14 @@ Page({
       },
       success: function (res) {
         wx.hideNavigationBarLoading();
-        var data = that.data.product;
+        var data = that.data.pageNum == 1?[]:that.data.product;
         var booleanre = that.data.requestSwitch;
         for (var p in res.data) {
           res.data[p].timeUp = util.toDate(res.data[p].timeUp)
-          res.data[p].image = res.data[p].image ? util.api.imgUrl + res.data[p].image : ""
+          res.data[p].image = res.data[p].image ? util.api.imgUrl + res.data[p].image : "";
+          data.push(res.data[p]);
         }
-        if (that.data.pageNum == 1) {
-          data = res.data;
-        } else {
-          for (var p in res.data) {
-            data.push(res.data[p])
-          }
-        }
-        if (res.data.length < 10) {
-          booleanre = false;
-        } else {
-          booleanre = true;
-        }
+        booleanre = res.data.length < 10 ? false : true;
         that.setData({
           product: data,
           loadMore: true,
@@ -242,7 +232,6 @@ Page({
   },
   //滚动到底部触发事件  
   onReachBottom: function () {
-    console.log('到底不了')
     this.setData({
       pageNum: this.data.pageNum + 1,
       loadMore: false

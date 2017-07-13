@@ -10,6 +10,8 @@ Page({
     invReportQuerys:[],//库存
     purchaseQuerys:[],//销售
     timebool:1,
+    total2:0,
+    total1:0,
     name: "productName",
     beginTime: "",//开始时间
     endTime: ""//结束时间
@@ -68,13 +70,13 @@ Page({
         console.log(res.data);
         if (that.data.title == "采购分析"){
           that.setData({
-            invReportQuerys: that.filterData(res.data.invReportQuerys, "quantity"),//库存 
-            purchaseQuerys: that.filterData(res.data.purchaseQuerys, "quantity")//销售
+            invReportQuerys: that.filterData(res.data.invReportQuerys, "quantity",1),//库存 
+            purchaseQuerys: that.filterData(res.data.purchaseQuerys, "quantity",2)//销售
           });
-          if (that.data.invReportQuerys.length > 0){
+          if (that.data.invReportQuerys.length > 0 && that.data.total1 > 0){
             that.chart(that.data.invReportQuerys,"pieCanvas")
           }
-          if (that.data.purchaseQuerys.length > 0) {
+          if (that.data.purchaseQuerys.length > 0 && that.data.total2 > 0) {
             that.chart(that.data.purchaseQuerys,"pieCanvas2")
           }
         }else{
@@ -83,13 +85,15 @@ Page({
             profitAmount: res.data.profitAmount,//利润
             pucharseAmount: res.data.pucharseAmount,//成本
             grossProfit: res.data.grossProfit,
-            invReportQuerys: that.filterData(res.data.querys, "profitAmount"),//利润 
-            purchaseQuerys: that.filterData(res.data.querys, "saleAmount")//销售额
+            invReportQuerys: that.filterData(res.data.querys, "profitAmount", 1),//利润 
+            purchaseQuerys: that.filterData(res.data.querys, "saleAmount", 2)//销售额
           });
-          if (that.data.invReportQuerys.length > 0) {
+          console.log(that.data.invReportQuerys)
+          console.log(that.data.purchaseQuerys)
+          if (that.data.invReportQuerys.length > 0 && that.data.total1>0) {
             that.chart(that.data.invReportQuerys, "pieCanvas")
           }
-          if (that.data.purchaseQuerys.length > 0) {
+          if (that.data.purchaseQuerys.length > 0 && that.data.total2 > 0) {
             that.chart(that.data.purchaseQuerys, "pieCanvas2")
           }
         }
@@ -97,17 +101,25 @@ Page({
     })
   },
 // 数据过滤
-  filterData: function (data,quantity){
+  filterData: function (data,quantity,num){
     var newdata = [];
+    var total = 0;
+    var name = 'total1';
+    var object = {};
     for(var p in data){
       var object = {};
       if (data[p][quantity] < 0){
         data[p][quantity] = 0;
       }
+      total += data[p][quantity];
       object.data = data[p][quantity];
       object.name = data[p][this.data.name] || "无名";
       newdata.push(object);
     }
+    name = num == 1 ? 'total1' : 'total2';
+    object[name] = total;
+    console.log(total)
+    this.setData(object);
     return newdata;
   },
   // 选择时间 select

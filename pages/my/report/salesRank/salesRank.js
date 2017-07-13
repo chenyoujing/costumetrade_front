@@ -19,7 +19,9 @@ Page({
     amountOp: { value: "amountOp", op: "desc" },
     pageNum:1,
     thTitle:"货品名称",
-    name:"productName"
+    name:"productName",
+    hasMore: true,
+    reportType:undefined
   },
   // 打开多功能键
   more_function: function () {
@@ -62,10 +64,12 @@ Page({
     var filter = this.data.filter;
     var name = e.currentTarget.dataset.name;
     filter.field = type;
+    filter.value = null;
     this.setData({
       filter: filter,
       thTitle: name,
-      name: type
+      name: type,
+      reportType: undefined
     })
     this.chart();
   },
@@ -107,7 +111,8 @@ Page({
         timeTo: that.data.endTime + " 23:59:59",
         filter: that.data.filter,
         sort: that.data.sort,
-        pageNum: that.data.pageNum
+        pageNum: that.data.pageNum,
+        reportType: that.data.reportType
       },
       method: 'POST',
       header: {
@@ -118,6 +123,7 @@ Page({
         var categories = [];
         var dataReport = [];
         var name = that.data.sort.value == "quantityOp" ? "quantity" : "saleAmount";
+    
         for (var p in res.data) {
           res.data[p].name = res.data[p][that.data.name];
           categories.push(res.data[p][that.data.name]);
@@ -126,19 +132,40 @@ Page({
         that.setData({
           dataReport: dataReport,
           categories: categories,
-          product: res.data
+          product: res.data,
+          hasMore: res.data.length == 10 ? true : false
         });
         if (dataReport.length > 0){
           that.chartShow(dataReport, categories)
         }
-        wx.showToast({
-          title: "添加成功！",
-          mask: true,
-          duration: 2000
-        })
       }
     })
    
+  },
+  // 选择某个商品
+  selectGoods: function (e) {
+    var name = e.currentTarget.dataset.name;
+    var filter = this.data.filter;
+    console.log(e)
+    filter.value = name;
+    this.setData({
+      filter: filter,
+      reportType:2
+    })
+    this.chart()
+  },
+  // 下一页上一页
+  goNext: function () {
+    this.setData({
+      pageNum: this.data.pageNum += 1
+    })
+    this.chart();
+  },
+  goPreview: function () {
+    this.setData({
+      pageNum: this.data.pageNum -= 1
+    })
+    this.chart();
   },
   chartShow: function (data1, categories){
     var that = this;

@@ -56,6 +56,9 @@ Page({
         }
         that.setData({
           product: res.data.purchaseReportQuerys||[],
+          categories: categories,
+          dataReport: dataReport,
+          'filter.value': res.data.purchaseReportQuerys ? res.data.purchaseReportQuerys[0].productName:null
         })
       }
     })
@@ -69,8 +72,8 @@ Page({
   // 选择时间
   select: function (e) {
     var object = util.api.tiemFilter(e);
-    console.log(object)
     object.selected = e.target.dataset.index;
+    object['filter.value'] = null;
     this.setData(object);
     this.purchase_request()
   },
@@ -80,11 +83,22 @@ Page({
     this.setData(object);
     this.purchase_request()
   },    
+  // 选择某个商品
+  selectGoods:function(e){
+    var name = e.currentTarget.dataset.name;
+    var filter = this.data.filter;
+    console.log(e)
+    filter.value = name;
+    this.setData({
+      filter:filter
+    })
+    this.purchase_request()
+  },
   // 创建报表
   chart: function (data1,categories){
     var that = this;
     lineChart = new wxCharts({
-      canvasId: 'lineCanvas',
+      canvasId: 'columnCanvas',
       type: 'line',
       categories:categories,
       animation: true,
