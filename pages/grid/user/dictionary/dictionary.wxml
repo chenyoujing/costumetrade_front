@@ -286,7 +286,7 @@
                 <view class="freight_explain_title">说明:</view>
                 <image src="../../../../images/update.png" mode="aspectFit" class="freight_explain_right" bindtap="freightUpdate" />
                 <view class="freight_explain_text" wx:if="{{!freightUpdate}}">{{item.description}}</view>
-                <textarea type="text" class="freight_explain_text freight_explain_input" data-type="description" bindblur="changIput" data-index="{{index}}" style="width:unset;height:40px;" wx:if="{{freightUpdate}}" value="{{item.description}}" />
+                <textarea type="text" class="freight_explain_text freight_explain_input" data-type="description" data-name="logisticFees" bindblur="changIput" data-index="{{index}}" style="width:unset;height:40px;" wx:if="{{freightUpdate}}" value="{{item.description}}" />
               </view>
               <view class="freight_content">
                 <view class="freight_content_title">1. 运费：</view>
