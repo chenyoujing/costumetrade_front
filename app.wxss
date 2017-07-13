@@ -214,9 +214,12 @@ radio,checkbox{
   border-radius: 4px;
   background-color: #ff0000;
   font-size: 8px;
-  line-height: 8px;
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   color: #ffffff;
+  box-sizing: border-box;
+  padding: 0 1px;
 }
 /*搜索input*/
 .search_input{
