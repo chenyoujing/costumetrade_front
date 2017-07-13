@@ -30,23 +30,21 @@
 
   <!--信息-->
   <view class="info" hidden="{{infotype!=0||!hiddenChat}}">
-    <view class="info_container clearfix">
+    <view class="info_container clearfix" bindtap="chat">
       <image src="../../../images/image_none.png" mode="aspectFill" class="info_tx"><view class="prompt">3</view></image>
       <view class="info_content">
         <view class="info_name">小鱼</view>
         <view class="info_text">你的衣服质量很不错</view>
       </view>
       <view class="info_time">19:28</view>
-      <view class="bindtap_cover" bindtap="chat"></view>
     </view>
-    <view class="info_container clearfix">
+    <view class="info_container clearfix" bindtap="chat">
       <image src="../../../images/image_none.png" mode="aspectFill" class="info_tx"><view class="prompt">3</view></image>
       <view class="info_content">
         <view class="info_name">小鱼</view>
         <view class="info_text">你的衣服质量很不错</view>
       </view>
       <view class="info_time">19:28</view>
-      <view class="bindtap_cover" bindtap="chat"></view>
     </view>
   </view>
   <view class="chat" hidden="{{infotype!=0||hiddenChat}}">
