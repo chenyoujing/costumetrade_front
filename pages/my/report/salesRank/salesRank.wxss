@@ -4,3 +4,7 @@
 .report_scroll{
   bottom: 40px;
 }
+.nodataImg{
+  height: unset;
+  margin:0 20px;
+}
