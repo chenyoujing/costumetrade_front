@@ -34,3 +34,5 @@
     </view>
   </view>
 </scroll-view>
+
+<template is="report_bottom"></template>

@@ -19,6 +19,7 @@ Page({
     amountOp: { value: "amountOp", op: "des" },
     categories:[],
     data1:[],
+    product: [],
     pageNum:1
   },
   purchase_request: function () {

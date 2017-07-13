@@ -38,5 +38,7 @@
   <button class="btn btn-default btn-sm pull-right" wx:if="{{pageNum>1}}" bindtap="goPreview">上一页</button>
 </scroll-view>
  
- <template is="more_feature" data="{{animation:animation,more_function_close:more_function_close,more_function_display:more_function_display,productName:productName}}"></template>
+<template is="report_bottom"></template>
+
+<template is="more_feature" data="{{animation:animation,more_function_close:more_function_close,more_function_display:more_function_display,productName:productName}}"></template>
 

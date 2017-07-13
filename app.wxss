@@ -1,3 +1,158 @@
+/* template模板的css */
+
+/* 首页的公告 */
+.template_notice{
+  display: flex;
+  align-items: center;
+  padding: 0 5px;
+  min-height: 40px;
+  border-bottom: 5px solid #E5E5E5;
+  background: #ffffff;
+}
+.template_notice_text{
+  width: 32px;
+  font-size: 16px;
+  line-height: 18px;
+  padding: 0 15px;
+  color: #A23B40;
+  flex-shrink: 0;
+}
+.template_notice_hot{
+  font-size: 14px;
+  color: #D46453;
+  flex-shrink: 0;
+}
+.template_notice_nav_view{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.template_notice_nav{
+  font-size: 12px;
+}
+
+/* 首页的导航 */
+.nav_bottom{
+  border-top: 1px solid #BBBBBB;
+  height: 45px;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+}
+.nav_bottom_view{
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.nav_bottom_active{
+  color: #286561;
+}
+.nav_bottom_view image{
+  width: 24px;
+  height: 24px;
+}
+.nav_bottom_view text{
+  font-size: 11px;
+}
+
+/* 搜索的头部 */
+.template_search_title{
+  height: 46px;
+  background-color: #52CAC1;
+  position: relative;
+}
+.template_search_title_view{
+  box-sizing: border-box;
+  margin: 0 40px;
+  padding: 5px 0;
+  position: relative;
+  height: 100%;
+  display: flex;
+}
+.template_search_title_view input{
+  background-color: #ffffff;
+  border-radius: 8px;
+  height: 100%;
+  flex: 1;
+}
+.template_search_title_view image{
+  width: 16px;
+  height: 16px;
+  padding: 10px;
+  position: absolute;
+  top: 5px;
+  right: 0;
+  z-index: 4;
+}
+.template_search_title_back image{
+  width: 16px;
+  height: 16px;
+  padding: 12px 7px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+}
+
+/* 报表-表单 */
+.template_report_form{
+  border: 1px solid #DDDDDD;
+  margin: 10px 50rpx;
+}
+.template_form_title,.template_form_content{
+  display: flex;
+}
+.template_form_title{
+  background-color: #52CAC1;
+  color: #ffffff;
+}
+.template_form_content{
+  border-bottom: 1px solid #EEEEEE;
+}
+.template_form_view{
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  min-height: 36px;
+  word-break: break-all;
+}
+.template_form_sort{
+  width: 14px;
+  height: 14px;
+}
+.template_form_active{
+  background-color: #EEEEEE;
+}
+
+/* 报表-底部按钮 */
+.template_report_bottom_view{
+  height: 40px;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+}
+.template_report_bottom{
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  background-color: #EEEEEE;
+}
+.bg_green{
+  background-color: #52CAC1;
+  color: #ffffff;
+}
+
 /**app.wxss**/
 page,input{
   font-family: Microsoft YaHei;

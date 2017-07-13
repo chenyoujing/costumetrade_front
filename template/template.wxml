@@ -1,3 +1,80 @@
+<!---------中小客户--------->
+
+<!--首页公告-->
+<template name="notice">
+  <view class="template_notice">
+    <view class="template_notice_text">点艺公告</view>
+    <view class="template_notice_hot">热搜：</view>
+    <view class="template_notice_nav_view">
+      <navigator url="url" class="template_notice_nav">逛街买衣服别说这几句话，容易被坑！</navigator>
+      <navigator url="url" class="template_notice_nav">喜欢穿短裤的女生别学这4种穿法！</navigator>
+    </view>
+  </view>
+</template>
+
+<!--首页下方导航栏-->
+<template name="navBottom">
+  <view class="nav_bottom">
+    <navigator url="{{nav!='首页'?'../shop/shop':''}}" open-type="redirect" class="nav_bottom_view {{nav=='首页'?'nav_bottom_active':''}}">
+      <image src="../../../images/home-page2.png" mode="aspectFit" wx:if="{{nav!='首页'}}" />
+      <image src="../../../images/home-page.png" mode="aspectFit" wx:if="{{nav=='首页'}}" />
+      <text>首页</text>
+    </navigator>
+    <navigator url="{{nav!='订单'?'../order/order':''}}" open-type="redirect" class="nav_bottom_view {{nav=='订单'?'nav_bottom_active':''}}">
+      <image src="../../../images/order-form2.png" mode="aspectFit" wx:if="{{nav!='订单'}}" />
+      <image src="../../../images/order-for-goods.png" mode="aspectFit" wx:if="{{nav=='订单'}}" />
+      <text>订单</text>
+    </navigator>
+    <navigator url="{{nav!='信息'?'../info/info':''}}" open-type="redirect" class="nav_bottom_view {{nav=='信息'?'nav_bottom_active':''}}">
+      <image src="../../../images/info.png" mode="aspectFit" wx:if="{{nav!='信息'}}" />
+      <image src="../../../images/info2.png" mode="aspectFit" wx:if="{{nav=='信息'}}" />
+      <text>信息</text>
+    </navigator>
+    <navigator url="{{nav!='我的'?'../user/user':''}}" open-type="redirect" class="nav_bottom_view {{nav=='我的'?'nav_bottom_active':''}}">
+      <image src="../../../images/my.png" mode="aspectFit" wx:if="{{nav!='我的'}}" />
+      <image src="../../../images/myself.png" mode="aspectFit" wx:if="{{nav=='我的'}}" />
+      <text>我的</text>
+    </navigator>
+  </view>
+</template>
+<template name="navBottom2">
+  <view class="nav_bottom">
+    <navigator url="{{nav!='首页'?'../index/index':''}}" open-type="redirect" class="nav_bottom_view {{nav=='首页'?'nav_bottom_active':''}}">
+      <image src="../../../images/home-page2.png" mode="aspectFit" wx:if="{{nav!='首页'}}" />
+      <image src="../../../images/home-page.png" mode="aspectFit" wx:if="{{nav=='首页'}}" />
+      <text>首页</text>
+    </navigator>
+    <navigator url="{{nav!='开单'?'../order/order':''}}" open-type="redirect" class="nav_bottom_view {{nav=='开单'?'nav_bottom_active':''}}">
+      <image src="../../../images/billing.png" mode="aspectFit" wx:if="{{nav!='开单'}}" />
+      <image src="../../../images/billing-.png" mode="aspectFit" wx:if="{{nav=='开单'}}" />
+      <text>开单</text>
+    </navigator>
+    <navigator url="{{nav!='信息'?'../info/info':''}}" open-type="redirect" class="nav_bottom_view {{nav=='信息'?'nav_bottom_active':''}}">
+      <image src="../../../images/info.png" mode="aspectFit" wx:if="{{nav!='信息'}}" />
+      <image src="../../../images/info2.png" mode="aspectFit" wx:if="{{nav=='信息'}}" />
+      <text>信息</text>
+    </navigator>
+    <navigator url="{{nav!='发图'?'../share/share':''}}" open-type="redirect" class="nav_bottom_view {{nav=='发图'?'nav_bottom_active':''}}">
+      <image src="../../../images/Figure.png" mode="aspectFit" wx:if="{{nav!='发图'}}" />
+      <image src="../../../images/Figure-.png" mode="aspectFit" wx:if="{{nav=='发图'}}" />
+      <text>发图</text>
+    </navigator>
+  </view>
+</template>
+
+<!--采购-->
+<template name="searchTitle">
+  <view class="template_search_title">
+    <view class="template_search_title_view">
+      <input type="text" />
+      <image src="../../../../images/search.png" mode="aspectFit"/>
+    </view>
+    <navigator open-type="navigateBack" class="template_search_title_back">
+      <image src="../../../../images/back-away.png" mode="aspectFit" class="title_image_back" />
+    </navigator>
+  </view>
+</template>
+
 <!--输入规则提示-->
 <template name="reg">
   <view class="template_reg_text">{{text}}</view>
@@ -38,8 +115,8 @@
 
 <!--报表-图片/数据-->
 <template name="report_no_line">
- <view wx:if="{{dataReport.length == 0}}" class="canvas" >
-   <image class="nodataImg" src="../../../../images/report-no-line.png" mode="aspectFit"/>
+  <view wx:if="{{dataReport.length == 0}}" class="canvas" >
+   <image class="nodataImg" src="../../../../images/report-no-line.png" mode="widthFix"/>
   </view>
   <canvas wx:if="{{dataReport.length !== 0}}" class="canvas" canvas-id="columnCanvas" bindtouchmove="touchHandler" bindtouchstart="touchHandler"/>
 </template>
@@ -54,5 +131,39 @@
     <view class="more_function_view" data-type="productSize"  data-name="尺码" bindtap="batchType">尺码</view>
     <view class="more_function_view" data-type="productColor"  data-name="颜色" bindtap="batchType">颜色</view>
     <view class="more_function_view" data-type="createBy"  data-name="创建人" bindtap="batchType">创建人</view>
+  </view>
+</template>
+
+<!--报表-列表显示-->
+<template name="report_form">
+  <view class="template_report_form">
+    <view class="template_form_title">
+      <view class="template_form_view">{{thTitle}}</view>
+     <view class="template_form_view" data-name="quantityOp" bindtap="sort">
+        数量
+        <image src="../../../../images/sort_report.png" mode="aspectFit" class="template_form_sort" />
+      </view>
+      <view class="template_form_view"  data-name="amountOp" bindtap="sort">
+        金额
+        <image src="../../../../images/sort_report.png" mode="aspectFit" class="template_form_sort" />
+      </view>
+    </view>
+    <view class="template_form_content " wx:for="{{product}}">
+      <view class="template_form_view">{{item.name}}</view>
+      <view class="template_form_view">{{item.quantity}}</view>
+      <view class="template_form_view">{{item.saleAmount}}</view>
+    </view>
+    <view class="template_form_content " wx:if="{{!product}}">
+      <view class="template_form_view" style="background-color:#EEEEEE;">没有内容显示</view>
+    </view>
+  
+  </view>
+</template>
+
+<!-- 底部按钮 -->
+<template name="report_bottom">
+  <view class="template_report_bottom_view">
+    <view class="template_report_bottom" wx:if="{{!up_none}}">上一页</view>
+    <view class="template_report_bottom bg_green">下一页</view>
   </view>
 </template>

@@ -74,7 +74,7 @@ Page({
         var dataReport = [];
         var name = that.data.sort.value == "quantityOp" ? "quantity" :"amount";
         for (var p in res.data.employeeQuerys){
-          categories.push(res.data.employeeQuerys[p].createBy);
+          categories.push(res.data.employeeQuerys[p].createBy||" ");
           dataReport.push(res.data.employeeQuerys[p][name]);
         }
         that.setData({

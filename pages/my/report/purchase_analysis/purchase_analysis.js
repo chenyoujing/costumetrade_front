@@ -5,6 +5,7 @@ var pieChart = null;
 Page({
   data: {
     title: '采购分析',
+    more_function_display: 'none',
     selected: 0,
     filter:{ field: "productName", value: null },
     invReportQuerys:[],//库存

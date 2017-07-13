@@ -37,3 +37,5 @@
     </view>
   </view>
 </scroll-view>
+
+<template is="report_bottom" data="{{up_none:true}}"></template>
