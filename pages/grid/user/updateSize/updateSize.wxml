@@ -46,4 +46,4 @@
   </scroll-view>
 </view>
 
-  <button class="submit" bindtap="back">确定</button>
+<navigator open-type="navigateBack" class="submit">确定</navigator>
