@@ -148,7 +148,7 @@ Page({
   },
   // 进入详情
   orderid:function(e){
-    this.detail(e.target.dataset.index, e.target.dataset.id, e.currentTarget.dataset.num)
+    this.detail(e.currentTarget.dataset.index, e.currentTarget.dataset.id, e.currentTarget.dataset.num)
   },
   // 打开详情页面
   detail:function(index,id,num){

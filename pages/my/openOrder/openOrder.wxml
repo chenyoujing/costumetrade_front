@@ -64,13 +64,16 @@
       <text>对不起，搜不到您要的货品</text>
     </view>
     <block wx:for="{{keyArray}}" wx:key="id">
-      <view class="products_info clearfix" data-id="{{item.id}}" style="position: absolute;left: 0;right: 0;">
-        <image src="{{item.image ? item.image : '../../../images/image_none.png'}}" mode="aspectFill" class="products_info_image" />
-        <view class="products_info_name">{{item.name}}</view>
-        <view class="products_info_price">{{item.showPrice}}</view>
-        <view class="products_info_time">{{item.timeUp}}</view>
+      <view class="products_info" bindtap="orderid" data-num="" data-id="{{item.id}}">
+        <view style="display:flex;align-items:center;">
+          <image src="{{item.image ? item.image : '../../../images/image_none.png'}}" mode="aspectFill" class="products_info_image" />
+          <view class="products_info_name two_line">{{item.name}}</view>
+        </view>
+        <view class="products_info_view">
+          <view class="products_info_price">{{item.showPrice}}</view>
+          <view class="products_info_time">{{item.timeUp}}</view>
+        </view>
       </view>
-      <view class="products_info" bindtap="orderid" data-num="" data-id="{{item.id}}"></view>
     </block>
   </scroll-view>
   

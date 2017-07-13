@@ -27,7 +27,14 @@ radio,checkbox{
   white-space:nowrap;
   overflow:hidden;
   text-overflow:ellipsis;
-
+}
+/*两行不换行*/
+.two_line{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
 }
 /*input必填*/
 .required{

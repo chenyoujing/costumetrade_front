@@ -264,19 +264,21 @@
 }
 .content_container_info{
   border-top: 1px solid #000000;
-  padding: 10px 5px 10px 0;
+  height:56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 .price{
   color: #ff0000;
   font-size: 20px;
-  line-height: 32px;
-  float: left;
- }
+  word-break: break-all;
+}
 .price::before{
   content: "￥"
 }
 .info_other{
-  float: right;
+  flex-shrink: 0;
 }
 .volume,.date{
   font-size: 12px;

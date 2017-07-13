@@ -141,26 +141,32 @@
 
 /*页面2*/
 .products_info{
-  height: 70px;
+  min-height: 70px;
   border-bottom: 1px solid #E5E5E5;
   border-top: 1px solid #E5E5E5;
   position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 .products_info_image{
   width: 70px;
   height: 70px;
-  float: left;
+  flex-shrink: 0;
 }
 .products_info_name{
-  float: left;
-  line-height: 70px;
   padding-left: 10px;
   font-size: 18px;
 }
+.products_info_view{
+  align-items: center;
+  flex-direction: column;
+  display: flex;
+  min-width: 70px;
+}
 .products_info_price{
-  float: right;
-  line-height: 60px;
-  padding-right: 18px;
+  word-break: break-all;
+  text-align: center;
   font-size: 18px;
   color: #ff0000;
 }
@@ -169,8 +175,6 @@
   color: #000000;
 }
 .products_info_time{
-  position: absolute;
-  bottom: 8px;
   right: 20px;
   font-size: 12px;
 
