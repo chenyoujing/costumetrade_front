@@ -92,6 +92,7 @@
   max-height: 50vh;
 }
 .canvas{
+  position: relative;
   width: 100%;
   min-height: 200px;
   display: flex;
