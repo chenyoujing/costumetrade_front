@@ -126,7 +126,7 @@
   <view class="more_function_cover {{animation}}" bindtap="more_function_close" style="display:{{more_function_display}};"></view>
   <view class="more_function {{animation}}" style="display:{{more_function_display}};">
     <view class="more_function_view" data-type="productName"  data-name="商品名称"  bindtap="batchType">商品名称</view>
-    <view class="more_function_view" data-type="clientName"  data-name="供应商" bindtap="batchType">供应商</view>
+    <view class="more_function_view" wx:if="{{client !== '采购分析'}}" data-type="clientName"  data-name="供应商" bindtap="batchType">供应商</view>
     <view class="more_function_view" data-type="brandName"  data-name="品牌" bindtap="batchType">品牌</view>
     <view class="more_function_view" data-type="productSize"  data-name="尺码" bindtap="batchType">尺码</view>
     <view class="more_function_view" data-type="productColor"  data-name="颜色" bindtap="batchType">颜色</view>
@@ -163,7 +163,7 @@
 <!-- 底部按钮 -->
 <template name="report_bottom">
   <view class="template_report_bottom_view">
-    <view class="template_report_bottom" wx:if="{{!up_none}}">上一页</view>
-    <view class="template_report_bottom bg_green">下一页</view>
+    <view class="template_report_bottom" bindtap="goPreview" wx:if="{{!up_none && pageNum>1}}">上一页</view>
+    <view class="template_report_bottom bg_green"  wx:if="{{hasMore}}" bindtap="goNext">下一页</view>
   </view>
 </template>

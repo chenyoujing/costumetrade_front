@@ -10,7 +10,7 @@
 </view>
 
 <scroll-view scroll-y class="report_scroll">
-  <template is="report_date" data="{{timebool:timebool,selected:selected,beginTime:beginTime,endTime:endTime,select:true}}"></template>
+  <template is="report_date" data="{{timebool:timebool,selected:selected,beginTime:beginTime,endTime:endTime,select:true,more_function:more_function}}"></template>
   <template is="report_no_line" data="{{dataReport:dataReport,dataReport:dataReport,touchHandler:touchHandler}}"></template>
   <view class="report_form">
     <view class="form_title">
@@ -32,13 +32,10 @@
     <view class="form_content form_active" wx:if="{{product.length == 0}}">
       <view class="form_view">没有内容显示</view>
     </view>
-  
   </view>
-  <button class="btn btn-default btn-sm pull-right" wx:if="{{hasMore}}" bindtap="goNext" >下一页</button>
-  <button class="btn btn-default btn-sm pull-right" wx:if="{{pageNum>1}}" bindtap="goPreview">上一页</button>
 </scroll-view>
  
-<template is="report_bottom"></template>
+<template is="report_bottom" data="{{hasMore:hasMore,pageNum:pageNum,goPreview:goPreview,goNext:goNext}}"></template>
 
 <template is="more_feature" data="{{animation:animation,more_function_close:more_function_close,more_function_display:more_function_display,productName:productName}}"></template>
 

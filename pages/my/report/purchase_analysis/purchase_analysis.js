@@ -43,7 +43,8 @@ Page({
   batchType: function (e) {
     var type = e.currentTarget.dataset.type;
     var filter = this.data.filter;
-    var name = e.currentTarget.dataset.name;
+    var name = e.target.dataset.name;
+    console.log(name)
     filter.field = type;
     this.setData({
       filter: filter,
@@ -86,11 +87,10 @@ Page({
             profitAmount: res.data.profitAmount,//利润
             pucharseAmount: res.data.pucharseAmount,//成本
             grossProfit: res.data.grossProfit,
+            pucharseProfit: Number(res.data.pucharseAmount) / Number(res.data.saleAmount) ,//成本利润
             invReportQuerys: that.filterData(res.data.querys, "profitAmount", 1),//利润 
             purchaseQuerys: that.filterData(res.data.querys, "saleAmount", 2)//销售额
           });
-          console.log(that.data.invReportQuerys)
-          console.log(that.data.purchaseQuerys)
           if (that.data.invReportQuerys.length > 0 && that.data.total1>0) {
             that.chart(that.data.invReportQuerys, "pieCanvas")
           }
@@ -102,25 +102,25 @@ Page({
     })
   },
 // 数据过滤
-  filterData: function (data,quantity,num){
+  filterData: function (data1,quantity,num){
+    console.log(this.data.name)
     var newdata = [];
     var total = 0;
-    var name = 'total1';
-    var object = {};
-    for(var p in data){
+    var name1 = 'total1';
+    var param = {};
+    for (var p in data1){
       var object = {};
-      if (data[p][quantity] < 0){
-        data[p][quantity] = 0;
+      if (data1[p][quantity] < 0){
+        data1[p][quantity] = 0;
       }
-      total += data[p][quantity];
-      object.data = data[p][quantity];
-      object.name = data[p][this.data.name] || "无名";
+      total += data1[p][quantity];
+      object.data = data1[p][quantity];
+      object.name = data1[p][this.data.name] || "无名";
       newdata.push(object);
     }
-    name = num == 1 ? 'total1' : 'total2';
-    object[name] = total;
-    console.log(total)
-    this.setData(object);
+    name1 = num == 1 ? 'total1' : 'total2';
+    param[name1] = total;
+    this.setData(param);
     return newdata;
   },
   // 选择时间 select

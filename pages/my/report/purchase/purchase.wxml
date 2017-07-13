@@ -12,7 +12,7 @@
   <template is="report_date" data="{{timebool:timebool,selected:selected,beginTime:beginTime,endTime:endTime,select:false}}"></template>
   <template is="report_search" data="{{bindFaous:bindFaous}}"></template>
 
-<template is="report_no_line" data="{{dataReport:dataReport,dataReport:dataReport,touchHandler:touchHandler}}"></template>
+<template is="report_no_line" data="{{dataReport:dataReport,touchHandler:touchHandler}}"></template>
   
   <view class="report_form">
     <view class="form_title">
@@ -38,4 +38,4 @@
   </view>
 </scroll-view>
 
-<template is="report_bottom" data="{{up_none:true}}"></template>
+<template is="report_bottom" data="{{up_none:true,hasMore:hasMore,pageNum:pageNum,goNext:goNext}}"></template>

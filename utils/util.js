@@ -121,7 +121,9 @@ var api = {
       object =  {
         beginTime: beginTime,
         endTime: endTime,
-        timebool: timebool
+        timebool: timebool,
+        'filter.value':null,
+        pageNum:1
       }
     }
     return object;
@@ -146,6 +148,8 @@ var api = {
     } else {
       param.endTime = e.detail.value ;
     }
+    param['filter.value'] = null;
+    param.pageNum = 1
     param.endTime = this.endTimeiSchange(param.beginTime, param.endTime);
     return param;
   },

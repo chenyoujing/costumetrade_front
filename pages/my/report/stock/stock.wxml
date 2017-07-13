@@ -29,4 +29,7 @@
       <view class="form_view">没有内容显示</view>
     </view>
   </view>
+
 </scroll-view>
+
+<template is="report_bottom" data="{{up_none:true,hasMore:hasMore,pageNum:pageNum,goNext:goNext}}"></template>

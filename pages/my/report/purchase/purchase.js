@@ -20,7 +20,8 @@ Page({
     categories:[],
     data1:[],
     product: [],
-    pageNum:1
+    pageNum:1,
+    hasMore: true
   },
   purchase_request: function () {
     var that = this
@@ -34,7 +35,8 @@ Page({
         reportType: that.data.reportType,
         filter: that.data.filter,
         rules: that.data.rules,
-        sort:that.data.sort
+        sort:that.data.sort,
+        pageNum: that.data.pageNum
       },
       method: 'POST',
       header: {
@@ -45,6 +47,10 @@ Page({
         var productReportQuerys = res.data.productReportQuerys;
         var categories = that.data.pageNum==1?[]: that.data.categories;
         var dataReport = that.data.pageNum == 1 ? [] : that.data.dataReport;
+        var hasMore = false;
+        if (res.data.purchaseReportQuerys){
+          hasMore = res.data.purchaseReportQuerys.length > 10 ?true:false
+        }
         for (var p in productReportQuerys){
           var time = '';
           productReportQuerys[p].timeTo = util.formatTime(new Date(productReportQuerys[p].timeTo));
@@ -59,11 +65,17 @@ Page({
           product: res.data.purchaseReportQuerys||[],
           categories: categories,
           dataReport: dataReport,
-          hasMore: res.data.purchaseReportQuerys.length == 10 ? true : false,
+          hasMore: hasMore,
           'filter.value': res.data.purchaseReportQuerys ? res.data.purchaseReportQuerys[0].productName:null
         })
       }
     })
+  },
+  goNext: function () {
+    this.setData({
+      pageNum: this.data.pageNum += 1
+    })
+    this.purchase_request();
   },
   // 过滤框按钮
   bindFaous: function () {
@@ -75,7 +87,6 @@ Page({
   select: function (e) {
     var object = util.api.tiemFilter(e);
     object.selected = e.target.dataset.index;
-    object['filter.value'] = null;
     this.setData(object);
     this.purchase_request()
   },
