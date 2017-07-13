@@ -42,7 +42,7 @@
       </checkbox-group>
 
       <view class="client_content clearfix" style="left:{{select_checkbox}}px">
-        <navigator url="clientInfo/clientInfo?clientId={{item.id}}" style="padding:30rpx 0 30rpx 30rpx;">
+        <navigator url="clientInfo/clientInfo?clientId={{item.id}}" style="padding:15px 0 15px 30rpx;">
           <image image src="{{item.image ? item.image : '../../../images/image_none.png'}}" mode="aspectFill" class="client_tx" />
           <view class="clearfix">
             <view class="client_info">

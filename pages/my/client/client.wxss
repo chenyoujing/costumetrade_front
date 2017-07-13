@@ -121,8 +121,10 @@
 }
 .client_info2_text{
   font-size: 12px;
-  line-height: 30px;
   padding: 0 20rpx;
+  display:inline-flex;
+  min-height: 30px;
+  align-items: center;
 }
 .client_updata{
   position: absolute;

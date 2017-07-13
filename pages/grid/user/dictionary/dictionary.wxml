@@ -26,7 +26,7 @@
 
     <!--员工管理-->
     <swiper-item>
-      <scroll-view scroll-y class="setting_scroll">
+      <scroll-view scroll-y class="setting_scroll" style="bottom:40px;">
         <view class="prompt_none" wx:if="{{employeeProduct == 0}}">
           <text>您还没有添加店员</text>
         </view>
@@ -44,7 +44,7 @@
         </view>
       </scroll-view>
       <view class="staff_updata" style="left:-{{staff_updata}};right:{{staff_updata}};">
-        <scroll-view scroll-y class="setting_scroll" style="bottom:0;">
+        <scroll-view scroll-y class="setting_scroll" style="bottom:40px;">
           <view class="staff_updata_top">
             <view class="dictionary_input">
               <view class="dictionary_input_text1 clearfix">昵称：</view>
