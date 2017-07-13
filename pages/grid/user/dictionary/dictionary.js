@@ -445,6 +445,7 @@ Page({
     } else if (name == "logisticFees"){
       var type = e.currentTarget.dataset.type;
       product[index][type] = e.detail.value;
+      console.log(product)
     }
     param[name] = product;
     submitData[name] = product;
