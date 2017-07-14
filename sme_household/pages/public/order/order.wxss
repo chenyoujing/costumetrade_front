@@ -64,9 +64,6 @@
   margin-top: -7px;
 }
 
-.ordertype{
-  margin-top: 40px;
-}
 .ordertype_text{
   box-sizing: border-box;
   color: #202020;
@@ -117,7 +114,7 @@
 
 .order_scroll{
   position: absolute;
-  top: 113px;
+  top: 73px;
   left: 0;
   right: 0;
   bottom: 46px;

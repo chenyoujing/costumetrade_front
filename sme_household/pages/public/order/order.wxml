@@ -17,6 +17,7 @@
     <image mode="aspectFit" src="../../../images/search.png" class="search_input_image" style="top:-3px;" />
   </input>
 </view>
+<view style="height:40px;width:100%;"></view>
 
 <!--订单类型分类-->
 <view class="ordertype" hidden="true">
