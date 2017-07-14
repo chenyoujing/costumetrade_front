@@ -52,7 +52,7 @@
         <image src="../../../images/consumer-.png" mode="aspectFit" />
         <text>客户</text>
       </navigator>
-      <navigator url="Purchase/Purchase" class="operation">
+      <navigator url="../../public/order/order?shopkeeper=1" class="operation">
         <image src="../../../images/select-and-purchase.png" mode="aspectFit" />
         <text>采购单</text>
       </navigator>
