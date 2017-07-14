@@ -36,11 +36,12 @@ Page({
       otherStord: otherStord
     })
   },
-  onLoad:function(){
+  onLoad:function(e){
     // this.aa()
     // this.bb()
     this.setData({
-      url: util.api.imgUrl
+      url: util.api.imgUrl,
+      shopkeeper: e.shopkeeper,
     })
     if (!app.globalData.openid){
       util.api.getOpenid(this.initialize);
