@@ -19,7 +19,7 @@
 </view>
 
 <!--订单类型分类-->
-<view class="ordertype">
+<view class="ordertype" hidden="true">
   <view class="ordertype_text {{ordertype=='1' ? 'ordertype_active1' : ''}}" bindtap="ordertype" data-ordertype="1">采购</view>
   <view class="ordertype_text {{ordertype=='2' ? 'ordertype_active1' : ''}}" bindtap="ordertype" data-ordertype="2">销售</view>
   <view class="clear"></view>
