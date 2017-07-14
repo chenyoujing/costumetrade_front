@@ -59,7 +59,10 @@ Page({
   },
 
  
-  onLoad:function(){
+  onLoad: function (e) {
+    this.setData({
+      shopkeeper: e.shopkeeper
+    })
     if (app.globalData.userIdentity == 1) {
       this.request_page()
     }

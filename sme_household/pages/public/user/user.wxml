@@ -1,6 +1,6 @@
 <import src="../../../template/template.wxml"/>
 
-<scroll-view scroll-y class="my_container">
+<scroll-view scroll-y class="my_container" style="bottom:{{shopkeeper?'0':''}}">
   <!--头部-->
   <view class="my_title clearfix">
     <navigator url="storeUpdate/storeUpdate">
@@ -102,4 +102,4 @@
   <view class="scan_modal_text">请用微信扫一扫上面的图片,扫好了后点击“扫好了”</view>
 </modal>
 
-<template is="navBottom" data="{{nav:'我的'}}"></template>
+<template is="navBottom" data="{{nav:'我的'}}" wx:if="{{!shopkeeper}}"></template>
