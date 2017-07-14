@@ -34,7 +34,7 @@
 .template_notice_nav{
   font-size: 12px;
 }
-
+ 
 /* 首页的导航 */
 .nav_bottom{
   border-top: 1px solid #BBBBBB;
