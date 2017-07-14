@@ -1,0 +1,118 @@
+<!--商品详情-->
+<scroll-view class="goods_detail" scroll-y="{{modal=='block'?false:true}}">
+  <swiper indicator-dots autoplay circular style="height:100vw;">
+    <block wx:for="{{imgUrls}}" wx:key="id">
+      <swiper-item wx:if="{{item}}">
+        <image src="{{item}}" class="slide_image" mode="aspectFill" style="height:100vw;"/>
+        <image src="{{item}}" class="slide_image" mode="aspectFill" style="height:100vw;"/>
+      </swiper-item>
+    </block>
+  </swiper>
+  <navigator class="back_nav" open-type="navigateBack">
+    <image src="../../../../images/back-away.png" mode="aspectFit" class="back" />
+  </navigator>
+  <view class="detail_title">{{GoodsInfoData.name}} {{GoodsInfoData.year}}{{GoodsInfoData.season}} {{GoodsInfoData.producttype}} {{GoodsInfoData.colors}}</view>
+  <view class="detail_price">￥{{GoodsInfoData.salePrice}}</view>
+  <view class="detail_price_original">￥{{GoodsInfoData.originalPrice}}</view>
+  <view class="detail_info {{infoid == '0' ? 'active' : ''}}" bindtap="detail_info" data-infoid="0">商品描述</view>
+  <view class="detail_info {{infoid == '1' ? 'active' : ''}}" bindtap="detail_info" data-infoid="1">产品参数</view>
+  <swiper current="{{infoid}}" bindchange="detail_info_swiper" class="detail_info_swiper">
+    <swiper-item style="overflow:auto;">
+      <view class="detail_info_view">商品描述：{{GoodsInfoData.year}}{{GoodsInfoData.season}} {{GoodsInfoData.producttype}}</view>
+      <view class="detail_info_view">商品颜色：{{GoodsInfoData.colors}}</view>
+      <view class="detail_info_view">商品尺码：{{GoodsInfoData.sizes}}</view>
+      <view class="clear"></view>
+    </swiper-item>
+    <swiper-item>
+      <view class="detail_info_view">上架时间：{{GoodsInfoData.timeUp}}</view>
+      <view class="detail_info_view">下架时间：{{GoodsInfoData.timeDown}}</view>
+      <view class="detail_info_view">商品条码：2209590002663</view>
+      <view class="clear"></view>
+    </swiper-item>
+  </swiper>
+  <view class="shop clearfix">
+    <navigator url="../storeDetails/storeDetails?id={{stordId}}">
+      <image src="{{GoodsInfoData.storeImage?GoodsInfoData.storeImage:'../../../../images/image_none.png'}}" mode="aspectFill" class="shop_image"></image>
+    </navigator>
+    <view style="float:left;">
+      <view class="shop_name">{{title}}</view>
+      <view class="shop_goods">全部货品：105件</view>
+    </view>
+    <button open-type="contact" class="shop_content_service"  session-from="1">
+      <image src="../../../../images/customer_service.png" mode="aspectFit" class="shop_service" >
+        <view class="prompt">3</view>
+      </image>
+    </button>
+  </view>
+  <view class="evaluate_button">评价</view>
+  <view class="evaluate_container">
+    商品评价({{GoodsInfoData.countReview}})
+    <view class="evaluate_content" wx:for="{{productReviews}}">
+      <view class="evaluate_content_header clearfix">
+        <image src="{{true?'../../../../images/shop2_tx.png':'../../../../images/image_none.png'}}" mode="aspectFill" class="client_tx" />
+        <view class="client_name">{{item.contactname}}</view>
+      </view>
+      <view class="evaluate_content_body">{{item.msg}}</view>
+      <view class="evaluate_content_footer">{{item.createtime}}</view>
+    </view>
+    <navigator url="../goodsComment/goodsComment?name={{title}}&stordId={{stordId}}&id={{id}}&comment={{GoodsInfoData.countReview}}" class="evaluate_more">查看更多评论</navigator>
+  </view>
+  
+  <view class="description">
+    <view wx:for="{{GoodsInfoData.description}}">
+      {{item.text}}
+      <image src="{{url+item.image}}" mode="widthFix" wx:if="{{item.image}}"/>
+    </view>
+  </view>
+</scroll-view>
+
+
+<!--加入购物车-->
+<view class="modal_cover" bindtap="modal_close" animation="{{modal_opacity}}" style="display:{{modal}};"></view>
+<view class="modal" style="top:{{modal_top}};bottom:{{modal_bottom}};">
+  <scroll-view scroll-y="true">
+    <view style="padding:10px; overflow:hidden;">
+      <view class="goods_container" style="display: flex;">
+        <image src="{{item[0]?item[0]:'../../../../images/image_none.png'}}" mode="aspectFill" class="goods_image" />
+        <view class="goods_name">{{GoodsInfoData.name}} {{GoodsInfoData.year}}{{GoodsInfoData.season}} {{GoodsInfoData.producttype}}</view>
+        <view class="clear"></view>
+      </view>
+      <view class="goods_container">
+        <view class="goods_title">尺码类型</view>
+        <view class="goods_check {{sizes == '1' ? 'goods_checked' : ''}}" bindtap="sizes_checked" data-sizes="1">选尺码</view>
+        <view class="goods_check {{sizes == '2' ? 'goods_checked' : ''}}" bindtap="sizes_checked" data-sizes="2">全码</view>
+        <view class="clear"></view>
+      </view>
+      <view class="goods_container">
+        <view class="goods_title">颜色分类</view>
+        <block wx:for="{{colorArray}}">
+          <view class="goods_check {{color == item ? 'goods_checked' : ''}}" bindtap="color_checked" data-name="color" data-color="{{item}}">{{item}}</view>
+       </block>
+        <view class="clear"></view>
+      </view>
+      <view class="goods_container" wx:if="{{sizes == '1' }}">
+        <view class="goods_title">尺码分类</view>
+           <block wx:for="{{sizeArray}}">
+        <view class="goods_check {{size == item ? 'goods_checked' : ''}}" bindtap="color_checked" data-name="size" data-size="{{item}}">{{item}}</view>
+          </block>
+        <view class="clear"></view>
+      </view>
+      <view class="goods_price"><text style="color:#000000;">零售价：</text>{{GoodsInfoData.salePrice}}元</view>
+      <view class="goods_number clearfix">
+        <view class="goods_number_view subtract" bindtap="countAddorSub" data-type="sub">-</view>
+        <view class="goods_number_view number">{{count}}</view>
+        <view class="goods_number_view add" bindtap="countAddorSub"   data-type="add">+</view>
+        <view class="goods_number_text">件数</view>
+      </view>
+    </view>
+  </scroll-view>
+  <image src="../../../../images/close.png" mode="aspectFit" class="modal_close" bindtap="modal_close" />
+  <button class="modal_submit" bindtap="getData">确定</button>
+</view>
+
+
+<!--底部浮动-->
+<view class="shopping_cart_container">
+  <navigator url="../shoppingcard/shoppingcard?stordId={{stordId}}" open-type="redirect" class="shopping_cart">购物车</navigator>
+  <view class="shopping_cart active_red" bindtap="join">加入购物车</view>
+</view>

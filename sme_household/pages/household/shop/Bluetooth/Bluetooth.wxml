@@ -1,0 +1,23 @@
+<view bindtap="openBluetooth">初始化蓝牙适配</view>
+<view  bindtap="closeBluetooth">关闭蓝牙模块</view>
+<view  bindtap="getBluetoothAdapterState">获取本机蓝牙适配状态</view>
+<view bindtap="onBluetoothAdapterStateChange" >监听蓝牙时间变化</view>
+<view  bindtap="startBluetoothDevicesDiscovery">开始搜索</view>
+<view  bindtap="stopBluetoothDevicesDiscovery">停止 搜索</view>
+<view  bindtap="getBluetoothDevices">1.获取已发现的蓝牙</view>
+ 
+ <scroll-view scroll-y >
+  <block wx:for="{{deviceList}}">
+    <view bindtap="connct" data-id="{{item.deviceId}}">点击连接   名字：{{item.name}}；id:{{item.deviceId}}</view>
+  </block>
+  <block wx:for="{{deviceList.length == 0}}">
+    <view >搜索不到蓝牙设备</view> 
+  </block>
+ </scroll-view>
+
+<view  bindtap="onBluetoothDeviceFound">监听找到新设备时间</view>
+<view  bindtap="getConnectedBluetoothDevices">根据UUID获取已处于连接的设备</view>
+<view  bindtap="createBLEConnection">连接低耗蓝牙设备</view>
+<view  bindtap="closeBLEConnection">断开连接</view>
+<view  bindtap="onBLEConnectionStateChanged">监听错误事件</view>
+<view  bindtap="getBLEDeviceServices">获取蓝牙所有service</view>

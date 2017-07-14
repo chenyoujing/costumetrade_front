@@ -1,0 +1,129 @@
+.my_container{
+  position: absolute;
+  top: 0;
+  bottom: 46px;
+}
+.my_title{
+  background-color: #52CAC1;
+  padding: 20px;
+  color: #ffffff;
+  position: relative;
+}
+.my_tx{
+  width: 70px;
+  height: 70px;
+  border-radius: 35px;
+  float: left;
+  margin-left: 10px;
+  margin-right: 20px;
+}
+.my_info{
+  min-width: 120px;
+  height: 60px;
+  margin: auto;
+  overflow: hidden;
+  float:left;
+  max-width: calc(100% - 165px);
+}
+.my_name{
+  min-width: 120px;
+  border-bottom: 2px solid #DBF4F1;
+  margin-bottom: 8px;
+  font-size: 16px;
+  line-height: 30px;
+  height: 30px;
+}
+.my_fans{
+  box-sizing: border-box;
+  color: #ff0000;
+  width: 50%;
+  border-right: 1px solid #DBF4F1;
+  font-size: 12px;
+  line-height: 18px;
+  float: left;
+}
+.my_fans::after{
+  content: " 粉丝";
+  color: #ffffff;
+}
+.my_share{
+  box-sizing: border-box;
+  width: 50%;
+  font-size: 12px;
+  line-height: 18px;
+  float: left;
+  text-align: center;
+}
+.my_code{
+  float: right;
+  height: 40px;
+  margin: 15px 0 15px 15px;
+}
+.my_code image{
+  width: 25px;
+  height: 25px;
+  display: block;
+}
+.my_code_text{
+  font-size: 10px;
+  line-height: 20px;
+  text-align: center;
+}
+.operation{
+  padding: 0 10px;
+  background-color: #EBEBEB;
+}
+.operation navigator,.operation .navigator{
+  width: 25%;
+  padding-top: 10px;
+  float: left;
+  text-align: center;
+  position: relative;
+}
+.operation_image{
+  width: 100%;
+  height: 25px;
+  display: block;
+}
+.operation_text{
+  font-size: 12px;
+  line-height: 30px;
+  color: #286561;
+}
+.my_content{
+  padding: 0 10px 15px;
+}
+.my_content_view{
+  margin-top: 15px;
+  box-shadow: 1px 1px 4px #000000;
+}
+.my_content_view navigator,.navigator{
+  margin: 0 20px;
+  border-bottom: 1px solid #286561;
+  position: relative;
+  height: 40px;
+}
+.my_content_view navigator:last-child{
+  border-bottom: none;
+}
+.my_content_image{
+  width: 20px;
+  height: 20px;
+  padding: 10px;
+  float: left;
+}
+.my_content_text{
+  float: left;
+  margin-left: 10px;
+  font-size: 14px;
+  line-height: 40px;
+}
+.my_content_right{
+  height: 10px;
+  width: 10px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  margin: auto;
+}

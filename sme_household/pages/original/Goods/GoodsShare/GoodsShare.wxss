@@ -1,0 +1,100 @@
+.share_container{
+  padding:25rpx 0;
+  min-height:300px;
+  box-sizing:border-box;
+}
+.goods_container{
+  float: left;
+  box-sizing:border-box;
+  width: 540rpx;
+  padding: 15rpx 0;
+  padding-left: 20rpx
+}
+.content_container{
+  box-shadow: 0.5px 0.5px 2px #000000;
+  position: relative;
+  border-radius: 3px;
+}
+.content_container > image{
+  width: 100%;
+  height: 520rpx;
+  display: block;
+}
+.content_container_text{
+  position: relative;
+  left: 0;
+  font-size: 16px;
+  line-height: 54rpx;
+  text-align: center;
+}
+.price{
+  color: #ff0000;
+  font-size: 20px;
+  line-height: 64rpx;
+  float: left;
+ }
+.price::before{
+  content: "￥"
+}
+.info_other{
+  float: right;
+}
+.volume,.date{
+  font-size: 12px;
+  line-height: 32rpx;
+  text-align: right;
+}
+.volume::before{
+  content: "销量："
+}
+.share_scroll{
+  position: absolute;
+  top: calc(600rpx + 55px);
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+.goods_container2{
+  float: left;
+  box-sizing:border-box;
+  width: 210rpx;
+  padding: 10rpx 20rpx 0;
+}
+.goods_container2 .content_container > image{
+  width: 100%;
+  height: 170rpx;
+  display: block;
+}
+.goods_container2 .content_container_text{
+  font-size: 10px;
+  line-height: 34rpx;
+}
+
+
+.share_text{
+  padding-top:10rpx;
+}
+.share_input{
+  border: 1px solid #DCDCDC;
+  background-color: #ffffff;
+  font-size: 16px;
+  line-height: 48px;
+  height: 48px;
+}
+.share_button{
+  float: right;
+  width: 100px;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  color: #ffffff;
+  background-color: #52CAC1;
+  border-radius: 0;
+}
+.share_button image{
+  width: 20px;
+  height: 20px;
+  padding: 15px;
+  display: block;
+  margin: auto;
+}

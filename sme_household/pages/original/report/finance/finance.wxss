@@ -1,0 +1,48 @@
+/*头部*/
+@import "../../../../css/report.wxss";
+
+.finance_time{
+  font-size: 14px;
+  text-align: center;
+  padding: 15px 0;
+}
+.finance_info{
+  border: 2px solid #688c89;
+  margin: 0 50rpx 50rpx;
+}
+.info_title{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 50px;
+  font-size: 18px;
+}
+.finance_info_content{
+  padding: 0 50rpx 10px;
+}
+.content_title{
+  display: flex;
+  height: 30px;
+  border-bottom: 1px solid #7CB0AE;
+  margin-bottom: 5px;
+}
+.content_title_text{
+  flex: 1;
+  font-size: 16px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.content_view{
+  display: flex;
+  height: 25px;
+}
+.content_view_text{
+  flex: 1;
+  font-size: 13px;
+  height: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

@@ -1,0 +1,130 @@
+/*头部*/
+@import "../../../../css/title.wxss";
+.title{
+  background-color: #ffffff;
+  color: #000000;
+}
+.image_srock{
+  float: right;
+  width: 16px;
+  height: 16px;
+  padding: 12px 10px;
+}
+.sellers{
+  margin: auto;
+  display: inline-flex;
+  align-items: center;
+  width: 120px;
+  height: 30px;
+  font-size: 16px;
+  border: 1px solid #DCDCDC;
+  line-height:24px;
+  padding: 0 20px 0 8px;
+  position: relative;
+  z-index: 5;
+}
+.sellers_scroll{
+  position: absolute;
+  top: 30px;
+  left: -1px;
+  right: -1px;
+  background-color: #ffffff;
+  border: 1px solid #DCDCDC;
+  max-height: 0;
+  transition: all 0.3s;
+}
+.sellers_scroll_active{
+  max-height: 100px;
+}
+.sellers_cover{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+.cover_none{
+  display: none;
+}
+.sellers_view{
+  height: 30px;
+  border: 1px solid #DCDCDC;
+}
+
+/*模态框*/
+.modal{
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  background-color: #ffffff;
+  z-index: 9;
+  opacity: 1;
+}
+
+.image_update{
+  position: absolute;
+  top: 0;
+  right: 72px;
+  width: 16px;
+  height: 16px;
+  padding: 12px 10px;
+}
+.tr {
+  width: 100%;
+  justify-content: center;
+  min-height: 40px;
+  display: flex;
+}
+.td,.th{
+  font-size: 12px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  word-break: break-all;
+}
+.th1{
+  flex: 1;
+  background: #eeeeee;
+}
+.th2{
+  flex: 2;
+  background: #ffffff;
+}
+.change{
+  color: #286561;
+}
+.tr1{
+  border-bottom: 1px solid #eeeeee; 
+}
+.th{
+  background-color: #52CAC1;
+  color: #fff;
+}
+.stock_scroll{
+  position: absolute;
+  top: 80px;
+  bottom: 40px;
+}
+.modal_submit{
+  font-size: 16px;
+  border-radius: 0;
+  background-color: #52CAC1;
+  line-height: 40px;
+  text-align: center;
+  padding: 0;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  right: 0;
+  color: #ffffff;
+}
+.submit2{
+  left: 0;
+  right: 50%;
+  background-color: #DCDCDC;
+  color: #000000;
+}

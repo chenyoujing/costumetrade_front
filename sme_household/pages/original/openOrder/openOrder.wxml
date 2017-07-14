@@ -1,0 +1,147 @@
+ 
+<view class="section clearfix">
+ <view class="title clearfix" hidden="{{orderid}}">
+    <navigator open-type="navigateBack">
+      <image src="../../../images/back-away.png" mode="aspectFit" class="title_image_back" />
+    </navigator>
+    <view class="title_scan" bindtap="scan">
+      <image src="../../../images/scan-wiht.png" mode="aspectFit" class="title_image_scan" />
+      <view class="title_scan_text" bindtap="scan">扫一扫</view>
+    </view>
+
+    <image src="../../../images/more.png" mode="aspectFit" class="title_more_image" bindtap="more_function" />
+    <view class="classname" bindtap="authorityJudge"  class="title_supplier">
+      <image src="{{selectName.image||'../../../../images/image_none.png'}}"  mode="aspectFill" class="title_supplier_tx" />
+      <view class="title_supplier_text" wx:if="{{type == 1}}">{{selectName.name}}</view>
+       <view class="title_supplier_text" wx:if="{{type == 1 && !selectName.name}}">选客户</view>
+      <view class="title_supplier_text" wx:if="{{type == 2}}">{{selectName.name}}</view>
+       <view class="title_supplier_text" wx:if="{{type == 2 && !selectName.name}}">选供应商</view>
+    </view>
+    <view style="position:relative;overflow:hidden;">
+      <input type="text" class="title_input" placeholder="{{placeholder}}" disabled = "{{!inputBoolean}}" cursor-spacing="20" focus="{{inputBoolean}}" value="{{keyboardNum}}"  data-index="{{inputBoolean}}" bindinput="input_change" >
+        <image src="../../../images/write.png" mode="aspectFit" bindtap="changeCodeName" class="title_image_write"/>
+      </input>
+      <view class="classname" data-index="{{inputBoolean}}" hidden="{{inputBoolean}}" bindtap="keyShow" class="title_input_cover">88888</view>
+    </view>
+  </view>
+
+
+  <!--页面1-->
+  <view class="scroll_title" hidden="{{products_info||orderid}}">
+    <view style="width:8%;">序号</view>
+    <view style="width:26%;">名称</view>
+    <view style="width:8%;">数量</view>
+    <view style="width:15%;">颜色</view>
+    <view style="width:15%;">尺码</view>
+    <view style="width:16%;">单价(元)</view>
+    <view style="width:12%;">编辑</view>
+    <view class="clear"></view>
+  </view>
+
+  <scroll-view scroll-y="true"  scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}" style="bottom:{{keyHidden?60:keyboard_height*3 + 79}}px;" class="order_scroll" hidden="{{products_info||orderid}}" bindscroll="keyHidden">
+    <view class="prompt_none" wx:if="{{shopCart == 0}}">
+      <text>您没有添加货品，请添加</text>
+    </view>
+    <block wx:for="{{shopCart}}" >
+      <view class="order_view clearfix {{index%2==0?'bg_w':''}}" >
+        <view style="width:100%;" bindtap="orderid" data-id="{{item.productid}}" data-num="{{item.count}}" data-index="{{index}}">
+          <view style="width:8%;" data-id="{{item.productid}}">{{index+1}}</view>
+          <view style="width:26%;" data-id="{{item.productid}}">{{item.productName}}</view>
+          <view style="width:8%;" data-id="{{item.productid}}">{{item.countnum||item.count}}</view>
+          <view style="width:15%;" data-id="{{item.productid}}">{{item.productcolor}}</view>
+          <view style="width:15%;" data-id="{{item.productid}}">{{item.productsize}}</view>
+          <view style="width:16%;" data-id="{{item.productid}}">{{item.price}}</view>
+          <view style="width:12%;"></view>
+        </view>
+        <view class="order_view_delete" data-delect="{{index}}" bindtap="delect">删除</view>
+      </view>
+    </block>
+  </scroll-view>
+
+  <!--页面2-->
+  <scroll-view scroll-y="true" bindscroll="keyHidden" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}" style="top:42px;bottom:{{keyHidden?60:keyboard_height*3 + 79}}px;background-color:#ffffff;" class="order_scroll" hidden="{{!products_info||orderid}}">
+    <view class="prompt_none" wx:if="{{keyArray == 0}}">
+      <text>对不起，搜不到您要的货品</text>
+    </view>
+    <block wx:for="{{keyArray}}" wx:key="id">
+      <view class="products_info" bindtap="orderid" data-num="" data-id="{{item.id}}">
+        <view style="display:flex;align-items:center;">
+          <image src="{{item.image ? item.image : '../../../images/image_none.png'}}" mode="aspectFill" class="products_info_image" />
+          <view class="products_info_name two_line">{{item.name}}</view>
+        </view>
+        <view class="products_info_view">
+          <view class="products_info_price">{{item.showPrice}}</view>
+          <view class="products_info_time">{{item.timeUp}}</view>
+        </view>
+      </view>
+    </block>
+  </scroll-view>
+    
+  <!--页面3-->
+  <view style="top:0;bottom:{{keyHidden?60:keyboard_height*3 + 79}}px;background-color:#ffffff;" class="order_scroll" hidden="{{!orderid}}">
+    <image src="{{GoodsDetail.image ?GoodsDetail.image : '../../../images/image_none.png'}}" mode="aspectFill" class="goods_image" />
+    <view class="goods_title">总库存：{{stockNum}}</view>
+    <scroll-view scroll-y class="goods_check">
+      <radio-group bindchange="EventHandle" data-index="selectColor">
+        <label class="goods_checkbox" wx:for="{{color}}" wx:key="id">
+          <radio value="{{item.color}}" checked="{{aa}}"/>
+          {{item.color}} {{item.num}}
+        </label>
+      </radio-group>
+      <radio-group  bindchange="EventHandle" data-index="selectSize">
+        <label class="goods_checkbox" wx:for="{{size}}" wx:key="id">
+          <radio value="{{item.size}}" disabled="{{disabled}}"  checked="{{aa}}"/>
+          {{item.size}} {{item.num}}
+        </label>
+      </radio-group>
+    </scroll-view>
+    <view class="keyboard_name one_line">{{GoodsDetail.name}}</view>
+    <view class="keyboard_join" bindtap="SalePassOrNot">加入</view>
+  </view>
+  
+<view class="openorder_info clearfix" style="bottom:{{keyHidden?0:keyboard_height*3 + 20}}px" hidden="{{orderid}}">
+  <view class="info_num">共{{totalData.totalNum}}件</view>
+  <view class="info_button" bindtap="order">买单</view>
+  <view class="info_price">￥{{totalData.realcostArray}}</view>
+</view>
+
+<view class="openorder_info one_line clearfix" style="bottom:{{keyHidden?0:keyboard_height*3 + 20}}px;background-color:#e5e5e5;padding:6px 4px 0;" hidden="{{!orderid}}">
+  <view bindtap="changeInputSale" class="keyboard_top {{colorChange ==2 ? 'saleColor' : ''}}" >{{GoodsDetail.showPrice}}元</view>
+  <view class="keyboard_top" wx:if="{{type == 1}}"  bindtap="changeSale">{{saleName}}</view>
+   <view class="keyboard_top" wx:if="{{type == 2}}" >{{saleName}}</view>
+  <view class="keyboard_top {{colorChange ==1 ? 'saleColor' : ''}}"  bindtap="changeGroup">
+  <block wx:if="{{!keyboardNum2}}">{{oneKeyshow}}</block>{{keyboardNum2}}
+  <block wx:if="{{unitChange}}">手/{{GoodsDetail.handcount}}</block>{{GoodsDetail.unit}}</view>
+  <view class="keyboard_top"  bindtap="order_back">返回</view>
+</view>
+
+
+<!--键盘-->
+<view class="keyboard" hidden="{{keyHidden}}">
+    <view class="keyboard_view"  data-index="1" bindtap="keyboardtap">1</view>
+    <view class="keyboard_view"  data-index="2" bindtap="keyboardtap">2</view>
+    <view class="keyboard_view"  data-index="3" bindtap="keyboardtap">3</view>
+    <view class="keyboard_view"  data-index="clear" bindtap="keyboardtap">
+     <image src="../../../images/retreat.png" data-index="clear" mode="aspectFit" style="width:50%;height:100%" class="image_down" />
+    </view>
+    <view class="keyboard_view"  data-index="4" bindtap="keyboardtap">4</view>
+    <view class="keyboard_view"  data-index="5" bindtap="keyboardtap">5</view>
+    <view class="keyboard_view"  data-index="6" bindtap="keyboardtap">6</view>
+    <view class="keyboard_view"  data-index="-" bindtap="keyboardtap">—</view>
+    <view class="keyboard_view"  data-index="7" bindtap="keyboardtap">7</view>
+    <view class="keyboard_view"  data-index="8" bindtap="keyboardtap">8</view>
+    <view class="keyboard_view"  data-index="9" bindtap="keyboardtap">9</view>
+    <view class="keyboard_view"  data-index="0" bindtap="keyboardtap">0</view>
+    <view class="clear:both;"></view>
+  </view>
+<!--更多功能-->
+<view class="more_function_cover {{animation}}" bindtap="more_function_close" style="display:{{more_function_display}};"></view>
+<view class="more_function {{animation}}" style="display:{{more_function_display}};">
+  <view class="more_function_view" data-type= "1" bindtap="changeType">销售单</view>
+  <view class="more_function_view" data-type= "2" hidden="{{purchasePrivilege}}" bindtap="changeType">采购单</view>
+  <navigator url="expenses/expenses" class="more_function_view" bindtap="batch_update">费用单</navigator>
+</view>
+  
+</view>
+
+

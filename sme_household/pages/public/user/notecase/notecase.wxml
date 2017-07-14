@@ -1,0 +1,64 @@
+<!--头部-->
+<view class="title clearfix">
+  <navigator open-type="navigateBack">
+    <image src="../../../../images/back-away.png" mode="aspectFit" class="title_image_back" />
+  </navigator>
+  <view class="title_text">钱包</view>
+</view>
+
+  <view class="notecase">
+    <view class="notecase_text {{current=='0' ? 'active' : ''}}" bindtap="notecasetype" data-notecase="0">我的账户
+      <image src="../../../../images/down.png" mode="aspectFit" class="image_down " />
+    </view>
+    <view class="notecase_text {{current=='1' ? 'active' : ''}}" bindtap="notecasetype" data-notecase="1">银行卡管理
+      <image src="../../../../images/down.png" mode="aspectFit" class="image_down " />
+    </view>
+    <view class="clear"></view>
+  </view>
+
+
+  <view class="account" hidden="{{current!='0'}}">
+    <view class="account_view">
+      <view style="float:left">押金</view>
+      <view style="float:right">200</view>
+      <view class="clear"></view>
+    </view>
+    <view class="account_view">
+      <view style="float:left">余额</view>
+      <view style="float:right">800</view>
+      <view class="clear"></view>
+    </view>
+    <view class="account_view">
+      <view style="float:left">提现</view>
+      <view class="clear"></view>
+    </view>
+    <view class="account_view">
+      <view style="float:left">充值</view>
+      <view class="clear"></view>
+    </view>
+    <view class="account_view" style="border:none;">
+      <view style="float:left">交易管理</view>
+      <image src="../../../../images/down.png" mode="aspectFit" class="account_image " />
+      <view class="clear"></view>
+    </view>
+  </view>
+
+  <view class="account" hidden="{{current!='1'}}">
+    <view class="account_view">
+      <view style="float:left">姓名</view>
+      <view style="float:right">小小</view>
+      <view class="clear"></view>
+    </view>
+    <view class="account_view">
+      <view style="float:left">开户银行</view>
+      <view style="float:right">800</view>
+      <view class="clear"></view>
+    </view>
+    <view class="account_view">
+      <view style="float:left">银行卡号</view>
+      <view style="float:right">241246781354763946</view>
+      <view class="clear"></view>
+    </view>
+  </view>
+
+  <button class="submit">保存</button>

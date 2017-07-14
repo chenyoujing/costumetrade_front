@@ -1,0 +1,145 @@
+
+.tx{
+  width: 26px;
+  height: 26px;
+  margin: 7px 4px;
+  border-radius: 13px;
+  float: right
+}
+.name{
+  float: right;
+  font-size: 9px;
+  line-height: 40px;
+  padding: 0 4px;
+}
+
+.shop_scroll{
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 46px;
+}
+.shop_swiper{
+  height: 319rpx;
+}
+.shop_swiper_image{
+  height: 319rpx;
+  width: 100%;
+}
+
+.notice{
+  display: flex;
+  align-items: center;
+  min-height: 45px;
+  border-bottom: 5px solid #E5E5E5;
+}
+.notice_text{
+  font-size: 15px;
+  line-height: 18px;
+  padding: 0 10px;
+  color: #AA3D3B;
+  width: 32px;
+  flex-shrink: 0; 
+}
+.notice_hot{
+  font-size: 14px;
+  color: #CF3F31;
+  padding: 0 5px;
+  flex-shrink: 0; 
+}
+.notice_nav_view{
+  display: flex;
+  flex-direction: column;
+}
+.notice_nav{
+  font-size:13px;
+}
+
+.shop_content{
+  padding: 15px 20rpx 0;
+  position: relative;
+}
+.shop_content:last-child{
+  padding-bottom: 15px;
+}
+.shop_content_view{
+  padding: 10px 0 5px;
+  box-shadow: 1px 1px 4px #000000;
+  position: relative;
+}
+.shop_goods{
+  padding: 20px 12rpx 0;
+}
+.shop_content_title{
+  position: relative;
+}
+.shop_content_tx{
+  position: absolute;
+  top: 0;
+  left: 20px;
+  bottom: 0;
+  margin: auto;
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+}
+.shop_content_info{
+  float: left;
+  width: 60%;
+  margin-left: 70px;
+  min-height: 40px;
+}
+.shop_content_name{
+  font-size: 16px;
+  border-bottom: 1px solid #52CAC1;
+  padding-left: 20px;
+  line-height: 30px;
+  height: 30px;
+}
+.shop_content_address{
+  position: relative;
+  font-size: 10px;
+  line-height: 12px;
+  padding: 5px 0 5px 20px;
+}
+.shop_address_image{
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  margin: auto;
+}
+.shop_content_service{
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  padding: 10px;
+  top: 15px;
+  right: 20px;
+  box-sizing: unset;
+}
+.shop_content_service image{
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.shop_picture{
+  width: 33.33333333%;
+  height: 220rpx;
+  float: left;
+  position: relative;
+}
+.shop_picture image{
+  width: 220rpx;
+  height: 220rpx;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+}
+

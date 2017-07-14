@@ -1,0 +1,91 @@
+  <view class="title clearfix">
+    <image bindtap="packPageFilterCode" mode="aspectFit" src="../../../../images/search.png" class="image_search" />
+    <icon type="clear" size="16" class="image_search" wx:if="{{enterValue !==''}}" bindtap="clear"/>
+    <navigator open-type="navigateBack" hover-class="navigator-hover">
+      <image src="../../../../images/return.png" mode="aspectFit" class="image_back" />
+    </navigator>
+    <view class="search_button" bindtap="searchClick">搜索</view>
+    <input class="title_input" value='{{enterValue}}' type="text" name="search" placeholder="货号名称" bindinput="bindKeyInput" />
+  </view>
+
+
+<!--筛选-->
+<view class="screen"  wx:if="{{!changeBoolean}}">
+ <!--<view class="screen_title" wx:if="{{type == 'report'}}">供货商名称</view>
+  <scroll-view scroll-y class="screen_container clearfix" wx:if="{{type  == 'report'}}">
+    <block wx:for="{{clientCustomers}}">
+      <view class="screen_view {{status == item.name?'screen_checked':''}}" data-type="productClientSuppierArray" data-name="{{item.name}}" bindtap="radioSelect">
+      {{item.nickName}}
+      </view>
+     </block>
+  </scroll-view>
+  <view class="screen_title" wx:if="{{type == 'report'}}">客户名称</view>
+  <scroll-view scroll-y class="screen_container clearfix" wx:if="{{type  == 'report'}}">
+    <block wx:for="{{screen_content4}}">
+      <view class="screen_view {{status == item.name?'screen_checked':''}}" data-type="productClientCustomerArray" data-name="{{item.name}}" bindtap="radioSelect">
+      {{item.value}}
+      </view>
+     </block>
+  </scroll-view>-->
+  <view class="screen_title">类别</view>
+  <scroll-view scroll-y class="screen_container clearfix">
+    <block wx:for="{{screen_content2}}">
+      <view class="screen_view {{item.screen_checked?'screen_checked':''}}" data-index="{{index}}" data-type="cate" data-name="{{item.catename}}" bindtap="multipleSelect">{{item.catename}}</view>
+    </block>
+  </scroll-view>
+  <view class="screen_title">品牌</view>
+  <scroll-view scroll-y class="screen_container clearfix">
+    <block wx:for="{{screen_content1}}">
+      <view class="screen_view {{item.screen_checked?'screen_checked':''}}" data-type="brand" data-index="{{index}}" data-name="{{item.brandname}}" bindtap="multipleSelect"> {{item.brandname}}</view>
+     </block>
+  </scroll-view>
+   <view class="screen_title" wx:if="{{type == 'report'}}">颜色</view>
+  <scroll-view scroll-y class="screen_container clearfix" wx:if="{{type  == 'report'}}">
+    <block wx:for="{{cplorList}}">
+      <view class="screen_view {{productColorArray == item.colorname?'screen_checked':''}}" data-type="productColorArray" data-name="{{item.colorname}}" bindtap="radioSelect">
+      {{item.colorname}}
+      </view>
+     </block>
+  </scroll-view>
+  <view class="screen_title" wx:if="{{type == 'report'}}">尺码</view>
+  <scroll-view scroll-y class="screen_container clearfix" wx:if="{{type  == 'report'}}">
+    <block wx:for="{{sizeList}}">
+      <view class="screen_view {{productSizeArray == item.sizename?'screen_checked':''}}" data-type="productSizeArray" data-name="{{item.sizename}}" bindtap="radioSelect">
+      {{item.sizename}}
+      </view>
+     </block>
+  </scroll-view>
+  <view class="screen_title" wx:if="{{type == 'report'}}">创建人</view>
+  <scroll-view scroll-y class="screen_container clearfix" wx:if="{{type  == 'report'}}">
+    <block wx:for="{{employeeList}}">
+      <view class="screen_view {{operatorArray == item.id?'screen_checked':''}}" data-type="operatorArray" data-name="{{item.id}}" bindtap="radioSelect">
+      {{item.reallyName}}
+      </view>
+     </block>
+  </scroll-view>
+  <view class="screen_title">季节</view>
+  <scroll-view scroll-y class="screen_container clearfix">
+    <block wx:for="{{screen_content3}}">
+      <view class="screen_view {{season == item.value?'screen_checked':''}}" data-name="{{item.value}}" data-type="season" bindtap="radioSelect">
+      {{item.value}}
+      </view>
+     </block>
+  </scroll-view>
+  <view class="screen_title" wx:if="{{type == 'good'}}">状态</view>
+  <scroll-view scroll-y class="screen_container clearfix" wx:if="{{type  == 'good'}}">
+    <block wx:for="{{screen_content4}}">
+      <view class="screen_view {{status == item.name?'screen_checked':''}}" data-type="status" data-name="{{item.name}}" bindtap="radioSelect">
+      {{item.value}}
+      </view>
+     </block>
+  </scroll-view>
+</view>
+
+
+<!--搜索-->
+<view class="search" wx:if="{{changeBoolean}}">
+<block wx:for="{{keyArray}}">
+<view class="search_view" bindtap="selectOptions" data-code="{{item.code}}" data-name="{{item.name}}">{{item.name}}</view>
+</block>
+  
+</view>

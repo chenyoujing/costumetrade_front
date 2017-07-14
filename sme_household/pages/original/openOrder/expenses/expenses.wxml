@@ -1,0 +1,56 @@
+<view class="title clearfix">
+  <navigator open-type="navigateBack">
+    <image src="../../../../images/back-away.png" mode="aspectFit" class="title_image_back" />
+  </navigator>
+  <image src="../../../../images/bill-of-document.png"  mode="aspectFill" class="expenses_title_image" />
+  <view class="expenses_title_text">费用单</view>
+  <image src="../../../../images/more.png" mode="aspectFit" class="title_more_image" bindtap="more_function" />
+  <view class="title_button_view clearfix">
+    <view class="title_button_view2">
+      <view class="title_button" bindtap="canleSubmit">取消</view>
+    </view>
+    <view class="title_button_view2">
+      <view class="title_button" bindtap="account">入账</view>
+    </view>
+  </view>
+</view>
+
+<scroll-view scroll-y class="expenses_view1">
+  <view class="content_title">明细</view>
+  <view class="expenses_detail clearfix" wx:for="{{saveOrderFee}}">
+    <view class="expenses_detail_text">{{item.catename}}</view>
+    <view class="expenses_detail_unit">元</view>
+    <input type="digit" class="expenses_detail_input" value="{{item.paycost}}" bindblur="EventHandle" data-index="{{index}}"  focus="{{item.focus}}"/>
+  </view>
+  <view class="expenses_detail_info clearfix">
+    <view class="expenses_detail_num">{{totalNum}}</view>
+    <view class="expenses_detail_price">￥{{totalMoney}}</view>
+  </view>
+</scroll-view>
+<scroll-view scroll-y class="expenses_view2">
+  <view class="content_title">项目</view>
+  <block wx:for="{{product}}">
+    <view class="expenses_item" bindtap="showInput" data-index="{{index}}" data-id="{{item.dictValue}}" data-text="{{item.dictText}}">{{item.dictText}}</view>
+  </block>
+</scroll-view>
+
+
+<!--更多功能-->
+<view class="more_function_cover {{animation}}" bindtap="more_function_close" style="display:{{more_function_display}};"></view>
+<view class="more_function {{animation}}" style="display:{{more_function_display}};">
+  <view class="more_function_view" data-type= "1" bindtap="changeType">销售单</view>
+  <view class="more_function_view" data-type= "2" bindtap="changeType">采购单</view>
+  <!--<navigator url="expenses/expenses" class="more_function_view" bindtap="batch_update">费用单</navigator>-->
+</view>
+
+
+<!--入账-->
+<modal title="支付" hidden="{{accountModal}}" confirm-text="确定" cancel-text="取消"  bindconfirm="submitData" bindcancel="cancel" >
+  <view class="clearfix" style="margin-top:10px;">
+    <picker class="modal_pay one_line" range="{{paycact}}" range-key="dictText" bindchange="paycactPicker" value="{{paycact_index}}">
+      {{paycact[paycact_index].dictText}}
+      <image src="../../../../images/down.png" mode="aspectFit" class="picker_image" />
+    </picker>
+     <input class="pay_input" disabled="true" value="{{totalMoney}}" type="digit" placeholder="输入金额" />
+  </view>
+</modal>

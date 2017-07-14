@@ -1,0 +1,13 @@
+/*头部*/
+@import "../../../../css/report.wxss";
+
+.report_scroll{
+  bottom: 40px;
+}
+.report_form{
+  margin: 20px 100rpx;
+}
+.nodataImg{
+  height: unset;
+  margin:0 20px;
+}

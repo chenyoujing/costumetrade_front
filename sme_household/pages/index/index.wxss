@@ -1,0 +1,154 @@
+.title{
+  background-color: #52CAC1;
+  padding: 15px 20px;
+  position: relative;
+  z-index: 3;
+}
+.mall_title{
+  height: 90px;
+  position: relative;
+}
+.mall_title_bg{
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: unset;
+  height: unset;
+  z-index:-1;
+}
+.mall_title_bg::after{
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+.shop_back{
+  width: 16px;
+  height: 16px;
+  padding: 7px 14px;
+  display: block;
+}
+.shop_back image{
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.shop_info{
+  text-align: center;
+  font-size: 15px;
+  padding: 2.5px 20%;
+  position: relative;
+}
+.shop_tx{
+  float: left;
+  width: 40%;
+  height: 50px;
+  position: relative;
+}
+.shop_tx image{
+  width: 50px;
+  height: 50px;
+  border-radius: 25px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+.shop_name{
+  height: 50px;
+  line-height: 50px;
+  float: left;
+  width: 60%;
+  text-align: left;
+  color: #ffffff;
+}
+.shop_into{
+  width: 16px;
+  height: 16px;
+  padding: 17px;
+  transform: rotate(180deg);
+  position: absolute;
+  right: 0;
+}
+
+/*分享的内容*/
+.share_container{
+  padding: 10rpx;
+  padding-bottom: 45px;
+}
+.goods_container{
+  float: left;
+  padding: 12rpx;
+  box-sizing:border-box;
+  width: 365rpx;
+}
+.content_container{
+  box-shadow: 0.5px 0.5px 2px #000000;
+  position: relative;
+  border-radius: 3px;
+}
+.content_container > image{
+  width: 100%;
+  height: 342rpx;
+  display: block;
+}
+.content_container_text{
+  position: relative;
+  padding: 0 10rpx;
+}
+.content_container_title{
+  font-size: 16px;
+  line-height: 40rpx;
+  padding: 10rpx 10rpx 0;
+  word-break:keep-all;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+.price{
+  color: #ff0000;
+  font-size: 20px;
+  line-height: 64rpx;
+  float: left;
+ }
+.price::before{
+  content: "￥"
+}
+.info_other{
+  float: right;
+}
+.volume,.date{
+  font-size: 12px;
+  line-height: 32rpx;
+  text-align: right;
+}
+.volume::before{
+  content: "销量："
+}
+
+/*底部按钮*/
+.button_view{
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 45px;
+}
+.back_mall,.shoppingcard{
+  float: left;
+  width: 50%;
+  text-align: center;
+  line-height: 45px;
+}
+.back_mall{
+  background-color: #52CAC1;
+  color: #ffffff;
+}
+.shoppingcard{
+  background-color: #DCDCDC;
+}

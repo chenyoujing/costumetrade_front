@@ -1,0 +1,15 @@
+  <view class="update_name">
+    <view class="name_text">会员种类名称</view>
+    <input type="text" class="name_input" value="{{customerCusts.custtypename}}会员" />
+  </view>
+  <view class="update_level">
+    <view class="level_title" >可见货品级别:</view>
+    <view class="level_text">{{grade}}级以下可见</view>
+     <block  wx:for="{{name}}">
+        <view class="slider_view slider_checked">{{item}}</view>
+     </block>
+    <view class="clear"></view>
+    <slider activeColor="#52CAC1" max="4" data-name="customerCusts"  value="{{grade - 1}}" bindchange="cusgradeChange" style="margin:10px 10%;"/>
+  </view>
+
+  <view class="submit" bindtap="saveData">保存</view>

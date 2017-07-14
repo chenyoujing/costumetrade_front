@@ -1,0 +1,382 @@
+<import src="../../../../template/template.wxml"/>
+
+<template is="searchTitle" ></template>
+
+<view class="supplier_list">
+  <image src="../../../../images/Supplier-list.png" mode="aspectFit" class="supplier_list_image" />
+  <view class="supplier_list_text">供货商列表</view>
+</view>
+<view class="order_type">采购单</view>
+
+<!--订单类型分类-->
+<view class="ordertype">
+  <view class="ordertype_text {{ordertype=='1' ? 'ordertype_active1' : ''}}" bindtap="ordertype" data-ordertype="1">采购</view>
+  <view class="ordertype_text {{ordertype=='2' ? 'ordertype_active1' : ''}}" bindtap="ordertype" data-ordertype="2">销售</view>
+  <view class="clear"></view>
+</view>
+
+<!--二级分类 销售-->
+<view class="ordertype2" wx-if="{{ordertype==2}}">
+  <view class="ordertype2_text {{ordertype2=='4' ? 'ordertype_active2' : ''}}" bindtap="ordertype2" data-ordertypetwo="4">
+     待审核<view class="ordertype2_prompt">{{countNum.sNoPayCount}}</view>
+  </view>
+  <view class="ordertype2_text {{ordertype2=='6' ? 'ordertype_active2' : ''}}" bindtap="ordertype2" data-ordertypetwo="6">
+      待收款<view class="ordertype2_prompt">{{countNum.sNoAuditCount}}</view>
+  </view>
+  <view class="ordertype2_text {{ordertype2=='2' ? 'ordertype_active2' : ''}}" bindtap="ordertype2" data-ordertypetwo="2">
+     待发货<view class="ordertype2_prompt">{{countNum.sNoShipCount}}</view>
+  </view>
+  <view class="ordertype2_text {{ordertype2=='5' ? 'ordertype_active2' : ''}}" bindtap="ordertype2" data-ordertypetwo="5">
+      全部
+  </view>
+  <view class="clear"></view>
+</view>
+
+<!--二级分类 采购-->
+<view class="ordertype2"  wx-if="{{ordertype==1}}">
+  <view class="ordertype2_text {{ordertype2=='1' ? 'ordertype_active2' : ''}}" bindtap="ordertype2" data-ordertypetwo="1">
+      待付款<view class="ordertype2_prompt">{{countNum.pNoPayCount}}</view>
+  </view>
+  <view class="ordertype2_text {{ordertype2=='2' ? 'ordertype_active2' : ''}}" bindtap="ordertype2" data-ordertypetwo="2">
+      待发货<view class="ordertype2_prompt">{{countNum.pNoShipCount}}</view>
+  </view>
+  <view class="ordertype2_text {{ordertype2=='3' ? 'ordertype_active2' : ''}}" bindtap="ordertype2" data-ordertypetwo="3">
+      待收货<view class="ordertype2_prompt">{{countNum.pNoReceiptCount}}</view>
+  </view>
+  <view class="ordertype2_text {{ordertype2=='5' ? 'ordertype_active2' : ''}}" bindtap="ordertype2" data-ordertypetwo="5">
+      全部
+  </view>
+  <view class="clear"></view>
+</view>
+
+<scroll-view scroll-y class="order_scroll" lower-threshold="10" bindscrolltolower="{{loadMore?'onReachBottom':''}}">
+  <view style="padding-top:10px;"></view>
+
+  <view class="prompt_none" wx:if="{{product == 0}}">
+    <text>暂无该种类订单</text>
+  </view>
+  <!--采购待付款-->
+  <view wx-if="{{ordertype==1 && ordertype2==1}}" wx:for="{{product}}" class="order_container_view">
+    <navigator url="../../../public/order/orderDetails/orderDetails?ordertype={{ordertype}}&payorderno={{item.payorderno}}&ordertype2=1">
+    <view class="order_container_title" >
+      <view class="order_container_name">供应商：{{item.seller}}</view>
+      <view class="order_container_Bill" wx:if="{{item.orderstatus == 1}}" style="color:#ff2d04">审核未通过</view>
+      <view class="order_container_Bill" wx:if="{{item.orderstatus == 3}}">审核通过</view>
+      <image src="../../../../images/right-thrust.png" mode="aspectFit" class="order_content_right" />
+    </view>
+   </navigator>
+      <view class="order_container_content_left">
+        <view class="order_container_number">单号：{{item.payorderno}}</view>
+        <view class="order_container_text">数量：{{item.totalnum}}</view>
+        <view class="order_container_text" wx:if="{{item.debetamt}}">未付：￥{{item.debetamt}}</view>
+        <view class="order_container_text" style="margin-top:5px;" wx:if="{{item.freight>0}}">{{item.logisticsCode}}：{{item.freight}}元</view>
+        <view class="order_container_text" style="margin-top:5px;" wx:if="{{item.freight==0}}">{{item.logisticsCode}}:包邮</view>
+      </view>
+      <view class="order_container_content_right">
+        <view class="order_container_text">{{item.ordertime}}</view>
+        <view class="order_container_text">合计金额：<text style="color:#ff0000;">￥{{item.totalamt}}</text></view>
+        <view class="order_container_text" wx:if="{{item.paycost1>0}}">{{item.paycate_1||item.paycate1}}：￥{{item.paycost1}}</view>
+        <view class="order_container_text" wx:if="{{item.paycost2>0}}">{{item.paycate_2||item.paycate2}}：￥{{item.paycost2}}</view>
+        <view class="order_container_text" style="margin-top:5px;">经手人：{{item.operator}}</view>
+      </view>
+      <view class="clear"></view>
+      <navigator url="../../../public/order/payOrder/payOrder?operate=2&orderno={{item.payorderno}}&buyerid={{item.buyerstoreid}}&sellerid={{item.sellerstoreid}}&pay={{item.debetamt}}"  wx:if="{{item.orderstatus == 3}}">
+        <view class="order_container_button btn_1">付款</view>      
+      </navigator>
+    <view class="clear"></view>
+  </view>
+  <!--采购待收货-->
+  <view wx-if="{{ordertype==1 && ordertype2==2}}" wx:for="{{product}}" class="order_container_view">
+      <navigator url="../../../public/order/orderDetails/orderDetails?ordertype={{ordertype}}&payorderno={{item.payorderno}}& ordertype2=2">
+    <view class="order_container_title" >
+      <view class="order_container_name">供应商：{{item.seller}}</view>
+      <view class="order_container_Bill">商城订单</view>
+      <image src="../../../../images/right-thrust.png" mode="aspectFit" class="order_content_right" />
+    </view>
+   </navigator>
+      <view class="order_container_content_left">
+        <view class="order_container_number">单号：{{item.payorderno}}</view>
+        <view class="order_container_text">数量：{{item.totalnum}}</view>
+        <view class="order_container_text" wx:if="{{item.debetamt}}">未付：￥{{item.debetamt}}</view>
+        <view class="order_container_text" style="margin-top:5px;" wx:if="{{item.freight>0}}">{{item.logisticsCode}}：{{item.freight}}元</view>
+        <view class="order_container_text" style="margin-top:5px;" wx:if="{{item.freight==0}}">{{item.logisticsCode}}:包邮</view>
+      </view>
+      <view class="order_container_content_right">
+        <view class="order_container_text">{{item.ordertime}}</view>
+        <view class="order_container_text">合计金额：<text style="color:#ff0000;">￥{{item.totalamt}}</text></view>
+        <view class="order_container_text" wx:if="{{item.paycost1>0}}">{{item.paycate_1||item.paycate1}}：￥{{item.paycost1}}</view>
+        <view class="order_container_text" wx:if="{{item.paycost2>0}}">{{item.paycate_2||item.paycate2}}：￥{{item.paycost2}}</view>
+        <view class="order_container_text" style="margin-top:5px;">经手人：{{item.operator}}</view>
+      </view>
+      <view class="clear"></view>
+    <view class="order_container_button btn_1"  bindtap="changeOrderStatus" data-status='' data-orderNo="{{item.payorderno}}" data-sellerstoreid="{{item.sellerstoreid}}" data-buyerstoreid="{{item.buyerstoreid}}">催单</view>
+    <view class="clear"></view>
+  </view>
+
+  <!--采购确认收货-->
+  <view wx-if="{{ordertype==1 && ordertype2==3}}" wx:for="{{product}}" class="order_container_view">
+   <navigator url="../../../public/order/orderDetails/orderDetails?ordertype={{ordertype}}&payorderno={{item.payorderno}}& ordertype2=3">
+    <view class="order_container_title" >
+      <view class="order_container_name">供应商：{{item.seller}}</view>
+      <view class="order_container_Bill">商城订单</view>
+      <image src="../../../../images/right-thrust.png" mode="aspectFit" class="order_content_right" />
+    </view>
+   </navigator>
+      <view class="order_container_content_left">
+        <view class="order_container_number">单号：{{item.payorderno}}</view>
+        <view class="order_container_text">数量：{{item.totalnum}}</view>
+        <view class="order_container_text" wx:if="{{item.debetamt}}">未付：￥{{item.debetamt}}</view>
+        <view class="order_container_text" style="margin-top:5px;" wx:if="{{item.freight>0}}">{{item.logisticsCode}}：{{item.freight}}元</view>
+        <view class="order_container_text" style="margin-top:5px;" wx:if="{{item.freight==0}}">{{item.logisticsCode}}:包邮</view>
+      </view>
+      <view class="order_container_content_right">
+        <view class="order_container_text">{{item.ordertime}}</view>
+        <view class="order_container_text">合计金额：<text style="color:#ff0000;">￥{{item.totalamt}}</text></view>
+        <view class="order_container_text" wx:if="{{item.paycost1>0}}">{{item.paycate_1||item.paycate1}}：￥{{item.paycost1}}</view>
+        <view class="order_container_text" wx:if="{{item.paycost2>0}}">{{item.paycate_2||item.paycate2}}：￥{{item.paycost2}}</view>
+        <view class="order_container_text" style="margin-top:5px;">经手人：{{item.operator}}</view>
+      </view>
+      <view class="clear"></view>
+    <view class="order_container_button btn_1"  bindtap="changeOrderStatus" data-status='5' data-orderNo="{{item.payorderno}}" data-sellerstoreid="{{item.sellerstoreid}}" data-buyerstoreid="{{item.buyerstoreid}}">确认收货</view>
+    <navigator url="../../../public/order/logistics/logistics?sellerstoreid={{item.sellerstoreid}}&payorderno={{item.payorderno}}&buyerstoreid={{item.buyerstoreid}}">
+      <view class="order_container_button">查看物流</view>
+    </navigator>
+  
+    <view class="clear"></view>
+  </view>
+
+  <!--采购全部-->
+  <view wx-if="{{ordertype==1 && ordertype2==5}}" wx:for="{{product}}" class="order_container_view">
+     <navigator url="../../../public/order/orderDetails/orderDetails?ordertype={{ordertype}}&payorderno={{item.payorderno}}&ordertype2=5">
+    <view class="order_container_title" >
+      <view class="order_container_name" wx:if="{{item.seller}}">供应商：{{item.seller}}</view>
+      <view class="order_container_name"  wx:if="{{!item.seller}}">供应商：游客</view>
+      <view class="order_container_Bill" wx:if="{{item.ordertype==1}}">商城订单</view>
+       <view class="order_container_Bill" wx:if="{{item.ordertype==2}}">线下单据</view>
+       <view class="order_container_Bill" style="color:#ff011f;" wx:if="{{item.ordertype==3}}">作废单据</view>
+      <image src="../../../../images/right-thrust.png" mode="aspectFit" class="order_content_right" />
+    </view>
+   </navigator>
+      <view class="order_container_content_left">
+        <view class="order_container_number">单号：{{item.payorderno}}</view>
+        <view class="order_container_text">数量：{{item.totalnum}}</view>
+        <view class="order_container_text" wx:if="{{item.debetamt}}">未付：￥{{item.debetamt}}</view>
+        <view class="order_container_text" style="margin-top:5px;" wx:if="{{item.freight>0}}">{{item.logisticsCode}}：{{item.freight}}元</view>
+        <view class="order_container_text" style="margin-top:5px;" wx:if="{{item.freight==0}}">{{item.logisticsCode}}:包邮</view>
+      </view>
+      <view class="order_container_content_right">
+        <view class="order_container_text">{{item.ordertime}}</view>
+        <view class="order_container_text">合计金额：<text style="color:#ff0000;">￥{{item.totalamt}}</text></view>
+        <view class="order_container_text" wx:if="{{item.paycost1>0}}">{{item.paycate_1||item.paycate1}}：￥{{item.paycost1}}</view>
+        <view class="order_container_text" wx:if="{{item.paycost2>0}}">{{item.paycate_2||item.paycate2}}：￥{{item.paycost2}}</view>
+        <view class="order_container_text" style="margin-top:5px;">经手人：{{item.operator}}</view>
+      </view>
+      <view class="clear"></view>
+    <navigator url="../../../public/order/orderDetails/orderDetails?ordertype={{ordertype}}&payorderno={{item.payorderno}}&ordertype2=5&storeId={{item.sellerstoreid}}" class="order_container_button btn_2" >评价</navigator>
+    <view class="order_container_button"  wx:if="{{item.canCancellation}}"  bindtap="changeOrderStatus" data-status='7' data-orderNo="{{item.payorderno}}" data-sellerstoreid="{{item.sellerstoreid}}" data-buyerstoreid="{{item.buyerstoreid}}">作废</view>
+    <view class="clear"></view>
+  </view>
+
+  <!--销售待审核-->
+  <view wx-if="{{ordertype==2 && ordertype2==4}}" wx:for="{{product}}" class="order_container_view">
+   <navigator url="../../../public/order/orderDetails/orderDetails?ordertype={{ordertype}}&payorderno={{item.payorderno}}&ordertype2=4">
+    <view class="order_container_title" >
+      <view class="order_container_name">客户：{{item.buyer}}</view>
+      <view class="order_container_Bill">商城订单</view>
+      <image src="../../../../images/right-thrust.png" mode="aspectFit" class="order_content_right" />
+    </view>
+   </navigator>
+      <view class="order_container_content_left">
+        <view class="order_container_number">单号：{{item.payorderno}}</view>
+        <view class="order_container_text">数量：{{item.totalnum}}</view>
+        <view class="order_container_text" wx:if="{{item.debetamt}}">未付：￥{{item.debetamt}}</view>
+        <view class="order_container_text" style="margin-top:5px;" wx:if="{{item.freight>0}}">{{item.logisticsCode}}：{{item.freight}}元</view>
+        <view class="order_container_text" style="margin-top:5px;" wx:if="{{item.freight==0}}">{{item.logisticsCode}}:包邮</view>
+
+      </view>
+      <view class="order_container_content_right">
+        <view class="order_container_text">{{item.ordertime}}</view>
+        <view class="order_container_text">合计金额：<text style="color:#ff0000;">￥{{item.totalamt}}</text></view>
+        <view class="order_container_text" wx:if="{{item.paycost1>0}}">{{item.paycate_1||item.paycate1}}：￥{{item.paycost1}}</view>
+        <view class="order_container_text" wx:if="{{item.paycost2>0}}">{{item.paycate_2||item.paycate2}}：￥{{item.paycost2}}</view>
+        <view class="order_container_text" style="margin-top:5px;">经手人：{{item.operator}}</view>
+      </view>
+      <view class="clear"></view>
+    <view class="order_container_button btn_2"  bindtap="changeOrderStatus" data-status='8' data-orderNo="{{item.payorderno}}" data-sellerstoreid="{{item.sellerstoreid}}" data-buyerstoreid="{{item.buyerstoreid}}">通过审核</view>
+    <navigator url="../../../public/order/orderDetails/orderDetails?ordertype={{ordertype}}&payorderno={{item.payorderno}}&ordertype2=4&update=true" class="order_container_button">修改订单</navigator>
+    <view class="order_container_button btn_3" bindtap="changeOrderStatus" data-status='6' data-orderNo="{{item.payorderno}}" data-sellerstoreid="{{item.sellerstoreid}}" data-buyerstoreid="{{item.buyerstoreid}}">取消订单</view>
+    <view class="clear"></view>
+  </view>
+
+  <!--销售待收款-->
+  <view wx-if="{{ordertype==2 && ordertype2==6}}" wx:for="{{product}}" class="order_container_view">
+    <navigator url="../../../public/order/orderDetails/orderDetails?ordertype={{ordertype}}&payorderno={{item.payorderno}}& ordertype2=1">
+    <view class="order_container_title" >
+      <view class="order_container_name">客户：{{item.buyer}}</view>
+      <view class="order_container_Bill">商城订单</view>
+      <image src="../../../../images/right-thrust.png" mode="aspectFit" class="order_content_right" />
+    </view>
+   </navigator>
+      <view class="order_container_content_left">
+        <view class="order_container_number">单号：{{item.payorderno}}</view>
+        <view class="order_container_text">数量：{{item.totalnum}}</view>
+        <view class="order_container_text" wx:if="{{item.debetamt}}">未付：￥{{item.debetamt}}</view>
+        <view class="order_container_text" style="margin-top:5px;" wx:if="{{item.freight>0}}">{{item.logisticsCode}}：{{item.freight}}元</view>
+        <view class="order_container_text" style="margin-top:5px;" wx:if="{{item.freight==0}}">{{item.logisticsCode}}:包邮</view>
+      </view>
+      <view class="order_container_content_right">
+        <view class="order_container_text">{{item.ordertime}}</view>
+        <view class="order_container_text">合计金额：<text style="color:#ff0000;">￥{{item.totalamt}}</text></view>
+        <view class="order_container_text" wx:if="{{item.paycost1>0}}">{{item.paycate_1||item.paycate1}}：￥{{item.paycost1}}</view>
+        <view class="order_container_text" wx:if="{{item.paycost2>0}}">{{item.paycate_2||item.paycate2}}：￥{{item.paycost2}}</view>
+        <view class="order_container_text" style="margin-top:5px;">经手人：{{item.operator}}</view>
+      </view>
+      <view class="clear"></view>
+   
+    <view class="order_container_button btn_2" wx:if="{{item.debetamt >0 || item.debeButton}}" bindtap="collectView" data-status='2' data-orderNo="{{item.payorderno}}" data-debet="{{item.debetamt}}" data-sellerstoreid="{{item.sellerstoreid}}" data-buyerstoreid="{{item.buyerstoreid}}" >{{item.debetText}}</view>
+
+     <view class="order_container_button" data-status='3' data-orderNo="{{item.payorderno}}"  data-sellerstoreid="{{item.sellerstoreid}}" data-buyerstoreid="{{item.buyerstoreid}}" bindtap="changeOrderStatus">配货</view>
+
+    <view class="order_container_button btn_3" bindtap="changeOrderStatus" data-status='6' data-orderNo="{{item.payorderno}}" data-sellerstoreid="{{item.sellerstoreid}}" data-buyerstoreid="{{item.buyerstoreid}}">取消</view>
+    <view class="clear"></view>
+  </view>
+  <!--收付款-->
+  <modal title="收款" hidden="{{collectModal}}" confirm-text="确定" cancel-text="取消"  bindconfirm="sureCollect" bindcancel="cancel" >
+    <view class="choose_container clearfix" style="padding:20px 20px;">
+      <picker class="logistics_picker" range="">
+        <view class="picker">
+        现金
+        <image src="../../../../images/down.png" mode="aspectFit" class="picker_image" />
+      </view>
+    </picker>
+      <input class="logistics_number" value="{{colloctNum}}" disabled="true" type="digit" placeholder="输入金额" />
+    </view>
+  </modal>
+
+  <!--销售待发货-->
+  <view wx-if="{{ordertype==2 && ordertype2==2}}" wx:for="{{product}}" class="order_container_view">
+   <navigator url="../../../public/order/orderDetails/orderDetails?ordertype={{ordertype}}&payorderno={{item.payorderno}}& ordertype2=2">
+    <view class="order_container_title" >
+      <view class="order_container_name">客户：{{item.buyer}}</view>
+      <view class="order_container_Bill">商城订单</view>
+      <image src="../../../../images/right-thrust.png" mode="aspectFit" class="order_content_right" />
+    </view>
+   </navigator>
+      <view class="order_container_content_left">
+        <view class="order_container_number">单号：{{item.payorderno}}</view>
+        <view class="order_container_text">数量：{{item.totalnum}}</view>
+        <view class="order_container_text" wx:if="{{item.debetamt}}">未付：￥{{item.debetamt}}</view>
+        <view class="order_container_text" style="margin-top:5px;" wx:if="{{item.freight>0}}">{{item.logisticsCode}}：{{item.freight}}元</view>
+        <view class="order_container_text" style="margin-top:5px;" wx:if="{{item.freight==0}}">{{item.logisticsCode}}:包邮</view>
+      </view>
+      <view class="order_container_content_right">
+        <view class="order_container_text">{{item.ordertime}}</view>
+        <view class="order_container_text">合计金额：<text style="color:#ff0000;">￥{{item.totalamt}}</text></view>
+        <view class="order_container_text" wx:if="{{item.paycost1>0}}">{{item.paycate_1||item.paycate1}}：￥{{item.paycost1}}</view>
+        <view class="order_container_text" wx:if="{{item.paycost2>0}}">{{item.paycate_2||item.paycate2}}：￥{{item.paycost2}}</view>
+        <view class="order_container_text" style="margin-top:5px;">经手人：{{item.operator}}</view>
+      </view>
+      <view class="clear"></view>
+    <view class="order_container_button btn_2"  bindtap="changeOrderStatus" data-status='4' data-orderNo="{{item.payorderno}}" data-sellerstoreid="{{item.sellerstoreid}}" data-buyerstoreid="{{item.buyerstoreid}}">发货</view>
+    <view class="order_container_button" data-payorderno="{{item.payorderno}}"  data-logisticstype="{{item.ordertype}}" bindtap="logisticsView">选物流</view>
+    <view class="clear"></view>
+  </view>
+
+  <!--销售全部-->
+  <view wx-if="{{ordertype==2 && ordertype2==5}}" wx:for="{{product}}" class="order_container_view clearfix">
+    <navigator url="../../../public/order/orderDetails/orderDetails?ordertype={{ordertype}}&payorderno={{item.payorderno}}& ordertype2=5">
+    <view class="order_container_title" >
+      <view class="order_container_name" wx:if="{{item.buyer}}">客户：{{item.buyer}}</view>
+       <view class="order_container_name" wx:if="{{!item.buyer}}">客户：游客</view>
+      <view class="order_container_Bill" wx:if="{{item.ordertype==1}}">商城订单</view>
+       <view class="order_container_Bill" wx:if="{{item.ordertype==2}}">线下单据</view>
+      <image src="../../../../images/right-thrust.png" mode="aspectFit" class="order_content_right" />
+    </view>
+   </navigator>
+      <view class="order_container_content_left">
+        <view class="order_container_number">单号：{{item.payorderno}}</view>
+        <view class="order_container_text">数量：{{item.totalnum}}</view>
+        <view class="order_container_text" wx:if="{{item.debetamt}}">未付：￥{{item.debetamt}}</view>
+        <view class="order_container_text" style="margin-top:5px;" wx:if="{{item.freight>0}}">{{item.logisticsCode}}：{{item.freight}}元</view>
+        <view class="order_container_text" style="margin-top:5px;" wx:if="{{item.freight==0}}">{{item.logisticsCode}}:包邮</view>
+      </view>
+      <view class="order_container_content_right">
+        <view class="order_container_text">{{item.ordertime}}</view>
+        <view class="order_container_text">合计金额：<text style="color:#ff0000;">￥{{item.totalamt}}</text></view>
+        <view class="order_container_text" wx:if="{{item.paycost1>0}}">{{item.paycate_1||item.paycate1}}：￥{{item.paycost1}}</view>
+        <view class="order_container_text" wx:if="{{item.paycost2>0}}">{{item.paycate_2||item.paycate2}}：￥{{item.paycost2}}</view>
+        <view class="order_container_text" style="margin-top:5px;">经手人：{{item.operator}}</view>
+      </view>
+      <view class="clear"></view>
+      <view class="order_container_button btn_2" bindtap="updateModal" data-no="{{item.payorderno}}">修改</view>
+      <view class="order_container_button" wx:if="{{item.canCancellation}}"  bindtap="changeOrderStatus" data-status='7' data-orderNo="{{item.payorderno}}" data-sellerstoreid="{{item.sellerstoreid}}" data-buyerstoreid="{{item.buyerstoreid}}">作废</view>
+  </view>
+</scroll-view>
+
+
+<!--选择物流-->
+<modal title="选择物流" hidden="{{logisticsModal}}" confirm-text="取消" no-cancel bindconfirm="cancel" bindcancel="cancel" >
+  <view class="choose_container clearfix">
+    <view class="logistics_choose">
+      <view class="choose_view" bindtap="expressView">打印快递面单</view>
+    </view>
+    <view class="logistics_choose">
+      <view class="choose_view" bindtap="numberView">输入快递面单</view>
+    </view>
+  </view>
+</modal>
+
+
+<!--物流单号-->
+<modal title="物流单号" hidden="{{numberModal}}" confirm-text="确定" bindconfirm="SureLogicson" bindcancel="cancel" >
+  <view class="logistics_title" style="width:25%;">物流公司</view>
+  <view class="logistics_title" style="width:75%; padding-right:35px;">物流单号</view>
+  <view class="clear"></view>
+  <view class="logistics_picker">
+      {{logisticsname}}
+  </view>
+  <image src="../../../../images/scan_black.png" mode="aspectFit" class="image_scan" />
+  <input class="logistics_number" type="number" bindblur="EventHandle" value = "{{logisticsno}}" placeholder="单号" />
+</modal>
+
+
+<!--选择快递公司-->
+<modal title="选择快递公司" hidden="{{expressModal}}" confirm-text="取消" no-cancel bindconfirm="cancel" bindcancel="cancel" >
+  <view class="logistics_choose">
+    <navigator url="../../../public/order/express/express?orderNo={{selectLogistics.orderNo}}" class="choose_view">顺丰</navigator>
+  </view>
+  <view class="logistics_choose">
+    <navigator url="../../../public/order/express/express?orderNo={{selectLogistics.orderNo}}" class="choose_view">韵达</navigator>
+  </view>
+</modal>
+
+
+<!--销售-全部-修改-->
+<modal title="修改" hidden="{{updateModal}}" confirm-text="确定" cancel-text="取消"  bindconfirm="updateOrder" bindcancel="cancel" >
+  <view class="clearfix" style="margin-top:10px;">
+    <view class="modal_pay one_line" style="border:none;width:50%;margin:0;">
+      总金额：{{payInfo.totalamt}}
+    </view>
+    <view class="modal_pay one_line" style="border:none;width:50%;margin:0;">
+      未付：{{payInfo.debetamt}}
+    </view>
+  </view>
+  <view class="clearfix" style="margin-top:10px;">
+    <picker class="modal_pay one_line" range="{{paycact}}" range-key="dictText" bindchange="paycactPicker" value="{{payInfo.paycact_index1}}" data-paycate="paycate1">
+      {{paycact[payInfo.paycact_index1].dictText}}
+      <image src="../../../../images/down.png" mode="aspectFit" class="picker_image" />
+      <view class="bindtap_cover"></view>
+    </picker>
+    <view class="order_input_button" data-num="{{payInfo.payCost1}}" data-type="payCost1" bindtap="clear">清零</view>
+    <input class="pay_input" type="digit" placeholder="输入金额" value="{{payInfo.payCost1}}" bindinput="changePaycost" data-type="payCost1"/>
+  </view>
+  <view class="clearfix" style="margin-top:10px;">
+    <picker class="modal_pay one_line" range="{{paycact}}" range-key="dictText" bindchange="paycactPicker" value="{{payInfo.paycact_index2}}" data-paycate="paycate2">
+      {{paycact[payInfo.paycact_index2].dictText}}
+      <image src="../../../../images/down.png" mode="aspectFit" class="picker_image" />
+      <view class="bindtap_cover"></view>
+    </picker>
+    <view class="order_input_button" data-num="{{payInfo.payCost2}}" data-type="payCost2" bindtap="clear">清零</view>
+    <input class="pay_input" type="digit" placeholder="输入金额" value="{{payInfo.payCost2}}" bindinput="changePaycost" data-type="payCost2"/>
+  </view>
+</modal>

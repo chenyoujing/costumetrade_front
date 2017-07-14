@@ -1,0 +1,55 @@
+.store_bg{
+  width: 100%;
+  height: 130px;
+  filter: blur(3px);
+}
+.store_content{
+  position: relative;
+  padding: 40px 80rpx 20px;
+}
+.store_image{
+  width: 90px;
+  height: 90px;
+  border-radius: 45px;
+  position: absolute;
+  top: -50px;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+.store_name{
+  text-align: center;
+  font-size: 18px;
+  line-height: 40px;
+  border-bottom: 2px solid #EBEBEB;
+}
+.store_info{
+  padding: 10px 0;
+  position: relative;
+}
+.info1{
+  float: left;
+  width: 35%;
+  font-size: 16px;
+  line-height: 20px;
+}
+.info2{
+  float: left;
+  width: 65%;
+  font-size: 16px;
+  line-height: 20px;
+}
+.service{
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  padding: 10px;
+  top: 0;
+  right: 10px;
+  box-sizing: unset;
+}
+.service image{
+  width: 100%;
+  height: 100%;
+  display: block;
+}

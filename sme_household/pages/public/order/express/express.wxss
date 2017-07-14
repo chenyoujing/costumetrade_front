@@ -1,0 +1,75 @@
+/*头部*/
+@import "../../../../css/title.wxss";
+
+.express_container{
+  position: absolute;
+  top: 40px;
+  left: 0;
+  right: 0;
+  bottom: 40px;
+  padding-top: 15px;
+  width: unset;
+}
+.express_content{
+  background-color: #DBF4F1;
+  margin: 0 20px 15px;
+  box-shadow: 0.5px 0.5px 1px #999999;
+  padding: 5px;
+}
+.content_title{
+  font-size: 18px;
+  line-height: 30px;
+}
+.content_input{
+  position: relative;
+  padding-bottom: 5px;
+}
+.content_input_text{
+  width: 35%;
+  float: left;
+  font-size: 16px;
+  line-height: 30px;
+}
+.content_input_text text{
+  font-size: 14px;
+}
+.content_input1{
+  background-color: #ffffff;
+  font-size: 14px;
+  padding: 0 8px; 
+  height: 28px;
+  position: relative;
+}
+.image_map{
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 20px;
+  height: 20px;
+  padding: 5px;
+  z-index: 2;
+}
+.bg_2{
+  background-color: #DCDCDC;
+  padding: 10px 10px 0;
+}
+.bg_2 .content_input{
+  padding-bottom: 10px;
+}
+
+.submit{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 40px;
+  background-color: #eeeeee;
+  text-align: center;
+  font-size: 16px;
+  line-height: 40px;
+  border-radius: 0;
+}
+.bg_g{
+  background-color: #52CAC1;
+  color: #ffffff;
+}

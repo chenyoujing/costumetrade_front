@@ -1,0 +1,64 @@
+ <view class="mall">
+  <view class="mall_title">
+    <image src="../../../../images/mall_bg.png" mode="aspectFill" class="mall_title_bg" />
+    <view class="title_view">
+      <navigator url="../storeDetails/storeDetails?id={{id}}">
+        <image src="{{storephoto||'../../../../images/shop1_tx.png'}}" mode="scaleToFill" class="shop_tx" />
+      </navigator>
+      <navigator url="../shoppingcard/shoppingcard?stordId={{id}}">
+        <image src="../../../../images/shoppingcard.png" mode="aspectFit" class="shoppingcard_image" style="margin-left:3%;">
+          <view class="prompt" wx:if="{{prompt>0}}">{{prompt}}</view>
+        </image>
+      </navigator>
+      <input class="search_input" type="text" placeholder="请输入货号搜索货品..." bindfocus="bindfocus" focus="{{inputFocus}}" >
+        <image src="../../../../images/search.png" mode="aspectFit" class="search_input_image" />
+      </input>
+    </view>
+    <image src="../../../../images/back-away.png" mode="aspectFit" class="title_back" bindtap="mall_back" />
+  </view>
+
+
+  <view class="sort clearfix">
+    <view class="sort_text {{state=='timeUpOp' ? 'screen_active' : ''}}" bindtap="changeSortData" data-sort="timeUpOp">
+      上架排序
+      <image src="../../../../images/sort.png" mode="aspectFit" class="image_down {{Op=='asc' ? 'sort_up' : ''}}" />
+    </view>
+    <view class="sort_text {{state=='saleOp' ? 'screen_active' : ''}}" bindtap="changeSortData" data-sort="saleOp" >
+      销量排序
+      <image src="../../../../images/sort.png" mode="aspectFit" class="image_down {{Op=='asc' ? 'sort_up' : ''}}" />
+    </view>
+    <view class="sort_text {{state=='priceOp' ? 'screen_active' : ''}}" bindtap="changeSortData" data-sort="priceOp" >
+      价格排序
+      <image src="../../../../images/sort.png" mode="aspectFit" class="image_down {{Op=='asc' ? 'sort_up' : ''}}" />
+    </view>
+    <view class="sort_text" style="width:10%;">
+      <image src="../../../../images/{{rank?'transverse2':'pane2'}}.png" mode="aspectFit" class="rank_image" bindtap="rank"/>
+    </view>
+  </view>
+
+  <scroll-view scroll-y="true" class="mall_scroll" lower-threshold="10" bindscrolltolower="{{loadMore?'onReachBottom':''}}" style="bottom:{{delete_button}}px;">
+    <view class="prompt_none" wx:if="{{product == 0}}">
+      <text>该店铺没东西！</text>
+    </view>
+
+    <view class="mall_container {{rank}}" wx:for="{{product}}">
+      <navigator url="../goods_detail/goods_detail?strod={{id}}&ID={{item.id}}&name={{name}}" hover-class="navigator-hover" class="content_container clearfix">
+        <image src="{{item.image?item.image:'../../../../images/shop1_1.png'}}" mode="aspectFill" style="width:{{image_width}}px;height:{{image_width}}px;" />
+        <view class="content_container_text">
+          <view class="clear"></view>
+          <view class="content_container_title">{{item.name}}</view>
+          <view class="content_container_info clearfix">
+            <view class="price">{{item.salePrice}}</view>
+            <view class="info_other">
+              <view class="volume" wx:if="{{!item.volume}}">0</view>
+              <view class="volume" wx:if="{{item.volume}}">{{item.volume}}</view>
+              <view class="date">{{item.timeUp}}</view>
+            </view>
+          </view>
+        </view>
+      </navigator>
+    </view>
+  </scroll-view>
+</view>
+
+

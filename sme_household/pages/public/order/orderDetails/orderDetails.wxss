@@ -1,0 +1,223 @@
+.orderDetaile_title{
+  color: #202020;
+  border-bottom: 1px solid #286561;
+  margin: 0 50rpx;
+  font-size: 18px;
+  line-height: 40px;
+  text-align: center;
+  position: relative;
+}
+.orderDetaile_title_image{
+  width: 16px;
+  height: 16px;
+  padding: 12px;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.orderDetaile_container{
+  margin-bottom: 50px;
+}
+.order_container{
+  padding: 5px 0;
+}
+.seller_info{
+  padding: 10px 50rpx;
+}
+.seller_tx{
+  width: 50px;
+  height: 50px;
+  border-radius: 25px;
+  float: left;
+  margin-right: 15px;
+}
+.seller_text{
+  font-size: 13px;
+  line-height: 20px;
+}
+.orderinfo{
+  border-top: 5px solid #DBF4F1;
+  padding: 10px 50rpx;
+  padding-bottom:40px;
+}
+.orderinfo_title{
+  border-bottom: 2px solid #DDDDDD;
+  margin-bottom: 5px;
+}
+.orderinfo_text{
+  padding: 5px;
+  font-size: 14px;
+  line-height: 30px;
+}
+.orderinfo_input{
+  border: 1px solid #DDDDDD;
+  font-size: 14px;
+  line-height: 28px;
+  float:right;
+  width: 15%;
+}
+.orderinfo_text_image{
+  width: 12px;
+  height: 12px;
+  padding: 9px 0;
+  padding-left: 5px; 
+  float: right;
+}
+.orderinfo_footer{
+  border-top: 2px solid #DDDDDD;
+  margin-top: 5px;
+}
+.orderinfo_footer_text::before{
+  content: "实付金额：";
+  color: #000000;
+}
+.orderinfo_footer_text0{
+  font-size: 10px;
+  line-height: 30px;
+  float: left;
+  padding:5px;
+}
+.orderinfo_footer_text{
+  color: #FE2D04;
+  padding: 5px;
+  font-size: 17px;
+  line-height: 30px;
+  float:right;
+}
+.order_info{
+  padding: 15px 50rpx 0;
+  border-top: 5px solid #DBF4F1;
+}
+.info_title{
+  color: #202020;
+  font-size: 15px;
+  line-height: 30px;
+}
+.info_text{
+  font-size: 12px;
+  line-height: 30px;
+}
+.info_price{
+  color: #FF011F;
+}
+.info_price::before{
+  content: "实际金额：";
+  color: #000000;
+}
+
+
+.order_view{
+  padding: 10px 8px 0;
+  border-top: 5px solid #DBF4F1;
+  position: relative;
+  
+}
+.order_image{
+  width: 70px;
+  height: 70px;
+  margin: auto 0;
+  display: block;
+  position:absolute;
+  top:0;
+  bottom:0;
+}
+.order_view_info{
+  margin-left: 70px;
+}
+.order_view_title{
+  font-size: 12px;
+  line-height: 23px;
+  padding: 0 8px;
+  padding-right: 70px;
+  border-bottom: 2px solid #DCDCDC;
+  position: relative;
+}
+.order_view_date{
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 10px;
+  color: #999999;
+  max-width: 65px;
+}
+.order_view_content{
+  position: relative;
+}
+.order_view_text{
+  font-size: 10px;
+  line-height: 20px;
+  color: #999999;
+  padding-right: 70px;
+}
+.order_view_text text{
+  padding: 0 8px;
+  display: inline-block;
+}
+.order_unit_price{
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 10px;
+  line-height: 20px;
+  color: #999999;
+  max-width: 65px;
+}
+.order_view_input{
+  font-size: 12px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  max-width: 65px;
+}
+.order_view_input input{
+  border: 1px solid #DDDDDD;
+}
+.order_view_price{
+  color: #FF011F;
+  font-size: 12px;
+  padding: 0 8px;
+  line-height: 35px;
+}
+.order_view_price::before{
+  content: "合计：";
+  color: #000000;
+}
+.order_view_button{
+  position: absolute;
+  bottom: 0;
+  right: -8px;
+  width: 60px;
+  font-size: 14px;
+  line-height: 25px;
+  text-align: center;
+  background-color: #52CAC1;
+  color: #ffffff;
+}
+
+.submit{
+  font-size: 16px;
+  border-radius: 0;
+  background-color: #DCDCDC;
+  line-height: 40px;
+  text-align: center;
+  padding: 0;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+.bg_g{
+  background-color: #52CAC1;
+  color: #ffffff;
+}
+
+
+modal{
+  min-height: 200px;
+}
+.choose_container{
+  margin: 0 -20px;
+  padding: 20px 0;
+}

@@ -1,0 +1,42 @@
+<!--头部-->
+<view class="title clearfix">
+  <navigator open-type="navigateBack">
+    <image src="../../../../images/back-away.png" mode="aspectFit" class="title_image_back" />
+  </navigator>
+  <view class="title_text">分享</view>
+  <image src="../../../../images/share.png" class="title_submit" />
+</view>
+
+
+<scroll-view scroll-y class="shareStore_container">
+  <!--店铺信息-->
+  <view class="store_info_view">
+    <view class="store_info">
+      <image src="{{storeInfo.storephoto||'../../../../images/image_none.png'}}" class="store_tx" />
+      <view class="store_name">{{storeInfo.name}}</view>
+      <view class="store_content">{{storeInfo.description}}</view>
+      <view class="clear"></view>
+    </view>
+    <view class="image_view">
+      <image src="{{images[0]?images[0]:'../../../../images/image_none.png'}}" class="store_image" style="margin-left:8rpx;" />
+    </view>
+    <view class="image_view">
+      <image src="{{images[1]?images[1]:'../../../../images/image_none.png'}}" class="store_image" />
+    </view>
+    <view class="image_view">
+      <image src="{{images[2]?images[2]:'../../../../images/image_none.png'}}" class="store_image" style="margin-right:8rpx;" />
+    </view>
+    <view class="clear"></view>
+    <view class="store_address">
+      <image src="../../../../images/localization.png" mode="aspectFit" class="address_image" />
+      <view class="address_text">{{storeInfo.address}}</view>
+      <view class="clear"></view>
+    </view>
+  </view>
+
+  <view class="store_trait">敏捷经营</view>
+  <view class="store_trait">高效经营</view>
+  <view class="store_trait">实时掌控</view>
+  <view class="clear"></view>
+
+</scroll-view>

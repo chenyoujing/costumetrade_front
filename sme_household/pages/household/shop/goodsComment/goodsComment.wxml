@@ -1,0 +1,32 @@
+<!--头部-->
+<view class="title clearfix">
+  <navigator open-type="navigateBack">
+    <image src="../../../../images/back-away.png" mode="aspectFit" class="title_image_back" />
+  </navigator>
+  <view class="title_text">评价</view>
+</view>
+  
+  <view class="shop">
+    <navigator url="../storeDetails/storeDetails?id={{stordId}}">
+      <image src="{{true?'../../../../images/shop1_tx.png':'../../../../images/image_none.png'}}" mode="aspectFill" class="shop_image" />
+    </navigator>
+    <view class="shop_name">{{name}}</view>
+    <view class="shop_goods">全部货品：105件</view>
+    <view class="clear"></view>
+    <button open-type="contact" class="shop_content_service"  session-from="1">
+      <image src="../../../../images/customer_service.png" mode="aspectFit" class="shop_service" >
+        <view class="prompt">3</view>
+      </image>
+    </button>
+  </view>
+  <view class="evaluate_container">
+    商品评价({{countReview}})
+   <view class="evaluate_content" wx:for="{{productReviews}}">
+      <view class="evaluate_content_header clearfix">
+        <image src="{{true?'../../../../images/shop2_tx.png':'../../../../images/image_none.png'}}" mode="aspectFill" class="client_tx" />
+        <view class="client_name">{{item.contactname}}</view>
+      </view>
+      <view class="evaluate_content_body">{{item.msg}}</view>
+      <view class="evaluate_content_footer">{{item.createtime}}</view>
+    </view>
+  </view>

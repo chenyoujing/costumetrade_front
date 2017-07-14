@@ -1,0 +1,50 @@
+/*头部*/
+@import "../../../../css/title.wxss";
+.title_add{
+  float: right;
+  margin-right: 10px;
+  width: 16px;
+  height: 16px;
+  padding: 12px;
+}
+.branch{
+  padding: 10px;
+  margin-bottom: 4px;
+}
+.branch_name{
+  text-align: center;
+  font-size: 16px;
+  line-height: 40px;
+}
+.branch_stock{
+  float: right;
+  width: 80px;
+  text-align: center;
+  font-size: 16px;
+  line-height: 40px;
+}
+.branch_image{
+  float: right;
+  width: 16px;
+  height: 16px;
+  padding: 12px;
+}
+.bg_1{
+  background-color: #DCF4F4;
+}
+.bg_2{
+  background-color: #DCDCDC;
+}
+
+.button{
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 40px;
+  font-size: 18px;
+  line-height: 40px;
+  text-align: center;
+  background-color: #52CAC1;
+  color: #ffffff;
+}

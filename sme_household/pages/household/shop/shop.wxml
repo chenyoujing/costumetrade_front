@@ -1,0 +1,83 @@
+<import src="../../../template/template.wxml"/>
+
+<scroll-view scroll-y class="shop_scroll">
+  <!--轮播图-->
+  <swiper indicator-dots autoplay circular class="shop_swiper">
+    <block wx:for="{{imgUrls}}" wx:key="id">
+      <swiper-item>
+        <image src="{{item ? item : '../../../images/image_none.png'}}" class="shop_swiper_image" mode="aspectFill"/>
+      </swiper-item>
+    </block>
+  </swiper>
+
+  <!-- 点艺公告 -->
+  <template is="notice"></template>
+
+  <!--自己店铺-->
+  <view class="shop_content" wx:if="{{myselfStord.id}}">
+    <view url="mall/mall" class="shop_content_view">
+      <navigator url="storeDetails/storeDetails?id={{myselfStord.id}}" class="shop_content_title">
+        <image src="{{myselfStord.storephoto||'../../../images/image_none.png'}}" mode="aspectFill" class="shop_content_tx" />
+        <view class="shop_content_info">
+          <view class="shop_content_name">{{myselfStord.name}}</view>
+          <view class="shop_content_address">
+            <image src="../../../images/site.png" mode="aspectFit" class="shop_address_image" />
+            地址：{{myselfStord.address}}
+          </view>
+        </view>
+        <view class="clear"></view>
+      </navigator>
+      <navigator url="mall/mall?id={{myselfStord.id}}" class="shop_goods clearfix">
+        <view class="shop_picture">
+          <image src="{{myselfStord.images[0]?url+myselfStord.images[0]:'../../../images/shop1_1.png'}}" mode="aspectFill" style="margin-left:0;" />
+        </view>
+        <view class="shop_picture">
+          <image src="{{myselfStord.images[1]?url+myselfStord.images[1]:'../../../images/shop1_1.png'}}" mode="aspectFill" />
+        </view>
+        <view class="shop_picture">
+          <image src="{{myselfStord.images[2]?url+myselfStord.images[2]:'../../../images/shop1_1.png'}}" mode="aspectFill" style="margin-right:0;" />
+        </view>
+      </navigator>
+    </view>
+    <image src="../../../images/customer_service.png"  class="shop_content_service" mode="aspectFit" />
+    <contact-button class="shop_content_service" style="opacity:0;" size="20" session-from="weapp"></contact-button>
+  </view>
+
+  <view class="shop_content" wx:for="{{otherStord}}">
+   <view url="mall/mall" class="shop_content_view">
+      <navigator url="storeDetails/storeDetails?id={{item.id}}" class="shop_content_title">
+        <image src="{{item.storephoto||'../../../images/image_none.png'}}" mode="aspectFill" class="shop_content_tx" />
+        <view class="shop_content_info">
+          <view class="shop_content_name">{{item.name}}</view>
+          <view class="shop_content_address">
+            <image src="../../../images/site.png" mode="aspectFit" class="shop_address_image" />
+            地址：{{item.address}}
+          </view>
+        </view>
+        <view class="clear"></view>
+      </navigator>
+      <navigator url="mall/mall?id={{item.id}}&storephoto={{item.storephoto}}" class="shop_goods clearfix">
+        <view class="shop_picture">
+          <image src="{{item.images[0]?url+item.images[0]:'../../../images/shop1_1.png'}}" mode="aspectFill" style="margin-left:0;" />
+        </view>
+        <view class="shop_picture">
+          <image src="{{item.images[1]?url+item.images[1]:'../../../images/shop1_1.png'}}" mode="aspectFill" />
+        </view>
+        <view class="shop_picture">
+          <image src="{{item.images[2]?url+item.images[2]:'../../../images/shop1_1.png'}}" mode="aspectFill" style="margin-right:0;" />
+        </view>
+      </navigator>
+    </view>
+    <image src="../../../images/customer_service.png"  class="shop_content_service" mode="aspectFit" />
+    <contact-button class="shop_content_service" style="opacity:0;" size="20" session-from="weapp"></contact-button>
+  </view>
+ <form bindsubmit="aa" report-submit>
+<button form-type="submit">初始化</button>
+</form>
+<navigator url="Bluetooth/Bluetooth">
+  <button> 搜索 </button>
+</navigator>
+ 
+</scroll-view>
+
+<template is="navBottom" data="{{nav:'首页'}}"></template>

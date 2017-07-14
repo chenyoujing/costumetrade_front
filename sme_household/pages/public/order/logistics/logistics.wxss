@@ -1,0 +1,72 @@
+/*头部*/
+@import "../../../../css/title.wxss";
+
+.logistic_container{
+  position: absolute;
+  top: 40px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+.logistic_view{
+  height: 60px;
+}
+.round_view{
+  float: left;
+  width: 20%;
+  height: 85px;
+  position: relative;
+}
+.line{
+  width: 2px;
+  height: 85px;
+  background-color: #9E9E9E;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 40px;
+  margin: auto;
+}
+.round{
+  width: 10px;
+  height: 10px;
+  border-radius: 5px;
+  background-color: #9E9E9E;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 35px;
+  margin: auto;
+  z-index: 1;
+}
+.logistic_info{
+  box-sizing: border-box;
+  border-bottom: 1px solid #DCDCDC;
+  float: left;
+  width: 75%;
+  margin-right: 5%;
+  padding-top: 15px;
+  padding-bottom: 10px;
+  height: 85px;
+}
+.logistic_text{
+  font-size: 15px;
+  line-height: 24px;
+}
+.logistic_time{
+  font-size: 10px;
+  line-height: 20px;
+}
+.logistic_view:first-child{
+  color: #52CAC1;
+}
+.logistic_view:first-child .line{
+  display: none;
+}
+.logistic_view:first-child .round{
+  width: 14px;
+  height: 14px;
+  border-radius: 12px;
+  bottom: 33px;
+  background-color: #52CAC1;
+}

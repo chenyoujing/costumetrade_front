@@ -1,0 +1,96 @@
+/*头部*/
+@import "../../../../css/title.wxss";
+.title_submit{
+  float: right;
+  margin-right: 10px;
+  width: 16px;
+  height: 16px;
+  padding: 12px;
+}
+
+.shareStore_container{
+  position: absolute;
+  top: 50px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+.store_info_view{
+  border-bottom: 1px solid #286561;
+}
+.store_info{
+  padding: 20px 15px;
+}
+.store_tx{
+  width: 70px;
+  height: 70px;
+  border-radius: 35px;
+  margin-right: 15px;
+  float: left;
+}
+.store_name{
+  padding: 5px 0;
+  font-size: 16px;
+  line-height: 24px;
+}
+.store_content{
+  padding-left: 85px;
+  font-size: 13px;
+  line-height: 16px;
+}
+.image_view{
+  width: 33.33333333%;
+  height: 240rpx;
+  float: left;
+  position: relative;
+}
+.store_image{
+  width: 240rpx;
+  height: 240rpx;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+.store_address{
+  padding-top: 10px;
+}
+.address_image{
+  width: 20px;
+  height: 20px;
+  padding: 10px;
+  float: left;
+}
+.address_text{
+  float: left;
+  padding-left: 10px;
+  font-size: 13px;
+  line-height: 40px;
+}
+.store_trait{
+  float: left;
+  text-align: center;
+  width: 33.33333333%;
+  font-size: 13px;
+  line-height: 40px;
+}
+.scan_info{
+  text-align: center;
+  padding: 20px 0;
+}
+.scan_info_title{
+  color: #ff0000;
+  font-size: 14px;
+  line-height: 30px;
+}
+.scan_info_text{
+  font-size: 10px;
+  line-height: 20px;
+  color: #8b8b8b;
+}
+.scan_info_image{
+  width: 100px;
+  height: 100px;
+  display: block;
+  margin: 15px auto 5px;
+}

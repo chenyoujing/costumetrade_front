@@ -1,0 +1,85 @@
+<view class="title clearfix">
+  <navigator open-type="navigateBack">
+    <image src="../../../../images/back-away.png" mode="aspectFit" class="title_image_back" />
+  </navigator>
+  <view class="title_text">详细资料</view>
+</view>
+
+<scroll-view scroll-y class="container">
+  <view class="content">
+    <view class="client_name_view clearfix">
+      <image src="{{CustomerInfo.image?CustomerInfo.image:'../../../../images/image_none.png'}}" mode="aspectFill" class="client_tx" />
+      <view class="client_name">
+        <view class="remarkName">备注:{{CustomerInfo.remarkName}}</view>
+        <view class="client_name_text">真实姓名：{{CustomerInfo.reallyName}}</view>
+        <view class="client_name_text">微信名：{{CustomerInfo.nickName}}</view>
+      </view>
+      <navigator url="../clientAdd/clientAdd?client={{CustomerInfo.type}}&clientId={{clientId}}">
+        <image src="../../../../images/update.png" mode="aspectFill" class="client_image_update" />
+      </navigator>
+    </view>
+
+    <view class="client_info_view clearfix">
+      <view class="client_info clearfix">
+        <view class="client_info_text">种类：<text>{{CustomerInfo.cate}}会员</text></view>
+        <view class="client_info_text">积分：<text>5</text></view>
+        <view class="client_info_text">电话：<text>{{CustomerInfo.telephone||CustomerInfo.phoneBack}}</text></view>
+        <view class="client_info_text">区域：<text>{{CustomerInfo.city}}{{CustomerInfo.district}}</text></view>
+      </view>
+      <view class="client_mall clearfix">
+        <view class="mall_container">
+          <navigator url="../goods_detail/goods_detail?orderid=1" class="content_container clearfix">
+            <image src="{{item.image ? item.image : '../../../../images/image_none.png'}}" mode="aspectFill" />
+            <view class="content_container_text">
+              <view class="content_container_title">1{{item.name}}</view>
+              <view class="content_container_info">
+                <view class="price">{{item.price}}</view>
+                <view class="info_other">
+                  <view class="volume" wx:if="{{!item.volume}}">0</view>
+                  <view class="volume" wx:if="{{item.volume}}">{{item.volume}}</view>
+                  <view class="date">0{{item.timeUp}}</view>
+                </view>
+              </view>
+            </view>
+          </navigator>
+        </view>
+        <view class="mall_container mall_margin">
+          <navigator url="../goods_detail/goods_detail?orderid=1" class="content_container clearfix">
+            <image src="{{item.image ? item.image : '../../../../images/image_none.png'}}" mode="aspectFill" />
+            <view class="content_container_text">
+              <view class="content_container_title">1{{item.name}}</view>
+              <view class="content_container_info">
+                <view class="price">{{item.price}}</view>
+                <view class="info_other">
+                  <view class="volume" wx:if="{{!item.volume}}">0</view>
+                  <view class="volume" wx:if="{{item.volume}}">{{item.volume}}</view>
+                  <view class="date">0{{item.timeUp}}</view>
+                </view>
+              </view>
+            </view>
+          </navigator>
+        </view>
+        <view class="mall_container">
+          <navigator url="../goods_detail/goods_detail?orderid=1" class="content_container clearfix">
+            <image src="{{item.image ? item.image : '../../../../images/image_none.png'}}" mode="aspectFill" />
+            <view class="content_container_text">
+              <view class="content_container_title">1{{item.name}}</view>
+              <view class="content_container_info">
+                <view class="price">{{item.price}}</view>
+                <view class="info_other">
+                  <view class="volume" wx:if="{{!item.volume}}">0</view>
+                  <view class="volume" wx:if="{{item.volume}}">{{item.volume}}</view>
+                  <view class="date">0{{item.timeUp}}</view>
+                </view>
+              </view>
+            </view>
+          </navigator>
+        </view>
+      </view>
+
+      <!--<navigator url="../replenishment/replenishment?clientId={{clientId}}" class="client_info_button bg_g">补货</navigator>
+      <navigator url="../account/account?client={{CustomerInfo.type}}&clientId={{clientId}}" class="client_info_button">对账</navigator>-->
+    </view>
+    <view class="client_button">发消息</view>
+  </view>
+</scroll-view>

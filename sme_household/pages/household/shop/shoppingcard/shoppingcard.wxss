@@ -1,0 +1,119 @@
+.shoppingcard{
+  padding-bottom: 60px;
+  border-top: 1px solid #286561;
+}
+
+.shoppingcard_container{
+  padding: 10px 15px 10px 0;
+  border-bottom: 2px solid #DBF4F1;
+  position: relative;
+}
+.container_check{
+  width: 40px;
+  float: left;
+  text-align: center;
+  line-height: 100px;
+}
+.container_image{
+  width: 100px;
+  height: 100px;
+  float: left;
+  margin-right: 15px;
+}
+.container_delete{
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 12px;
+  line-height: 30px;
+  color: #666666;
+}
+.container_name{
+  font-size: 17px;
+  line-height: 30px;
+  margin-right: 50px;
+}
+.container_info_text{
+  font-size: 12px;
+  height: 35px;
+  padding-bottom: 5px;
+  color: #666666;
+  display: table-cell;
+  vertical-align: middle;
+}
+.container_price{
+  float: left;
+  font-size: 18px;
+  line-height: 25px;
+  color: #ff0000;
+}
+.container_number{
+  float: right;
+}
+.container_number_view{
+  float: left;
+  font-size: 16px;
+  line-height: 30px;
+  min-width: 50rpx;
+  padding: 0 10rpx;
+  text-align: center;
+  background-color: #e5e5e5;
+}
+.number{
+  border-width: 1px 0;
+  background-color: #ffffff;
+}
+.subtract,.add{
+  font-size: 24px;
+}
+
+
+
+.shoppingcard_bottom{
+  background-color: #ffffff;
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 50px;
+}
+.bottom_info{
+  border: 1px solid #B9CDCB;
+  height: 48px;
+  margin-right: 100px;
+}
+.bottom_check{
+  float: left;
+  font-size: 16px;
+  width: 35%;
+  height: 48px;
+  line-height: 48px;
+  text-align: center;
+}
+.bottom_check checkbox{
+  margin-right: 10px;
+}
+.bottom_price{
+  color: #ff0000;
+  font-size: 16px;
+  width: 65%;
+  height: 48px;
+  line-height: 20px;
+  text-align: center;
+  display: table-cell;
+  vertical-align: middle;
+}
+.bottom_price::before{
+  content: "总金额:";
+  color: #000000;
+}
+.bottom_button{
+  background-color: #FE2D04;
+  color: #ffffff;
+  float: right;
+  font-size: 20px;
+  line-height: 50px;
+  height: 50px;
+  width: 100px;
+  text-align: center;
+}

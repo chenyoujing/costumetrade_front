@@ -1,0 +1,39 @@
+  <view class="mall_title">
+    <image src="../../images/mall_bg.png" mode="aspectFill" class="mall_title_bg" />
+    <navigator url="../household/shop/mall/mall?id={{storeId}}" class="shop_back">
+      <image src="../../images/return.png" mode="aspectFit" />
+    </navigator>
+    <navigator url="../household/shop/storeDetails/storeDetails?id={{storeId}}" class="shop_info clearfix">
+      <view class="shop_tx"><image src="../../images/image_none.png" mode="scaleToFill" class="shop_tx" /></view>
+      <view class="shop_name">{{name}}</view>
+      <image src="../../images/return.png" mode="aspectFit" class="shop_into" />
+    </navigator>
+  </view>
+
+<!--分享的内容-->
+<view class="share_container clearfix">
+  <view class="goods_container" wx:for="{{product}}">
+    <navigator url="../household/shop/goods_detail/goods_detail?strod={{storeId}}&ID={{item.id}}&name={{name}}" class="content_container">
+      <image src="{{item.image ? item.image : '../../images/image_none.png'}}" mode="aspectFill" />
+      <view class="content_container_text">
+        <view class="content_container_title">{{item.name}}</view>
+        <view class="content_container_info">
+          <view class="price">{{item.salePrice}}</view>
+          <view class="info_other">
+            <view class="volume" wx:if="{{!item.volume}}">0</view>
+            <view class="volume" wx:if="{{item.volume}}">{{item.volume}}</view>
+            <view class="date">{{item.timeUp}}</view>
+          </view>
+          <view class="clear"></view>
+        </view>
+      </view>
+      <view class="clear"></view>
+    </navigator>
+  </view>
+</view>
+
+<!--底部按钮-->
+<view class="button_view clearfix">
+  <navigator url="../household/shop/mall/mall?id={{storeId}}" class="back_mall">返回商城</navigator>
+  <navigator url="../household/shop/shoppingcard/shoppingcard" class="shoppingcard">购物车</navigator>
+</view>

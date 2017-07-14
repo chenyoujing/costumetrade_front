@@ -1,0 +1,15 @@
+/*头部*/
+@import "../../../../css/title.wxss";
+/*商品评论*/
+@import "../../../../css/goodsComment.wxss";
+.shop{
+  border-bottom: 5px solid #eeeeee;
+}
+.evaluate_container{
+  border: none;
+}
+.evaluate_content{
+  border-bottom: 2px solid #eeeeee;
+  margin: 0 -20px;
+  padding: 10px 30px;
+}

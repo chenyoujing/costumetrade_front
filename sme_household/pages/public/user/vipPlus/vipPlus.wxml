@@ -1,0 +1,66 @@
+<!--头部-->
+<view class="title clearfix">
+  <navigator open-type="navigateBack">
+    <image src="../../../../images/back-away.png" mode="aspectFit" class="title_image_back" />
+  </navigator>
+  <view class="title_text">升级</view>
+</view>
+
+<scroll-view scroll-y class="vipPlus_container">
+  <!--会员说明-->
+  <view class="vip_explain">
+    <view class="explain_title">会员说明</view>
+    <view class="explain_title2">开通会员将有很多惊喜等着你哦：</view>
+    <view class="explain_text">1.您的交易记录我们会牢牢的存在服务器哦，您就可以随时的查看了；</view>
+    <view class="explain_text">2.您的销售记录，入库记录等等...我们会以报表的形式展示给您，让您一目了然；</view>
+    <view class="explain_text">3.商城里面好多功能呢，让您的采购方便起来了；好多功能不一一列举了，开通会员试试吧!</view>
+    <view class="vip_view {{payOption==1?'vip_active':''}}" data-id="{{getList[0].id}}" data-payOption="1" bindtap="selectOptions">
+      <view class="vip_view_name">VIP会员</view>
+      <view class="vip_view_price1">{{getList[0].price}}/一年</view>
+      <view class="vip_view_price2">￥{{getList[0].price*count1}}</view>
+      <view class="vip_num">
+        <view class="vip_num_view subtract" data-name="count1" data-type="sub" bindtap="countAddorSub">-</view>
+        <view class="vip_num_view number">{{count1}}</view>
+        <view class="vip_num_view add"  data-name="count1"data-type="add" bindtap="countAddorSub">+</view>
+        <view class="clear"></view>
+      </view>
+      <view class="clear"></view>
+    </view>
+    <view class="vip_view {{payOption==2?'vip_active':''}}"  data-id="{{getList[1].id}}"  data-payOption="2" bindtap="selectOptions">
+      <view class="vip_view_name">VIP会员</view>
+      <view class="vip_view_price1">{{getList[1].price}}/一年</view>
+      <view class="vip_view_price2">￥{{count2*getList[1].price}}</view>
+      <view class="vip_num">
+        <view class="vip_num_view subtract" data-name="count2" data-type="sub" bindtap="countAddorSub">-</view>
+        <view class="vip_num_view number" >{{count2}}</view>
+        <view class="vip_num_view add" data-name="count2" data-type="add" bindtap="countAddorSub">+</view>
+        <view class="clear"></view>
+      </view>
+      <view class="clear"></view>
+    </view>
+    <view class="vip_view  {{payOption==3?'vip_active':''}}"  data-id="{{getList[2].id}}"  data-payOption="3" bindtap="selectOptions">
+      <view class="vip_view_name">VIP会员</view>
+      <view class="vip_view_price1">{{getList[2].price}}/一年</view>
+      <view class="vip_view_price2">￥{{getList[2].price*count3}}</view>
+      <view class="vip_num">
+        <view class="vip_num_view subtract"  data-name="count3" data-type="sub" bindtap="countAddorSub">-</view>
+        <view class="vip_num_view number">{{count3}}</view>
+        <view class="vip_num_view add" data-name="count3"  data-type="add" bindtap="countAddorSub">+</view>
+        <view class="clear"></view>
+      </view>
+      <view class="clear"></view>
+    </view>
+    <view class="vip_prompt">检测到您的会员于2035-03-09到期，支付后延长至2036-03-09</view>
+    <view class="vip_price">￥{{payTotal}}</view>
+    <view class="clear"></view>
+  </view>
+</scroll-view>
+
+  <!--底部浮动-->
+  <view class="vip_bottom">
+    <view class="bottom_button" bindtap="vipPlus">确认支付</view>
+    <view class="bottom_info">
+      ￥{{payTotal}}
+    </view>
+    <view class="clear"></view>
+  </view>

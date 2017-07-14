@@ -1,0 +1,36 @@
+/*头部*/
+@import "../../../../css/title.wxss";
+
+.Help_container{
+  position: absolute;
+  top: 45px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+.help_content{
+  padding: 10px 15px;
+}
+.content_title,.content_text{
+  padding: 10px;
+  background-color: #DBF4F1;
+}
+.content_title{
+  font-size: 18px;
+  line-height: 24px;
+  padding-bottom: 0;
+}
+.content_text{
+  font-size: 16px;
+  line-height: 20px;
+  margin-bottom: 2px;
+  position: relative;
+}
+.content_text image{
+  width: 12px;
+  height: 12px;
+  padding: 14px;
+  position: absolute;
+  top: 0;
+  right: 0;
+}

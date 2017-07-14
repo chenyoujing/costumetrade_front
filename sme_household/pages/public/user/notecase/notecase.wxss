@@ -1,0 +1,67 @@
+/*头部*/
+@import "../../../../css/title.wxss";
+
+.notecase{
+  width: 100%;
+}
+.notecase_text{
+  text-align: center;
+  background-color: #E3E3E3;
+  float: left;
+  font-size: 16px;
+  line-height: 40px;
+}
+.notecase_text{
+  width: 50%;
+}
+.image_down{
+  width: 12px;
+  height: 12px;
+  transform:rotate(-90deg);
+  transition: all 0.3s;
+}
+.active{
+  background: #ffffff;
+}
+.active .image_down{
+  transform: rotate(0);
+  font-size: 20px;
+  line-height: 40px;
+}
+
+
+.account{
+  padding: 20px 40px 10px;
+  box-shadow: 0 0 5px #cccccc;
+}
+.account_view{
+  border-bottom: 2px solid #DBF4F1;
+  font-size: 16px;
+  line-height: 40px;
+}
+.account_image{
+  width: 16px;
+  height: 16px;
+  padding: 12px 10px;
+  float: right;
+  transform: rotate(-90deg);
+}
+
+
+.submit{
+  font-size: 18px;
+  border-radius: 0;
+  background-color: #52CAC1;
+  line-height: 40px;
+  height: 40px;
+  text-align: center;
+  padding: 0;
+  position: absolute;
+  width: 40%;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  color: #ffffff;
+  transition: all 0.3s;
+}

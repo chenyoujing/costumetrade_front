@@ -1,0 +1,92 @@
+.goods_buy{
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ffffff;
+}
+.goods_image{
+  float: left;
+}
+.goods_title{
+  background-color: #E5E5E5;
+  text-align: center;
+  font-size: 16px;
+  line-height: 20px;
+  padding: 10px 0;
+}
+.goods_check{
+  float: left;
+  position: absolute;
+  top: 40px;
+  left: 50%;
+  right: 0;
+  bottom: 0;
+  width: auto;
+}
+.goods_checkbox{
+  display: block;
+  padding: 10px 0;
+  text-align: center;
+  font-size: 16px;
+}
+.goods_checkbox checkbox{
+  position: absolute;
+  left: 15px;
+  top: unset;
+}
+
+/*键盘*/
+.keyboard{
+  padding: 4px;
+  background-color: #E5E5E5;
+  position: fixed;
+  bottom: 0;
+}
+.keyboard_view{
+  background-color: #ffffff;
+  box-shadow: 0 0 2px #999999;
+  float: left;
+  margin: 2px;
+  text-align: center;
+  font-size: 40px;
+  width: calc(25% - 4px);
+}
+.keyboard_name{
+  box-sizing: border-box;
+  width: 50%;
+  float: left;
+  text-align: center;
+  font-size: 18px;
+  padding: 10px 0;
+  word-break:keep-all;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+.keyboard_join{
+  box-sizing: border-box;
+  width: 50%;
+  float: left;
+  text-align: center;
+  font-size: 18px;
+  background-color: #52CAC1;
+  margin: 5px 0;
+  padding: 5px 0;
+  color: #ffffff;
+}
+.keyboard_top{
+  background-color: #ffffff;
+  float: left;
+  margin: 2px;
+  margin-bottom: 4px;
+  padding: 10px 0;
+  text-align: center;
+  font-size: 18px;
+  word-break:keep-all;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  width: calc(25% - 4px);
+}

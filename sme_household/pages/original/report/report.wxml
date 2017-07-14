@@ -1,0 +1,46 @@
+<!--头部-->
+<view class="title clearfix">
+  <navigator open-type="navigateBack">
+    <image src="../../../images/back-away.png" mode="aspectFit" class="title_image_back" />
+  </navigator>
+  <view class="title_text">目录</view>
+</view>
+
+<scroll-view scroll-y class="report_catalog">
+  <navigator url="allreport/allreport" class="catalog_view">
+    经营报表
+    <image src="../../../images/right-thrust.png" mode="aspectFit" class="my_content_right" />
+  </navigator>
+  <navigator url="purchase_analysis/purchase_analysis?url=report/profitAnalysis&title=利润分析" class="catalog_view">
+    利润分析
+    <image src="../../../images/right-thrust.png" mode="aspectFit" class="my_content_right" />
+  </navigator>
+  <navigator url="salesRank/salesRank" class="catalog_view">
+    销售排行
+    <image src="../../../images/right-thrust.png" mode="aspectFit" class="my_content_right" />
+  </navigator>
+   <navigator url="employeeReport/employeeReport" class="catalog_view">
+    员工销售排行
+    <image src="../../../images/right-thrust.png" mode="aspectFit" class="my_content_right" />
+  </navigator>
+  <navigator url="purchase/purchase?reportType=2" class="catalog_view">
+    销售报表
+    <image src="../../../images/right-thrust.png" mode="aspectFit" class="my_content_right" />
+  </navigator>
+  <navigator url="purchase_analysis/purchase_analysis?url=report/purchaseAnalysisReport&title=采购分析" class="catalog_view">
+    采购分析
+    <image src="../../../images/right-thrust.png" mode="aspectFit" class="my_content_right" />
+  </navigator>
+  <navigator url="purchase/purchase?reportType=1" class="catalog_view">
+    采购报表
+    <image src="../../../images/right-thrust.png" mode="aspectFit" class="my_content_right" />
+  </navigator>
+  <navigator url="stock/stock" class="catalog_view">
+    库存报表
+    <image src="../../../images/right-thrust.png" mode="aspectFit" class="my_content_right" />
+  </navigator>
+  <navigator url="purchase/purchase?reportType=3" class="catalog_view">
+    会员报表
+    <image src="../../../images/right-thrust.png" mode="aspectFit" class="my_content_right" />
+  </navigator>
+</scroll-view>

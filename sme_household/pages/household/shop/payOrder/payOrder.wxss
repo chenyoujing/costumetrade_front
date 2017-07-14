@@ -1,0 +1,63 @@
+/*头部*/
+@import "../../../../css/title.wxss";
+
+.pay_scroll{
+  position: absolute;
+  top: 40px;
+  bottom: 40px;
+}
+.pay_image{
+  display: block;
+  width: 400rpx;
+  height: 400rpx;
+  margin: auto;
+}
+.pay_title{
+  line-height: 60px;
+  font-size: 14px;
+  text-align:center;
+}
+.shop_name{
+  font-size: 24px;
+  line-height: 40px;
+  text-align:center;
+}
+.pay_text{
+  width: 400rpx;
+  padding: 20px 0;
+  margin: auto;
+  font-size: 16px;
+  line-height: 32px;
+}
+
+
+.shopping_cart_container{
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+.pay_button1{
+  box-sizing: border-box;
+  border: 1px solid #BFBFBF;
+  background-color: #eeeeee;
+  color: #000000;
+  font-size: 16px;
+  line-height: 40px;
+  height: 40px;
+  text-align: center;
+  width: 50%;
+  display: inline-block;
+}
+.pay_button2{
+  box-sizing: border-box;
+  border: 1px solid #BFBFBF;
+  background-color: #52CAC1;
+  color: #ffffff;
+  font-size: 16px;
+  line-height: 40px;
+  height: 40px;
+  text-align: center;
+  width: 50%;
+  display: inline-block;
+}

@@ -1,0 +1,43 @@
+<view class="shoppingcard">
+  <navigator class="back_nav" open-type="navigateBack">
+    <image src="../../../../images/back-away.png" mode="aspectFit" class="back" />
+  </navigator>
+  <view class="prompt_none" wx:if="{{shopCart == 0}}">
+    <text>购物车空空如也</text>
+  </view>
+  <view class="shoppingcard_container clearfix"  wx:for="{{shopCart}}">
+    <checkbox-group class="container_check" bindchange="saleCanle" data-index="{{index}}">
+      <checkbox value=""  checked="{{item.iSselect}}" style="width:100%;"/>
+    </checkbox-group>
+    <image class="container_image" src="{{item.image1?item.image1:'../../../../images/image_none.png'}}"></image>
+    <view class="container_info">
+      <view class="container_name one_line">{{item.productName}}</view>
+      <view class="container_info_text">
+        颜色：{{item.productcolor}}；尺码：{{item.productsize}}
+      </view>
+      <view class="container_price">￥{{item.price}}</view>
+      <view class="container_number clearfix">
+        <view class="container_number_view subtract" data-index= "{{index}}" data-type="sub" bindtap="countAddorSub">-</view>
+        <view class="container_number_view number">{{item.count}}</view>
+        <view class="container_number_view add"  data-index= "{{index}}" data-type="add" bindtap="countAddorSub">+</view>
+      </view>
+      <view class="container_delete" data-index="{{index}}" bindtap="deleteShop">删除</view>
+    </view>
+  </view>
+</view>
+
+
+<!--底部浮动-->
+<view class="shoppingcard_bottom">
+  <view url="" bindtap="orderSure" class="bottom_button">去结算</view>
+  <view class="bottom_info">
+    <checkbox-group class="bottom_check" bindchange="iSselectAll">
+      <label>
+        <checkbox value="" checked="{{aa}}"/>全选
+      </label>
+    </checkbox-group>
+    <view class="bottom_price">￥{{totalPrice}}</view>
+    <view class="clear"></view>
+  </view>
+  <view class="clear"></view>
+</view>

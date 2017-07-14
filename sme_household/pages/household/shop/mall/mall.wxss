@@ -1,0 +1,221 @@
+.title{
+  background-color: #52CAC1;
+  padding: 15px 20px;
+  position: relative;
+  z-index: 3;
+}
+.title_back{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 16px;
+  height: 16px;
+  padding: 7px;
+}
+.mall_title{
+  position: relative;
+}
+.mall_title_bg{
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width:auto;
+  height:auto;
+  z-index:-1;
+}
+.mall_title_bg::after{
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+.search_input_image{
+  top: -7px;
+}
+.title_view{
+  position:relative;
+  padding: 60px 0 4px;
+}
+.shop_tx{
+  float: left;
+  width: 32px;
+  height: 32px;
+  border-radius: 18px;
+  margin-left: 7%;
+  margin-right: 3%;
+}
+.shop_name{
+  height: 50px;
+  line-height: 50px;
+  float: left;
+  width: 60%;
+  text-align: left;
+}
+.search_input{
+  font-size: 14px;
+  line-height: 32px;
+  height: 32px;
+  border-radius: 18px;
+  padding-left: 20px;
+  padding-right: 35px;
+  background-color: #ffffff;
+  opacity: 0.5;
+  margin-left: 10%;
+}
+.search_input_image{
+  padding: 10px;
+}
+.shoppingcard_image{
+  width: 20px;
+  height: 20px;
+  padding: 8px 10px;
+  float: right;
+  top: 0;
+  position: relative;
+}
+.prompt{
+  top:8px;
+  right:5px;
+}
+
+
+
+.sort{
+  position: absolute;
+  left: 0;
+  right: 0;
+}
+.sort_text,.more{
+  text-align: center;
+  background-color: #EAEAEA;
+  color: #000000;
+  float: left;
+  font-size: 14px;
+  line-height: 30px;
+}
+.sort_text{
+  width: 30%;
+}
+.sort_text .image_down{
+  width: 12px;
+  height: 12px;
+}
+.screen_active{
+  background-color: #ffffff;
+}
+.screen_active .sort_up{
+  transform:rotate(180deg);
+}
+.rank_image{
+  width: 100%;
+  height: 16px;
+  padding: 7px 0;
+  float: right;
+  top: 0;
+}
+
+
+
+.mall_scroll{
+  position: absolute;
+  top: 126px;
+  bottom: 0;
+}
+.mall_container{
+  float: left;
+  padding: 8px;
+  padding-bottom: 0;
+  box-sizing:border-box;
+  width: 100%;
+}
+.content_container{
+  box-shadow: 1px 1px 4px #000000;
+  position: relative;
+  border-radius: 3px;
+}
+.content_container > image{
+  width: 115px;
+  height: 115px;
+  float: left;
+}
+.content_container_text{
+  position: absolute;
+  top: 0;
+  left: 115px;
+  right: 0;
+  bottom: 0;
+  padding: 5px;
+}
+.content_container_text > image{
+  width: 20px;
+  height: 20px;
+  float: right;
+}
+.content_container_title{
+  font-size: 16px;
+  line-height: 20px;
+  padding: 15px 5px;
+  word-break:keep-all;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+.content_container_info{
+  border-top: 1px solid #000000;
+  padding: 10px 5px 10px 0;
+}
+.price{
+  color: #ff0000;
+  font-size: 20px;
+  line-height: 32px;
+  float: left;
+ }
+.price::before{
+  content: "￥"
+}
+.info_other{
+  float: right;
+}
+.volume,.date{
+  font-size: 12px;
+  line-height: 16px;
+  text-align: right;
+}
+.volume::before{
+  content: "销量："
+}
+
+
+/*排列后*/
+.rank{
+  width: 50%;
+  padding: 10px 5px 0;
+}
+.rank .content_container_text{
+  position: relative;
+  left: 0;
+  padding: 0 5px;
+}
+.rank .content_container_title{
+  padding: 5px 5px 0;
+}
+.rank .content_container_info{
+  padding: 0;
+  border: none;
+}
+
+.title_text{
+  color: #ffffff;
+  float: left;
+  width: 10%;
+  font-size: 16px;
+  line-height: 35px;
+  height: 35px;
+}
+
+

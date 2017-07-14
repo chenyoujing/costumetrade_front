@@ -1,0 +1,535 @@
+<view style="overflow:hidden; min-height:100vh; position:relative;">
+  <!--头部-->
+  <view class="title clearfix">
+    <navigator open-type="navigateBack">
+      <image src="../../../../images/back-away.png" mode="aspectFit" class="title_image_back" />
+    </navigator>
+    <view class="title_text">设置</view>
+    <image src="../../../../images/add.png" class="employee_add" wx:if="{{current=='0'}}" bindtap="scan" />
+  </view>
+
+  <view class="dictionary clearfix">
+    <view class="dictionary_text {{current=='0' ? 'active' : ''}}" bindtap="dictionarytype" data-dictionary="0">员工
+      <image src="../../../../images/down.png" mode="aspectFit" class="image_down " />
+    </view>
+    <view class="dictionary_text {{current=='1' ? 'active' : ''}}" bindtap="dictionarytype" data-dictionary="1">打印
+      <image src="../../../../images/down.png" mode="aspectFit" class="image_down " />
+    </view>
+    <view class="dictionary_text {{current=='2' ? 'active' : ''}}" bindtap="dictionarytype" data-dictionary="2">基础
+      <image src="../../../../images/down.png" mode="aspectFit" class="image_down " />
+    </view>
+    <view class="dictionary_text {{current=='3' ? 'active' : ''}}" bindtap="dictionarytype" data-dictionary="3">高级
+      <image src="../../../../images/down.png" mode="aspectFit" class="image_down " />
+    </view>
+  </view>
+  <swiper interval="0" duration="500" current="{{current}}" bindchange="swiper_change">
+
+    <!--员工管理-->
+    <swiper-item>
+      <scroll-view scroll-y class="setting_scroll" style="bottom:40px;">
+        <view class="prompt_none" wx:if="{{employeeProduct == 0}}">
+          <text>您还没有添加店员</text>
+        </view>
+        <view style="padding:10px;" wx:for="{{employeeProduct}}">
+          <view class="staff">
+            <view class="staff_view">
+              <image src="{{item.image ? item.image : '../../../../images/image_none.png'}}" mode="aspectFill" class="staff_tx" />
+              <view class="staff_info">
+                <view class="staff_info_text">名称：{{item.reallyName}}</view>
+                <view class="staff_info_text">编号：{{item.id}}</view>
+                <view class="staff_info_text">在职状态：在职</view>
+              </view>
+            </view>
+            <view class="staff_view" style="align-items:flex-start;">
+              <image src="../../../../images/delete_2.png" mode="aspectFit" class="staff_modify" bindtap="staff_delete" data-id="{{item.id}}" />
+              <image src="../../../../images/update.png" mode="aspectFit" class="staff_modify" bindtap="staff_updata" data-id="{{item.id}}" />
+            </view>
+          </view>
+        </view>
+      </scroll-view>
+      <view class="staff_updata" style="left:-{{staff_updata}};right:{{staff_updata}};">
+        <scroll-view scroll-y class="setting_scroll" style="bottom:40px;">
+          <view class="staff_updata_top">
+            <view class="dictionary_input">
+              <view class="dictionary_input_text1 clearfix">昵称：</view>
+              <view class="dictionary_input1" style="border:none;">{{employeeDetails.nickName}}</view>
+            </view>
+            <view class="dictionary_input">
+              <view class="dictionary_input_text1 clearfix">姓名：</view>
+              <input type="number" class="dictionary_input1" value="{{employeeDetails.reallyName}}" data-index="reallyName" bindblur="employeeInfoChange"/>
+            </view>
+            <view class="dictionary_input clearfix">
+              <view class="dictionary_input_text1">微信号：</view>
+              <input type="number" value="{{employeeDetails.weChatNo}}" class="dictionary_input1" data-index="weChatNo" bindblur="employeeInfoChange"/>
+            </view>
+            <view class="dictionary_input clearfix">
+              <view class="dictionary_input_text1">打折：</view>
+              <input type="number" class="dictionary_input1" style="padding-right:30px;"  value="{{employeeDetails.discount}}"  data-index="discount" bindblur="employeeInfoChange" style="position:relative;">
+                <view class="perCent">%</view>
+              </input>
+            </view>
+            <view class="dictionary_input clearfix">
+              <view class="dictionary_input_text1">去零：</view>
+              <input type="number" class="dictionary_input1"  value="{{employeeDetails.zeroPrice}}" placeholder="去零最高值" data-index="zeroPrice" bindblur="employeeInfoChange"/>
+            </view>
+            <view class="dictionary_input clearfix">
+              <view class="dictionary_input_text1">改价权限：</view>
+               <picker bindchange="binChangeSale" data-index="custtypename_index" range="{{customerTypeList}}" value="{{employeeDetails.modifyPrice}}" range-key="custtypename" class="dictionary_input1" style="padding-right:30px;">
+                  {{customerTypeList[custtypename_index].custtypename}}
+                  <text style="color:#808080;" hidden="{{customerTypeList[custtypename_index].custtypename}}">改价最低值</text>
+                  <image src="../../../../images/down.png" mode="aspectFit" class="picker_image" />
+                </picker>
+            </view>
+            <view class="dictionary_input clearfix" wx:if="{{brandList.length>0}}">
+              <view class="dictionary_input_text1">选择分店：</view>
+                <picker bindchange="binChangeSale" data-index="branch_index" range="{{customerTypeList}}" range-key="custtypename" value="{{employeeDetails.branchname}}" class="dictionary_input1" style="padding-right:30px;">
+                  {{customerTypeList[custtypename_index].custtypename}}
+                  <image src="../../../../images/down.png" mode="aspectFit" class="picker_image" />
+                </picker>
+            </view>
+          </view>
+          <view class="print_info">五个权限</view>
+          <checkbox-group bindchange="privilegeId">
+            <label class="checkbox" wx:for="{{privilegeEmployees}}" wx:key="id">
+              <checkbox value="{{item.id}}" checked="{{item.checked}}"/>{{item.operateName}}
+            </label>
+          </checkbox-group>
+        </scroll-view>
+        <button class="submit submit_gray" bindtap="staff_updata_close">取消</button>
+        <button class="submit" bindtap="employeeSubmit" style="width:50%;left:unset;">保存</button>
+      </view>
+    </swiper-item>
+
+    <!--打印信息-->
+    <swiper-item>
+      <scroll-view scroll-y class="setting_scroll" style="bottom:40px;">
+        <view class="print_title {{print=='wifi'?'print_active':''}}" bindtap="print" data-print="wifi">
+          <view class="print_title_text">wifi打印</view>
+          <image src="../../../../images/down.png" mode="aspectFit" class="print_down " />
+        </view>
+        <scroll-view scroll-y class="print_scroll {{print=='wifi'?'print_scroll_active':''}}">
+          <view class="print_info">打印信息</view>
+          <view class="dictionary_input clearfix">
+            <view class="dictionary_input_text1">编号：</view>
+            <view class="dictionary_input1" bindtap="printModal"></view>
+          </view>
+          <view class="dictionary_input clearfix">
+            <view class="dictionary_input_text2">默认打印店铺二维码：</view>
+            <radio-group data-name="codepicked" bindchange="printchange">
+              <label class="radio" >
+                <radio value="true"  checked="{{codepicked}}"/>是
+              </label>
+              <label class="radio">
+                <radio value="false" checked="{{!codepicked}}" />否
+              </label>
+            </radio-group>
+            <view class="image_operation_button" data-name="mbImage" bindtap="chooseImg">上传店铺二维码</view>
+          </view>
+          <view class="dictionary_input clearfix">
+            <view class="dictionary_input_text2">默认打印店铺logo：</view>
+              <radio-group data-name="logopicked" bindchange="printchange">
+              <label class="radio" >
+                <radio value="true"  checked="{{logopicked}}"/>是
+              </label>
+              <label class="radio">
+                <radio value="false" checked="{{!logopicked}}" />否
+              </label>
+            </radio-group>
+            <view class="image_operation_button" data-name="mbImageLogo" bindtap="chooseImg">上传店铺logo图片</view>
+          </view>
+        </scroll-view>
+        <view class="print_title {{print=='ly'?'print_active':''}}" bindtap="print" data-print="ly">
+          <view class="print_title_text">蓝牙打印</view>
+          <image src="../../../../images/down.png" mode="aspectFit" class="print_down " />
+        </view>
+        <scroll-view scroll-y class="print_scroll {{print=='ly'?'print_scroll_active':''}}">
+          <view class="print_info">打印信息</view>
+          <view class="dictionary_input clearfix">
+            <view class="dictionary_input_text1">编号：</view>
+            <view class="dictionary_input1" bindtap="printModal"></view>
+          </view>
+          <view class="dictionary_input clearfix">
+            <view class="dictionary_input_text2">默认打印店铺二维码：</view>
+            <radio-group>
+              <label class="radio">
+                <radio value="true" />是
+              </label>
+              <label class="radio">
+                <radio value="false" checked />否
+              </label>
+            </radio-group>
+            <view class="image_operation_button">上传店铺二维码</view>
+          </view>
+          <view class="dictionary_input clearfix">
+            <view class="dictionary_input_text2">默认打印店铺logo：</view>
+            <radio-group>
+              <label class="radio">
+                <radio value="true" />是
+              </label>
+              <label class="radio">
+                <radio value="false" checked />否
+              </label>
+            </radio-group>
+            <view class="image_operation_button">上传店铺logo图片</view>
+          </view>
+        </scroll-view>
+      </scroll-view>
+      <button class="submit">保存</button>
+    </swiper-item>
+
+    <!--打印模态框-->
+    <modal title="打印账单" hidden="{{bill_modal}}" confirm-text="确定" bindconfirm="printSet" bindcancel="cancel">
+      <view class="modal_header_content">请输入打印机的设备编号(双击设备出来设备编号)</view>
+      <view class="bill_number">
+        <view class="order_input_text">编号：</view>
+        <input type="text" bindblur="printNumber" class="order_input1" name="handcount" placeholder="请输入" />
+      </view>
+    </modal>
+
+    <!--基础设置-->
+    <swiper-item>
+      <scroll-view scroll-y class="setting_scroll">
+        <!--支付管理,付款方式-->
+        <view class="setting_view" style="padding: 0 20px;">
+          <view class="setting_title">支付管理</view>
+          <view class="setting_title" style="font-size:16px;">添加手机支付二维码</view>
+          <view class="setting_operation">
+            <text>1.</text>微信支付(二维码)
+            <image src="../../../../images/update.png"  bindtap="choosImage" data-index="0" data-name="payQrcode" mode="aspectFit" class="image_setting0" />
+          </view>
+          <view class="setting_operation">
+            <text>2.</text>支付宝支付(二维码)
+            <image indtap="choosImage" data-index="0" data-name="payQrcode" src="../../../../images/update.png"  bindtap="choosImage"  mode="aspectFit" class="image_setting0" />
+          </view>
+          <view class="setting_pay">
+            <view class="pay_title">
+              付款方式
+              <image src="../../../../images/append.png" mode="aspectFit" class="image_setting0" bindtap="addModal" data-type="pay" />
+            </view>
+            <block wx:for="{{payProduct}}">
+              <view class="pay_view">
+                <text>{{index+1}}.</text>{{item.dictText}}
+                <image src="../../../../images/delete_2.png" mode="aspectFit" class="image_setting" bindtap="dictionaryDelet" data-index="{{index}}" data-name="payProduct"/>
+              </view>
+            </block>
+          </view>
+        </view>
+
+        <view class="setting_view" style="padding: 0 20px;">
+          <view class="setting_pay" style="border:0;">
+            <view class="pay_view">
+              <navigator url="../updateBrand/updateBrand?url=brand/getAllBrands&title=品牌">
+                <image src="../../../../images/update.png" mode="aspectFit" class="image_setting" />
+              </navigator>
+              <text>1.</text>品牌
+            </view>
+            <view class="pay_view">
+              <navigator url="../updateBrand/updateBrand?url=cate/getAllCates&title=商品种类">
+                <image src="../../../../images/update.png" mode="aspectFit" class="image_setting" />
+              </navigator>
+              <text>2.</text>种类
+            </view>
+            <view class="pay_view">
+              <navigator url="../updateBrand/updateBrand?url=unit/getAllUnits&title=单位">
+                <image src="../../../../images/update.png" mode="aspectFit" class="image_setting" />
+              </navigator>
+              <text>3.</text>单位
+            </view>
+            <view class="pay_view">
+              <navigator url="../updateSize/updateSize?url=size/getAllSizes&title=尺码选择">
+                <image src="../../../../images/update.png" mode="aspectFit" class="image_setting" />
+              </navigator>
+              <text>4.</text>尺码
+            </view>
+            <view class="pay_view">
+              <navigator url="../updateBrand/updateBrand?url=color/getAllColors&title=颜色选择">
+                <image src="../../../../images/update.png" mode="aspectFit" class="image_setting" />
+              </navigator>
+              <text>5.</text>颜色
+            </view>
+          </view>
+        </view>
+
+        <!--首页推荐照片-->
+        <view class="setting_view clearfix">
+          <view class="pay_title">
+            首页推荐照片
+          </view>
+          <view class="image_view">
+            <image src="../../../../images/add_image.png" class="image_view_add"  wx:if="{{!imageurl[0]}}"/>
+            <image src="{{imageurl[0]}}" class="index_image" />
+            <view class="bindtap_cover" bindtap="choosImage" data-index="0"
+            bindtap="choosImage" data-name="images" ></view>
+          </view>
+          <view class="image_view">
+            <image src="../../../../images/add_image.png" class="image_view_add"  wx:if="{{!imageurl[1]}}"/>
+            <image src="{{imageurl[1]}}"  class="index_image" />
+            <view class="bindtap_cover" bindtap="choosImage" data-index="1"
+            bindtap="choosImage" data-name="images" ></view>
+          </view>
+          <view class="image_view">
+            <image src="../../../../images/add_image.png" class="image_view_add"  wx:if="{{!imageurl[2]}}"/>
+            <image src="{{imageurl[2]}}" class="index_image" />
+            <view class="bindtap_cover"  bindtap="choosImage" data-index="2" data-name="imageurl"></view>
+          </view>
+        </view>
+
+        <!--运费规则-->
+        <view class="setting_view clearfix">
+          <view class="pay_title">
+            运费规则
+          </view>
+          <block wx:for="{{logisticFees}}">
+            <view class="pay_view" style="padding:5px 20px;">
+              <text>{{index+1}}.</text>{{item.logisticName}}
+              <image src="../../../../images/right-thrust.png" mode="aspectFit" class="image_setting {{freight===index?'right_active':''}}" />
+              <view class="bindtap_cover" bindtap="freight" data-freight="{{index}}"></view>
+            </view>
+            <scroll-view scroll-y class="freight clearfix {{freight===index?'freight_active':''}}">
+              <view class="freight_explain">
+                <view class="freight_explain_title">说明:</view>
+                <image src="../../../../images/update.png" mode="aspectFit" class="freight_explain_right" bindtap="freightUpdate" />
+                <view class="freight_explain_text" wx:if="{{!freightUpdate}}">{{item.description}}</view>
+                <textarea type="text" class="freight_explain_text freight_explain_input" data-type="description" bindblur="changIput" data-index="{{index}}" style="width:unset;height:40px;" wx:if="{{freightUpdate}}" value="{{item.description}}" />
+              </view>
+              <view class="freight_content">
+                <view class="freight_content_title">1. 运费：</view>
+                <view class="setting_button_view" style="height:30px;overflow:hidden;width:unset;float:unset;">
+                  <view class="setting_button"  data-type="logisticFees" bindtap="goodsPrice"  data-index="{{index}}">
+                    <view class="setting_button_small  {{item.feeType == 2?'button_selected':''}}"></view>
+                    <view class="setting_button_text1" style="font-size:14px;">手动修改</view>
+                    <view class="setting_button_text2" style="font-size:14px;">固定运费</view>
+                  </view>
+                </view>
+                <view class="clear"></view>
+                <view class="freight_content_text">手动修改：客户下单后（审核时），手动修改运费</view>
+                <view class="freight_content_text">固定运费：客户下单后，自动添加运费</view>
+              </view>
+              <view class="freight_content clearfix">
+                <view class="freight_content_title">
+                  2. 固定运费：
+                  <text style="padding: 0 10px 0 20px;" wx:if="{{!freightUpdate}}">{{item.fixedFee}}</text>
+                  <input type="text" data-name="logisticFees" data-type="fixedFee" bindblur="changIput"  data-index="{{index}}" class="freight_explain_input" style="width:80px;margin:0 10px;" wx:if="{{freightUpdate}}" value="{{item.fixedFee}}"/>
+                  元
+                </view>
+              </view>
+              <view class="freight_content clearfix">
+                <view class="freight_content_title">
+                  3. 免邮金额：
+                  <text style="padding: 0 10px 0 20px;" wx:if="{{!freightUpdate}}">{{item.freeFee}}</text>
+                  <input type="text"  data-name="logisticFees" data-type="freeFee" bindblur="changIput" data-index="{{index}}" class="freight_explain_input" style="width:80px;margin:0 10px;" wx:if="{{freightUpdate}}" value="{{item.freeFee}}"/>
+                  元
+                </view>
+              </view>
+              <view class="freight_button" bindtap="submitData">保存</view>
+            </scroll-view>
+          </block>
+        </view>
+      </scroll-view>
+    </swiper-item>
+
+    <!--高级设置-->
+    <swiper-item>
+      <scroll-view scroll-y class="setting_scroll">
+
+        <!--高级设置//货品售价生成方式-->
+        <view class="setting_view">
+          <view class="setting_title2">货品售价生成方式</view>
+          <view class="setting_button_view">
+            <view class="setting_button" data-type="sellingProduct" bindtap="goodsPrice">
+              <view  class="setting_button_small {{sellingProduct.dictValue == 2?'button_selected':''}}"></view>
+              <view class="setting_button_text1">成本价*毛利率</view>
+              <view class="setting_button_text2">吊牌价*折扣率</view>
+            </view>
+          </view>
+          <view class="clear"></view>
+          <view class="setting_name2">成本价*毛利率</view>
+          <view class="setting_text2">此种方式适合批发店，新增货品时按成本价和客户种类的毛利率计算出固定的销售价格</view>
+          <view class="setting_name2">吊牌价*折扣率</view>
+          <view class="setting_text2">此种方式适合零售店，在货品销售时，按吊牌价和客户种类的折扣率生成销售价格</view>
+        </view>
+
+        <!--货品级别-->
+        <view class="print_info" style="border-bottom:1px solid #52CAC1;">
+          <view class="goods_update" bindtap="discountModal">修改</view>
+          默认<block wx:if="{{sellingProduct.dictValue == 2}}">折扣率</block>
+              <block wx:if="{{sellingProduct.dictValue == 1}}">毛利率</block>
+        </view>
+        <view class="goods_level clearfix">
+          <view class="goods_level_content">
+            <view class="goods_level_title">客户种类</view>
+            <view class="goods_level_title"  wx:if="{{sellingProduct.dictValue == 1}}">毛利率</view>
+             <view class="goods_level_title"  wx:if="{{sellingProduct.dictValue == 2}}">折扣率</view>
+          </view>
+          <view class="goods_level_content" wx:for="{{customerCusts}}">
+            <view class="goods_level_view">{{item.custtypename}}会员</view>
+            <view class="goods_level_view" wx:if="{{sellingProduct.dictValue == 1}}">{{item.custpricejson}}%</view>
+            <view class="goods_level_view" wx:if="{{sellingProduct.dictValue == 2}}">{{item.discpricejson}}%</view>
+          </view>
+        </view>
+
+        <!--物流公司-->
+        <view class="setting_view">
+          <view class="branch" style="height:40px;">
+            <view class="branch_view" style="font-size:16px;flex:3;">分店管理</view>
+            <view class="branch_view">共享库存</view>
+            <view class="branch_view">共享会员</view>
+            <view class="branch_view">共享货品</view>
+            <view class="branch_view" style="flex:1;">
+              <image src="../../../../images/append.png" mode="aspectFit" class="branch_image" />
+              <view class="bindtap_cover" bindtap="branch"></view>
+            </view>
+          </view>
+          <view class="branch" wx:for="{{2}}">
+            <view class="branch_view" style="flex:3;"><text>{{index+1}}.</text>店铺一</view>
+            <view class="branch_view">是</view>
+            <view class="branch_view">是</view>
+            <view class="branch_view">是</view>
+            <view class="branch_view" style="flex:1;">
+              <image src="../../../../images/update.png" mode="aspectFit" class="branch_image"/>
+              <view class="bindtap_cover" bindtap="branch" data-id="id"></view>
+            </view>
+          </view>
+        </view>
+
+        <!--会员积分转换-->
+        <view class="setting_view">
+          <view class="pay_title" style="font-size:18px;">
+            会员积分转换
+            <navigator class="goods_update" style="margin:10px;">修改</navigator>
+          </view>
+          <view class="integral clearfix">
+            <view class="integral_title">{{pointExchange.dictText}}=</view>
+            <view class="integral_unit">元</view>
+            <input type="number" bindblur="changIput" data-name="pointExchange" value="{{pointExchange.dictValue}}" class="integral_input" />
+          </view>
+        </view>
+
+        <!--费用单项目-->
+        <view class="setting_view" style="padding-right:20px;">
+          <view class="pay_title" style="font-size:18px;">
+            费用单项目
+            <image src="../../../../images/append.png" mode="aspectFit" class="image_setting0" bindtap="addModal" data-type="fee" />
+          </view>
+          <block wx:for="{{feeProduct}}">
+            <view class="pay_view">
+              <text>{{index+1}}.</text>{{item.dictText}}
+              <image src="../../../../images/delete_2.png" mode="aspectFit" class="image_setting" bindtap="dictionaryDelet" data-index="{{index}}" data-name="feeProduct"/>
+            </view>
+          </block>
+        </view>
+
+        <!--客户种类数量-->
+        <view class="setting_view clearfix">
+          <view class="pay_title">
+            客户种类数量:
+            <text class="slider_text_text">选择使用的客户种类</text>
+          </view>
+           <block  wx:for="{{customerCusts}}">
+             <view class="slider_view slider_checked">{{item.custtypename}}</view>
+          </block>
+          <view class="clear"></view>
+          <slider activeColor="#52CAC1" bindchange="cusgradeChange" max="4" value="{{cusDictValue-1}}" data-name="cusDictValue" style="margin:10px 10%;"/>
+        </view>
+
+        <!--客户种类-->
+        <view class="setting_view">
+          <view class="setting_title" style="margin-bottom:10px;">客户种类</view>
+          <view class="setting_title3">
+            <view class="setting_text">客户名称</view>
+            <view class="setting_text" style="flex:4;">可见货品级别</view>
+            <view class="setting_text">编辑</view>
+          </view>
+          <view class="setting_content" wx:for="{{customerCusts}}" wx:if="{{index <= cusDictValue-1}}">
+            <view class="setting_text">{{item.custtypename}}</view>
+            <view class="setting_text" style="flex:4;">{{item.prodgradeName}}</view>
+            <view class="setting_text" style="color:#286561;" bindtap="customerModal" data-index="{{index}}">修改</view>
+          </view>
+       
+        </view>
+
+        <!--钱包管理-->
+        <navigator url="../notecase/notecase" class="notecase">
+          <image src="../../../../images/notecase.png" mode="aspectFit" class="notecase_image" />
+          <view class="notecase_text">钱包管理</view>
+        </navigator>
+      </scroll-view>
+    </swiper-item>
+  </swiper>
+</view>
+
+<modal title="{{modalTitle}}" hidden="{{addModal}}" bindconfirm="dictionaryAdd" bindcancel="cancel">
+  <view class="modal_text"> 请输入名称：</view>
+  <input type="text" class="modal_input" value="{{newName}}" bindblur="newName"/>
+</modal>
+
+<!--修改默认折扣率-->
+<modal title="修改默认折扣率" hidden="{{discountModal}}" bindconfirm="submitData" bindcancel="cancel">
+  <view class="goods_level clearfix">
+    <view class="goods_level_content goods_level_modal">
+      <view class="goods_level_title">客户种类</view>
+       <view class="goods_level_title"  wx:if="{{sellingProduct.dictValue == 1}}">毛利率</view>
+             <view class="goods_level_title"  wx:if="{{sellingProduct.dictValue == 2}}">折扣率</view>
+    </view>
+    <view class="goods_level_content goods_level_modal" wx:for="{{customerCusts}}">
+      <view class="goods_level_view">{{item.custtypename}}会员</view>
+      <input type="number" bindblur="changIput" data-name="customerCusts" data-index="{{index}}" class="goods_level_view" style="" value="{{sellingProduct.dictValue == 1 ?item.custpricejson:item.discpricejson}}">
+        <view class="goods_level_input_text">%</view>
+      </input>
+    </view>
+  </view>
+</modal>
+
+<!--修改客户种类-->
+<!--<modal title="{{customerCusts[customerIndex].custtypename}}会员" hidden="{{customerModal}}" bindconfirm="customerUpdate" bindcancel="cancel">
+
+  <view class="update_name">
+    <view class="name_text">会员种类名称</view>
+    <input type="text" class="name_input" value="{{customerCusts[customerIndex].custtypename}}会员" />
+  </view>
+  <view class="update_level">
+    <view class="level_title">可见货品级别:</view>
+    <view class="level_text">{{customerCusts[customerIndex].prodgrade}}级以下可见</view>
+     <block  wx:for="{{productGrade}}">
+        <view class="slider_view slider_checked">{{item.dictText}}</view>
+     </block>
+    <view class="clear"></view>
+    <slider activeColor="#52CAC1"  bindchange="cusgradeChange" max="4" data-name="customerCusts"  value="{{customerCusts[customerIndex].prodgrade -1}}" style="margin:10px 10%;"/>
+  </view>
+</modal>-->
+
+<!--扫码添加-->
+<modal title="请扫码" hidden="{{scanModal}}" confirm-text="扫好了" bindconfirm="scanOk" bindcancel="cancel">
+  <image src="{{scan?scan:'../../../../images/image_none.png'}}" mode="widthFix" class="scan_modal_image" />
+  <view class="scan_modal_text">请用微信扫一扫上面的图片,扫好了后点击“扫好了”</view>
+</modal>
+
+<!--分店管理-->
+<modal title="分店管理" hidden="{{branchModal}}" confirm-text="保存" bindconfirm="branchOk" bindcancel="cancel">
+  <view class="branchModal">
+    <view class="branchModal_title">
+      <view class="branchModal_input_view">
+        <view style="float:left;padding-right:8px;">1.</view>
+        <input type="text" class="branchModal_input" />
+      </view>
+      <view class="branchModal_delete_view">
+        <image src="../../../../images/delete_2.png" mode="aspectFit" class="branchModal_delete" />
+      </view>
+    </view>
+    <radio-group class="branchModal_content">
+      <view class="branchModal_content_view">共享库存</view>
+      <label class="branchModal_content_view"><radio/>是</label>
+      <label class="branchModal_content_view"><radio/>否</label>
+    </radio-group>
+    <radio-group class="branchModal_content">
+      <view class="branchModal_content_view">共享会员</view>
+      <label class="branchModal_content_view"><radio/>是</label>
+      <label class="branchModal_content_view"><radio/>否</label>
+    </radio-group>
+    <radio-group class="branchModal_content">
+      <view class="branchModal_content_view">共享货品</view>
+      <label class="branchModal_content_view"><radio/>是</label>
+      <label class="branchModal_content_view"><radio/>否</label>
+    </radio-group>
+  </view>
+</modal>

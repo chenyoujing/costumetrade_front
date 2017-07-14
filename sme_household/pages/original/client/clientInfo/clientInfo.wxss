@@ -1,0 +1,143 @@
+/*头部*/
+@import "../../../../css/title.wxss";
+
+.content{
+  padding: 30px 10px;
+}
+.client_name_view{
+  box-shadow: 1px 1px 4px #000000;
+  padding: 10px;
+  position: relative;
+}
+.client_tx{
+  width: 80px;
+  height: 80px;
+  border-radius: 40px;
+  margin-right: 30px;
+  display: block;
+  float: left;
+}
+.client_name{
+}
+.remarkName{
+  font-size: 18px;
+  line-height: 30px;
+}
+.client_name_text{
+  font-size: 13px;
+  line-height: 20px;
+  color: #666666;
+}
+.client_image_update{
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 16px;
+  height: 16px;
+  padding: 12px;
+}
+
+.client_info_view{
+  margin-top:15px;
+  margin-bottom: 25px;
+  box-shadow: 1px 1px 4px #000000;
+}
+.client_info{
+  padding: 5px
+}
+.client_info_text{
+  float: left;
+  width: 50%;
+  font-size: 15px;
+  line-height: 30px;
+}
+.client_info_text text{
+  color: #666666;
+}
+
+
+.client_mall{
+  padding: 5px;
+  padding-bottom: 20px;
+}
+.mall_container{
+  float: left;
+  box-sizing:border-box;
+  width: 32%;
+  border: 1px solid #DCDCDC;
+}
+.mall_margin{
+  margin: 0 2%;
+}
+.content_container{
+  position: relative;
+}
+.content_container > image{
+  width: 100%;
+  height: 216rpx;
+  display: block;
+}
+.content_container_text{
+  position: relative;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 0 5px;
+}
+.content_container_title{
+  font-size: 14px;
+  line-height: 20px;
+  padding: 5px 5px 0;
+  word-break:keep-all;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+.content_container_info{
+  padding: 0;
+}
+.price{
+  color: #ff0000;
+  font-size: 16px;
+  line-height: 24px;
+  float: left;
+ }
+.price::before{
+  content: "￥"
+}
+.info_other{
+  float: right;
+}
+.volume,.date{
+  font-size: 10px;
+  line-height: 12px;
+  text-align: right;
+}
+.volume::before{
+  content: "销量："
+}
+
+.client_info_button{
+  float: left;
+  width: 50%;
+  font-size: 16px;
+  line-height: 30px;
+  background-color: #DCDCDC;
+  text-align: center;
+}
+.bg_g{
+  background-color: #52CAC1;
+  color: #ffffff;
+}
+
+.client_button{
+  width: 100%;
+  background-color: #52CAC1;
+  font-size: 18px;
+  line-height: 40px;
+  height: 40px;
+  color: #ffffff;
+  border-radius: 5px;
+  text-align: center;
+}

@@ -1,0 +1,50 @@
+/*头部*/
+@import "../../../../css/title.wxss";
+
+.upload_input{
+  padding: 0 10px 10px;
+  position: relative;
+}
+.upload_input:first-child{
+  padding-top: 15px;
+}
+.upload_input_text{
+  width: 20%;
+  float: left;
+  text-align: center;
+  font-size: 14px;
+  line-height: 30px;
+}
+.upload_input > picker{
+  border: 1px solid #52CAC1;
+  height: 28px;
+  margin-left: 20%;
+  width: auto;
+  font-size: 14px;
+  line-height: 28px;
+  position: relative;
+  padding-left: 16px;
+  padding-right: 30px;
+}
+.picker_image,.code_image,.update_image{
+  width: 10px;
+  height: 10px;
+  position: absolute;
+  right: 10px;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+}
+.modal_submit{
+  font-size: 16px;
+  border-radius: 0;
+  background-color: #52CAC1;
+  line-height: 40px;
+  text-align: center;
+  padding: 0;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  color: #ffffff;
+}

@@ -1,0 +1,38 @@
+/*头部*/
+@import "../../../css/title.wxss";
+.title_more{
+  float: right;
+  width: 16px;
+  height: 16px;
+  padding: 12px;
+}
+
+.report_catalog{
+  position: absolute;
+  top: 40px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+.catalog_view{
+  height: 50px;
+  border-bottom: 2px solid #eeeeee;
+  margin: 0 20px;
+  font-size: 18px;
+  line-height: 50px;
+  padding: 0 50rpx;
+  position: relative;
+}
+.my_content_right{
+  height: 16px;
+  width: 16px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  margin: auto;
+}
+
+.more_function::before{
+  right: 10px;
+}

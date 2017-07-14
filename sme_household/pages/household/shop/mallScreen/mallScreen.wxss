@@ -1,0 +1,89 @@
+.title{
+  background-color: #52CAC1;
+  padding: 15px 10px;
+  padding-left: 0;
+  position: relative;
+  z-index: 3;
+}
+.title_input{
+  margin-left: 2%; 
+  background-color: #ffffff;
+  font-family: Microsoft YaHei;
+  padding: 4px 10px;
+  font-size: 14px;
+  height:27px;
+  min-height:27px;
+  border-radius: 3px;
+}
+.image_search,.image_back{
+  float: left;
+  background-color: transparent;
+  width: 16px;
+  height: 16px;
+  z-index: 3;
+  padding: 10px;
+}
+.image_back{
+  margin-right: 10px;
+}
+.image_search{
+  position: absolute;
+  right: 105px;
+}
+.search_button{
+  float: right;
+  width: 55px;
+  height: 26px;
+  border-radius: 13px;
+  margin: 5px 20px;
+  font-size: 14px;
+  line-height: 26px;
+  text-align: center;
+  background-color: #ffffff;
+}
+
+
+
+/*筛选*/
+.screen{
+  box-sizing:border-box;
+  padding: 5px 25px 15px;
+  background-color: #ffffff;
+}
+.screen_title{
+  font-size: 17px;
+  line-height: 20px;
+  padding: 10px 0;
+}
+.screen_container{
+  max-height: 120px;
+  width: auto;
+}
+.screen_view{
+  min-width: 40px;
+  height: 24px;
+  line-height: 24px;
+  border-radius: 12px;
+  font-size: 13px;
+  text-align: center;
+  color: #000000;
+  margin-bottom:5px;
+  margin-right: 8px;
+  background-color: #EAEAEA;
+  padding: 0 10px;
+  float: left;
+}
+.screen_checked{
+  background-color: #75D4CC;
+  color: #ffffff;
+}
+
+
+/*搜索*/
+.search{}
+.search_view{
+  padding: 10px 25px;
+  border-bottom: 1px solid #DCDCDC;
+  font-size: 14px;
+  line-height: 20px;
+}

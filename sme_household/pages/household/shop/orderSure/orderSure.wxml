@@ -1,0 +1,77 @@
+<!--头部-->
+<view class="title clearfix">
+  <navigator open-type="navigateBack">
+    <image src="../../../../images/back-away.png" mode="aspectFit" class="title_image_back" />
+  </navigator>
+  <view class="title_text">确认订单</view>
+</view>
+
+<view class="orderSure_userinfo">
+  <view class="userinfo_text one_line">
+    <text>收货人：{{address.contact}}</text>
+    <text>电话：{{address.phone}}</text>
+  </view>
+  <view class="one_line">收货地址：{{address.address}}</view>
+  <image src="../../../../images/update.png" mode="aspectFill" class="userinfo_update" bindtap="address" />
+</view>
+
+<!--订单内容-->
+<scroll-view scroll-y class="orderSure_scroll">
+    <view class="orderSure_container">
+      <view class="content_container clearfix" wx:for="{{shopCart}}">
+        <image  src="{{item.image1?item.image1:'../../../../images/image_none.png'}}" mode="aspectFill" style="width:{{image_width}}px;height:{{image_width}}px;" />
+        <view class="content_container_text">
+          <view class="content_container_title">{{item.productName}}</view>
+          <view class="content_container_info clearfix">
+            <view class="info_text">
+              <text>款式：{{item.productcolor}}</text>
+              <text>尺码：{{item.productsize}}</text>
+            </view>
+            <view class="price">{{item.price}}</view>
+            <view class="info_other">
+              <view class="num">{{item.count}}</view>
+              <!--<view class="date">0{{item.timeUp}}</view>-->
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class="orderinfo">
+      <view class="orderinfo_title clearfix" bindtap="changeLogisticFees">
+        <view class="orderinfo_text" style="float:left;font-size:16px;">配送方式</view>
+        <view class="orderinfo_text" style="float:right;" >{{logisticName}}
+          <image src="../../../../images/right-thrust.png" mode="aspectFit" class="orderinfo_text_image" />
+        </view>
+      </view>
+      <view class="clearfix">
+        <view class="orderinfo_text" style="float:left;padding:0 5px;">金额</view>
+        <view class="orderinfo_text" style="float:right;color:#FE2D04;padding:0 5px;">￥{{totalPrice}}</view>
+      </view>
+      <view class="clearfix">
+        <view class="orderinfo_text" style="float:left;padding:0 5px;">运费</view>
+        <view class="orderinfo_text" style="float:right;color:#FE2D04;padding:0 5px;" wx:if="{{freight > 0}}">￥{{freight}}</view>
+        <view class="orderinfo_text" style="float:right;padding:0 5px;" wx:if="{{freight == 0}}">运费待审核</view>
+      </view>
+      <view class="orderinfo_footer clearfix">
+        <view class="orderinfo_footer_text" style="float:right;color:#FE2D04;">￥{{totalPrice+freight}}</view>
+      </view>
+    </view>
+</scroll-view>
+
+<view class="sure_button" bindtap="orderSure">确定</view>
+
+<!--选择快递公司-->
+<modal title="选择快递公司" hidden="{{expressModal}}" confirm-text="取消" no-cancel bindconfirm="cancel" bindcancel="cancel" >
+  <view class="logistics_choose" wx:for="{{logisticFees}}">
+    <view class="choose_view" bindtap="logistic" data-name="{{item.logisticName}}"  data-code="{{item.logisticCode}}" data-fixedFee="{{item.fixedFee}}">{{item.logisticName}}</view>
+  </view>
+</modal>
+<!--底部浮动-->
+<!--<view class="orderSure_bottom clearfix">
+  <navigator url="../payOrder/payOrder" class="bottom_button">下单</navigator>
+  <view class="bottom_info clearfix">
+    <view class="bottom_num">共3件商品</view>
+    <view class="bottom_price">￥1250.60</view>
+  </view>
+</view>-->

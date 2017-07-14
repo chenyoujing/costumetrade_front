@@ -1,0 +1,95 @@
+/*头部*/
+@import "../../../../css/title.wxss";
+
+.storeUpdate_container{
+  position: absolute;
+  top: 40px;
+  left: 0;
+  right: 0;
+  bottom: 60px;
+}
+.store_bg{
+  width: 100%;
+  height: 130px;
+  filter: blur(3px);
+}
+.store_content{
+  position: relative;
+  padding: 50px 80rpx 0 40rpx;
+}
+.store_image{
+  width: 90px;
+  height: 90px;
+  border-radius: 45px;
+  position: absolute;
+  top: -50px;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+.store_input{
+  position: relative;
+  padding-bottom: 10px
+}
+.store_input:first-child{
+  padding-top: 15px;
+}
+.store_input_text{
+  width: 30%;
+  float: left;
+  text-align: center;
+  font-size: 14px;
+  line-height: 30px; 
+}
+.store_input1{
+  border: 1px solid #52CAC1;
+  font-size: 14px;
+  padding: 0 8px; 
+  height: 28px;
+  line-height: 28px;
+  position: relative;
+}
+.store_textarea{
+  height: 80px;
+  padding: 8px;
+  float: left;
+  width: 70%;
+  box-sizing: border-box;
+}
+.image_map{
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 20px;
+  height: 20px;
+  padding: 5px;
+  z-index: 2;
+}
+
+
+.dictionary{
+  text-align: center;
+  font-size: 10px;
+  color: #286561;
+  line-height: 20px;
+  height: 20px;
+  position: absolute;
+  bottom: 40px;
+  left: 0;
+  right: 0;
+}
+.submit{
+  font-size: 16px;
+  border-radius: 0;
+  background-color: #52CAC1;
+  line-height: 30px;
+  text-align: center;
+  padding: 0;
+  position: absolute;
+  width: 320rpx;
+  bottom: 5px;
+  left: 0;
+  right: 0;
+  margin: auto;
+  color: #ffffff;
+}

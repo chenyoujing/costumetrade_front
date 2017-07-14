@@ -1,0 +1,52 @@
+<!--盘点库存模态框-->
+<view class="modal">
+  <view class="title clearfix">
+    <view class="title_text one_line" style="max-width:calc(100% - 250px);">{{title}}</view>
+    <view class="sellers" bindtap="sellers">
+      {{sellers[sellers_index].name||'无供应商'}}
+      <image src="../../../../images/down.png" mode="aspectFit" class="picker_image" />
+
+      <scroll-view scroll-y class="sellers_scroll {{sellers_scroll_active}}">
+        <block wx:for="{{sellers}}">
+          <view class="sellers_view" bindtap="sellers_select" data-index="{{index}}">{{sellers[index].name}}</view>
+        </block>
+      </scroll-view>
+    </view>
+    <view class="sellers_cover {{sellers_scroll_active?'':'cover_none'}}" bindtap="sellers_cover"></view>
+    <image src="../../../../images/close.png" bindtap="backdelta" mode="aspectFit" class="image_srock" />
+    <image src="../../../../images/customer_service.png" mode="aspectFit" class="image_srock" />
+  </view>
+  <view class="tr bg-w">
+    <view class="th th1">序号</view>
+    <view class="th th2">名称</view>
+    <view class="th th1">数量</view>
+    <view class="th th2">颜色</view>
+    <view class="th th1">尺码</view>
+    <view class="th th2">单价(元)</view>
+    <view class="th th1">编辑</view>
+  </view>
+  <scroll-view scroll-y="true" class="stock_scroll">
+
+    <view class="prompt_none" wx:if="{{product == 0}}">
+      <text>对不起，搜不到该货品库存</text>
+    </view>
+
+    <block wx:for="{{product}}" wx:key="id">
+      <view class="tr tr1">
+        <view class="td th1">{{index+1}}</view>
+        <view class="td th2">{{item.name}}</view>
+        <view class="td th1">
+          <block wx-if="{{sequenceNum !== item.id}}">{{item.stocknum}}</block>
+          <input wx-if="{{sequenceNum == item.id}}" data-id="{{item.id}}"  bindblur="bindblurInput" focus="true" type="number" maxlength="10" />
+        </view>
+        <view class="td th2">{{item.productcolor}}</view>
+        <view class="td th1">{{item.productsize}}</view>
+        <view class="td th2">{{item.productPrice}}</view>
+        <view class="td th1 change" bindtap="uploadStock"  data-id="{{item.id}}">更改</view>
+        <view class="clear"></view>
+      </view>
+    </block>
+  </scroll-view>
+  <button class="modal_submit" bindtap="saveStock">保存</button>
+  <button class="modal_submit submit2" bindtap="skipUrl">补货</button>
+</view>

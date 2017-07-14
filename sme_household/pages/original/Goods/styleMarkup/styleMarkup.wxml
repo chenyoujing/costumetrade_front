@@ -1,0 +1,28 @@
+<view class="title clearfix">
+  <navigator open-type="navigateBack">
+    <image src="../../../../images/back-away.png" mode="aspectFit" class="title_image_back" />
+  </navigator>
+  <view class="title_text">款式加价</view>
+</view>
+
+<scroll-view scroll-y class="styleMarkup_scroll">
+  <view class="styleMarkup_name">{{name}}</view>
+  <view class="markup_container clearfix">
+    <view class="markup_view bg_g">款式名称</view>
+    <view class="markup_view bg_g">加价金额</view>
+    <block wx:for="{{product.colorLists}}">
+      <view class="markup_view">{{item.name}}</view>
+      <view class="markup_view">
+        <input type="digit" data-index="{{index}}" data-name="colorLists" value="{{item.priceRaise}}" bindblur="changepriceRaise"/>
+      </view>
+    </block>
+     <block wx:for="{{product.sizeLists}}">
+      <view class="markup_view">{{item.name}}</view>
+      <view class="markup_view">
+        <input type="digit" data-index="{{index}}" data-name="sizeLists" bindblur="changepriceRaise" value="{{item.priceRaise}}"/>
+      </view>
+    </block>
+  </view>
+</scroll-view>
+
+<view class="submit" bindtap="submitData">提交</view>

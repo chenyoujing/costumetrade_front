@@ -1,0 +1,36 @@
+<!--头部-->
+<view class="title clearfix">
+  <navigator open-type="navigateBack">
+    <image src="../../../../images/back-away.png" mode="aspectFit" class="title_image_back" />
+  </navigator>
+  <view class="title_text">微信支付</view>
+</view>
+
+
+<!--支付内容-->
+<scroll-view scroll-y class="pay_scroll" hidden>
+  <view class="pay_title">转账给</view>
+  <view class="shop_name">小鱼家店铺</view>
+  <image src="../../../../images/image_none.png" mode="aspectFit" class="pay_image" />
+
+  <view class="pay_text">
+    <view>1.打开微信扫一扫</view>
+    <view>2.点击从相机选取二维码</view>
+    <view>3.完成支付</view>
+  </view>
+</scroll-view>
+<scroll-view scroll-y class="pay_scroll">
+  <view class="pay_title">转账给</view>
+
+  <view class="pay_text" style="text-align:center;width:unset;">
+    <view>姓名：孙然</view>
+    <view>开户银行：邮政</view>
+    <view>开户账号：5993383848557635</view>
+  </view>
+</scroll-view>
+
+<!--底部浮动-->
+<view class="shopping_cart_container">
+  <view class="pay_button1" bindtap="changeOrderStatus" data-pay="1">本次不支付</view>
+  <view class="pay_button2" bindtap="changeOrderStatus" data-pay="2">本次已支付</view>
+</view>

@@ -1,0 +1,57 @@
+/*修改客户种类*/
+.update_name,.update_level{
+  padding: 10px 20px;
+  border-bottom: 5px solid #DBF4F1;
+  color: #000000;
+}
+.name_text{
+  float: left;
+  font-size: 16px;
+  line-height: 30px;
+  width: 40%;
+}
+.name_input{
+  padding: 0 10px;
+  border: 1px solid #52CAC1;
+  font-size: 16px;
+  line-height: 28px;
+  height: 28px;
+  margin-right: 20%;
+}
+.level_title{
+  float: left;
+  font-size: 16px;
+  line-height: 30px;
+  width: 40%;
+}
+.level_text{
+  font-size: 12px;
+  line-height: 30px;
+  text-decoration: underline;
+}
+.slider_view{
+  float: left;
+  width: 20%;
+  text-align: center;
+  font-size: 12px;
+  line-height: 40px;
+  color: #999999;
+}
+.slider_checked{
+  color: #000000;
+}
+
+.submit{
+  font-size: 18px;
+  border-radius: 0;
+  background-color: #52CAC1;
+  line-height: 40px;
+  height: 40px;
+  text-align: center;
+  padding: 0;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  color: #ffffff;
+}

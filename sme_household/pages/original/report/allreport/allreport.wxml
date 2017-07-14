@@ -1,0 +1,174 @@
+<!--头部-->
+<view class="title clearfix">
+  <navigator open-type="navigateBack">
+    <image src="../../../../images/back-away.png" mode="aspectFit" class="title_image_back" />
+  </navigator>
+  <view class="title_text">{{title}}</view>
+</view>
+
+<scroll-view scroll-y="true" class="report_scroll"  lower-threshold="10" bindscrolltolower="{{loadMore?'onReachBottom':''}}" >
+  <view class="time_select" wx:if="{{timebool == 1}}">
+    <view class="select_view {{selected==0?'selected':''}}" bindtap="select" data-index="0" data-number="0">今日</view>
+    <view class="select_view {{selected==1?'selected':''}}" bindtap="select" data-index="1" data-number="7">7日</view>
+    <view class="select_view {{selected==2?'selected':''}}" bindtap="select" data-index="2" data-number="30">30日</view>
+    <view class="select_view {{selected==3?'selected':''}}" bindtap="select" data-index="3" data-number="90">90日</view>
+    <view class="select_view {{selected==4?'selected':''}}" bindtap="select" data-index="4"  data-number="false">...</view>
+  </view>
+  <view class="time_select" wx:if="{{timebool !== 1}}">
+    <picker class="select_view" value="{{beginTime}}" name="beginTime"  data-name="beginTime" bindchange="timeChange" mode="date" >
+      {{beginTime}}
+    </picker>
+    <view class="time_select_line"></view>
+    <picker class="select_view" value="{{endTime}}" name="endTime" bindchange="timeChange" mode="date" data-name="endTime">
+      {{endTime}}
+    </picker>
+    <view class="select_view"  bindtap="select" data-number="true">返回</view>
+  </view>
+
+  <view class="report_container">
+    <view class="business_volume">
+      营业额：<text>{{submitData.saleAmount}}</text> 元
+    </view>
+    <view class="business_info">
+      <view class="business_info_view">仓库进货：{{submitData.purchaseAmount}}元</view>
+      <view class="business_info_view">来往款项：{{submitData.clientAmount}}元</view>
+      <view class="business_info_view">费用款项：{{submitData.feeAmount}}元</view>
+    </view>
+    <view class="business_title">
+      <view class="business_title_view">支付方式</view>
+      <view class="business_title_view"></view>
+      <view class="business_title_view">收款</view>
+      <view class="business_title_view">付款</view>
+      <view class="business_title_view">明细</view>
+    </view>
+    <block wx:for="{{submitData.payTypeQuery}}">
+      <view class="business_content">
+        <view class="business_title_view">{{item.payType}}</view>
+        <view class="business_title_view"></view>
+        <view class="business_title_view" style="color:#FE4040;">{{item.receiptAmount}}</view>
+        <view class="business_title_view" style="color:#FE4040;">{{item.payAmount}}</view>
+        <navigator url="../finance/finance?payType={{item.payType}}&beginTime={{beginTime}}&endTime={{endTime}}" class="business_title_view" style="color:#286561;" wx:if="{{item.payType !=='总计'}}">明细</navigator>
+         <view class="business_title_view" wx:if="{{item.payType =='总计'}}"></view>
+      </view>
+    </block>
+  </view>
+
+  <view class="order_title">
+    <view class="order_title_text">总单数:{{submitData.ordersCount}}/单</view>
+    <view class="order_title_container">
+      <view class="order_title_view" data-name="pucharseOrders"  data-type = "1" bindtap="changeType">
+        <view class="order_title_view_text">采购入库</view>
+        <view class="order_title_view_button {{changeType==1?'button_active':''}}">共{{submitData.puchaseCount}}笔</view>
+      </view>
+      <view class="order_title_view" data-name="saleOrders"  data-type = "2" bindtap="changeType">
+        <view class="order_title_view_text">销售出库</view>
+        <view class="order_title_view_button  {{changeType==2?'button_active':''}}">共{{submitData.saleOrderCount}}笔</view>
+      </view>
+      <view class="order_title_view" data-name="payments" data-type = "3" bindtap="changeType">
+        <view class="order_title_view_text">往来款项</view>
+        <view class="order_title_view_button  {{changeType==3?'button_active':''}}">共{{submitData.clientOrderCount}}笔</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="order_content">
+    <view class="order_content_text">详情</view>
+    <view class="order_content_container">
+      <view class="order_content_view">入库数量：{{submitData.puchaseCount}}</view>
+      <view class="order_content_view">库存数量：{{submitData.stockNum}}</view>
+    </view>
+  </view>
+
+  <!--采购入库-->
+  <view wx:for="{{product}}" wx:if="{{changeType == 1}}" class="order_container_view">
+    <navigator url="../../../public/order/orderDetailsorderDetails/orderDetails?ordertype={{ordertype}}&payorderno={{item.payorderno}}&ordertype2=1">
+    <view class="order_container_title clearfix" >
+      <view class="order_container_name">供应商：{{item.seller}}</view>
+      <view class="order_container_Bill" wx:if="{{item.ordertype==1}}">商城订单</view>
+       <view class="order_container_Bill" wx:if="{{item.ordertype==2}}">线下单据</view>
+      <image src="../../../../images/right-thrust.png" mode="aspectFit" class="order_content_right" />
+    </view>
+   </navigator>
+      <view class="order_container_content_left">
+        <view class="order_container_number">单号：{{item.payorderno}}</view>
+        <view class="order_container_text">数量：{{item.totalnum}}</view>
+        <view class="order_container_text" wx:if="{{item.debetamt}}">未付：￥{{item.debetamt}}</view>
+        <view class="order_container_text" style="margin-top:5px;" wx:if="{{item.freight>0}}">{{item.logisticName}}：{{item.freight}}元</view>
+        <view class="order_container_text" style="margin-top:5px;" wx:if="{{item.freight==0}}">{{item.logisticName}}:包邮</view>
+      </view>
+      <view class="order_container_content_right">
+        <view class="order_container_text">{{item.ordertime}}</view>
+        <view class="order_container_text">合计金额：<text style="color:#ff0000;">￥{{item.totalamt}}</text></view>
+        <view class="order_container_text" wx:if="{{item.paycost1>0}}">{{item.paycate_1||item.paycate1}}：￥{{item.paycost1}}</view>
+        <view class="order_container_text" wx:if="{{item.paycost2>0}}">{{item.paycate_2||item.paycate2}}：￥{{item.paycost2}}</view>
+        <view class="order_container_text" style="margin-top:5px;">经手人：{{item.operator}}</view>
+      </view>
+      <view class="clear"></view>
+      <navigator url="../../../public/order/payOrder/payOrder?operate=2&orderno={{item.payorderno}}&buyerid={{item.buyerstoreid}}&sellerid={{item.sellerstoreid}}&pay={{item.debetamt}}"  wx:if="{{item.orderstatus == 3}}">
+        <view class="order_container_button btn_1">付款</view>      
+      </navigator>
+    <view class="clear"></view>
+  </view>
+
+ <!--销售出库-->
+  <view wx:for="{{product}}" wx:if="{{changeType == 2}}"  class="order_container_view">
+   <navigator url="../../../public/order/orderDetails/orderDetails?ordertype={{ordertype}}&payorderno={{item.payorderno}}& ordertype2=5">
+    <view class="order_container_title" >
+      <view class="order_container_name" wx:if="{{item.buyer}}">客户：{{item.buyer}}</view>
+       <view class="order_container_name" wx:if="{{!item.buyer}}">客户：游客</view>
+      <view class="order_container_Bill" wx:if="{{item.ordertype==1}}">商城订单</view>
+       <view class="order_container_Bill" wx:if="{{item.ordertype==2}}">线下单据</view>
+      <image src="../../../../images/right-thrust.png" mode="aspectFit" class="order_content_right" />
+    </view>
+   </navigator>
+      <view class="order_container_content_left">
+        <view class="order_container_number">单号：{{item.payorderno}}</view>
+        <view class="order_container_text">数量：{{item.totalnum}}</view>
+        <view class="order_container_text" wx:if="{{item.debetamt}}">未付：￥{{item.debetamt}}</view>
+        <view class="order_container_text" style="margin-top:5px;" wx:if="{{item.freight>0}}">{{item.logisticName}}：{{item.freight}}元</view>
+        <view class="order_container_text" style="margin-top:5px;" wx:if="{{item.freight==0}}">{{item.logisticName}}:包邮</view>
+      </view>
+      <view class="order_container_content_right">
+        <view class="order_container_text">{{item.ordertime}}</view>
+        <view class="order_container_text">合计金额：<text style="color:#ff0000;">￥{{item.totalamt}}</text></view>
+        <view class="order_container_text" wx:if="{{item.paycost1>0}}">{{item.paycate_1||item.paycate1}}：￥{{item.paycost1}}</view>
+        <view class="order_container_text" wx:if="{{item.paycost2>0}}">{{item.paycate_2||item.paycate2}}：￥{{item.paycost2}}</view>
+        <view class="order_container_text" style="margin-top:5px;">经手人：{{item.operator}}</view>
+      </view>
+      <view class="clear"></view>
+      <navigator url="../../../public/order/payOrder/payOrder?operate=2&orderno={{item.payorderno}}&buyerid={{item.buyerstoreid}}&sellerid={{item.sellerstoreid}}&pay={{item.debetamt}}"  wx:if="{{item.orderstatus == 3}}">
+        <view class="order_container_button btn_1">付款</view>      
+      </navigator>
+    <view class="clear"></view>
+  </view>
+
+ <!--往来款项-->
+  <view wx:for="{{product}}" wx:if="{{changeType == 3}}"  class="order_container_view">
+     <view class="account_container">
+       <view style="float:left;">单号:{{item.payorderno}}</view>
+       <view style="float:right; font-size:10px;">{{item.ordertime}}销售出库</view>
+        <view class="clear"></view>
+    </view>
+    <view class="account_container_content">
+      <view class="content_view">合计金额：{{item.totalamt}}</view>
+      <view class="content_view">已付：{{item.realcost}}<text style="padding-left:20px;">付款方式：{{item.paycate1}}</text></view>
+      <view class="content_view">未付：{{item.unPay}}</view>
+      <view class="content_button">明细</view>
+    </view>
+  </view>
+      <!--还款单-->
+  <view class="account_container" wx:if="{{!item.totalamt}}">
+      <view class="account_container_title">
+      <view style="float:left;">单号:{{item.payorderno}}</view>
+      <view style="float:right; font-size:10px;">{{item.ordertime}} 还款单</view>
+      <view class="clear"></view>
+  </view>
+  <view class="account_container_content">
+      <view class="content_view">付款方式：{{item.paycate1}}</view>
+      <view class="content_view" style="text-align:right;">支付金额：{{item.realcost}}</view>
+  </view>
+  <view class="clear"></view>
+</view>
+</scroll-view>
+
+

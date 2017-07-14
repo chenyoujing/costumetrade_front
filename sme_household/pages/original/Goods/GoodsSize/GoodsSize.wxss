@@ -1,0 +1,134 @@
+.size_title{
+  padding: 5px 0;
+  background-color: #52CAC1;
+}
+.size_title_text{
+  float: left;
+  font-size: 14px;
+  line-height: 30px;
+  height: 30px;
+  text-align: center;
+  width: 20%;
+  color: #ffffff;
+}
+.size_title_button{
+  float: right;
+  width: 25%;
+  height: 30px;
+}
+.image_add{
+  height: 16px;
+  padding: 7px 0;
+  float: left;
+  width: 50%;
+}
+.image_close{
+  height: 16px;
+  padding: 7px 0;
+  float: left;
+  width: 50%;
+}
+.size_title_selected{
+  border: 1px solid #AEB8B8;
+  height: 28px;
+  line-height: 28px;
+  background-color: #ffffff;
+  font-size: 12px;
+  padding: 0 8px;
+  color: #000000;
+  float:left;
+  width:55%;
+  box-sizing:border-box;
+  white-space:nowrap;
+}
+.selected_view{
+  display: inline-block;
+  min-width: 20px;
+  margin: 0 5px;
+  text-align: center;
+}
+
+
+.container{
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 40px;
+}
+
+/*尺码*/
+.size_container{
+  max-height: 100px;
+  width: auto;
+  margin-top: 10px;
+}
+.size_content{
+  text-align: center;
+  font-size: 16px;
+  line-height: 40px;
+  float: left;
+  width: 33.33333333%;
+}
+.size_title2{
+  padding: 5px;
+  height: 30px;
+  line-height: 30px;
+  background-color: #52CAC1;
+  font-size: 14px;
+  text-align: center;
+  position: relative;
+  color: #ffffff;
+}
+.image_add2{
+  position: absolute;
+  right: 10px;
+  top: 0;
+  width: 16px;
+  height: 16px;
+  padding: 12px;
+}
+.image_down2{
+  width: 100%;
+  height: 16px;
+  padding: 5px 0;
+}
+
+/*尺码组*/
+.sizes_container{
+  max-height: 100px;
+  width: auto;
+  padding-top: 10px;
+}
+.sizes_option{
+  box-sizing: border-box;
+  float: left;
+  width: 100%;
+  padding: 5px;
+  font-size: 16px;
+  word-break:keep-all;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+.sizes_option > radio{
+  margin: 0 10px;
+}
+.sizes_text{
+  float: right;
+  width: 40%;
+}
+
+.submit{
+  font-size: 16px;
+  border-radius: 0;
+  background-color: #52CAC1;
+  line-height: 40px;
+  text-align: center;
+  padding: 0;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  color: #ffffff;
+}

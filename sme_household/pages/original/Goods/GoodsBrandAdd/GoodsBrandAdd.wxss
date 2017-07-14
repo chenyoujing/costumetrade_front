@@ -1,0 +1,87 @@
+/*头部*/
+@import "../../../../css/title.wxss";
+
+.modal{
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  background-color: #ffffff;
+}
+
+.add_content{
+  padding: 10px 15px;
+}
+.add_text{
+  float: left;
+  font-size: 16px;
+  line-height: 30px;
+  width: 20%;
+  text-align: center;
+  padding-right: 10px;
+}
+.add_input{
+  border: 1px solid #CACACA;
+  height: 28px;
+  line-height: 28px;
+  font: 16px;
+  padding: 0 8px;
+}
+
+.modal_submit,.modal_reset{
+  font-size: 16px;
+  border-radius: 0;
+  background-color: #52CAC1;
+  line-height: 40px;
+  text-align: center;
+  padding: 0;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  color: #ffffff;
+}
+.modal_reset{
+  right: 50%;
+  background-color: #DCDCDC;
+  color: #353535;
+}
+.modal_submit{
+  left: 50%;
+}
+.size_title_selected{
+  border: 1px solid #AEB8B8;
+  height: 28px;
+  line-height: 28px;
+  background-color: #ffffff;
+  font-size: 12px;
+  padding: 0 8px;
+  color: #000000;
+  overflow:hidden;
+  width:auto;
+  box-sizing:border-box;
+  white-space:nowrap;
+}
+.selected_view{
+  display: inline-block;
+  min-width: 20px;
+  margin: 0 5px;
+  text-align: center;
+}
+
+
+/*尺码组*/
+.size_container{
+  padding-left: 20px;
+  padding-right: 10px;
+  margin-left: 20%;
+}
+.size_content{
+  text-align: center;
+  font-size: 16px;
+  line-height: 40px;
+  float: left;
+  width: 33.33333333%;
+}

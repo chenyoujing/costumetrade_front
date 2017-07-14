@@ -1,0 +1,293 @@
+<import src="../../../../template/template.wxml"/>
+
+<!--货品详情-->
+<view class="upload">
+  <view class="title clearfix">
+    {{title}}
+    <navigator open-type="navigateBack">
+      <image src="../../../../images/amputate.png" mode="aspectFit" class="title_image_close" />
+    </navigator>
+  </view>
+
+  <form class="upload_content" bindsubmit="regBeforeSnb" data-id="{{id}}">
+    <view class="upload_container">
+      <view class="upload_input">
+        <input type="text"  hidden="true" name="id" value="{{GoodsInfoData.id}}" />
+      </view>
+      <view class="upload_input clearfix">
+        <view class="upload_input_text">名称:</view>
+        <input type="text" class="upload_input1" bindinput="blurInput" data-name="name" name="name" value="{{GoodsInfoData.name}}" placeholder="*" placeholder-class="required" />
+      </view>
+      <view class="upload_input clearfix">
+        <navigator url="../GoodsImage/GoodsImage" class="imagesearch">
+          <image src="../../../../images/search.png" mode="aspectFit" class="imagesearch_image" />
+          <view class="imagesearch_text">网上搜索</view>
+        </navigator>
+        <view class="upload_input_text">图片:</view>
+        <scroll-view scroll-x="true" class="image_container">
+          <view class="image_content" bindtap="chooseImg" data-index="image">
+           <image src="../../../../images/add_image.png" mode="aspectFit" class="image_bg" />
+           <image src="{{GoodsInfoData.image}}" mode="aspectFill" class="" />
+          </view>
+          <view class="image_content" bindtap="chooseImg" data-index="image1">
+           <image src="{{GoodsInfoData.image1}}" mode="aspectFill" class="" />
+          </view>
+          <view class="image_content" bindtap="chooseImg" data-index="image2">
+          <image src="{{GoodsInfoData.image2}}" mode="aspectFill" class="" />
+          </view>
+          <view class="image_content" bindtap="chooseImg" data-index="image3">
+          <image src="{{GoodsInfoData.image3}}" mode="aspectFill" class="" />
+          </view>
+          <view class="image_content" bindtap="chooseImg" data-index="image4">
+          <image src="{{GoodsInfoData.image4}}" mode="aspectFill" class="" />
+          </view>
+        </scroll-view>
+      </view>
+      <view class="upload_input">
+        <navigator url="../GoodsImage/GoodsImage?productName={{GoodsInfoData.name}}" class="imagesearch">
+          <image src="../../../../images/search.png" mode="aspectFit" class="imagesearch_image" />
+          <view class="imagesearch_text">网上搜索</view>
+        </navigator>
+        <view class="upload_input_text">视频:</view>
+          <scroll-view scroll-x class="image_container">
+            <view class="image_content" bindtap="chooseImg" data-name="video">
+              <image src="../../../../images/add_image.png" mode="aspectFit" class="image_bg" />
+              <video controls="true" src="{{GoodsInfoData.video1}}" wx:if="{{GoodsInfoData.video1}}" data-index="video1" />
+            </view>
+            <view class="image_content" bindtap="chooseImg" data-name="video" data-index="video2">
+              <video src="{{GoodsInfoData.video2}}" wx:if="{{GoodsInfoData.video2}}" />
+            </view>
+            <view class="image_content" bindtap="chooseImg" data-name="video" data-index="video3">
+              <video src="{{GoodsInfoData.video3}}" wx:if="{{GoodsInfoData.video3}}" />
+            </view>
+          </scroll-view>
+        <view class="clear"></view>
+      </view>
+      <template is="reg" wx:if="{{regobject.image == false}}" data="{{text: '图片至少上传一个'}}"/>
+      <view class="upload_input clearfix">
+        <view class="upload_input_text">吊牌价:</view>
+        <input type="digit" bindinput="blurInput" data-name="tagprice" class="upload_input1" bindblur="reg" name="tagprice" value="{{GoodsInfoData.tagprice}}" placeholder="*" placeholder-class="required" />
+      </view>
+      <template is="reg" wx:if="{{regobject.tagprice == false}}" data="{{text: '吊牌价不能为空'}}"/>
+      <!--<view class="">请输入吊牌价</view>-->
+      <view class="upload_input clearfix">
+        <view class="upload_input_text">进货价:</view>
+        <input type = "{{privilegeEmployees?'digit':'password'}}" disabled="{{!privilegeEmployees}}"   bindinput="blurInput" data-name="purchaseprice"  class="upload_input1"  name="purchaseprice" value="{{GoodsInfoData.purchaseprice}}" />
+      </view>
+      <view class="upload_input clearfix">
+        <view class="upload_input_text">销售价:</view>
+        <view class="picker_content claerfix">
+          <view class="picker_content_title">客户种类</view>
+          <view class="picker_content_title">销售价</view>
+          <view class="picker_content_title">折扣率</view>
+          <view class="picker_content_title">毛利率</view>
+          <block wx:for="{{picker_view}}">
+          <view hidden="{{!item.isUse}}">
+       <view class="picker_content_view">{{item.name}}</view>
+            <view class="picker_content_view">
+              <input type = "digit" disabled="true" value="{{item.price}}" />
+            </view>
+            <view class="picker_content_view">
+              <input type = "digit" disabled="true" value="{{item.discPriceJson}}"/>
+           </view>
+            <view class="picker_content_view">
+                <input type = "{{privilegeEmployees?'digit':'password'}}" disabled="true"  value="{{item.custPriceJson}}"/>
+            </view>
+          </view>
+          </block>
+        <image src="../../../../images/update.png" mode="aspectFit" class="picker_update_image" bindtap="checkboxChange"/>
+        </view>
+      </view>
+      <view class="upload_input">
+        <view class="upload_input_text" >货号:</view>
+        <input type="text" bindblur="reg"  bindinput="blurInput" data-name="code"  class="upload_input1" name="code"  value="{{GoodsInfoData.code}}"/>
+        <view class="clear"></view>
+      </view>
+      <template is="reg" wx:if="{{regobject.code == false}}" data="{{text: '货号不能为空'}}"/>
+      <view class="upload_input">
+        <view class="upload_input_text">品牌:</view>
+        <input type="number" disabled="true" data-name="brand"  class="upload_input2" name="brandid" style="padding-right:30px;" value="{{brand}}"/>
+        <navigator  url="../GoodsBrand/GoodsBrand?url=brand/getAllBrands&title=品牌" hover-class="navigator-hover">
+        <image src="../../../../images/update.png" mode="aspectFit" class="update_image" />
+        </navigator>  
+        <view class="clear"></view>
+      </view>
+      <view class="upload_input">
+        <view class="upload_input_text">等级:</view>
+        <picker style="margin-right:0" data-style = 'grade_index' bindchange="bindSelectorChange" value="{{GoodsInfoData.grade}}" range="{{screen_gradeList}}" name="grade" mode="selector" range-key="dictText" >
+            {{screen_gradeList[grade_index].dictText}}
+            <image src="../../../../images/down.png" mode="aspectFit" class="picker_image" />
+        </picker>
+        <view class="clear"></view>
+      </view>
+      <view class="upload_input">
+        <view class="upload_input_text">商品种类:</view>
+        <input type="number" disabled="true" data-name="producttype"  class="upload_input2" name="producttype" style="padding-right:30px;" value="{{producttype}}"/>
+        <navigator  url="../GoodsBrand/GoodsBrand?url=cate/getAllCates&title=商品种类" hover-class="navigator-hover">
+        <image src="../../../../images/update.png" mode="aspectFit" class="update_image" />
+        </navigator>  
+        <view class="clear"></view>
+      </view>
+      <view class="upload_input">
+        <view class="upload_input_text">商品详情:</view>
+        <input type="number" disabled="true" class="upload_input2" style="padding-right:30px;" value="{{description[0].text}}"  />
+        <navigator url="../GoodsDetails/GoodsDetails?id={{GoodsInfoData.id}}">
+          <image src="../../../../images/update.png" mode="aspectFit" class="update_image" />
+        </navigator>
+        <view class="clear"></view>
+      </view>
+      <view class="upload_input">
+        <view class="upload_input_text">单位:</view>
+        <input type="number" disabled="true" data-name="unit"   class="upload_input2" name="unit" style="padding-right:30px;" value="{{unit}}"/>
+        <navigator  url="../GoodsBrand/GoodsBrand?url=unit/getAllUnits&title=单位" hover-class="navigator-hover">
+        <image src="../../../../images/update.png" mode="aspectFit" class="update_image" />
+        </navigator>      
+        <view class="clear"></view>
+      </view>
+      <view class="upload_input">
+        <view class="upload_input_text">颜色:</view>
+        <input type="number"  disabled="true" bindblur="blurInput" data-name="colors"  class="upload_input2" name="colors" style="padding-right:30px;" value="{{GoodsInfoData.colors}}"/>
+        <navigator  url="../GoodsBrand/GoodsBrand?url=color/getAllColors&title=颜色选择" hover-class="navigator-hover">
+        <image src="../../../../images/update.png" mode="aspectFit" class="update_image" />
+        </navigator>
+        <view class="clear"></view>
+      </view> 
+      
+      <view class="upload_input">
+        <view class="upload_input_text">尺码:</view>
+         <input type="number"  disabled="true" bindblur="blurInput" data-name="colors"  class="upload_input2" name="sizes" style="padding-right:30px;" value="{{GoodsInfoData.sizes}}"/>
+        <navigator  url="../GoodsSize/GoodsSize?url=size/getAllSizes&title=尺码选择" hover-class="navigator-hover">
+        <image src="../../../../images/update.png" mode="aspectFit" class="update_image" />
+        </navigator>
+        <view class="clear"></view>
+      </view>
+      <view class="upload_input">
+        <view class="upload_input_text">一手件数:</view>
+        <input type="number" bindblur="blurInput" data-name="handcount"  class="upload_input1" name="handcount" value="{{GoodsInfoData.handcount}}" />
+        <view class="clear"></view>
+      </view>
+      <view class="upload_input">
+        <view class="upload_input_text">主条码:</view>
+        <input type="number" bindblur="blurInput" data-name="barcode"  class="upload_input2" name="barcode" value = "{{GoodsInfoData.barcode}}" style="padding-right:30px;" />
+        <image src="../../../../images/scan_black.png" mode="aspectFit" class="code_image" data-name = "barcode" bindtap="scan" />
+        <view class="clear"></view>
+      </view>
+      <view class="upload_input">
+        <view class="upload_input_text">分条码:</view>
+        <input type="number" disabled="true" data-name="barcodes"  class="upload_input2" value="{{GoodsInfoData.barcodes}}" name="barcodes" style="padding-right:30px;" />
+        <navigator  url="../Goodscodes/Goodscodes?barcodes={{GoodsInfoData.barcodes}}&color={{GoodsInfoData.colors}}&size={{GoodsInfoData.sizes}}" hover-class="navigator-hover">
+        <image src="../../../../images/update.png" mode="aspectFit" class="update_image" />
+        </navigator>
+        <view class="clear"></view>
+      </view>
+      <view class="upload_input">
+        <view class="upload_input_text">年份:</view>
+        <picker style="margin-right:0" mode="date" bindchange="year" name="year" fields="year" value="{{GoodsInfoData.year}}">
+        {{GoodsInfoData.year}}
+            <image src="../../../../images/down.png" mode="aspectFit" class="picker_image" />
+        </picker>
+        <view class="clear"></view>
+      </view>
+         <view class="upload_input">
+        <view class="upload_date">
+          <view class="upload_date_text">上架时间:</view>
+            <picker style="margin-right:0;" mode="date" bindchange="bindDateChange" data-style = 'timeUp' value="{{GoodsInfoData.timeUp}}" name="timeUp">
+             <view class="picker">{{GoodsInfoData.timeUp}}</view>
+            </picker>
+          <view class="clear"></view>
+        </view>
+        <view class="upload_date">
+          <view class="upload_date_text">下架时间:</view>
+            <picker style="margin-right:0;" data-style = 'timeDown' bindchange="bindDateChange" mode="date" name="timeDown" value="{{GoodsInfoData.timeDown}}">
+            <view class="picker"> {{GoodsInfoData.timeDown}}</view>
+            </picker>
+          <view class="clear"></view>
+        </view>
+        <view class="clear"></view>
+      </view>
+      <view class="upload_input">
+        <view class="upload_input_text">季节:</view>
+        <radio-group class="radio-group" name="season" bindchange="radioChange"  data-name = "season">
+          <label class="radio" wx:for="{{screen_content3}}" wx:key="id">
+            <radio value="{{item.name}}" checked="{{GoodsInfoData.season == item.value ? 'true' : ''}}"/>{{item.value}}
+          </label>
+        </radio-group>
+        <view class="clear"></view>
+      </view>
+   
+      <view class="upload_input clearfix">
+        <view class="upload_input_text">打折:</view>
+        <radio-group class="radio-group" name="isDiscount"  data-name = "isDiscount" bindchange="radioChange">
+          <label class="radio" style="margin-left:25%;">
+            <radio value="1" checked="{{GoodsInfoData.isDiscount == 1 ? 'true' : ''}}" />是
+          </label>
+          <label class="radio" style="margin-right:25%;">
+            <radio value="2" checked="{{GoodsInfoData.isDiscount == 2 ? 'true' : ''}}" />否
+          </label>
+        </radio-group>
+      </view>
+      <view class="upload_input clearfix">
+        <view class="upload_input_text">款式加价:</view>
+        <radio-group class="radio-group" name="isPattern" data-name = "isPattern" bindchange="radioChange">
+         <label class="radio" style="margin-left:25%;">
+            <radio  class="radio" value="1"  checked="{{GoodsInfoData.isPattern == 1 ? 'true' : ''}}" /> 是
+          </label>
+          <label class="radio" style="margin-right:25%;">
+            <radio value="2" checked="{{GoodsInfoData.isPattern == 2 ? 'true' : ''}}"/>否
+          </label>
+        </radio-group>
+      </view>
+      <view class="upload_input clearfix">
+        <view class="upload_input_text">允许上架:</view>
+        <radio-group class="radio-group" name="status" data-name = "status" bindchange="radioChange">
+          <label class="radio" style="margin-left:25%;">
+            <radio value="0" checked="{{GoodsInfoData.status == 0 ? 'true' : ''}}"/>是
+          </label>
+          <label class="radio" style="margin-right:25%;">
+            <radio value="2" checked="{{GoodsInfoData.status == 2 ? 'true' : ''}}"/>否
+          </label>
+        </radio-group>
+      </view>
+    </view>
+    <button class="submit" form-type="submit">提交</button>
+  </form>
+</view>
+
+
+<!--添加图片-->
+<view class="modal2_cover" bindtap="image_add_modal_close" animation="{{image_add_modal_opacity}}" style="display:{{image_add_modal}};"></view>
+<view class="modal2" animation="{{image_add_modal_opacity}}" style="display:{{image_add_modal}};">
+  <view class="modal_header">添加图片</view>
+  <image src="../../../../images/close.png" mode="aspectFit" class="image_close" />
+</view>
+
+<!--搜索图片-->
+<view class="modal2_cover" bindtap="image_search_modal_close" animation="{{image_search_modal_opacity}}" style="display:{{image_search_modal}};"></view>
+<view class="modal2" animation="{{image_search_modal_opacity}}" style="display:{{image_search_modal}};">
+  <view class="modal_header" style="border-bottom: 3px solid #DBF4F1;">搜索图片</view>
+  <image src="../../../../images/close.png" mode="aspectFit" class="image_close" />
+</view>
+
+<!--手动修改销售价-->
+<modal title="修改销售价" hidden="{{priceUpdate}}"  data-name = "saleprice" bindconfirm="reg" no-cancel="true">
+  <view class="table clearfix">
+    <view class="table_text bg_g">客户种类</view>
+    <view class="table_text bg_gray">销售价</view>
+    <view class="table_text bg_gray">折扣率</view>
+    <view class="table_text bg_gray">毛利率</view>
+    <block wx:for="{{picker_view}}" >
+      <view hidden="{{!item.isUse}}">
+         <view class="table_text bg_g">{{item.name}}</view>
+          <view class="table_text">
+              <input type = "digit" data-index="{{index}}" data-name="price" bindinput="blurInputPrice" value="{{item.price}}" />
+         </view>
+          <view class="table_text">
+              <input type = "digit" data-index="{{index}}" data-name="discPriceJson"  bindinput="blurInputPrice" value="{{item.discPriceJson}}"/>
+         </view>
+         <view class="table_text">
+            <input type = "{{privilegeEmployees?'digit':'password'}}" disabled="{{!privilegeEmployees}}" data-index="{{index}}" data-name="custPriceJson" bindinput="blurInputPrice" value="{{item.custPriceJson}}"/>
+         </view>
+      </view>
+    </block>
+  </view>
+</modal>

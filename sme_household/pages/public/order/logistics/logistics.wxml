@@ -1,0 +1,20 @@
+<view class="title clearfix">
+  <navigator open-type="navigateBack">
+    <image src="../../../../images/back-away.png" mode="aspectFit" class="title_image_back" />
+  </navigator>
+  <view class="title_text">查看物流</view>
+</view>
+
+<scroll-view scroll-y class="logistic_container">
+  <view class="logistic_view clearfix" wx:for="{{product}}">
+    <view class="round_view">
+      <view class="line"></view>
+      <view class="round"></view>
+    </view>
+    <view class="logistic_info">
+      <view class="logistic_text">{{item.remark}}</view>
+      <view class="logistic_time">{{item.acceptTime}}</view>
+    </view>
+  </view>
+</scroll-view>
+

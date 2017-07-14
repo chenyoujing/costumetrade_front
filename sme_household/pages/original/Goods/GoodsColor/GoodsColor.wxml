@@ -1,0 +1,52 @@
+<!--选色(不用的)-->
+<view class="modal2" animation="{{color_modal_opacity}}" style="display:{{color_modal}};">
+  <view class="modal_header">{{title}}</view>
+  <image src="../../../../images/close.png" bindtap="back" mode="aspectFit" class="image_close" />
+  <view class="modal2_title">
+    <view class="modal2_titleText">
+      <view class="modal2_title_text">{{titlename}}</view>
+    </view>
+    <view class="modal2_titleInput">
+      <input type="text" bindinput="EventHandle" class="modal2_title_input" name="envalue" value="{{envalue}}"/>
+    </view>
+    <view class="modal2_titleButton">
+      <image class="image_add" bindtap="addOptions" src="../../../../images/add_small.png" mode="aspectFit" />
+      <image class="image_delete" bindtap="delectQuery" src="../../../../images/delete.png" mode="aspectFit" />
+    </view>
+    <view class="clear"></view>
+  </view>
+   <scroll-view scroll-y="true" class="modal2_content" wx:if="{{title == '添加单位'}}">
+   <radio-group bindchange="checkboxChange">
+      <label class="modal2_content_option" wx:for="{{product}}" wx:key="id">
+        <radio value="{{item.unit}}|{{item.id}}"/>{{item.unit}}
+      </label>
+    </radio-group>
+  </scroll-view>
+  <scroll-view scroll-y="true" class="modal2_content" wx:if="{{title !== '添加单位'}}">
+    <checkbox-group bindchange="checkboxChange">
+      <label class="checkbox modal2_content_option" wx:for="{{product}}" wx:key="id">
+       <checkbox value="{{item.colorname}}{{item.sizename}}|{{item.id}}"/>{{item.colorname}}{{item.sizename}}
+      </label>
+      <view class="clear"></view>
+    </checkbox-group>
+    <view class="size_group" wx:if="{{title == '选尺码'}}">
+      <view class="size_group_button">保存尺码组</view>
+      <input type="text" class="size_group_input" placeholder="请输入组名" />
+      <scroll-view scroll-y class="size_group_scroll">
+        <view class="size_group_view">
+          <view class="size_group_name">自定义尺码组1</view>
+          <view class="size_group_size">S,XXS</view>
+          <image src="../../../../images/delete.png" mode="aspectFit" class="size_group_delete" />
+          <view class="clear"></view>
+        </view>
+        <view class="size_group_view">
+          <view class="size_group_name">自定义尺码组2</view>
+          <view class="size_group_size">S,XXS</view>
+          <image src="../../../../images/delete.png" mode="aspectFit" class="size_group_delete" />
+          <view class="clear"></view>
+        </view>
+      </scroll-view>
+    </view>
+  </scroll-view>
+  <button class="modal_submit" bindtap="saveOptions">选好了</button>
+</view>

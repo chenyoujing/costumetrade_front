@@ -1,0 +1,76 @@
+
+<scroll-view scroll-y class="codes_container">
+  <!--<view class="modal_header"></view>-->
+  <!--<image src="../../../../images/close.png" bindtap="back" mode="aspectFit" class="image_close" />-->
+
+  <!--顶上的列表-->
+  <view class="list_title" wx:if='{{barcodes[0]}}'>
+    <view class="list_title_text" style="width:40%;">条码</view>
+    <view class="list_title_text" style="width:30%;">颜色</view>
+    <view class="list_title_text" style="width:15%;">尺码</view>
+    <view class="list_title_text" style="width:15%;">删除</view>
+    <view class="clear"></view>
+  </view>
+  <scroll-view scroll-y="true" class="list_content">
+    <view class="list" wx:for="{{barcodes}}">
+      <view class="list_text" style="width:40%;">{{item[0]}}</view>
+      <view class="list_text" style="width:30%;">{{item[1]}}</view>
+      <view class="list_text" style="width:15%;">{{item[2]}}</view>
+      <view class="list_text" style="width:15%;">
+        <image src="../../../../images/delete_2.png" mode="aspectFit" class="list_delete" bindtap="delect" data-index = "{{index}}"/>
+      </view>
+      <view class="clear"></view>
+    </view>
+  </scroll-view>
+
+  <!--条码，加入-->
+  <view class="size_code">
+    <view class="size_code_view">
+      <view class="size_code_text">条码</view>
+      <view class="size_code_button">
+        <image src="../../../../images/scan_black.png" bindtap="scan" mode="aspectFit" class="image_scan" />
+      </view>
+      <input type="text" class="size_code_input" value='{{barcode}}' bindblur="EventHandle"/>
+      <view class="clear"></view>
+    </view>
+    <view class="size_code_view">
+      <view class="size_code_text"></view>
+      <view class="size_code_button">
+        <view class="button" bindtap="enterClick">加入</view>
+      </view>
+      <input type="text" class="size_code_input" value="{{enterData}}" disabled="true"/>
+      <view class="clear"></view>
+    </view>
+  </view>
+  
+  <!--选择颜色，尺码-->
+  <view class="color_title">
+    选择颜色
+     <!--<navigator url="../GoodsBrandAdd/GoodsBrandAdd?url=color/saveColor&name=颜色名称&addname=colorname">
+  <image src="../../../../images/append.png" mode="aspectFit" class="image_add"/>
+    </navigator>-->
+  </view>
+  <scroll-view scroll-y class="list_content">
+    <radio-group bindchange="changeBoxBind" data-index="0">
+      <label class="modal2_content_option" wx:for="{{colorProduct}}" wx:key="id">
+        <radio value="{{item}}" checked='{{aa}}' />{{item}}
+      </label>
+    </radio-group>
+  </scroll-view>
+  <image class="image_down2" src="../../../../images/down2.png" mode="aspectFit"></image>
+  <view class="color_title">
+    选择尺码
+     <!--<navigator url="../GoodsBrandAdd/GoodsBrandAdd?url=size/saveSize&name=尺码名称&addname=sizename">
+  <image src="../../../../images/append.png" mode="aspectFit" class="image_add"/>
+    </navigator>-->
+</view>
+  <scroll-view scroll-y class="list_content">
+    <radio-group bindchange="changeBoxBind" data-index="1">
+      <label class="modal2_content_option" wx:for="{{sizeProduct}}" wx:key="id">
+        <radio value="{{item}}" checked='{{aa}}'/>{{item}}
+      </label>
+    </radio-group>
+  </scroll-view>
+  <image class="image_down2" src="../../../../images/down2.png" mode="aspectFit"></image>
+</scroll-view>
+<button class="modal_submit" bindtap="saveData">确定</button>

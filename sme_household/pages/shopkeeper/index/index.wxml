@@ -1,0 +1,77 @@
+<import src="../../../template/template.wxml"/>
+
+<scroll-view scroll-y class="shop_scroll">
+  
+  <view class="index_title">
+    <image src="../../../images/index_title_bg.png" mode="aspectFill" class="index_title_bg" />
+    <navigator url="../../public/user/dictionary/dictionary" class="index_dictionary">设置</navigator>
+    <navigator url="../../public/user/shareStore/shareStore" class="index_share">分享</navigator>
+    <view class="my_title clearfix">
+      <navigator class="tx_nav" url="../../public/user/storeUpdate/storeUpdate">
+        <image src="{{storeInfo.storephoto||userInfo.avatarUrl||'../../../images/shop1_tx.png'}}" mode="aspectFill" class="my_tx" />
+      </navigator>
+      <view class="my_info clearfix">
+        <navigator url="../../public/user/storeUpdate/storeUpdate" class="my_name one_line">{{storeInfo.name||userInfo.nickName}}name</navigator>
+        <view class="my_info_view">
+          <view class="my_fans">200</view>
+          <navigator url="../../public/user/shareStore/shareStore" class="my_share">
+            <image src="../../../images/QR_code.png" mode="aspectFill" bindtap="scan" />
+            <view class="my_share_text">+粉</view>
+          </navigator>
+        </view>
+      </view>
+    </view>
+    <view class="operation_view">
+      <navigator url="../../public/order/order" class="operation">
+        <image src="../../../images/Pending-approval.png" mode="aspectFit" />
+        <text>待审核</text>
+      </navigator>
+      <navigator url="../../public/order/order" class="operation">
+        <image src="../../../images/agency-fund.png" mode="aspectFit" />
+        <text>待收款</text>
+      </navigator>
+      <navigator url="../../public/order/order" class="operation">
+        <image src="../../../images/Shipment-pending-.png" mode="aspectFit" />
+        <text>待审核</text>
+      </navigator>
+      <navigator url="../../public/order/order" class="operation">
+        <image src="../../../images/off-the-stocks.png" mode="aspectFit" />
+        <text>已完成</text>
+      </navigator>
+    </view>
+    <view class="operation_view">
+      <navigator url="../../household/shop/shop" class="operation">
+        <image src="../../../images/Map-collection.png" mode="aspectFit" />
+        <text>收图</text>
+      </navigator>
+      <navigator url="../../original/Goods/Goods" class="operation">
+        <image src="../../../images/kinds-or-types-of-goods.png" mode="aspectFit" />
+        <text>货品</text>
+      </navigator>
+      <navigator url="../../original/client/client" class="operation">
+        <image src="../../../images/consumer-.png" mode="aspectFit" />
+        <text>客户</text>
+      </navigator>
+      <navigator url="Purchase/Purchase" class="operation">
+        <image src="../../../images/select-and-purchase.png" mode="aspectFit" />
+        <text>采购</text>
+      </navigator>
+    </view>
+  </view>
+
+  <!-- 点艺公告 -->
+  <template is="notice"></template>
+
+  <view class="index_report">
+    <canvas class="index_canvas" canvas-id="columnCanvas" bindtouchmove="touchHandler" bindtouchstart="touchHandler"/>
+    <view class="index_report_content">
+      <view class="index_report_text">总数：150</view>
+      <view class="index_report_text">金额：500</view>
+      <view class="index_report_text">毛利率：20%</view>
+      <view class="index_report_text">时间：7天</view>
+    </view>
+  </view>
+
+</scroll-view>
+
+<template is="navBottom2" data="{{nav:'首页'}}"></template>

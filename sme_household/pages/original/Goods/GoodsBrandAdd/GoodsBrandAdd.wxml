@@ -1,0 +1,42 @@
+<!--添加商品品牌-->
+<view class="modal">
+  <view class="title clearfix">
+    {{name}}
+    <image src="../../../../images/amputate.png" mode="aspectFit" class="title_image_close"  bindtap="back" />
+  </view>
+
+  <scroll-view scroll-y="true" class="modal_content" wx:if="{{name !== '尺码组'}}">
+    <view class="add_content">
+      <view class="add_text">{{name}}</view>
+      <input type="text" bindblur="EventHandle" name="envalue" value="{{envalue}}" class="add_input" />
+    </view>
+  </scroll-view>
+
+  <!--尺码组-->
+  <scroll-view scroll-y="true" class="modal_content" wx:if="{{name == '尺码组'}}">
+    <view class="add_content">
+      <view class="add_text">组名</view>
+      <input type="text" bindblur="EventHandle" name="groupName" value="{{groupName}}" class="add_input" />
+    </view>
+    <view class="add_content">
+      <view class="add_text">尺码</view>
+      <!--<input type="text" bindblur="EventHandle" name="envalue" value="{{envalue}}" class="add_input" />-->
+      <scroll-view scroll-x class="size_title_selected" >
+        <block wx:for="{{selected}}">
+          <view class="" bindtap="reduce" data-size="{{item}}" class="selected_view">
+            {{item}}
+          </view>,
+        </block>
+      </scroll-view>
+    </view>
+    <view class="size_container">
+     <block wx:for="{{sizeArray}}">
+        <view class="size_content" bindtap="add" data-size="{{item.sizename}}">{{item.sizename}}</view>
+      </block>
+      <view class="clear"></view>
+    </view>
+  </scroll-view>
+
+  <button class="modal_reset" bindtap="back">取消</button>
+  <button class="modal_submit"  bindtap="jude">确定</button>
+</view>

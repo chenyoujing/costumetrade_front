@@ -1,0 +1,42 @@
+/*头部*/
+@import "../../../../css/title.wxss";
+
+.Help_container{
+  position: absolute;
+  top: 45px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: unset;
+}
+.content_title{
+  text-align: center;
+  font-size: 16px;
+  line-height: 45px;
+  height: 45px;
+}
+.help_content{
+  padding: 10px 0;
+}
+.help_number{
+  width: 20px;
+  height: 20px;
+  border-radius: 10px;
+  font-size: 16px;
+  line-height: 20px;
+  margin: 0 20px;
+  color: #ffffff;
+  text-align: center;
+  background-color: #52CAC1;
+  float: left;
+}
+.help_text{
+  float: left;
+  font-size: 16px;
+  line-height: 20px;
+}
+.help_image{
+  width: 80%;
+  margin: auto;
+  display: block;
+}

@@ -1,0 +1,98 @@
+{
+  "pages": [
+
+    "pages/shopkeeper/index/index",
+    "pages/shopkeeper/index/Purchase/Purchase",
+
+    "pages/shopkeeper/order/order",
+
+    "pages/shopkeeper/info/info",
+
+    "pages/shopkeeper/share/share",
+
+
+
+    "pages/household/shop/shop",  
+    "pages/household/shop/mall/mall",
+    "pages/household/shop/shoppingcard/shoppingcard",
+    "pages/household/shop/goods_detail/goods_detail",
+    "pages/household/shop/goodsComment/goodsComment",
+    "pages/household/shop/storeDetails/storeDetails",
+    "pages/household/shop/orderSure/orderSure",
+    "pages/household/shop/payOrder/payOrder",
+
+
+
+    "pages/original/Goods/Goods",
+    "pages/original/Goods/GoodsInfo/GoodsInfo",
+    "pages/original/Goods/GoodsBrand/GoodsBrand",
+    "pages/original/Goods/GoodsBrandAdd/GoodsBrandAdd",
+    "pages/original/Goods/GoodsSize/GoodsSize",
+    "pages/original/Goods/GoodsImage/GoodsImage",
+    "pages/original/Goods/GoodsImageAdd/GoodsImageAdd",
+    "pages/original/Goods/Goodscodes/Goodscodes",
+    "pages/original/Goods/Goodstock/Goodstock",
+    "pages/original/Goods/GoodsUpdate/GoodsUpdate",
+    "pages/original/Goods/GoodsShare/GoodsShare",
+    "pages/original/Goods/GoodsScreen/GoodsScreen",
+    "pages/original/Goods/styleMarkup/styleMarkup",
+    "pages/original/Goods/GoodsDetails/GoodsDetails",
+
+    "pages/original/client/client",
+    "pages/original/client/account/account",
+    "pages/original/client/replenishment/replenishment",
+    "pages/original/client/clientAdd/clientAdd",
+    "pages/original/client/clientScreen/clientScreen",
+    "pages/original/client/clientInfo/clientInfo",
+
+    "pages/original/info/info",
+
+    "pages/original/openOrder/openOrder",
+    "pages/original/openOrder/goodsDetails/goodsDetails",
+    "pages/original/openOrder/orderSure/orderSure",
+    "pages/original/openOrder/unitSelect/unitSelect",
+    "pages/original/openOrder/expenses/expenses",
+
+    "pages/original/report/report",
+    "pages/original/report/allreport/allreport",
+    "pages/original/report/purchase/purchase",
+    "pages/original/report/purchase_analysis/purchase_analysis",
+    "pages/original/report/salesRank/salesRank",
+    "pages/original/report/finance/finance",
+    "pages/original/report/stock/stock",
+    "pages/original/report/employeeReport/employeeReport",
+
+
+
+    "pages/public/order/order",
+    "pages/public/order/express/express",
+    "pages/public/order/comment/comment",
+    "pages/public/order/orderDetails/orderDetails",
+    "pages/public/order/logistics/logistics",
+    "pages/public/order/payOrder/payOrder",
+
+    "pages/public/user/user",
+    "pages/public/user/customerType/customerType",
+    "pages/public/user/shareStore/shareStore",
+    "pages/public/user/vipPlus/vipPlus",
+    "pages/public/user/updateBrand/updateBrand",
+    "pages/public/user/updateSize/updateSize",
+    "pages/public/user/storeUpdate/storeUpdate",
+    "pages/public/user/Help/Help",
+    "pages/public/user/helpInfo/helpInfo",
+    "pages/public/user/notecase/notecase",
+    "pages/public/user/branch/branch",
+    "pages/public/user/dictionary/dictionary",
+
+
+
+    "pages/index/index"
+
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "WeChat",
+    "navigationBarTextStyle": "black"
+  }
+}

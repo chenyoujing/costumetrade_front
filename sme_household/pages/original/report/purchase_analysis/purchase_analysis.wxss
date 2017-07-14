@@ -1,0 +1,41 @@
+/*头部*/
+@import "../../../../css/report.wxss";
+
+.canvas{
+  height: 300px;
+}
+.pietitle{
+  text-align: center;
+  width:100%
+}
+.nodataImg{
+  width:50%;
+  height: 70%
+}
+
+
+.gross_report{
+  display: flex;
+  font-size: 14px;
+  align-items: center;
+  margin-bottom: 20px;
+  text-align: center;
+}
+.progress_view{
+  display: flex;
+  height: 30px;
+  width: 250px;
+  padding: 0 5px;
+}
+.progress1{
+  background-color: #52CAC1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.progress2{
+  background-color: #EBEBEB;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

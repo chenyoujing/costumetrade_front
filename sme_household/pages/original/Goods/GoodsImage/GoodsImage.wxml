@@ -1,0 +1,42 @@
+<view class="modal">
+  <view class="title clearfix">
+    搜索图片
+    <navigator open-type="navigateBack">
+      <image src="../../../../images/amputate.png" mode="aspectFit" class="title_image_close" />
+    </navigator>
+  </view>
+  <!--<view class="search">
+    <input class="title_input" type="text" name="search" placeholder="输入文件名" bindinput="bindKeyInput" />
+    <image mode="aspectFit" src="../../../../images/search.png" class="image_search" />
+  </view>-->
+
+  <view class="image_content clearfix">
+
+    <view class="image_container">
+      <image src="../../../../images/search_image.png" mode="aspectFit" class="image_bg" />
+      <image src="" class="image_container_image" mode="aspectFill" bindtap="chooseImg" data-src="{{src}}" />
+    </view>
+    <view class="image_container">
+      <image src="../../../../images/search_image.png" mode="aspectFit" class="image_bg" />
+      <image src="" class="image_container_image" mode="aspectFill" bindtap="chooseImg" data-src="1" />
+    </view>
+    <view class="image_container">
+      <image src="../../../../images/search_image.png" mode="aspectFit" class="image_bg" />
+      <image src="" class="image_container_image" mode="aspectFill" bindtap="chooseImg" data-src="1" />
+    </view>
+    <view class="image_container">
+      <image src="../../../../images/search_image.png" mode="aspectFit" class="image_bg" />
+      <image src="" class="image_container_image" mode="aspectFill" bindtap="chooseImg" data-src="1" />
+    </view>
+    <view class="image_container">
+      <image src="../../../../images/search_image.png" mode="aspectFit" class="image_bg" />
+      <image src="" class="image_container_image" mode="aspectFill" bindtap="chooseImg" data-src="1" />
+    </view>
+    <view class="image_container">
+      <image src="../../../../images/search_image.png" mode="aspectFit" class="image_bg" />
+      <image src="" class="image_container_image" mode="aspectFill" bindtap="chooseImg" data-src="1" />
+    </view>
+
+  </view>
+  <button class="image_submit">确定</button>
+</view>

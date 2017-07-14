@@ -1,0 +1,74 @@
+/*头部*/
+@import "../../../../css/title.wxss";
+
+.modal{
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  background-color: #ffffff;
+}
+
+.modal_content{
+  position: absolute;
+  top: 40px;
+  left: 0;
+  right: 0;
+  bottom: 40px;
+}
+.update_option{
+  width: 100%;
+}
+.option_num{
+  float: left;
+  font-size: 16px;
+  line-height: 36px;
+  text-align: center;
+  width: 15%;
+}
+.option_delete,.option_update{
+  float: right;
+  width: 16px;
+  height: 16px;
+  padding: 10px 40rpx;
+}
+.option_default{
+  float: right;
+  font-size: 16px;
+  line-height: 36px;
+  text-align: center;
+  width: 20%;
+}
+.option_text{
+  font-size: 16px;
+  line-height: 36px;
+  
+}
+
+
+.modal_submit{
+  font-size: 16px;
+  border-radius: 0;
+  background-color: #52CAC1;
+  line-height: 40px;
+  text-align: center;
+  padding: 0;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  color: #ffffff;
+}
+
+
+.modal_text{
+  float: left;
+  text-align: center;
+  line-height:1.4rem;
+}
+.modal_input{
+  border: 1px solid #dddddd;
+  color: #000000;
+}

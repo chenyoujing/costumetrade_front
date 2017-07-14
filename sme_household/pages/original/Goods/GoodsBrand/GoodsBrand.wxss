@@ -1,0 +1,51 @@
+/*头部*/
+@import "../../../../css/title.wxss";
+
+.modal{
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  background-color: #ffffff;
+}
+
+.modal_content{
+  position: absolute;
+  top: 40px;
+  left: 0;
+  right: 0;
+  bottom: 40px;
+}
+.modal_content radio-group{
+  padding: 10px 0;
+}
+.modal_content_option{
+  box-sizing: border-box;
+  float: left;
+  width: 50%;
+  padding: 5px;
+  font-size: 14px;
+  word-break:keep-all;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+.modal_content_option > radio{
+  margin: 0 10px;
+}
+
+.modal_submit{
+  font-size: 16px;
+  border-radius: 0;
+  background-color: #52CAC1;
+  line-height: 40px;
+  text-align: center;
+  padding: 0;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  color: #ffffff;
+}

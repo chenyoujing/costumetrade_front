@@ -1,0 +1,240 @@
+.order{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ffffff;
+  z-index: 9;
+  transition: all 0.5s;
+}
+.order_title{
+  background-color: #52CAC1;
+  font-size: 16px;
+  line-height: 24px;
+  padding: 8px;
+  color: #ffffff;
+  text-align: center;
+}
+.order_close{
+  position: absolute;
+  top: 0;
+  right: 10px;
+  color: #ffffff;
+  font-size: 32px;
+  line-height: 40px;
+}
+.order scroll-view{
+  position: absolute;
+  top: 40px;
+  bottom: 50px;
+}
+.order_info,.pay_info{
+  border-bottom: 5px solid #DBF4F1;
+  padding: 20px;
+}
+.bill{
+  padding: 20px;
+}
+.info_title{
+    font-size: 20px;
+    padding-bottom: 20px;
+}
+.price_total{
+  float: left;
+  width: 35%;
+  font-size: 14px;
+  text-align: left;
+  color: #ff0000;
+}
+.price_amount{
+  float: left;
+  width: 35%;
+  font-size: 14px;
+  text-align: center;
+  color: #ff0000;
+}
+.price_unpaid{
+  float: left;
+  width: 30%;
+  font-size: 14px;
+  text-align: right;
+}
+.price_total::before{
+  content: "合计金额:";
+  color: #000000;
+}
+.price_amount::before{
+  content: "实际金额:";
+  color: #000000;
+}
+.price_unpaid::before{
+  content: "未付:";
+  color: #000000;
+}
+.order_input{
+  padding: 10px 30px 0;
+}
+.order_input:last-child{
+  margin-bottom: 10px;
+}
+.order_input_text{
+  width: 30%;
+  float: left;
+  text-align: center;
+  font-size: 14px;
+  line-height: 30px;
+  padding-right: 20px;
+}
+.order_input1,.order_input2{
+  border: 1px solid #52CAC1;
+  font-size: 14px;
+  padding-left: 7px; 
+  height: 28px;
+}
+.order_input2{
+  margin-right: 70px;
+}
+.bill_content picker{
+  border: 1px solid #52CAC1;
+  height: 28px;
+  margin-right: 70px;
+  margin-left: 30%;
+  text-align: center;
+  width: auto;
+  font-size: 14px;
+  line-height: 28px;
+}
+.order_input_button{
+  width: 60px;
+  float: right;
+  font-size: 16px;
+  border-radius: 0;
+  background-color: #52CAC1;
+  line-height: 30px;
+  text-align: center;
+  padding: 0;
+  color: #ffffff;
+}
+.bill_content{
+  padding: 0 30px;
+}
+.bill_content_button{
+  box-sizing: border-box;
+  width: 50%;
+  float: left;
+  border: 1px solid #52CAC1;
+  text-align: center;
+  padding: 5px;
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+.submit{
+  font-size: 16px;
+  border-radius: 0;
+  background-color: #52CAC1;
+  line-height: 30px;
+  text-align: center;
+  padding: 0;
+  position: absolute;
+  width: 100px;
+  bottom: 5px;
+  left: 0;
+  right: 0;
+  margin: auto;
+  color: #ffffff;
+}
+
+/*打印账单模态框*/
+.modal_header_content{
+  font-size: 13px;
+  color: #000000;
+  margin:0 -10px;
+  text-align: center;
+  border-top: 1px solid #52CAC1;
+  line-height: 20px;
+}
+.bill_number{
+  color: #000000;
+  padding-top: 20px;
+}
+
+.wechat_header{
+  font-size: 18px;
+  line-height: 24px;
+  padding: 8px;
+  text-align: center;
+}
+.wechat_submit{
+  background-color: #52CAC1;
+  color: #ffffff;
+  font-size: 14px;
+  line-height: 20px;
+  text-align: center;
+  padding: 5px;
+  margin: 10px 5px;
+  float: left;
+}
+.wechat_close{
+  border: 1px solid #52CAC1;
+  min-width: 40px;
+  font-size: 14px;
+  line-height: 18px;
+  text-align: center;
+  padding: 5px;
+  margin: 10px 5px;
+  float: left;
+}
+.wechat_button{
+  width: 180px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 10px;
+  margin: auto;
+}
+
+
+.order_footer{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 50px;
+  border-top: 1px solid #E3E3E3;
+  background-color: #ffffff;
+}
+.all_number{
+  float: left;
+  width: 25%;
+  font-size: 16px;
+  text-align: center;
+  line-height: 50px;
+}
+.all_number::before{
+  content: "共"
+}
+.all_number::after{
+  content: "件"
+}
+.all_price{
+  float: left;
+  width: 40%;
+  line-height: 50px;
+  color: #ff0000;
+  font-size: 18px;
+}
+.all_price::before{
+  content: "合计:";
+  color: #000000;
+}
+.all_button{
+  float: left;
+  width: 35%;
+  text-align: center;
+  font-size: 18px;
+  background-color: #ff0000;
+  height: 50px;
+  line-height: 50px;
+  color: #ffffff;
+}
