@@ -10,10 +10,9 @@
     </input>
   </view>
 
-  <view class="client clearfix">
+  <view class="client">
     <view class="client_text {{client=='1' ? 'active1' : ''}}" bindtap="clientType" data-client="1">客户</view>
     <view class="client_text {{client=='2' ? 'active1' : ''}}" bindtap="clientType" data-client="2">供货商</view>
-    <view class="client_text {{client=='3' ? 'active1' : ''}}" bindtap="clientType" data-client="3">朋友</view>
   </view>
   <view class="client">
     <view class="client_text sort_text {{state=='nameOp' ? 'active2' : ''}}" bindtap="clientSort" data-sort="nameOp">
