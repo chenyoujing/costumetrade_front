@@ -36,6 +36,34 @@ Page({
     })
 
   },
+  // 保存分享记录
+  confirmShareProducts:function(){
+    var that = this;
+    var id = util.api.DateFormat(new Date())
+    wx.showNavigationBarLoading()
+    util.api.request({
+      url: 'product/confirmShareProducts',
+      data: {
+        storeid: that.data.storeId,
+        id: id,
+        title: that.data.share_text,
+      },
+      method: 'POST',
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      success: function (res) {
+        wx.hideNavigationBarLoading();
+        for (var p in res.data) {
+          res.data[p].timeUp = util.toDate(res.data[p].timeUp)
+          res.data[p].image = res.data[p].image ? util.api.imgUrl + res.data[p].image : ""
+        }
+        that.setData({
+          product: res.data
+        })
+      }
+    })
+  },
   share_text:function(e){
     this.setData({
       share_text: e.detail.value
@@ -54,6 +82,7 @@ Page({
       title: title,
       path: '/pages/index/index?ids=' + ids + '&storeId=' + storeId + "&title=" + title + '&name=' + this.data.title + '&checkAllTag=' + this.data.checkAllTag,
       success: function (res) {
+        that.confirmShareProducts()
         console.log('/pages/index/index?ids=' + ids + '&storeId=' + storeId + "&title=" + title + '&name=' + that.data.title + '&checkAllTag=' + that.data.checkAllTag)
       },
       fail: function (res) {
