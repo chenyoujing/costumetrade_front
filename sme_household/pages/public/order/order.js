@@ -123,10 +123,6 @@ Page({
          totole.pNoPayCount -= 1;
          totole.pNoShipCount += 1; 
        }
-      //  else{
-      //    totole.sNoShipCount += 1;
-      //    totole.sNoAuditCount -= 1; 
-      //  }
          break;
       case '3':
         totole.sNoShipCount += 1;
@@ -536,7 +532,7 @@ Page({
       this.order_request();
     }
   },
-  onLoad:function(){
+  onLoad:function(e){
     if (!app.logisticFees){
       util.api.getProductInit()
     }
@@ -545,7 +541,9 @@ Page({
     this.setData({
       logisticFees: app.logisticFees,
       paycact: app.payTypeList,
-      openid:app.globalData.openid
+      openid:app.globalData.openid,
+      ordertype: e.ordertype,
+      ordertype2: e.ordertype2 || 1
     })
     console.log(app.logisticFees)
   },
