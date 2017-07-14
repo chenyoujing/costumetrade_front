@@ -54,7 +54,7 @@
       </navigator>
       <navigator url="Purchase/Purchase" class="operation">
         <image src="../../../images/select-and-purchase.png" mode="aspectFit" />
-        <text>采购</text>
+        <text>采购单</text>
       </navigator>
     </view>
   </view>
@@ -62,7 +62,7 @@
   <!-- 点艺公告 -->
   <template is="notice"></template>
 
-  <view class="index_report">
+  <navigator url="../../original/report/report" class="index_report">
     <canvas class="index_canvas" canvas-id="columnCanvas" bindtouchmove="touchHandler" bindtouchstart="touchHandler"/>
     <view class="index_report_content">
       <view class="index_report_text">总数：150</view>
@@ -70,7 +70,10 @@
       <view class="index_report_text">毛利率：20%</view>
       <view class="index_report_text">时间：7天</view>
     </view>
-  </view>
+  </navigator>
+
+  <image src="../../../images/index_news1.png" mode="widthFix" class="index_news"></image>
+  <image src="../../../images/index_news2.png" mode="widthFix" class="index_news"></image>
 
 </scroll-view>
 

@@ -139,13 +139,14 @@
     </view>
   </scroll-view>
   <!--分析按钮-->
-  <checkbox-group class="batch_button_all" bindchange="SelectallOrNot">
-    <label class="checkbox" >
-      <checkbox checked="{{aa}}"/>全选
-    </label>
-  </checkbox-group>
-  <view class="batch_button_ok" bindtap="batchOperationsOk">取消</view>
-  <view class="batch_button bg_g" bindtap="batch_share_sure">分享</view>
+  <view class="batch_button_view">
+    <checkbox-group class="batch_button batch_button_all" bindchange="SelectallOrNot">
+      <label class="checkbox" >
+        <checkbox checked="{{aa}}"/>全选
+      </label>
+    </checkbox-group>
+    <view class="batch_button bg_g" bindtap="batch_share_sure">分享</view>
+  </view>
 </view>
 <!--更多功能-->
 <view class="more_function_cover {{animation}}" bindtap="more_function_close" style="display:{{more_function_display}};"></view>

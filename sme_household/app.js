@@ -53,7 +53,6 @@ App({
                     that.globalData.zeroPrice = res.data.data.employee.zeroPrice;
                     that.globalData.discount = res.data.data.employee.discount;
                     that.globalData.storeId = res.data.data.storeId; 
-                    that.householdOrshopkeper(res.data.data.userIdentity)
                   }
                 })
               }
@@ -61,14 +60,6 @@ App({
           }
         })
       }
-    })
-  },
-  // 判断权限显示页面
-  householdOrshopkeper: function (userIdentity){
-    var url = userIdentity == 3 ? "pages/household/shop/shop" : "pages/shopkeeper/index/index";
-    wx.navigateTo({
-      url: url,
-      success: function (res) { }
     })
   },
   getUserInfo: function (cb) {

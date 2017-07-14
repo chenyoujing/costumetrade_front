@@ -554,6 +554,9 @@ Page({
       openid: app.globalData.openid
     })
     console.log(app.logisticFees)
+    wx.setNavigationBarTitle({
+      title: '采购单'
+    })
   },
   onShow: function () {
     if (app.payOrderno) {
@@ -570,7 +573,6 @@ Page({
           break;
         }
       }
-
       app.payOrderno = ""
     }
   }

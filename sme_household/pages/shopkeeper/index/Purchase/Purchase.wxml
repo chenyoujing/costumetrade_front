@@ -2,36 +2,6 @@
 
 <template is="searchTitle" ></template>
 
-<view class="supplier_list">
-  <image src="../../../../images/Supplier-list.png" mode="aspectFit" class="supplier_list_image" />
-  <view class="supplier_list_text">供货商列表</view>
-</view>
-<view class="order_type">采购单</view>
-
-<!--订单类型分类-->
-<view class="ordertype">
-  <view class="ordertype_text {{ordertype=='1' ? 'ordertype_active1' : ''}}" bindtap="ordertype" data-ordertype="1">采购</view>
-  <view class="ordertype_text {{ordertype=='2' ? 'ordertype_active1' : ''}}" bindtap="ordertype" data-ordertype="2">销售</view>
-  <view class="clear"></view>
-</view>
-
-<!--二级分类 销售-->
-<view class="ordertype2" wx-if="{{ordertype==2}}">
-  <view class="ordertype2_text {{ordertype2=='4' ? 'ordertype_active2' : ''}}" bindtap="ordertype2" data-ordertypetwo="4">
-     待审核<view class="ordertype2_prompt">{{countNum.sNoPayCount}}</view>
-  </view>
-  <view class="ordertype2_text {{ordertype2=='6' ? 'ordertype_active2' : ''}}" bindtap="ordertype2" data-ordertypetwo="6">
-      待收款<view class="ordertype2_prompt">{{countNum.sNoAuditCount}}</view>
-  </view>
-  <view class="ordertype2_text {{ordertype2=='2' ? 'ordertype_active2' : ''}}" bindtap="ordertype2" data-ordertypetwo="2">
-     待发货<view class="ordertype2_prompt">{{countNum.sNoShipCount}}</view>
-  </view>
-  <view class="ordertype2_text {{ordertype2=='5' ? 'ordertype_active2' : ''}}" bindtap="ordertype2" data-ordertypetwo="5">
-      全部
-  </view>
-  <view class="clear"></view>
-</view>
-
 <!--二级分类 采购-->
 <view class="ordertype2"  wx-if="{{ordertype==1}}">
   <view class="ordertype2_text {{ordertype2=='1' ? 'ordertype_active2' : ''}}" bindtap="ordertype2" data-ordertypetwo="1">

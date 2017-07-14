@@ -158,6 +158,9 @@ page,input{
   font-family: Microsoft YaHei;
   
 }
+page{
+  background-color: #ffffff;
+}
 input{
   min-height: 1px;
   padding: 0 8px;
