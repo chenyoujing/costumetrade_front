@@ -1,17 +1,17 @@
 <import src="../../../template/template.wxml"/>
 
-<scroll-view scroll-y class="my_container" style="bottom:{{shopkeeper?'0':''}}">
+<scroll-view scroll-y class="my_container">
   <!--头部-->
   <view class="my_title clearfix">
     <navigator url="storeUpdate/storeUpdate">
-      <image src="{{storeInfo.storephoto||userInfo.avatarUrl||'../../../images/shop1_tx.png'}}" mode="aspectFill" class="my_tx" />
+      <image src="{{userInfo.photo||'../../../images/shop1_tx.png'}}" mode="aspectFill" class="my_tx" />
     </navigator>
     <view class="my_code">
       <image src="../../../images/QR_code.png" mode="aspectFill" bindtap="scan" />
       <view class="my_code_text">+粉</view>
     </view>
     <view class="my_info clearfix">
-      <navigator url="storeUpdate/storeUpdate" class="my_name one_line">{{storeInfo.name||userInfo.name||userInfo.nickName}}</navigator>
+      <navigator url="storeUpdate/storeUpdate" class="my_name one_line">{{userInfo.name}}</navigator>
       <view class="my_fans">200</view>
       <navigator url="shareStore/shareStore" class="my_share">分享</navigator>
     </view>
@@ -102,4 +102,4 @@
   <view class="scan_modal_text">请用微信扫一扫上面的图片,扫好了后点击“扫好了”</view>
 </modal>
 
-<template is="navBottom" data="{{nav:'我的'}}" wx:if="{{!shopkeeper}}"></template>
+<template is="navBottom" data="{{nav:'我的'}}"></template>

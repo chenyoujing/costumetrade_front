@@ -44,7 +44,9 @@ App({
                   },
                   method: 'POST',
                   success: function (res) {
-                    that.globalData.userInfo.code= loginCode.code 
+                    that.globalData.userInfo.code= loginCode.code;
+                    that.globalData.userInfo.name = res.data.data.name;  
+                    that.globalData.userInfo.photo = res.data.data.photo; 
                     that.globalData.openid = res.data.data.query.openid;
                     that.globalData.privilegeEmployees = res.data.data.employee.privilegeEmployees;
                     that.globalData.userIdentity = res.data.data.userIdentity;
@@ -52,7 +54,7 @@ App({
                     that.globalData.modifyPrice = res.data.data.employee.modifyPrice;
                     that.globalData.zeroPrice = res.data.data.employee.zeroPrice;
                     that.globalData.discount = res.data.data.employee.discount;
-                    that.globalData.storeId = res.data.data.storeId; 
+                    that.globalData.storeId = res.data.data.storeId || res.data.data.userid; 
                     that.householdOrshopkeper(res.data.data.userIdentity)
                   }
                 })

@@ -25,56 +25,19 @@ Page({
       success: function(res) {},
     })
   },
-  request_page:function(){
-    var that = this
-    if(app.globalData.storeInfo[0]){
-      wx.showNavigationBarLoading()
-      util.api.request({
-        url: 'store/getStore',
-        data: {
-          storeId: app.globalData.storeId,
-        },
-        method: 'POST',
-        header: {
-          'content-type': 'application/x-www-form-urlencoded'
-        },
-        success: function (res) {
-          wx.hideNavigationBarLoading();
-          res.data.birthday = util.formatTime(new Date(res.data.birthday))
-
-          var reg = /^\//;
-          if (reg.test(res.data.storephoto)) {
-            res.data.storephoto = util.api.imgUrl + res.data.storephoto
-          }   
-
-          that.setData({
-            storeInfo:res.data
-          })
-          var images = app.globalData.storeInfo[0].images
-          app.globalData.storeInfo[0] = res.data
-          app.globalData.storeInfo[0].images = images
-        }
-      })
-    }
-  },
-
- 
+  
   onLoad: function (e) {
     this.setData({
       shopkeeper: e.shopkeeper
     })
-    if (app.globalData.userIdentity == 1) {
-      this.request_page()
-    }
   },
   onShow:function(){
     var object = util.api.authorityPurchaseprice();
-    console.log(app.globalData.myInfo)
+    console.log(app.globalData.userInfo)
     console.log(app.globalData.storeInfo[0])
     this.setData(object)
     this.setData({
-      storeInfo:app.globalData.userIdentity !== 2 ?app.globalData.storeInfo[0]:[],
-      userInfo: app.globalData.myInfo,
+      userInfo: app.globalData.userInfo,
       userIdentity: app.globalData.userIdentity
     })
    

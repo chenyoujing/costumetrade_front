@@ -66,7 +66,9 @@ var api = {
                   },
                   method: 'POST',
                   success: function (res) {
-                    app.globalData.userInfo.code = loginCode.code
+                    app.globalData.userInfo.code = loginCode.code;
+                    app.globalData.userInfo.name = res.data.data.name;
+                    app.globalData.userInfo.photo = res.data.data.photo; 
                     app.globalData.openid = res.data.data.query.openid;
                     app.globalData.privilegeEmployees = res.data.data.employee.privilegeEmployees;
                     app.globalData.userIdentity = res.data.data.userIdentity;
@@ -78,7 +80,6 @@ var api = {
                     if (callback) {
                       callback();
                     }
-
                   }
                 })
               }
