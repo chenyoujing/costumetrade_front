@@ -7,7 +7,7 @@
     <navigator url="../../public/user/dictionary/dictionary" class="index_dictionary">设置</navigator>
     <navigator url="../../public/user/shareStore/shareStore" class="index_share">分享</navigator>
     <view class="my_title clearfix">
-      <navigator class="tx_nav" url="../../public/user/storeUpdate/storeUpdate">
+      <navigator class="tx_nav" url="../../public/user/user">
         <image src="{{storeInfo.storephoto||userInfo.avatarUrl||'../../../images/shop1_tx.png'}}" mode="aspectFill" class="my_tx" />
       </navigator>
       <view class="my_info clearfix">
