@@ -60,7 +60,7 @@
   <view class="clear"></view>
 </view>
 
-<scroll-view scroll-y class="order_scroll" lower-threshold="10" bindscrolltolower="{{loadMore?'onReachBottom':''}}">
+<scroll-view scroll-y class="order_scroll" lower-threshold="10" bindscrolltolower="{{loadMore?'onReachBottom':''}}" style="bottom:{{shopkeeper?'0':''}}">
   <view style="padding-top:10px;"></view>
 
   <view class="prompt_none" wx:if="{{product == 0}}">
@@ -392,4 +392,4 @@
   </view>
 </modal>
 
-<template is="navBottom" data="{{nav:'订单'}}"></template>
+<template is="navBottom" data="{{nav:'订单'}}" wx:if="{{!shopkeeper}}"></template>

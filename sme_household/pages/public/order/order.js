@@ -543,7 +543,8 @@ Page({
       paycact: app.payTypeList,
       openid:app.globalData.openid,
       ordertype: e.ordertype,
-      ordertype2: e.ordertype2 || 1
+      ordertype2: e.ordertype2 || 1,
+      shopkeeper: e.shopkeeper
     })
     console.log(app.logisticFees)
   },
