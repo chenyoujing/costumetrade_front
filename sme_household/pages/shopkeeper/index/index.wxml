@@ -22,19 +22,19 @@
       </view>
     </view>
     <view class="operation_view">
-      <navigator url="../../public/order/order?shopkeeper=2" class="operation">
+      <navigator url="../../public/order/order?shopkeeper=2&ordertype=2&ordertype2=4" class="operation">
         <image src="../../../images/Pending-approval.png" mode="aspectFit" />
         <text>待审核</text>
       </navigator>
-      <navigator url="../../public/order/order?shopkeeper=2" class="operation">
+      <navigator url="../../public/order/order?shopkeeper=2&ordertype=2&ordertype2=6" class="operation">
         <image src="../../../images/agency-fund.png" mode="aspectFit" />
         <text>待收款</text>
       </navigator>
-      <navigator url="../../public/order/order?shopkeeper=2" class="operation">
+      <navigator url="../../public/order/order?shopkeeper=2&ordertype=2&ordertype2=2" class="operation">
         <image src="../../../images/Shipment-pending-.png" mode="aspectFit" />
-        <text>待审核</text>
+        <text>待收货</text>
       </navigator>
-      <navigator url="../../public/order/order?shopkeeper=2" class="operation">
+      <navigator url="../../public/order/order?shopkeeper=2&ordertype=2&ordertype2=5" class="operation">
         <image src="../../../images/off-the-stocks.png" mode="aspectFit" />
         <text>已完成</text>
       </navigator>

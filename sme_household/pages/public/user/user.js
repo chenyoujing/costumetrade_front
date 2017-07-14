@@ -66,10 +66,11 @@ Page({
   },
   onShow:function(){
     var object = util.api.authorityPurchaseprice();
-    console.log(object)
+    console.log(app.globalData.myInfo)
+    console.log(app.globalData.storeInfo[0])
     this.setData(object)
     this.setData({
-      storeInfo: app.globalData.storeInfo[0],
+      storeInfo:app.globalData.userIdentity !== 2 ?app.globalData.storeInfo[0]:[],
       userInfo: app.globalData.myInfo,
       userIdentity: app.globalData.userIdentity
     })

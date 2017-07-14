@@ -85,9 +85,9 @@ Page({
       },
       success: function (res) {
         wx.hideNavigationBarLoading();
-        if (app.globalData.userIdentity === 2) {
+        if (app.globalData.userIdentity == 2) {
           var userInfo = app.globalData.userInfo
-          userInfo.nickName = object.name
+          userInfo.name = object.name
           userInfo.avatarUrl = object.storephoto
           var reg = /^\//;
           if (reg.test(object.storephoto)) {
@@ -147,7 +147,7 @@ Page({
       date = '2016-09-01'
     }
     this.setData({
-      storeInfo: app.globalData.storeInfo[0]||[],
+      storeInfo:app.globalData.userIdentity !== 2?app.globalData.storeInfo[0]:[],
       userInfo: app.globalData.myInfo,
       date: date,
       userIdentity: app.globalData.userIdentity,
