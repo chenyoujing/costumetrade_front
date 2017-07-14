@@ -18,7 +18,7 @@
     </view>
     <view class="store_input">
       <view class="store_input_text clearfix">移动电话：</view>
-      <input type="text" class="store_input1" placeholder="*" placeholder-class="required" value="{{storeInfo.cphone||userInfo.cphone}}" name="cphone"/>
+      <input type="number" class="store_input1" placeholder="*" placeholder-class="required" value="{{storeInfo.cphone||userInfo.cphone}}" name="cphone"/>
     </view>
     <view class="store_input clearfix">
       <view class="store_input_text">微信号：</view>

@@ -114,7 +114,7 @@ Page({
           storeInfo.address = object.address
           storeInfo.contact = object.contact
           storeInfo.phone = object.phone
-          storeInfo.birthday = util.formatTime(new Date(object.birthday))
+          storeInfo.birthday = util.toDate(new Date(object.birthday))
           storeInfo.description = object.description
           app.globalData.storeInfo[0] = storeInfo
         }
