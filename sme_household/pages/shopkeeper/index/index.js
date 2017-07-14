@@ -45,6 +45,10 @@ Page({
   },
 
   onLoad: function (options) {
+    this.setData({
+      storeInfo: app.globalData.storeInfo[0],
+      userInfo: app.globalData.myInfo,
+    })
     this.chart()
   },
 })

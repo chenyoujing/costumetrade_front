@@ -7,40 +7,40 @@
     <navigator url="../../public/user/dictionary/dictionary" class="index_dictionary">设置</navigator>
     <navigator url="../../public/user/shareStore/shareStore" class="index_share">分享</navigator>
     <view class="my_title clearfix">
-      <navigator class="tx_nav" url="../../public/user/user">
+      <navigator class="tx_nav" url="../../public/user/user?shopkeeper=2">
         <image src="{{storeInfo.storephoto||userInfo.avatarUrl||'../../../images/shop1_tx.png'}}" mode="aspectFill" class="my_tx" />
       </navigator>
       <view class="my_info clearfix">
-        <navigator url="../../public/user/storeUpdate/storeUpdate" class="my_name one_line">{{storeInfo.name||userInfo.nickName}}name</navigator>
+        <navigator url="../../public/user/storeUpdate/storeUpdate" class="my_name one_line">{{storeInfo.name||userInfo.nickName}}</navigator>
         <view class="my_info_view">
           <view class="my_fans">200</view>
-          <navigator url="../../public/user/shareStore/shareStore" class="my_share">
+          <view class="my_share">
             <image src="../../../images/QR_code.png" mode="aspectFill" bindtap="scan" />
             <view class="my_share_text">+粉</view>
-          </navigator>
+          </view>
         </view>
       </view>
     </view>
     <view class="operation_view">
-      <navigator url="../../public/order/order" class="operation">
+      <navigator url="../../public/order/order?shopkeeper=2" class="operation">
         <image src="../../../images/Pending-approval.png" mode="aspectFit" />
         <text>待审核</text>
       </navigator>
-      <navigator url="../../public/order/order" class="operation">
+      <navigator url="../../public/order/order?shopkeeper=2" class="operation">
         <image src="../../../images/agency-fund.png" mode="aspectFit" />
         <text>待收款</text>
       </navigator>
-      <navigator url="../../public/order/order" class="operation">
+      <navigator url="../../public/order/order?shopkeeper=2" class="operation">
         <image src="../../../images/Shipment-pending-.png" mode="aspectFit" />
         <text>待审核</text>
       </navigator>
-      <navigator url="../../public/order/order" class="operation">
+      <navigator url="../../public/order/order?shopkeeper=2" class="operation">
         <image src="../../../images/off-the-stocks.png" mode="aspectFit" />
         <text>已完成</text>
       </navigator>
     </view>
     <view class="operation_view">
-      <navigator url="../../household/shop/shop" class="operation">
+      <navigator url="../../household/shop/shop?shopkeeper=2" class="operation">
         <image src="../../../images/Map-collection.png" mode="aspectFit" />
         <text>收图</text>
       </navigator>
