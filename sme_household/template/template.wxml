@@ -15,22 +15,22 @@
 <!--首页下方导航栏-->
 <template name="navBottom">
   <view class="nav_bottom">
-    <navigator url="{{nav!='首页'?'../shop/shop':''}}" open-type="redirect" class="nav_bottom_view {{nav=='首页'?'nav_bottom_active':''}}">
+    <navigator url="{{nav!='首页'?'../../household/shop/shop':''}}" open-type="redirect" class="nav_bottom_view {{nav=='首页'?'nav_bottom_active':''}}">
       <image src="../../../images/home-page2.png" mode="aspectFit" wx:if="{{nav!='首页'}}" />
       <image src="../../../images/home-page.png" mode="aspectFit" wx:if="{{nav=='首页'}}" />
       <text>首页</text>
     </navigator>
-    <navigator url="{{nav!='订单'?'../order/order':''}}" open-type="redirect" class="nav_bottom_view {{nav=='订单'?'nav_bottom_active':''}}">
+    <navigator url="{{nav!='订单'?'../../public/order/order':''}}" open-type="redirect" class="nav_bottom_view {{nav=='订单'?'nav_bottom_active':''}}">
       <image src="../../../images/order-form2.png" mode="aspectFit" wx:if="{{nav!='订单'}}" />
       <image src="../../../images/order-for-goods.png" mode="aspectFit" wx:if="{{nav=='订单'}}" />
       <text>订单</text>
     </navigator>
-    <navigator url="{{nav!='信息'?'../info/info':''}}" open-type="redirect" class="nav_bottom_view {{nav=='信息'?'nav_bottom_active':''}}">
+    <navigator url="{{nav!='信息'?'../../original/info/info':''}}" open-type="redirect" class="nav_bottom_view {{nav=='信息'?'nav_bottom_active':''}}">
       <image src="../../../images/info.png" mode="aspectFit" wx:if="{{nav!='信息'}}" />
       <image src="../../../images/info2.png" mode="aspectFit" wx:if="{{nav=='信息'}}" />
       <text>信息</text>
     </navigator>
-    <navigator url="{{nav!='我的'?'../user/user':''}}" open-type="redirect" class="nav_bottom_view {{nav=='我的'?'nav_bottom_active':''}}">
+    <navigator url="{{nav!='我的'?'../../public/user/user':''}}" open-type="redirect" class="nav_bottom_view {{nav=='我的'?'nav_bottom_active':''}}">
       <image src="../../../images/my.png" mode="aspectFit" wx:if="{{nav!='我的'}}" />
       <image src="../../../images/myself.png" mode="aspectFit" wx:if="{{nav=='我的'}}" />
       <text>我的</text>
@@ -63,15 +63,20 @@
 </template>
 
 <!--采购-->
-<template name="searchTitle">
-  <view class="template_search_title">
-    <view class="template_search_title_view">
-      <input type="text" />
-      <image src="../../../../images/search.png" mode="aspectFit"/>
-    </view>
-    <navigator open-type="navigateBack" class="template_search_title_back">
-      <image src="../../../../images/back-away.png" mode="aspectFit" class="title_image_back" />
-    </navigator>
+<template name="notice">
+  <view class="template_notice">
+    <view class="template_notice_text">点艺公告</view>
+    <view class="template_notice_hot">热搜：</view>
+    <swiper vertical autoplay circular class="template_notice_nav_view">
+      <swiper-item>
+        <navigator url="url" class="template_notice_nav one_line">逛街买衣服别说这几句话，容易被坑！逛街买衣服别说这几句话，容易被坑！</navigator>
+        <navigator url="url" class="template_notice_nav one_line">喜欢穿短裤的女生别学这4种穿法！</navigator>
+      </swiper-item>
+      <swiper-item>
+        <navigator url="url" class="template_notice_nav one_line">逛街买衣服别说这几句话，容易被坑2！</navigator>
+        <navigator url="url" class="template_notice_nav one_line">喜欢穿短裤的女生别学这4种穿法2！</navigator>
+      </swiper-item>
+    </swiper>
   </view>
 </template>
 
