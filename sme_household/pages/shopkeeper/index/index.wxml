@@ -72,8 +72,8 @@
     </view>
   </navigator>
 
-  <!-- <image src="../../../images/index_news1.png" mode="widthFix" class="index_news"></image>
-  <image src="../../../images/index_news2.png" mode="widthFix" class="index_news"></image> -->
+  <image src="../../../images/index_news1.png" mode="widthFix" class="index_news"></image>
+  <image src="../../../images/index_news2.png" mode="widthFix" class="index_news"></image>  
 </view>
 
 <template is="navBottom2" data="{{nav:'首页'}}"></template>

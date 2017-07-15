@@ -72,7 +72,7 @@ Page({
       boolean = reg.phone(e.detail.value);
     } else if (name == "wechat"){
       boolean = reg.iSChinese(e.detail.value);
-      if (e.detail.value.length < 6){
+      if (e.detail.value.length < 6 && e.detail.value.length > 20){
         boolean = false
       }
     } 
@@ -94,7 +94,7 @@ Page({
         this.setData({
           "regobject.cphone": false
         })
-      } else if (!(20>=target.wechat.length>=6 && reg.iSChinese(target.wechat))) {
+      } else if (!(target.wechat.length >= 6 && target.wechat.length <= 20 && reg.iSChinese(target.wechat))) {
         this.setData({
           "regobject.wechat": false
         })
@@ -103,8 +103,7 @@ Page({
           "regobject.address": false
         })
       } else {
-        // this.update_storeInfo(e)
-        console.log(1)
+        this.update_storeInfo(e)
       }
     }else{
       this.update_storeInfo(e)
