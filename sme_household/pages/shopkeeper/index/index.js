@@ -3,9 +3,8 @@ var wxCharts = require('../../../utils/wxcharts.js')
 var app = getApp()
 var columnChart = null;
 Page({
-
   data: {
-  
+    userInfo:""
   },
   chart: function () {
     var that = this
@@ -46,16 +45,15 @@ Page({
 
   onLoad: function (options) {
     app.firstLogin = true;
+    console.log(app.globalData.userInfo)
     this.setData({
-      storeInfo: app.globalData.storeInfo[0],
-      userInfo: app.globalData.myInfo,
+      userInfo: app.globalData.userInfo,
     })
     this.chart()
   },
   onReady: function(){
     this.setData({
-      storeInfo: app.globalData.storeInfo[0],
-      userInfo: app.globalData.myInfo,
+      userInfo: app.globalData.userInfo
     })
   }
 })
