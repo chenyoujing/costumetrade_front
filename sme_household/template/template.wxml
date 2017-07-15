@@ -86,10 +86,18 @@
   <view class="template_reg_text">{{text}}</view>
 </template>
 
+<!-- 左上角浮动的返回 -->
 <template name="backNav">
   <navigator class="back_nav" open-type="navigateBack">
     <image src="{{layer==3?'../../../':'../../../../'}}images/back-away.png" mode="aspectFit" class="back" />
   </navigator>
+</template>
+
+<!-- 无数据时提示 -->
+<template name="promptNone">
+  <view class="prompt_none" wx:if="{{product == 0}}">
+    <text>{{text}}</text>
+  </view>
 </template>
 
 <!----------报表---------->

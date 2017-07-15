@@ -18,20 +18,17 @@
   </view>
 
 
-  <view class="sort clearfix">
+  <view class="sort">
     <view class="sort_text {{state=='timeUpOp' ? 'screen_active' : ''}}" bindtap="changeSortData" data-sort="timeUpOp">
-      上架排序
-      <image src="../../../../images/sort.png" mode="aspectFit" class="image_down {{Op=='asc' ? 'sort_up' : ''}}" />
+      推荐
     </view>
     <view class="sort_text {{state=='saleOp' ? 'screen_active' : ''}}" bindtap="changeSortData" data-sort="saleOp" >
-      销量排序
-      <image src="../../../../images/sort.png" mode="aspectFit" class="image_down {{Op=='asc' ? 'sort_up' : ''}}" />
+      上新
     </view>
     <view class="sort_text {{state=='priceOp' ? 'screen_active' : ''}}" bindtap="changeSortData" data-sort="priceOp" >
-      价格排序
-      <image src="../../../../images/sort.png" mode="aspectFit" class="image_down {{Op=='asc' ? 'sort_up' : ''}}" />
+      最热
     </view>
-    <view class="sort_text" style="width:10%;">
+    <view class="more">
       <image src="../../../../images/{{rank?'transverse2':'pane2'}}.png" mode="aspectFit" class="rank_image" bindtap="rank"/>
     </view>
   </view>

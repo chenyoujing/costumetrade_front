@@ -73,35 +73,59 @@
 }
 .shop_content_title{
   position: relative;
+  display: flex;
 }
 .shop_content_tx{
-  position: absolute;
-  top: 0;
-  left: 20px;
-  bottom: 0;
-  margin: auto;
+  padding-left: 10px;
+  width: 20%;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.shop_content_tx image{
   width: 40px;
   height: 40px;
   border-radius: 20px;
 }
 .shop_content_info{
-  float: left;
   width: 60%;
-  margin-left: 70px;
   min-height: 40px;
 }
 .shop_content_name{
   font-size: 16px;
   border-bottom: 1px solid #52CAC1;
-  padding-left: 20px;
   line-height: 30px;
   height: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.shop_content_name_name{
+  max-width: 120px;
+  min-width: 75px;
+  font-size: 12px;
+}
+.shop_content_name_name::before{
+  content: "发图人:"
 }
 .shop_content_address{
   position: relative;
   font-size: 10px;
   line-height: 12px;
   padding: 5px 0 5px 20px;
+}
+.shop_content_time{
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.shop_content_time text{
+  flex: 1;
+  display: flex;
+  align-items: center;
 }
 .shop_address_image{
   position: absolute;

@@ -1,10 +1,6 @@
 
 .shop_scroll{
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 46px;
+  padding-bottom: 46px;
 }
 
 .index_title{

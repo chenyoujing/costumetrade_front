@@ -39,7 +39,7 @@
 }
 .title_view{
   position:relative;
-  padding: 60px 0 4px;
+  padding: 100px 0 4px;
 }
 .shop_tx{
   float: left;
@@ -86,20 +86,23 @@
 
 
 .sort{
-  position: absolute;
-  left: 0;
-  right: 0;
+  display: flex;
 }
 .sort_text,.more{
-  text-align: center;
   background-color: #EAEAEA;
   color: #000000;
   float: left;
-  font-size: 14px;
-  line-height: 30px;
+  font-size: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 34px;
 }
 .sort_text{
-  width: 30%;
+  flex: 3;
+}
+.more{
+  flex: 1;
 }
 .sort_text .image_down{
   width: 12px;
@@ -112,18 +115,16 @@
   transform:rotate(180deg);
 }
 .rank_image{
-  width: 100%;
+  width: 16px;
   height: 16px;
-  padding: 7px 0;
-  float: right;
-  top: 0;
+  padding: 7px;
 }
 
 
 
 .mall_scroll{
   position: absolute;
-  top: 126px;
+  top: 170px;
   bottom: 0;
 }
 .mall_container{

@@ -87,3 +87,10 @@
   font-size: 14px;
   line-height: 20px;
 }
+
+.prompt_none{
+  padding: 0;
+}
+.prompt_none text{
+  padding: 5px 10px;
+}

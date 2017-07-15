@@ -1,3 +1,5 @@
+  <import src="../../../../template/template.wxml"/>
+
   <view class="title clearfix">
     <image bindtap="packPageFilterCode" mode="aspectFit" src="../../../../images/search.png" class="image_search" />
     <icon type="clear" size="16" class="image_search" wx:if="{{enterValue !==''}}" bindtap="clear"/>
@@ -28,18 +30,21 @@
      </block>
   </scroll-view>-->
   <view class="screen_title">类别</view>
+  <template is="promptNone" data="{{product:screen_content2,text:'类别没有选项'}}"></template>
   <scroll-view scroll-y class="screen_container clearfix">
     <block wx:for="{{screen_content2}}">
       <view class="screen_view {{item.screen_checked?'screen_checked':''}}" data-index="{{index}}" data-type="cate" data-name="{{item.catename}}" bindtap="multipleSelect">{{item.catename}}</view>
     </block>
   </scroll-view>
   <view class="screen_title">品牌</view>
+  <template is="promptNone" data="{{product:screen_content1,text:'品牌没有选项'}}"></template>
   <scroll-view scroll-y class="screen_container clearfix">
     <block wx:for="{{screen_content1}}">
       <view class="screen_view {{item.screen_checked?'screen_checked':''}}" data-type="brand" data-index="{{index}}" data-name="{{item.brandname}}" bindtap="multipleSelect"> {{item.brandname}}</view>
      </block>
   </scroll-view>
-   <view class="screen_title" wx:if="{{type == 'report'}}">颜色</view>
+  <view class="screen_title" wx:if="{{type == 'report'}}">颜色</view>
+  <template is="promptNone" data="{{product:cplorList,text:'颜色没有选项'}}"></template>
   <scroll-view scroll-y class="screen_container clearfix" wx:if="{{type  == 'report'}}">
     <block wx:for="{{cplorList}}">
       <view class="screen_view {{productColorArray == item.colorname?'screen_checked':''}}" data-type="productColorArray" data-name="{{item.colorname}}" bindtap="radioSelect">
@@ -48,6 +53,7 @@
      </block>
   </scroll-view>
   <view class="screen_title" wx:if="{{type == 'report'}}">尺码</view>
+  <template is="promptNone" data="{{product:sizeList,text:'尺码没有选项'}}"></template>
   <scroll-view scroll-y class="screen_container clearfix" wx:if="{{type  == 'report'}}">
     <block wx:for="{{sizeList}}">
       <view class="screen_view {{productSizeArray == item.sizename?'screen_checked':''}}" data-type="productSizeArray" data-name="{{item.sizename}}" bindtap="radioSelect">
@@ -56,6 +62,7 @@
      </block>
   </scroll-view>
   <view class="screen_title" wx:if="{{type == 'report'}}">创建人</view>
+  <template is="promptNone" data="{{product:employeeList,text:'创建人没有选项'}}"></template>
   <scroll-view scroll-y class="screen_container clearfix" wx:if="{{type  == 'report'}}">
     <block wx:for="{{employeeList}}">
       <view class="screen_view {{operatorArray == item.id?'screen_checked':''}}" data-type="operatorArray" data-name="{{item.id}}" bindtap="radioSelect">
@@ -64,6 +71,7 @@
      </block>
   </scroll-view>
   <view class="screen_title">季节</view>
+  <template is="promptNone" data="{{product:screen_content3,text:'季节没有选项'}}"></template>
   <scroll-view scroll-y class="screen_container clearfix">
     <block wx:for="{{screen_content3}}">
       <view class="screen_view {{season == item.value?'screen_checked':''}}" data-name="{{item.value}}" data-type="season" bindtap="radioSelect">
@@ -72,6 +80,7 @@
      </block>
   </scroll-view>
   <view class="screen_title" wx:if="{{type == 'good'}}">状态</view>
+  <template is="promptNone" data="{{product:screen_content4,text:'状态没有选项'}}"></template>
   <scroll-view scroll-y class="screen_container clearfix" wx:if="{{type  == 'good'}}">
     <block wx:for="{{screen_content4}}">
       <view class="screen_view {{status == item.name?'screen_checked':''}}" data-type="status" data-name="{{item.name}}" bindtap="radioSelect">

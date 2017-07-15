@@ -1,6 +1,6 @@
 <import src="../../../template/template.wxml"/>
 
-<scroll-view scroll-y class="shop_scroll">
+<view class="shop_scroll">
   
   <view class="index_title">
     <image src="../../../images/index_title_bg.png" mode="aspectFill" class="index_title_bg" />
@@ -75,6 +75,6 @@
   <image src="../../../images/index_news1.png" mode="widthFix" class="index_news"></image>
   <image src="../../../images/index_news2.png" mode="widthFix" class="index_news"></image>
 
-</scroll-view>
+</view>
 
 <template is="navBottom2" data="{{nav:'首页'}}"></template>

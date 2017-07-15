@@ -8,11 +8,7 @@
 }
 
 .report_scroll{
-  position: absolute;
-  top: 40px;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  margin-top: 40px;
 }
 .time_select{ 
   display: flex;

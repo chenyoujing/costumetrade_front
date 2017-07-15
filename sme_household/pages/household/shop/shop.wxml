@@ -46,15 +46,23 @@
   <view class="shop_content" wx:for="{{otherStord}}">
    <view url="mall/mall?id={{item.id}}&storephoto={{item.storephoto}}" class="shop_content_view">
       <navigator url="storeDetails/storeDetails?id={{item.id}}" class="shop_content_title">
-        <image src="{{item.storephoto||'../../../images/image_none.png'}}" mode="aspectFill" class="shop_content_tx" />
+        <view class="shop_content_tx">
+          <image src="{{item.storephoto||'../../../images/image_none.png'}}" mode="aspectFill" />
+        </view>
         <view class="shop_content_info">
-          <view class="shop_content_name">{{item.name}}</view>
-          <view class="shop_content_address">
+          <view class="shop_content_name">
+            <view class="shop_content_name_title one_line">{{item.name}}</view>
+            <view class="shop_content_name_name one_line">{{item.name}}</view>
+          </view>
+          <view class="shop_content_address two_line">
             <image src="../../../images/site.png" mode="aspectFit" class="shop_address_image" />
             地址：{{item.address}}
           </view>
         </view>
-        <view class="clear"></view>
+        <view class="shop_content_time">
+          <text></text>
+          <text>2017-07-15</text>
+        </view>
       </navigator>
       <navigator url="mall/mall?id={{item.id}}&storephoto={{item.storephoto}}" class="shop_goods clearfix">
         <view class="shop_picture">

@@ -44,6 +44,7 @@
   left: 0;
   right: 0;
   display: flex;
+  background-color: #ffffff;
 }
 .nav_bottom_view{
   flex: 1;
