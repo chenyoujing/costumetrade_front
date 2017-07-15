@@ -28,7 +28,7 @@ var reg = {
   //正则验证输入框不能为空
   iSnull: function (name) {
      var boolean = true;
-    if (name == '' || name.length >= 100) {
+    if (name == '' || name.length >= 20) {
        wx.showToast({
          title: "出错了",
         //  icon: 'tips',

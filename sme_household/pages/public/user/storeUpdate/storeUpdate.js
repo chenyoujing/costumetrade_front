@@ -83,27 +83,31 @@ Page({
   beforeSubmit:function(e){
     var target = e.detail.value
     //处理name 空size 空color
-    if (!target.name) {
-      var regobject = "regobject.name";
-      this.setData({
-        "regobject.name": false
-      })
-    } else if (!target.cphone) {
-      this.setData({
-        "regobject.cphone": false
-      })
-    } else if (!target.wechat) {
-      this.setData({
-        "regobject.wechat": false
-      })
-    } else if (!target.address) {
-      this.setData({
-        "regobject.address": false
-      })
-    } 
-    else {
+    if (app.globalData.userIdentity !== 2){
+      if (!target.name) {
+        var regobject = "regobject.name";
+        this.setData({
+          "regobject.name": false
+        })
+      } else if (!target.cphone) {
+        this.setData({
+          "regobject.cphone": false
+        })
+      } else if (!target.wechat) {
+        this.setData({
+          "regobject.wechat": false
+        })
+      } else if (!target.address) {
+        this.setData({
+          "regobject.address": false
+        })
+      } else {
+        this.update_storeInfo(e)
+      }
+    }else{
       this.update_storeInfo(e)
     }
+    
   },
   // 提交修改方法
   update_storeInfo: function (e) {
@@ -134,7 +138,7 @@ Page({
       success: function (res) {
         wx.hideNavigationBarLoading();
         app.globalData.userInfo.name = object.name || app.globalData.userInfo.name;
-        app.globalData.userInfo.photo = object.storephoto;
+        app.globalData.userInfo.photo = object.storephoto || app.globalData.userInfo.photo;
        
         // if (app.globalData.userIdentity == 2) {
         //   var userInfo = app.globalData.userInfo

@@ -18,7 +18,8 @@ Page({
     requeseName: null,
     code: null,
     getFilterData: [],
-    prompt:0
+    prompt:0,
+    state:"timeUpOp"
   },
   // 跳转搜索页面
   bindfocus:function(){

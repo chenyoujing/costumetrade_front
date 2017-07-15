@@ -50,6 +50,8 @@ Page({
       }
     })
   },
+  // 店主请求图片列表
+
   onShow:function(){
     
     // wx.connectSocket({

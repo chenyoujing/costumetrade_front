@@ -69,7 +69,6 @@
         <input type="digit" bindinput="blurInput" data-name="tagprice" class="upload_input1" bindblur="reg" name="tagprice" value="{{GoodsInfoData.tagprice}}" placeholder="*" placeholder-class="required" />
       </view>
       <template is="reg" wx:if="{{regobject.tagprice == false}}" data="{{text: '吊牌价不能为空'}}"/>
-      <!--<view class="">请输入吊牌价</view>-->
       <view class="upload_input clearfix">
         <view class="upload_input_text">进货价:</view>
         <input type = "{{privilegeEmployees?'digit':'password'}}" disabled="{{!privilegeEmployees}}"   bindinput="blurInput" data-name="purchaseprice"  class="upload_input1"  name="purchaseprice" value="{{GoodsInfoData.purchaseprice}}" />

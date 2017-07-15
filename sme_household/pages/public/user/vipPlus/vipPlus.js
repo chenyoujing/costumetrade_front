@@ -99,6 +99,7 @@ Page({
             mask: true,
             duration: 2000
           })
+          that.vipPlusSuccess();
         } else {
           that.onBridgeReady("wx0f02d5eacaf954e7", res.data.timeStamp, res.data.nonceStr, res.data.packages,res.data.signType, res.data.paySign )
         }

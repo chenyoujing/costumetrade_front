@@ -45,15 +45,15 @@
   <template is="promptNone" data="{{product:otherStord,text:'你还没有收到过图片'}}"></template>
 
   <view class="shop_content" wx:for="{{otherStord}}">
-   <view url="mall/mall?id={{item.id}}&storephoto={{item.storephoto}}" class="shop_content_view">
-      <navigator url="storeDetails/storeDetails?id={{item.id}}" class="shop_content_title">
+   <view url="mall/mall?id={{item.storeid}}&storephoto={{item.photo}}" class="shop_content_view">
+      <navigator url="storeDetails/storeDetails?id={{item.storeid}}" class="shop_content_title">
         <view class="shop_content_tx">
-          <image src="{{item.storephoto||'../../../images/image_none.png'}}" mode="aspectFill" />
+          <image src="{{item.photo||'../../../images/image_none.png'}}" mode="aspectFill" />
         </view>
         <view class="shop_content_info">
           <view class="shop_content_name">
-            <view class="shop_content_name_title one_line">{{item.name}}</view>
-            <view class="shop_content_name_name one_line">{{item.name}}</view>
+            <view class="shop_content_name_title one_line">{{item.title}}</view>
+            <view class="shop_content_name_name one_line">{{item.promoterName}}</view>
           </view>
           <view class="shop_content_address two_line">
             <image src="../../../images/site.png" mode="aspectFit" class="shop_address_image" />
@@ -65,7 +65,7 @@
           <text>2017-07-15</text>
         </view>
       </navigator>
-      <navigator url="mall/mall?id={{item.id}}&storephoto={{item.storephoto}}" class="shop_goods clearfix">
+      <navigator url="mall/mall?id={{item.storeid}}&storephoto={{item.photo}}" class="shop_goods clearfix">
         <view class="shop_picture">
           <image src="{{item.images[0]?url+item.images[0]:'../../../images/shop1_1.png'}}" mode="aspectFill" style="margin-left:0;" />
         </view>
