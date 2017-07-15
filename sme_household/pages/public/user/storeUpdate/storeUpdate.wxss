@@ -1,4 +1,3 @@
-/*头部*/
 @import "../../../../css/title.wxss";
 
 .storeUpdate_container{
@@ -94,4 +93,6 @@
   color: #ffffff;
 }
 
-.template_reg_text
+.template_reg_text{
+  margin: 0;
+}
