@@ -20,7 +20,7 @@
   z-index: 99;
 }
 .nav_view{
-  width: 33.33333333%;
+  width: 50%;
   float: left;
   text-align: center;
   z-index: 1;

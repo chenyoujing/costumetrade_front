@@ -21,10 +21,6 @@
       <image src="../../../images/{{infotype==1?'Contacts2':'Contacts'}}.png" mode="aspectFit" data-infotype="1" />
       <view class="nav_view_text" data-infotype="1">通讯录</view>
     </view>
-    <view class="nav_view">
-      <image src="../../../images/{{infotype==2?'bell2':'bell'}}.png" mode="aspectFit" data-infotype="2" />
-      <view class="nav_view_text" data-infotype="2">公告</view>
-    </view>
   </view>
 
 
