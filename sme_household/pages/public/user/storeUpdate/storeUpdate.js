@@ -108,7 +108,7 @@ Page({
   // 提交修改方法
   update_storeInfo: function (e) {
     var that = this;
-    e.detail.value.birthday = Date.parse(new Date(e.detail.value.birthday))
+    // e.detail.value.birthday = Date.parse(new Date(e.detail.value.birthday))
     var object = e.detail.value
     switch (app.globalData.userIdentity) {
       case 1:
@@ -134,7 +134,7 @@ Page({
       success: function (res) {
         wx.hideNavigationBarLoading();
         app.globalData.userInfo.name = object.name || app.globalData.userInfo.name;
-        app.globalData.userInfo.storephoto = object.storephoto;
+        app.globalData.userInfo.photo = object.storephoto;
        
         // if (app.globalData.userIdentity == 2) {
         //   var userInfo = app.globalData.userInfo

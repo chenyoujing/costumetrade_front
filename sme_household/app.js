@@ -56,6 +56,7 @@ App({
                     that.globalData.discount = res.data.data.employee.discount;
                     that.globalData.storeId = res.data.data.storeId; 
                     that.globalData.userid = res.data.data.userid;
+                    console.log(res.data.data.userIdentity)
                     that.householdOrshopkeper(res.data.data.userIdentity)
                   }
                 })
@@ -68,17 +69,17 @@ App({
   },
   // 判断权限显示页面
   householdOrshopkeper: function (userIdentity) {
-    // console.log(this.firstLogin)
-    // var householdurl = this.firstLogin ?'../../household/shop/shop':"pages/household/shop/shop";
-    // console.log(householdurl)
-    // var shopkeper = this.firstLogin ? './' : "pages/shopkeeper/index/index";
-    // console.log(shopkeper)
-    // var url = userIdentity == 2 ? householdurl : shopkeper;
-    // this.firstLogin = undefined;
-    // wx.redirectTo({
-    //   url: url,
-    //   success: function (res) { }
-    // })
+    console.log(this.firstLogin)
+    var householdurl = this.firstLogin ?'../../household/shop/shop':"pages/household/shop/shop";
+    console.log(householdurl)
+    var shopkeper = this.firstLogin ? './' : "pages/shopkeeper/index/index";
+    console.log(shopkeper)
+    var url = userIdentity == 2 ? householdurl : shopkeper;
+    this.firstLogin = undefined;
+    wx.redirectTo({
+      url: url,
+      success: function (res) { }
+    })
   },
   getUserInfo: function (cb) {
     console.log(cb)

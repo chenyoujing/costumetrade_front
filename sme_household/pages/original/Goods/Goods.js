@@ -23,7 +23,7 @@ Page({
       value: 'timeUpOp',
       op: 'desc'
     },
-    code: '',
+    code: null,
     getFilterData: [],
     condition: "100%",
     scroll_height: "",
@@ -40,7 +40,7 @@ Page({
     update_button: '0',
     share_button: '0',
     ids: [],
-    name: '',
+    name: null,
     storeId: app.globalData.storeId,
     aa:false,
     type:1,
@@ -450,8 +450,8 @@ Page({
         pageNum: 1,
         product: [],
         requestSwitch: true,
-        code: app.searchValue ? app.searchValue : '',
-        name: app.searchValue ? app.searchValue : '',
+        code: app.searchValue ? app.searchValue : null,
+        name: app.searchValue ? app.searchValue : null,
         getFilterData: app.getFilterData ? app.getFilterData : undefined
       })
       this.page_request();

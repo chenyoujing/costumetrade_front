@@ -1,4 +1,5 @@
 <!--头部-->
+<import src="../../../../template/template.wxml"/>
 <view class="title clearfix">
   <navigator open-type="navigateBack">
     <image src="../../../../images/back-away.png" mode="aspectFit" class="title_image_back" />
@@ -6,11 +7,11 @@
   <view class="title_text">{{title}}</view>
 </view>
 
-<form bindsubmit="update_storeInfo">
+<form bindsubmit="beforeSubmit">
 <scroll-view scroll-y class="storeUpdate_container">
     <image src="../../../../images/mall_bg.png" mode="aspectFill" class="store_bg" />
   <view class="store_content">
-    <image src="{{tx||storeInfo.photo||userInfo.photo||'../../../../images/image_none.png'}}" mode="aspectFill" class="store_image" bindtap="tx" />
+    <image src="{{tx||storeInfo.storephoto||userInfo.photo||'../../../../images/image_none.png'}}" mode="aspectFill" class="store_image" bindtap="tx" />
     <input hidden value="{{storephoto}}" name="storephoto" />
     <view class="store_input">
       <view class="store_input_text clearfix">{{userIdentity==1&3?'店铺名称：':'真实名称：'}}</view>

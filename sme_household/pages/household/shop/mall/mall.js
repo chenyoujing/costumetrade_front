@@ -15,8 +15,8 @@ Page({
       op: 'desc'
     },
     name: "店铺详情",
-    requeseName:'',
-    code:'',
+    requeseName: null,
+    code: null,
     getFilterData: [],
     prompt:0
   },
@@ -207,8 +207,8 @@ Page({
         pageNum: 1,
         product: [],
         requestSwitch: true,
-        code: app.searchValue ? app.searchValue : '',
-        requeseName: app.searchValue ? app.searchValue : '',
+        code: app.searchValue ? app.searchValue : null,
+        requeseName: app.searchValue ? app.searchValue : null,
         getFilterData: app.getFilterData ? app.getFilterData : undefined
       })
       this.page_request();
