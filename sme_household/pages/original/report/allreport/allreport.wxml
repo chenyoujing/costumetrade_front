@@ -6,7 +6,7 @@
   <view class="title_text">{{title}}</view>
 </view>
 
-<scroll-view scroll-y="true" class="report_scroll"  lower-threshold="10" bindscrolltolower="{{loadMore?'onReachBottom':''}}" >
+<view class="report_scroll"  lower-threshold="10" bindscrolltolower="{{loadMore?'onReachBottom':''}}" >
   <view class="time_select" wx:if="{{timebool == 1}}">
     <view class="select_view {{selected==0?'selected':''}}" bindtap="select" data-index="0" data-number="0">今日</view>
     <view class="select_view {{selected==1?'selected':''}}" bindtap="select" data-index="1" data-number="7">7日</view>
@@ -169,6 +169,6 @@
   </view>
   <view class="clear"></view>
 </view>
-</scroll-view>
+</view>
 
 

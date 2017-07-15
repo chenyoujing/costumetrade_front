@@ -334,6 +334,7 @@ picker{
   border-radius: 3px;
   vertical-align: middle;
   display:inline-block;
+  max-width:50%;
 }
 /*返回按钮*/
 .back_nav{
