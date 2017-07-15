@@ -137,13 +137,19 @@ Page({
   },
   // 创建报表
   chart: function (data1, canvasId) {
+    var that = this
+    wx.getSystemInfo({
+      success: function (res) {
+        that.width = res.windowWidth
+      }
+    })
     pieChart = new wxCharts({
       animation: true,
       canvasId: canvasId,
       type: 'pie',
       legend: true,
       series: data1,
-      width: 375,
+      width: that.width,
       height: 300,
       dataLabel: true,
       extra:{

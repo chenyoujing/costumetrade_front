@@ -98,6 +98,11 @@ Page({
   // 创建报表
   chart: function (data1,categories){
     var that = this;
+    wx.getSystemInfo({
+      success: function (res) {
+        that.width = res.windowWidth
+      }
+    })
     lineChart = new wxCharts({
       canvasId: 'columnCanvas',
       type: 'line',
@@ -117,7 +122,7 @@ Page({
         title: that.data.reportTitle,
         min: 0
       },
-      width: 375,
+      width: that.width,
       height: 200,
       dataLabel: true,
       dataPointShape: true,
