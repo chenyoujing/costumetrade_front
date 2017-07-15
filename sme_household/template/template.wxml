@@ -5,10 +5,16 @@
   <view class="template_notice">
     <view class="template_notice_text">点艺公告</view>
     <view class="template_notice_hot">热搜：</view>
-    <view class="template_notice_nav_view">
-      <navigator url="url" class="template_notice_nav">逛街买衣服别说这几句话，容易被坑！</navigator>
-      <navigator url="url" class="template_notice_nav">喜欢穿短裤的女生别学这4种穿法！</navigator>
-    </view>
+    <swiper vertical autoplay circular class="template_notice_nav_view">
+      <swiper-item>
+        <navigator url="url" class="template_notice_nav one_line">逛街买衣服别说这几句话，容易被坑！逛街买衣服别说这几句话，容易被坑！</navigator>
+        <navigator url="url" class="template_notice_nav one_line">喜欢穿短裤的女生别学这4种穿法！</navigator>
+      </swiper-item>
+      <swiper-item>
+        <navigator url="url" class="template_notice_nav one_line">逛街买衣服别说这几句话，容易被坑2！</navigator>
+        <navigator url="url" class="template_notice_nav one_line">喜欢穿短裤的女生别学这4种穿法2！</navigator>
+      </swiper-item>
+    </swiper>
   </view>
 </template>
 
@@ -63,20 +69,15 @@
 </template>
 
 <!--采购-->
-<template name="notice">
-  <view class="template_notice">
-    <view class="template_notice_text">点艺公告</view>
-    <view class="template_notice_hot">热搜：</view>
-    <swiper vertical autoplay circular class="template_notice_nav_view">
-      <swiper-item>
-        <navigator url="url" class="template_notice_nav one_line">逛街买衣服别说这几句话，容易被坑！逛街买衣服别说这几句话，容易被坑！</navigator>
-        <navigator url="url" class="template_notice_nav one_line">喜欢穿短裤的女生别学这4种穿法！</navigator>
-      </swiper-item>
-      <swiper-item>
-        <navigator url="url" class="template_notice_nav one_line">逛街买衣服别说这几句话，容易被坑2！</navigator>
-        <navigator url="url" class="template_notice_nav one_line">喜欢穿短裤的女生别学这4种穿法2！</navigator>
-      </swiper-item>
-    </swiper>
+<template name="searchTitle">
+  <view class="template_search_title">
+    <view class="template_search_title_view">
+      <input type="text" placeholder="{{text}}" />
+      <image src="../../../../images/search.png" mode="aspectFit"/>
+    </view>
+    <navigator open-type="navigateBack" class="template_search_title_back" wx:if="{{back}}">
+      <image src="../../../../images/back-away.png" mode="aspectFit" class="title_image_back" />
+    </navigator>
   </view>
 </template>
 
@@ -85,6 +86,11 @@
   <view class="template_reg_text">{{text}}</view>
 </template>
 
+<template name="backNav">
+  <navigator class="back_nav" open-type="navigateBack">
+    <image src="{{layer==3?'../../../':'../../../../'}}images/back-away.png" mode="aspectFit" class="back" />
+  </navigator>
+</template>
 
 <!----------报表---------->
 

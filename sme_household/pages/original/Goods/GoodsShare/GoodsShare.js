@@ -83,6 +83,9 @@ Page({
       path: '/pages/index/index?ids=' + ids + '&storeId=' + storeId + "&title=" + title + '&name=' + this.data.title + '&checkAllTag=' + this.data.checkAllTag,
       success: function (res) {
         that.confirmShareProducts()
+        wx.navigateBack({
+          delta: 1,
+        })
         console.log('/pages/index/index?ids=' + ids + '&storeId=' + storeId + "&title=" + title + '&name=' + that.data.title + '&checkAllTag=' + that.data.checkAllTag)
       },
       fail: function (res) {

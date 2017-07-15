@@ -82,6 +82,7 @@
   border-radius: 8px;
   height: 100%;
   flex: 1;
+  font-size: 16px;
 }
 .template_search_title_view image{
   width: 16px;
@@ -342,7 +343,7 @@ picker{
   left: 5px;
   background-color: rgba(0, 0, 0, 0.3);
   border-radius: 15px;
-  z-index: 1;
+  z-index: 999;
 }
 .back{
   width: 16px;
