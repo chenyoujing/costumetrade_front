@@ -6,7 +6,7 @@
   <view class="title_text">{{title}}</view>
 </view>
 
-<view class="report_scroll"  lower-threshold="10" bindscrolltolower="{{loadMore?'onReachBottom':''}}" >
+<scroll-view scroll-y="true" class="report_scroll"  lower-threshold="10" bindscrolltolower="{{loadMore?'onReachBottom':''}}" >
   <view class="time_select" wx:if="{{timebool == 1}}">
     <view class="select_view {{selected==0?'selected':''}}" bindtap="select" data-index="0" data-number="0">今日</view>
     <view class="select_view {{selected==1?'selected':''}}" bindtap="select" data-index="1" data-number="7">7日</view>
@@ -81,7 +81,7 @@
 
   <!--采购入库-->
   <view wx:for="{{product}}" wx:if="{{changeType == 1}}" class="order_container_view">
-    <navigator url="../../../public/order/orderDetailsorderDetails/orderDetails?ordertype={{ordertype}}&payorderno={{item.payorderno}}&ordertype2=1">
+    <navigator url="orderDetails/orderDetails?ordertype={{ordertype}}&payorderno={{item.payorderno}}&ordertype2=1">
     <view class="order_container_title clearfix" >
       <view class="order_container_name">供应商：{{item.seller}}</view>
       <view class="order_container_Bill" wx:if="{{item.ordertype==1}}">商城订单</view>
@@ -104,7 +104,7 @@
         <view class="order_container_text" style="margin-top:5px;">经手人：{{item.operator}}</view>
       </view>
       <view class="clear"></view>
-      <navigator url="../../../public/order/payOrder/payOrder?operate=2&orderno={{item.payorderno}}&buyerid={{item.buyerstoreid}}&sellerid={{item.sellerstoreid}}&pay={{item.debetamt}}"  wx:if="{{item.orderstatus == 3}}">
+      <navigator url="payOrder/payOrder?operate=2&orderno={{item.payorderno}}&buyerid={{item.buyerstoreid}}&sellerid={{item.sellerstoreid}}&pay={{item.debetamt}}"  wx:if="{{item.orderstatus == 3}}">
         <view class="order_container_button btn_1">付款</view>      
       </navigator>
     <view class="clear"></view>
@@ -112,13 +112,13 @@
 
  <!--销售出库-->
   <view wx:for="{{product}}" wx:if="{{changeType == 2}}"  class="order_container_view">
-   <navigator url="../../../public/order/orderDetails/orderDetails?ordertype={{ordertype}}&payorderno={{item.payorderno}}& ordertype2=5">
+   <navigator url="orderDetails/orderDetails?ordertype={{ordertype}}&payorderno={{item.payorderno}}& ordertype2=5">
     <view class="order_container_title" >
       <view class="order_container_name" wx:if="{{item.buyer}}">客户：{{item.buyer}}</view>
        <view class="order_container_name" wx:if="{{!item.buyer}}">客户：游客</view>
       <view class="order_container_Bill" wx:if="{{item.ordertype==1}}">商城订单</view>
        <view class="order_container_Bill" wx:if="{{item.ordertype==2}}">线下单据</view>
-      <image src="../../../../images/right-thrust.png" mode="aspectFit" class="order_content_right" />
+      <image src="../../../images/right-thrust.png" mode="aspectFit" class="order_content_right" />
     </view>
    </navigator>
       <view class="order_container_content_left">
@@ -136,7 +136,7 @@
         <view class="order_container_text" style="margin-top:5px;">经手人：{{item.operator}}</view>
       </view>
       <view class="clear"></view>
-      <navigator url="../../../public/order/payOrder/payOrder?operate=2&orderno={{item.payorderno}}&buyerid={{item.buyerstoreid}}&sellerid={{item.sellerstoreid}}&pay={{item.debetamt}}"  wx:if="{{item.orderstatus == 3}}">
+      <navigator url="payOrder/payOrder?operate=2&orderno={{item.payorderno}}&buyerid={{item.buyerstoreid}}&sellerid={{item.sellerstoreid}}&pay={{item.debetamt}}"  wx:if="{{item.orderstatus == 3}}">
         <view class="order_container_button btn_1">付款</view>      
       </navigator>
     <view class="clear"></view>
@@ -169,6 +169,6 @@
   </view>
   <view class="clear"></view>
 </view>
-</view>
+</scroll-view>
 
 

@@ -8,7 +8,7 @@
   <view class="title_text">{{title}}</view>
 </view>
 
-<view class="report_scroll">
+<scroll-view scroll-y class="report_scroll">
   <view style="height:1px;width:100%;"></view>
   <template is="report_search" data="{{bindFaous:bindFaous}}"></template>
 
@@ -29,4 +29,7 @@
       <view class="form_view">没有内容显示</view>
     </view>
   </view>
-</view>
+
+</scroll-view>
+
+<template is="report_bottom" data="{{up_none:true,hasMore:hasMore,pageNum:pageNum,goNext:goNext}}"></template>

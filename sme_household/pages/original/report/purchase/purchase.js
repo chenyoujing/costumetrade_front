@@ -20,7 +20,8 @@ Page({
     categories:[],
     data1:[],
     product: [],
-    pageNum:1
+    pageNum:1,
+    hasMore: true
   },
   purchase_request: function () {
     var that = this
@@ -34,7 +35,8 @@ Page({
         reportType: that.data.reportType,
         filter: that.data.filter,
         rules: that.data.rules,
-        sort:that.data.sort
+        sort:that.data.sort,
+        pageNum: that.data.pageNum
       },
       method: 'POST',
       header: {
@@ -45,6 +47,10 @@ Page({
         var productReportQuerys = res.data.productReportQuerys;
         var categories = that.data.pageNum==1?[]: that.data.categories;
         var dataReport = that.data.pageNum == 1 ? [] : that.data.dataReport;
+        var hasMore = false;
+        if (res.data.purchaseReportQuerys){
+          hasMore = res.data.purchaseReportQuerys.length > 10 ?true:false
+        }
         for (var p in productReportQuerys){
           var time = '';
           productReportQuerys[p].timeTo = util.formatTime(new Date(productReportQuerys[p].timeTo));
@@ -59,22 +65,28 @@ Page({
           product: res.data.purchaseReportQuerys||[],
           categories: categories,
           dataReport: dataReport,
-          'filter.value': res.data.purchaseReportQuerys ? res.data.purchaseReportQuerys[0].productName:null
+          hasMore: hasMore,
+          'filter.value': res.data.purchaseReportQuerys.length>0 ? res.data.purchaseReportQuerys[0].productName:null
         })
       }
     })
   },
+  goNext: function () {
+    this.setData({
+      pageNum: this.data.pageNum += 1
+    })
+    this.purchase_request();
+  },
   // 过滤框按钮
   bindFaous: function () {
     wx.navigateTo({
-      url: '../../Goods/GoodsScreen/GoodsScreen?type=report'
+      url: '../../../my/Goods/GoodsScreen/GoodsScreen?type=report'
     })
   },
   // 选择时间
   select: function (e) {
     var object = util.api.tiemFilter(e);
     object.selected = e.target.dataset.index;
-    object['filter.value'] = null;
     this.setData(object);
     this.purchase_request()
   },
@@ -98,11 +110,6 @@ Page({
   // 创建报表
   chart: function (data1,categories){
     var that = this;
-    wx.getSystemInfo({
-      success: function (res) {
-        that.width = res.windowWidth
-      }
-    })
     lineChart = new wxCharts({
       canvasId: 'columnCanvas',
       type: 'line',
@@ -122,7 +129,7 @@ Page({
         title: that.data.reportTitle,
         min: 0
       },
-      width: that.width,
+      width: 375,
       height: 200,
       dataLabel: true,
       dataPointShape: true,
@@ -168,15 +175,10 @@ Page({
         pageNum: 1,
         product: [],
         "filter.value": app.searchValue ? app.searchValue : null,
-        rules: app.getFilterData ? app.getFilterData : undefined,
+        rules: app.getFilterData ? app.getFilterData : undefined
       })
       this.purchase_request();
       app.getFilterData = [];
     }
-  },
-  onHide: function () {
-    this.setData({
-      focus: false
-    })
   }
 })

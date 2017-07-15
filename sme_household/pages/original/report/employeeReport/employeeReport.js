@@ -47,7 +47,7 @@ Page({
   // 过滤框按钮
   bindFaous: function () {
     wx.navigateTo({
-      url: '../../Goods/GoodsScreen/GoodsScreen?type=report'
+      url: '../../../my/Goods/GoodsScreen/GoodsScreen?type=report'
     })
   },
   // 创建报表
@@ -96,11 +96,6 @@ Page({
   },
   chartShow: function (data1, categories) {
     var that = this;
-    wx.getSystemInfo({
-      success: function (res) {
-        that.width = res.windowWidth
-      }
-    })
     var columnChart = new wxCharts({
       canvasId: 'columnCanvas',
       type: 'column',
@@ -120,7 +115,7 @@ Page({
         title: '销售数量 (件)',
         min: 0
       },
-      width: that.width,
+      width: 375,
       height: 200,
       dataLabel: true,
       dataPointShape: true,
@@ -144,15 +139,10 @@ Page({
         pageNum: 1,
         product: [],
         "filter.value": app.searchValue ? app.searchValue : null,
-        rules: app.getFilterData ? app.getFilterData : undefined,
+        rules: app.getFilterData ? app.getFilterData : undefined
       })
       this.chart();
       app.getFilterData = [];
     }
-  },
-  onHide:function(){
-    this.setData({
-      focus: false
-    })
   }
 })

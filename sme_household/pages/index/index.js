@@ -15,7 +15,6 @@ Page({
   // 获取选中的货品
   selected_goods: function () {
     var that = this;
-
     wx.login({
       success: function (loginCode) {
         wx.getUserInfo({

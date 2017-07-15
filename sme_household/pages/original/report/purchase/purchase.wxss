@@ -2,7 +2,7 @@
 @import "../../../../css/report.wxss";
 
 .report_scroll{
-  margin-bottom: 40px;
+  bottom: 40px;
 }
 .report_form{
   margin: 20px 100rpx;

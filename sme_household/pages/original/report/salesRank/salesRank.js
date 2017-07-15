@@ -169,11 +169,6 @@ Page({
   },
   chartShow: function (data1, categories){
     var that = this;
-    wx.getSystemInfo({
-      success: function (res) {
-        that.width = res.windowWidth
-      }
-    })
     columnChart = new wxCharts({
       canvasId: 'columnCanvas',
       type: 'column',
@@ -193,7 +188,7 @@ Page({
         title: '销售数量 (件)',
         min: 0
       },
-      width: that.width,
+      width: 375,
       height: 200,
       dataLabel: true,
       dataPointShape: true,

@@ -8,7 +8,15 @@ Page({
     more_function_display: 'none',
     rules: [],
     sort: { value: "quantityOp", op: "desc" },
-    filter: { field: "productName", value: null }
+    filter: { field: "productName", value: null },
+    hasMore:false
+  },
+  // 下一页上一页
+  goNext: function () {
+    this.setData({
+      pageNum: this.data.pageNum += 1
+    })
+    this.stock_request();
   },
   stock_request: function () {
     var that = this
@@ -29,7 +37,8 @@ Page({
         wx.hideNavigationBarLoading();
         var data = typeof (res.data) == "Array" ? res.data:[];
         that.setData({
-          product: data
+          product: data,
+          hasMore: data == 10 ? true : false
         })
       }
     })
@@ -47,7 +56,7 @@ Page({
   // 过滤框按钮
   bindFaous: function () {
     wx.navigateTo({
-      url: '../../Goods/GoodsScreen/GoodsScreen?type=report'
+      url: '../../../my/Goods/GoodsScreen/GoodsScreen?type=report'
     })
   },
   onLoad: function (e) {
@@ -62,15 +71,10 @@ Page({
         pageNum: 1,
         product: [],
         filter: filter,
-        rules: app.getFilterData ? app.getFilterData : undefined,
+        rules: app.getFilterData ? app.getFilterData : undefined
       })
       this.stock_request();
       app.getFilterData = [];
     }
-  },
-  onHide: function () {
-    this.setData({
-      focus: false
-    })
   }
 })

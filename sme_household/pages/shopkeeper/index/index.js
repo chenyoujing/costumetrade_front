@@ -47,7 +47,7 @@ Page({
     app.firstLogin = true;
     console.log(app.globalData.userInfo)
     this.setData({
-      userInfo: app.globalData.userInfo,
+      userInfo: app.globalData.userInfo
     })
     this.chart()
   },

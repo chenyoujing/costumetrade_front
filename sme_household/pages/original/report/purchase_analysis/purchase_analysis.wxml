@@ -9,7 +9,7 @@
     <image src="../../../../images/more.png" mode="aspectFit" class="title_more" bindtap="more_function" />
 </view>
 
-<view class="report_scroll" >
+<scroll-view scroll-y class="report_scroll" >
 
   <template is="report_date" data="{{timebool:timebool,selected:selected,beginTime:beginTime,endTime:endTime,select:true}}"></template>
 
@@ -30,19 +30,19 @@
   </view>
   <canvas class="canvas"  wx:if="{{total2>0}}" canvas-id="pieCanvas2" bindtouchstart="touchHandler"/>
 
-  <view class="bindtap_cover" bindtap="screen_colse" hidden="{{!screen}}"></view>
+  <view class="bindtap_cover"></view>
     <view class="gross_report" wx:if="{{title == '利润分析'}}">
       总计
       <view class="progress_view">
-        <view class="progress1" style="flex:40">成本：40%</view>
-        <view class="progress2" style="flex:calc(100 - 40)">利率：60%</view>
+        <view class="progress1" style="{{pucharseProfit*100}}">成本：{{pucharseAmount}}</view>
+        <view class="progress2" style="flex:calc(100 - {{pucharseProfit*100}})">利率：{{profitAmount}}</view>
       </view>
       <view style="text-align:left;">
         <view>总额：{{saleAmount}}</view>
         <view>毛利率：{{grossProfit*100}}% </view>
       </view>  
     </view>
-</view>
+</scroll-view>
 
 <!--更多功能-->
- <template is="more_feature" data="{{animation:animation,more_function_close:more_function_close,more_function_display:more_function_display,productName:productName}}"></template>
+ <template is="more_feature" data="{{animation:animation,more_function_close:more_function_close,more_function_display:more_function_display,productName:productName,client:title}}"></template>
