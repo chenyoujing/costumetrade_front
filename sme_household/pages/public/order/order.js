@@ -186,7 +186,11 @@ Page({
               }
             }
           })
-        } else {
+        } else if (res.data == 1018) {
+          wx.showToast({
+            title: res.msg,
+          })
+        }else{
           if (data.status !== "3"){
             that.changecountOrders(data.status, null)
           }
