@@ -28,7 +28,7 @@
 }
 .store_input{
   position: relative;
-  padding-bottom: 10px
+  padding-top: 10px
 }
 .store_input:first-child{
   padding-top: 15px;
@@ -58,7 +58,7 @@
 .image_map{
   position: absolute;
   right: 0;
-  top: 0;
+  top: 10px;
   width: 20px;
   height: 20px;
   padding: 5px;
@@ -94,5 +94,6 @@
 }
 
 .template_reg_text{
-  margin: 0;
+  margin-left:30%;
+
 }
