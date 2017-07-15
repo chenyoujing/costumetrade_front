@@ -9,7 +9,8 @@ Page({
     ids: '',
     storeId: '',
     title:'',
-    product:[]
+    product:[],
+    id:''//分享的id
   },
   // 获取选中的货品
   selected_goods: function () {
@@ -31,6 +32,7 @@ Page({
                 checkAllTag: that.data.checkAllTag,
                 encryptedData: res.encryptedData,
                 iv: res.iv,
+                id:that.data.id
               },
               method: 'POST',
               header: {
@@ -64,7 +66,8 @@ Page({
       storeId: e.storeId,
       title: e.title,
       name:e.name,
-      checkAllTag: e.checkAllTag
+      checkAllTag: e.checkAllTag,
+      id: e.id
     })
     console.log(e)
     this.selected_goods();

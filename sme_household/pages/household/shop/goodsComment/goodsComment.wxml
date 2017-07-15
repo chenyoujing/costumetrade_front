@@ -8,10 +8,10 @@
   
   <view class="shop">
     <navigator url="../storeDetails/storeDetails?id={{stordId}}">
-      <image src="{{true?'../../../../images/shop1_tx.png':'../../../../images/image_none.png'}}" mode="aspectFill" class="shop_image" />
+      <image src="{{image?image:'../../../../images/image_none.png'}}" mode="aspectFill" class="shop_image" />
     </navigator>
     <view class="shop_name">{{name}}</view>
-    <view class="shop_goods">全部货品：105件</view>
+    <view class="shop_goods">全部货品：{{stockNum}}件</view>
     <view class="clear"></view>
     <button open-type="contact" class="shop_content_service"  session-from="1">
       <image src="../../../../images/customer_service.png" mode="aspectFit" class="shop_service" >

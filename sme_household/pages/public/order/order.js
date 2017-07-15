@@ -544,8 +544,6 @@ Page({
     if (!app.logisticFees && app.globalData.userIdentity !== 2){
       util.api.getProductInit()
     }
-    this.order_request();
-    this.countOrders();
     this.setData({
       logisticFees: app.logisticFees,
       paycact: app.payTypeList,
@@ -554,6 +552,8 @@ Page({
       ordertype2: e.ordertype2 || 1,
       shopkeeper: e.shopkeeper
     })
+    this.order_request();
+    this.countOrders();
     this.changeTitle()
     console.log(app.logisticFees)
   },

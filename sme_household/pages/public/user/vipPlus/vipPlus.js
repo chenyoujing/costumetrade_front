@@ -128,8 +128,8 @@ Page({
       url: 'wxpay/paySuccess',
       data: {
         openid:app.globalData.openid,
-        name: app.globalData.userInfo.nickName,
-        image: app.globalData.userInfo.avatarUrl
+        name: app.globalData.userInfo.name,
+        image: app.globalData.userInfo.photo
       },
       method: 'POST',
       header: {
