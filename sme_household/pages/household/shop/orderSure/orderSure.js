@@ -222,18 +222,39 @@ Page({
       expressModal: true
     })
   },
+  // 商城里请求品牌种类
+  shopBrandandProduct: function () {
+    var that = this
+    wx.showNavigationBarLoading()
+    util.api.request({
+      url: 'product/getProductInit',
+      data: {
+        storeId: that.data.storeId
+      },
+      method: 'POST',
+      header: {
+        'content-type': 'application/json'
+      },
+      success: function (res) {
+        wx.hideNavigationBarLoading();
+        that.setData({
+          logisticFees: res.data.logisticFees,
+          freight: parseFloat(res.data.logisticFees[0].fixedFee),
+          logisticCode: res.data.logisticFees[0].logisticCode,
+          logisticName: res.data.logisticFees[0].logisticName
+        })
+      }
+    })
+  },
   onLoad: function (options) {
     this.setData({
       stordId: options.stordId,
       totalPrice: parseFloat(options.totalPrice),
       totalnum: options.totalnum,
-      name: 'shopCartUp' + options.stordId,
-      logisticFees: app.logisticFees,
-      freight: parseFloat(app.logisticFees[0].fixedFee),
-      logisticCode: app.logisticFees[0].logisticCode,
-      logisticName: app.logisticFees[0].logisticName
+      name: 'shopCartUp' + options.stordId
     })
     this.orderInitAddress();
+    this.shopBrandandProduct();
     this.getData()
   }
 })
