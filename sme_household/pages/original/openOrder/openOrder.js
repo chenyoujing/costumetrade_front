@@ -2,22 +2,20 @@ var util = require('../../../utils/util.js')
 var app = getApp()
 Page({
   data: {
-    more_function_display: "none",
+    more_function_display: "none",//多功能键
     animation: "",
     scrollTop: '800',
-    keyboardNum:'',
-    keyboardNum2:'',
-    inputBoolean:false,
-    keyHidden:false,
-    nameUnit:'',
-    headImage:'../../../images/image_none.png',
-    type:1,
+    keyboardNum:'',//键盘搜索货号用的
+    keyboardNum2: '',//键盘输入价格 件数
+    inputBoolean: false,//手写键盘是否输入
+    keyHidden: false,//键盘是否隐藏
+    type: 1,//销售还是入库单
     products_info:false,
     placeholder:"货号",
-    product:[],
+    product: [],//所有货品
     keyArray:[],
-    shopCart:[],
-    selectName:{},
+    shopCart: [],//购物车货品
+    selectName: {},//选择的会员信息
     saleChangeName:'tagprice',
     saleChangeName2:'tagprice',
     color: [],
@@ -33,23 +31,22 @@ Page({
       totalNum: 0,
       realcostArray: 0
     },
-    aa:false,
+    aa: false,//尺码颜色单选框取消
     colorChange:1,
     cate:1,
     saleName:'标签价',
     stockArray:[],
     userIdentity:3,
-    purchasePrivilege:false,
-    cusmPrivilege: false,
-    supplierPrivilege: false,
-    judgeSalePrice:0,
-    isPattern:false,
+    purchasePrivilege: false,//是否有权限看进货价
+    cusmPrivilege: false,//是否有权限看客户
+    supplierPrivilege: false,//是否有权限看供应商
+    judgeSalePrice: 0,//改价的最低价
+    isPattern: false,//是否加价
     priceRaise:{},
-    sizeRaise:0,
-    colorRaise:0,
-    showPrice:0,
+    sizeRaise: 0,//尺码增加的价格
+    colorRaise: 0,//颜色增加的价格
     sizeRaiseArray:[],
-    showPrice2:0
+    showPrice2: 0//某个货品的原始价格
   },
   // 扫码 只写了主条码。。。。。
   scan: function () {
@@ -58,17 +55,13 @@ Page({
     console.log(11111)
     wx.scanCode({
       success: (res) => {
-        console.log(res.result)
-        console.log(shopCart)
         var Isthere = false;
         for (var p in shopCart){
           if (shopCart[p].barcode == res.result){
-            console.log("主条码进来了")
             that.detail(null, shopCart[p].id,null);
             break;
             Isthere = true;
           } else if (shopCart[p].barcodes && shopCart[p].barcodes.indexOf(res.result) > -1){
-            console.log("分条码进来了")
             var barcodes = shopCart[p].barcodes.split(';');
             for (var j in barcodes){
               barcodes[j] = barcodes[j].split(",");

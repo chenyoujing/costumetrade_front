@@ -676,7 +676,7 @@ Page({
         grade: app.screen_gradeList[0]?app.screen_gradeList[0].dictValue:"",
         unit: app.screen_unitList[0] ?app.screen_unitList[0].unit:"",
         producttype: app.screen_productTypeList[0] ?app.screen_productTypeList[0].id:"",
-        timeDown: util.toDate(new Date),
+        timeDown: util.toDate(new Date,true),
         timeUp: util.toDate(new Date),
         year: new Date().getFullYear()
       },

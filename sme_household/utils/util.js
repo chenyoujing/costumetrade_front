@@ -12,16 +12,16 @@ function formatTime(date) {
 function formatNumber(n) {
   n = n.toString()
   return n[1] ? n : '0' + n
-}
-function toDate(number) {
+};
+// 当前的标准日期
+function toDate(number,plus) {
   var n = number;
   var date = new Date(n);
-  var Y = date.getFullYear() + '-';
+  var Y = plus ? Number(date.getFullYear()) + 1+'-': date.getFullYear() + '-';
   var M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '-';
   var D = date.getDate() < 10 ? '0' + date.getDate() : date.getDate();
   return (Y + M + D)
-}
-console.log(app.globalData) 
+};
 //请求接口公共方法
 var api = {
   host: 'http://192.168.2.221:8088/',
