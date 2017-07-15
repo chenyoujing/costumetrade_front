@@ -532,8 +532,16 @@ Page({
       this.order_request();
     }
   },
+  // 更改标题
+  changeTitle: function () {
+    var that = this;
+    var title = that.data.ordertype == 1 ?"采购单":"销售单";
+    wx.setNavigationBarTitle({
+      title: title
+    })
+  },
   onLoad:function(e){
-    if (!app.logisticFees){
+    if (!app.logisticFees && app.globalData.userIdentity !== 2){
       util.api.getProductInit()
     }
     this.order_request();
@@ -546,6 +554,7 @@ Page({
       ordertype2: e.ordertype2 || 1,
       shopkeeper: e.shopkeeper
     })
+    this.changeTitle()
     console.log(app.logisticFees)
   },
   onShow:function(){

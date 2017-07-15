@@ -83,7 +83,8 @@ Page({
         body:"注册金额",
         product_id: that.data.id,
         openid : app.globalData.openid,
-        storeId: app.globalData.storeId
+        // storeId: app.globalData.storeId || undefined,
+        // userId: app.globalData.userid || undefined
       },
       method: 'POST',
       header: {
@@ -136,7 +137,7 @@ Page({
       success: function (res) {
         wx.hideNavigationBarLoading();
         console.log(res.data);
-        app.globalData.storeId = res.data;
+        // app.globalData.storeId = res.data;
         util.api.getOpenid(that.callback)
       }
     })
@@ -144,7 +145,7 @@ Page({
   // skip
   callback:function(){
     wx.navigateTo({
-      url: '../../user/storeUpdate/storeUpdate',
+      url: '../../user/storeUpdate/storeUpdate?vipPlus=true',
       success: function (res) { }
     })
   },

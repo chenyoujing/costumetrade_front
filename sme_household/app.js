@@ -50,11 +50,11 @@ App({
                     that.globalData.openid = res.data.data.query.openid;
                     that.globalData.privilegeEmployees = res.data.data.employee.privilegeEmployees;
                     that.globalData.userIdentity = res.data.data.userIdentity;
-                    that.globalData.storeInfo = res.data.data.query.storeList || [];
+                    that.globalData.storeInfo = res.data.data.products || [];
                     that.globalData.modifyPrice = res.data.data.employee.modifyPrice;
                     that.globalData.zeroPrice = res.data.data.employee.zeroPrice;
                     that.globalData.discount = res.data.data.employee.discount;
-                    that.globalData.storeId = res.data.data.storeId|| ""; 
+                    that.globalData.storeId = res.data.data.storeId; 
                     that.globalData.userid = res.data.data.userid;
                     that.householdOrshopkeper(res.data.data.userIdentity)
                   }

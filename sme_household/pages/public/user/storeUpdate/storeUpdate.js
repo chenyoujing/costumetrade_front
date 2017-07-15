@@ -1,10 +1,12 @@
 var util = require('../../../../utils/util.js')
+var reg = require('../../../../utils/reg.js')
 var app = getApp()
 Page({
-
   data: {
     date: '2016-09-01',
     storeInfo: [],
+    regobject: {
+    }
   },
   // 上传图片
   photoSubmit: function (file, i) {
@@ -58,6 +60,52 @@ Page({
       }
     })
   },
+  // 正则验证
+  reg: function (e) {
+    var name = e.target.dataset.name;
+    console.log(reg)
+    var boolean = false;
+    var regobject = "regobject." + name;
+    var param = {};
+    boolean = reg.iSnull(e.detail.value);
+    if (name == "cphone") {
+      boolean = reg.phone(e.detail.value);
+    } else if (name == "wechat"){
+      boolean = reg.iSChinese(e.detail.value);
+      if (e.detail.value.length < 6){
+        boolean = false
+      }
+    } 
+    param[regobject] = boolean;
+    this.setData(param)
+  },
+  // 提交之前的验证
+  beforeSubmit:function(e){
+    var target = e.detail.value
+    //处理name 空size 空color
+    if (!target.name) {
+      var regobject = "regobject.name";
+      this.setData({
+        "regobject.name": false
+      })
+    } else if (!target.cphone) {
+      this.setData({
+        "regobject.cphone": false
+      })
+    } else if (!target.wechat) {
+      this.setData({
+        "regobject.wechat": false
+      })
+    } else if (!target.address) {
+      this.setData({
+        "regobject.address": false
+      })
+    } 
+    else {
+      this.update_storeInfo(e)
+    }
+  },
+  // 提交修改方法
   update_storeInfo: function (e) {
     var that = this;
     e.detail.value.birthday = Date.parse(new Date(e.detail.value.birthday))
@@ -85,48 +133,57 @@ Page({
       },
       success: function (res) {
         wx.hideNavigationBarLoading();
-        if (app.globalData.userIdentity == 2) {
-          var userInfo = app.globalData.userInfo
-          userInfo.name = object.name
-          userInfo.avatarUrl = object.storephoto
-          var reg = /^\//;
-          if (reg.test(object.storephoto)) {
-            userInfo.avatarUrl = util.api.imgUrl + object.storephoto
-          }
-          userInfo.cphone = object.cphone
-          userInfo.wechat = object.wechat
-          userInfo.region = object.region
-          userInfo.address = object.address
-          userInfo.contact = object.contact
-          userInfo.phone = object.phone
-          userInfo.birthday = util.formatTime(new Date(object.birthday))
-          app.globalData.userInfo = userInfo
-        }else{
-          var storeInfo = app.globalData.storeInfo[0]
-          storeInfo.name = object.name
-          var reg = /^\//;
-          if (reg.test(object.storephoto)) {
-            storeInfo.storephoto = util.api.imgUrl + object.storephoto
-          }
-          storeInfo.cphone = object.cphone
-          storeInfo.wechat = object.wechat
-          storeInfo.region = object.region
-          storeInfo.address = object.address
-          storeInfo.contact = object.contact
-          storeInfo.phone = object.phone
-          storeInfo.birthday = util.formatTime(new Date(object.birthday))
-          storeInfo.description = object.description
-          app.globalData.storeInfo[0] = storeInfo
-        }
+        app.globalData.userInfo.name = object.name || app.globalData.userInfo.name;
+        app.globalData.userInfo.storephoto = object.storephoto;
+       
+        // if (app.globalData.userIdentity == 2) {
+        //   var userInfo = app.globalData.userInfo
+        //   userInfo.name = object.name
+        //   userInfo.avatarUrl = object.storephoto
+        //   var reg = /^\//;
+        //   if (reg.test(object.storephoto)) {
+        //     userInfo.avatarUrl = util.api.imgUrl + object.storephoto
+        //   }
+        //   userInfo.cphone = object.cphone
+        //   userInfo.wechat = object.wechat
+        //   userInfo.region = object.region
+        //   userInfo.address = object.address
+        //   userInfo.contact = object.contact
+        //   userInfo.phone = object.phone
+        //   userInfo.birthday = util.formatTime(new Date(object.birthday))
+        //   app.globalData.userInfo = userInfo
+        // }else{
+        //   var storeInfo = app.globalData.storeInfo[0]
+        //   storeInfo.name = object.name
+        //   var reg = /^\//;
+        //   if (reg.test(object.storephoto)) {
+        //     storeInfo.storephoto = util.api.imgUrl + object.storephoto
+        //   }
+        //   storeInfo.cphone = object.cphone
+        //   storeInfo.wechat = object.wechat
+        //   storeInfo.region = object.region
+        //   storeInfo.address = object.address
+        //   storeInfo.contact = object.contact
+        //   storeInfo.phone = object.phone
+        //   storeInfo.birthday = util.formatTime(new Date(object.birthday))
+        //   storeInfo.description = object.description
+        //   app.globalData.storeInfo[0] = storeInfo
+        // }
         wx.showToast({
           title: '修改成功',
           mask: true,
           duration: 2000
         })
         setTimeout(() => {
-          wx.navigateBack({
-            delta: 1,
-          })
+          if (that.data.vipPlus){
+            wx.redirectTo({
+              url: '../../../shopkeeper/index/index',
+            })
+          }else{
+            wx.navigateBack({
+              delta: 1,
+            })
+          }
         }, 2000)
       }
     })
@@ -136,53 +193,59 @@ Page({
       date: e.detail.value
     })
   },
+  // 更改标题
+  changeTitle: function (){
+    var that = this;
+    wx.setNavigationBarTitle({
+      title: '修改' + that.data.title
+    })
+  },
   // 请求店铺信息
-  request_page: function () {
+  request_info: function () {
     var that = this
-    if (app.globalData.storeInfo[0]) {
       wx.showNavigationBarLoading()
       util.api.request({
         url: 'store/getStore',
-        data: {
-          storeId: app.globalData.storeId,
-        },
+        data: that.data.getStoreFilter,
         method: 'POST',
         header: {
           'content-type': 'application/x-www-form-urlencoded'
         },
         success: function (res) {
           wx.hideNavigationBarLoading();
-          res.data.birthday = util.toDate(new Date(res.data.birthday))
-          var reg = /^\//;
-          if (reg.test(res.data.storephoto)) {
-            res.data.storephoto = util.api.imgUrl + res.data.storephoto
+          var param = {};
+        //   res.data.birthday = util.toDate(new Date(res.data.birthday))
+        //   var reg = /^\//;
+        //   if (reg.test(res.data.storephoto)) {
+        //     res.data.storephoto = util.api.imgUrl + res.data.storephoto
+        //   }
+        //   that.setData({
+        //     storeInfo: res.data
+        //   })
+        //   var images = app.globalData.storeInfo[0].images
+        //   app.globalData.storeInfo[0] = res.data
+        //   app.globalData.storeInfo[0].images = images
+          res.data.birthday = res.data.birthday ? util.toDate(res.data.birthday) : util.toDate(new Date())
+
+          if (app.globalData.userIdentity !== 2){
+            param.storeInfo = res.data;
+          }else{
+            param.userInfo = res.data;
           }
-          that.setData({
-            storeInfo: res.data
-          })
-          var images = app.globalData.storeInfo[0].images
-          app.globalData.storeInfo[0] = res.data
-          app.globalData.storeInfo[0].images = images
+          that.setData(param)
         }
       })
-    }
   },
   onLoad: function (e) {
+    var getStoreFilter = app.globalData.userIdentity !== 2 ? { storeId: app.globalData.storeId } : { userId: app.globalData.userid }
     console.log(app.globalData.storeInfo[0])
-    var date
-    if (app.globalData.storeInfo[0]){
-      date = app.globalData.storeInfo[0].birthday
-    } else if (app.globalData.myInfo){
-      date = app.globalData.myInfo.birthday
-    } else{
-      date = '2016-09-01'
-    }
     this.setData({
-      storeInfo:app.globalData.userIdentity !== 2?app.globalData.storeInfo[0]:[],
-      userInfo: app.globalData.myInfo,
-      date: date,
+      vipPlus: e.vipPlus,
+      title: app.globalData.userIdentity !== 2 ?'店铺信息':'个人信息',
+      getStoreFilter: getStoreFilter,
       userIdentity: app.globalData.userIdentity,
     })
-    this.request_page()
+    this.changeTitle()
+    this.request_info()
   }
 })

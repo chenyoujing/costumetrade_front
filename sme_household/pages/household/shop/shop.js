@@ -25,20 +25,13 @@ Page({
       }   
     }
     var otherStord = app.globalData.storeInfo;
-    // if (otherStord.length == 1) {
-    //   otherStord = [];
-    // } else {
-    //   otherStord = otherStord.splice(1, );
-    //   console.log(otherStord)
-    // }
     this.setData({
-      // myselfStord: app.globalData.storeInfo[0],
       otherStord: otherStord
     })
   },
   onLoad:function(e){
     // this.aa()
-    // this.bb()
+    //
     this.setData({
       url: util.api.imgUrl,
       shopkeeper: e.shopkeeper,
@@ -58,9 +51,7 @@ Page({
     })
   },
   onShow:function(){
-    this.setData({
-      myselfStord: app.globalData.storeInfo[0]
-    })
+    
     // wx.connectSocket({
     //   url: 'ws://192.168.2.221:8081/ws',
     //   data:{

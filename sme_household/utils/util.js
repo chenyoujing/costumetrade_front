@@ -24,7 +24,7 @@ function toDate(number) {
 console.log(app.globalData) 
 //请求接口公共方法
 var api = {
-  host: 'http://192.168.2.221:8088/',
+  host: 'http://192.168.2.221:8080/',
   pageNum :1,
   publicProduct:[],
   imgUrl: "http://117.149.24.42:8788",
@@ -72,11 +72,12 @@ var api = {
                     app.globalData.openid = res.data.data.query.openid;
                     app.globalData.privilegeEmployees = res.data.data.employee.privilegeEmployees;
                     app.globalData.userIdentity = res.data.data.userIdentity;
-                    app.globalData.storeInfo = res.data.data.query.storeList || [];
+                    app.globalData.storeInfo = res.data.data.products || [];
                     app.globalData.modifyPrice = res.data.data.employee.modifyPrice;
                     app.globalData.zeroPrice = res.data.data.employee.zeroPrice;
                     app.globalData.discount = res.data.data.employee.discount;
                     app.globalData.storeId = res.data.data.storeId;
+                    app.globalData.userid = res.data.data.userid;
                     if (callback) {
                       callback();
                     }
