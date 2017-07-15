@@ -22,7 +22,7 @@
       <view class="store_input_text clearfix">移动电话：</view>
       <input type="number"  data-name="cphone"  bindblur="reg"  class="store_input1" placeholder="*" placeholder-class="required" value="{{storeInfo.cphone||userInfo.cphone}}" name="cphone"/>
     </view>
-    <template is="reg" wx:if="{{regobject.wechat == false && userIdentity!==2}}" placeholder="*" placeholder-class="required" data="{{text: '手机号必填'}}"/>
+    <template is="reg" wx:if="{{regobject.cphone == false && userIdentity!==2}}" placeholder="*" placeholder-class="required" data="{{text: '手机号格式出错'}}"/>
     <view class="store_input clearfix">
       <view class="store_input_text">微信号：</view>
       <input type="text" class="store_input1" data-name="wechat"  bindblur="reg" value="{{storeInfo.wechat||userInfo.wechat}}" name="wechat"/>

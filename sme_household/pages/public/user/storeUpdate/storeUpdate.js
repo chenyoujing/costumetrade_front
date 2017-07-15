@@ -82,6 +82,7 @@ Page({
   // 提交之前的验证
   beforeSubmit:function(e){
     var target = e.detail.value
+    var regobject = this.data.regobject
     //处理name 空size 空color
     if (app.globalData.userIdentity !== 2){
       if (!target.name) {
@@ -89,11 +90,11 @@ Page({
         this.setData({
           "regobject.name": false
         })
-      } else if (!target.cphone) {
+      } else if (!(target.cphone && reg.phone(target.cphone))) {
         this.setData({
           "regobject.cphone": false
         })
-      } else if (!target.wechat) {
+      } else if (!(20>=target.wechat.length>=6 && reg.iSChinese(target.wechat))) {
         this.setData({
           "regobject.wechat": false
         })
@@ -102,7 +103,8 @@ Page({
           "regobject.address": false
         })
       } else {
-        this.update_storeInfo(e)
+        // this.update_storeInfo(e)
+        console.log(1)
       }
     }else{
       this.update_storeInfo(e)
