@@ -827,7 +827,7 @@ Page({
       success: function (res) {
         that.setData({
           keyboard_width: (res.windowWidth - 8) / 4 - 4,
-          keyboard_height: res.windowHeight / 6 - 10
+          keyboard_height: res.windowHeight * 0.15 - 10
         })
       }
     })

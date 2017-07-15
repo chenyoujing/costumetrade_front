@@ -110,6 +110,7 @@
   top: 66px;
   left: 0;
   right: 0;
+  bottom: calc(45vh + 30px);
   background-color: #EEEEEE;
 }
 .order_view{
@@ -321,8 +322,8 @@
   text-align: center;
   font-size: 40px;
   width: calc(25% - 4px);
-  height: calc(16.66666666vh - 10px);
-  line-height: calc(16.66666666vh - 10px);
+  height: calc(15vh - 10px);
+  line-height: calc(15vh - 10px);
 }
 .saleColor{
   background-color: bisque
