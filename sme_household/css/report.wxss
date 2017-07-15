@@ -6,8 +6,15 @@
   height: 16px;
   padding: 12px;
 }
+.title{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+}
 
 .report_scroll{
+  margin-top: 40px;
 }
 .time_select{ 
   display: flex;

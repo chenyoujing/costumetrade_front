@@ -52,4 +52,10 @@ Page({
     })
     this.chart()
   },
+  onReady: function(){
+    this.setData({
+      storeInfo: app.globalData.storeInfo[0],
+      userInfo: app.globalData.myInfo,
+    })
+  }
 })
