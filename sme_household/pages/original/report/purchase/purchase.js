@@ -163,10 +163,15 @@ Page({
         pageNum: 1,
         product: [],
         "filter.value": app.searchValue ? app.searchValue : null,
-        rules: app.getFilterData ? app.getFilterData : undefined
+        rules: app.getFilterData ? app.getFilterData : undefined,
       })
       this.purchase_request();
       app.getFilterData = [];
     }
+  },
+  onHide: function () {
+    this.setData({
+      focus: false
+    })
   }
 })

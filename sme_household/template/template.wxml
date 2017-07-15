@@ -127,7 +127,7 @@
 <!--报表-添加选择/搜索-->
 <template name="report_search">
   <view class="search_input_view">
-    <input type="text" class="search_input"  bindfocus="bindFaous" />
+    <input type="text" class="search_input" focus="{{focus}}" bindfocus="bindFaous" />
     <image src="../../../../images/search.png" mode="aspectFit" class="search_input_image" />
   </view>
 </template>

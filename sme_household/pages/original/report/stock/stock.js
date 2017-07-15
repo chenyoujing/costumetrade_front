@@ -62,10 +62,15 @@ Page({
         pageNum: 1,
         product: [],
         filter: filter,
-        rules: app.getFilterData ? app.getFilterData : undefined
+        rules: app.getFilterData ? app.getFilterData : undefined,
       })
       this.stock_request();
       app.getFilterData = [];
     }
+  },
+  onHide: function () {
+    this.setData({
+      focus: false
+    })
   }
 })
