@@ -54,7 +54,8 @@ App({
                     that.globalData.modifyPrice = res.data.data.employee.modifyPrice;
                     that.globalData.zeroPrice = res.data.data.employee.zeroPrice;
                     that.globalData.discount = res.data.data.employee.discount;
-                    that.globalData.storeId = res.data.data.storeId || res.data.data.userid; 
+                    that.globalData.storeId = res.data.data.storeId|| ""; 
+                    that.globalData.userid = res.data.data.userid;
                     that.householdOrshopkeper(res.data.data.userIdentity)
                   }
                 })
@@ -67,7 +68,13 @@ App({
   },
   // 判断权限显示页面
   householdOrshopkeper: function (userIdentity) {
-    var url = userIdentity == 2 ? "pages/household/shop/shop" : "pages/shopkeeper/index/index";
+    console.log(this.firstLogin)
+    var householdurl = this.firstLogin ?'../../household/shop/shop':"pages/household/shop/shop";
+    console.log(householdurl)
+    var shopkeper = this.firstLogin ? './' : "pages/shopkeeper/index/index";
+    console.log(shopkeper)
+    var url = userIdentity == 2 ? householdurl : shopkeper;
+    this.firstLogin = undefined;
     wx.redirectTo({
       url: url,
       success: function (res) { }

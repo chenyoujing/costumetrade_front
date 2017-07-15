@@ -45,6 +45,7 @@ Page({
   },
 
   onLoad: function (options) {
+    app.firstLogin = true;
     this.setData({
       storeInfo: app.globalData.storeInfo[0],
       userInfo: app.globalData.myInfo,

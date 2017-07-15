@@ -190,24 +190,62 @@ Page({
       }
     })
   },
+  // 商城里请求品牌种类
+  shopBrandandProduct: function () {
+    var that = this
+    wx.showNavigationBarLoading()
+    util.api.request({
+      url: 'product/getProductInit',
+      data: {
+        storeId: that.data.storeId
+      },
+      method: 'POST',
+      header: {
+        'content-type': 'application/json'
+      },
+      success: function (res) {
+        wx.hideNavigationBarLoading();
+        var screen_content1 = res.data.brandList;
+        var screen_content2 = res.data.productTypeList;
+        for (var p in screen_content1) {
+          screen_content1[p].screen_checked = false;
+        }
+        for (var p in screen_content2) {
+          screen_content2[p].screen_checked = false;
+        }
+        console.log(res)
+        that.setData({
+          screen_content1: screen_content1,
+          screen_content2: screen_content2
+        })
+      }
+    })
+  },
   onLoad: function (options) {
     if (!app.logisticFees && app.globalData.userIdentity !== 2) {
       util.api.getProductInit()
     }
-    var screen_content1 = app.screen_brandList;
-    var screen_content2 = app.screen_productTypeList;
-    for (var p in screen_content1){
-      screen_content1[p].screen_checked = false;
-    }
-    for (var p in screen_content2) {
-      screen_content2[p].screen_checked = false;
-    }
     this.setData({
-      screen_content1: screen_content1,
-      screen_content2: screen_content2,
-      type: options.type
+      type: options.type,
+      storeId: options.storeId
     })
-    this.downData();
+    if (app.globalData.userIdentity !== 2){
+      var screen_content1 = app.screen_brandList;
+      var screen_content2 = app.screen_productTypeList;
+      for (var p in screen_content1) {
+        screen_content1[p].screen_checked = false;
+      }
+      for (var p in screen_content2) {
+        screen_content2[p].screen_checked = false;
+      }
+      this.setData({
+        screen_content1: screen_content1,
+        screen_content2: screen_content2,
+      })
+      this.downData();
+    }else{
+      this.shopBrandandProduct()
+    }
     if (options.type == 'report'){
       this.reportslect();
     }

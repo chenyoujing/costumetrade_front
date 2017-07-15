@@ -14,7 +14,7 @@
   <template is="notice"></template>
 
   <!--自己店铺-->
-  <view class="shop_content" wx:if="{{myselfStord.id}}">
+  <!--<view class="shop_content" wx:if="{{myselfStord.id}}">
     <view url="mall/mall" class="shop_content_view">
       <navigator url="storeDetails/storeDetails?id={{myselfStord.id}}" class="shop_content_title">
         <image src="{{myselfStord.storephoto||'../../../images/image_none.png'}}" mode="aspectFill" class="shop_content_tx" />
@@ -41,10 +41,10 @@
     </view>
     <image src="../../../images/customer_service.png"  class="shop_content_service" mode="aspectFit" />
     <contact-button class="shop_content_service" style="opacity:0;" size="20" session-from="weapp"></contact-button>
-  </view>
+  </view>-->
 
   <view class="shop_content" wx:for="{{otherStord}}">
-   <view url="mall/mall" class="shop_content_view">
+   <view url="mall/mall?id={{item.id}}&storephoto={{item.storephoto}}" class="shop_content_view">
       <navigator url="storeDetails/storeDetails?id={{item.id}}" class="shop_content_title">
         <image src="{{item.storephoto||'../../../images/image_none.png'}}" mode="aspectFill" class="shop_content_tx" />
         <view class="shop_content_info">

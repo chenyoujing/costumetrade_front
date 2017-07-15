@@ -425,11 +425,11 @@ var api = {
       data: UnitData1
     })
   },
-  downData:function(url2,objectName,timeName,callback){
+  downData: function (url2, objectName, timeName, callback){
     var that = this;
     wx.showNavigationBarLoading();
     var param = {
-      storeId: app.globalData.storeId,
+      storeId: app.globalData.storeId ,
       pageNum: that.pageNum
     }
     if (url2=="client/getClients"){

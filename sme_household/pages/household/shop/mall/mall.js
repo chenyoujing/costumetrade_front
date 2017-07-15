@@ -23,7 +23,7 @@ Page({
   // 跳转搜索页面
   bindfocus:function(){
     wx.navigateTo({
-      url: '../../../original/Goods/GoodsScreen/GoodsScreen?type=shop'
+      url: '../../../original/Goods/GoodsScreen/GoodsScreen?type=shop&storeId=' + this.data.id
     })
     this.setData({
       inputFocus: false,

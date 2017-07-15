@@ -25,14 +25,14 @@ Page({
       }   
     }
     var otherStord = app.globalData.storeInfo;
-    if (otherStord.length == 1) {
-      otherStord = [];
-    } else {
-      otherStord = otherStord.splice(1, );
-      console.log(otherStord)
-    }
+    // if (otherStord.length == 1) {
+    //   otherStord = [];
+    // } else {
+    //   otherStord = otherStord.splice(1, );
+    //   console.log(otherStord)
+    // }
     this.setData({
-      myselfStord: app.globalData.storeInfo[0],
+      // myselfStord: app.globalData.storeInfo[0],
       otherStord: otherStord
     })
   },
