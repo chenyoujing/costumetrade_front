@@ -3,6 +3,9 @@
 .report_scroll{
   height: calc(100vh - 40px);
 }
+.prompt_none{
+  padding: 0;
+}
 
 .report_container{
   margin: 10px;
