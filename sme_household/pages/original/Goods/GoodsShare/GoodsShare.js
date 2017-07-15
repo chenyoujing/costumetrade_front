@@ -98,7 +98,7 @@ Page({
       storeId: e.storeId,
       idArray: JSON.parse(e.ids),
       checkAllTag: e.checkAllTag,
-      title: app.globalData.storeInfo[0].name
+      title: app.globalData.storeInfo[0] ? app.globalData.storeInfo[0].name : app.globalData.myInfo.nickName
     })
     this.selected_goods()
   },

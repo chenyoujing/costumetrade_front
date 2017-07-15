@@ -17,7 +17,7 @@
       <view class="store_input_text clearfix">{{userIdentity==1&3?'店铺名称：':'真实名称：'}}</view>
       <input type="text" class="store_input1" placeholder="*" placeholder-class="required"  data-name="name"  bindblur="reg" value="{{storeInfo.name||userInfo.name||userInfo.nickName}}" name="name"/>
     </view>
-     <template is="reg" wx:if="{{regobject.name == false && userIdentity!==2}}" data="{{text: '名称长度为1-20字符'}}"/>
+    <template is="reg" wx:if="{{regobject.name == false && userIdentity!==2}}" data="{{text: '名称长度为1-20字符'}}"/>
     <view class="store_input">
       <view class="store_input_text clearfix">移动电话：</view>
       <input type="number"  data-name="cphone"  bindblur="reg"  class="store_input1" placeholder="*" placeholder-class="required" value="{{storeInfo.cphone||userInfo.cphone}}" name="cphone"/>
