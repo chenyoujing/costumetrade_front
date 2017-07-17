@@ -245,6 +245,30 @@ radio,checkbox{
   z-index: 4;
   display: block;
 }
+.search_input_view{
+  position: relative;
+  display: flex;
+  height: 30px;
+  line-height: 30px;
+  font-size: 14px;
+}
+.search_input_view input{
+  padding-right: 30px;
+  background-color: #ffffff;
+  height: 100%;
+  width: 100%;
+  border-radius: 5px;
+}
+.search_input_view image{
+  width: 16px;
+  height: 16px;
+  padding: 7px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 4;
+  display: block;
+}
 /*覆盖，bindatp用*/
 .bindtap_cover{
   position: absolute;

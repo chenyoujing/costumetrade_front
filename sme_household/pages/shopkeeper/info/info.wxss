@@ -2,7 +2,6 @@
   position: absolute;
   top: 0;
   bottom: 46px;
-  z-index: 0;
 }
 
 .info_swiper{
@@ -160,12 +159,13 @@
 }
 .supplier_search_view{
   background-color: #DCDCDC;
-  height: 30px;
-  padding: 5px;
   left: 0;
   right: 0;
   top: 60px;
   z-index: 1;
+  display: flex;
+  align-items: center;
+  height: 40px;
 }
 .supplier_search_text{
   font-size: 14px;
@@ -174,13 +174,11 @@
   text-align: center;
   line-height: 30px;
 }
-.search_input{
+.search_input_view{
   margin-right: 10%;
   height: 30px;
-  line-height: 30px;
-  background-color: #ffffff;
   font-size: 14px;
-  border-radius: 5px;
+  flex: 1;
 }
 .contacts{
   background-color: #DCDCDC;
@@ -189,10 +187,12 @@
   height: 48px;
   border-bottom: 2px solid #DBF4F1;
   position: relative;
+  display: flex;
+  align-items: center;
 }
 .supplier_tx{
-  float: left;
   width: 20%;
+  flex-shrink: 0;
 }
 .supplier_tx image{
   display: block;
@@ -202,18 +202,14 @@
   margin: 10px auto;
 }
 .supplier_name{
-  float: left;
   font-size: 18px;
-  line-height: 48px;
   width: 40%;
 }
 .supplier_info{
-  float: left;
   width: 35%;
   font-size: 10px;
   line-height: 14px;
   text-align: center;
-  padding: 10px 0;
 }
 
 
@@ -221,7 +217,7 @@
   position: absolute;
   top: 100px;
   right: 0;
-  bottom: 0;
+  bottom: 46px;
   width: 5%;
 }
 .nav_text{

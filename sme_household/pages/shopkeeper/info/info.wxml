@@ -83,15 +83,16 @@
   <view class="supplier_scroll" hidden="{{infotype!=1}}" style="padding-top:{{nav_position=='fixed'?'100px':'60px'}}">
     <view class="supplier_search_view" style="position:{{nav_position=='fixed'?'fixed':''}}">
       <view class="supplier_search_text">通讯录</view>
-      <input type="text" class="search_input">
-        <image src="../../../images/search.png" mode="aspectFit" class="search_input_image"/>
-      </input>
+      <view class="search_input_view">
+        <input type="text" placeholder="{{text}}" />
+        <image src="../../../../images/search.png" mode="aspectFit"/>
+      </view>
     </view>
     <view class="supplier_container">
       <view class="supplier_tx">
         <image src="../../../images/image_none.png" mode="aspectFill" />
       </view>
-      <view class="supplier_name">小雨</view>
+      <view class="supplier_name one_line">小雨</view>
       <view class="supplier_info">
         <view>昵称：煎饼侠</view>
         <view>电话：13333333333</view>
