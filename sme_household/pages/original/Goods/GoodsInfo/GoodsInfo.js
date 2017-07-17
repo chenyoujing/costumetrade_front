@@ -367,30 +367,30 @@ Page({
     target.fourthPrice = this.data.picker_view[3].price ? this.data.picker_view[3].price : 0;
     target.fifthPrice = this.data.picker_view[4].price ? this.data.picker_view[4].price : 0;
     if (this.data.GoodsInfoData.image) {
-      target.image = this.data.GoodsInfoData.image.replace(/http:\/\/117.149.24.42:8788/g, '');
+      target.image = this.data.GoodsInfoData.image.replace(/http:\/\/ot84hx5jl.bkt.clouddn.com/g, '');
     }
     if (this.data.GoodsInfoData.image1) {
-      target.image1 = this.data.GoodsInfoData.image1.replace(/http:\/\/117.149.24.42:8788/g, '');
+      target.image1 = this.data.GoodsInfoData.image1.replace(/http:\/\/ot84hx5jl.bkt.clouddn.com/g, '');
       console.log(this.data.GoodsInfoData)
     }
     if (this.data.GoodsInfoData.image2) {
-      target.image2 = this.data.GoodsInfoData.image2.replace(/http:\/\/117.149.24.42:8788/g, '');
+      target.image2 = this.data.GoodsInfoData.image2.replace(/http:\/\/ot84hx5jl.bkt.clouddn.com/g, '');
     }
     if (this.data.GoodsInfoData.image3) {
       console.log(this.data.GoodsInfoData)
-      target.image3 = this.data.GoodsInfoData.image3.replace(/http:\/\/117.149.24.42:8788/g, '');
+      target.image3 = this.data.GoodsInfoData.image3.replace(/http:\/\/ot84hx5jl.bkt.clouddn.com/g, '');
     }
     if (this.data.GoodsInfoData.image4) {
-      target.image4 = this.data.GoodsInfoData.image4.replace(/http:\/\/117.149.24.42:8788/g, '');
+      target.image4 = this.data.GoodsInfoData.image4.replace(/http:\/\/ot84hx5jl.bkt.clouddn.com/g, '');
     }
     if (this.data.GoodsInfoData.video1) {
-      target.video1 = this.data.GoodsInfoData.video1.replace(/http:\/\/117.149.24.42:8788/g, '');
+      target.video1 = this.data.GoodsInfoData.video1.replace(/http:\/\/ot84hx5jl.bkt.clouddn.com/g, '');
     }
     if (this.data.GoodsInfoData.video2) {
-      target.video2 = this.data.GoodsInfoData.video2.replace(/http:\/\/117.149.24.42:8788/g, '');
+      target.video2 = this.data.GoodsInfoData.video2.replace(/http:\/\/ot84hx5jl.bkt.clouddn.com/g, '');
     }
     if (this.data.GoodsInfoData.video3) {
-      target.video3 = this.data.GoodsInfoData.video3.replace(/http:\/\/117.149.24.42:8788/g, '');
+      target.video3 = this.data.GoodsInfoData.video3.replace(/http:\/\/ot84hx5jl.bkt.clouddn.com/g, '');
     }
     target.raise_price = this.data.GoodsInfoData.priceJsons;
     target.fileList = this.data.fileList;

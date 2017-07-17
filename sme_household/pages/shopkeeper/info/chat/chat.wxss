@@ -1,3 +1,71 @@
+
+.content_container{
+  box-shadow: 0.5px 0.5px 2px #000000;
+  position: relative;
+  border-radius: 3px;
+  background-color: #ffffff;
+  width: 100%;
+  display: flex;
+}
+.goods_image{
+  width: 115px;
+  height: 115px;
+  flex-shrink: 0;
+}
+.content_container_text{
+  padding: 5px;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+}
+.content_container_title{
+  font-size: 16px;
+  line-height: 30px;
+  height: 30px;
+  width: 100%;
+}
+.content_container_info{
+  border-top: 1px solid #000000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 40px;
+  width: 100%;
+}
+.price{
+  color: #ff0000;
+  font-size: 20px;
+}
+.price::before{
+  content: "￥"
+}
+.info_other{
+  flex-shrink: 0;
+}
+.volume,.date{
+  font-size: 12px;
+  line-height: 16px;
+  text-align: right;
+}
+.volume::before{
+  content: "30天销量："
+}
+.goods_link{
+  box-sizing: border-box;
+  padding: 0 10px;
+  margin-top: 5px;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  color: #FE5B32;
+  border: 1px solid #FE5B32;
+  height: 20px;
+  border-radius: 10px;
+}
+
+
 .chat_view{
   display: flex;
   flex-direction: column;

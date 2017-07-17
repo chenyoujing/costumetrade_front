@@ -103,7 +103,7 @@
       </view>
     </view>
   </view>
-  <scroll-view scroll-y="true" class="content" lower-threshold="10" bindscrolltolower="{{loadMore?'onReachBottom':''}}" style="bottom:{{delete_button}}px;">
+  <scroll-view scroll-y="true" class="content" lower-threshold="10" bindscrolltolower="{{loadMore?'onReachBottom':''}}">
   
     <view class="prompt_none" wx:if="{{product == 0}}">
       <text>对不起，搜不到您要的货品</text>
@@ -140,11 +140,11 @@
   </scroll-view>
   <!--分析按钮-->
   <view class="batch_button_view">
-    <checkbox-group class="batch_button batch_button_all" bindchange="SelectallOrNot">
+    <!-- <checkbox-group class="batch_button batch_button_all" bindchange="SelectallOrNot">
       <label class="checkbox" >
         <checkbox checked="{{aa}}"/>全选
       </label>
-    </checkbox-group>
+    </checkbox-group> -->
     <view class="batch_button bg_g" bindtap="batch_share_sure">分享</view>
   </view>
 </view>

@@ -1,5 +1,24 @@
 <view class="chat_view">
   <scroll-view scroll-y class="chat">
+
+    <view class="chat_container">
+      <view class="content_container">
+        <image src="{{item.image ? item.image : '../../../../images/image_none.png'}}" mode="aspectFill" class="goods_image" />
+        <view class="content_container_text">
+          <view class="content_container_title one_line">{{item.name}}</view>
+          <view class="content_container_info">
+            <view class="price one_line">{{item.tagprice}}100</view>
+            <view class="info_other">
+              <view class="volume">{{item.volume || 0}}</view>
+              <view class="date">{{item.timeUp}}2017</view>
+            </view>
+          </view>
+          <view class="goods_link">发送货品链接</view>
+        </view>
+        <view class="clear"></view>
+      </view>
+    </view>
+
     <view class="chat_container clearfix">
       <view class="info_tx">
         <image src="../../../../images/image_none.png" mode="aspectFill" />

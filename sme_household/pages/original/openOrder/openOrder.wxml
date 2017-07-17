@@ -84,18 +84,20 @@
     <view class="goods_title">总库存：{{stockNum ||0}}</view>
     <scroll-view scroll-y class="goods_check">
       <view class="radio_view">
-        <radio-group bindchange="EventHandle" data-index="selectColor">
-          <label class="goods_checkbox" wx:for="{{color}}" wx:key="id">
-            <radio value="{{item.color}}" checked="{{aa}}"/>
-            {{item.color}} {{item.num}}
-          </label>
-        </radio-group>
-        <radio-group  bindchange="EventHandle" data-index="selectSize">
-          <label class="goods_checkbox" wx:for="{{size}}" wx:key="id">
-            <radio value="{{item.size}}" disabled="{{disabled}}"  checked="{{aa}}"/>
-            {{item.size}} {{item.num}}
-          </label>
-        </radio-group>
+        <view>
+          <radio-group bindchange="EventHandle" data-index="selectColor">
+            <label class="goods_checkbox" wx:for="{{color}}" wx:key="id">
+              <radio value="{{item.color}}" checked="{{aa}}"/>
+              {{item.color}} {{item.num}}
+            </label>
+          </radio-group>
+          <radio-group  bindchange="EventHandle" data-index="selectSize">
+            <label class="goods_checkbox" wx:for="{{size}}" wx:key="id">
+              <radio value="{{item.size}}" disabled="{{disabled}}"  checked="{{aa}}"/>
+              {{item.size}} {{item.num}}
+            </label>
+          </radio-group>
+        </view>
       </view>
     </scroll-view>
     <view class="keyboard_name one_line">{{GoodsDetail.name}}</view>

@@ -28,7 +28,7 @@
 
   <!--信息-->
   <view class="info" hidden="{{infotype!=0||!hiddenChat}}">
-    <navigator url="chat/chat" class="info_container" bindtap="chat">
+    <navigator url="chat/chat" class="info_container">
       <view class="info_tx">
         <image src="../../../images/image_none.png" mode="aspectFill" />
         <view class="prompt">3</view>
@@ -39,7 +39,7 @@
       </view>
       <view class="info_time">19:28</view>
     </navigator>
-    <navigator url="chat/chat" class="info_container" bindtap="chat">
+    <navigator url="chat/chat" class="info_container">
       <view class="info_tx">
         <image src="../../../images/image_none.png" mode="aspectFill" />
         <view class="prompt">3</view>

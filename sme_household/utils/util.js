@@ -27,7 +27,7 @@ var api = {
   host: 'http://192.168.2.221:8088/',
   pageNum :1,
   publicProduct:[],
-  imgUrl: "http://117.149.24.42:8788",
+  imgUrl: "http://ot84hx5jl.bkt.clouddn.com/",
   // 登录接口
   getOpenid: function (callback) {
     var that = this;

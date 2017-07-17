@@ -218,8 +218,8 @@
 }
 .radio_view{
   display: flex;
-  flex-direction: column;
   justify-content: center;
+  padding: 0 20%;
 }
 .goods_check radio-group{
   display: flex;
@@ -230,10 +230,10 @@
 .goods_checkbox{
   padding: 10px 0;
   font-size: 16px;
+  display: flex;
+  align-items: center;
 }
-.goods_checkbox checkbox{
-  position: absolute;
-  left: 15px;
+.goods_checkbox radio{
   top: unset;
 }
 .keyboard_name{
