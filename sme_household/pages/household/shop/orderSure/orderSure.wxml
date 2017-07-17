@@ -1,4 +1,5 @@
 <!--头部-->
+<form bindsubmit="orderSure" report-submit>
 <view class="title clearfix">
   <navigator open-type="navigateBack">
     <image src="../../../../images/back-away.png" mode="aspectFit" class="title_image_back" />
@@ -59,8 +60,8 @@
     </view>
 </scroll-view>
 
-<view class="sure_button" bindtap="orderSure">确定</view>
-
+<button class="sure_button" form-type="submit">确定</button>
+</form>
 <!--选择快递公司-->
 <modal title="选择快递公司" hidden="{{expressModal}}" confirm-text="取消" no-cancel bindconfirm="cancel" bindcancel="cancel" >
   <view class="logistics_choose" wx:for="{{logisticFees}}">

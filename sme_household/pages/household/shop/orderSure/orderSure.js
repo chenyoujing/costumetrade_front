@@ -59,7 +59,7 @@ Page({
         }
       })
   },
-  orderSure:function(){
+  orderSure:function(e){
     var that = this;
     wx.showModal({
       title: '是否下订单',
@@ -70,6 +70,7 @@ Page({
           var newShopCart = [];
           var price = (that.data.totalPrice + that.data.freight).toFixed(2);
           submitData.stoDetails = [];
+          submitData.form_id = e.detail.formId
           submitData.order = {};
           submitData.order.totalamt = price;
           submitData.order.ordertype = 1;

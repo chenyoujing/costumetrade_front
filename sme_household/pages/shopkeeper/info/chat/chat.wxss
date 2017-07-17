@@ -1,4 +1,3 @@
-
 .content_container{
   box-shadow: 0.5px 0.5px 2px #000000;
   position: relative;
@@ -55,7 +54,7 @@
 .goods_link{
   box-sizing: border-box;
   padding: 0 10px;
-  margin-top: 5px;
+  margin-top: 10px;
   font-size: 13px;
   display: flex;
   align-items: center;
@@ -73,13 +72,17 @@
 }
 .chat{
   height: calc(100vh - 40px);
-  flex: 1;
+}
+.chat_content{
+  display: flex;
+  flex-direction: column-reverse;
+  height: 100%;
 }
 .chat_container{
   padding: 10px 15px 0;
   display: flex;
 }
-.chat_container:last-child{
+.chat_container:last-child,.chat_container:first-child{
   padding-bottom: 10px;
 }
 .info_tx{
@@ -94,6 +97,7 @@
   width: 100%;
   height: 100%;
   border-radius: 25px;
+  display: block;
 }
 .chat_text{
   font-size: 16px;
@@ -121,20 +125,34 @@
 .chat_my{
   flex-direction: row-reverse;
 }
-.chat_button{
+.chat_input{
   flex-shrink: 0;
+  position: fixed;
+  bottom: 0;
   height: 40px;
-  border-radius: 0;
+  width: 100%;
   border-top: 1px solid #286561;
-  text-align: center;
   font-size: 16px;
-  line-height: 40px;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
+  align-items: center;
   background-color: #ffffff;
 }
-.chat_button_image{
-  width: 24px;
-  height: 24px;
-  padding: 8px;
+.chat_input input{
+  height: 30px;
+  font-size: 16px;
+  width: 100%;
+  border-bottom: 1px solid #969696;
+}
+.chat_input_image{
+  width: 100px;
+  display: flex;
+  flex-shrink: 0;
+  justify-content: center;
+  align-items: center;
+}
+.chat_input_image image{
+  width: 30px;
+  height: 30px;
+  padding: 5px;
 }
