@@ -10,17 +10,17 @@ Page({
     inputBoolean: false,//手写键盘是否输入
     keyHidden: false,//键盘是否隐藏
     type: 1,//销售还是入库单
-    products_info:false,
+    products_info:false,//用于第一个页面与第二个页面的切换
     placeholder:"货号",
     product: [],//所有货品
     keyArray:[],
     shopCart: [],//购物车货品
     selectName: {},//选择的会员信息
-    saleChangeName:'tagprice',
-    saleChangeName2:'tagprice',
+    saleChangeName:'tagprice',//商品列表显示的价格
+    saleChangeName2: 'tagprice',//商品详情显示的价格
     color: [],
     size: [],
-    GoodsDetail: {},
+    GoodsDetail: {},//商品详情
     stockNum: [],
     unitChange: false,
     disabled: false,
@@ -34,7 +34,7 @@ Page({
     aa: false,//尺码颜色单选框取消
     colorChange:1,
     cate:1,
-    saleName:'标签价',
+    saleName:'标签价',//显示的价格
     stockArray:[],
     userIdentity:3,
     purchasePrivilege: false,//是否有权限看进货价
@@ -48,7 +48,7 @@ Page({
     sizeRaiseArray:[],
     showPrice2: 0//某个货品的原始价格
   },
-  // 扫码 只写了主条码。。。。。
+  // 扫码 
   scan: function () {
     var that = this;
     var shopCart = this.data.product;
@@ -166,8 +166,12 @@ Page({
       selectSize:'',
       selectColor:"",
       sizeRaise: 0,
-      colorRaise: 0
+      colorRaise: 0,
+      keyboardNum:"",
+      products_info:false
     })
+    console.log(!this.data.products_info || this.data.orderid)
+    
   },
   // 键盘事件
   keyboardtap:function(e){
@@ -244,8 +248,6 @@ Page({
     this.setData({
       judgeSalePrice: this.data.GoodsDetail[salPrice]
     })
-    console.log(this.data.GoodsDetail[salPrice])
-    console.log(salPrice)
   },
   // 判断是否可以更改
   SalePassOrNot:function(){
@@ -254,7 +256,7 @@ Page({
     var judgeSalePrice = this.data.judgeSalePrice + this.data.sizeRaise + this.data.colorRaise;
     console.log(this.data.GoodsDetail.showPrice)
     console.log(judgeSalePrice)
-    if (app.globalData.modifyPrice > this.data.cate && this.data.cate !==0 &&this.data.GoodsDetail.showPrice <= judgeSalePrice){
+    if (app.globalData.modifyPrice > this.data.cate && this.data.cate !== 0 && this.data.GoodsDetail.showPrice <= judgeSalePrice && app.globalData.modifyPrice){
       wx.showToast({
         title: '您的权限不够，不能更改价格！',
         icon: 'warn',
@@ -339,6 +341,7 @@ Page({
   },
   // 价格切换
   changeSale: function () {
+    var custProdPrice = app.custProdPrice.length;
     var modifyPrice = app.globalData.modifyPrice;
     var cate = this.data.cate;
     var GoodsDetail = this.data.GoodsDetail;
@@ -348,18 +351,17 @@ Page({
         icon: 'warn',
         duration: 2000
       })
-    } else if (modifyPrice < cate) {
+    } else if (modifyPrice < cate && modifyPrice) {
       wx.showToast({
         title: '您的权限不够，不能切换！',
         icon: 'warn',
         duration: 2000
       })
-    }
-    else if (modifyPrice == 1) {
+    }else if (modifyPrice == 1) {
       cate = cate == 0 ? 1 : 0;
       this.endChage(cate, GoodsDetail)
     } else {
-      if (cate < modifyPrice) {
+      if (cate < (modifyPrice || custProdPrice)) {
         cate = cate + 1
       } else {
         cate = 1
@@ -376,7 +378,6 @@ Page({
       products_info: boolean
     })
     this.searchGoods()
-    console.log(this.data.products_info)
   },
   // 货号名称切换
   changeCodeName:function(){
@@ -392,16 +393,17 @@ Page({
   // 切换单据类型
   changeType:function(e){
     var type = e.target.dataset.type;
-    this.sale(this.data.selectName.cate);
+    console.log(type)
+    // 缓存过后再切换
     this.localData(this.data.shopCart);
+    app.selectName = {};
     this.setData({
       type: type,
       shopCart:[],
       selectName:{}
     })
-    app.selectName = {};
+    // 判断显示价格
     this.getData();
-    console.log(e.target.dataset.type)
     this.more_function_close()
   },
   // 判断货品显示的价格
@@ -436,27 +438,23 @@ Page({
         name = '标签价';
         break;
     }
-    var saleChangeName2 = salPrice;
     salPrice = this.data.type == 1 ? salPrice :'purchaseprice';
     name = this.data.type == 1 ? name : '进货价';
-    if (this.data.orderid){
-      // 单个货品列表显示的价格
-      this.setData({
-        saleChangeName2: saleChangeName2,
-        saleName:name
-      })
-    }else{
+    this.setData({
+      saleChangeName2: salPrice,
+      saleName: name
+    })
+    if (!this.data.orderid){
       // 所有货品列表显示的价格
       this.setData({
         saleChangeName: salPrice,
-        saleChangeName2: saleChangeName2,
-        saleName: name
       })
     }
-    console.log(salPrice)
+    console.log(salPrice = this.data.type == 1 ? salPrice : 'purchaseprice')
   },
   // 搜索货品
   searchGoods:function(){
+    this.sale(this.data.selectName.cate);
     var value = this.data.keyboardNum;
     var endArray4 = util.api.objectPushArry(this.data.product, value)
     for (var p in endArray4){
@@ -668,9 +666,6 @@ Page({
         cate: cate,
         showPrice2: Number(GoodsDetail[this.data.saleChangeName2])
       })
-      console.log(Number(GoodsDetail[this.data.saleChangeName2]))
-      console.log(Number(this.data.colorRaise))
-      console.log(Number(this.data.sizeRaise))
     }
   },
   // 计算总的价格和数量
@@ -745,7 +740,7 @@ Page({
     if(add){
       shopCart.push(object);
     }
-    this.localData(this.data.shopCart);
+    // this.localData(this.data.shopCart);
     this.totalData();
     this.order_back();
     this.setData({

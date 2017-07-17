@@ -50,7 +50,7 @@
       <image src="../../../images/home-page.png" mode="aspectFit" wx:if="{{nav=='首页'}}" />
       <text>首页</text>
     </navigator>
-    <navigator url="{{nav!='开单'?'../order/order':''}}" open-type="redirect" class="nav_bottom_view {{nav=='开单'?'nav_bottom_active':''}}">
+    <navigator url="{{nav!='开单'?'../../original/openOrder/openOrder':''}}" open-type="redirect" class="nav_bottom_view {{nav=='开单'?'nav_bottom_active':''}}">
       <image src="../../../images/billing.png" mode="aspectFit" wx:if="{{nav!='开单'}}" />
       <image src="../../../images/billing-.png" mode="aspectFit" wx:if="{{nav=='开单'}}" />
       <text>开单</text>

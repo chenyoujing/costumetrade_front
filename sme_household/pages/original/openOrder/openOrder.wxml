@@ -80,7 +80,7 @@
   <!--页面3-->
   <view style="top:0;bottom:{{keyHidden?60:keyboard_height*3 + 79}}px;background-color:#ffffff;" class="order_scroll" hidden="{{!orderid}}">
     <image src="{{GoodsDetail.image ?GoodsDetail.image : '../../../images/image_none.png'}}" mode="aspectFill" class="goods_image" />
-    <view class="goods_title">总库存：{{stockNum}}</view>
+    <view class="goods_title">总库存：{{stockNum ||0}}</view>
     <scroll-view scroll-y class="goods_check">
       <radio-group bindchange="EventHandle" data-index="selectColor">
         <label class="goods_checkbox" wx:for="{{color}}" wx:key="id">

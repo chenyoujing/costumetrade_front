@@ -51,40 +51,21 @@ var api = {
           },
           method: 'POST',
           success: function (res) {
-            app.globalData.sessionKey = res.data.data.sessionKey;
-            wx.getUserInfo({
-              success: function (res) {
-                wx.request({
-                  url: that.host + '/user/getUnionId',
-                  header: {
-                    'content-type': 'application/x-www-form-urlencoded'
-                  },
-                  data: {
-                    encryptedData: res.encryptedData,
-                    iv: res.iv,
-                    sessionKey: app.globalData.sessionKey
-                  },
-                  method: 'POST',
-                  success: function (res) {
-                    app.globalData.userInfo.code = loginCode.code;
-                    app.globalData.userInfo.name = res.data.data.name;
-                    app.globalData.userInfo.photo = res.data.data.photo; 
-                    app.globalData.openid = res.data.data.query.openid;
-                    app.globalData.privilegeEmployees = res.data.data.employee.privilegeEmployees;
-                    app.globalData.userIdentity = res.data.data.userIdentity;
-                    app.globalData.storeInfo = res.data.data.products || [];
-                    app.globalData.modifyPrice = res.data.data.employee.modifyPrice;
-                    app.globalData.zeroPrice = res.data.data.employee.zeroPrice;
-                    app.globalData.discount = res.data.data.employee.discount;
-                    app.globalData.storeId = res.data.data.storeId;
-                    app.globalData.userid = res.data.data.userid;
-                    if (callback) {
-                      callback();
-                    }
-                  }
-                })
-              }
-            })
+            app.globalData.userInfo.code = loginCode.code;
+            app.globalData.userInfo.name = res.data.data.name;
+            app.globalData.userInfo.photo = res.data.data.photo;
+            app.globalData.openid = res.data.data.query.openid;
+            app.globalData.privilegeEmployees = res.data.data.employee.privilegeEmployees;
+            app.globalData.userIdentity = res.data.data.userIdentity;
+            app.globalData.storeInfo = res.data.data.products || [];
+            app.globalData.modifyPrice = res.data.data.employee.modifyPrice;
+            app.globalData.zeroPrice = res.data.data.employee.zeroPrice;
+            app.globalData.discount = res.data.data.employee.discount;
+            app.globalData.storeId = res.data.data.storeId;
+            app.globalData.userid = res.data.data.userid;
+            if (callback) {
+              callback();
+            }
           }
         })
       }
@@ -352,14 +333,14 @@ var api = {
         console.log(app.screen_brandList)
         app.screen_productTypeList = res.data.productTypeList || [];//种类
         app.screen_productSize = res.data.productSize || [],//尺码组
-          app.screen_gradeList = res.data.gradeList || [],//等级
-          app.screen_unitList = res.data.unitList || [],//单位
-          app.custOrDiscTag = res.data.custOrDiscTag || [],//折扣or打折
-          app.custProdPrice = res.data.custProdPrice || [],//启用的价格
-          app.privilegeEmployees = res.data.privileges || [],//员工权限
-          app.customerTypeList = res.data.customerTypeList || [],//待确定
-          app.logisticFees = res.data.logisticFees || [],//快递
-          app.payTypeList = res.data.payTypeList || [],//支付方式
+        app.screen_gradeList = res.data.gradeList || [],//等级
+        app.screen_unitList = res.data.unitList || [],//单位
+        app.custOrDiscTag = res.data.custOrDiscTag || [],//折扣or打折
+        app.custProdPrice = res.data.custProdPrice || [],//启用的价格
+        app.privilegeEmployees = res.data.privileges || [],//员工权限
+        app.customerTypeList = res.data.customerTypeList || [],//待确定
+        app.logisticFees = res.data.logisticFees || [],//快递
+        app.payTypeList = res.data.payTypeList || [],//支付方式
         app.getProductInit = true;
         console.log(res.data)
       }
