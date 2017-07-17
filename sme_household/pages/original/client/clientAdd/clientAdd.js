@@ -97,7 +97,7 @@ Page({
         },
         success: function (res) {
           wx.hideNavigationBarLoading();
-          util.api.updataStorage(res.data, that.data.client)
+          util.api.updataStorage(object, that.data.client)
           wx.showToast({
             title: '成功',
             icon: 'success',

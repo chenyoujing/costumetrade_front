@@ -160,16 +160,21 @@ var api = {
   },
   // 判断有没有，没有的话push 更新缓存
   updataStorage: function (object, client) {
+    console.log(object)
     var name = "";
-    if (client !== 2) {
+    if (client !== "2") {
       name = "UnitData1";
+      console.log(client)
     } 
-    if (client !== 1){
+    if (client !== "1"){
       name = "UnitData2";
+      console.log(client)
     }
     wx.getStorage({
       key: name,
       success: function (res) {
+        res.data = res.data || [];
+        console.log(res.data)
         var add = true;
         for (var p in res.data) {
           if (res.data[p].id == object.id) {
@@ -180,6 +185,7 @@ var api = {
         if (add) {
           res.data.push(object)
         }
+        console.log(res.data)
         wx.setStorage({
           key: name,
           data: res.data
@@ -230,8 +236,9 @@ var api = {
       },
       success: function (res) {
         console.log(res)
-    
-        that.updataStorage(res.data, client  )
+        if(res.code == 0){
+          that.updataStorage(res.data, client)
+        }
         wx.hideNavigationBarLoading();
         if (!res.data.id) {
           wx.showToast({

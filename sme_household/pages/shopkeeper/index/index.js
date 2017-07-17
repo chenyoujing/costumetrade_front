@@ -44,20 +44,18 @@ Page({
   },
 
   onLoad: function (options) {
-    var that = this
     app.firstLogin = true;
-    console.log(app.globalData.userInfo)
-    if (!app.globalData.userInfo) {
-      app.getOpenid(
-        that.setData({
-          userInfo: app.globalData.userInfo
-        })
-      )
-    }else{
-      this.setData({
-        userInfo: app.globalData.userInfo
-      })
+    if (!app.logisticFees && app.globalData.userIdentity !== 2) {
+      util.api.getProductInit()
     }
+    this.setData({
+      userInfo: app.globalData.userInfo
+    })
     this.chart()
+  },
+  onReady: function(){
+    this.setData({
+      userInfo: app.globalData.userInfo
+    })
   }
 })

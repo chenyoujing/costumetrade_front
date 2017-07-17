@@ -19,13 +19,13 @@
             <!--<text class="date">2017-01-01</text>-->
           </view>
           <view class="content_container_info clearfix">
-            <view class="unit_price">单价:{{item.price}}</view>
+            <view class="unit_price">单价: ￥{{item.price}}</view>
             <view class="info clearfix">
               <view class="info_txet">颜色： {{item.colors}}</view>
               <view class="info_txet">尺码： {{item.sizes}}</view>
               <view class="info_txet">数量： {{item.count}}</view>
             </view>
-            <view class="price"> {{item.price}}</view>
+            <view class="price"> ：￥{{item.price}}</view>
             <view class="button" bindtap="skipUrl" data-cate="{{cate}}" data-image="{{image}}" data-name = "{{name}}"  data-id="{{clientId}}" data-goodsid="{{item.id}}">补货</view>
           </view>
         </view>
