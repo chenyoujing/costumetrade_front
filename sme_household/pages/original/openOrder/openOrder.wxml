@@ -1,10 +1,11 @@
- 
-<view class="section clearfix">
+<import src="../../../template/template.wxml"/>
+
+<view class="section clearfix" style="bottom:{{shopkeeper?'45px':''}}">
  <view class="title clearfix" hidden="{{orderid}}">
-    <navigator open-type="navigateBack">
+    <navigator open-type="navigateBack" wx:if="{{!shopkeeper}}">
       <image src="../../../images/back-away.png" mode="aspectFit" class="title_image_back" />
     </navigator>
-    <view class="title_scan" bindtap="scan">
+    <view class="title_scan" style="margin-left:{{shopkeeper?'5%':''}}" bindtap="scan">
       <image src="../../../images/scan-wiht.png" mode="aspectFit" class="title_image_scan" />
       <view class="title_scan_text" bindtap="scan">扫一扫</view>
     </view>
@@ -82,18 +83,20 @@
     <image src="{{GoodsDetail.image ?GoodsDetail.image : '../../../images/image_none.png'}}" mode="aspectFill" class="goods_image" />
     <view class="goods_title">总库存：{{stockNum ||0}}</view>
     <scroll-view scroll-y class="goods_check">
-      <radio-group bindchange="EventHandle" data-index="selectColor">
-        <label class="goods_checkbox" wx:for="{{color}}" wx:key="id">
-          <radio value="{{item.color}}" checked="{{aa}}"/>
-          {{item.color}} {{item.num}}
-        </label>
-      </radio-group>
-      <radio-group  bindchange="EventHandle" data-index="selectSize">
-        <label class="goods_checkbox" wx:for="{{size}}" wx:key="id">
-          <radio value="{{item.size}}" disabled="{{disabled}}"  checked="{{aa}}"/>
-          {{item.size}} {{item.num}}
-        </label>
-      </radio-group>
+      <view class="radio_view">
+        <radio-group bindchange="EventHandle" data-index="selectColor">
+          <label class="goods_checkbox" wx:for="{{color}}" wx:key="id">
+            <radio value="{{item.color}}" checked="{{aa}}"/>
+            {{item.color}} {{item.num}}
+          </label>
+        </radio-group>
+        <radio-group  bindchange="EventHandle" data-index="selectSize">
+          <label class="goods_checkbox" wx:for="{{size}}" wx:key="id">
+            <radio value="{{item.size}}" disabled="{{disabled}}"  checked="{{aa}}"/>
+            {{item.size}} {{item.num}}
+          </label>
+        </radio-group>
+      </view>
     </scroll-view>
     <view class="keyboard_name one_line">{{GoodsDetail.name}}</view>
     <view class="keyboard_join" bindtap="SalePassOrNot">加入</view>
@@ -144,4 +147,5 @@
   
 </view>
 
+<template is="navBottom2" data="{{nav:'开单'}}" wx:if="{{shopkeeper}}"></template>
 

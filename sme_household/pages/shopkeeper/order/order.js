@@ -821,7 +821,8 @@ Page({
       })
     }, 1000)
     this.setData({
-      type: e.type || 1
+      type: e.type || 1,
+      shopkeeper: e.shopkeeper || 1
     })
     wx.getSystemInfo({
       success: function (res) {

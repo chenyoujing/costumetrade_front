@@ -45,22 +45,22 @@
 </template>
 <template name="navBottom2">
   <view class="nav_bottom">
-    <navigator url="{{nav!='首页'?'../index/index':''}}" open-type="redirect" class="nav_bottom_view {{nav=='首页'?'nav_bottom_active':''}}">
+    <navigator url="{{nav!='首页'?'../../shopkeeper/index/index':''}}" open-type="redirect" class="nav_bottom_view {{nav=='首页'?'nav_bottom_active':''}}">
       <image src="../../../images/home-page2.png" mode="aspectFit" wx:if="{{nav!='首页'}}" />
       <image src="../../../images/home-page.png" mode="aspectFit" wx:if="{{nav=='首页'}}" />
       <text>首页</text>
     </navigator>
-    <navigator url="{{nav!='开单'?'../../original/openOrder/openOrder':''}}" open-type="redirect" class="nav_bottom_view {{nav=='开单'?'nav_bottom_active':''}}">
+    <navigator url="{{nav!='开单'?'../../original/openOrder/openOrder?shopkeeper=true':''}}" open-type="redirect" class="nav_bottom_view {{nav=='开单'?'nav_bottom_active':''}}">
       <image src="../../../images/billing.png" mode="aspectFit" wx:if="{{nav!='开单'}}" />
       <image src="../../../images/billing-.png" mode="aspectFit" wx:if="{{nav=='开单'}}" />
       <text>开单</text>
     </navigator>
-    <navigator url="{{nav!='信息'?'../info/info':''}}" open-type="redirect" class="nav_bottom_view {{nav=='信息'?'nav_bottom_active':''}}">
+    <navigator url="{{nav!='信息'?'../../shopkeeper/info/info':''}}" open-type="redirect" class="nav_bottom_view {{nav=='信息'?'nav_bottom_active':''}}">
       <image src="../../../images/info.png" mode="aspectFit" wx:if="{{nav!='信息'}}" />
       <image src="../../../images/info2.png" mode="aspectFit" wx:if="{{nav=='信息'}}" />
       <text>信息</text>
     </navigator>
-    <navigator url="{{nav!='发图'?'../share/share':''}}" open-type="redirect" class="nav_bottom_view {{nav=='发图'?'nav_bottom_active':''}}">
+    <navigator url="{{nav!='发图'?'../../shopkeeper/share/share':''}}" open-type="redirect" class="nav_bottom_view {{nav=='发图'?'nav_bottom_active':''}}">
       <image src="../../../images/Figure.png" mode="aspectFit" wx:if="{{nav!='发图'}}" />
       <image src="../../../images/Figure-.png" mode="aspectFit" wx:if="{{nav=='发图'}}" />
       <text>发图</text>

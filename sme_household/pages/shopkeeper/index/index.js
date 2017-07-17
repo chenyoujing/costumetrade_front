@@ -44,20 +44,20 @@ Page({
   },
 
   onLoad: function (options) {
+    var that = this
     app.firstLogin = true;
     console.log(app.globalData.userInfo)
-    this.setData({
-      userInfo: app.globalData.userInfo
-    })
-    this.chart()
-  },
-  onReady: function(){
-    if (!this.data.userInfo){
+    if (!app.globalData.userInfo) {
       app.getOpenid(
-        this.setData({
+        that.setData({
           userInfo: app.globalData.userInfo
         })
       )
+    }else{
+      this.setData({
+        userInfo: app.globalData.userInfo
+      })
     }
+    this.chart()
   }
 })
