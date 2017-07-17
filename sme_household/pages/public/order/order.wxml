@@ -14,13 +14,13 @@
 <!--二级分类 销售-->
 <view class="ordertype2" wx-if="{{ordertype==2}}">
   <view class="ordertype2_text {{ordertype2=='4' ? 'ordertype_active2' : ''}}" bindtap="ordertype2" data-ordertypetwo="4">
-     待审核<view class="ordertype2_prompt">{{countNum.sNoPayCount}}</view>
+     待审核<view class="ordertype2_prompt" wx:if="{{countNum.sNoPayCount}}">{{countNum.sNoPayCount}}</view>
   </view>
   <view class="ordertype2_text {{ordertype2=='6' ? 'ordertype_active2' : ''}}" bindtap="ordertype2" data-ordertypetwo="6">
-      待收款<view class="ordertype2_prompt">{{countNum.sNoAuditCount}}</view>
+      待收款<view class="ordertype2_prompt" wx:if="{{countNum.sNoAuditCount}}">{{countNum.sNoAuditCount}}</view>
   </view>
   <view class="ordertype2_text {{ordertype2=='2' ? 'ordertype_active2' : ''}}" bindtap="ordertype2" data-ordertypetwo="2">
-     待发货<view class="ordertype2_prompt">{{countNum.sNoShipCount}}</view>
+     待发货<view class="ordertype2_prompt" wx:if="{{countNum.sNoShipCount}}">{{countNum.sNoShipCount}}</view>
   </view>
   <view class="ordertype2_text {{ordertype2=='5' ? 'ordertype_active2' : ''}}" bindtap="ordertype2" data-ordertypetwo="5">
       全部
@@ -31,13 +31,13 @@
 <!--二级分类 采购-->
 <view class="ordertype2"  wx-if="{{ordertype==1}}">
   <view class="ordertype2_text {{ordertype2=='1' ? 'ordertype_active2' : ''}}" bindtap="ordertype2" data-ordertypetwo="1">
-      待付款<view class="ordertype2_prompt">{{countNum.pNoPayCount}}</view>
+      待付款<view class="ordertype2_prompt" wx:if="{{countNum.pNoPayCount}}">{{countNum.pNoPayCount}}</view>
   </view>
   <view class="ordertype2_text {{ordertype2=='2' ? 'ordertype_active2' : ''}}" bindtap="ordertype2" data-ordertypetwo="2">
-      待发货<view class="ordertype2_prompt">{{countNum.pNoShipCount}}</view>
+      待发货<view class="ordertype2_prompt" wx:if="{{countNum.pNoShipCount}}">{{countNum.pNoShipCount}}</view>
   </view>
   <view class="ordertype2_text {{ordertype2=='3' ? 'ordertype_active2' : ''}}" bindtap="ordertype2" data-ordertypetwo="3">
-      待收货<view class="ordertype2_prompt">{{countNum.pNoReceiptCount}}</view>
+      待收货<view class="ordertype2_prompt" wx:if="{{countNum.pNoReceiptCount}}">{{countNum.pNoReceiptCount}}</view>
   </view>
   <view class="ordertype2_text {{ordertype2=='5' ? 'ordertype_active2' : ''}}" bindtap="ordertype2" data-ordertypetwo="5">
       全部
