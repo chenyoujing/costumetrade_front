@@ -16,7 +16,7 @@
         <view class="content_container_text">
           <view class="content_container_title">
             {{item.name}}
-            <text class="date">2017-01-01</text>
+            <!--<text class="date">2017-01-01</text>-->
           </view>
           <view class="content_container_info clearfix">
             <view class="unit_price">单价:{{item.price}}</view>

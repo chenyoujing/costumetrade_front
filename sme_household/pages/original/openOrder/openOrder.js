@@ -740,7 +740,7 @@ Page({
     if(add){
       shopCart.push(object);
     }
-    // this.localData(this.data.shopCart);
+    this.localData(this.data.shopCart);
     this.totalData();
     this.order_back();
     this.setData({
@@ -809,8 +809,7 @@ Page({
       })
     }, 1000)
     this.setData({
-      type: e.type||1,
-      shopkeeper: e.shopkeeper,
+      type: e.type||1
     })
     wx.getSystemInfo({
       success: function (res) {
@@ -836,7 +835,6 @@ Page({
     this.setData({
       selectName: app.selectName,
       cate: app.selectName.cate,
-     
       name: 'shopCartLowe' + this.data.type
     })
     this.sale(app.selectName.cate);

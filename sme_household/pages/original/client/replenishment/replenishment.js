@@ -26,7 +26,7 @@ Page({
         wx.hideNavigationBarLoading();
         console.log(res.data)
         for(var p in res.data){
-          res.data[p].image = util.api.imgUrl + res.data[p].image
+          res.data[p].image = util.api.imgUrl + res.data[p].image;
         }
         that.setData({
           product:res.data
