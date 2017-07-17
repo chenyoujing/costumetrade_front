@@ -3,11 +3,6 @@ var reg = {
   phone: function (mobilPhone){
     var boolean = true;
     if (mobilPhone !== '' && (!/^(13[0-9]|15[012356789]|17[012356789]|18[0-9]|14[57])[0-9]{8}$/.test(mobilPhone))) {
-      wx.showToast({
-        title: "出错了",
-        icon: 'tips',
-        duration: 1000
-      })
       boolean = false;
     }
     return boolean;
@@ -16,11 +11,6 @@ var reg = {
   tellphone: function (phone) {
     var boolean = true;
     if (phone !== '' && (!/^((0\d{2,3}-\d{7,8})|(1[3584]\d{9}))$/.test(phone))) {
-      wx.showToast({
-        title: "出错了",
-        // icon: 'tips',
-        duration: 1000
-      })
       boolean = false;
     }
     return boolean;
@@ -29,11 +19,6 @@ var reg = {
   iSnull: function (name) {
      var boolean = true;
     if (name == '' || name.length >= 20) {
-       wx.showToast({
-         title: "出错了",
-        //  icon: 'tips',
-         duration: 1000
-       })
        boolean = false;
      }
      return boolean;
@@ -44,11 +29,6 @@ var reg = {
     var re = /[^\u4e00-\u9fa5]/;
     console.log(re.test(temp))
     if (!re.test(temp)){
-      wx.showToast({
-        title: "出错了",
-        //  icon: 'tips',
-        duration: 1000
-      })
       boolean = false;
     }
     return boolean;  

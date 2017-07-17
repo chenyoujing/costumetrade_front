@@ -52,7 +52,6 @@ Page({
       }
     })
   },
-
   // 请求数据
   page_request: function () {
     var that = this

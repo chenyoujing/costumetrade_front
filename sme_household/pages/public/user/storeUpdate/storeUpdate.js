@@ -114,24 +114,25 @@ Page({
   update_storeInfo: function (e) {
     var that = this;
     // e.detail.value.birthday = Date.parse(new Date(e.detail.value.birthday))
-    var object = e.detail.value
+    var object = e.detail.value;
+    var objectSubmit = util.api.getEntityModified(this.data.originData, object);
     switch (app.globalData.userIdentity) {
       case 1:
-        object.storeId = app.globalData.storeId
-        object.type = 1;
+        objectSubmit.storeId = app.globalData.storeId
+        objectSubmit.type = 1;
         break;
       case 2:
-        object.userid = app.globalData.userid
-        object.type = 2
+        objectSubmit.userid = app.globalData.userid
+        objectSubmit.type = 2
         break;
       case 3:
-        object.storeId = app.globalData.storeId
+        objectSubmit.storeId = app.globalData.storeId
         break;
     }
     wx.showNavigationBarLoading()
     util.api.request({
       url: 'user/saveUserOrStore',
-      data: object,
+      data: objectSubmit,
       method: 'POST',
       header: {
         'content-type': 'application/json'
@@ -140,40 +141,6 @@ Page({
         wx.hideNavigationBarLoading();
         app.globalData.userInfo.name = object.name || app.globalData.userInfo.name;
         app.globalData.userInfo.photo = object.storephoto || app.globalData.userInfo.photo;
-       
-        // if (app.globalData.userIdentity == 2) {
-        //   var userInfo = app.globalData.userInfo
-        //   userInfo.name = object.name
-        //   userInfo.avatarUrl = object.storephoto
-        //   var reg = /^\//;
-        //   if (reg.test(object.storephoto)) {
-        //     userInfo.avatarUrl = util.api.imgUrl + object.storephoto
-        //   }
-        //   userInfo.cphone = object.cphone
-        //   userInfo.wechat = object.wechat
-        //   userInfo.region = object.region
-        //   userInfo.address = object.address
-        //   userInfo.contact = object.contact
-        //   userInfo.phone = object.phone
-        //   userInfo.birthday = util.formatTime(new Date(object.birthday))
-        //   app.globalData.userInfo = userInfo
-        // }else{
-        //   var storeInfo = app.globalData.storeInfo[0]
-        //   storeInfo.name = object.name
-        //   var reg = /^\//;
-        //   if (reg.test(object.storephoto)) {
-        //     storeInfo.storephoto = util.api.imgUrl + object.storephoto
-        //   }
-        //   storeInfo.cphone = object.cphone
-        //   storeInfo.wechat = object.wechat
-        //   storeInfo.region = object.region
-        //   storeInfo.address = object.address
-        //   storeInfo.contact = object.contact
-        //   storeInfo.phone = object.phone
-        //   storeInfo.birthday = util.formatTime(new Date(object.birthday))
-        //   storeInfo.description = object.description
-        //   app.globalData.storeInfo[0] = storeInfo
-        // }
         wx.showToast({
           title: '修改成功',
           mask: true,
@@ -193,10 +160,13 @@ Page({
       }
     })
   },
-  bindDateChange: function (e) {
-    this.setData({
-      date: e.detail.value
-    })
+  bindChange: function (e) {
+    var type = app.globalData.userIdentity !== 2 ? "storeInfo" :"userInfo";
+    var name = e.target.dataset.name;
+    var param = {};
+    param['userInfo.' + name] = e.detail.value
+    this.setData(param)
+    console.log(param)
   },
   // 更改标题
   changeTitle: function (){
@@ -237,6 +207,7 @@ Page({
           }else{
             param.userInfo = res.data;
           }
+          param.originData = res.data;
           that.setData(param)
         }
       })
