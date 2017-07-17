@@ -52,8 +52,12 @@ Page({
     this.chart()
   },
   onReady: function(){
-    this.setData({
-      userInfo: app.globalData.userInfo
-    })
+    if (!this.data.userInfo){
+      app.getOpenid(
+        this.setData({
+          userInfo: app.globalData.userInfo
+        })
+      )
+    }
   }
 })
