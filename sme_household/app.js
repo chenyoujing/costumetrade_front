@@ -9,7 +9,7 @@ App({
     }
     this.getUserInfo();
   },
-  getOpenid: function () {
+  getOpenid: function (callback) {
     var that = this;
     this.globalData.userInfo = {
       appid:'wx0f02d5eacaf954e7',
@@ -45,6 +45,7 @@ App({
                 that.globalData.userid = res.data.data.userid;
                 console.log(that.globalData)
                 that.householdOrshopkeper(res.data.data.userIdentity)
+                callback
               }
             })
           }
