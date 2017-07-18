@@ -145,7 +145,7 @@
         <checkbox checked="{{aa}}"/>全选
       </label>
     </checkbox-group> -->
-    <view class="batch_button bg_g" bindtap="batch_share_sure">分享</view>
+    <view class="batch_button bg_g" bindtap="batch_share_sure">发图</view>
   </view>
 </view>
 <!--更多功能-->

@@ -80,13 +80,13 @@
     <image src="../../../images/customer_service.png"  class="shop_content_service" mode="aspectFit" />
     <contact-button class="shop_content_service" style="opacity:0;" size="20" session-from="weapp"></contact-button>
   </view>
- <!--<form bindsubmit="aa" report-submit>
+   <!--<form bindsubmit="aa" report-submit>
 <button form-type="submit">初始化</button>
-</form>
+</form> 
 <navigator url="Bluetooth/Bluetooth">
   <button> 搜索 </button>
 </navigator>-->
- 
+  
 </scroll-view>
 
 <template is="navBottom" data="{{nav:'首页'}}" wx:if="{{!shopkeeper}}"></template>

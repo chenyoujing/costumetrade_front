@@ -4,7 +4,15 @@ var app = getApp()
 var columnChart = null;
 Page({
   data: {
-    userInfo:""
+    userInfo:"",
+    scanModal: true,
+  },
+  setdata: function (data) {
+    this.setData(data)
+  },
+  scan:function(){
+    var that = this
+    util.api.scan(1, that.setData())
   },
   chart: function () {
     var that = this

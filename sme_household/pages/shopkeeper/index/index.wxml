@@ -5,20 +5,17 @@
   <view class="index_title">
     <image src="../../../images/index_title_bg.png" mode="aspectFill" class="index_title_bg" />
     <navigator url="../../public/user/dictionary/dictionary" class="index_dictionary">设置</navigator>
-    <navigator url="../../public/user/shareStore/shareStore" class="index_share">分享</navigator>
+    <view class="index_share" bindtap="scan">
+      <image src="../../../images/QR_code.png" mode="aspectFill" />
+      <view class="index_share_text">+粉</view>
+    </view>
     <view class="my_title clearfix">
       <navigator class="tx_nav" url="../../public/user/user?shopkeeper=2">
         <image src="{{userInfo.photo||'../../../images/shop1_tx.png'}}" mode="aspectFill" class="my_tx" />
       </navigator>
       <view class="my_info clearfix">
         <navigator url="../../public/user/storeUpdate/storeUpdate" class="my_name one_line">{{userInfo.name}}</navigator>
-        <view class="my_info_view">
-          <view class="my_fans">200</view>
-          <view class="my_share">
-            <image src="../../../images/QR_code.png" mode="aspectFill" bindtap="scan" />
-            <view class="my_share_text">+粉</view>
-          </view>
-        </view>
+        <view class="my_fans">200</view>
       </view>
     </view>
     <view class="operation_view">
@@ -40,17 +37,17 @@
       </navigator>
     </view>
     <view class="operation_view">
+      <navigator url="../../original/client/client" class="operation">
+        <image src="../../../images/consumer-.png" mode="aspectFit" />
+        <text>联系人</text>
+      </navigator>
       <navigator url="../../household/shop/shop?shopkeeper=2" class="operation">
         <image src="../../../images/Map-collection.png" mode="aspectFit" />
         <text>看板</text>
       </navigator>
       <navigator url="../../original/Goods/Goods" class="operation">
         <image src="../../../images/kinds-or-types-of-goods.png" mode="aspectFit" />
-        <text>货品</text>
-      </navigator>
-      <navigator url="../../original/client/client" class="operation">
-        <image src="../../../images/consumer-.png" mode="aspectFit" />
-        <text>客户</text>
+        <text>货架</text>
       </navigator>
       <navigator url="../../public/order/order?shopkeeper=2&ordertype=1" class="operation">
         <image src="../../../images/select-and-purchase.png" mode="aspectFit" />
@@ -75,3 +72,4 @@
 </view>
 
 <template is="navBottom2" data="{{nav:'首页'}}" />
+<template is="scanModal" data="{{scanModal:scanModal,scanImage:'首页'}}" />

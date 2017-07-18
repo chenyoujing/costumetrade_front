@@ -26,21 +26,21 @@
   max-width: calc(100% - 165px);
 }
 .my_name{
-  min-width: 120px;
+  min-width: 110px;
   border-bottom: 2px solid #DBF4F1;
-  margin-bottom: 8px;
-  font-size: 16px;
-  line-height: 30px;
-  height: 30px;
+  font-size: 18px;
+  height: 34px;
+  line-height: 34px;
 }
 .my_fans{
-  box-sizing: border-box;
+  flex: 1;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   color: #ff0000;
-  width: 50%;
-  border-right: 1px solid #DBF4F1;
   font-size: 12px;
-  line-height: 18px;
-  float: left;
+  line-height: 12px;
 }
 .my_fans::after{
   content: " 粉丝";

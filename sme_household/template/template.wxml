@@ -73,10 +73,10 @@
   <view class="template_search_title">
     <view class="template_search_title_view">
       <input type="text" placeholder="{{text}}" />
-      <image src="../../../../images/search.png" mode="aspectFit"/>
+      <image src="../../../images/search.png" mode="aspectFit"/>
     </view>
     <navigator open-type="navigateBack" class="template_search_title_back" wx:if="{{back}}">
-      <image src="../../../../images/back-away.png" mode="aspectFit" class="title_image_back" />
+      <image src="../../../images/back-away.png" mode="aspectFit" class="title_image_back" />
     </navigator>
   </view>
 </template>
@@ -98,6 +98,14 @@
   <view class="prompt_none" wx:if="{{product == 0}}">
     <text>{{text}}</text>
   </view>
+</template>
+
+<!--扫码添加-->
+<template name="scanModal">
+  <modal title="请扫码" hidden="{{scanModal}}" confirm-text="扫好了" bindconfirm="scanOk" bindcancel="cancel">
+    <image src="{{scanImage?scanImage:'../../../images/image_none.png'}}" mode="widthFix" class="scan_modal_image" />
+    <view class="scan_modal_text">请用微信扫一扫上面的图片,扫好了后点击“扫好了”</view>
+  </modal>
 </template>
 
 <!----------报表---------->
