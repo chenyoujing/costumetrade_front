@@ -31,6 +31,28 @@ Page({
       }
     })
   },
+  // 请求数据
+  logisticInit:function(){
+    var that = this
+    wx.showNavigationBarLoading();
+    util.api.request({
+      url: 'logistic/logisticInit',
+      data: {
+        payorderno: that.data.orderNo,
+        sellerstoreid: app.globalData.storeId,
+        buyerstoreid: that.data.buyerstoreid,
+        openid: app.globalData.openid,
+      },
+      method: 'POST',
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      success: function (res) {
+        wx.hideNavigationBarLoading();
+        that.setData({})
+      }
+    })
+  },
   expressSubmit: function (e) {
     console.log(1)
     switch (this.data.logistics){
@@ -216,7 +238,7 @@ Page({
     console.log(object)
     wx.showNavigationBarLoading();
     util.api.request({
-      url: 'logistic/createOrderToZTO',
+      url: 'logistic/createOrderToYD',
       data: object,
       method: 'POST',
       header: {
@@ -233,8 +255,9 @@ Page({
   },
   onLoad:function(e){
     this.setData({
-      orderNo: '123456789'||e.orderNo,
-      logistics: '中通'||e.logistics,
+      orderNo: e.orderNo,
+      logistics: e.logistics,
+      buyerstoreid: e.buyerstoreid,
     })
   }
 

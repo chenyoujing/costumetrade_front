@@ -26,7 +26,7 @@
   <view class="pietitle" wx:if="{{title == '利润分析'}}">销售额</view>
 
 <view wx:if="{{total2 == 0}}" class="canvas" >
-   <image class="nodataImg" src="../../../../images/report-no-pie.png" mode="aspectFit"/>
+  <image class="nodataImg" src="../../../../images/report-no-pie.png" mode="aspectFit"/>
   </view>
   <canvas class="canvas"  wx:if="{{total2>0}}" canvas-id="pieCanvas2" bindtouchstart="touchHandler"/>
 

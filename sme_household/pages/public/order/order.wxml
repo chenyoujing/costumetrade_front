@@ -274,7 +274,7 @@
       </view>
       <view class="clear"></view>
     <view class="order_container_button btn_2"  bindtap="changeOrderStatus" data-status='4' data-orderNo="{{item.payorderno}}" data-sellerstoreid="{{item.sellerstoreid}}" data-buyerstoreid="{{item.buyerstoreid}}">发货</view>
-    <view class="order_container_button" data-payorderno="{{item.payorderno}}"  data-logisticstype="{{item.ordertype}}" data-logistics="{{item.logisticsCode}}" bindtap="logisticsView">选物流</view>
+    <view class="order_container_button" data-payorderno="{{item.payorderno}}"  data-logisticstype="{{item.ordertype}}" data-logistics="{{item.logisticsCode}}" data-buyerstoreid="{{item.buyerstoreid}}" bindtap="logisticsView">选物流</view>
     <view class="clear"></view>
   </view>
 
@@ -314,7 +314,7 @@
 <modal title="选择物流" hidden="{{logisticsModal}}" confirm-text="取消" no-cancel bindconfirm="cancel" bindcancel="cancel" >
   <view class="choose_container clearfix">
     <view class="logistics_choose">
-      <navigator url="express/express?orderNo={{selectLogistics.orderNo}}?logistics={{selectLogistics.logistics}}" class="choose_view">打印快递面单</navigator>
+      <navigator url="express/express?orderNo={{selectLogistics.orderNo}}?logistics={{selectLogistics.logistics}}?buyerstoreid={{selectLogistics.buyerstoreid}}" class="choose_view">打印快递面单</navigator>
     </view>
     <view class="logistics_choose">
       <view class="choose_view" bindtap="numberView">输入快递面单</view>
