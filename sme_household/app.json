@@ -1,20 +1,17 @@
 {
   "pages": [
-    
+    "pages/public/loading/loading",
+
+
     "pages/shopkeeper/index/index",
-    "pages/household/shop/shop",
-    
     "pages/shopkeeper/index/Purchase/Purchase",
-
     "pages/shopkeeper/order/order",
-
     "pages/shopkeeper/info/info",
     "pages/shopkeeper/info/chat/chat",
-    
     "pages/shopkeeper/share/share",
 
 
-
+    "pages/household/shop/shop",
     "pages/household/shop/mall/mall",
     "pages/household/shop/shoppingcard/shoppingcard",
     "pages/household/shop/goods_detail/goods_detail",

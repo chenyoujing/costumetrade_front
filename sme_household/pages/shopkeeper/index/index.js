@@ -44,7 +44,6 @@ Page({
   },
 
   onLoad: function (options) {
-    app.firstLogin = true;
     if (!app.logisticFees && app.globalData.userIdentity !== 2) {
       util.api.getProductInit()
     }

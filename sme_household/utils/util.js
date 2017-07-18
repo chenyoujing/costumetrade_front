@@ -321,7 +321,7 @@ var api = {
     string = string.substring(0, string.length - 1)
     return string;
   },
-  getProductInit:function(){
+  getProductInit:function(callback){
     var that = this;
     wx.showNavigationBarLoading();
    this.request({
@@ -334,7 +334,6 @@ var api = {
         'content-type': 'application/x-www-form-urlencoded'
       },
       success: function (res) {
-        console.log(res.data)
         wx.hideNavigationBarLoading();
         app.screen_brandList = res.data.brandList;//品牌
         console.log(app.screen_brandList)
@@ -349,6 +348,9 @@ var api = {
         app.logisticFees = res.data.logisticFees || [],//快递
         app.payTypeList = res.data.payTypeList || [],//支付方式
         app.getProductInit = true;
+        if (callback){
+          callback()
+        }
         console.log(res.data)
       }
     })

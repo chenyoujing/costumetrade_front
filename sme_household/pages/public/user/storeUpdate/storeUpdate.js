@@ -8,44 +8,6 @@ Page({
     regobject: {
     }
   },
-  // 上传图片
-  photoSubmit: function (file, i) {
-    var that = this;
-    wx.uploadFile({
-      url: util.api.host + 'product/uploadImage',
-      filePath: file[i],
-      name: 'file',
-      success: function (res) {
-        if (JSON.parse(res.data).code == 0) {
-          var url = util.api.imgUrl + JSON.parse(res.data).data.url;
-          that.setData({
-            tx: url,
-            storephoto: JSON.parse(res.data).data.url,
-          })
-          wx.showToast({
-            title: '上传成功',
-            mask: true,
-            duration: 2000
-          })
-        } else {
-          wx.showToast({
-            title: '失败',
-            mask: true,
-            duration: 2000
-          })
-        }
-
-      }
-    })
-  },
-  // 上传图片
-  imageCallback: function (e, res) {
-    var tempFilePaths = res.tempFilePaths;
-    this.photoSubmit(tempFilePaths, 0);
-  },
-  tx:function(e){
-    util.api.chooseImg(e, this.imageCallback)    
-  },
   address:function(){
     var that = this
     wx.chooseAddress({
@@ -113,7 +75,6 @@ Page({
   // 提交修改方法
   update_storeInfo: function (e) {
     var that = this;
-    // e.detail.value.birthday = Date.parse(new Date(e.detail.value.birthday))
     var object = e.detail.value;
     var objectSubmit = util.api.getEntityModified(this.data.originData, object);
     switch (app.globalData.userIdentity) {
@@ -140,7 +101,6 @@ Page({
       success: function (res) {
         wx.hideNavigationBarLoading();
         app.globalData.userInfo.name = object.name || app.globalData.userInfo.name;
-        app.globalData.userInfo.photo = object.storephoto || app.globalData.userInfo.photo;
         wx.showToast({
           title: '修改成功',
           mask: true,

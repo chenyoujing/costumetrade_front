@@ -7,7 +7,6 @@ Page({
       '../../../images/swiper1.jpg',
       '../../../images/swiper2.jpg',
     ],
-    myselfStord:{},
     otherStord:[]
   },
   goto_info:function(e){
@@ -18,12 +17,12 @@ Page({
   },
   // 初始化数据
   initialize:function(){
-    for (var p in app.globalData.storeInfo){
-      var reg = /^\//;
-      if (reg.test(app.globalData.storeInfo[p].storephoto)) {
-        app.globalData.storeInfo[p].storephoto = util.api.imgUrl + app.globalData.storeInfo[p].storephoto
-      }   
-    }
+    // for (var p in app.globalData.storeInfo){
+    //   var reg = /^\//;
+    //   if (reg.test(app.globalData.storeInfo[p].storephoto)) {
+    //     app.globalData.storeInfo[p].storephoto = util.api.imgUrl + app.globalData.storeInfo[p].storephoto
+    //   }   
+    // }
     var otherStord = app.globalData.storeInfo;
     this.setData({
       otherStord: otherStord
@@ -36,14 +35,14 @@ Page({
       url: util.api.imgUrl,
       shopkeeper: e.shopkeeper,
     })
-    if (!app.globalData.openid){
-      util.api.getOpenid(this.initialize);
-    }else{
+    // if (!app.globalData.openid){
+    //   util.api.getOpenid(this.initialize);
+    // }else{
       this.initialize()
-    }
-    if (!app.logisticFees && app.globalData.userIdentity!==2) {
-      util.api.getProductInit()
-    }
+    // }
+    // if (!app.logisticFees && app.globalData.userIdentity!==2) {
+    //   util.api.getProductInit()
+    // }
     wx.updateShareMenu({
       withShareTicket: true,
       success() {
