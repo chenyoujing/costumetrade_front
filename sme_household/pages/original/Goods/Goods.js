@@ -289,6 +289,9 @@ Page({
       this.batchOperationsOk();
       this.delectRequest();
     }
+    this.setData({
+      ids: []
+    })
   },
   // 进入分享页面
   batch_share_sure: function () {
@@ -306,6 +309,9 @@ Page({
         url: 'GoodsShare/GoodsShare?ids=' + JSON.stringify(idsArray) + '&storeId=' + storeId +'&checkAllTag=' + this.data.checkAllTag,
       })
     }
+    this.setData({
+      ids: []
+    })
   },
   // 进入批量修改页面
   batch_update_sure: function () {
@@ -323,6 +329,9 @@ Page({
         url: 'GoodsUpdate/GoodsUpdate?ids=' + ids + "&checkAllTag=" + this.data.checkAllTag,
       })
     }
+    this.setData({
+      ids: []
+    })
   },
   // 全选全不选
   SelectallOrNot:function(){

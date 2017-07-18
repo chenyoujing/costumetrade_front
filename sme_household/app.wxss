@@ -223,12 +223,13 @@ radio,checkbox{
   border-radius: 4px;
   background-color: #ff0000;
   font-size: 8px;
+  line-height: 8px;
   display: flex;
   justify-content: center;
   align-items: center;
   color: #ffffff;
   box-sizing: border-box;
-  padding: 0 1px;
+  padding: 0 1.5px;
 }
 /*搜索input*/
 .search_input{

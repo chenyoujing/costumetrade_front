@@ -1,6 +1,6 @@
 .share_container{
   padding:25rpx 0;
-  min-height:300px;
+  min-height:600rpx;
   box-sizing:border-box;
 }
 .goods_container{

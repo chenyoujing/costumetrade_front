@@ -201,10 +201,35 @@
 }
 .batch_button{
   flex: 2;
+  background-color: #DBDBDB;
 }
-.batch_button{
-  left: 20%;
-  right: 0;
+.batch_button_ok{
+  flex: 2;
+  background-color: #DBDBDB;
+  border-right: 2px solid #ffffff;
+}
+.batch_button_all{
+  flex: 1;
+  background-color: #ffffff;
+  border: 1px solid #DBDBDB;
+  font-size: 16px;
+}
+.bg_g{
+  background-color: #52CAC1;
+  color: #ffffff;
+}
+/*批量删除*/
+.delete_container{
+  text-align: center;
+  width: 50px;
+  line-height: 115px;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  bottom: 10px;
+}
+.delete_container checkbox{
+  width: 100%;
 }
 .batch_button_ok{
   left: 20%;
@@ -212,7 +237,8 @@
   border-right: 2px solid #ffffff;
 }
 .batch_button_all{
-  flex: 1;
+  left: 0;
+  right: 80%;
   background-color: #ffffff;
   border: 1px solid #DBDBDB;
   font-size: 16px;

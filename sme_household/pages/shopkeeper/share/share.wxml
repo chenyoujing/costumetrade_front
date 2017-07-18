@@ -138,21 +138,31 @@
       </view>
     </view>
   </scroll-view>
-  <!--分析按钮-->
-  <view class="batch_button_view">
-    <!-- <checkbox-group class="batch_button batch_button_all" bindchange="SelectallOrNot">
+  <!--发图按钮-->
+  <view class="batch_button_view" style="height:40px;">
+    <view class="batch_button bg_g" bindtap="batch_share_sure">发图</view>
+  </view>
+
+  <view class="batch_button_view" style="height:{{update_button}}px;">
+    <checkbox-group hidden="{{type==2}}" class="batch_button_all" bindchange="SelectallOrNot">
       <label class="checkbox" >
         <checkbox checked="{{aa}}"/>全选
       </label>
-    </checkbox-group> -->
-    <view class="batch_button bg_g" bindtap="batch_share_sure">发图</view>
+    </checkbox-group>
+    <!--批量删除按钮-->
+    <view class="batch_button_ok" wx:if="{{type==1}}" bindtap="batchOperationsOk">完成</view>
+    <view class="batch_button bg_g"  wx:if="{{type==1}}" bindtap="batch_delete_sure">删除</view>
+    <!--批量修改按钮-->
+    <view class="batch_button_ok" wx:if="{{type==3}}"  bindtap="batchOperationsOk">完成</view>
+    <view class="batch_button bg_g" wx:if="{{type==3}}"  bindtap="batch_update_sure">修改</view>
   </view>
+
 </view>
 <!--更多功能-->
 <view class="more_function_cover {{animation}}" bindtap="more_function_close" style="display:{{more_function_display}};"></view>
 <view class="more_function {{animation}}" style="display:{{more_function_display}};">
   <view class="more_function_view" data-type="1" bindtap="batchType">批量删除</view>
-  <view class="more_function_view" data-type="2" bindtap="batchType">分享图片</view>
+  <!-- <view class="more_function_view" data-type="2" bindtap="batchType">分享图片</view> -->
   <view class="more_function_view" data-type="3" bindtap="batchType">批量修改</view>
 </view>
 

@@ -266,7 +266,7 @@ modal{
 }
 .choose_container{
   margin: 0 -20px;
-  padding: 20px 0;
+  padding-top: 20px;
 }
 .logistics_choose{
   text-align: center;

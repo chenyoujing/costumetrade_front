@@ -15,9 +15,8 @@
     </view>
     <view class="content_input">
       <view class="content_input_text">联系人:</view>
-      <input type="text" class="content_input1" value="{{address1.userName}}">
-        <image src="../../../../images/map.png" mode="aspectFit" class="image_map" bindtap="address" data-type="consignee" />
-      </input>
+      <input type="text" class="content_input1" value="{{address1.userName}}" />
+      <image src="../../../../images/map.png" mode="aspectFit" class="image_map" bindtap="address" data-type="consignee" />
       <view class="clear"></view>
     </view>
     <view class="content_input">
@@ -46,9 +45,8 @@
     </view>
     <view class="content_input">
       <view class="content_input_text">联系人:</view>
-      <input type="text" class="content_input1" name="name" value="{{address2.userName}}">
-        <image src="../../../../images/map.png" mode="aspectFit" class="image_map" bindtap="address" data-type="deliver" />
-      </input>
+      <input type="text" class="content_input1" name="name" value="{{address2.userName}}" />
+      <image src="../../../../images/map.png" mode="aspectFit" class="image_map" bindtap="address" data-type="deliver" />
       <view class="clear"></view>
     </view>
     <view class="content_input">

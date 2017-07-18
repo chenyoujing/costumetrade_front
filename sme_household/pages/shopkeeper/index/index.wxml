@@ -60,7 +60,7 @@
   <template is="notice" />
 
   <navigator url="../../original/report/report" class="index_report">
-    <canvas class="index_canvas" canvas-id="columnCanvas" bindtouchmove="touchHandler" bindtouchstart="touchHandler"/>
+    <canvas class="index_canvas" canvas-id="columnCanvas"/>
     <view class="index_report_content">
       <view class="index_report_text">时间：今天</view>
       <view class="index_report_text">总数：150</view>

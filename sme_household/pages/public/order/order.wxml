@@ -83,7 +83,7 @@
   </view>
   <!--采购待收货-->
   <view wx-if="{{ordertype==1 && ordertype2==2}}" wx:for="{{product}}" class="order_container_view">
-      <navigator url="orderDetails/orderDetails?ordertype={{ordertype}}&payorderno={{item.payorderno}}& ordertype2=2">
+    <navigator url="orderDetails/orderDetails?ordertype={{ordertype}}&payorderno={{item.payorderno}}& ordertype2=2">
     <view class="order_container_title" >
       <view class="order_container_name">供应商：{{item.seller}}</view>
       <view class="order_container_Bill">商城订单</view>
@@ -314,7 +314,7 @@
 <modal title="选择物流" hidden="{{logisticsModal}}" confirm-text="取消" no-cancel bindconfirm="cancel" bindcancel="cancel" >
   <view class="choose_container clearfix">
     <view class="logistics_choose">
-      <view class="choose_view" bindtap="expressView">打印快递面单</view>
+      <navigator url="express/express?orderNo={{selectLogistics.orderNo}}" class="choose_view">打印快递面单</navigator>
     </view>
     <view class="logistics_choose">
       <view class="choose_view" bindtap="numberView">输入快递面单</view>
@@ -331,20 +331,20 @@
   <view class="logistics_picker">
       {{logisticsname}}
   </view>
-  <image src="../../../images/scan_black.png" mode="aspectFit" class="image_scan" />
+  <image src="../../../images/scan_black.png" mode="aspectFit" class="image_scan" bindtap="logistics_sacn" />
   <input class="logistics_number" type="number" bindblur="EventHandle" value = "{{logisticsno}}" placeholder="单号" />
 </modal>
 
 
 <!--选择快递公司-->
-<modal title="选择快递公司" hidden="{{expressModal}}" confirm-text="取消" no-cancel bindconfirm="cancel" bindcancel="cancel" >
+<!-- <modal title="选择快递公司" hidden="{{expressModal}}" confirm-text="取消" no-cancel bindconfirm="cancel" bindcancel="cancel" >
   <view class="logistics_choose">
     <navigator url="express/express?orderNo={{selectLogistics.orderNo}}" class="choose_view">顺丰</navigator>
   </view>
   <view class="logistics_choose">
     <navigator url="express/express?orderNo={{selectLogistics.orderNo}}" class="choose_view">韵达</navigator>
   </view>
-</modal>
+</modal> -->
 
 
 <!--销售-全部-修改-->

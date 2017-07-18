@@ -31,6 +31,17 @@ Page({
       logisticsno:e.detail.value
     })
   },
+  // 扫物流单号
+  logistics_sacn:function(){
+    var that = this
+    wx.scanCode({
+      success: (res) => {
+        that.setData({
+          logisticsno: res.result
+        })
+      }
+    })
+  },
   bindSelectorChange:function(e){
     var style = e.currentTarget.dataset.style;
     var param = this.data.logisticsCompany;
@@ -579,5 +590,8 @@ Page({
       
       app.payOrderno = ""
     }
+  },
+  onHide:function(){
+    this.cancel()
   }
 })
