@@ -1,6 +1,6 @@
 <import src="../../../template/template.wxml"/>
 
-<scroll-view scroll-y class="shop_scroll" style="bottom:{{shopkeeper?'0':''}}">
+<scroll-view scroll-y class="shop_scroll"  lower-threshold="10" bindscrolltolower="{{loadMore?'onReachBottom':''}}" style="bottom:{{shopkeeper?'0':''}}">
   <!--轮播图-->
   <swiper indicator-dots autoplay circular class="shop_swiper">
     <block wx:for="{{imgUrls}}" wx:key="id">
@@ -11,37 +11,8 @@
   </swiper>
 
   <!-- 点艺公告 -->
-  <template is="notice" wx:if="{{!shopkeeper}}"></template>
-
-  <!--自己店铺-->
-  <!--<view class="shop_content" wx:if="{{myselfStord.id}}">
-    <view url="mall/mall" class="shop_content_view">
-      <navigator url="storeDetails/storeDetails?id={{myselfStord.id}}" class="shop_content_title">
-        <image src="{{myselfStord.storephoto||'../../../images/image_none.png'}}" mode="aspectFill" class="shop_content_tx" />
-        <view class="shop_content_info">
-          <view class="shop_content_name">{{myselfStord.name}}</view>
-          <view class="shop_content_address">
-            <image src="../../../images/site.png" mode="aspectFit" class="shop_address_image" />
-            地址：{{myselfStord.address}}
-          </view>
-        </view>
-        <view class="clear"></view>
-      </navigator>
-      <navigator url="mall/mall?id={{myselfStord.id}}" class="shop_goods clearfix">
-        <view class="shop_picture">
-          <image src="{{myselfStord.images[0]?url+myselfStord.images[0]:'../../../images/shop1_1.png'}}" mode="aspectFill" style="margin-left:0;" />
-        </view>
-        <view class="shop_picture">
-          <image src="{{myselfStord.images[1]?url+myselfStord.images[1]:'../../../images/shop1_1.png'}}" mode="aspectFill" />
-        </view>
-        <view class="shop_picture">
-          <image src="{{myselfStord.images[2]?url+myselfStord.images[2]:'../../../images/shop1_1.png'}}" mode="aspectFill" style="margin-right:0;" />
-        </view>
-      </navigator>
-    </view>
-    <image src="../../../images/customer_service.png"  class="shop_content_service" mode="aspectFit" />
-    <contact-button class="shop_content_service" style="opacity:0;" size="20" session-from="weapp"></contact-button>
-  </view>-->
+  <template is="notice"></template>
+ 
   <template is="promptNone" data="{{product:otherStord,text:'你还没有收到过图片'}}"></template>
 
   <view class="shop_content" wx:for="{{otherStord}}">

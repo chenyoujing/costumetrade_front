@@ -113,7 +113,7 @@ Page({
       shopCart: shopCart
     })
     this.salePriceTotal()
-    
+    this.localData(this.data.shopCart)
   },
   // 跳转至确认订单
   orderSure:function(){

@@ -44,7 +44,8 @@ Page({
                   res.data[p].image = util.api.imgUrl + res.data[p].image
                 }
                 that.setData({
-                  product: res.data
+                  product: res.data,
+                  photo: app.globalData.userInfo.photo || '../../images/image_none.png'
                 })
                 wx.showToast({
                   title: '成功',
@@ -60,15 +61,15 @@ Page({
 
   },
   onLoad: function (e) {
+   
     this.setData({
       ids: e.ids,
       storeId: e.storeId,
       title: e.title,
-      name:e.name,
+      name: e.name,
       checkAllTag: e.checkAllTag,
       id: e.id
     })
-    console.log(e)
-    this.selected_goods();
+    util.api.getOpenid(this.selected_goods);
   }
 })

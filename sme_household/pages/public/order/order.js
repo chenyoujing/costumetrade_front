@@ -174,7 +174,7 @@ Page({
       },
       success: function (res) {
         wx.hideNavigationBarLoading();
-        if (data.status == "3" && res.data == 1013) {
+        if (data.status == "3" && res.data == "1013") {
           data.isContinue = true;
           wx.showModal({
             title: '提示',

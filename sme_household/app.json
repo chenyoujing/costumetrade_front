@@ -1,11 +1,8 @@
 {
   "pages": [
     "pages/public/loading/loading",
-
-
     "pages/shopkeeper/index/index",
     "pages/shopkeeper/index/Purchase/Purchase",
-    "pages/shopkeeper/order/order",
     "pages/shopkeeper/info/info",
     "pages/shopkeeper/info/chat/chat",
     "pages/shopkeeper/share/share",

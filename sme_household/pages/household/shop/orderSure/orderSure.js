@@ -130,6 +130,7 @@ Page({
       complete: function (res) {
         res.data = res.data ? res.data : [];
         for(var p in res.data){
+          res.data[p].image1 = res.data[p].image1 || util.api.imgUrl + res.data[p].image;
           if (res.data[p].iSselect == true){
             selectCart.push(res.data[p])
           }
@@ -223,7 +224,7 @@ Page({
       expressModal: true
     })
   },
-  // 商城里请求品牌种类
+  // 商城里请求地址
   shopBrandandProduct: function () {
     var that = this
     wx.showNavigationBarLoading()

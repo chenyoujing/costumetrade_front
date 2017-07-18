@@ -4,7 +4,7 @@
       <image src="../../images/return.png" mode="aspectFit" />
     </navigator>
     <navigator url="../household/shop/storeDetails/storeDetails?id={{storeId}}" class="shop_info clearfix">
-      <view class="shop_tx"><image src="../../images/image_none.png" mode="scaleToFill" class="shop_tx" /></view>
+      <view class="shop_tx"><image src="{{photo}}" mode="scaleToFill" class="shop_tx" /></view>
       <view class="shop_name">{{name}}</view>
       <image src="../../images/return.png" mode="aspectFit" class="shop_into" />
     </navigator>

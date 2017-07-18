@@ -73,10 +73,12 @@ Page({
     if (!app.logisticFees && app.globalData.userIdentity !== 2) {
       util.api.getProductInit()
     }
+    this.chart()
+  },
+  onShow:function(){
     this.setData({
       userInfo: app.globalData.userInfo
     })
-    this.chart()
   },
   onReady: function(){
     this.setData({

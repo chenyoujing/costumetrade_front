@@ -7,7 +7,10 @@ Page({
       '../../../images/swiper1.jpg',
       '../../../images/swiper2.jpg',
     ],
-    otherStord:[]
+    otherStord:[],
+    pageNum:1,
+    loadMore: false,
+    requestSwitch: false
   },
   goto_info:function(e){
     app.infotype = e.target.dataset.infotype
@@ -16,17 +19,67 @@ Page({
     })
   },
   // 初始化数据
-  initialize:function(){
+  // initialize:function(){
     // for (var p in app.globalData.storeInfo){
     //   var reg = /^\//;
     //   if (reg.test(app.globalData.storeInfo[p].storephoto)) {
     //     app.globalData.storeInfo[p].storephoto = util.api.imgUrl + app.globalData.storeInfo[p].storephoto
     //   }   
     // }
-    var otherStord = app.globalData.storeInfo;
-    this.setData({
-      otherStord: otherStord
+    // var otherStord = app.globalData.storeInfo;
+    // this.setData({
+    //   otherStord: otherStord
+    // })
+  // },
+  // 店主的时候请求店铺列表
+  getAllPromotionalProduct:function(){
+    var that = this;
+    wx.showNavigationBarLoading()
+    util.api.request({
+      url: 'product/getAllPromotionalProduct',
+      data: {
+       openid:app.globalData.openid,
+       pageNum: that.data.pageNum
+      },
+      method: 'POST',
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      success: function (res) {
+        wx.hideNavigationBarLoading();
+        var data = that.data.otherStord;
+        var booleanre = that.data.requestSwitch;
+        if (that.data.pageNum == 1) {
+          data = res.data;
+        } else {
+          for (var p in res.data) {
+            data.push(res.data[p])
+          }
+        }
+        if (res.data.length < 10) {
+          booleanre = false;
+        } else {
+          booleanre = true;
+        }
+        that.setData({
+          otherStord: data,
+          loadMore: true,
+          requestSwitch: booleanre
+        })
+      }
     })
+  },
+  //滚动到底部触发事件  
+  onReachBottom: function () {
+    console.log('到底不了')
+    this.setData({
+      pageNum: this.data.pageNum + 1,
+      loadMore: false
+    });
+    console.log(this.data.pageNum)
+    if (this.data.requestSwitch) {
+      this.page_request();
+    }
   },
   onLoad:function(e){
     // this.aa()
@@ -38,11 +91,12 @@ Page({
     // if (!app.globalData.openid){
     //   util.api.getOpenid(this.initialize);
     // }else{
-      this.initialize()
+      // this.initialize()
     // }
     // if (!app.logisticFees && app.globalData.userIdentity!==2) {
     //   util.api.getProductInit()
     // }
+    this.getAllPromotionalProduct()
     wx.updateShareMenu({
       withShareTicket: true,
       success() {
