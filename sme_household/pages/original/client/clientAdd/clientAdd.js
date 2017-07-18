@@ -157,7 +157,7 @@ Page({
     this.setData({
       client: e.client,
       clientId: e.clientId,
-      initCustomerList: app.custProdPriceList,
+      initCustomerList: app.custProdPrice,
       scan: e.scan||"",
       openOrder: e.openOrder||""
     })

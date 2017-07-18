@@ -29,5 +29,5 @@
 
 <modal title="修改{{titlename}}" hidden="{{modal}}" bindconfirm="confirm" bindcancel="cancel">
   <view class="modal_text"> 请输入名称：</view>
-  <input type="text" class="modal_input" value="{{name}}"/>
+  <input type="text" class="modal_input" bindinput="nameChange" value="{{name}}"/>
 </modal>

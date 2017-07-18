@@ -3,23 +3,23 @@
   <navigator open-type="navigateBack">
     <image src="../../../../images/back-away.png" mode="aspectFit" class="title_image_back" />
   </navigator>
-  <view class="title_text">微信支付</view>
+  <view class="title_text">{{payType}}支付</view>
 </view>
 
 
 <!--支付内容-->
-<scroll-view scroll-y class="pay_scroll" hidden>
+<scroll-view scroll-y class="pay_scroll" wx:if="{{payType !== '转账'}}">
   <view class="pay_title">转账给</view>
   <view class="shop_name">小鱼家店铺</view>
-  <image src="../../../../images/image_none.png" mode="aspectFit" class="pay_image" />
+  <image src="{{imagePAy}}" mode="aspectFit" class="pay_image" />
 
   <view class="pay_text">
-    <view>1.打开微信扫一扫</view>
+    <view>1.打开{{payType}}扫一扫</view>
     <view>2.点击从相机选取二维码</view>
     <view>3.完成支付</view>
   </view>
 </scroll-view>
-<scroll-view scroll-y class="pay_scroll">
+<scroll-view scroll-y class="pay_scroll"  wx:if="{{payType == '转账'}}">
   <view class="pay_title">转账给</view>
 
   <view class="pay_text" style="text-align:center;width:unset;">

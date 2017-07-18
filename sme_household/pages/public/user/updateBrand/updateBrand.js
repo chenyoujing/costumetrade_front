@@ -77,7 +77,44 @@ Page({
       id: id
     })
   },
-  confirm:function(){},
+  nameChange:function(e){
+    this.setData({
+      name: e.detail.value
+    })
+  },
+  // 修改名称
+  confirm:function(){
+    var that = this;
+    wx.showNavigationBarLoading();
+    var object = {
+      storeId: app.globalData.storeId,
+      id:this.data.id
+    };
+    object[that.data.addname] = this.data.name;
+    util.api.request({
+      url: that.data.addurl,
+      data: object,
+      method: 'POST',
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      success: function (res) {
+        wx.hideNavigationBarLoading();
+        var product = that.data.product;
+        for (var p in product){
+          if (product[p].id = object.id){
+            product[p][that.data.addname] = object[that.data.addname];
+          }
+        }
+
+        that.setData({
+          product: product,
+          modal: true,
+          productstring: JSON.stringify(product)
+        })
+      }
+    })
+  },
   cancel:function(){
     this.setData({
       modal: true

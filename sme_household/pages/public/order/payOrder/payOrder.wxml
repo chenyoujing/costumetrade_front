@@ -53,6 +53,6 @@
     <view class="choose_view" bindtap="logistic" data-name="{{item.logisticName}}"  data-code="{{item.logisticCode}}" data-fixedFee="{{item.fixedFee}}">{{item.logisticName}}</view>
   </view>
 </modal>
-<navigator url="../../../household/shop/payOrder/payOrder?operate=2&orderno={{orderno}}&buyerid={{buyerid}}&sellerid={{sellerid}}&pay={{price+freight}}&payType='WE_PAY'" class="sure_button1 bg_g">微信支付</navigator>
-<navigator url="../../../household/shop/payOrder/payOrder?operate=2&orderno={{orderno}}&buyerid={{buyerid}}&sellerid={{sellerid}}&pay={{price+freight}}&payType='ALI_PAY'" class="sure_button2">支付宝支付</navigator>
-<navigator url="../../../household/shop/payOrder/payOrder?operate=2&orderno={{orderno}}&buyerid={{buyerid}}&sellerid={{sellerid}}&pay={{price+freight}}&payType='WE_PAY'" class="sure_button3">转账</navigator>
+<navigator url="../../../household/shop/payOrder/payOrder?operate=2&orderno={{orderno}}&buyerid={{buyerid}}&sellerid={{sellerid}}&pay={{price+freight}}&payType=微信" class="sure_button1 bg_g">微信支付</navigator>
+<navigator url="../../../household/shop/payOrder/payOrder?operate=2&orderno={{orderno}}&buyerid={{buyerid}}&sellerid={{sellerid}}&pay={{price+freight}}&payType=支付宝" class="sure_button2">支付宝支付</navigator>
+<navigator url="../../../household/shop/payOrder/payOrder?operate=2&orderno={{orderno}}&buyerid={{buyerid}}&sellerid={{sellerid}}&pay={{price+freight}}&payType=转账" class="sure_button3">转账</navigator>
