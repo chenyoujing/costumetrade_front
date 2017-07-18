@@ -425,6 +425,8 @@ Page({
     var selectLogistics = {};
     selectLogistics.logisticstype = e.target.dataset.logisticstype;
     selectLogistics.orderNo = e.target.dataset.payorderno;
+    selectLogistics.logistics = e.target.dataset.logistics;
+    selectLogistics.buyerstoreid = e.target.dataset.buyerstoreid;
     this.setData({
       logisticsModal: false,
       selectLogistics: selectLogistics
