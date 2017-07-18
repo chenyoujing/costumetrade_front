@@ -30,7 +30,6 @@
   </view>
   <canvas class="canvas"  wx:if="{{total2>0}}" canvas-id="pieCanvas2" bindtouchstart="touchHandler"/>
 
-  <view class="bindtap_cover"></view>
     <view class="gross_report" wx:if="{{title == '利润分析'}}">
       总计
       <view class="progress_view">

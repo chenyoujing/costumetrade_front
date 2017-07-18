@@ -8,7 +8,7 @@ Page({
     sellerid: '',
     product:[]
   },
-  // 请求物流
+  // 顺丰请求物流
   viewLogicson:function(){
     var that = this;
     wx.showNavigationBarLoading();

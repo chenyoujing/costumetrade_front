@@ -43,7 +43,8 @@
     <view class="chat_input_image">
       <image src="../../../../images/image_none.png"></image>
     </view>
-    <input type="text" />
+    <!-- <input type="text" cursor-spacing="5" /> -->
+    <textarea auto-height maxlength="-1" />
     <view class="chat_input_image">
       <image src="../../../../images/image_none.png"></image>
       <image src="../../../../images/image_none.png"></image>
