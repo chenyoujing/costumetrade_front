@@ -76,7 +76,6 @@ Page({
     var that = this
     util.api.scanOk("4", that.data.id, this.callback)
     this.cancel()
-
   },
   staff_updata_close: function (e) {
     this.setData({
