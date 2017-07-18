@@ -41,12 +41,12 @@
   </scroll-view>
   <view class="chat_input">
     <view class="chat_input_image">
-      <image src="../../../../images/off-the-stocks.png"></image>
+      <image src="../../../../images/image_none.png"></image>
     </view>
     <input type="text" />
     <view class="chat_input_image">
-      <image src="../../../../images/off-the-stocks.png"></image>
-      <image src="../../../../images/off-the-stocks.png"></image>
+      <image src="../../../../images/image_none.png"></image>
+      <image src="../../../../images/image_none.png"></image>
     </view>
   </view>
 </view>

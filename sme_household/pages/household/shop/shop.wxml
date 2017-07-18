@@ -11,7 +11,7 @@
   </swiper>
 
   <!-- 点艺公告 -->
-  <template is="notice"></template>
+  <template is="notice" wx:if="{{!shopkeeper}}"></template>
 
   <!--自己店铺-->
   <!--<view class="shop_content" wx:if="{{myselfStord.id}}">
