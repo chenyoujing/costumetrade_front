@@ -60,7 +60,7 @@
   </view>
 
   <!-- 点艺公告 -->
-  <template is="notice"></template>
+  <template is="notice" />
 
   <navigator url="../../original/report/report" class="index_report">
     <canvas class="index_canvas" canvas-id="columnCanvas" bindtouchmove="touchHandler" bindtouchstart="touchHandler"/>
@@ -74,4 +74,4 @@
 
 </view>
 
-<template is="navBottom2" data="{{nav:'首页'}}"></template>
+<template is="navBottom2" data="{{nav:'首页'}}" />
