@@ -72,4 +72,4 @@
 </view>
 
 <template is="navBottom2" data="{{nav:'首页'}}" />
-<template is="scanModal" data="{{scanModal:scanModal,scanImage:'首页'}}" />
+<template is="scanModal" data="{{scanModal:scanModal,scanImage:scan}}" />

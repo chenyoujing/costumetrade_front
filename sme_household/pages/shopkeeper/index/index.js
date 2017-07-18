@@ -12,7 +12,25 @@ Page({
   },
   scan:function(){
     var that = this
-    util.api.scan(1, that.setData())
+    util.api.scan(1, that.setdata)
+  },
+  cancel:function(){
+    this.setData({
+      scanModal: true,
+    })
+  },
+  // 扫描成功的回调
+  callback: function (data) {
+    app.addCustomerInfo = data
+    wx.navigateTo({
+      url: '../../original/client/clientAdd/clientAdd?client=1&clientId=' + this.data.id + "&scan=" + true
+    })
+  },
+  // 扫好了
+  scanOk: function () {
+    var that = this
+    util.api.scanOk(1, that.data.id, this.callback)
+    this.cancel()
   },
   chart: function () {
     var that = this
