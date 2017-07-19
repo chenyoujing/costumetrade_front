@@ -54,7 +54,7 @@
   <view wx-if="{{ordertype==1 && ordertype2==1}}" wx:for="{{product}}" class="order_container_view">
     <view class="order_container_title" >
       <view class="order_container_name">供应商：{{item.seller}}</view>
-      <view class="order_container_Bill" wx:if="{{item.orderstatus == 1}}" style="color:#ff2d04">审核未通过</view>
+      <view class="order_container_Bill" wx:if="{{item.orderstatus == 1}}" style="color:#ff2d04">待审核单</view>
       <view class="order_container_Bill" wx:if="{{item.orderstatus == 3}}">审核通过</view>
       <image src="../../../images/customer_service.png" mode="aspectFit" class="order_content_right" />
     </view>
@@ -75,10 +75,11 @@
       </view>
       <view class="clear"></view>
     </navigator>
-    <view class="order_container_button">取消订单</view>      
+    <view class="order_container_button" bindtap="changeOrderStatus" data-status='6' data-orderNo="{{item.payorderno}}" data-sellerstoreid="{{item.sellerstoreid}}" data-buyerstoreid="{{item.buyerstoreid}}">取消订单</view>      
     <navigator url="payOrder/payOrder?operate=2&orderno={{item.payorderno}}&buyerid={{item.buyerstoreid}}&sellerid={{item.sellerstoreid}}&pay={{item.debetamt}}"  wx:if="{{item.orderstatus == 3}}">
       <view class="order_container_button btn_1">付款</view>      
     </navigator>
+    <view class="order_container_button btn_1" wx:if="{{item.orderstatus !== 3}}">付款</view> 
     <view class="clear"></view>
   </view>
   <!--采购待收货-->
