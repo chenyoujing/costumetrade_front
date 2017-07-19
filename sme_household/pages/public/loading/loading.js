@@ -2,7 +2,7 @@ var util = require('../../../utils/util.js')
 var app = getApp()
 Page({
   data: {
-  
+    text:'正在加载！看下面的动画好看不'
   },
   callback: function () {
     if (app.globalData.userIdentity!==2) {
@@ -10,6 +10,11 @@ Page({
     }else{
       this.householdOrshopkeper()
     }
+  },
+  fail:function(){
+    this.setData({
+      text:'登录失败'
+    })
   },
   // 判断权限显示页面
   householdOrshopkeper:function(){
@@ -22,6 +27,6 @@ Page({
     })
   },
   onLoad: function (options) {
-    util.api.getOpenid(this.callback);
+    util.api.getOpenid(this.callback, this.fail);
   }
 })
