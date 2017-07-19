@@ -37,7 +37,6 @@ Page({
     wx.getSystemInfo({
       success: function (res) {
         var width = res.windowWidth
-        var that = this;
         columnChart = new wxCharts({
           canvasId: 'columnCanvas',
           type: 'column',

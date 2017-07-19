@@ -63,7 +63,7 @@
     </view>
     <view class="content_input">
       <view class="content_input_text">地址:</view>
-      <input disabled type="text" class="content_input1" value="{{sender.provinceName}},{{sender.cityName}},{{sender.countyName}}" />
+      <input disabled type="text" class="content_input1" value="{{receiver.provinceName}},{{receiver.cityName}},{{receiver.countyName}}" />
       <view class="clear"></view>
     </view>
     <view class="content_input">

@@ -54,8 +54,8 @@ Page({
       },
       success: function (res) {
         wx.hideNavigationBarLoading();
-        var sender = res.data[0]
-        var receiver = res.data[1]
+        var sender = res.data[1]
+        var receiver = res.data[0]
         console.log(sender.city)
         var sender_city = sender.city.split(',')
         var receiver_city = receiver.city.split(',')
@@ -67,8 +67,8 @@ Page({
         receiver.countyName = receiver_city[2]
         sender.city
         that.setData({
-          sender: res.data[0],
-          receiver: res.data[1],
+          sender: res.data[1],
+          receiver: res.data[0],
           item: res.data[2],
         })
       }
