@@ -1,5 +1,5 @@
 <!--头部-->
-<form bindsubmit="orderSure" report-submit>
+<form bindsubmit="isnoAddress" report-submit>
 <view class="title clearfix">
   <navigator open-type="navigateBack">
     <image src="../../../../images/back-away.png" mode="aspectFit" class="title_image_back" />
@@ -8,11 +8,12 @@
 </view>
 
 <view class="orderSure_userinfo">
-  <view class="userinfo_text one_line">
+  <view class="userinfo_text one_line" wx:if="{{address.address}}">
     <text>收货人：{{address.contact}}</text>
     <text>电话：{{address.phone}}</text>
   </view>
-  <view class="one_line">收货地址：{{address.address}}</view>
+  <view class="one_line"  wx:if="{{address.address}}">收货地址：{{address.address}}</view>
+  <view class="one_line"  wx:if="{{!address.address}}">您还没有填收货地址，点击编辑填写吧</view>
   <image src="../../../../images/update.png" mode="aspectFill" class="userinfo_update" bindtap="address" />
 </view>
 

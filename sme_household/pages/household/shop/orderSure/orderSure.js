@@ -18,6 +18,7 @@ Page({
     var that = this
     wx.chooseAddress({
       success: function (res) {
+        console.log(res.detailInfo)
         var address={
           contact: res.userName,
           phone: res.telNumber,
@@ -26,14 +27,6 @@ Page({
         that.setData({
           address: address
         })
-        console.log(res.userName)
-        console.log(res.postalCode)
-        console.log(res.provinceName)
-        console.log(res.cityName)
-        console.log(res.countyName)
-        console.log(res.detailInfo)
-        console.log(res.nationalCode)
-        console.log(res.telNumber)
       }
     })
   },
@@ -53,12 +46,30 @@ Page({
         success: function (res) {
           wx.hideNavigationBarLoading();
           that.setData({
-            address:res.data
+            address: res.data
           })
           console.log(res)
         }
       })
   },
+  // 提醒填收货地址
+  isnoAddress:function(e){
+    if (this.data.address.address){
+      this.orderSure(e)
+    }else{
+      var that = this;
+      wx.showModal({
+        title: '没有填收货地址，马上去填？',
+        confirmText:'好的',
+        success: function (res) {
+          if (res.confirm) {
+            that.address()
+          }
+        }
+      })
+    }
+  },
+  // 处理数据并下单
   orderSure:function(e){
     var that = this;
     wx.showModal({
@@ -224,7 +235,7 @@ Page({
       expressModal: true
     })
   },
-  // 商城里请求地址
+  // 商城里请求快递
   shopBrandandProduct: function () {
     var that = this
     wx.showNavigationBarLoading()
