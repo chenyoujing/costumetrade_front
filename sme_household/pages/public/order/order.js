@@ -148,8 +148,10 @@ Page({
       case '6':
         if (this.data.ordertype == 2 && this.data.ordertype2 == 1){
           totole.sNoPayCount -= 1;
-        } else if (this.data.ordertype == 2 && this.data.ordertype4 == 1){
+        } else if (this.data.ordertype == 1 && this.data.ordertype2 == 1){
           totole.sNoAuditCount -= 1;
+        } else if (this.data.ordertype == 1 && this.data.ordertype2 == 1){
+
         }
         break;
       case "8":
@@ -202,9 +204,7 @@ Page({
             title: res.msg,
           })
         }else{
-          if (data.status !== "3"){
-            that.changecountOrders(data.status, null)
-          }
+          that.changecountOrders(data.status, null)
           var product = that.data.product;
           for (var p in product) {
             if (product[p].payorderno == data.orderno) {

@@ -147,7 +147,7 @@ Page({
   detail:function(index,id,num){
     // 判断时候是新增还是修改
     var shopCart = this.data.shopCart;
-    if (index) {
+    if (index !== undefined) {
       shopCart[index].upData = num ? true : false;
     }
     this.setData({
@@ -732,6 +732,7 @@ Page({
     for(var p in shopCart){
       if (shopCart[p].upData){
         shopCart[p] = object;
+        add = false;
       }else if (shopCart[p].productId == object.productId && shopCart[p].productcolor == object.productcolor && shopCart[p].productsize == object.productsize){
         shopCart[p].count = parseInt(object.count) + parseInt(shopCart[p].count);
         add = false;
