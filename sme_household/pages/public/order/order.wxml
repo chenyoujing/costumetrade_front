@@ -1,5 +1,4 @@
 <import src="../../../template/template.wxml"/>
-
 <!--订单头部-->
 <template is="searchTitle" data="{{text:'单号查询...',back:shopkeeper}}"></template>
 
@@ -23,7 +22,7 @@
      待发货<view class="ordertype2_prompt" wx:if="{{countNum.sNoShipCount}}">{{countNum.sNoShipCount}}</view>
   </view>
   <view class="ordertype2_text {{ordertype2=='5' ? 'ordertype_active2' : ''}}" bindtap="ordertype2" data-ordertypetwo="5">
-      全部
+      <text style="color:#286561;">已完成</text>
   </view>
   <view class="clear"></view>
 </view>
@@ -40,7 +39,7 @@
       待收货<view class="ordertype2_prompt" wx:if="{{countNum.pNoReceiptCount}}">{{countNum.pNoReceiptCount}}</view>
   </view>
   <view class="ordertype2_text {{ordertype2=='5' ? 'ordertype_active2' : ''}}" bindtap="ordertype2" data-ordertypetwo="5">
-      全部
+      <text style="color:#286561;">已完成</text>
   </view>
   <view class="clear"></view>
 </view>
@@ -53,14 +52,13 @@
   </view>
   <!--采购待付款-->
   <view wx-if="{{ordertype==1 && ordertype2==1}}" wx:for="{{product}}" class="order_container_view">
-    <navigator url="orderDetails/orderDetails?ordertype={{ordertype}}&payorderno={{item.payorderno}}&ordertype2=1">
     <view class="order_container_title" >
       <view class="order_container_name">供应商：{{item.seller}}</view>
-      <view class="order_container_Bill" wx:if="{{item.orderstatus == 1}}" style="color:#ff2d04">待审核订单</view>
+      <view class="order_container_Bill" wx:if="{{item.orderstatus == 1}}" style="color:#ff2d04">审核未通过</view>
       <view class="order_container_Bill" wx:if="{{item.orderstatus == 3}}">审核通过</view>
-      <image src="../../../images/right-thrust.png" mode="aspectFit" class="order_content_right" />
+      <image src="../../../images/customer_service.png" mode="aspectFit" class="order_content_right" />
     </view>
-   </navigator>
+    <navigator url="orderDetails/orderDetails?ordertype={{ordertype}}&payorderno={{item.payorderno}}&ordertype2=1">
       <view class="order_container_content_left">
         <view class="order_container_number">单号：{{item.payorderno}}</view>
         <view class="order_container_text">数量：{{item.totalnum}}</view>
@@ -76,20 +74,21 @@
         <view class="order_container_text" style="margin-top:5px;">经手人：{{item.operator}}</view>
       </view>
       <view class="clear"></view>
-      <navigator url="payOrder/payOrder?operate=2&orderno={{item.payorderno}}&buyerid={{item.buyerstoreid}}&sellerid={{item.sellerstoreid}}&pay={{item.debetamt}}"  wx:if="{{item.orderstatus == 3}}">
-        <view class="order_container_button btn_1">付款</view>      
-      </navigator>
+    </navigator>
+    <view class="order_container_button">取消订单</view>      
+    <navigator url="payOrder/payOrder?operate=2&orderno={{item.payorderno}}&buyerid={{item.buyerstoreid}}&sellerid={{item.sellerstoreid}}&pay={{item.debetamt}}"  wx:if="{{item.orderstatus == 3}}">
+      <view class="order_container_button btn_1">付款</view>      
+    </navigator>
     <view class="clear"></view>
   </view>
   <!--采购待收货-->
   <view wx-if="{{ordertype==1 && ordertype2==2}}" wx:for="{{product}}" class="order_container_view">
-    <navigator url="orderDetails/orderDetails?ordertype={{ordertype}}&payorderno={{item.payorderno}}& ordertype2=2">
     <view class="order_container_title" >
       <view class="order_container_name">供应商：{{item.seller}}</view>
       <view class="order_container_Bill">商城订单</view>
-      <image src="../../../images/right-thrust.png" mode="aspectFit" class="order_content_right" />
+      <image src="../../../images/customer_service.png" mode="aspectFit" class="order_content_right" />
     </view>
-   </navigator>
+    <navigator url="orderDetails/orderDetails?ordertype={{ordertype}}&payorderno={{item.payorderno}}& ordertype2=2">
       <view class="order_container_content_left">
         <view class="order_container_number">单号：{{item.payorderno}}</view>
         <view class="order_container_text">数量：{{item.totalnum}}</view>
@@ -105,19 +104,19 @@
         <view class="order_container_text" style="margin-top:5px;">经手人：{{item.operator}}</view>
       </view>
       <view class="clear"></view>
+    </navigator>
     <view class="order_container_button btn_1"  bindtap="changeOrderStatus" data-status='' data-orderNo="{{item.payorderno}}" data-sellerstoreid="{{item.sellerstoreid}}" data-buyerstoreid="{{item.buyerstoreid}}">催单</view>
     <view class="clear"></view>
   </view>
 
   <!--采购确认收货-->
   <view wx-if="{{ordertype==1 && ordertype2==3}}" wx:for="{{product}}" class="order_container_view">
-   <navigator url="orderDetails/orderDetails?ordertype={{ordertype}}&payorderno={{item.payorderno}}& ordertype2=3">
     <view class="order_container_title" >
       <view class="order_container_name">供应商：{{item.seller}}</view>
       <view class="order_container_Bill">商城订单</view>
-      <image src="../../../images/right-thrust.png" mode="aspectFit" class="order_content_right" />
+      <image src="../../../images/customer_service.png" mode="aspectFit" class="order_content_right" />
     </view>
-   </navigator>
+   <navigator url="orderDetails/orderDetails?ordertype={{ordertype}}&payorderno={{item.payorderno}}& ordertype2=3">
       <view class="order_container_content_left">
         <view class="order_container_number">单号：{{item.payorderno}}</view>
         <view class="order_container_text">数量：{{item.totalnum}}</view>
@@ -133,6 +132,7 @@
         <view class="order_container_text" style="margin-top:5px;">经手人：{{item.operator}}</view>
       </view>
       <view class="clear"></view>
+    </navigator>
     <view class="order_container_button btn_1"  bindtap="changeOrderStatus" data-status='5' data-orderNo="{{item.payorderno}}" data-sellerstoreid="{{item.sellerstoreid}}" data-buyerstoreid="{{item.buyerstoreid}}">确认收货</view>
     <navigator url="./logistics/logistics?sellerstoreid={{item.sellerstoreid}}&payorderno={{item.payorderno}}&buyerstoreid={{item.buyerstoreid}}">
       <view class="order_container_button">查看物流</view>
@@ -143,16 +143,15 @@
 
   <!--采购全部-->
   <view wx-if="{{ordertype==1 && ordertype2==5}}" wx:for="{{product}}" class="order_container_view">
-     <navigator url="orderDetails/orderDetails?ordertype={{ordertype}}&payorderno={{item.payorderno}}&ordertype2=5">
     <view class="order_container_title" >
       <view class="order_container_name" wx:if="{{item.seller}}">供应商：{{item.seller}}</view>
       <view class="order_container_name"  wx:if="{{!item.seller}}">供应商：游客</view>
       <view class="order_container_Bill" wx:if="{{item.ordertype==1}}">商城订单</view>
        <view class="order_container_Bill" wx:if="{{item.ordertype==2}}">线下单据</view>
        <view class="order_container_Bill" style="color:#ff011f;" wx:if="{{item.ordertype==3}}">作废单据</view>
-      <image src="../../../images/right-thrust.png" mode="aspectFit" class="order_content_right" />
+      <image src="../../../images/customer_service.png" mode="aspectFit" class="order_content_right" />
     </view>
-   </navigator>
+    <navigator url="orderDetails/orderDetails?ordertype={{ordertype}}&payorderno={{item.payorderno}}&ordertype2=5">
       <view class="order_container_content_left">
         <view class="order_container_number">单号：{{item.payorderno}}</view>
         <view class="order_container_text">数量：{{item.totalnum}}</view>
@@ -168,6 +167,7 @@
         <view class="order_container_text" style="margin-top:5px;">经手人：{{item.operator}}</view>
       </view>
       <view class="clear"></view>
+    </navigator>
     <navigator url="orderDetails/orderDetails?ordertype={{ordertype}}&payorderno={{item.payorderno}}&ordertype2=5&storeId={{item.sellerstoreid}}" class="order_container_button btn_2" >评价</navigator>
     <view class="order_container_button"  wx:if="{{item.canCancellation}}"  bindtap="changeOrderStatus" data-status='7' data-orderNo="{{item.payorderno}}" data-sellerstoreid="{{item.sellerstoreid}}" data-buyerstoreid="{{item.buyerstoreid}}">作废</view>
     <view class="clear"></view>
@@ -175,13 +175,12 @@
 
   <!--销售待审核-->
   <view wx-if="{{ordertype==2 && ordertype2==4}}" wx:for="{{product}}" class="order_container_view">
-   <navigator url="orderDetails/orderDetails?ordertype={{ordertype}}&payorderno={{item.payorderno}}&ordertype2=4">
     <view class="order_container_title" >
       <view class="order_container_name">客户：{{item.buyer}}</view>
       <view class="order_container_Bill">商城订单</view>
-      <image src="../../../images/right-thrust.png" mode="aspectFit" class="order_content_right" />
+      <image src="../../../images/customer_service.png" mode="aspectFit" class="order_content_right" />
     </view>
-   </navigator>
+    <navigator url="orderDetails/orderDetails?ordertype={{ordertype}}&payorderno={{item.payorderno}}&ordertype2=4">
       <view class="order_container_content_left">
         <view class="order_container_number">单号：{{item.payorderno}}</view>
         <view class="order_container_text">数量：{{item.totalnum}}</view>
@@ -198,6 +197,7 @@
         <view class="order_container_text" style="margin-top:5px;">经手人：{{item.operator}}</view>
       </view>
       <view class="clear"></view>
+    </navigator>
     <view class="order_container_button btn_2"  bindtap="changeOrderStatus" data-status='8' data-orderNo="{{item.payorderno}}" data-sellerstoreid="{{item.sellerstoreid}}" data-buyerstoreid="{{item.buyerstoreid}}">通过审核</view>
     <navigator url="orderDetails/orderDetails?ordertype={{ordertype}}&payorderno={{item.payorderno}}&ordertype2=4&update=true" class="order_container_button">修改订单</navigator>
     <view class="order_container_button btn_3" bindtap="changeOrderStatus" data-status='6' data-orderNo="{{item.payorderno}}" data-sellerstoreid="{{item.sellerstoreid}}" data-buyerstoreid="{{item.buyerstoreid}}">取消订单</view>
@@ -206,13 +206,12 @@
 
   <!--销售待收款-->
   <view wx-if="{{ordertype==2 && ordertype2==6}}" wx:for="{{product}}" class="order_container_view">
-    <navigator url="orderDetails/orderDetails?ordertype={{ordertype}}&payorderno={{item.payorderno}}& ordertype2=1">
     <view class="order_container_title" >
       <view class="order_container_name">客户：{{item.buyer}}</view>
       <view class="order_container_Bill">商城订单</view>
-      <image src="../../../images/right-thrust.png" mode="aspectFit" class="order_content_right" />
+      <image src="../../../images/customer_service.png" mode="aspectFit" class="order_content_right" />
     </view>
-   </navigator>
+    <navigator url="orderDetails/orderDetails?ordertype={{ordertype}}&payorderno={{item.payorderno}}& ordertype2=1">
       <view class="order_container_content_left">
         <view class="order_container_number">单号：{{item.payorderno}}</view>
         <view class="order_container_text">数量：{{item.totalnum}}</view>
@@ -228,7 +227,7 @@
         <view class="order_container_text" style="margin-top:5px;">经手人：{{item.operator}}</view>
       </view>
       <view class="clear"></view>
-   
+    </navigator>
     <view class="order_container_button btn_2" wx:if="{{item.debetamt >0 || item.debeButton}}" bindtap="collectView" data-status='2' data-orderNo="{{item.payorderno}}" data-debet="{{item.debetamt}}" data-sellerstoreid="{{item.sellerstoreid}}" data-buyerstoreid="{{item.buyerstoreid}}" >{{item.debetText}}</view>
 
      <view class="order_container_button" data-status='3' data-orderNo="{{item.payorderno}}"  data-sellerstoreid="{{item.sellerstoreid}}" data-buyerstoreid="{{item.buyerstoreid}}" bindtap="changeOrderStatus">配货</view>
@@ -251,13 +250,12 @@
 
   <!--销售待发货-->
   <view wx-if="{{ordertype==2 && ordertype2==2}}" wx:for="{{product}}" class="order_container_view">
-   <navigator url="orderDetails/orderDetails?ordertype={{ordertype}}&payorderno={{item.payorderno}}& ordertype2=2">
     <view class="order_container_title" >
       <view class="order_container_name">客户：{{item.buyer}}</view>
       <view class="order_container_Bill">商城订单</view>
-      <image src="../../../images/right-thrust.png" mode="aspectFit" class="order_content_right" />
+      <image src="../../../images/customer_service.png" mode="aspectFit" class="order_content_right" />
     </view>
-   </navigator>
+    <navigator url="orderDetails/orderDetails?ordertype={{ordertype}}&payorderno={{item.payorderno}}& ordertype2=2">
       <view class="order_container_content_left">
         <view class="order_container_number">单号：{{item.payorderno}}</view>
         <view class="order_container_text">数量：{{item.totalnum}}</view>
@@ -273,6 +271,7 @@
         <view class="order_container_text" style="margin-top:5px;">经手人：{{item.operator}}</view>
       </view>
       <view class="clear"></view>
+    </navigator>
     <view class="order_container_button btn_2"  bindtap="changeOrderStatus" data-status='4' data-orderNo="{{item.payorderno}}" data-sellerstoreid="{{item.sellerstoreid}}" data-buyerstoreid="{{item.buyerstoreid}}">发货</view>
     <view class="order_container_button" data-payorderno="{{item.payorderno}}"  data-logisticstype="{{item.ordertype}}" data-logistics="{{item.logisticsCode}}" data-buyerstoreid="{{item.buyerstoreid}}" bindtap="logisticsView">选物流</view>
     <view class="clear"></view>
@@ -280,15 +279,14 @@
 
   <!--销售全部-->
   <view wx-if="{{ordertype==2 && ordertype2==5}}" wx:for="{{product}}" class="order_container_view clearfix">
-    <navigator url="orderDetails/orderDetails?ordertype={{ordertype}}&payorderno={{item.payorderno}}& ordertype2=5">
     <view class="order_container_title" >
       <view class="order_container_name" wx:if="{{item.buyer}}">客户：{{item.buyer}}</view>
        <view class="order_container_name" wx:if="{{!item.buyer}}">客户：游客</view>
       <view class="order_container_Bill" wx:if="{{item.ordertype==1}}">商城订单</view>
        <view class="order_container_Bill" wx:if="{{item.ordertype==2}}">线下单据</view>
-      <image src="../../../images/right-thrust.png" mode="aspectFit" class="order_content_right" />
+      <image src="../../../images/customer_service.png" mode="aspectFit" class="order_content_right" />
     </view>
-   </navigator>
+    <navigator url="orderDetails/orderDetails?ordertype={{ordertype}}&payorderno={{item.payorderno}}& ordertype2=5">
       <view class="order_container_content_left">
         <view class="order_container_number">单号：{{item.payorderno}}</view>
         <view class="order_container_text">数量：{{item.totalnum}}</view>
@@ -304,8 +302,9 @@
         <view class="order_container_text" style="margin-top:5px;">经手人：{{item.operator}}</view>
       </view>
       <view class="clear"></view>
-      <view class="order_container_button btn_2" bindtap="updateModal" data-no="{{item.payorderno}}">修改</view>
-      <view class="order_container_button" wx:if="{{item.canCancellation}}"  bindtap="changeOrderStatus" data-status='7' data-orderNo="{{item.payorderno}}" data-sellerstoreid="{{item.sellerstoreid}}" data-buyerstoreid="{{item.buyerstoreid}}">作废</view>
+    </navigator>
+    <view class="order_container_button btn_2" bindtap="updateModal" data-no="{{item.payorderno}}">修改</view>
+    <view class="order_container_button" wx:if="{{item.canCancellation}}"  bindtap="changeOrderStatus" data-status='7' data-orderNo="{{item.payorderno}}" data-sellerstoreid="{{item.sellerstoreid}}" data-buyerstoreid="{{item.buyerstoreid}}">作废</view>
   </view>
 </scroll-view>
 
@@ -314,7 +313,7 @@
 <modal title="选择物流" hidden="{{logisticsModal}}" confirm-text="取消" no-cancel bindconfirm="cancel" bindcancel="cancel" >
   <view class="choose_container clearfix">
     <view class="logistics_choose">
-      <navigator url="express/express?orderNo={{selectLogistics.orderNo}}?logistics={{selectLogistics.logistics}}?buyerstoreid={{selectLogistics.buyerstoreid}}" class="choose_view">打印快递面单</navigator>
+      <navigator url="express/express?orderNo={{selectLogistics.orderNo}}&logistics={{selectLogistics.logistics}}&buyerstoreid={{selectLogistics.buyerstoreid}}" class="choose_view">打印快递面单</navigator>
     </view>
     <view class="logistics_choose">
       <view class="choose_view" bindtap="numberView">输入快递面单</view>
