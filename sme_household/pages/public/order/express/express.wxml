@@ -1,3 +1,5 @@
+<import src="../../../template/template.wxml"/>
+
 <form bindsubmit="expressSubmit">
 <view class="title">
   {{title}}
@@ -10,28 +12,29 @@
     <view class="content_title">寄信人信息</view>
     <view class="content_input">
       <view class="content_input_text">寄件<text>单位名称:</text></view>
-      <input type="text" class="content_input1" name="consigneeCompany" value="{{name}}" />
+      <input type="text" class="content_input1" name="consigneeCompany" value="{{sender.name}}" />
       <view class="clear"></view>
     </view>
+    <template is="reg" data="{{text:'寄件单位名称必填'}}" wx:if="{{1}}" />
     <view class="content_input">
       <view class="content_input_text">联系人:</view>
-      <input type="text" class="content_input1" value="{{address1.userName}}" />
+      <input type="text" class="content_input1" value="{{sender.userName}}" />
       <image src="../../../../images/map.png" mode="aspectFit" class="image_map" bindtap="address" data-type="consignee" />
       <view class="clear"></view>
     </view>
     <view class="content_input">
       <view class="content_input_text">联系电话:</view>
-      <input type="text" class="content_input1" value="{{address1.telNumber}}" />
+      <input type="text" class="content_input1" value="{{sender.mobile||sender.phone}}" />
       <view class="clear"></view>
     </view>
     <view class="content_input">
       <view class="content_input_text">地址:</view>
-      <input disabled type="text" class="content_input1" value="{{address1.provinceName}} {{address1.cityName}} {{address1.countyName}}" />
+      <input disabled type="text" class="content_input1" value="{{sender.provinceName}},{{sender.cityName}},{{sender.countyName}}" />
       <view class="clear"></view>
     </view>
     <view class="content_input">
       <view class="content_input_text">详细地址:</view>
-      <input type="text" class="content_input1" value="{{address1.detailInfo}}" />
+      <input type="text" class="content_input1" value="{{sender.address}}" />
       <view class="clear"></view>
     </view>
   </view>
@@ -40,28 +43,28 @@
     <view class="content_title">收件人信息</view>
     <view class="content_input">
       <view class="content_input_text">寄件<text>单位名称:</text></view>
-      <input type="text" class="content_input1" name="deliverCompany" value="{{name}}" />
+      <input type="text" class="content_input1" name="deliverCompany" value="{{receiver.name}}" />
       <view class="clear"></view>
     </view>
     <view class="content_input">
       <view class="content_input_text">联系人:</view>
-      <input type="text" class="content_input1" name="name" value="{{address2.userName}}" />
+      <input type="text" class="content_input1" name="name" value="{{receiver.userName}}" />
       <image src="../../../../images/map.png" mode="aspectFit" class="image_map" bindtap="address" data-type="deliver" />
       <view class="clear"></view>
     </view>
     <view class="content_input">
       <view class="content_input_text">联系电话:</view>
-      <input type="text" class="content_input1" name="name" value="{{address2.telNumber}}" />
+      <input type="text" class="content_input1" name="name" value="{{receiver.mobile||receiver.phone}}" />
       <view class="clear"></view>
     </view>
     <view class="content_input">
       <view class="content_input_text">地址:</view>
-      <input disabled type="text" class="content_input1" name="name" value="{{address2.provinceName}} {{address2.cityName}} {{address2.countyName}}" />
+      <input disabled type="text" class="content_input1" value="{{sender.provinceName}},{{sender.cityName}},{{sender.countyName}}" />
       <view class="clear"></view>
     </view>
     <view class="content_input">
       <view class="content_input_text">详细地址:</view>
-      <input type="text" class="content_input1" name="name" value="{{address2.detailInfo}}" />
+      <input type="text" class="content_input1" name="name" value="{{receiver.address}}" />
       <view class="clear"></view>
     </view>
   </view>
@@ -71,7 +74,7 @@
   <view class="express_content bg_2">
     <view class="content_input">
       <view class="content_input_text">货品名称:</view>
-      <input type="text" class="content_input1" name="name" value="{{name}}" />
+      <input type="text" class="content_input1" name="name" value="衣物" />
       <view class="clear"></view>
     </view>
     <view class="content_input">

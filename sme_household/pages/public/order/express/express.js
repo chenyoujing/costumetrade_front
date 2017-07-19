@@ -11,23 +11,28 @@ Page({
         switch (e.target.dataset.type) {
           case ("consignee"):
             that.setData({
-              address1: res
+              "sender.address": res.detailInfo,
+              "sender.mobile": res.telNumber,
+              "sender.userName": res.userName,
+              "sender.provinceName": res.provinceName ,
+              "sender.cityName": res.cityName,
+              "sender.countyName":res.countyName,
+              "sender.postalCode": res.postalCode,
             })
             break;
           case ("deliver"):
             that.setData({
-              address2: res
+              "receiver.address": res.detailInfo,
+              "receiver.mobile": res.telNumber,
+              "receiver.userName": res.userName,
+              "receiver.provinceName": res.provinceName,
+              "receiver.cityName": res.cityName,
+              "receiver.countyName": res.countyName,
+              "receiver.postalCode": res.postalCode,
             })
             break;
         }
-        console.log(res.userName)
-        console.log(res.postalCode)
-        console.log(res.provinceName)
-        console.log(res.cityName)
-        console.log(res.countyName)
-        console.log(res.detailInfo)
-        console.log(res.nationalCode)
-        console.log(res.telNumber)
+
       }
     })
   },
@@ -36,7 +41,7 @@ Page({
     var that = this
     wx.showNavigationBarLoading();
     util.api.request({
-      url: 'logistic/logisticInit',
+      url: 'order/logisticInit',
       data: {
         payorderno: that.data.orderNo,
         sellerstoreid: app.globalData.storeId,
@@ -49,8 +54,22 @@ Page({
       },
       success: function (res) {
         wx.hideNavigationBarLoading();
+        var sender = res.data[0]
+        var receiver = res.data[1]
+        console.log(sender.city)
+        var sender_city = sender.city.split(',')
+        var receiver_city = receiver.city.split(',')
+        sender.provinceName = sender_city[0]
+        sender.cityName = sender_city[1]
+        sender.countyName = sender_city[2]
+        receiver.provinceName = receiver_city[0]
+        receiver.cityName = receiver_city[1]
+        receiver.countyName = receiver_city[2]
+        sender.city
         that.setData({
-          product: res.data
+          sender: res.data[0],
+          receiver: res.data[1],
+          item: res.data[2],
         })
       }
     })
@@ -83,28 +102,28 @@ Page({
   expressSF:function(e){
     var that = this;
     var value = e.detail.value 
-    var address1 = this.data.address1 || []
-    var address2 = this.data.address2 || []
+    var sender = this.data.sender || []
+    var receiver = this.data.receiver || []
     var object = {}
     var consigneeInfo = {}
-    consigneeInfo.address = address1.detailInfo
-    consigneeInfo.city = address1.cityName
+    consigneeInfo.address = sender.address
+    consigneeInfo.city = sender.cityName
     consigneeInfo.company = value.consigneeCompany
-    consigneeInfo.contact = address1.userName
+    consigneeInfo.contact = sender.userName
     consigneeInfo.country = "中国"
-    consigneeInfo.province = address1.provinceName
-    consigneeInfo.tel = address1.telNumber
-    consigneeInfo.shipperCode = address1.postalCode
+    consigneeInfo.province = sender.provinceName
+    consigneeInfo.tel = sender.mobile
+    consigneeInfo.shipperCode = sender.postalCode
     
     var deliverInfo = {}
-    deliverInfo.address = address2.detailInfo
-    deliverInfo.city = address2.cityName
+    deliverInfo.address = receiver.address
+    deliverInfo.city = receiver.cityName
     deliverInfo.company = value.deliverCompany
-    deliverInfo.contact = address2.userName
+    deliverInfo.contact = receiver.userName
     deliverInfo.country = "中国"
-    deliverInfo.province = address2.provinceName
-    deliverInfo.tel = address2.telNumber
-    deliverInfo.shipperCode = address2.postalCode
+    deliverInfo.province = receiver.provinceName
+    deliverInfo.tel = receiver.mobile
+    deliverInfo.shipperCode = receiver.postalCode
 
     var cargoInfo = {}
     cargoInfo.cargo = '衣物'
@@ -142,30 +161,30 @@ Page({
   },
   expressZTO: function (e) {
     var value = e.detail.value
-    var address1 = this.data.address1 || []
-    var address2 = this.data.address2 || []
+    var sender = this.data.sender || []
+    var receiver = this.data.receiver || []
 
     var sender = {}
-    sender.id//发件人在合作商平台中的ID号？？
-    sender.name = address1.userName
+    sender.id = app.globalData.storeId
+    sender.name = sender.userName
     sender.company = value.consigneeCompany
-    sender.mobile = address1.telNumber
-    sender.prov = address1.provinceName
-    sender.city = address1.cityName
-    sender.county = address1.countyName
-    sender.address = address1.detailInfo
-    sender.zipcode = address1.postalCode
+    sender.mobile = sender.mobile
+    sender.prov = sender.provinceName
+    sender.city = sender.cityName
+    sender.county = sender.countyName
+    sender.address = sender.address
+    sender.zipcode = sender.postalCode
 
     var receiver = {}
-    receiver.id//收件人在合作商平台中的ID号？？
-    receiver.name = address2.userName
+    receiver.id = that.data.buyerstoreid
+    receiver.name = receiver.userName
     receiver.company = value.deliverCompany
-    receiver.mobile = address2.telNumber
-    receiver.prov = address2.provinceName
-    receiver.city = address2.cityName
-    receiver.county = address2.countyName
-    receiver.address = address2.detailInfo
-    receiver.zipcode = address2.postalCode
+    receiver.mobile = receiver.mobile
+    receiver.prov = receiver.provinceName
+    receiver.city = receiver.cityName
+    receiver.county = receiver.countyName
+    receiver.address = receiver.address
+    receiver.zipcode = receiver.postalCode
 
     var item = {}
     item.id//货品ID？订单号？
@@ -185,8 +204,8 @@ Page({
     object.type = 1
     object.status = 0
     object.partnerCode = this.data.orderNo
-    object.sendstarttime//取件起始时间
-    object.sendendtime//取件截止时间
+    object.sendstarttime = new Date(date())
+    object.sendendtime = new Date(new Date().getTime() - (86400000 * 7))
     console.log(object)
     wx.showNavigationBarLoading();
     util.api.request({
@@ -207,24 +226,24 @@ Page({
   },
   expressYD: function (e) {
     var value = e.detail.value
-    var address1 = this.data.address1 || []
-    var address2 = this.data.address2 || []
+    var sender = this.data.sender || []
+    var receiver = this.data.receiver || []
 
     var sender = {}
-    sender.name = address1.userName
+    sender.name = sender.userName
     sender.company = value.consigneeCompany
-    sender.mobile = address1.telNumber
-    sender.city = address1.provinceName + ',' + address1.cityName + ',' + address1.countyName
-    sender.address = address1.detailInfo
-    sender.postcode = address1.postalCode
+    sender.mobile = sender.mobile
+    sender.city = sender.provinceName + ',' + sender.cityName + ',' + sender.countyName
+    sender.address = sender.address
+    sender.postcode = sender.postalCode
 
     var receiver = {}
-    receiver.name = address2.userName
+    receiver.name = receiver.userName
     receiver.company = value.deliverCompany
-    receiver.mobile = address2.telNumber
-    receiver.city = address2.provinceName + ',' + address2.cityName + ',' + address2.countyName
-    receiver.address = address2.detailInfo
-    receiver.zipcode = address2.postalCode
+    receiver.mobile = receiver.mobile
+    receiver.city = receiver.provinceName + ',' + receiver.cityName + ',' + receiver.countyName
+    receiver.address = receiver.address
+    receiver.zipcode = receiver.postalCode
 
     var item = {}
     item.name = value.name
@@ -234,8 +253,8 @@ Page({
     object.receiver = receiver
     object.item = item
     object.orderid = this.data.orderNo
-    object.sendstarttime//取件起始时间
-    object.sendendtime//取件截止时间
+    object.sendstarttime = new Date()
+    object.sendendtime = new Date(new Date().getTime() - (86400000*7))
     object.customerid//客户id
     console.log(object)
     wx.showNavigationBarLoading();

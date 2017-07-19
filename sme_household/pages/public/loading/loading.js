@@ -27,6 +27,7 @@ Page({
     })
   },
   onLoad: function (options) {
+    console.log(Date())
     util.api.getOpenid(this.callback, this.fail);
   }
 })
