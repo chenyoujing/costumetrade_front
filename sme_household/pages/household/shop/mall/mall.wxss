@@ -32,7 +32,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: rgba(255, 255, 255, 0.3);
 }
 .search_input_image{
   top: -7px;
@@ -120,8 +120,85 @@
   padding: 7px;
 }
 
+/* 推荐 */
+.shop_content{
+  padding: 15px 20rpx 0;
+  position: relative;
+}
+.shop_content:last-child{
+  padding-bottom: 15px;
+}
+.shop_content_view{
+  padding: 0 0 5px;
+  box-shadow: 1px 1px 4px #000000;
+  position: relative;
+}
+.shop_goods{
+  padding-top: 10px;
+  display: flex;
+  justify-content: space-around;
+}
+.shop_content_title{
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  padding: 5px;
+}
+.shop_content_info{
+  min-height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  font-size: 14px;
+  padding: 0 10px;
+}
+.shop_content_unread{
+  color: #FE4007;
+  font-size: 14px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.shop_content_unread_prompt{
+  min-width: 20px;
+  height: 20px;
+  border-radius: 10px;
+  margin-right: 8px;
+  background-color: #FE4007;
+  display: flex;
+  align-items: center;
+  justify-content:center;
+  color: #ffffff;
+}
+.shop_content_service{
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 8px;
+}
+.shop_content_service image{
+  width: 20px;
+  height: 20px;
+  padding: 5px;
+  display: block;
+}
+.shop_content_address{
+  border-top: 1px solid #52CAC1;
+  font-size: 16px;
+  padding: 0 5px;
+  margin: 0 5px;
+}
+.shop_picture{
+  width: 230rpx;
+  height: 230rpx;
+}
 
 
+/* 最热，上新 */
 .mall_scroll{
   position: absolute;
   top: 170px;

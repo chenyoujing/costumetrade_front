@@ -2,21 +2,21 @@
 
 <scroll-view scroll-y class="my_container" style="bottom:{{shopkeeper?'0':''}}">
   <!--头部-->
-  <view class="my_title clearfix">
+  <view class="my_title" style="{{userIdentity!=1&3?'justify-content:center;':''}}">
     <navigator url="storeUpdate/storeUpdate">
       <image src="{{userInfo.photo||'../../../images/shop1_tx.png'}}" mode="aspectFill" class="my_tx" />
     </navigator>
-    <view class="my_code" bindtap="scan">
+    <view class="my_info" style="{{userIdentity!=1&3?'min-width:0;':''}}">
+      <navigator url="storeUpdate/storeUpdate" class="my_name one_line">{{userInfo.name}}</navigator>
+      <view class="my_fans" wx:if="{{userIdentity==1&3}}">200</view>
+    </view>
+    <view class="my_code" bindtap="scan" wx:if="{{userIdentity==1&3}}">
       <image src="../../../images/QR_code.png" mode="aspectFill" />
       <view class="my_code_text">+粉</view>
-    </view>
-    <view class="my_info clearfix">
-      <navigator url="storeUpdate/storeUpdate" class="my_name one_line">{{userInfo.name}}</navigator>
-      <view class="my_fans">200</view>
-    </view>
+    </view>  
   </view>
   <!--店铺功能-->
-  <view class="operation clearfix"  wx:if="{{userIdentity !== 2}}">
+  <!-- <view class="operation clearfix"  wx:if="{{userIdentity==1&3}}">
     <navigator url="../../original/openOrder/openOrder">
       <image src="../../../images/My-orders.png" mode="aspectFit" class="operation_image" />
       <view class="operation_text">开单</view>
@@ -33,7 +33,7 @@
       <image src="../../../images/report-forms.png" mode="aspectFit" class="operation_image" />
       <view class="operation_text">报表</view>
     </navigator>
-  </view>
+  </view> -->
   <!--内容-->
   <view class="my_content">
 
@@ -48,11 +48,11 @@
         <view class="my_content_text">钱包管理</view>
         <image src="../../../images/right-thrust.png" mode="aspectFit" class="my_content_right" />
       </navigator>-->
-      <view class="navigator clearfix" bindtap="address">
-        <image src="../../../images/localization.png" mode="aspectFit" class="my_content_image" />
-        <view class="my_content_text">收货地址</view>
+      <navigator class="clearfix" url="storeUpdate/storeUpdate">
+        <image src="../../../images/{{userIdentity==1&3?'myself':'myself'}}.png" mode="aspectFit" class="my_content_image" />
+        <view class="my_content_text">{{userIdentity==1&3?'店铺信息':'个人信息'}}</view>
         <image src="../../../images/right-thrust.png" mode="aspectFit" class="my_content_right" />
-      </view>
+      </navigator>
       <navigator class="clearfix" url="Help/Help">
         <image src="../../../images/assist.png" mode="aspectFit" class="my_content_image" />
         <view class="my_content_text">帮助</view>
@@ -67,6 +67,16 @@
       <navigator class="clearfix" url="vipPlus/vipPlus">
         <image src="../../../images/vip.png" mode="aspectFit" class="my_content_image" />
         <view class="my_content_text">升级</view>
+        <image src="../../../images/right-thrust.png" mode="aspectFit" class="my_content_right" />
+      </navigator>
+      <view class="navigator clearfix" bindtap="address">
+        <image src="../../../images/localization.png" mode="aspectFit" class="my_content_image" />
+        <view class="my_content_text">收货地址</view>
+        <image src="../../../images/right-thrust.png" mode="aspectFit" class="my_content_right" />
+      </view>
+      <navigator class="clearfix" url="../../original/report/report" wx:if="{{userIdentity==1&3}}">
+        <image src="../../../images/report-forms.png" mode="aspectFit" class="my_content_image" />
+        <view class="my_content_text">报表</view>
         <image src="../../../images/right-thrust.png" mode="aspectFit" class="my_content_right" />
       </navigator>
       <navigator class="clearfix" url="dictionary/dictionary" wx:if="{{setUp}}">

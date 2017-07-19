@@ -11,45 +11,44 @@
   </swiper>
 
   <!-- 点艺公告 -->
-  <template is="notice"></template>
+  <template is="notice" wx:if="{{!shopkeeper}}"></template>
  
   <template is="promptNone" data="{{product:otherStord,text:'你还没有收到过图片'}}"></template>
 
   <view class="shop_content" wx:for="{{otherStord}}">
-   <view url="mall/mall?id={{item.storeid}}&storephoto={{item.photo}}" class="shop_content_view">
-      <navigator url="storeDetails/storeDetails?id={{item.storeid}}" class="shop_content_title">
-        <view class="shop_content_tx">
+    <view class="shop_content_view">
+      <view class="shop_content_title">
+        <navigator url="storeDetails/storeDetails?id={{item.storeid}}" class="shop_content_tx">
           <image src="{{item.photo||'../../../images/image_none.png'}}" mode="aspectFill" />
-        </view>
+        </navigator>
         <view class="shop_content_info">
           <view class="shop_content_name">
-            <view class="shop_content_name_title one_line">{{item.title}}</view>
-            <view class="shop_content_name_name one_line">{{item.promoterName}}</view>
+            <navigator url="storeDetails/storeDetails?id={{item.storeid}}" class="shop_content_name_title one_line">{{item.promoterName}}</navigator>
+            <navigator url="mall/mall?id={{item.storeid}}&storephoto={{item.photo}}" class="shop_content_time">
+              <view class="shop_content_unread">
+                <view class="shop_content_unread_prompt">9</view>
+                未读信息
+              </view>
+              <text>2017-07-15</text>
+            </navigator>
           </view>
-          <view class="shop_content_address two_line">
-            <image src="../../../images/site.png" mode="aspectFit" class="shop_address_image" />
-            地址：{{item.address}}
-          </view>
         </view>
-        <view class="shop_content_time">
-          <text></text>
-          <text>2017-07-15</text>
+        <view class="shop_content_service">
+          <image src="../../../images/customer_service.png"  class="shop_content_service" mode="aspectFit" />
+          客服
         </view>
-      </navigator>
-      <navigator url="mall/mall?id={{item.storeid}}&storephoto={{item.photo}}" class="shop_goods clearfix">
-        <view class="shop_picture">
-          <image src="{{item.images[0]?url+item.images[0]:'../../../images/shop1_1.png'}}" mode="aspectFill" style="margin-left:0;" />
+      </view>
+      <navigator url="mall/mall?id={{item.storeid}}&storephoto={{item.photo}}">
+        <view class="shop_content_address two_line">
+          {{item.title}}
         </view>
-        <view class="shop_picture">
-          <image src="{{item.images[1]?url+item.images[1]:'../../../images/shop1_1.png'}}" mode="aspectFill" />
-        </view>
-        <view class="shop_picture">
-          <image src="{{item.images[2]?url+item.images[2]:'../../../images/shop1_1.png'}}" mode="aspectFill" style="margin-right:0;" />
+        <view class="shop_goods">
+          <image src="{{item.images[0]?url+item.images[0]:'../../../images/shop1_1.png'}}" mode="aspectFill" class="shop_picture" />
+          <image src="{{item.images[1]?url+item.images[1]:'../../../images/shop1_1.png'}}" mode="aspectFill" class="shop_picture" />
+          <image src="{{item.images[2]?url+item.images[2]:'../../../images/shop1_1.png'}}" mode="aspectFill" class="shop_picture" />
         </view>
       </navigator>
     </view>
-    <image src="../../../images/customer_service.png"  class="shop_content_service" mode="aspectFit" />
-    <contact-button class="shop_content_service" style="opacity:0;" size="20" session-from="weapp"></contact-button>
   </view>
    <!--<form bindsubmit="aa" report-submit>
 <button form-type="submit">初始化</button>

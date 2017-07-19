@@ -49,7 +49,9 @@ Page({
       },
       success: function (res) {
         wx.hideNavigationBarLoading();
-        that.setData({})
+        that.setData({
+          product: res.data
+        })
       }
     })
   },
@@ -259,6 +261,7 @@ Page({
       logistics: e.logistics,
       buyerstoreid: e.buyerstoreid,
     })
+    this.logisticInit()
   }
 
 })

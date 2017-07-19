@@ -8,29 +8,31 @@
   padding: 20px;
   color: #ffffff;
   position: relative;
+  display: flex;
+  justify-content: center;
 }
 .my_tx{
+  flex-shrink: 0;
   width: 70px;
   height: 70px;
   border-radius: 35px;
   float: left;
-  margin-left: 10px;
   margin-right: 20px;
 }
 .my_info{
   min-width: 120px;
   height: 60px;
-  margin: auto;
   overflow: hidden;
-  float:left;
-  max-width: calc(100% - 165px);
+  max-width: calc(100% - 100px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 .my_name{
-  min-width: 110px;
-  border-bottom: 2px solid #DBF4F1;
   font-size: 18px;
   height: 34px;
   line-height: 34px;
+  text-align: center;
 }
 .my_fans{
   flex: 1;
@@ -41,6 +43,7 @@
   color: #ff0000;
   font-size: 12px;
   line-height: 12px;
+  border-top: 2px solid #DBF4F1;
 }
 .my_fans::after{
   content: " 粉丝";
@@ -55,19 +58,22 @@
   text-align: center;
 }
 .my_code{
-  float: right;
-  height: 40px;
-  margin: 15px 0 15px 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  color: #ffffff;
+  padding: 5px 10px;
+  z-index: 1;
 }
 .my_code image{
-  width: 25px;
-  height: 25px;
+  width: 20px;
+  height: 20px;
   display: block;
-}
-.my_code_text{
-  font-size: 10px;
-  line-height: 20px;
-  text-align: center;
 }
 .operation{
   padding: 0 10px;
