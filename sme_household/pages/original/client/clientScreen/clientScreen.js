@@ -101,7 +101,7 @@ Page({
   callback: function () {
     var that = this;
     wx.getStorage({
-      key: 'UnitData1',
+      key: that.data.clientName,
       complete: function (res) {
         that.setData({
           product: res.data
@@ -111,14 +111,15 @@ Page({
     })
   },
   downData: function () {
-    util.api.supplierRefresh('client/getClients', "UnitData", 'updataTimeunit', this.callback());
+    util.api.supplierRefresh('client/getClients', this.data.clientName, 'updataTimeunit', this.callback);
   },
   onLoad: function (options) {
     this.downData();
-
     this.setData({
       screen1: app.districtList,
-      screen2: app.custProdPriceList,
+      screen2: app.custProdPrice,
+      client: options.type,
+      clientName: options.type == 1 ? "UnitData1" :"UnitData2"
     })
   },
   onShow:function(){

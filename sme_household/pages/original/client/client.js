@@ -2,7 +2,7 @@ var util = require('../../../utils/util.js')
 var app = getApp()
 Page({
   data: {
-    client: "1",
+    client: 1,
     ClientsList:[],
     more_function_display: "none",
     animation: "",
@@ -143,7 +143,7 @@ Page({
   },
   bindfocus:function(){
     wx.navigateTo({
-      url: 'clientScreen/clientScreen',
+      url: 'clientScreen/clientScreen?type=' + this.data.client,
     })
     this.setData({
       inputFocus:false,

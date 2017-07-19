@@ -5,7 +5,7 @@
       <image src="../../../../images/return.png" mode="aspectFit" class="image_back" />
     </navigator>
     <view class="search_button" bindtap="searchClick">搜索</view>
-    <input class="title_input" value='{{enterValue}}' type="text" name="search" placeholder="客户名称" bindinput="bindKeyInput" />
+    <input class="title_input" value='{{enterValue}}' type="text" name="search" placeholder="{{client==1?'客户':'供应商'}}名称" bindinput="bindKeyInput" />
   </view>
 
 
@@ -18,8 +18,8 @@
      </block>
   </scroll-view>
 
-  <view class="screen_title">级别</view>
-  <scroll-view scroll-y class="screen_container clearfix">
+  <view class="screen_title" wx:if="{{client==1}}">级别</view>
+  <scroll-view scroll-y class="screen_container clearfix" wx:if="{{client==1}}">
     <block wx:for="{{screen2}}">
       <view class="screen_view {{item.screen_checked?'screen_checked':''}}" data-type="level" data-index="{{index}}" data-name="{{item.id}}" bindtap="multipleSelect">
       {{item.custtypename}}会员
