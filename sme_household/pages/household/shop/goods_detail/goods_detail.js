@@ -319,7 +319,12 @@ Page({
       stordId: e.strod,
       url: util.api.imgUrl,
     });
-    console.log(e.strod)
+    console.log({
+      id: e.ID,
+      title: e.name,
+      stordId: e.strod,
+      url: util.api.imgUrl,
+    })
     console.log(e.name)
     this.showGoodsInfo();
   },

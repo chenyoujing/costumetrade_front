@@ -445,6 +445,7 @@ Page({
         if (newProduct[p].id == app.updataGoodsInfo.id) {
           newProduct[p].name = app.updataGoodsInfo.name;
           newProduct[p].image = app.updataGoodsInfo.image;
+          newProduct[p].tagprice = app.updataGoodsInfo.tagprice;
           console.log(newProduct[p].name)
           break;
         }

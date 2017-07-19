@@ -370,27 +370,27 @@ Page({
       target.image = this.data.GoodsInfoData.image.replace(/http:\/\/ot84hx5jl.bkt.clouddn.com/g, '');
     }
     if (this.data.GoodsInfoData.image1) {
-      target.image1 = this.data.GoodsInfoData.image1.replace(/http:\/\/ot84hx5jl.bkt.clouddn.com/g, '');
+      target.image1 = this.data.GoodsInfoData.image1.replace(/http:\/\/ot84hx5jl.bkt.clouddn.com\//g, '');
       console.log(this.data.GoodsInfoData)
     }
     if (this.data.GoodsInfoData.image2) {
-      target.image2 = this.data.GoodsInfoData.image2.replace(/http:\/\/ot84hx5jl.bkt.clouddn.com/g, '');
+      target.image2 = this.data.GoodsInfoData.image2.replace(/http:\/\/ot84hx5jl.bkt.clouddn.com\//g, '');
     }
     if (this.data.GoodsInfoData.image3) {
       console.log(this.data.GoodsInfoData)
-      target.image3 = this.data.GoodsInfoData.image3.replace(/http:\/\/ot84hx5jl.bkt.clouddn.com/g, '');
+      target.image3 = this.data.GoodsInfoData.image3.replace(/http:\/\/ot84hx5jl.bkt.clouddn.com\//g, '');
     }
     if (this.data.GoodsInfoData.image4) {
-      target.image4 = this.data.GoodsInfoData.image4.replace(/http:\/\/ot84hx5jl.bkt.clouddn.com/g, '');
+      target.image4 = this.data.GoodsInfoData.image4.replace(/http:\/\/ot84hx5jl.bkt.clouddn.com\//g, '');
     }
     if (this.data.GoodsInfoData.video1) {
-      target.video1 = this.data.GoodsInfoData.video1.replace(/http:\/\/ot84hx5jl.bkt.clouddn.com/g, '');
+      target.video1 = this.data.GoodsInfoData.video1.replace(/http:\/\/ot84hx5jl.bkt.clouddn.com\//g, '');
     }
     if (this.data.GoodsInfoData.video2) {
-      target.video2 = this.data.GoodsInfoData.video2.replace(/http:\/\/ot84hx5jl.bkt.clouddn.com/g, '');
+      target.video2 = this.data.GoodsInfoData.video2.replace(/http:\/\/ot84hx5jl.bkt.clouddn.com\//g, '');
     }
     if (this.data.GoodsInfoData.video3) {
-      target.video3 = this.data.GoodsInfoData.video3.replace(/http:\/\/ot84hx5jl.bkt.clouddn.com/g, '');
+      target.video3 = this.data.GoodsInfoData.video3.replace(/http:\/\/ot84hx5jl.bkt.clouddn.com\//g, '');
     }
     target.raise_price = this.data.GoodsInfoData.priceJsons;
     target.fileList = this.data.fileList;
@@ -426,9 +426,10 @@ Page({
       objectSubmit = target;
       objectSubmit.description = JSON.stringify(app.description)
       objectSubmit.storeId = app.globalData.storeId,
-        objectSubmit.id = undefined,
-        objectSubmit.name = target.code + target.name
+      objectSubmit.id = undefined,
+      objectSubmit.name = target.code + target.name
     }
+    objectSubmit.isModify = this.data.GoodsInfoData.isModify;
     console.log(objectSubmit);
     if (objectSubmit !== null){
       wx.showNavigationBarLoading()
@@ -523,7 +524,6 @@ Page({
   GoodsImage: function () {
     app.imageinfo = {}
     if (this.data.GoodsInfoData.id) {
-      console.log(11)
       app.imageinfo.image = this.data.GoodsInfoData.image
       app.imageinfo.image1 = this.data.GoodsInfoData.image1
       app.imageinfo.image2 = this.data.GoodsInfoData.image2
@@ -560,7 +560,8 @@ Page({
       newPicker[index].discPriceJson = (newPicker[index].price / this.data.GoodsInfoData.tagprice * 100).toFixed(1)
     }
     this.setData({
-      picker_view: newPicker
+      picker_view: newPicker,
+      "GoodsInfoData.isModify":true
     })
   },
   // input失去焦点
@@ -576,9 +577,9 @@ Page({
       this.custPrice(this.data.GoodsInfoData.purchaseprice, valuenum)
     } else if (app.custOrDiscTag == 1 && style == "purchaseprice") {
       this.custPrice(valuenum, this.data.GoodsInfoData.tagprice)
-    }else if (app.custOrDiscTag == 2 && style == "purchaseprice") {
+    } else if (app.custOrDiscTag == 2 && style == "purchaseprice") {
       this.discPrice(valuenum, this.data.GoodsInfoData.tagprice)
-    } else if (app.custOrDiscTag == 1 && style == "tagprice") {
+    } else if (app.custOrDiscTag == 2 && style == "tagprice") {
       this.discPrice(this.data.GoodsInfoData.purchaseprice, valuenum)
     }
   },
@@ -630,7 +631,7 @@ Page({
     }
     this.setData({
       picker_view: newPicker,
-      firstBoolean : false
+      firstBoolean: this.data.soruceData.isModify?true:false
     })
   },
   // 初始化折扣率或者销售价

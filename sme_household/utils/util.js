@@ -212,7 +212,6 @@ var api = {
       }
       product = newArray;
     } else {
-     
       for (var p in ids) {
         for (var j in product) {
           if (ids[p] == product[j].id) {

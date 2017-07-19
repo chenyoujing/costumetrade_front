@@ -37,6 +37,7 @@ Page({
       shopCart: shopCart
     });
     this.salePriceTotal();
+    this.localData(this.data.shopCart)
   },
   // 计算价格
   salePriceTotal:function(){
@@ -75,6 +76,7 @@ Page({
       shopCart: shopCart
     });
     this.salePriceTotal();
+    this.localData(this.data.shopCart)
   },
   // 全选全不选
   iSselectAll:function(e){
@@ -97,11 +99,6 @@ Page({
     wx.setStorage({
       key: name,
       data: product
-    })
-    wx.showToast({
-      title: '成功',
-      mask: true,
-      duration: 2000
     })
   },
   // 删除商品

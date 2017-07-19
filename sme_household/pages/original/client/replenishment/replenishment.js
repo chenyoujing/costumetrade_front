@@ -37,12 +37,13 @@ Page({
   // 相应的跳转
   skipUrl:function(e){
     var id = e.target.dataset.goodsid;
+    var storeId = e.target.dataset.storeid;
     var url = "";
     if (this.data.clientType == 1){
       url = "../../openOrder/openOrder?clientId=" + this.data.clientId + "&id=" + id+'&ClientData=true';
       app.selectName = e.target.dataset;
     }else{
-      url = "../../../house/shop/goods_detail/goods_detail?clientId=" + this.data.clientId + "&id=" + id + '&ClientData=true'
+      url = "../../../household/shop/goods_detail/goods_detail?clientId=" + this.data.clientId + "&ID=" + id + "&strod=" + storeId + '&ClientData=true'
     };
     console.log(e)
     wx.navigateTo({

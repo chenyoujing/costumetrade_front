@@ -1,7 +1,7 @@
 <!--pages/my/Goods/Goods.wxml-->
 <view style="overflow:hidden; min-height:100vh;">
   <view class="title clearfix">
-    <view class="title_text">客户补货</view>
+    <view class="title_text">{{clientType==1?"客户补货":"供应商补货"}}</view>
     <image bindtap="packPageFilterCode" mode="aspectFit" src="../../../../images/search.png" class="image_search" />
     <navigator open-type="navigateBack">
       <image src="../../../../images/amputate.png" mode="aspectFit" class="title_image" style="margin-left:20px;" />
@@ -26,7 +26,7 @@
               <view class="info_txet">数量： {{item.count}}</view>
             </view>
             <view class="price"> ：￥{{item.price}}</view>
-            <view class="button" bindtap="skipUrl" data-cate="{{cate}}" data-image="{{image}}" data-name = "{{name}}"  data-id="{{clientId}}" data-goodsid="{{item.id}}">补货</view>
+            <view class="button" bindtap="skipUrl" data-cate="{{cate}}" data-image="{{image}}" data-name = "{{name}}"  data-id="{{clientId}}" data-goodsid="{{item.id}}" data-storeid="{{item.storeId}}">补货</view>
           </view>
         </view>
       </view>
