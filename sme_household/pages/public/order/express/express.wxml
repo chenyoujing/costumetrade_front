@@ -22,21 +22,25 @@
       <image src="../../../../images/map.png" mode="aspectFit" class="image_map" bindtap="address" data-type="consignee" />
       <view class="clear"></view>
     </view>
+    <template is="reg" data="{{text:'寄件联系人必填'}}" wx:if="{{1}}" />
     <view class="content_input">
       <view class="content_input_text">联系电话:</view>
       <input type="text" class="content_input1" value="{{sender.mobile||sender.phone}}" />
       <view class="clear"></view>
     </view>
+    <template is="reg" data="{{text:'寄件联系电话必填'}}" wx:if="{{1}}" />
     <view class="content_input">
       <view class="content_input_text">地址:</view>
       <input disabled type="text" class="content_input1" value="{{sender.provinceName}},{{sender.cityName}},{{sender.countyName}}" />
       <view class="clear"></view>
     </view>
+    <template is="reg" data="{{text:'寄件地址必填(省市区)'}}" wx:if="{{1}}" />
     <view class="content_input">
       <view class="content_input_text">详细地址:</view>
       <input type="text" class="content_input1" value="{{sender.address}}" />
       <view class="clear"></view>
     </view>
+    <template is="reg" data="{{text:'寄件详细地址必填'}}" wx:if="{{1}}" />
   </view>
 
   <view class="express_content">

@@ -116,7 +116,7 @@
   display: flex;
   border-bottom: 5px solid #E5E5E5;
 }
-.canvas{
+.index_canvas{
   width: 75%;
   height: 150px;
 }
