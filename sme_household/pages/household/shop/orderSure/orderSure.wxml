@@ -12,7 +12,7 @@
     <text>收货人：{{address.contact}}</text>
     <text>电话：{{address.phone}}</text>
   </view>
-  <view class="one_line"  wx:if="{{address.address}}">收货地址：{{address.address}}</view>
+  <view class="one_line"  wx:if="{{address.address}}">{{address.province}} {{address.city}} {{address.district}} {{address.address}}</view>
   <view class="one_line"  wx:if="{{!address.address}}">您还没有填收货地址，点击编辑填写吧</view>
   <image src="../../../../images/update.png" mode="aspectFill" class="userinfo_update" bindtap="address" />
 </view>

@@ -12,12 +12,14 @@ Page({
     var that = this
     wx.chooseAddress({
       success: function (res) {
-        that.setData({
-          "storeInfo.address": res.detailInfo,
-          "storeInfo.contact": res.userName,
-          "storeInfo.region": res.provinceName + ',' + res.cityName + ',' + res.countyName,
-          "storeInfo.phone": res.telNumber,
-        })
+        var name = app.globalData.userIdentity !== 2 ? "storeInfo" :"userInfo";
+        var param = {};
+        param[name +'.address'] = res.detailInfo;
+        param[name + '.contact'] = res.userName;
+        param[name + '.region'] = res.provinceName + ',' + res.cityName + ',' + res.countyName;
+        param[name + '.phone'] = res.telNumber;
+        param['regobject.address'] = true;
+        that.setData(param)
         console.log(that.data.storeInfo)
       }
     })
@@ -30,14 +32,18 @@ Page({
     var regobject = "regobject." + name;
     var param = {};
     boolean = reg.iSnull(e.detail.value);
-    if (name == "cphone") {
-      boolean = reg.phone(e.detail.value);
+    if (name == "phone") {
+      if (e.detail.value){
+        boolean = reg.phone(e.detail.value);
+      }
     } else if (name == "wechat"){
       boolean = reg.iSChinese(e.detail.value);
       if (e.detail.value.length < 6 && e.detail.value.length > 20){
         boolean = false
       }
-    } 
+    } else if (name == "cphone"){
+      boolean = reg.tellphone(e.detail.value);
+    }
     param[regobject] = boolean;
     this.setData(param)
   },
@@ -52,9 +58,9 @@ Page({
         this.setData({
           "regobject.name": false
         })
-      } else if (!(target.cphone && reg.phone(target.cphone))) {
+      } else if (!(target.phone && reg.phone(target.phone))) {
         this.setData({
-          "regobject.cphone": false
+          "regobject.phone": false
         })
       } else if (!(target.wechat.length >= 6 && target.wechat.length <= 20 && reg.iSChinese(target.wechat))) {
         this.setData({

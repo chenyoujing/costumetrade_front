@@ -86,13 +86,8 @@ Page({
         //分页
         var data = that.data.ClientsList
         var booleanre = that.data.requestSwitch;
-
         if (that.data.pageNum == 1) {
-          if (res.data == 1000) {
-            data = data
-          }else{
-            data = res.data;
-          }
+         data = res.data == 1000 ? data : res.data;
         } else {
           for (var p in res.data) {
             data.push(res.data[p])
@@ -103,8 +98,6 @@ Page({
         } else {
           booleanre = true;
         }
-        console.log(data)
-
         that.setData({
           ClientsList: data,
           loadMore: true,
@@ -202,7 +195,8 @@ Page({
         idArray: ids,
         status:1,
         checkAllTag: that.data.checkAllTag,
-        storeId: app.globalData.storeId
+        storeId: app.globalData.storeId,
+        type: that.data.client
       },
       method: 'POST',
       header: {
@@ -210,7 +204,14 @@ Page({
       },
       success: function (res) {
         wx.hideNavigationBarLoading();
-        var ClientsList = that.data.ClientsList;
+    // 操作界面
+      ClientsList = util.api.deleteGoodsorClient(ids, ClientsList, that.data.checkAllTag)
+      that.setData({
+        ClientsList: ClientsList,
+        ids: [],
+        checkedClear: false,
+        checkAllTag: false
+      })
         // 缓存
         if (that.data.client == 3) {
           that.clearStorage("UnitData1")
@@ -219,16 +220,6 @@ Page({
           var name = that.data.client == 1 ? "UnitData1" : "UnitData2";
           that.clearStorage(name)
         }
-      // 操作界面
-
-        ClientsList = util.api.deleteGoodsorClient(ids, ClientsList, that.data.checkAllTag)
-
-        that.setData({
-          ClientsList: ClientsList,
-          ids:[],
-          checkedClear:false,
-          checkAllTag:false
-        })
         wx.showToast({
           title: '成功删除',
           mask: true,
@@ -245,13 +236,9 @@ clearStorage:function(name){
   wx.getStorage({
     key: name,
     success: function (res) {
-      totalProduct = res.data ? res.data : [];
-      // 更新缓存
-      totalProduct = util.api.deleteGoodsorClient(ids, totalProduct, that.data.checkAllTag);
-      console.log(totalProduct)
       wx.setStorage({
         key: name,
-        data: totalProduct,
+        data: that.data.ClientsList,
          fail: function (res) {
           wx.showToast({
             title: "缓存失败",

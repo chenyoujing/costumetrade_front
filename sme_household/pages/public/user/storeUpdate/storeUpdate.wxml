@@ -12,22 +12,22 @@
   <image src="../../../../images/mall_bg.png" mode="aspectFill" class="store_bg" />
   <view class="store_content">
     <image src="{{tx||storeInfo.storephoto||userInfo.photo||'../../../../images/image_none.png'}}" mode="aspectFill" class="store_image"/>
-    <!--<input hidden value="{{storephoto}}" name="storephoto" />-->
     <view class="store_input">
       <view class="store_input_text clearfix">{{userIdentity==1&3?'店铺名称：':'真实名称：'}}</view>
       <input type="text" class="store_input1" placeholder="*" placeholder-class="required" bindinput="bindChange" data-name="name"  bindblur="reg" value="{{storeInfo.name||userInfo.name||userInfo.nickName}}" name="name"/>
     </view>
     <template is="reg" wx:if="{{regobject.name == false && userIdentity!==2}}" data="{{text: '名称长度为1-20字符'}}"/>
     <view class="store_input">
-      <view class="store_input_text clearfix">移动电话：</view>
-      <input type="number" bindinput="bindChange" data-name="cphone"  bindblur="reg"  class="store_input1" placeholder="*" placeholder-class="required" value="{{storeInfo.cphone||userInfo.cphone}}" name="cphone"/>
-    </view>
-    <template is="reg" wx:if="{{regobject.cphone == false && userIdentity!==2}}" placeholder="*" placeholder-class="required" data="{{text: '手机号格式出错'}}"/>
-    <view class="store_input clearfix">
+     
       <view class="store_input_text">微信号：</view>
       <input type="text" class="store_input1" bindinput="bindChange" data-name="wechat"  bindblur="reg" value="{{storeInfo.wechat||userInfo.wechat}}" name="wechat"/>
     </view>
     <template is="reg" wx:if="{{regobject.wechat == false && userIdentity!==2}}" data="{{text: '微信号应为6-20个非汉字字符'}}"/>
+    <view class="store_input clearfix">
+      <view class="store_input_text">手机号码：</view>
+      <input type="text" bindinput="bindChange" data-name="phone"  bindblur="reg"  class="store_input1" placeholder="*" placeholder-class="required" value="{{storeInfo.phone||userInfo.phone}}" name="phone"/>
+    </view>
+     <template is="reg" wx:if="{{regobject.phone == false && userIdentity!==2}}" placeholder="*" placeholder-class="required" data="{{text: '手机号不能为空或格式出错'}}"/>
     <view class="store_input clearfix">
       <view class="store_input_text">所属地区：</view>
         <input type="text" class="store_input1"  bindinput="bindChange" value="{{storeInfo.region||userInfo.region}}" name="region" disabled/>
@@ -42,10 +42,11 @@
       <view class="store_input_text">联系人：</view>
       <input type="text" class="store_input1" value="{{storeInfo.contact||userInfo.contact}}" bindinput="bindChange" name="contact"/>
     </view>
-    <!--<view class="store_input clearfix">
-      <view class="store_input_text">联系电话：</view>
-      <input type="text" class="store_input1" value="{{storeInfo.phone||userInfo.phone}}" name="phone"/>
-    </view>-->
+    <view class="store_input clearfix">
+     <view class="store_input_text clearfix">移动电话：</view>
+      <input type="number" bindinput="bindChange" data-name="cphone"  bindblur="reg"  class="store_input1" placeholder="*" placeholder-class="required" value="{{storeInfo.cphone||userInfo.cphone}}" name="cphone"/>
+    </view>
+    <template is="reg" wx:if="{{regobject.cphone == false && userIdentity!==2}}" placeholder="*" placeholder-class="required" data="{{text: '移动电话格式出错'}}"/>
     <view class="store_input clearfix">
       <view class="store_input_text">生日：</view>
       <picker mode="date" class="store_input1" style="overflow:hidden" bindchange="bindChange" data-name="birthday" value="{{storeInfo.birthday || userInfo.birthday}}" name="birthday">

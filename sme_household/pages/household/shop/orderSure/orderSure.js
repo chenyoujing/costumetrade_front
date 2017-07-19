@@ -22,6 +22,9 @@ Page({
         var address={
           contact: res.userName,
           phone: res.telNumber,
+          city: res.cityName,
+          province:res.provinceName,
+          district: res.countyName,
           address: res.detailInfo,
         }
         that.setData({

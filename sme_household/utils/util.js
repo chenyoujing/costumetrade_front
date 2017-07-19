@@ -29,7 +29,7 @@ var api = {
   publicProduct:[],
   imgUrl: "http://ot84hx5jl.bkt.clouddn.com/",
   // 登录接口
-  getOpenid: function (callback,callfail) {
+  getOpenid: function (callback) {
     var that = this;
     console.log(app.globalData) 
     app.globalData.userInfo = {
@@ -66,9 +66,6 @@ var api = {
             if (callback) {
               callback();
             }
-          },
-          fail:function(){
-            callfail()
           }
         })
       }
@@ -176,6 +173,8 @@ var api = {
     wx.getStorage({
       key: name,
       success: function (res) {
+      },
+      complete: function (res){
         res.data = res.data || [];
         console.log(res.data)
         var add = true;
@@ -193,7 +192,8 @@ var api = {
           key: name,
           data: res.data
         })
-      },
+        console.log(res)
+      }
     })
   },
   // 删除东西
@@ -212,6 +212,7 @@ var api = {
       }
       product = newArray;
     } else {
+     
       for (var p in ids) {
         for (var j in product) {
           if (ids[p] == product[j].id) {
@@ -220,6 +221,7 @@ var api = {
         }
       }
     }
+    console.log(product)
     return product;
   }, 
   // 二维码扫好了。。。
