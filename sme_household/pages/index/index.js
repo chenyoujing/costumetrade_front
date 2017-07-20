@@ -1,4 +1,4 @@
-//index.js
+
 //获取应用实例
 var util = require('../../utils/util.js')
 var app = getApp()
@@ -14,9 +14,11 @@ Page({
   },
   // 获取选中的货品
   selected_goods: function () {
+    console.log(1111)
     var that = this;
     wx.login({
       success: function (loginCode) {
+        console.log(1111)
         wx.getUserInfo({
           success: function (res) {
             wx.showNavigationBarLoading()
@@ -38,19 +40,14 @@ Page({
                 'content-type': 'application/x-www-form-urlencoded'
               },
               success: function (res) {
+                console.log(res.data)
                 wx.hideNavigationBarLoading();
                 for (var p in res.data) {
                   res.data[p].timeUp = util.toDate(res.data[p].timeUp);
                   res.data[p].image = util.api.imgUrl + res.data[p].image
                 }
                 that.setData({
-                  product: res.data,
-                  photo: app.globalData.userInfo.photo || '../../images/image_none.png'
-                })
-                wx.showToast({
-                  title: '成功',
-                  mask: true,
-                  duration: 2000
+                  product: res.data
                 })
               }
             })
@@ -63,12 +60,22 @@ Page({
   onLoad: function (e) {
    
     this.setData({
+      ids: JSON.parse(e.ids) ,
+      storeId: e.storeId,
+      title: e.title,
+      name: e.name,
+      checkAllTag: e.checkAllTag,
+      id: e.id,
+      photo: e.photo || '../../images/image_none.png'
+    })
+    console.log({
       ids: e.ids,
       storeId: e.storeId,
       title: e.title,
       name: e.name,
       checkAllTag: e.checkAllTag,
-      id: e.id
+      id: e.id,
+      photo: e.photo || '../../images/image_none.png'
     })
     util.api.getOpenid(this.selected_goods);
   }

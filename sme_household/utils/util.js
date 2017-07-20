@@ -24,7 +24,7 @@ function toDate(number,plus) {
 };
 //请求接口公共方法
 var api = {
-  host: 'http://192.168.2.221:8088/',
+  host: 'http://192.168.2.221:8080/',
   pageNum :1,
   publicProduct:[],
   imgUrl: "http://ot84hx5jl.bkt.clouddn.com/",
@@ -631,12 +631,13 @@ var api = {
     wx.request(para);
   },
   fail: function (res) {
+    console.log(res)
     wx.hideNavigationBarLoading()
-    wx.showToast({
-      title: res.data.msg,
-      mask: true,
-      duration: 2000
-    })
+    // wx.showToast({
+    //   title: res.data.msg,
+    //   mask: true,
+    //   duration: 2000
+    // })
   },
   // 加价尺码表,商城里面用
   // sizeArray 尺码数据

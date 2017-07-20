@@ -17,8 +17,8 @@ Page({
       url: 'product/enterShareProducts',
       data: {
         openid: app.globalData.openid,
-        idArray: that.data.idArray,
-        checkAllTag: that.data.checkAllTag,
+        idArray: JSON.parse(that.data.idArray) ,
+        checkAllTag: false,
       },
       method: 'POST',
       header: {
@@ -74,22 +74,22 @@ Page({
   
     var id = util.api.DateFormat(new Date())
     var that = this;
-    var title = this.data.share_text;
+    var title = this.data.share_text || "";
     var ids = this.data.idArray;
-    console.log(title)
     var storeId = this.data.storeId;
     if (!title){
       title = this.data.title+'的分享'
     }
+    console.log(title)
     return {
       title: title,
-      path: '/pages/index/index?ids=' + ids + '&storeId=' + storeId + "&title=" + title + '&name=' + this.data.title + '&checkAllTag=' + this.data.checkAllTag + '&id=' + id,
+      path: '/pages/index/index?ids=' + ids + '&storeId=' + storeId + "&title=" + title + '&name=' + this.data.title + '&checkAllTag=' + false + '&id=' + id + "&photo=" + this.data.photo,
       success: function (res) {
         that.confirmShareProducts(id)
         wx.navigateBack({
           delta: 1,
         })
-        console.log('/pages/index/index?ids=' + ids + '&storeId=' + storeId + "&title=" + title + '&name=' + that.data.title + '&checkAllTag=' + that.data.checkAllTag)
+        console.log('/pages/index/index?ids=' + ids + '&storeId=' + storeId + "&title=" + title + '&name=' + that.data.title + '&checkAllTag=' + false)
       },
       fail: function (res) {
         // 转发失败
@@ -98,11 +98,12 @@ Page({
   },
   onLoad: function (e) {
     this.setData({
-      storeId: e.storeId,
-      idArray: JSON.parse(e.ids),
-      checkAllTag: e.checkAllTag,
-      title: app.globalData.userInfo.name 
+      storeId: app.globalData.storeId,
+      idArray: e.ids,
+      title: app.globalData.userInfo.name,
+      photo: app.globalData.userInfo.photo
     })
+    console.log(JSON.parse(e.ids))
     this.selected_goods()
   },
 })

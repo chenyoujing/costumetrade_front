@@ -344,7 +344,8 @@ clearStorage:function(name){
         clientIds:ids,
         title: app.globalData.userInfo.name,
         productIdArray: that.data.productIdArray,
-        checkAllTag:that.data.checkAllTag
+        checkAllTag:that.data.checkAllTag,
+        openid: app.globalData.openid
       },
       method: 'POST',
       header: {
@@ -362,9 +363,11 @@ clearStorage:function(name){
           mask: true,
           duration: 2000
         })
-        wx.navigateBack({
-          delta: 1,
-        })
+        setTimeout(() =>{
+          wx.navigateBack({
+            delta: 1,
+          })
+        },2000)
       }
     })
   },

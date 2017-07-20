@@ -312,7 +312,7 @@ Page({
       })
     } else if (type == "wchat"){
       wx.navigateTo({
-        url: '../../original/Goods/GoodsShare/GoodsShare?ids=' + JSON.stringify(idsArray) + '&storeId=' + storeId
+        url: '../../original/Goods/GoodsShare/GoodsShare?ids=' + JSON.stringify(idsArray)
       })
     } else if (type == "client"){
       wx.navigateTo({

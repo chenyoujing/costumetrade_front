@@ -34,19 +34,19 @@
   </view>
 
   <scroll-view scroll-y="true" class="mall_scroll" lower-threshold="10" bindscrolltolower="{{loadMore?'onReachBottom':''}}" style="bottom:{{delete_button}}px;">
-    <view class="prompt_none" wx:if="{{product == 0}}">
+    <view class="prompt_none" wx:if="{{product.length == 0}}">
       <text>该店铺未发图于您！</text>
     </view>
 
-    <view class="shop_content" wx:for="{{1}}">
+    <view class="shop_content" wx:for="{{product}}">
       <view class="shop_content_view">
         <view class="shop_content_title">
           <view class="shop_content_info">
-            <view class="shop_content_unread {{read?'shop_content_read':''}}">
-              <view class="shop_content_unread_prompt">9</view>
-              未读信息
+            <view class="shop_content_unread {{item.readStatus==1?'shop_content_read':''}}">
+              <view class="shop_content_unread_prompt">{{index}}</view>
+              {{item.readStatus==1?已读信息:未读信息}}
             </view>
-            <text>2017-07-15</text>
+            <text>{{item.createTime}}</text>
           </view>
           <view class="shop_content_service">
             <image src="../../../../images/customer_service.png"  class="shop_content_service" mode="aspectFit" />
@@ -57,16 +57,16 @@
           {{item.title}}
         </view>
         <view class="shop_goods">
-          <view class="mall_container {{rank}}" wx:for="{{3}}">
+          <view class="mall_container {{rank}}" wx:for="{{item.products}}">
             <navigator url="../goods_detail/goods_detail?strod={{id}}&ID={{item.id}}&name={{name}}" hover-class="navigator-hover" class="content_container clearfix">
-              <image src="{{item.image?item.image:'../../../../images/shop1_1.png'}}" mode="aspectFill" />
+              <image src="{{item.image?url+item.image:'../../../../images/shop1_1.png'}}" mode="aspectFill" />
               <view class="content_container_text">
                 <view class="clear"></view>
                 <view class="content_container_title">{{item.name}}</view>
                 <view class="content_container_info clearfix">
                   <view class="price">{{item.salePrice}}</view>
                   <view class="info_other">
-                    <view class="volume">{{item.volume||0}}</view>
+                    <view class="volume">{{item.volume}}</view>
                     <view class="date">{{item.timeUp}}</view>
                   </view>
                 </view>
@@ -75,24 +75,6 @@
           </view>
         </view>
       </view>
-    </view>
-
-    <view class="mall_container {{rank}}" wx:for="{{product}}">
-      <navigator url="../goods_detail/goods_detail?strod={{id}}&ID={{item.id}}&name={{name}}" hover-class="navigator-hover" class="content_container clearfix">
-        <image src="{{item.image?item.image:'../../../../images/shop1_1.png'}}" mode="aspectFill" />
-        <view class="content_container_text">
-          <view class="clear"></view>
-          <view class="content_container_title">{{item.name}}</view>
-          <view class="content_container_info clearfix">
-            <view class="price">{{item.salePrice}}</view>
-            <view class="info_other">
-              <view class="volume" wx:if="{{!item.volume}}">0</view>
-              <view class="volume" wx:if="{{item.volume}}">{{item.volume}}</view>
-              <view class="date">{{item.timeUp}}</view>
-            </view>
-          </view>
-        </view>
-      </navigator>
     </view>
   </scroll-view>
 </view>

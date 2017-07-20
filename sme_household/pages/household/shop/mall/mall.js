@@ -75,26 +75,28 @@ Page({
     var that = this;
     wx.showNavigationBarLoading()
     util.api.request({
-      url: 'product/getProducts',
+      url: 'product/getAllPromotionalProduct',
       data: {
         storeId: that.data.id,
         sort: that.data.getSortData,
         rules: that.data.getFilterData,
         pageNum: that.data.pageNum,
         name: that.data.requeseName,
-        code: that.data.code
+        code: that.data.code,
+        openid: app.globalData.openid
       },
       method: 'POST',
       header: {
-        'content-type': 'application/json'
+        'content-type': 'application/x-www-form-urlencoded'
       },
       success: function (res) {
         wx.hideNavigationBarLoading();
         var data = that.data.product;
         var booleanre = that.data.requestSwitch;
         for (var p in res.data) {
-          res.data[p].timeUp = util.toDate(res.data[p].timeUp)
-          res.data[p].image = res.data[p].image ? util.api.imgUrl + res.data[p].image : ""
+          res.data[p].createTime = util.toDate(res.data[p].createTime);
+          res.data[p].images = res.data[p].productImages.split(',');
+          res.data[p].ids = res.data[p].productIds.split(',')
         }
         if (that.data.pageNum == 1) {
           data = res.data;
@@ -193,8 +195,9 @@ Page({
   onLoad: function (options) {
     this.setData({
       id: options.id,
-      name: app.globalData.storeInfo[0].name,
-      storephoto: options.storephoto
+      name: options.promoterName,
+      storephoto: options.storephoto,
+      url: util.api.imgUrl
     });
     console.log(app.globalData)
     console.log(options.id)
@@ -214,7 +217,7 @@ Page({
       })
       this.page_request();
       app.getFilterData = [];
-      app.searchValue = "";
+      app.searchValue = null;
     }
   }
 })

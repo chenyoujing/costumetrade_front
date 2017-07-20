@@ -36,7 +36,7 @@ Page({
     var that = this;
     wx.showNavigationBarLoading()
     util.api.request({
-      url: 'product/getAllPromotionalProduct',
+      url: 'product/getGroupPromotionalProduct',
       data: {
        openid:app.globalData.openid,
        pageNum: that.data.pageNum
@@ -47,20 +47,21 @@ Page({
       },
       success: function (res) {
         wx.hideNavigationBarLoading();
-        var data = that.data.otherStord;
+        var data = that.data.pageNum == 1?[]:that.data.otherStord;
         var booleanre = that.data.requestSwitch;
-        if (that.data.pageNum == 1) {
-          data = res.data;
-        } else {
-          for (var p in res.data) {
-            data.push(res.data[p])
-          }
+        res.data = res.data == 1000 ? [] : res.data;
+        for (var p in res.data) {
+          res.data[p].images = res.data[p].productImages.split(',');
+          res.data[p].createTime = util.toDate(res.data[p].createTime)
+          data.push(res.data[p])
         }
+        
         if (res.data.length < 10) {
           booleanre = false;
         } else {
           booleanre = true;
         }
+        console.log(data)
         that.setData({
           otherStord: data,
           loadMore: true,
