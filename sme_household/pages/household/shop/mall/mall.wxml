@@ -59,15 +59,14 @@
         <view class="shop_goods">
           <view class="mall_container {{rank}}" wx:for="{{3}}">
             <navigator url="../goods_detail/goods_detail?strod={{id}}&ID={{item.id}}&name={{name}}" hover-class="navigator-hover" class="content_container clearfix">
-              <image src="{{item.image?item.image:'../../../../images/shop1_1.png'}}" mode="aspectFill" style="width:{{image_width}}px;height:{{image_width}}px;" />
+              <image src="{{item.image?item.image:'../../../../images/shop1_1.png'}}" mode="aspectFill" />
               <view class="content_container_text">
                 <view class="clear"></view>
                 <view class="content_container_title">{{item.name}}</view>
                 <view class="content_container_info clearfix">
                   <view class="price">{{item.salePrice}}</view>
                   <view class="info_other">
-                    <view class="volume" wx:if="{{!item.volume}}">0</view>
-                    <view class="volume" wx:if="{{item.volume}}">{{item.volume}}</view>
+                    <view class="volume">{{item.volume||0}}</view>
                     <view class="date">{{item.timeUp}}</view>
                   </view>
                 </view>
@@ -80,7 +79,7 @@
 
     <view class="mall_container {{rank}}" wx:for="{{product}}">
       <navigator url="../goods_detail/goods_detail?strod={{id}}&ID={{item.id}}&name={{name}}" hover-class="navigator-hover" class="content_container clearfix">
-        <image src="{{item.image?item.image:'../../../../images/shop1_1.png'}}" mode="aspectFill" style="width:{{image_width}}px;height:{{image_width}}px;" />
+        <image src="{{item.image?item.image:'../../../../images/shop1_1.png'}}" mode="aspectFill" />
         <view class="content_container_text">
           <view class="clear"></view>
           <view class="content_container_title">{{item.name}}</view>

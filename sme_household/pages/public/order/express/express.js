@@ -3,7 +3,9 @@ var reg = require('../../../../utils/reg.js')
 var app = getApp()
 Page({
   data: {
-    title:"快递单"
+    title:"快递单",
+    sender: {},
+    receiver: {},
   },
   address: function (e) {
     var that = this
@@ -168,6 +170,7 @@ Page({
     consigneeInfo.city = sender.cityName
     consigneeInfo.company = value.consigneeCompany
     consigneeInfo.contact = sender.userName
+    consigneeInfo.county = sender.countyName
     consigneeInfo.country = "中国"
     consigneeInfo.province = sender.provinceName
     consigneeInfo.tel = value.senderMobile
@@ -178,6 +181,7 @@ Page({
     deliverInfo.city = receiver.cityName
     deliverInfo.company = value.deliverCompany
     deliverInfo.contact = receiver.userName
+    deliverInfo.county = receiver.countyName
     deliverInfo.country = "中国"
     deliverInfo.province = receiver.provinceName
     deliverInfo.tel = receiver.mobile
@@ -197,7 +201,7 @@ Page({
     object.deliverInfo = deliverInfo
     object.cargoInfo = cargoInfo
     object.orderId = this.data.orderNo
-    object.expressType = 2
+    object.expressType = 1
     object.payMethod = 1
     object.isDoCall = 1
     object.isGenBillNo = 1
@@ -246,15 +250,15 @@ Page({
     receiver.zipcode = Receiver.postalCode
 
     var item = {}
-    item.id//货品ID？订单号？
+    item.id = 1//货品ID？订单号？
     item.name = value.name
-    item.category//分类
-    item.material//材质
-    item.size//大小
-    item.weight//重量（单位：克)
-    item.unitprice//单价(单位:分)
-    item.quantity//货品数量
-    item.remark//货品备注
+    item.category = 1//分类
+    item.material = 1//材质
+    item.size = 1//大小
+    item.weight = 1//重量（单位：克)
+    item.unitprice = 1//单价(单位:分)
+    item.quantity = 1//货品数量
+    item.remark = 1//货品备注
 
     var object = {}
     object.sender = sender
@@ -335,7 +339,7 @@ Page({
   },
   onLoad:function(e){
     this.setData({
-      orderNo: e.orderNo,
+      orderNo: "170717220124117434"||e.orderNo,
       logistics: e.logistics,
       buyerstoreid: e.buyerstoreid,
     })

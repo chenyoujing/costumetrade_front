@@ -19,7 +19,8 @@ Page({
     code: null,
     getFilterData: [],
     prompt:0,
-    state:"timeUpOp"
+    state:"timeUpOp",
+    rank:'rank'
   },
   // 跳转搜索页面
   bindfocus:function(){
@@ -58,7 +59,6 @@ Page({
       wx.getSystemInfo({
         success: function (res) {
           that.setData({
-            image_width: res.windowWidth / 2 - 20,
             rank: 'rank'
           })
         }
