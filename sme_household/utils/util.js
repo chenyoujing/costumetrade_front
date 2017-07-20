@@ -39,37 +39,41 @@ var api = {
     }
     wx.login({
       success: function (loginCode) {
-        wx.request({
-          url: that.host + '/user/login',
-          header: {
-            'content-type': 'application/x-www-form-urlencoded'
-          },
-          data: {
-            code: loginCode.code,
-            appId: app.globalData.userInfo.appid,
-            appSecret: app.globalData.userInfo.secret
-          },
-          method: 'POST',
+        wx.getUserInfo({
           success: function (res) {
-            app.globalData.userInfo.code = loginCode.code;
-            app.globalData.userInfo.name = res.data.data.name;
-            app.globalData.userInfo.photo = res.data.data.photo;
-            app.globalData.openid = res.data.data.query.openid;
-            app.globalData.privilegeEmployees = res.data.data.employee.privilegeEmployees;
-            app.globalData.userIdentity = res.data.data.userIdentity;
-            app.globalData.storeInfo = res.data.data.products || [];
-            app.globalData.modifyPrice = res.data.data.employee.modifyPrice;
-            app.globalData.zeroPrice = res.data.data.employee.zeroPrice;
-            app.globalData.discount = res.data.data.employee.discount;
-            app.globalData.storeId = res.data.data.storeId;
-            app.globalData.userid = res.data.data.userid;
-            if (callback) {
-              callback();
-            }
-          },fail:function(){
-            if (callfail) {
-              callfail()
-            }
+            wx.request({
+              url: that.host + 'user/login',
+              header: {
+                'content-type': 'application/x-www-form-urlencoded'
+              },
+              data: {
+                code: loginCode.code,
+                encryptedData: res.encryptedData,
+                iv: res.iv,
+              },
+              method: 'POST',
+              success: function (res) {
+                app.globalData.userInfo.code = loginCode.code;
+                app.globalData.userInfo.name = res.data.data.name;
+                app.globalData.userInfo.photo = res.data.data.photo;
+                app.globalData.openid = res.data.data.query.openid;
+                app.globalData.privilegeEmployees = res.data.data.employee.privilegeEmployees;
+                app.globalData.userIdentity = res.data.data.userIdentity;
+                app.globalData.storeInfo = res.data.data.products || [];
+                app.globalData.modifyPrice = res.data.data.employee.modifyPrice;
+                app.globalData.zeroPrice = res.data.data.employee.zeroPrice;
+                app.globalData.discount = res.data.data.employee.discount;
+                app.globalData.storeId = res.data.data.storeId;
+                app.globalData.userid = res.data.data.userid;
+                if (callback) {
+                  callback();
+                }
+              }, fail: function () {
+                if (callfail) {
+                  callfail()
+                }
+              }
+            })
           }
         })
       }
