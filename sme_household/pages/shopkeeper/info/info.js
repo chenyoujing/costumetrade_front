@@ -24,7 +24,7 @@ Page({
   },
   infotype: function(e){
     this.setData({
-      infotype: e.target.dataset.infotype,
+      infotype: e.currentTarget.dataset.infotype,
       hiddenChat: true,
     })
   },
@@ -53,7 +53,8 @@ Page({
   onShow:function(){
     if (app.infotype){
       this.setData({
-        infotype: app.infotype
+        infotype: app.infotype,
+        userIdentity: app.globalData.userIdentity
       })
     }
     app.infotype = null

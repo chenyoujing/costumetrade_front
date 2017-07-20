@@ -1,4 +1,4 @@
-<import src="../../../template/template.wxml"/>
+<import src="/template/template.wxml"/>
 
 <scroll-view scroll-y class="my_container" style="bottom:{{shopkeeper?'0':''}}">
   <!--头部-->
@@ -11,26 +11,26 @@
       <view class="my_fans" wx:if="{{userIdentity==1&3}}">200</view>
     </view>
     <view class="my_code" bindtap="scan" wx:if="{{userIdentity==1&3}}">
-      <image src="../../../images/QR_code.png" mode="aspectFill" />
+      <image src="/images/QR_code.png" mode="aspectFill" />
       <view class="my_code_text">+粉</view>
     </view>  
   </view>
   <!--店铺功能-->
   <!-- <view class="operation clearfix"  wx:if="{{userIdentity==1&3}}">
     <navigator url="../../original/openOrder/openOrder">
-      <image src="../../../images/My-orders.png" mode="aspectFit" class="operation_image" />
+      <image src="/images/My-orders.png" mode="aspectFit" class="operation_image" />
       <view class="operation_text">开单</view>
     </navigator>
     <navigator url="../../original/Goods/Goods">
-      <image src="../../../images/My-goods.png" mode="aspectFit" class="operation_image" />
+      <image src="/images/My-goods.png" mode="aspectFit" class="operation_image" />
       <view class="operation_text">货品</view>
     </navigator>
     <navigator url="../../original/client/client" wx:if="{{cusmPrivilege ||supplierPrivilege}}">
-      <image src="../../../images/consumer.png" mode="aspectFit" class="operation_image" />
+      <image src="/images/consumer.png" mode="aspectFit" class="operation_image" />
       <view class="operation_text" >客户</view>
     </navigator>
     <navigator url="../../original/report/report"  wx:if="{{report}}">
-      <image src="../../../images/report-forms.png" mode="aspectFit" class="operation_image" />
+      <image src="/images/report-forms.png" mode="aspectFit" class="operation_image" />
       <view class="operation_text">报表</view>
     </navigator>
   </view> -->
@@ -39,50 +39,50 @@
 
     <view class="my_content_view">
       <!--<navigator class="clearfix" url="branch/branch">
-        <image src="../../../images/home-page.png" mode="aspectFit" class="my_content_image" />
+        <image src="/images/home-page.png" mode="aspectFit" class="my_content_image" />
         <view class="my_content_text">分店管理</view>
-        <image src="../../../images/right-thrust.png" mode="aspectFit" class="my_content_right" />
+        <image src="/images/right-thrust.png" mode="aspectFit" class="my_content_right" />
       </navigator>-->
       <!--<navigator class="clearfix" url="notecase/notecase">
-        <image src="../../../images/notecase.png" mode="aspectFit" class="my_content_image" />
+        <image src="/images/notecase.png" mode="aspectFit" class="my_content_image" />
         <view class="my_content_text">钱包管理</view>
-        <image src="../../../images/right-thrust.png" mode="aspectFit" class="my_content_right" />
+        <image src="/images/right-thrust.png" mode="aspectFit" class="my_content_right" />
       </navigator>-->
       <navigator class="clearfix" url="storeUpdate/storeUpdate">
-        <image src="../../../images/{{userIdentity==1&3?'myself':'myself'}}.png" mode="aspectFit" class="my_content_image" />
+        <image src="/images/{{userIdentity==1&3?'user_store':'myself'}}.png" mode="aspectFit" class="my_content_image" />
         <view class="my_content_text">{{userIdentity==1&3?'店铺信息':'个人信息'}}</view>
-        <image src="../../../images/right-thrust.png" mode="aspectFit" class="my_content_right" />
+        <image src="/images/right-thrust.png" mode="aspectFit" class="my_content_right" />
       </navigator>
       <navigator class="clearfix" url="Help/Help">
-        <image src="../../../images/assist.png" mode="aspectFit" class="my_content_image" />
+        <image src="/images/assist.png" mode="aspectFit" class="my_content_image" />
         <view class="my_content_text">帮助</view>
-        <image src="../../../images/right-thrust.png" mode="aspectFit" class="my_content_right" />
+        <image src="/images/right-thrust.png" mode="aspectFit" class="my_content_right" />
       </navigator>
       <view class="navigator clearfix">
-        <image src="../../../images/Suggestions.png" mode="aspectFit" class="my_content_image" />
+        <image src="/images/Suggestions.png" mode="aspectFit" class="my_content_image" />
         <view class="my_content_text">意见反馈</view>
-        <image src="../../../images/right-thrust.png" mode="aspectFit" class="my_content_right" />
+        <image src="/images/right-thrust.png" mode="aspectFit" class="my_content_right" />
         <button open-type="contact" class="bindtap_cover" style="opacity: 0.3;"></button>
       </view>
       <navigator class="clearfix" url="vipPlus/vipPlus">
-        <image src="../../../images/vip.png" mode="aspectFit" class="my_content_image" />
+        <image src="/images/vip.png" mode="aspectFit" class="my_content_image" />
         <view class="my_content_text">升级</view>
-        <image src="../../../images/right-thrust.png" mode="aspectFit" class="my_content_right" />
+        <image src="/images/right-thrust.png" mode="aspectFit" class="my_content_right" />
       </navigator>
       <view class="navigator clearfix" bindtap="address">
-        <image src="../../../images/localization.png" mode="aspectFit" class="my_content_image" />
+        <image src="/images/localization.png" mode="aspectFit" class="my_content_image" />
         <view class="my_content_text">收货地址</view>
-        <image src="../../../images/right-thrust.png" mode="aspectFit" class="my_content_right" />
+        <image src="/images/right-thrust.png" mode="aspectFit" class="my_content_right" />
       </view>
       <navigator class="clearfix" url="../../original/report/report" wx:if="{{userIdentity==1&3}}">
-        <image src="../../../images/report-forms.png" mode="aspectFit" class="my_content_image" />
+        <image src="/images/report-forms.png" mode="aspectFit" class="my_content_image" />
         <view class="my_content_text">报表</view>
-        <image src="../../../images/right-thrust.png" mode="aspectFit" class="my_content_right" />
+        <image src="/images/right-thrust.png" mode="aspectFit" class="my_content_right" />
       </navigator>
       <navigator class="clearfix" url="dictionary/dictionary" wx:if="{{setUp}}">
-        <image src="../../../images/set.png" mode="aspectFit" class="my_content_image" />
+        <image src="/images/set.png" mode="aspectFit" class="my_content_image" />
         <view class="my_content_text">设置</view>
-        <image src="../../../images/right-thrust.png" mode="aspectFit" class="my_content_right" />
+        <image src="/images/right-thrust.png" mode="aspectFit" class="my_content_right" />
       </navigator>
     </view>
   </view>

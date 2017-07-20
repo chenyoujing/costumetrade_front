@@ -21,48 +21,48 @@
 <!--首页下方导航栏-->
 <template name="navBottom">
   <view class="nav_bottom">
-    <navigator url="{{nav!='首页'?'../../household/shop/shop':''}}" open-type="redirect" class="nav_bottom_view {{nav=='首页'?'nav_bottom_active':''}}">
-      <image src="../../../images/home-page2.png" mode="aspectFit" wx:if="{{nav!='首页'}}" />
-      <image src="../../../images/home-page.png" mode="aspectFit" wx:if="{{nav=='首页'}}" />
+    <navigator url="{{nav!='首页'?'/pages/household/shop/shop':''}}" open-type="redirect" class="nav_bottom_view {{nav=='首页'?'nav_bottom_active':''}}">
+      <image src="/images/look_board2.png" mode="aspectFit" wx:if="{{nav!='首页'}}" />
+      <image src="/images/look_board.png" mode="aspectFit" wx:if="{{nav=='首页'}}" />
       <text>看板</text>
     </navigator>
-    <navigator url="{{nav!='订单'?'../../public/order/order?ordertype=1':''}}" open-type="redirect" class="nav_bottom_view {{nav=='订单'?'nav_bottom_active':''}}">
-      <image src="../../../images/order-form2.png" mode="aspectFit" wx:if="{{nav!='订单'}}" />
-      <image src="../../../images/order-for-goods.png" mode="aspectFit" wx:if="{{nav=='订单'}}" />
+    <navigator url="{{nav!='订单'?'/pages/public/order/order?ordertype=1':''}}" open-type="redirect" class="nav_bottom_view {{nav=='订单'?'nav_bottom_active':''}}">
+      <image src="/images/order-form2.png" mode="aspectFit" wx:if="{{nav!='订单'}}" />
+      <image src="/images/order-for-goods.png" mode="aspectFit" wx:if="{{nav=='订单'}}" />
       <text>订单</text>
     </navigator>
-    <navigator url="{{nav!='信息'?'../../original/info/info':''}}" open-type="redirect" class="nav_bottom_view {{nav=='信息'?'nav_bottom_active':''}}">
-      <image src="../../../images/info.png" mode="aspectFit" wx:if="{{nav!='信息'}}" />
-      <image src="../../../images/info2.png" mode="aspectFit" wx:if="{{nav=='信息'}}" />
+    <navigator url="{{nav!='信息'?'/pages/original/info/info':''}}" open-type="redirect" class="nav_bottom_view {{nav=='信息'?'nav_bottom_active':''}}">
+      <image src="/images/info.png" mode="aspectFit" wx:if="{{nav!='信息'}}" />
+      <image src="/images/info2.png" mode="aspectFit" wx:if="{{nav=='信息'}}" />
       <text>信息</text>
     </navigator>
-    <navigator url="{{nav!='我的'?'../../public/user/user':''}}" open-type="redirect" class="nav_bottom_view {{nav=='我的'?'nav_bottom_active':''}}">
-      <image src="../../../images/my.png" mode="aspectFit" wx:if="{{nav!='我的'}}" />
-      <image src="../../../images/myself.png" mode="aspectFit" wx:if="{{nav=='我的'}}" />
+    <navigator url="{{nav!='我的'?'/pages/public/user/user':''}}" open-type="redirect" class="nav_bottom_view {{nav=='我的'?'nav_bottom_active':''}}">
+      <image src="/images/my.png" mode="aspectFit" wx:if="{{nav!='我的'}}" />
+      <image src="/images/myself.png" mode="aspectFit" wx:if="{{nav=='我的'}}" />
       <text>我的</text>
     </navigator>
   </view>
 </template>
 <template name="navBottom2">
   <view class="nav_bottom">
-    <navigator url="{{nav!='首页'?'../../shopkeeper/index/index':''}}" open-type="redirect" class="nav_bottom_view {{nav=='首页'?'nav_bottom_active':''}}">
-      <image src="../../../images/home-page2.png" mode="aspectFit" wx:if="{{nav!='首页'}}" />
-      <image src="../../../images/home-page.png" mode="aspectFit" wx:if="{{nav=='首页'}}" />
+    <navigator url="{{nav!='首页'?'/pages/shopkeeper/index/index':''}}" open-type="redirect" class="nav_bottom_view {{nav=='首页'?'nav_bottom_active':''}}">
+      <image src="/images/home-page2.png" mode="aspectFit" wx:if="{{nav!='首页'}}" />
+      <image src="/images/home-page.png" mode="aspectFit" wx:if="{{nav=='首页'}}" />
       <text>首页</text>
     </navigator>
-    <navigator url="{{nav!='开单'?'../../original/openOrder/openOrder?shopkeeper=true':''}}" open-type="redirect" class="nav_bottom_view {{nav=='开单'?'nav_bottom_active':''}}">
-      <image src="../../../images/billing.png" mode="aspectFit" wx:if="{{nav!='开单'}}" />
-      <image src="../../../images/billing-.png" mode="aspectFit" wx:if="{{nav=='开单'}}" />
+    <navigator url="{{nav!='开单'?'/pages/original/openOrder/openOrder?shopkeeper=true':''}}" open-type="redirect" class="nav_bottom_view {{nav=='开单'?'nav_bottom_active':''}}">
+      <image src="/images/billing.png" mode="aspectFit" wx:if="{{nav!='开单'}}" />
+      <image src="/images/billing-.png" mode="aspectFit" wx:if="{{nav=='开单'}}" />
       <text>开单</text>
     </navigator>
-    <navigator url="{{nav!='信息'?'../../shopkeeper/info/info':''}}" open-type="redirect" class="nav_bottom_view {{nav=='信息'?'nav_bottom_active':''}}">
-      <image src="../../../images/info.png" mode="aspectFit" wx:if="{{nav!='信息'}}" />
-      <image src="../../../images/info2.png" mode="aspectFit" wx:if="{{nav=='信息'}}" />
+    <navigator url="{{nav!='信息'?'/pages/shopkeeper/info/info':''}}" open-type="redirect" class="nav_bottom_view {{nav=='信息'?'nav_bottom_active':''}}">
+      <image src="/images/info.png" mode="aspectFit" wx:if="{{nav!='信息'}}" />
+      <image src="/images/info2.png" mode="aspectFit" wx:if="{{nav=='信息'}}" />
       <text>信息</text>
     </navigator>
-    <navigator url="{{nav!='发图'?'../../shopkeeper/share/share':''}}" open-type="redirect" class="nav_bottom_view {{nav=='发图'?'nav_bottom_active':''}}">
-      <image src="../../../images/Figure.png" mode="aspectFit" wx:if="{{nav!='发图'}}" />
-      <image src="../../../images/Figure-.png" mode="aspectFit" wx:if="{{nav=='发图'}}" />
+    <navigator url="{{nav!='发图'?'/pages/shopkeeper/share/share':''}}" open-type="redirect" class="nav_bottom_view {{nav=='发图'?'nav_bottom_active':''}}">
+      <image src="/images/Figure.png" mode="aspectFit" wx:if="{{nav!='发图'}}" />
+      <image src="/images/Figure-.png" mode="aspectFit" wx:if="{{nav=='发图'}}" />
       <text>发图</text>
     </navigator>
   </view>
@@ -73,10 +73,10 @@
   <view class="template_search_title">
     <view class="template_search_title_view">
       <input type="number" value="{{payorderno}}" bindinput="EventHandle" data-name="payorderno" placeholder="{{text}}" />
-      <image src="../../../images/search.png" data-search = "true" bindtap="searchOrcanleOrder" mode="aspectFit"/>
+      <image src="/images/search.png" data-search = "true" bindtap="searchOrcanleOrder" mode="aspectFit"/>
     </view>
     <navigator open-type="navigateBack" class="template_search_title_back" wx:if="{{back}}">
-      <image src="../../../images/back-away.png" mode="aspectFit" class="title_image_back" />
+      <image src="/images/back-away.png" mode="aspectFit" class="title_image_back" />
     </navigator>
   </view>
 </template>
@@ -136,14 +136,14 @@
 <template name="report_search">
   <view class="search_input_view">
     <input type="text" class="search_input" focus="{{focus}}" bindfocus="bindFaous" />
-    <image src="../../../../images/search.png" mode="aspectFit" class="search_input_image" />
+    <image src="/images/search.png" mode="aspectFit" class="search_input_image" />
   </view>
 </template>
 
 <!--报表-图片/数据-->
 <template name="report_no_line">
   <view wx:if="{{dataReport.length == 0}}" class="canvas" >
-   <image class="nodataImg" src="../../../../images/report-no-line.png" mode="widthFix"/>
+   <image class="nodataImg" src="/images/report-no-line.png" mode="widthFix"/>
   </view>
   <canvas wx:if="{{dataReport.length !== 0}}" class="canvas" canvas-id="columnCanvas" bindtouchmove="touchHandler" bindtouchstart="touchHandler"/>
 </template>
@@ -168,11 +168,11 @@
       <view class="template_form_view">{{thTitle}}</view>
      <view class="template_form_view" data-name="quantityOp" bindtap="sort">
         数量
-        <image src="../../../../images/sort_report.png" mode="aspectFit" class="template_form_sort" />
+        <image src="/images/sort_report.png" mode="aspectFit" class="template_form_sort" />
       </view>
       <view class="template_form_view"  data-name="amountOp" bindtap="sort">
         金额
-        <image src="../../../../images/sort_report.png" mode="aspectFit" class="template_form_sort" />
+        <image src="/images/sort_report.png" mode="aspectFit" class="template_form_sort" />
       </view>
     </view>
     <view class="template_form_content " wx:for="{{product}}">

@@ -17,21 +17,23 @@
   width: 100%;
   top:0;
   z-index: 99;
+  display: flex;
 }
 .nav_view{
-  width: 50%;
-  float: left;
+  flex: 1;
   text-align: center;
-  z-index: 1;
-  padding: 5px 0;
   background-color: #52CAC1;
+  height: 60px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 .nav_view image{
-  width: 100%;
+  width: 24px;
   height: 24px;
   padding: 3px 0;
   display: block;
-  margin: auto;
 }
 .nav_view_text{
   font-size: 12px;
@@ -41,7 +43,7 @@
 
 /*信息*/
 .info{
-  padding-top: 60px;
+  
 }
 .info_container{
   padding: 15px 15px 10px;
@@ -92,7 +94,6 @@
 
 /*客服*/
 .chat{
-  padding-top: 60px;
   padding-bottom: 50px;
 }
 .chat_container{
@@ -157,7 +158,6 @@
 
 /*通讯录*/
 .supplier_scroll{
-  padding-top: 60px;
   box-sizing: border-box;
   height: 100vh;
   position: relative;
@@ -233,7 +233,6 @@
 
 /*公告*/
 .notice_container{
-  padding-top: 60px;
 }
 .notice{
   padding: 15px 10px 0;
