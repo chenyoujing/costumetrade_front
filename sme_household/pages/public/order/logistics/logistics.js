@@ -43,7 +43,7 @@ Page({
   onLoad: function (options) {
     console.log(options)
     this.setData({
-      // payorderno: options.payorderno,
+      payorderno: options.payorderno,
       buyerid: options.buyerstoreid,
       sellerid: options.sellerstoreid
     })

@@ -136,7 +136,9 @@
 .shop_goods{
   padding-top: 10px;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
+  align-content: space-around;
+  flex-wrap: wrap;
 }
 .shop_content_title{
   position: relative;
@@ -171,6 +173,12 @@
   align-items: center;
   justify-content:center;
   color: #ffffff;
+}
+.shop_content_read{
+  color: #000000;
+}
+.shop_content_read .shop_content_unread_prompt{
+  background-color: #52CAC1;
 }
 .shop_content_service{
   flex-shrink: 0;

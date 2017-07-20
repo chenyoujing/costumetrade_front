@@ -43,9 +43,9 @@
           {{item.title}}
         </view>
         <view class="shop_goods">
-          <image src="{{item.images[0]?url+item.images[0]:'../../../images/shop1_1.png'}}" mode="aspectFill" class="shop_picture" />
-          <image src="{{item.images[1]?url+item.images[1]:'../../../images/shop1_1.png'}}" mode="aspectFill" class="shop_picture" />
-          <image src="{{item.images[2]?url+item.images[2]:'../../../images/shop1_1.png'}}" mode="aspectFill" class="shop_picture" />
+          <block wx:for="{{9}}">
+            <image src="{{item.image?url+item.image:'../../../images/shop1_1.png'}}" mode="aspectFill" class="shop_picture" />
+          </block>
         </view>
       </navigator>
     </view>

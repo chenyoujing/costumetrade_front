@@ -213,9 +213,9 @@ Page({
     }
     
     this.setData({
-      date_start: util.formatTime(new Date(Date.now() - 86400000)),
-      date_end: util.formatTime(new Date(Date.now())),
-      account_date: util.formatTime(new Date(Date.now())),
+      date_start: util.toDate(new Date(Date.now() - 86400000)),
+      date_end: util.toDate(new Date(Date.now())),
+      account_date: util.toDate(new Date(Date.now())),
       client:e.client,
       clientId:e.clientId,
       billtype: billtype,

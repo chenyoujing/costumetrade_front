@@ -16,7 +16,7 @@
   <swiper current="{{accounttype}}" bindchange="swiper_change">
     <swiper-item>
       <scroll-view scroll-y="true" style="top:0;bottom:0;">
-        <view class="account_time clearfix">
+        <view class="account_time">
             <view style="float:left;line-height:30px;">时间：</view>
             <picker mode="date" value="{{date_start}}" bindchange="startDateChange">
               <view class="picker">

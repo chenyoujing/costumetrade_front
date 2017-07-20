@@ -34,8 +34,8 @@
           <view class="staff clearfix">
             <image src="{{item.image ? item.image : '../../../../images/image_none.png'}}" mode="aspectFill" class="staff_tx" />
             <view class="staff_info clearfix">
-              <view class="staff_info_name">名称：{{item.reallyName || item.nickName}}</view>
-              <view class="staff_info_num">编号：{{item.id}}</view>
+              <view class="staff_info_text">名称：{{item.reallyName || item.nickName}}</view>
+              <view class="staff_info_text">编号：{{item.id}}</view>
             </view>
             <image src="../../../../images/delete_2.png" mode="aspectFit" class="staff_modify" bindtap="employeeDelect" data-index="{{index}}" data-storeId="{{item.storeId}}" data-id="{{item.id}}" />
             <image src="../../../../images/update.png" mode="aspectFit" class="staff_modify" bindtap="staff_updata" data-id="{{item.id}}" />
@@ -194,7 +194,11 @@
           </view>
           <view class="setting_operation">
             <text>2.</text>支付宝支付(二维码)
-            <image indtap="choosImage" data-index="0" data-name="payQrcode" src="../../../../images/update.png"  bindtap="choosImage"  mode="aspectFit" class="image_setting0" />
+            <image data-index="0" data-name="payQrcode" src="../../../../images/update.png"  bindtap="choosImage"  mode="aspectFit" class="image_setting0" />
+          </view>
+          <view class="setting_operation">
+            <text>3.</text>银行卡信息
+            <image src="../../../../images/update.png"   mode="aspectFit" class="image_setting0" />
           </view>
           <view class="setting_pay">
             <view class="pay_title">

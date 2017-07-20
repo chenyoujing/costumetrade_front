@@ -58,7 +58,7 @@ Page({
       wx.getSystemInfo({
         success: function (res) {
           that.setData({
-            image_width: res.windowWidth / 2 - 10,
+            image_width: res.windowWidth / 2 - 20,
             rank: 'rank'
           })
         }

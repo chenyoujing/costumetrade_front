@@ -1,3 +1,5 @@
+  <import src="../../../../template/template.wxml"/>
+
   <view class="title clearfix">
     <image bindtap="packPageFilterCode" mode="aspectFit" src="../../../../images/search.png" class="image_search" hidden="{{enterValue}}" />
     <icon type="clear" size="16" class="image_search"  hidden="{{!enterValue}}" bindtap="clearValue"/>
@@ -12,6 +14,7 @@
 <!--筛选-->
 <view class="screen"  wx:if="{{!changeBoolean}}">
   <view class="screen_title">区域</view>
+  <template is="promptNone" data="{{product:screen1,text:'区域没有选项'}}"></template>
   <scroll-view scroll-y class="screen_container clearfix">
     <block wx:for="{{screen1}}">
       <view class="screen_view {{item.screen_checked?'screen_checked':''}}" data-type="region" data-index="{{index}}" data-name="{{item.value}}" bindtap="multipleSelect"> {{item.value}}</view>
@@ -19,6 +22,7 @@
   </scroll-view>
 
   <view class="screen_title" wx:if="{{client==1}}">级别</view>
+  <template is="promptNone" data="{{product:screen2,text:'级别没有选项'}}"></template>
   <scroll-view scroll-y class="screen_container clearfix" wx:if="{{client==1}}">
     <block wx:for="{{screen2}}">
       <view class="screen_view {{item.screen_checked?'screen_checked':''}}" data-type="level" data-index="{{index}}" data-name="{{item.id}}" bindtap="multipleSelect">

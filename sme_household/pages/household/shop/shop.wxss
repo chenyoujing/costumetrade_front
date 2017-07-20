@@ -72,6 +72,8 @@
   padding-top: 10px;
   display: flex;
   justify-content: space-around;
+  align-content: space-around;
+  flex-wrap: wrap;
 }
 .shop_content_title{
   position: relative;
@@ -162,4 +164,5 @@
 .shop_picture{
   width: 230rpx;
   height: 230rpx;
+  padding: calc(20rpx / 6) 0;
 }

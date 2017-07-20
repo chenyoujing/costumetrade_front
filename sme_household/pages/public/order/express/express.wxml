@@ -31,7 +31,7 @@
     <template is="reg" data="{{text:'寄件联系电话必填'}}" wx:if="{{regobject.sender.tel}}" />
     <view class="content_input">
       <view class="content_input_text">地址:</view>
-      <input disabled type="text" class="content_input1" value="{{sender.provinceName}},{{sender.cityName}},{{sender.countyName}}" />
+      <view class="content_input1" bindtap="address" data-type="consignee">{{sender.provinceName}},{{sender.cityName}},{{sender.countyName}}</view>
       <view class="clear"></view>
     </view>
     <template is="reg" data="{{text:'寄件地址必填(省市区)'}}" wx:if="{{regobject.sender.city}}" />
@@ -66,7 +66,7 @@
     <template is="reg" data="{{text:'收件联系电话必填'}}" wx:if="{{regobject.receiver.tel}}" />
     <view class="content_input">
       <view class="content_input_text">地址:</view>
-      <input disabled type="text" class="content_input1" value="{{receiver.provinceName}},{{receiver.cityName}},{{receiver.countyName}}" />
+      <view class="content_input1" bindtap="address" data-type="deliver">{{receiver.provinceName}},{{receiver.cityName}},{{receiver.countyName}}</view>
       <view class="clear"></view>
     </view>
     <template is="reg" data="{{text:'收件地址必填(省市区)'}}" wx:if="{{regobject.receiver.city}}" />

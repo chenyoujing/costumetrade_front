@@ -79,9 +79,8 @@ Page({
   },
   // 正则验证
   reg: function (e) {
-    var type = e.currentTarget.dataset.name;
+    var type = e.currentTarget.dataset.type;
     var name = e.currentTarget.dataset.name;
-    console.log(reg)
     var boolean = false;
     var regobject = "regobject." + type + '.' + name;
     var param = {};

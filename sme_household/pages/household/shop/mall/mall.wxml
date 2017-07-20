@@ -6,10 +6,9 @@
         <image src="{{storephoto||'../../../../images/shop1_tx.png'}}" mode="scaleToFill" class="shop_tx" />
       </navigator>
       <navigator url="../shoppingcard/shoppingcard?stordId={{id}}">
-        <image src="../../../../images/shopping-cart.png" mode="aspectFit" class="shoppingcard_image">
+        <image src="../../../../images/shopping-cart.png" mode="aspectFit" class="shoppingcard_image" style="margin-left:3%;">
           <view class="prompt" wx:if="{{prompt>0}}">{{prompt}}</view>
         </image>
-        <image src="../../../../images/customer_service.png" mode="aspectFit" class="shoppingcard_image" style="margin-left:3%;" />
       </navigator>
       <input class="search_input" type="text" placeholder="请输入货号搜索货品..." bindfocus="bindfocus"  focus="{{inputFocus}}" >
         <image src="../../../../images/search.png" mode="aspectFit" class="search_input_image" />
@@ -39,11 +38,11 @@
       <text>该店铺未发图于您！</text>
     </view>
 
-    <view class="shop_content" wx:for="{{product}}">
+    <view class="shop_content" wx:for="{{1}}">
       <view class="shop_content_view">
         <view class="shop_content_title">
           <view class="shop_content_info">
-            <view class="shop_content_unread">
+            <view class="shop_content_unread shop_content_read">
               <view class="shop_content_unread_prompt">9</view>
               未读信息
             </view>
@@ -58,9 +57,23 @@
           {{item.title}}
         </view>
         <view class="shop_goods">
-          <image src="{{item.images[0]?url+item.images[0]:'../../../../images/shop1_1.png'}}" mode="aspectFill" class="shop_picture" />
-          <image src="{{item.images[1]?url+item.images[1]:'../../../../images/shop1_1.png'}}" mode="aspectFill" class="shop_picture" />
-          <image src="{{item.images[2]?url+item.images[2]:'../../../../images/shop1_1.png'}}" mode="aspectFill" class="shop_picture" />
+          <view class="mall_container {{rank}}" wx:for="{{3}}">
+            <navigator url="../goods_detail/goods_detail?strod={{id}}&ID={{item.id}}&name={{name}}" hover-class="navigator-hover" class="content_container clearfix">
+              <image src="{{item.image?item.image:'../../../../images/shop1_1.png'}}" mode="aspectFill" style="width:{{image_width}}px;height:{{image_width}}px;" />
+              <view class="content_container_text">
+                <view class="clear"></view>
+                <view class="content_container_title">{{item.name}}</view>
+                <view class="content_container_info clearfix">
+                  <view class="price">{{item.salePrice}}</view>
+                  <view class="info_other">
+                    <view class="volume" wx:if="{{!item.volume}}">0</view>
+                    <view class="volume" wx:if="{{item.volume}}">{{item.volume}}</view>
+                    <view class="date">{{item.timeUp}}</view>
+                  </view>
+                </view>
+              </view>
+            </navigator>
+          </view>
         </view>
       </view>
     </view>

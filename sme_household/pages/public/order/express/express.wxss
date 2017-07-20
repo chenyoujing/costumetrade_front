@@ -38,7 +38,10 @@
   font-size: 14px;
   padding: 0 8px; 
   height: 28px;
+  overflow: hidden;
   position: relative;
+  display:flex;
+  align-items:center;
 }
 .template_reg_text{
   margin-left: 35%;
@@ -54,7 +57,7 @@
 }
 .bg_2{
   background-color: #DCDCDC;
-  padding: 10px 10px 0;
+  padding: 0 10px 10px;
 }
 .bg_2 .content_input{
   padding-top: 10px;
