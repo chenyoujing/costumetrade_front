@@ -1,4 +1,4 @@
-<import src="../../../template/template.wxml"/>
+<import src="/template/template.wxml"/>
 <!--订单头部-->
 <template is="searchTitle" data="{{text:'单号查询...',back:shopkeeper,EventHandle:EventHandle,payorderno:payorderno}}"></template>
 

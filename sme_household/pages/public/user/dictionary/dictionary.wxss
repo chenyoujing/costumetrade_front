@@ -66,7 +66,8 @@ swiper{
 }
 .staff_info{
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
+  width: 100%;
   padding:5px 0;
 }
 .staff_info_text{
@@ -314,6 +315,14 @@ swiper{
 }
 .setting_operation text{
   padding: 0 20px;
+}
+.bank_input{
+  width: auto;
+  color: #000000;
+  border: 1px solid #DCDCDC;
+  border-radius: 3px;
+  padding:5px 8px;
+  max-height:100px;
 }
 
 .setting_pay{

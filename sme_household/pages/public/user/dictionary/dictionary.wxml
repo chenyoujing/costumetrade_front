@@ -2,24 +2,24 @@
   <!--头部-->
   <view class="title clearfix">
     <navigator open-type="navigateBack">
-      <image src="../../../../images/back-away.png" mode="aspectFit" class="title_image_back" />
+      <image src="/images/back-away.png" mode="aspectFit" class="title_image_back" />
     </navigator>
     <view class="title_text">设置</view>
-    <image src="../../../../images/add.png" class="employee_add" wx:if="{{current=='0'}}" bindtap="scan" />
+    <image src="/images/add.png" class="employee_add" wx:if="{{current=='0'}}" bindtap="scan" />
   </view>
 
   <view class="dictionary clearfix">
     <view class="dictionary_text {{current=='0' ? 'active' : ''}}" bindtap="dictionarytype" data-dictionary="0">员工
-      <image src="../../../../images/down.png" mode="aspectFit" class="image_down " />
+      <image src="/images/down.png" mode="aspectFit" class="image_down " />
     </view>
     <view class="dictionary_text {{current=='1' ? 'active' : ''}}" bindtap="dictionarytype" data-dictionary="1">打印
-      <image src="../../../../images/down.png" mode="aspectFit" class="image_down " />
+      <image src="/images/down.png" mode="aspectFit" class="image_down " />
     </view>
     <view class="dictionary_text {{current=='2' ? 'active' : ''}}" bindtap="dictionarytype" data-dictionary="2">基础
-      <image src="../../../../images/down.png" mode="aspectFit" class="image_down " />
+      <image src="/images/down.png" mode="aspectFit" class="image_down " />
     </view>
     <view class="dictionary_text {{current=='3' ? 'active' : ''}}" bindtap="dictionarytype" data-dictionary="3">高级
-      <image src="../../../../images/down.png" mode="aspectFit" class="image_down " />
+      <image src="/images/down.png" mode="aspectFit" class="image_down " />
     </view>
   </view>
   <swiper interval="0" duration="500" current="{{current}}" bindchange="swiper_change">
@@ -33,12 +33,12 @@
         <view style="padding:10px;" wx:for="{{employeeProduct}}">
           <view class="staff">
             <image src="{{item.image ? item.image : '../../../../images/image_none.png'}}" mode="aspectFill" class="staff_tx" />
-            <view class="staff_info clearfix">
+            <view class="staff_info">
               <view class="staff_info_text">名称：{{item.reallyName || item.nickName}}</view>
               <view class="staff_info_text">编号：{{item.id}}</view>
             </view>
-            <image src="../../../../images/delete_2.png" mode="aspectFit" class="staff_modify" bindtap="employeeDelect" data-index="{{index}}" data-storeId="{{item.storeId}}" data-id="{{item.id}}" />
-            <image src="../../../../images/update.png" mode="aspectFit" class="staff_modify" bindtap="staff_updata" data-id="{{item.id}}" />
+            <image src="/images/delete_2.png" mode="aspectFit" class="staff_modify" bindtap="employeeDelect" data-index="{{index}}" data-storeId="{{item.storeId}}" data-id="{{item.id}}" />
+            <image src="/images/update.png" mode="aspectFit" class="staff_modify" bindtap="staff_updata" data-id="{{item.id}}" />
           </view>
         </view>
       </scroll-view>
@@ -72,14 +72,14 @@
                <picker bindchange="binChangeSale" data-index="custtypename_index" range="{{customerTypeList}}" value="{{employeeDetails.modifyPrice}}" range-key="custtypename" class="dictionary_input1" style="padding-right:30px;">
                   {{customerTypeList[custtypename_index].custtypename}}
                   <text style="color:#808080;" hidden="{{customerTypeList[custtypename_index].custtypename}}">改价最低值</text>
-                  <image src="../../../../images/down.png" mode="aspectFit" class="picker_image" />
+                  <image src="/images/down.png" mode="aspectFit" class="picker_image" />
                 </picker>
             </view>
             <view class="dictionary_input clearfix" wx:if="{{stores.length>0}}">
               <view class="dictionary_input_text1">选择分店：</view>
                 <picker bindchange="binChangeSale" data-index="stores_index" range="{{stores}}" range-key="name" value="{{stores[stores_index].storeId}}" class="dictionary_input1" style="padding-right:30px;">
                   {{stores[stores_index].name}}
-                  <image src="../../../../images/down.png" mode="aspectFit" class="picker_image" />
+                  <image src="/images/down.png" mode="aspectFit" class="picker_image" />
                 </picker>
             </view>
           </view>
@@ -100,7 +100,7 @@
       <scroll-view scroll-y class="setting_scroll" style="bottom:40px;">
         <view class="print_title {{print=='wifi'?'print_active':''}}" bindtap="print" data-print="wifi">
           <view class="print_title_text">wifi打印</view>
-          <image src="../../../../images/down.png" mode="aspectFit" class="print_down " />
+          <image src="/images/down.png" mode="aspectFit" class="print_down " />
         </view>
         <scroll-view scroll-y class="print_scroll {{print=='wifi'?'print_scroll_active':''}}">
           <view class="print_info">打印信息</view>
@@ -135,7 +135,7 @@
         </scroll-view>
         <view class="print_title {{print=='ly'?'print_active':''}}" bindtap="print" data-print="ly">
           <view class="print_title_text">蓝牙打印</view>
-          <image src="../../../../images/down.png" mode="aspectFit" class="print_down " />
+          <image src="/images/down.png" mode="aspectFit" class="print_down " />
         </view>
         <scroll-view scroll-y class="print_scroll {{print=='ly'?'print_scroll_active':''}}">
           <view class="print_info">打印信息</view>
@@ -190,25 +190,25 @@
           <view class="setting_title" style="font-size:16px;">添加手机支付二维码</view>
           <view class="setting_operation">
             <text>1.</text>微信支付(二维码)
-            <image src="../../../../images/update.png"  bindtap="choosImage" data-index="0" data-name="payQrcode" mode="aspectFit" class="image_setting0" />
+            <image src="/images/update.png"  bindtap="choosImage" data-index="0" data-name="payQrcode" mode="aspectFit" class="image_setting0" />
           </view>
           <view class="setting_operation">
             <text>2.</text>支付宝支付(二维码)
-            <image data-index="0" data-name="payQrcode" src="../../../../images/update.png"  bindtap="choosImage"  mode="aspectFit" class="image_setting0" />
+            <image data-index="0" data-name="payQrcode" src="/images/update.png"  bindtap="choosImage"  mode="aspectFit" class="image_setting0" />
           </view>
           <view class="setting_operation">
             <text>3.</text>银行卡信息
-            <image src="../../../../images/update.png"   mode="aspectFit" class="image_setting0" />
+            <image src="/images/update.png" mode="aspectFit" class="image_setting0" bindtap="bankInfo" />
           </view>
           <view class="setting_pay">
             <view class="pay_title">
               付款方式
-              <image src="../../../../images/append.png" mode="aspectFit" class="image_setting0" bindtap="addModal" data-type="pay" />
+              <image src="/images/append.png" mode="aspectFit" class="image_setting0" bindtap="addModal" data-type="pay" />
             </view>
             <block wx:for="{{payProduct}}">
               <view class="pay_view">
                 <text>{{index+1}}.</text>{{item.dictText}}
-                <image src="../../../../images/delete_2.png" mode="aspectFit" class="image_setting" bindtap="dictionaryDelet" data-index="{{index}}" data-name="payProduct"/>
+                <image src="/images/delete_2.png" mode="aspectFit" class="image_setting" bindtap="dictionaryDelet" data-index="{{index}}" data-name="payProduct"/>
               </view>
             </block>
           </view>
@@ -218,31 +218,31 @@
           <view class="setting_pay" style="border:0;">
             <view class="pay_view">
               <navigator url="../updateBrand/updateBrand?url=brand/getAllBrands&title=品牌">
-                <image src="../../../../images/update.png" mode="aspectFit" class="image_setting" />
+                <image src="/images/update.png" mode="aspectFit" class="image_setting" />
               </navigator>
               <text>1.</text>品牌
             </view>
             <view class="pay_view">
               <navigator url="../updateBrand/updateBrand?url=cate/getAllCates&title=商品种类">
-                <image src="../../../../images/update.png" mode="aspectFit" class="image_setting" />
+                <image src="/images/update.png" mode="aspectFit" class="image_setting" />
               </navigator>
               <text>2.</text>种类
             </view>
             <view class="pay_view">
               <navigator url="../updateBrand/updateBrand?url=unit/getAllUnits&title=单位">
-                <image src="../../../../images/update.png" mode="aspectFit" class="image_setting" />
+                <image src="/images/update.png" mode="aspectFit" class="image_setting" />
               </navigator>
               <text>3.</text>单位
             </view>
             <view class="pay_view">
               <navigator url="../updateSize/updateSize?url=size/getAllSizes&title=尺码选择">
-                <image src="../../../../images/update.png" mode="aspectFit" class="image_setting" />
+                <image src="/images/update.png" mode="aspectFit" class="image_setting" />
               </navigator>
               <text>4.</text>尺码
             </view>
             <view class="pay_view">
               <navigator url="../updateBrand/updateBrand?url=color/getAllColors&title=颜色选择">
-                <image src="../../../../images/update.png" mode="aspectFit" class="image_setting" />
+                <image src="/images/update.png" mode="aspectFit" class="image_setting" />
               </navigator>
               <text>5.</text>颜色
             </view>
@@ -255,19 +255,19 @@
             首页推荐照片
           </view>
           <view class="image_view">
-            <image src="../../../../images/add_image.png" class="image_view_add"  wx:if="{{!imageurl[0]}}"/>
+            <image src="/images/add_image.png" class="image_view_add"  wx:if="{{!imageurl[0]}}"/>
             <image src="{{imageurl[0]}}" class="index_image" />
             <view class="bindtap_cover" bindtap="choosImage" data-index="0"
             bindtap="choosImage" data-name="images" ></view>
           </view>
           <view class="image_view">
-            <image src="../../../../images/add_image.png" class="image_view_add"  wx:if="{{!imageurl[1]}}"/>
+            <image src="/images/add_image.png" class="image_view_add"  wx:if="{{!imageurl[1]}}"/>
             <image src="{{imageurl[1]}}"  class="index_image" />
             <view class="bindtap_cover" bindtap="choosImage" data-index="1"
             bindtap="choosImage" data-name="images" ></view>
           </view>
           <view class="image_view">
-            <image src="../../../../images/add_image.png" class="image_view_add"  wx:if="{{!imageurl[2]}}"/>
+            <image src="/images/add_image.png" class="image_view_add"  wx:if="{{!imageurl[2]}}"/>
             <image src="{{imageurl[2]}}" class="index_image" />
             <view class="bindtap_cover"  bindtap="choosImage" data-index="2" data-name="imageurl"></view>
           </view>
@@ -281,13 +281,13 @@
           <block wx:for="{{logisticFees}}">
             <view class="pay_view" style="padding:5px 20px;">
               <text>{{index+1}}.</text>{{item.logisticName}}
-              <image src="../../../../images/right-thrust.png" mode="aspectFit" class="image_setting {{freight===index?'right_active':''}}" />
+              <image src="/images/right-thrust.png" mode="aspectFit" class="image_setting {{freight===index?'right_active':''}}" />
               <view class="bindtap_cover" bindtap="freight" data-freight="{{index}}"></view>
             </view>
             <scroll-view scroll-y class="freight clearfix {{freight===index?'freight_active':''}}">
               <view class="freight_explain">
                 <view class="freight_explain_title">说明:</view>
-                <image src="../../../../images/update.png" mode="aspectFit" class="freight_explain_right" bindtap="freightUpdate" />
+                <image src="/images/update.png" mode="aspectFit" class="freight_explain_right" bindtap="freightUpdate" />
                 <view class="freight_explain_text" wx:if="{{!freightUpdate}}">{{item.description}}</view>
                 <textarea type="text" class="freight_explain_text freight_explain_input" data-type="description" data-name="logisticFees" bindinput="changIput" data-index="{{index}}" style="width:unset;height:40px;" wx:if="{{freightUpdate}}" value="{{item.description}}" />
               </view>
@@ -375,7 +375,7 @@
             <view class="branch_view">共享会员</view>
             <view class="branch_view">共享货品</view>
             <view class="branch_view" style="flex:1;">
-              <image src="../../../../images/append.png" mode="aspectFit" class="branch_image" />
+              <image src="/images/append.png" mode="aspectFit" class="branch_image" />
               <view class="bindtap_cover" data-add="true" bindtap="branch"></view>
             </view>
           </view>
@@ -385,7 +385,7 @@
             <view class="branch_view">{{item.inventoryShare==1?'是':'否'}}</view>
             <view class="branch_view">{{item.inventoryShare==1?'是':'否'}}</view>
             <view class="branch_view" style="flex:1;">
-              <image src="../../../../images/update.png" mode="aspectFit" class="branch_image"/>
+              <image src="/images/update.png" mode="aspectFit" class="branch_image"/>
         <view class="bindtap_cover" bindtap="branch"  data-add="false" data-item="{{item}}"></view>
             </view>
           </view>
@@ -400,7 +400,7 @@
     <input type="text" value="{{storeIdData.name}}" data-name="name" bindblur="storeIdDataChange" class="branchModal_input"/>
       </view>
       <view class="branchModal_delete_view">
-        <image src="../../../../images/delete_2.png" mode="aspectFit" class="branchModal_delete" bindtap="deleteChainStore" data-id="{{storeIdData.id}}" wx:if="{{addStoreId == 'false'}}"/>
+        <image src="/images/delete_2.png" mode="aspectFit" class="branchModal_delete" bindtap="deleteChainStore" data-id="{{storeIdData.id}}" wx:if="{{addStoreId == 'false'}}"/>
       </view>
     </view>
     <radio-group class="branchModal_content" data-name="inventoryShare" bindchange="storeIdDataChange">
@@ -444,12 +444,12 @@
         <view class="setting_view" style="padding-right:20px;">
           <view class="pay_title" style="font-size:18px;">
             费用单项目
-            <image src="../../../../images/append.png" mode="aspectFit" class="image_setting0" bindtap="addModal" data-type="fee" />
+            <image src="/images/append.png" mode="aspectFit" class="image_setting0" bindtap="addModal" data-type="fee" />
           </view>
           <block wx:for="{{feeProduct}}">
             <view class="pay_view">
               <text>{{index+1}}.</text>{{item.dictText}}
-              <image src="../../../../images/delete_2.png" mode="aspectFit" class="image_setting" bindtap="dictionaryDelet" data-index="{{index}}" data-name="feeProduct"/>
+              <image src="/images/delete_2.png" mode="aspectFit" class="image_setting" bindtap="dictionaryDelet" data-index="{{index}}" data-name="feeProduct"/>
             </view>
           </block>
         </view>
@@ -485,7 +485,7 @@
 
         <!--钱包管理-->
         <navigator url="../notecase/notecase" class="notecase">
-          <image src="../../../../images/notecase.png" mode="aspectFit" class="notecase_image" />
+          <image src="/images/notecase.png" mode="aspectFit" class="notecase_image" />
           <view class="notecase_text">钱包管理</view>
         </navigator>
       </scroll-view>
@@ -539,3 +539,7 @@
   <view class="scan_modal_text">请用微信扫一扫上面的图片,扫好了后点击“扫好了”</view>
 </modal>
 
+<!--银行卡信息-->
+<modal title="输入银行卡信息" hidden="{{bankModal}}" confirm-text="确定" bindconfirm="bankOk" bindcancel="cancel">
+  <textarea auto-height maxlength="-1" class="bank_input" />
+</modal>

@@ -143,7 +143,7 @@ Page({
           case ('韵达'):
             this.expressYD(e)
             break;
-          case (''||undefined):
+          case (''||undened):
             wx.showToast({
               title: '您还没有选择快递公司',
             })
@@ -223,6 +223,7 @@ Page({
         })
   },
   expressZTO: function (e) {
+    var that = this
     var value = e.detail.value
     var Sender = this.data.sender || {}
     var Receiver = this.data.receiver || {}
@@ -267,8 +268,23 @@ Page({
     object.type = 1
     object.status = 0
     object.partnerCode = this.data.orderNo
-    object.sendstarttime = new Date(date())
-    object.sendendtime = new Date(new Date().getTime() - (86400000 * 7))
+    object.sendstarttime = "2010-06-19 08:00:00"
+    object.sendendtime = "2010-06-19 08:00:00"
+    object.tradeId = 1
+    object.mailNo = 1
+    object.siteName = 1
+    object.weight = 1
+    object.size = 1
+    object.quantity = 1
+    object.price = 1
+    object.freight = 1
+    object.premium = 1
+    object.packCharges = 1
+    object.otherCharges = 1
+    object.orderSum = 1
+    object.collectMoneytype = 1
+    object.collectSum = 1
+    object.remark = 1
     console.log(object)
     wx.showNavigationBarLoading();
     util.api.request({
@@ -339,8 +355,8 @@ Page({
   },
   onLoad:function(e){
     this.setData({
-      orderNo: "170717220124117434"||e.orderNo,
-      logistics: e.logistics,
+      orderNo: "170717220124117440"||e.orderNo,
+      logistics: '中通'||e.logistics,
       buyerstoreid: e.buyerstoreid,
     })
     this.logisticInit()

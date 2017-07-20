@@ -24,6 +24,7 @@ Page({
     customerModal: true,
     scanModal: true,
     branchModal: true,
+    bankModal: true,
     submitData:[],
     addObject:{},
     cusDictValue:0,
@@ -372,6 +373,12 @@ Page({
         })
         console.log(that.data)
       }
+    })
+  },
+  // 银行卡信息
+  bankInfo:function(){
+    this.setData({
+      bankModal: false
     })
   },
   // 更改启用的客户种类
@@ -753,6 +760,7 @@ Page({
       customerModal: true,
       scanModal: true,
       branchModal: true,
+      bankModal: true,
     })
   },
   /***********

@@ -1,3 +1,4 @@
+<import src="/template/template.wxml"/>
   <view class="update_name">
     <view class="name_text">会员种类名称</view>
     <input type="text" class="name_input" value="{{customerCusts.custtypename}}会员" />
@@ -13,3 +14,6 @@
   </view>
 
   <view class="submit" bindtap="saveData">保存</view>
+
+  <template is="backNav" />
+  
