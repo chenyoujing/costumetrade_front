@@ -104,9 +104,14 @@ Page({
     var value = e.detail.value 
     var sender = this.data.sender || []
     var receiver = this.data.receiver || []
-    var object = {}
+    sender.regobject = {}
+
     var consigneeInfo = {}
     consigneeInfo.address = sender.address
+    regobject.address = true
+    this.setData({
+      address
+    })
     consigneeInfo.city = sender.cityName
     consigneeInfo.company = value.consigneeCompany
     consigneeInfo.contact = sender.userName
@@ -134,6 +139,7 @@ Page({
     cargoInfo.cargoWeight
     cargoInfo.parcelQuantity
     
+    var object = {}
     object.consigneeInfo = consigneeInfo
     object.deliverInfo = deliverInfo
     object.cargoInfo = cargoInfo
@@ -161,30 +167,30 @@ Page({
   },
   expressZTO: function (e) {
     var value = e.detail.value
-    var sender = this.data.sender || []
-    var receiver = this.data.receiver || []
+    var Sender = this.data.sender || []
+    var Receiver = this.data.receiver || []
 
     var sender = {}
     sender.id = app.globalData.storeId
-    sender.name = sender.userName
+    sender.name = Sender.userName
     sender.company = value.consigneeCompany
-    sender.mobile = sender.mobile
-    sender.prov = sender.provinceName
-    sender.city = sender.cityName
-    sender.county = sender.countyName
-    sender.address = sender.address
-    sender.zipcode = sender.postalCode
+    sender.mobile = Sender.mobile
+    sender.prov = Sender.provinceName
+    sender.city = Sender.cityName
+    sender.county = Sender.countyName
+    sender.address = Sender.address
+    sender.zipcode = Sender.postalCode
 
     var receiver = {}
     receiver.id = that.data.buyerstoreid
-    receiver.name = receiver.userName
+    receiver.name = Receiver.userName
     receiver.company = value.deliverCompany
-    receiver.mobile = receiver.mobile
-    receiver.prov = receiver.provinceName
-    receiver.city = receiver.cityName
-    receiver.county = receiver.countyName
-    receiver.address = receiver.address
-    receiver.zipcode = receiver.postalCode
+    receiver.mobile = Receiver.mobile
+    receiver.prov = Receiver.provinceName
+    receiver.city = Receiver.cityName
+    receiver.county = Receiver.countyName
+    receiver.address = Receiver.address
+    receiver.zipcode = Receiver.postalCode
 
     var item = {}
     item.id//货品ID？订单号？
@@ -226,24 +232,24 @@ Page({
   },
   expressYD: function (e) {
     var value = e.detail.value
-    var sender = this.data.sender || []
-    var receiver = this.data.receiver || []
+    var Sender = this.data.sender || []
+    var Receiver = this.data.receiver || []
 
     var sender = {}
-    sender.name = sender.userName
+    sender.name = Sender.userName
     sender.company = value.consigneeCompany
-    sender.mobile = sender.mobile
-    sender.city = sender.provinceName + ',' + sender.cityName + ',' + sender.countyName
-    sender.address = sender.address
-    sender.postcode = sender.postalCode
+    sender.mobile = Sender.mobile
+    sender.city = Sender.provinceName + ',' + Sender.cityName + ',' + Sender.countyName
+    sender.address = Sender.address
+    sender.postcode = Sender.postalCode
 
     var receiver = {}
-    receiver.name = receiver.userName
+    receiver.name = Receiver.userName
     receiver.company = value.deliverCompany
-    receiver.mobile = receiver.mobile
-    receiver.city = receiver.provinceName + ',' + receiver.cityName + ',' + receiver.countyName
-    receiver.address = receiver.address
-    receiver.zipcode = receiver.postalCode
+    receiver.mobile = Receiver.mobile
+    receiver.city = Receiver.provinceName + ',' + Receiver.cityName + ',' + Receiver.countyName
+    receiver.address = Receiver.address
+    receiver.zipcode = Receiver.postalCode
 
     var item = {}
     item.name = value.name
@@ -253,9 +259,9 @@ Page({
     object.receiver = receiver
     object.item = item
     object.orderid = this.data.orderNo
-    object.sendstarttime = new Date()
-    object.sendendtime = new Date(new Date().getTime() - (86400000*7))
-    object.customerid//客户id
+    object.sendstarttime = "2010-06-19 08:00:00"
+    object.sendendtime = "2010-06-19 08:00:00"
+    object.customerid = this.data.buyerstoreid
     console.log(object)
     wx.showNavigationBarLoading();
     util.api.request({

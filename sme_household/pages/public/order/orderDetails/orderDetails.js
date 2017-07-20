@@ -30,12 +30,6 @@ Page({
         console.log(res.data)
         wx.hideNavigationBarLoading();
         var paycost = that.data.paycost;
-        // 转换物流公司
-        for (var j in app.logisticFees) {
-          if (app.logisticFees[j].logisticCode==res.data.ssStoOrder.logisticsCode) {
-            res.data.ssStoOrder.logisticName = app.logisticFees[j].logisticName
-          }
-        }
 
         res.data.ssStoOrder.ordertime = util.toDate(res.data.ssStoOrder.ordertime)
         var price = 0

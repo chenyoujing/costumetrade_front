@@ -57,7 +57,7 @@
   padding: 10px 10px 0;
 }
 .bg_2 .content_input{
-  padding-bottom: 10px;
+  padding-top: 10px;
 }
 
 .submit{

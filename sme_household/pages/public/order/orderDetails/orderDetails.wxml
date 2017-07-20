@@ -18,7 +18,7 @@
       <view class="orderinfo">
         <view class="orderinfo_title clearfix">
           <view class="orderinfo_text" style="float:left;font-size:16px;">配送方式</view>
-          <view class="orderinfo_text" style="float:right;position:relative">{{product.ssStoOrder.logisticName}}
+          <view class="orderinfo_text" style="float:right;position:relative">{{product.ssStoOrder.logisticsCode}}
             <image src="../../../../images/right-thrust.png" mode="aspectFit" class="orderinfo_text_image" wx:if="{{update}}" />
             <view class="bindtap_cover" bindtap="express" wx:if="{{update}}"></view>
           </view>

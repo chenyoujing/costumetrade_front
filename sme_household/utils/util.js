@@ -29,7 +29,7 @@ var api = {
   publicProduct:[],
   imgUrl: "http://ot84hx5jl.bkt.clouddn.com/",
   // 登录接口
-  getOpenid: function (callback) {
+  getOpenid: function (callback, callfail) {
     var that = this;
     console.log(app.globalData) 
     app.globalData.userInfo = {
@@ -65,6 +65,10 @@ var api = {
             app.globalData.userid = res.data.data.userid;
             if (callback) {
               callback();
+            }
+          },fail:function(){
+            if (callfail) {
+              callfail()
             }
           }
         })
