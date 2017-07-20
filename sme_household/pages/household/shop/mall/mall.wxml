@@ -42,7 +42,7 @@
       <view class="shop_content_view">
         <view class="shop_content_title">
           <view class="shop_content_info">
-            <view class="shop_content_unread shop_content_read">
+            <view class="shop_content_unread {{read?'shop_content_read':''}}">
               <view class="shop_content_unread_prompt">9</view>
               未读信息
             </view>
