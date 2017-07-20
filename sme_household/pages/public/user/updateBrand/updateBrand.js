@@ -48,7 +48,8 @@ Page({
       success: function (res) {
         wx.hideNavigationBarLoading();
         var product = that.data.product;
-        product.splice(index,1)
+        product.splice(index,1);
+        
         that.setData({
           product: product
         })

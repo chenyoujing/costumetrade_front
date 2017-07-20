@@ -449,9 +449,6 @@ var api = {
       },
       success: function (res) {        
         for (var p in res.data) {
-          // if (url2 !== "client/getClients"){
-          //   res.data[p].image = res.data[p].image ? that.imgUrl + res.data[p].image : '';
-          // }
           that.publicProduct.push(res.data[p])
         }
         if(res.data.length == 10){
