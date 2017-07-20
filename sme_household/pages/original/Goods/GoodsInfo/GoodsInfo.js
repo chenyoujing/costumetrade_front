@@ -713,7 +713,7 @@ Page({
       userIdentity: app.globalData.userIdentity,
       GoodsInfoData: {
         brandid: app.screen_brandList[0]?app.screen_brandList[0].id:"",
-        sizes: app.screen_productSize[0]?app.screen_productSize[0].value:"",
+        // sizes: app.screen_productSize[0]?app.screen_productSize[0].value:"",
         grade: app.screen_gradeList[0]?app.screen_gradeList[0].dictValue:"",
         unit: app.screen_unitList[0] ?app.screen_unitList[0].unit:"",
         producttype: app.screen_productTypeList[0] ?app.screen_productTypeList[0].id:"",

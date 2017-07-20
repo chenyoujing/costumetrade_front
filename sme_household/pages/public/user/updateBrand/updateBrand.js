@@ -33,6 +33,7 @@ Page({
     var ids = [];
     var id = e.target.dataset.id;
     var index = e.target.dataset.index;
+    var name = e.target.dataset.name;
     var that = this;
     ids.push(id)
     wx.showNavigationBarLoading();
@@ -49,7 +50,20 @@ Page({
         wx.hideNavigationBarLoading();
         var product = that.data.product;
         product.splice(index,1);
-        
+        // 删除颜色的时候判断是不是默认颜色
+        if (that.data.addname == "colorname"){
+          wx.getStorage({
+            key: 'defaultColor',
+            complete: function (res) {
+              if (res.data == name) {
+                wx.setStorage({
+                  key: 'defaultColor',
+                  data: "",
+                })
+              }
+            },
+          })
+        }
         that.setData({
           product: product
         })

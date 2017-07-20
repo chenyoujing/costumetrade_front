@@ -39,14 +39,14 @@ Page({
   },
   // 保存分享记录
   confirmShareProducts: function (id){
-    var that = this;
+    var that = this; 
     wx.showNavigationBarLoading()
     util.api.request({
       url: 'product/confirmShareProducts',
       data: {
-        storeid: that.data.storeId,
+        promoterStoreid: that.data.storeId,
         id: id,
-        title: that.data.share_text,
+        title: that.data.share_text, 
       },
       method: 'POST',
       header: {
@@ -58,7 +58,6 @@ Page({
           res.data[p].timeUp = util.toDate(res.data[p].timeUp)
           res.data[p].image = res.data[p].image ? util.api.imgUrl + res.data[p].image : ""
         }
-        console.log(id)
         that.setData({
           product: res.data,
         })

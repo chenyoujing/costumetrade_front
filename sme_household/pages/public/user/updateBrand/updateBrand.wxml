@@ -18,9 +18,9 @@
   
     <view class="update_option clearfix" wx:for="{{product}}">
       <view class="option_num">{{index+1}}.</view>
-      <image src="../../../../images/delete_2.png" data-id="{{item.id}}" data-index="{{index}}" bindtap="delete" mode="aspectFit" class="option_delete"  />
+      <image src="../../../../images/delete_2.png" data-id="{{item.id}}" data-index="{{index}}" bindtap="delete" data-name="{{item.colorname}}" mode="aspectFit" class="option_delete"  />
       <image src="../../../../images/update.png" mode="aspectFit" class="option_update" bindtap="update" data-id="{{item.id}}" data-name="{{item.brandname||item.catename||item.unit||item.colorname}}" />
-      <view class="option_default" wx:if="">默认</view>
+      <!--<view class="option_default" wx:if="">默认</view>-->
       <view class="option_text one_line">{{item.brandname||item.catename||item.unit||item.colorname}}</view>
     </view>
   </scroll-view>

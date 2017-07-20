@@ -294,29 +294,36 @@ Page({
     })
   },
   // 进入分享页面
-  batch_share_sure: function () {
+  batch_share_sure: function (e) {
+    var type = e.target.dataset.name;
     var idsArray = this.data.ids;
     var storeId = app.globalData.storeId;
-    if (idsArray.length == 0 && !this.data.checkAllTag) {
+    if (idsArray.length == 0) {
       wx.showToast({
-        title: '请勾选要分享的货品',
+        title: '请勾选您要分享的货品！',
         mask: true,
         duration: 2000
       })
-    } else {
-      this.batchOperationsOk();
+    } else if (idsArray.length > 50) {
+      wx.showToast({
+        title: '分享的数量不能大于50！',
+        mask: true,
+        duration: 2000
+      })
+    } else if (type == "wchat"){
       wx.navigateTo({
-        url: '../../original/Goods/GoodsShare/GoodsShare?ids=' + JSON.stringify(idsArray) + '&storeId=' + storeId + '&checkAllTag=' + this.data.checkAllTag,
+        url: '../../original/Goods/GoodsShare/GoodsShare?ids=' + JSON.stringify(idsArray) + '&storeId=' + storeId
+      })
+    } else if (type == "client"){
+      wx.navigateTo({
+        url: '../../original/client/client?ids=' + JSON.stringify(idsArray) + '&goodshare=' + true
       })
     }
-    this.setData({
-      ids: []
-    })
   },
   // 进入批量修改页面
   batch_update_sure: function () {
     var idsArray = this.data.ids;
-    if (idsArray.length == 0 && !this.data.checkAllTag) {
+    if (idsArray.length == 0 || idsArray.length>50) {
       wx.showToast({
         title: '请勾选要修改的货品',
         mask: true,
@@ -358,7 +365,6 @@ Page({
     this.setData({
       ids: idsArray
     })
-
     console.log(idsArray)
   },
   delectRequest: function () {
@@ -426,11 +432,9 @@ Page({
       storeId: app.globalData.storeId
     })
     this.page_request();
-    util.api.getProductInit();
   },
   onShow() {
     var newProduct = this.data.product;
-    console.log(app)
     if (app.newid) {
       this.setData({
         pageNum: 1
@@ -438,14 +442,10 @@ Page({
       this.page_request();
       app.newid = "";
     } else if (app.updataGoodsInfo) {
-      console.log(5)
       for (var p in newProduct) {
-        console.log(newProduct[p].id)
-        console.log(app.updataGoodsInfo.id)
         if (newProduct[p].id == app.updataGoodsInfo.id) {
           newProduct[p].name = app.updataGoodsInfo.name;
           newProduct[p].image = app.updataGoodsInfo.image;
-          console.log(newProduct[p].name)
           break;
         }
       }
@@ -454,7 +454,6 @@ Page({
       })
       app.updataGoodsInfo = {};
     } else if (app.getFilterData || app.searchValue) {
-      console.log(11)
       this.setData({
         pageNum: 1,
         product: [],
@@ -465,6 +464,7 @@ Page({
       })
       this.page_request();
       app.getFilterData = [];
+      app.searchValue = null;
     }
   }
 });

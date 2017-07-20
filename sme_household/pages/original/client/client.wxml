@@ -69,25 +69,22 @@
       <checkbox checked="{{checkedClear}}"/>全选
     </label>
   </checkbox-group>
-  <view class="batch_button_ok bg_g" bindtap="batch_ok" style="height:{{delete_button}}px;">完成</view>
-  <view class="batch_button" bindtap="batch_delete_sure" style="height:{{delete_button}}px;">删除</view>
+  <view class="batch_button_ok bg_g" wx:if="{{type==1}}"  bindtap="batch_ok" style="height:{{delete_button}}px;">完成</view>
+  <view class="batch_button" wx:if="{{type==1}}" data-name="delect"  bindtap="batch_delete_sure" style="height:{{delete_button}}px;">删除</view>
   <!--清空积分按钮-->
-  <checkbox-group class="batch_button_all" bindchange="SelectallOrNot"  style="height:{{points_button}}px;">
-    <label class="checkbox">
-      <checkbox  checked="{{checkedClear}}"/>全选
-    </label>
-  </checkbox-group>
-  <view class="batch_button_ok" bindtap="batch_ok" style="height:{{points_button}}px;">取消</view>
-  <view class="batch_button bg_g" bindtap="batch_points_sure" style="height:{{points_button}}px;">清空</view>
-
+  <view class="batch_button_ok" wx:if="{{type==2}}"  bindtap="batch_ok" style="height:{{delete_button}}px;">取消</view>
+  <view class="batch_button bg_g" wx:if="{{type==2}}"  bindtap="batch_points_sure" style="height:{{delete_button}}px;">清空</view>
+ <!--分享图片按钮-->
+  <view class="batch_button_ok" wx:if="{{type==3}}"  bindtap="batch_ok" style="height:{{delete_button}}px;">取消</view>
+  <view class="batch_button bg_g" wx:if="{{type==3}}"  bindtap="batch_delete_sure" data-name="share" style="height:{{delete_button}}px;">分享</view>
 </view>
 
 
 <!--更多功能-->
 <view class="more_function_cover {{animation}}" bindtap="more_function_close" style="display:{{more_function_display}};"></view>
 <view class="more_function {{animation}}" style="display:{{more_function_display}};">
-  <view class="more_function_view" bindtap="batch_delete">批量删除</view>
-  <view class="more_function_view" bindtap="batch_points">清空积分</view>
+  <view class="more_function_view"  data-type="1" bindtap="batchType">批量删除</view>
+  <view class="more_function_view"  data-type="2" bindtap="batchType">清空积分</view>
 </view>
 
 <!--扫码添加-->

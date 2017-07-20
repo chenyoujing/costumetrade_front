@@ -272,6 +272,15 @@ clearStorage:function(name){
       })
     }, 300)
   },
+  // 为多功能键赋值type
+  batchType: function (e) {
+    var type = e.target.dataset.type;
+    this.setData({
+      type: type
+    })
+    this.batch_delete()
+  },
+  
   // 批量删除
   batch_delete: function () {
     this.batch_ok()
@@ -281,6 +290,7 @@ clearStorage:function(name){
     })
     this.more_function_close();
   },
+
   // 全选全不选
   SelectallOrNot: function () {
     this.setData({
@@ -294,37 +304,69 @@ clearStorage:function(name){
     this.setData({
       select_checkbox: '0',
       delete_button: '0',
-      points_button: '0',
       ids: [],
       checkedClear: false
     })
   },
   // 批量删除
-  batch_delete_sure: function () {
+  batch_delete_sure: function (e) {
+    var name = e.target.dataset.name;
     var idsArray = this.data.ids;
     if (idsArray.length == 0 && !this.data.checkAllTag) {
       wx.showToast({
-        title: '请勾选要删除的货品',
+        title: '请勾选联系人',
         mask: true,
         duration: 2000
       })
     } else {
-      this.delectRequest();
+      if (name == "delect"){
+        this.delectRequest();
+      }else{
+        this.saveShareInfoToCustomers();
+      }
       this.batch_ok();
     }
   },
-  // 清空积分
-  batch_points: function () {
-    this.batch_ok()
-    this.setData({
-      select_checkbox: '50',
-      points_button: '40',
-    })
-    this.more_function_close();
-  },
+ 
   // 清空积分
   batch_points_sure: function () {
     
+  },
+  // 分享图片到客户
+  saveShareInfoToCustomers:function(){
+    var that = this;
+    var ids = this.data.ids;
+    wx.showNavigationBarLoading()
+    util.api.request({
+      url: 'product/saveShareInfoToCustomers',
+      data: {
+        promoterStoreid:app.globalData.storeId,
+        clientIds:ids,
+        title: app.globalData.userInfo.name,
+        productIdArray: that.data.productIdArray,
+        checkAllTag:that.data.checkAllTag
+      },
+      method: 'POST',
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      success: function (res) {
+        wx.hideNavigationBarLoading();
+        that.setData({
+          ids: [],
+          checkedClear: false,
+          checkAllTag: false
+        })
+        wx.showToast({
+          title: '成功',
+          mask: true,
+          duration: 2000
+        })
+        wx.navigateBack({
+          delta: 1,
+        })
+      }
+    })
   },
   setdata:function(data){
     this.setData(data)
@@ -353,11 +395,15 @@ clearStorage:function(name){
     this.cancel()
   },
   onLoad: function (e) {
-    var that = this
+    // 分享货品初始化
+    this.setData({
+      productIdArray: JSON.parse(e.ids),
+      type: e.goodshare ? 3:undefined
+    })
+    if (e.goodshare){
+      this.batch_delete()
+    }
     this.initCustomer()
-    console.log(typeof (new Date(Date.now() - 86400000)))
-    console.log(new Date)
-
   },
   onShow:function(){
     this.setData({

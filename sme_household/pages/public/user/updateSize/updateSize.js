@@ -62,12 +62,25 @@ Page({
       success: function (res) {
         wx.hideNavigationBarLoading();
         var product = size == "true" ? that.data.size : that.data.sizeProduct;
-        var name = size == "true" ? 'size' :"sizeProduct"
+        var name = size == "true" ? 'size' :"sizeProduct";
+        var sizeName = e.target.dataset.name;
         var param = {};
         product.splice(index, 1)
-        param[name] = product
+        param[name] = product;
         that.setData(param)
-      }
+        // 删除尺码的时候判断是不是默认尺码
+          wx.getStorage({
+            key: 'defaultSize',
+            complete: function (res) {
+              if (res.data == sizeName) {
+                wx.setStorage({
+                  key: 'defaultSize',
+                  data: "",
+                })
+              }
+            },
+          })
+        }
     })
   },
   // 删除询问

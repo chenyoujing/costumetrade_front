@@ -24,7 +24,7 @@
 
     <view class="update_option" wx:for="{{size}}">
       <view class="option_num" style="width:20%;">{{index+1}}.</view>
-      <image src="../../../../images/delete_2.png" mode="aspectFit" class="option_delete" data-size="true" data-id="{{item.id}}" data-index="{{index}}" bindtap="delete"/>
+      <image src="../../../../images/delete_2.png" mode="aspectFit" class="option_delete" data-size="true"  data-name="{{item.sizename}}" data-id="{{item.id}}" data-index="{{index}}" bindtap="delete"/>
       <view class="option_text one_line">{{item.sizename}}</view>
     </view>
   </scroll-view>
@@ -39,7 +39,7 @@
   <scroll-view scroll-y class="sizes_container">
     <view class="update_option" wx:for="{{sizeProduct}}">
       <view class="option_num" style="width:10%;">{{index+1}}.</view>
-      <image src="../../../../images/delete_2.png" mode="aspectFit" class="option_delete" data-size="false" data-id="{{item.id}}" data-index="{{index}}" bindtap="delete"/>
+      <image src="../../../../images/delete_2.png" mode="aspectFit" class="option_delete" data-size="false" data-name="{{item.value}}" data-id="{{item.id}}" data-index="{{index}}" bindtap="delete"/>
       <view class="option_text one_line" style="width:45%;float:left;">{{item.customname}}</view>
       <view class="option_text one_line">{{item.value}}</view>
     </view>

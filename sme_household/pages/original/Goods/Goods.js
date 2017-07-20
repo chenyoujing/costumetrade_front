@@ -426,11 +426,10 @@ Page({
       storeId: app.globalData.storeId
     })
     this.page_request();
-    util.api.getProductInit();
+    // util.api.getProductInit();
   },
   onShow() {
     var newProduct = this.data.product;
-    console.log(app)
     if (app.newid) {
       this.setData({
         pageNum: 1
@@ -438,7 +437,6 @@ Page({
       this.page_request();
       app.newid = "";
     } else if (app.updataGoodsInfo) {
-      console.log(5)
       for (var p in newProduct) {
         console.log(newProduct[p].id)
         console.log(app.updataGoodsInfo.id)
@@ -466,7 +464,7 @@ Page({
       })
       this.page_request();
       app.getFilterData = [];
-      app.searchValue = ""
+      app.searchValue = null
     }
   }
 });
