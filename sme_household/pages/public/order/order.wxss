@@ -192,7 +192,7 @@
   height: 35px;
   font-size: 14px;
   color: #000000;
-  background-color: #E5E5E5;
+  background-color: #F3F3F3;
   text-align: center;
   line-height: 35px;
 }
@@ -207,6 +207,9 @@
 .btn_3{
   border: 1px solid #BEBEBE;
   background-color: #ffffff;
+}
+.btn_4{
+  background-color: #E5E5E5;
 }
 
 

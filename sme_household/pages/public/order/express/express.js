@@ -355,8 +355,8 @@ Page({
   },
   onLoad:function(e){
     this.setData({
-      orderNo: "170717220124117440"||e.orderNo,
-      logistics: '中通'||e.logistics,
+      orderNo: e.orderNo,
+      logistics: e.logistics,
       buyerstoreid: e.buyerstoreid,
     })
     this.logisticInit()
