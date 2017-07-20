@@ -447,11 +447,9 @@ Page({
           var totalProduct = []
           var newid = res.data;
           wx.hideNavigationBarLoading();
-          wx.showToast({
-            title: '保存成功',
-            mask: true,
-            duration: 2000
-          })
+          if (objectSubmit.sizes || objectSubmit.colors){
+            that.defaultColorandSize(objectSubmit.sizes, objectSubmit.colors)
+          }
           // 货品
           wx.getStorage({
             key: 'GoodsData',
@@ -470,7 +468,6 @@ Page({
               } else {
                 objectSubmit.id = newid;
                 totalProduct.unshift(objectSubmit)
-                console.log(totalProduct)
               }
               wx.setStorage({
                 key: "GoodsData",
@@ -489,6 +486,11 @@ Page({
           if (objectSubmit.name || objectSubmit.image || objectSubmit.tagprice) {
             app.updataGoodsInfo = that.data.GoodsInfoData;
           }
+          wx.showToast({
+            title: '保存成功',
+            mask: true,
+            duration: 2000
+          })
           wx.navigateBack({
             delta: 1
           })
@@ -501,6 +503,41 @@ Page({
         duration: 2000
       })
     }
+  },
+  // 缓存默认的颜色尺码
+  defaultColorandSize:function(size,color){
+    if(size){
+      wx.setStorage({
+        key: 'defaultSize',
+        data: size,
+      })
+    } 
+    if (color){
+      wx.setStorage({
+        key: 'defaultColor',
+        data: color,
+      })
+    }
+  },
+  // 获取默认尺码颜色
+  getdefaultColorandSize: function () {
+      var that = this;
+      wx.getStorage({
+        key: 'defaultSize',
+        complete: function(res) {
+          that.setData({
+            'GoodsInfoData.sizes': res.data||""
+          })
+        },
+      })
+      wx.getStorage({
+        key: 'defaultColor',
+        complete: function (res) {
+          that.setData({
+            'GoodsInfoData.colors': res.data || ""
+          })
+        },
+      })
   },
     // 检测吊牌价与进货价是否存在
   checkboxChange: function (e) {
@@ -685,7 +722,6 @@ Page({
         year: new Date().getFullYear()
       },
       brand: app.screen_brandList[0]?app.screen_brandList[0].brandname:'',
-      // sizes: app.screen_productSize[0].value,
       unit: app.screen_unitList[0] ?app.screen_unitList[0].unit:'',
       producttype: app.screen_productTypeList[0] ?app.screen_productTypeList[0].catename:""
     
@@ -700,6 +736,7 @@ Page({
     }else{
       this.initializeData();
       this.GoodsImage();
+      this.getdefaultColorandSize()
     }
    
   },

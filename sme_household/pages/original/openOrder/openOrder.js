@@ -731,9 +731,6 @@ Page({
       object.isPattern = this.data.GoodsDetail.isPattern
     }
     for(var p in shopCart){
-      console.log(shopCart[p].upData)
-      console.log(shopCart[p].productid)
-      console.log(object.productid)
       if (shopCart[p].upData){
         shopCart[p] = object;
         add = false;
