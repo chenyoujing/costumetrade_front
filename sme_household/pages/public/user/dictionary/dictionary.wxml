@@ -31,7 +31,7 @@
           <text>您还没有添加店员</text>
         </view>
         <view style="padding:10px;" wx:for="{{employeeProduct}}">
-          <view class="staff clearfix">
+          <view class="staff">
             <image src="{{item.image ? item.image : '../../../../images/image_none.png'}}" mode="aspectFill" class="staff_tx" />
             <view class="staff_info clearfix">
               <view class="staff_info_text">名称：{{item.reallyName || item.nickName}}</view>
