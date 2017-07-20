@@ -1,4 +1,5 @@
 var util = require('../../../../utils/util.js')
+var reg = require('../../../../utils/reg.js')
 var app = getApp()
 Page({
   data: {
@@ -8,7 +9,7 @@ Page({
     var that = this
     wx.chooseAddress({
       success: function (res) {
-        switch (e.target.dataset.type) {
+        switch (e.currentTarget.dataset.type) {
           case ("consignee"):
             that.setData({
               "sender.address": res.detailInfo,
@@ -18,6 +19,7 @@ Page({
               "sender.cityName": res.cityName,
               "sender.countyName":res.countyName,
               "sender.postalCode": res.postalCode,
+              "regobject.sender":{}
             })
             break;
           case ("deliver"):
@@ -29,6 +31,7 @@ Page({
               "receiver.cityName": res.cityName,
               "receiver.countyName": res.countyName,
               "receiver.postalCode": res.postalCode,
+              "regobject.receiver": {}
             })
             break;
         }
@@ -59,12 +62,12 @@ Page({
         console.log(sender.city)
         var sender_city = sender.city.split(',')
         var receiver_city = receiver.city.split(',')
-        sender.provinceName = sender_city[0]
-        sender.cityName = sender_city[1]
-        sender.countyName = sender_city[2]
-        receiver.provinceName = receiver_city[0]
-        receiver.cityName = receiver_city[1]
-        receiver.countyName = receiver_city[2]
+        sender.provinceName = sender_city[0] == 'null' ? '' : sender_city[0]
+        sender.cityName = sender_city[1] == 'null' ? '' : sender_city[1]
+        sender.countyName = sender_city[2] == 'null' ? '' : sender_city[2]
+        receiver.provinceName = receiver_city[0] == 'null' ? '' : receiver_city[0]
+        receiver.cityName = receiver_city[1] == 'null' ? '' : receiver_city[1]
+        receiver.countyName = receiver_city[2] == 'null' ? '' : receiver_city[2]
         sender.city
         that.setData({
           sender: res.data[1],
@@ -74,50 +77,101 @@ Page({
       }
     })
   },
+  // 正则验证
+  reg: function (e) {
+    var type = e.currentTarget.dataset.name;
+    var name = e.currentTarget.dataset.name;
+    console.log(reg)
+    var boolean = false;
+    var regobject = "regobject." + type + '.' + name;
+    var param = {};
+    boolean = reg.iSnull(e.detail.value);
+    param[regobject] = !boolean;
+    this.setData(param)
+  },
+  // 提交表单
   expressSubmit: function (e) {
-    console.log(1)
-    switch (this.data.logistics){
-      case ('顺丰'):
-        this.expressSF(e)
+    var value = e.detail.value
+    var sender = this.data.sender || {}
+    var receiver = this.data.receiver || {}
+    var regobject = {}
+    regobject.sender = {}
+    regobject.receiver = {}
+    console.log(value)
+    switch ('') {
+      case (value.consigneeCompany):
+        regobject.sender.company = true
         break;
-      case ('中通'):
-        this.expressZTO(e)
+      case (value.senderUserName):
+        regobject.sender.contact = true
         break;
-      case ('韵达'):
-        this.expressYD(e)
+      case (value.senderMobile):
+        regobject.sender.tel = true
         break;
-      case (''||undefined):
-        wx.showToast({
-          title: '您还没有选择快递公司',
-        })
+      case (value.senderAddress):
+        regobject.sender.address = true
         break;
-      default :
-      wx.showToast({
-        title: '暂不支持这种快递',
-      })
-    }
+      case (sender.cityName && sender.provinceName && sender.countyName):
+        regobject.sender.city = true
+        break;
 
+      case (value.deliverCompany):
+        regobject.receiver.company = true
+        break;
+      case (value.receiverUserName):
+        regobject.receiver.contact = true
+        break;
+      case (value.receiverMobile):
+        regobject.receiver.tel = true
+        break;
+      case (value.receiverAddress):
+        regobject.receiver.address = true
+        break;
+      case (receiver.cityName && receiver.provinceName && receiver.countyName):
+        regobject.receiver.city = true
+        break;
+      default:
+
+        switch (this.data.logistics){
+          case ('顺丰'):
+            this.expressSF(e)
+            break;
+          case ('中通'):
+            this.expressZTO(e)
+            break;
+          case ('韵达'):
+            this.expressYD(e)
+            break;
+          case (''||undefined):
+            wx.showToast({
+              title: '您还没有选择快递公司',
+            })
+            break;
+          default :
+          wx.showToast({
+            title: '暂不支持这种快递',
+          })
+        }
+    }
+    this.setData({
+      regobject: regobject,
+    })
   },
   // 提交快递单/顺丰
   expressSF:function(e){
     var that = this;
     var value = e.detail.value 
-    var sender = this.data.sender || []
-    var receiver = this.data.receiver || []
-    sender.regobject = {}
+    var sender = this.data.sender || {}
+    var receiver = this.data.receiver || {}
 
     var consigneeInfo = {}
-    consigneeInfo.address = sender.address
-    regobject.address = true
-    this.setData({
-      address
-    })
+    consigneeInfo.address = value.senderAddress
     consigneeInfo.city = sender.cityName
     consigneeInfo.company = value.consigneeCompany
     consigneeInfo.contact = sender.userName
     consigneeInfo.country = "中国"
     consigneeInfo.province = sender.provinceName
-    consigneeInfo.tel = sender.mobile
+    consigneeInfo.tel = value.senderMobile
     consigneeInfo.shipperCode = sender.postalCode
     
     var deliverInfo = {}
@@ -149,26 +203,26 @@ Page({
     object.isDoCall = 1
     object.isGenBillNo = 1
     console.log(object)
-    wx.showNavigationBarLoading();
-    util.api.request({
-      url: 'logistic/orderSF',
-      data: object,
-      method: 'POST',
-      header: {
-        'content-type': 'application/json'
-      },
-      success: function (res) {
-        wx.hideNavigationBarLoading();
-        wx.showToast({
-          title: res.head.message,
+        wx.showNavigationBarLoading();
+        util.api.request({
+          url: 'logistic/orderSF',
+          data: object,
+          method: 'POST',
+          header: {
+            'content-type': 'application/json'
+          },
+          success: function (res) {
+            wx.hideNavigationBarLoading();
+            wx.showToast({
+              title: res.head.message,
+            })
+          }
         })
-      }
-    })
   },
   expressZTO: function (e) {
     var value = e.detail.value
-    var Sender = this.data.sender || []
-    var Receiver = this.data.receiver || []
+    var Sender = this.data.sender || {}
+    var Receiver = this.data.receiver || {}
 
     var sender = {}
     sender.id = app.globalData.storeId
@@ -232,8 +286,8 @@ Page({
   },
   expressYD: function (e) {
     var value = e.detail.value
-    var Sender = this.data.sender || []
-    var Receiver = this.data.receiver || []
+    var Sender = this.data.sender || {}
+    var Receiver = this.data.receiver || {}
 
     var sender = {}
     sender.name = Sender.userName

@@ -1,4 +1,4 @@
-<import src="../../../template/template.wxml"/>
+<import src="../../../../template/template.wxml"/>
 
 <form bindsubmit="expressSubmit">
 <view class="title">
@@ -12,65 +12,70 @@
     <view class="content_title">寄信人信息</view>
     <view class="content_input">
       <view class="content_input_text">寄件<text>单位名称:</text></view>
-      <input type="text" class="content_input1" name="consigneeCompany" value="{{sender.name}}" />
+      <input type="text" class="content_input1" name="consigneeCompany" value="{{sender.name}}" data-type="sender" data-name="company" bindblur="reg" />
       <view class="clear"></view>
     </view>
-    <template is="reg" data="{{text:'寄件单位名称必填'}}" wx:if="{{1}}" />
+    <template is="reg" data="{{text:'寄件单位名称必填'}}" wx:if="{{regobject.sender.company}}" />
     <view class="content_input">
       <view class="content_input_text">联系人:</view>
-      <input type="text" class="content_input1" value="{{sender.userName}}" />
+      <input type="text" class="content_input1" name="senderUserName" value="{{sender.userName}}" data-type="sender" data-name="contact" bindblur="reg" />
       <image src="../../../../images/map.png" mode="aspectFit" class="image_map" bindtap="address" data-type="consignee" />
       <view class="clear"></view>
     </view>
-    <template is="reg" data="{{text:'寄件联系人必填'}}" wx:if="{{1}}" />
+    <template is="reg" data="{{text:'寄件联系人必填'}}" wx:if="{{regobject.sender.contact}}" />
     <view class="content_input">
       <view class="content_input_text">联系电话:</view>
-      <input type="text" class="content_input1" value="{{sender.mobile||sender.phone}}" />
+      <input type="text" class="content_input1" name="senderMobile" value="{{sender.mobile||sender.phone}}" data-type="sender" data-name="tel" bindblur="reg" />
       <view class="clear"></view>
     </view>
-    <template is="reg" data="{{text:'寄件联系电话必填'}}" wx:if="{{1}}" />
+    <template is="reg" data="{{text:'寄件联系电话必填'}}" wx:if="{{regobject.sender.tel}}" />
     <view class="content_input">
       <view class="content_input_text">地址:</view>
       <input disabled type="text" class="content_input1" value="{{sender.provinceName}},{{sender.cityName}},{{sender.countyName}}" />
       <view class="clear"></view>
     </view>
-    <template is="reg" data="{{text:'寄件地址必填(省市区)'}}" wx:if="{{1}}" />
+    <template is="reg" data="{{text:'寄件地址必填(省市区)'}}" wx:if="{{regobject.sender.city}}" />
     <view class="content_input">
       <view class="content_input_text">详细地址:</view>
-      <input type="text" class="content_input1" value="{{sender.address}}" />
+      <input type="text" class="content_input1" name="senderAddress"  value="{{sender.address}}" data-type="sender" data-name="address" bindblur="reg" />
       <view class="clear"></view>
     </view>
-    <template is="reg" data="{{text:'寄件详细地址必填'}}" wx:if="{{1}}" />
+    <template is="reg" data="{{text:'寄件详细地址必填'}}" wx:if="{{regobject.sender.address}}" />
   </view>
 
   <view class="express_content">
     <view class="content_title">收件人信息</view>
     <view class="content_input">
-      <view class="content_input_text">寄件<text>单位名称:</text></view>
-      <input type="text" class="content_input1" name="deliverCompany" value="{{receiver.name}}" />
+      <view class="content_input_text">收件<text>单位名称:</text></view>
+      <input type="text" class="content_input1" name="deliverCompany" value="{{receiver.name}}" data-type="receiver" data-name="company" bindblur="reg" />
       <view class="clear"></view>
     </view>
+    <template is="reg" data="{{text:'收件单位名称必填'}}" wx:if="{{regobject.receiver.company}}" />
     <view class="content_input">
       <view class="content_input_text">联系人:</view>
-      <input type="text" class="content_input1" name="name" value="{{receiver.userName}}" />
+      <input type="text" class="content_input1" name="receiverUserName" value="{{receiver.userName}}" data-type="receiver" data-name="contact" bindblur="reg" />
       <image src="../../../../images/map.png" mode="aspectFit" class="image_map" bindtap="address" data-type="deliver" />
       <view class="clear"></view>
     </view>
+    <template is="reg" data="{{text:'收件联系人必填'}}" wx:if="{{regobject.receiver.contact}}" />
     <view class="content_input">
       <view class="content_input_text">联系电话:</view>
-      <input type="text" class="content_input1" name="name" value="{{receiver.mobile||receiver.phone}}" />
+      <input type="text" class="content_input1" name="receiverMobile" value="{{receiver.mobile||receiver.phone}}" data-type="receiver" data-name="tel" bindblur="reg" />
       <view class="clear"></view>
     </view>
+    <template is="reg" data="{{text:'收件联系电话必填'}}" wx:if="{{regobject.receiver.tel}}" />
     <view class="content_input">
       <view class="content_input_text">地址:</view>
       <input disabled type="text" class="content_input1" value="{{receiver.provinceName}},{{receiver.cityName}},{{receiver.countyName}}" />
       <view class="clear"></view>
     </view>
+    <template is="reg" data="{{text:'收件地址必填(省市区)'}}" wx:if="{{regobject.receiver.city}}" />
     <view class="content_input">
       <view class="content_input_text">详细地址:</view>
-      <input type="text" class="content_input1" name="name" value="{{receiver.address}}" />
+      <input type="text" class="content_input1" name="receiverAddress" value="{{receiver.address}}" data-type="receiver" data-name="address" bindblur="reg" />
       <view class="clear"></view>
     </view>
+    <template is="reg" data="{{text:'收件详细地址必填'}}" wx:if="{{regobject.receiver.address}}" />
   </view>
 
 

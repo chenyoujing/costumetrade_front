@@ -202,6 +202,9 @@
 .batch_button{
   flex: 2;
   background-color: #DBDBDB;
+  box-sizing: border-box;
+  border: 0 solid #ffffff;
+  border-width: 0 1px;
 }
 .batch_button_ok{
   flex: 2;
