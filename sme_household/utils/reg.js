@@ -23,6 +23,14 @@ var reg = {
      }
      return boolean;
   },
+  //正则验证输入框字数，但不是必输
+  iSlength: function (name,num) {
+    var boolean = true;
+    if (name.length >= num) {
+      boolean = false;
+    }
+    return boolean;
+  },
   //正则验证是否有中文
   iSChinese: function (temp) {
     var boolean = true;

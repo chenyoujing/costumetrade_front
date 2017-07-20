@@ -95,7 +95,6 @@ Page({
         var product = that.data.pageNum == 1 ? [] : that.data.product
         var newData = res.data[that.data.pageName];
         var booleanre = that.data.requestSwitch;
-        console.log()
         for (var p in newData){
           newData[p].ordertime = util.toDate(newData[p].ordertime);
           product.push(newData[p]);

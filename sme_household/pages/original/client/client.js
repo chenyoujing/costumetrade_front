@@ -73,7 +73,9 @@ Page({
       },
       success: function (res) {
         wx.hideNavigationBarLoading();
-        var ClientsList = res.data
+        var ClientsList = res.data;
+        var data = that.data.ClientsList
+        var booleanre = that.data.requestSwitch;
         //把1,2,3...变为 普通会员,银卡会员,金卡会员...
         for (var p in ClientsList) {
           ClientsList[p].catenum = ClientsList[p].cate
@@ -84,8 +86,6 @@ Page({
           }
         }
         //分页
-        var data = that.data.ClientsList
-        var booleanre = that.data.requestSwitch;
         if (that.data.pageNum == 1) {
          data = res.data == 1000 ? data : res.data;
         } else {

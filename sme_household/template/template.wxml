@@ -72,8 +72,8 @@
 <template name="searchTitle">
   <view class="template_search_title">
     <view class="template_search_title_view">
-      <input type="text" placeholder="{{text}}" />
-      <image src="../../../images/search.png" mode="aspectFit"/>
+      <input type="number" value="{{payorderno}}" bindinput="EventHandle" data-name="payorderno" placeholder="{{text}}" />
+      <image src="../../../images/search.png" data-search = "true" bindtap="searchOrcanleOrder" mode="aspectFit"/>
     </view>
     <navigator open-type="navigateBack" class="template_search_title_back" wx:if="{{back}}">
       <image src="../../../images/back-away.png" mode="aspectFit" class="title_image_back" />

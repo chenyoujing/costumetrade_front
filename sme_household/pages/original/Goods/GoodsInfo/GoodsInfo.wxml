@@ -16,8 +16,9 @@
       </view>
       <view class="upload_input clearfix">
         <view class="upload_input_text">名称:</view>
-        <input type="text" class="upload_input1" bindinput="blurInput" data-name="name" name="name" value="{{GoodsInfoData.name}}" placeholder="*" placeholder-class="required" />
+        <input type="text" class="upload_input1"  bindblur="reg" bindinput="blurInput" data-name="name" name="name" value="{{GoodsInfoData.name}}" placeholder="*" placeholder-class="required" />
       </view>
+      <template is="reg" wx:if="{{regobject.name == false}}" data="{{text: '名字的长度不能超过50'}}"/>
       <view class="upload_input clearfix">
         <navigator url="../GoodsImage/GoodsImage" class="imagesearch">
           <image src="../../../../images/search.png" mode="aspectFit" class="imagesearch_image" />

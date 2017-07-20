@@ -9,7 +9,7 @@
     <input class="title_input" type="text" name="search" placeholder="货号" bindinput="bindKeyInput" />
   </view>
 
-  <scroll-view scroll-y="true" class="content">
+  <scroll-view scroll-y="true" class="content" lower-threshold="10" bindscrolltolower="{{loadMore?'onReachBottom':''}}" >
     <view style="padding:10px;" wx:for="{{product}}">
       <view class="content_container clearfix" >
         <image src="{{item.image ? item.image : '../../../../images/image_none.png'}}" mode="aspectFill" />

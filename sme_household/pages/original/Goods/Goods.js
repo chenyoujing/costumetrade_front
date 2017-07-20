@@ -466,6 +466,7 @@ Page({
       })
       this.page_request();
       app.getFilterData = [];
+      app.searchValue = ""
     }
   }
 });

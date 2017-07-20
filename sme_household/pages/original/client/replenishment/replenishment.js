@@ -6,7 +6,10 @@ Page({
     clientType: "",
     product:[],
     name: '',
-    cate: ''
+    cate: '',
+    pageNum:1,
+    loadMore: true,
+    requestSwitch: true
   },
   Replenishment_requst:function(){
     wx.showNavigationBarLoading()
@@ -16,7 +19,8 @@ Page({
       data: {
         clientId: this.data.clientId,
         openid: app.globalData.openid,
-        clientType: this.data.clientType
+        clientType: this.data.clientType,
+        pageNum: that.data.pageNum
       },
       method: 'POST',
       header: {
@@ -24,15 +28,42 @@ Page({
       },
       success: function (res) {
         wx.hideNavigationBarLoading();
-        console.log(res.data)
+        var data = that.data.product;
+        var booleanre = that.data.requestSwitch;
         for(var p in res.data){
           res.data[p].image = util.api.imgUrl + res.data[p].image;
         }
+        if (that.data.pageNum == 1) {
+          data = res.data;
+        } else {
+          for (var p in res.data) {
+            data.push(res.data[p])
+          }
+        }
+        if (res.data.length < 10) {
+          booleanre = false;
+        } else {
+          booleanre = true;
+        }
         that.setData({
-          product:res.data
+          product: data,
+          loadMore: true,
+          requestSwitch: booleanre
         })
       }
     })
+  },
+  // 上拉加载
+  onReachBottom: function () {
+    console.log('到底不了')
+    this.setData({
+      pageNum: this.data.pageNum + 1,
+      loadMore: false
+    });
+    console.log(this.data.pageNum)
+    if (this.data.requestSwitch) {
+      this.Replenishment_requst();
+    }
   },
   // 相应的跳转
   skipUrl:function(e){

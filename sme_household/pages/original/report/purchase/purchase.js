@@ -179,6 +179,7 @@ Page({
       })
       this.purchase_request();
       app.getFilterData = [];
+      app.searchValue =""
     }
   }
 })

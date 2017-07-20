@@ -92,7 +92,10 @@ Page({
           priceUpdate: true
         })
       }
-    }else{
+    } else if (name == "name") {
+      boolean = reg.iSlength(e.detail.value,50);
+    }
+    else{
       boolean = reg.iSnull(e.detail.value);
     }
     param[regobject] = boolean;
@@ -361,7 +364,11 @@ Page({
    // 提交修改或新增货品
   submitGoodsInfo: function (target){
     var that = this;
-   
+    target.firsthPrice = this.data.picker_view[0].price ? this.data.picker_view[0].price : 0;
+    target.secondPrice = this.data.picker_view[1].price ? this.data.picker_view[1].price : 0;
+    target.thirdPrice = this.data.picker_view[2].price ? this.data.picker_view[2].price : 0;
+    target.fourthPrice = this.data.picker_view[3].price ? this.data.picker_view[3].price : 0;
+    target.fifthPrice = this.data.picker_view[4].price ? this.data.picker_view[4].price : 0;
     if (this.data.GoodsInfoData.image) {
       target.image = this.data.GoodsInfoData.image.replace(/http:\/\/ot84hx5jl.bkt.clouddn.com/g, '');
     }
@@ -425,13 +432,6 @@ Page({
       objectSubmit.id = undefined,
       objectSubmit.name = target.code + target.name
     }
-    objectSubmit.firsthPrice = this.data.picker_view[0].price ? this.data.picker_view[0].price : 0;
-    objectSubmit.secondPrice = this.data.picker_view[1].price ? this.data.picker_view[1].price : 0;
-    objectSubmit.thirdPrice = this.data.picker_view[2].price ? this.data.picker_view[2].price : 0;
-    objectSubmit.fourthPrice = this.data.picker_view[3].price ? this.data.picker_view[3].price : 0;
-    objectSubmit.fifthPrice = this.data.picker_view[4].price ? this.data.picker_view[4].price : 0;
-    objectSubmit.tagprice = target.tagprice;
-    objectSubmit.purchaseprice = target.purchaseprice;
     objectSubmit.isModify = this.data.GoodsInfoData.isModify;
     console.log(objectSubmit);
     if (objectSubmit !== null){

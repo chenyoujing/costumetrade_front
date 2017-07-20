@@ -460,6 +460,7 @@ Page({
     for (var p in endArray4){
       endArray4[p].timeUp = util.toDate(endArray4[p].timeUp);
       endArray4[p].showPrice = endArray4[p][this.data.saleChangeName];
+      endArray4[p].image1 = endArray4[p].image ? util.api.imgUrl + endArray4[p].image : '';
     }
     this.setData({
       keyArray: endArray4
@@ -730,10 +731,13 @@ Page({
       object.isPattern = this.data.GoodsDetail.isPattern
     }
     for(var p in shopCart){
+      console.log(shopCart[p].upData)
+      console.log(shopCart[p].productid)
+      console.log(object.productid)
       if (shopCart[p].upData){
         shopCart[p] = object;
         add = false;
-      }else if (shopCart[p].productId == object.productId && shopCart[p].productcolor == object.productcolor && shopCart[p].productsize == object.productsize){
+      }else if (shopCart[p].productid == object.productid && shopCart[p].productcolor == object.productcolor && shopCart[p].productsize == object.productsize){
         shopCart[p].count = parseInt(object.count) + parseInt(shopCart[p].count);
         add = false;
       }

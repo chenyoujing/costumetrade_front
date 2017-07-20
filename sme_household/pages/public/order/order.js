@@ -2,8 +2,8 @@ var util = require('../../../utils/util.js')
 var app = getApp()
 Page({
   data:{
-    ordertype:1,
-    ordertype2:1,
+    ordertype:1,//一级标签
+    ordertype2: 1,//二级标签
     product:[],
     page:1,
     openid: 1,
@@ -25,11 +25,13 @@ Page({
     logisticsname_index:0,
     logisticFees:[],
     updateModal:true,
+    payorderno:null//订单查询输入的单号
   },
   EventHandle:function(e){
-    this.setData({
-      logisticsno:e.detail.value
-    })
+    var name = e.target.dataset.name;
+    var param = {};
+    param[name]= e.detail.value;
+    this.setData(param)
   },
   // 扫物流单号
   logistics_sacn:function(){
@@ -51,44 +53,41 @@ Page({
           logisticsname_index: logisticsname
         })
   },
-  // // 一级标签切换
-  // ordertype:function(e){
-  //   var num = e.currentTarget.dataset.ordertype;
-  //   var ordertype2
-  //   if (num == 1) {
-  //     ordertype2 = 1
-  //   }else if (num == 2) {
-  //     ordertype2 = 4
-  //   }
-  //   this.setData({
-  //     ordertype : num,
-  //     ordertype2: ordertype2,
-  //     page:1
-  //   })
-  //   this.order_request();
-  // },
+  // 搜索订单
+  searchOrcanleOrder:function(e){
+    var search = e.target.dataset.search;
+    this.setData({
+      page:1
+    })
+    this.order_request(search)
+  },
    // 二级标签切换
   ordertype2:function(e){
     var num = e.currentTarget.dataset.ordertypetwo;
     this.setData({
       ordertype2: num,
       page: 1,
-      requestSwitch:true
+      requestSwitch:true,
+      payorderno:""
     })
-    this.order_request();
+    this.order_request(false);
   },
   // ajax请求
-  order_request:function(){
+  order_request:function(search){
     var that = this;
     wx.showNavigationBarLoading();
+    var filterObject = {
+      openid: app.globalData.openid,
+      ordertype: this.data.ordertype,
+      orderstatus: this.data.ordertype2,
+      pageNum: this.data.page
+    }
+    if (search){
+      filterObject.payorderno = that.data.payorderno
+    }
     util.api.request({
       url: this.data.url,
-      data: {
-        openid: app.globalData.openid,
-        ordertype: this.data.ordertype,
-        orderstatus: this.data.ordertype2,
-        pageNum: this.data.page
-      },
+      data: filterObject,
       method: 'POST',
       header: {
         'content-type': 'application/x-www-form-urlencoded'
@@ -150,8 +149,8 @@ Page({
           totole.sNoPayCount -= 1;
         } else if (this.data.ordertype == 1 && this.data.ordertype2 == 1){
           totole.sNoAuditCount -= 1;
-        } else if (this.data.ordertype == 1 && this.data.ordertype2 == 1){
-
+        } else if (this.data.ordertype == 2 && this.data.ordertype2 == 6){
+          totole.sNoAuditCount -= 1;
         }
         break;
       case "8":

@@ -1,6 +1,6 @@
 <import src="../../../template/template.wxml"/>
 <!--订单头部-->
-<template is="searchTitle" data="{{text:'单号查询...',back:shopkeeper}}"></template>
+<template is="searchTitle" data="{{text:'单号查询...',back:shopkeeper,EventHandle:EventHandle,payorderno:payorderno}}"></template>
 
 
 <!--订单类型分类-->
@@ -75,7 +75,7 @@
       </view>
       <view class="clear"></view>
     </navigator>
-    <view class="order_container_button" bindtap="changeOrderStatus" data-status='6' data-orderNo="{{item.payorderno}}" data-sellerstoreid="{{item.sellerstoreid}}" data-buyerstoreid="{{item.buyerstoreid}}">取消订单</view>      
+    <view class="order_container_button" wx:if="{{item.orderstatus==1 || item.orderstatus==3}}" bindtap="changeOrderStatus" data-status='6' data-orderNo="{{item.payorderno}}" data-sellerstoreid="{{item.sellerstoreid}}" data-buyerstoreid="{{item.buyerstoreid}}">取消订单</view>      
     <navigator url="payOrder/payOrder?operate=2&orderno={{item.payorderno}}&buyerid={{item.buyerstoreid}}&sellerid={{item.sellerstoreid}}&pay={{item.debetamt}}"  wx:if="{{item.orderstatus == 3}}">
       <view class="order_container_button btn_1">付款</view>      
     </navigator>
@@ -106,6 +106,7 @@
       </view>
       <view class="clear"></view>
     </navigator>
+    <view class="order_container_button" wx:if="{{item.orderstatus==1 || item.orderstatus==3}}" bindtap="changeOrderStatus" data-status='6' data-orderNo="{{item.payorderno}}" data-sellerstoreid="{{item.sellerstoreid}}" data-buyerstoreid="{{item.buyerstoreid}}">取消订单</view>   
     <view class="order_container_button btn_1"  bindtap="changeOrderStatus" data-status='' data-orderNo="{{item.payorderno}}" data-sellerstoreid="{{item.sellerstoreid}}" data-buyerstoreid="{{item.buyerstoreid}}">催单</view>
     <view class="clear"></view>
   </view>
@@ -201,7 +202,8 @@
     </navigator>
     <view class="order_container_button btn_2"  bindtap="changeOrderStatus" data-status='8' data-orderNo="{{item.payorderno}}" data-sellerstoreid="{{item.sellerstoreid}}" data-buyerstoreid="{{item.buyerstoreid}}">通过审核</view>
     <navigator url="orderDetails/orderDetails?ordertype={{ordertype}}&payorderno={{item.payorderno}}&ordertype2=4&update=true" class="order_container_button">修改订单</navigator>
-    <view class="order_container_button btn_3" bindtap="changeOrderStatus" data-status='6' data-orderNo="{{item.payorderno}}" data-sellerstoreid="{{item.sellerstoreid}}" data-buyerstoreid="{{item.buyerstoreid}}">取消订单</view>
+   
+    <view class="order_container_button btn_3" wx:if="{{item.orderstatus==1 || item.orderstatus==3}}" bindtap="changeOrderStatus" data-status='6' data-orderNo="{{item.payorderno}}" data-sellerstoreid="{{item.sellerstoreid}}" data-buyerstoreid="{{item.buyerstoreid}}">取消订单</view>
     <view class="clear"></view>
   </view>
 
@@ -232,8 +234,7 @@
     <view class="order_container_button btn_2" wx:if="{{item.debetamt >0 || item.debeButton}}" bindtap="collectView" data-status='2' data-orderNo="{{item.payorderno}}" data-debet="{{item.debetamt}}" data-sellerstoreid="{{item.sellerstoreid}}" data-buyerstoreid="{{item.buyerstoreid}}" >{{item.debetText}}</view>
 
      <view class="order_container_button" data-status='3' data-orderNo="{{item.payorderno}}"  data-sellerstoreid="{{item.sellerstoreid}}" data-buyerstoreid="{{item.buyerstoreid}}" bindtap="changeOrderStatus">配货</view>
-
-    <view class="order_container_button btn_3" bindtap="changeOrderStatus" data-status='6' data-orderNo="{{item.payorderno}}" data-sellerstoreid="{{item.sellerstoreid}}" data-buyerstoreid="{{item.buyerstoreid}}">取消</view>
+    <view class="order_container_button btn_3" wx:if="{{item.orderstatus==1 || item.orderstatus==3}}" bindtap="changeOrderStatus" data-status='6' data-orderNo="{{item.payorderno}}" data-sellerstoreid="{{item.sellerstoreid}}" data-buyerstoreid="{{item.buyerstoreid}}">取消</view>
     <view class="clear"></view>
   </view>
   <!--收付款-->
@@ -332,7 +333,7 @@
       {{logisticsname}}
   </view>
   <image src="../../../images/scan_black.png" mode="aspectFit" class="image_scan" bindtap="logistics_sacn" />
-  <input class="logistics_number" type="number" bindblur="EventHandle" value = "{{logisticsno}}" placeholder="单号" />
+  <input class="logistics_number" type="number" data-name="logisticsno" bindblur="EventHandle" value = "{{logisticsno}}" placeholder="单号" />
 </modal>
 
 

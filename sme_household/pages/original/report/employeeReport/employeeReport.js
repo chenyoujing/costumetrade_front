@@ -143,6 +143,7 @@ Page({
       })
       this.chart();
       app.getFilterData = [];
+      app.searchValue = ""
     }
   }
 })
