@@ -17,7 +17,7 @@
 
 <view  bindtap="onBluetoothDeviceFound">监听找到新设备时间</view>
 <view  bindtap="getConnectedBluetoothDevices">根据UUID获取已处于连接的设备</view>
-<view  bindtap="createBLEConnection">连接低耗蓝牙设备</view>
+<!--<view  bindtap="createBLEConnection">连接低耗蓝牙设备</view>-->
 <view  bindtap="closeBLEConnection">断开连接</view>
 <view  bindtap="onBLEConnectionStateChanged">监听错误事件</view>
-<view  bindtap="getBLEDeviceServices">获取蓝牙所有service</view>
+<view  bindtap="getBLEDeviceServices">获取蓝牙所有service服务</view>
