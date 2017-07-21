@@ -306,6 +306,7 @@ Page({
        var images =  [];
        var imageurl = [];
        var stores = [];
+       var store = {};
         for (var p in res.data.datas){
           switch (res.data.datas[p].dictGroup){
             case "PAY_TYPE":
@@ -356,6 +357,7 @@ Page({
         var logisticFees = res.data.logisticFees;
         app.customerCusts = customerCusts;
         stores = res.data.stores;
+        store = res.data.store;
         that.setData({
           payProduct: payProduct,
           feeProduct: feeProduct,
@@ -369,7 +371,8 @@ Page({
           pointExchange: pointExchange,
           payQrcode: payQrcode,
           imageurl: imageurl,
-          stores : stores          
+          stores : stores,
+          store: store        
         })
         console.log(that.data)
       }
@@ -379,6 +382,47 @@ Page({
   bankInfo:function(){
     this.setData({
       bankModal: false
+    })
+  },
+  // 更改银行卡信息
+  update_storeInfo: function (e) {
+    var that = this;
+    var objectSubmit = {};
+    switch (app.globalData.userIdentity) {
+      case 1:
+        objectSubmit.storeId = app.globalData.storeId
+        objectSubmit.type = 1;
+        break;
+      case 2:
+        objectSubmit.userid = app.globalData.userid
+        objectSubmit.type = 2
+        break;
+      case 3:
+        objectSubmit.storeId = app.globalData.storeId
+        break;
+    }
+    console.log(this.data.store.bank)
+    objectSubmit.bank = this.data.store.bank;
+    wx.showNavigationBarLoading()
+    util.api.request({
+      url: 'user/saveUserOrStore',
+      data: objectSubmit,
+      method: 'POST',
+      header: {
+        'content-type': 'application/json'
+      },
+      success: function (res) {
+        wx.hideNavigationBarLoading();
+        that.setData({
+          bankModal: true,
+          submitData: []
+        })
+        wx.showToast({
+          title: '修改成功',
+          mask: true,
+          duration: 2000
+        })
+      }
     })
   },
   // 更改启用的客户种类
@@ -432,8 +476,6 @@ Page({
   },
   // 上传图片
   photoSubmit: function (file, i,e) {
-    console.log(555)
-    
     var name = e.target.dataset.name;
     var index = e.target.dataset.index;
     var images = this.data.imageurl;
@@ -446,9 +488,6 @@ Page({
       filePath: file[i],
       name: 'file',
       success: function (res) {
-        console.log(555)
-        
-        console.log(JSON.parse(res.data))
         if (JSON.parse(res.data).code == 0){
           if (name == "images") {
             console.log(images)
@@ -477,9 +516,7 @@ Page({
   },
   // 上传图片
   chooseVideoCallback: function (e, res){
-    console.log(res)
     var tempFilePaths = res.tempFilePaths;
-    console.log(111)
     this.photoSubmit(tempFilePaths,0,e);
   },
   choosImage:function(e){
@@ -507,6 +544,8 @@ Page({
     } else if (name == "logisticFees"){
       var type = e.currentTarget.dataset.type;
       product[index][type] = e.detail.value;
+    } else if (name == "store"){
+      product.bank = e.detail.value;
     }
     param[name] = product;
     submitData[name] = product;
@@ -858,9 +897,7 @@ Page({
      var submitData = this.data.submitData;
      var newSubmitData = [];
      var url = "dictionary/saveDataDictionary"
-     console.log(submitData)
      for (var p in submitData){
-       console.log(submitData[p])
        if (p == 'imageurl'){
          var array = this.data.images;
          array.dictValue = submitData[p].join(',').replace(/http:\/\/ot84hx5jl.bkt.clouddn.com\//g, '');
@@ -871,7 +908,6 @@ Page({
           
        }else{
          for (var j in submitData[p]) {
-           console.log(submitData[p])
            newSubmitData.push(submitData[p][j])
            if (p == 'customerCusts'){
              url = 'dictionary/saveTypeOrGradeRate'
@@ -912,7 +948,6 @@ Page({
     if (!app.privilegeEmployees) {
       util.api.getProductInit();
     }
-    // this.saveChainStore()
     this.employee_request()
     this.dictionary_request()
   },
