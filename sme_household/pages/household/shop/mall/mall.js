@@ -93,23 +93,20 @@ Page({
         wx.hideNavigationBarLoading();
         var data = that.data.product;
         var booleanre = that.data.requestSwitch;
+        res.data = res.data == 1000 ? [] : res.data;
         for (var p in res.data) {
           res.data[p].createTime = util.toDate(res.data[p].createTime);
-          res.data[p].images = res.data[p].productImages.split(',');
-          res.data[p].ids = res.data[p].productIds.split(',')
-        }
-        if (that.data.pageNum == 1) {
-          data = res.data;
-        } else {
-          for (var p in res.data) {
-            data.push(res.data[p])
+          for (var j in res.data[p].products){
+            res.data[p].products[j].timeUp = util.toDate(res.data[p].products[j].timeUp);
           }
+          data.push(res.data[p])
         }
         if (res.data.length < 10) {
           booleanre = false;
         } else {
           booleanre = true;
         }
+        console.log(data.length)
         that.setData({
           product: data,
           loadMore: true,
