@@ -21,11 +21,11 @@
 </scroll-view>
 <scroll-view scroll-y class="pay_scroll"  wx:if="{{payType == '转账'}}">
   <view class="pay_title">转账给</view>
-
+  <view class="shop_name">{{seller}}</view>
   <view class="pay_text" style="text-align:center;width:unset;">
-    <view>姓名：孙然</view>
-    <view>开户银行：邮政</view>
-    <view>开户账号：5993383848557635</view>
+    <view>{{bankPay?bankPay:'对方没有上传银行卡信息'}}</view>
+    <!--<view>开户银行：邮政</view>
+    <view>开户账号：5993383848557635</view>-->
   </view>
 </scroll-view>
 

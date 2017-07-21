@@ -201,8 +201,8 @@
             <image src="/images/update.png" mode="aspectFit" class="image_setting0" bindtap="bankInfo" />
           </view>
           <view class="setting_operation bank_info">
-            {{store.bank}}
-            <view style="color:#666666;" wx:if="{{store.bank}}">例：工商银行-----小鱼\n3386452348575314575345</view>
+            {{store.bankmessage}}
+            <view style="color:#666666;" wx:if="{{store.bankmessage}}">例：工商银行-----小鱼\n3386452348575314575345</view>
           </view>
         </view>
         

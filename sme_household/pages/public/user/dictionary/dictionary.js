@@ -401,8 +401,8 @@ Page({
         objectSubmit.storeId = app.globalData.storeId
         break;
     }
-    console.log(this.data.store.bank)
-    objectSubmit.bank = this.data.store.bank;
+    console.log(this.data.store.bankmessage)
+    objectSubmit.bankmessage = this.data.store.bankmessage;
     wx.showNavigationBarLoading()
     util.api.request({
       url: 'user/saveUserOrStore',
@@ -545,7 +545,7 @@ Page({
       var type = e.currentTarget.dataset.type;
       product[index][type] = e.detail.value;
     } else if (name == "store"){
-      product.bank = e.detail.value;
+      product.bankmessage = e.detail.value;
     }
     param[name] = product;
     submitData[name] = product;

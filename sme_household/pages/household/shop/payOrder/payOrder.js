@@ -28,14 +28,15 @@ Page({
         console.log(that.data.payType)
       
         for(var p in res.data){
-          console.log(res.data[p].dictText)
           if (res.data[p].dictText.indexOf(that.data.payType) > -1){
-            console.log(res.data[p].dictValue)
             that.setData({
               imagePAy: res.data[p].dictValue
             })
           }
         }
+        that.setData({
+          bankPay: res.data[2].dictValue
+        })
       }
     })
   },
