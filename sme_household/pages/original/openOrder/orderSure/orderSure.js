@@ -375,7 +375,7 @@ Page({
       data: {
         storeId: app.globalData.storeId,
         data: data,
-        reportName: "门店销售"
+        reportName: "销售"
       },
       method: 'POST',
       header: {

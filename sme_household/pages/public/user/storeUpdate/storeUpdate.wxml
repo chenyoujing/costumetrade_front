@@ -59,7 +59,7 @@
     </view>
     <view class="store_input clearfix" wx:if="{{userIdentity==1&3}}">
       <view class="store_input_text">银行信息：</view>
-      <textarea type="text" bindinput="bindChange" class="store_input1 store_textarea" value="{{storeInfo.bank}}" name="bank"/>
+      <textarea type="text" bindinput="bindChange" class="store_input1 store_textarea" value="{{storeInfo.bank}}" name="bank" placeholder="例：工商银行-----小鱼  3386452348575314575345"/>
     </view>
 
   </view>

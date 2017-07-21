@@ -29,8 +29,7 @@
     <view class="orderinfo">
       <view class="orderinfo_title clearfix">
         <view class="orderinfo_text" style="float:left;font-size:16px;">配送方式</view>
-        <view class="orderinfo_text" style="float:right;">{{logisticName}}快递
-          
+        <view class="orderinfo_text" style="float:right;">{{logisticCode}}快递
         </view>
       </view>
       <view class="clearfix" >
@@ -42,9 +41,9 @@
         <view class="orderinfo_text" style="float:right;color:#FE2D04;padding:0 5px;" wx:if="{{freight||freight===0}}">￥{{freight}}</view>
         <view class="orderinfo_text" style="float:right;padding:0 5px;" wx:if="{{!freight&&freight!==0}}">0</view>
       </view>
-      <view class="orderinfo_footer clearfix">
+      <view class="orderinfo_footer">
         <view class="date">{{ssStoOrder.ordertime}}</view>
-        <view class="orderinfo_footer_text" style="float:right;color:#FE2D04;">￥{{price}}</view>
+        <view class="orderinfo_footer_text">￥{{price}}</view>
       </view>
     </view>
 </scroll-view>

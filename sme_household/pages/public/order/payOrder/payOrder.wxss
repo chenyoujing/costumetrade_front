@@ -82,6 +82,10 @@
   line-height: 16px;
   text-align: right;
   color: #666666;
+  flex-shrink: 0;
+}
+.date::before{
+  content: '下单时间：'
 }
 
 .orderinfo{
@@ -108,6 +112,9 @@
 .orderinfo_footer{
   border-top: 2px solid #DDDDDD;
   margin-top: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 .orderinfo_footer_text::before{
   content: "实付金额：";

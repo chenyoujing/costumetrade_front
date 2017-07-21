@@ -54,6 +54,7 @@
   float: left;
   width: 70%;
   box-sizing: border-box;
+  line-height: unset;
 }
 .image_map{
   position: absolute;
@@ -64,7 +65,6 @@
   padding: 5px;
   z-index: 2;
 }
-
 
 .dictionary{
   text-align: center;

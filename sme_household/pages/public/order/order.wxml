@@ -75,7 +75,7 @@
       </view>
       <view class="clear"></view>
     </navigator>
-    <navigator url="payOrder/payOrder?operate=2&orderno={{item.payorderno}}&buyerid={{item.buyerstoreid}}&sellerid={{item.sellerstoreid}}&pay={{item.debetamt}}"  wx:if="{{item.orderstatus == 3}}">
+    <navigator url="payOrder/payOrder?operate=2&orderno={{item.payorderno}}&buyerid={{item.buyerstoreid}}&sellerid={{item.sellerstoreid}}&pay={{item.debetamt}}"  wx:if="{{item.orderstatus !== 3}}">
       <view class="order_container_button btn_1">付款</view>      
     </navigator>
     <view class="order_container_button btn_4" wx:if="{{item.orderstatus !== 3}}">付款</view> 
