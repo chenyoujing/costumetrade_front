@@ -50,12 +50,12 @@
       </navigator>
     </view>
   </view>
-   <!--<form bindsubmit="aa" report-submit>
+   <form bindsubmit="aa" report-submit>
 <button form-type="submit">初始化</button>
 </form> 
 <navigator url="Bluetooth/Bluetooth">
   <button> 搜索 </button>
-</navigator>-->
+</navigator>
   
 </scroll-view>
 
