@@ -39,7 +39,7 @@ Page({
           ssStoOrder: res.data.ssStoOrder,
           price: res.data.ssStoOrder.debetamt,
           freight: freight,
-          logisticName: res.data.ssStoOrder.logisticsCode,
+          logisticName: res.data.ssStoOrder.logisticName,
           logisticCode: res.data.ssStoOrder.logisticsCode
         })
       }
