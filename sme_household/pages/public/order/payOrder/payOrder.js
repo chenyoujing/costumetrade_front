@@ -45,7 +45,31 @@ Page({
       }
     })
   },
-
+  // 更改运费
+  changeLogisticFees: function () {
+    this.setData({
+      expressModal: false
+    })
+  },
+  // 选择更改后的快递
+  logistic: function (e) {
+    var logisticName = e.target.dataset.name;
+    var logisticCode = e.target.dataset.code;
+    var fixedFee = e.target.dataset.fixedfee;
+    console.log(fixedFee)
+    this.setData({
+      logisticName: logisticName,
+      logisticCode: logisticCode,
+      freight: fixedFee
+    })
+    this.cancel()
+  },
+  // 取消快递选择
+  cancel: function () {
+    this.setData({
+      expressModal: true
+    })
+  },
   onLoad: function (e) {
     if (!app.logisticFees) {
       util.api.getProductInit()

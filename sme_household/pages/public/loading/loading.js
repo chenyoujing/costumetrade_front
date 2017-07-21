@@ -2,7 +2,7 @@ var util = require('../../../utils/util.js')
 var app = getApp()
 Page({
   data: {
-    text:'正在加载！看下面的动画好看不'
+    text:''
   },
   callback: function () {
     if (app.globalData.userIdentity!==2) {

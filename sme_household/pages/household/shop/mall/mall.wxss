@@ -135,7 +135,6 @@
 }
 .shop_goods{
   display: flex;
-  justify-content: space-between;
   align-content: space-around;
   flex-wrap: wrap;
 }
@@ -219,9 +218,8 @@
   width: 100%;
 }
 .content_container{
-  box-shadow: 1px 1px 4px #000000;
+  box-shadow: 0px 0px 1px #000000;
   position: relative;
-  border-radius: 3px;
 }
 .content_container > image{
   width: 115px;

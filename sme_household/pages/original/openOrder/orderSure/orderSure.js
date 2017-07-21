@@ -347,12 +347,16 @@ Page({
     //     that.bill_print();
     //   }
     // })
-    var payCost1 = this.payCost1 ? this.payCost1 : 0;
-    var payCost2 = this.payCost2 ? this.payCost2 : 0;
+    var shopCart = this.data.shopCart
+    for (var p in shopCart){
+      shopCart[p].Cost = shopCart[p].count * shopCart[p].price
+    }
+    var payCost1 = this.data.payCost1 ? this.data.payCost1 : 0;
+    var payCost2 = this.data.payCost2 ? this.data.payCost2 : 0;
     var data = {
       totalNum: this.data.totalNum,
       realCost: (parseFloat(payCost1) + parseFloat(payCost2)).toFixed(2),
-      totleCost: this.data.reallyPay,
+      totleCost: this.data.totalData.realcostArray,
       nowStr: util.formatTime(new Date()),
       debetam: this.data.debet,
       discountratio: this.data.disCount,
@@ -361,7 +365,8 @@ Page({
       paycost1: this.data.payCost1,
       paycate2: this.data.payCate2,
       paycost2: this.data.payCost2,
-      shopCart: this.data.shopCart,
+      name: app.globalData.userInfo.name,
+      shopCart: shopCart,
     }
     data = JSON.stringify(data)
     console.log(data)
@@ -404,8 +409,8 @@ Page({
     var title = type == 'type1' ? '数量     单价      名称' : '数量  单价      名称';
     var rows = '';
     var totleCount = '总数量：' + this.data.totalNum;
-    var payCost1 = this.payCost1 ? this.payCost1 : 0;
-    var payCost2 = this.payCost2 ? this.payCost2 : 0;
+    var payCost1 = this.data.payCost1 ? this.data.payCost1 : 0;
+    var payCost2 = this.data.payCost2 ? this.data.payCost2 : 0;
     var realCost = '实付金额：' + (parseFloat(payCost1) + parseFloat(payCost2)).toFixed(2) + '元';
     var totleCost = '应付金额：' + this.data.reallyPay + '元';
     for (var p in this.data.shopCart) {

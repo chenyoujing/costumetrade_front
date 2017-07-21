@@ -1,2 +1,3 @@
 <!--pages/public/loading/loading.wxml-->
- <text>{{text}}</text> 
+<image src="/images/loading.jpg" mode="aspectFill" class="loading_image" />
+  <text>{{text}}</text>  

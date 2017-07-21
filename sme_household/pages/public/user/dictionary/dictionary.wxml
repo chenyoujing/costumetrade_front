@@ -185,7 +185,7 @@
     <swiper-item>
       <scroll-view scroll-y class="setting_scroll">
         <!--支付管理,付款方式-->
-        <view class="setting_view" style="padding: 0 20px;">
+        <view class="setting_view" style="padding: 0 20px 10px;">
           <view class="setting_title">支付管理</view>
           <view class="setting_title" style="font-size:16px;">添加手机支付二维码</view>
           <view class="setting_operation">
@@ -200,8 +200,8 @@
             银行卡信息
             <image src="/images/update.png" mode="aspectFit" class="image_setting0" bindtap="bankInfo" />
           </view>
-          <view class="setting_operation">
-            <view class="bank_info">123</view>
+          <view class="setting_operation bank_info">
+            <view style="color:#666666;">例：工商银行-----小鱼\n3386452348575314575345</view>
           </view>
         </view>
         
