@@ -43,7 +43,7 @@
         <view class="shop_content_title">
           <view class="shop_content_info">
             <view class="shop_content_unread {{item.readStatus=='1'?'shop_content_read':''}}">
-              <view class="shop_content_unread_prompt">{{index}}</view>
+              <view class="shop_content_unread_prompt">{{index+1}}</view>
               {{item.readStatus=='1'?'已读信息':'未读信息'}}
             </view>
             <text>{{item.createTime}}</text>
