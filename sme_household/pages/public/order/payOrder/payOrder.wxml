@@ -8,7 +8,7 @@
 <scroll-view scroll-y class="orderSure_scroll">
     <view class="orderSure_container" wx:for="{{ssStoDetail}}">
       <view class="content_container clearfix">
-        <image src="{{item.image ? item.image : '../../../../images/image_none.png'}}" mode="aspectFill" style="width:{{image_width}}px;height:{{image_width}}px;" />
+        <image src="{{item.image ? url+item.image : '../../../../images/image_none.png'}}" mode="aspectFill" style="width:{{image_width}}px;height:{{image_width}}px;" />
         <view class="content_container_text">
           <view class="content_container_title">{{item.productname}}</view>
           <view class="content_container_info clearfix">
@@ -19,7 +19,7 @@
             <view class="price">{{item.price}}</view>
             <view class="info_other">
               <view class="num">{{item.count}}{{item.productunit}}</view>
-              <view class="date">{{item.createtime}}</view>
+            
             </view>
           </view>
         </view>
@@ -27,32 +27,28 @@
     </view>
 
     <view class="orderinfo">
-      <view class="orderinfo_title clearfix"  bindtap="changeLogisticFees">
+      <view class="orderinfo_title clearfix">
         <view class="orderinfo_text" style="float:left;font-size:16px;">配送方式</view>
         <view class="orderinfo_text" style="float:right;">{{logisticName}}快递
-          <image src="../../../../images/right-thrust.png" mode="aspectFit" class="orderinfo_text_image" />
+          
         </view>
       </view>
       <view class="clearfix" >
         <view class="orderinfo_text" style="float:left;padding:0 5px;">金额</view>
-        <view class="orderinfo_text" style="float:right;color:#FE2D04;padding:0 5px;">￥{{price}}</view>
+        <view class="orderinfo_text" style="float:right;color:#FE2D04;padding:0 5px;">￥{{price - freight}}</view>
       </view>
       <view class="clearfix">
         <view class="orderinfo_text" style="float:left;padding:0 5px;">运费</view>
         <view class="orderinfo_text" style="float:right;color:#FE2D04;padding:0 5px;" wx:if="{{freight||freight===0}}">￥{{freight}}</view>
-        <view class="orderinfo_text" style="float:right;padding:0 5px;" wx:if="{{!freight&&freight!==0}}">运费待审核</view>
+        <view class="orderinfo_text" style="float:right;padding:0 5px;" wx:if="{{!freight&&freight!==0}}">0</view>
       </view>
       <view class="orderinfo_footer clearfix">
-        <view class="orderinfo_footer_text" style="float:right;color:#FE2D04;">￥{{price+freight}}</view>
+        <view class="date">{{ssStoOrder.ordertime}}</view>
+        <view class="orderinfo_footer_text" style="float:right;color:#FE2D04;">￥{{price}}</view>
       </view>
     </view>
 </scroll-view>
-<!--选择快递公司-->
-<modal title="选择快递公司" hidden="{{expressModal}}" confirm-text="取消" no-cancel bindconfirm="cancel" bindcancel="cancel" >
-  <view class="logistics_choose" wx:for="{{logisticFees}}">
-    <view class="choose_view" bindtap="logistic" data-name="{{item.logisticName}}"  data-code="{{item.logisticCode}}" data-fixedFee="{{item.fixedFee}}">{{item.logisticName}}</view>
-  </view>
-</modal>
-<navigator url="../../../household/shop/payOrder/payOrder?operate=2&orderno={{orderno}}&buyerid={{buyerid}}&sellerid={{sellerid}}&pay={{price+freight}}&payType=微信" class="sure_button1 bg_g">微信支付</navigator>
-<navigator url="../../../household/shop/payOrder/payOrder?operate=2&orderno={{orderno}}&buyerid={{buyerid}}&sellerid={{sellerid}}&pay={{price+freight}}&payType=支付宝" class="sure_button2">支付宝支付</navigator>
-<navigator url="../../../household/shop/payOrder/payOrder?operate=2&orderno={{orderno}}&buyerid={{buyerid}}&sellerid={{sellerid}}&pay={{price+freight}}&payType=转账" class="sure_button3">转账</navigator>
+
+<navigator url="../../../household/shop/payOrder/payOrder?operate=2&orderno={{orderno}}&buyerid={{buyerid}}&sellerid={{sellerid}}&sellername={{ssStoOrder.seller}}&pay={{price}}&payType=微信" class="sure_button1 bg_g">微信支付</navigator>
+<navigator url="../../../household/shop/payOrder/payOrder?operate=2&orderno={{orderno}}&buyerid={{buyerid}}&sellerid={{sellerid}}&pay={{price}}&sellername={{ssStoOrder.seller}}&payType=支付宝" class="sure_button2">支付宝支付</navigator>
+<navigator url="../../../household/shop/payOrder/payOrder?operate=2&orderno={{orderno}}&buyerid={{buyerid}}&sellerid={{sellerid}}&sellername={{ssStoOrder.seller}}&pay={{price}}&payType=转账" class="sure_button3">转账</navigator>

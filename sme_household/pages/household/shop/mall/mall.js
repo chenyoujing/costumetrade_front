@@ -106,7 +106,6 @@ Page({
         } else {
           booleanre = true;
         }
-        console.log(data.length)
         that.setData({
           product: data,
           loadMore: true,

@@ -293,26 +293,26 @@ Page({
       ids: []
     })
   },
-  // 进入分享页面
-  batch_share_sure: function () {
-    var idsArray = this.data.ids;
-    var storeId = app.globalData.storeId;
-    if (idsArray.length == 0 && !this.data.checkAllTag) {
-      wx.showToast({
-        title: '请勾选要分享的货品',
-        mask: true,
-        duration: 2000
-      })
-    } else {
-      this.batchOperationsOk();
-      wx.navigateTo({
-        url: 'GoodsShare/GoodsShare?ids=' + JSON.stringify(idsArray) + '&storeId=' + storeId +'&checkAllTag=' + this.data.checkAllTag,
-      })
-    }
-    this.setData({
-      ids: []
-    })
-  },
+  // // 进入分享页面
+  // batch_share_sure: function () {
+  //   var idsArray = this.data.ids;
+  //   var storeId = app.globalData.storeId;
+  //   if (idsArray.length == 0 && !this.data.checkAllTag) {
+  //     wx.showToast({
+  //       title: '请勾选要分享的货品',
+  //       mask: true,
+  //       duration: 2000
+  //     })
+  //   } else {
+  //     this.batchOperationsOk();
+  //     wx.navigateTo({
+  //       url: 'GoodsShare/GoodsShare?ids=' + JSON.stringify(idsArray) + '&storeId=' + storeId +'&checkAllTag=' + this.data.checkAllTag,
+  //     })
+  //   }
+  //   this.setData({
+  //     ids: []
+  //   })
+  // },
   // 进入批量修改页面
   batch_update_sure: function () {
     var idsArray = this.data.ids;

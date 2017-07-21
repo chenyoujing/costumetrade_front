@@ -144,8 +144,8 @@
   <view class="batch_button_ok" wx:if="{{type==1}}" bindtap="batchOperationsOk" style="height:{{update_button}}px;">完成</view>
   <view class="batch_button"  wx:if="{{type==1}}" bindtap="batch_delete_sure" style="height:{{update_button}}px;">删除</view>
   <!--分析按钮-->
-  <view class="batch_button_ok"  wx:if="{{type==2}}"  bindtap="batchOperationsOk" style="height:{{update_button}}px;">取消</view>
-  <view class="batch_button bg_g"  wx:if="{{type==2}}" bindtap="batch_share_sure" style="height:{{update_button}}px;">分享</view>
+  <!--<view class="batch_button_ok"  wx:if="{{type==2}}"  bindtap="batchOperationsOk" style="height:{{update_button}}px;">取消</view>
+  <view class="batch_button bg_g"  wx:if="{{type==2}}" bindtap="batch_share_sure" style="height:{{update_button}}px;">分享</view>-->
   <!--批量修改按钮-->
   <view class="batch_button_ok" wx:if="{{type==3}}"  bindtap="batchOperationsOk" style="height:{{update_button}}px;">完成</view>
   <view class="batch_button" wx:if="{{type==3}}"  bindtap="batch_update_sure" style="height:{{update_button}}px;">修改</view>
@@ -154,7 +154,7 @@
 <view class="more_function_cover {{animation}}" bindtap="more_function_close" style="display:{{more_function_display}};"></view>
 <view class="more_function {{animation}}" style="display:{{more_function_display}};">
   <view class="more_function_view" data-type="1" bindtap="batchType">批量删除</view>
-  <view class="more_function_view" data-type="2" bindtap="batchType">分享图片</view>
+  <!--<view class="more_function_view" data-type="2" bindtap="batchType">分享图片</view>-->
   <view class="more_function_view" data-type="3" bindtap="batchType">批量修改</view>
 </view>
 

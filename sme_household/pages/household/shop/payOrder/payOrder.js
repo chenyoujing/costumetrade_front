@@ -8,7 +8,7 @@ Page({
     sellerid: '',
     payType: '',
     operate: '',
-    imagePAy:"../../../../images/image_none.png"
+    imagePAy:""
   },
   // 获取支付信息
   enterPayInfo:function(){
@@ -25,8 +25,12 @@ Page({
       },
       success: function (res) {
         wx.hideNavigationBarLoading();
+        console.log(that.data.payType)
+      
         for(var p in res.data){
+          console.log(res.data[p].dictText)
           if (res.data[p].dictText.indexOf(that.data.payType) > -1){
+            console.log(res.data[p].dictValue)
             that.setData({
               imagePAy: res.data[p].dictValue
             })
@@ -89,7 +93,9 @@ Page({
       buyerid: options.buyerid,
       sellerid: options.sellerid,
       payType: options.payType,
-      operate: options.operate
+      operate: options.operate,
+      url: util.api.imgUrl,
+      seller: options.sellername
     })
     this.enterPayInfo();
     console.log({

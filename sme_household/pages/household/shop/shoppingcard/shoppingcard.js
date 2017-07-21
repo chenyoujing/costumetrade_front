@@ -131,8 +131,5 @@ Page({
       stordId: e.stordId
     })
     this.getData()
-  },
-  onUnload:function(){
-    this.localData(this.data.shopCart)
   }
 })

@@ -187,15 +187,6 @@ Page({
             })
           }else{
             that.delectShop()
-            wx.showToast({
-              title: '下单成功',
-            })
-            setTimeout(() => {
-              wx.navigateBack({
-                delta: 2
-              })
-            }, 1500)
-
           }
         }
       })
@@ -204,14 +195,26 @@ Page({
   delectShop:function(){
     var shopCart = this.data.shopCartOrigin;
     var name = this.data.name;
+    console.log(name)
     for (var p in shopCart){
-      if (shopCart[p].iSselect){
+      console.log(shopCart[p].iSselect)
+      if (shopCart[p].iSselect == true){
         shopCart.splice(p,1)
       }
     }
     wx.setStorage({
       key: this.data.name,
-      data: shopCart
+      data: shopCart,
+      complete:function(){
+        wx.showToast({
+          title: '下单成功',
+        })
+        setTimeout(() => {
+          wx.navigateBack({
+            delta: 2
+          })
+        }, 1500)
+      }
     })
   },
   // 更改运费
@@ -225,10 +228,12 @@ Page({
     var logisticName = e.target.dataset.name;
     var logisticCode = e.target.dataset.code;
     var fixedFee = e.target.dataset.fixedfee;
+    var freeFee = e.target.dataset.freefee;
+    console.log(e)
     this.setData({
-      logisticName: logisticName,
       logisticCode: logisticCode,
-      freight: fixedFee
+      logisticName: logisticName,
+      freight: this.data.totalPrice >= freeFee ?0:fixedFee
     })
     this.cancel()
   },
@@ -255,9 +260,9 @@ Page({
         wx.hideNavigationBarLoading();
         that.setData({
           logisticFees: res.data.logisticFees,
-          freight: parseFloat(res.data.logisticFees[0].fixedFee),
-          logisticCode: res.data.logisticFees[0].logisticCode,
-          logisticName: res.data.logisticFees[0].logisticName
+          freight: parseFloat(that.data.totalPrice >= res.data.logisticFees[0].freeFee ? 0 : res.data.logisticFees[0].fixedFee),
+          logisticName: res.data.logisticFees[0].logisticName,
+          logisticCode: res.data.logisticFees[0].logisticCode
         })
       }
     })
