@@ -24,7 +24,7 @@ function toDate(number,plus) {
 };
 //请求接口公共方法
 var api = {
-  host: 'http://192.168.2.221:8088/',
+  host: 'http://192.168.2.221:8080/',
   pageNum :1,
   publicProduct:[],
   imgUrl: "http://ot84hx5jl.bkt.clouddn.com/",
@@ -233,16 +233,20 @@ var api = {
     return product;
   }, 
   // 二维码扫好了。。。
-  scanOk: function (client, id, callback) {
+  scanOk: function (client, id, callback, stringSend) {
     var that = this;
+    var object = {
+      type: client,
+      storeId: app.globalData.storeId,
+      id: id
+    };
+    if (stringSend){
+      object.context = stringSend;
+    }
     wx.showNavigationBarLoading()
     this.request({
       url: 'client/scanQRCodeOk',
-      data: {
-        type: client,
-        storeId: app.globalData.storeId,
-        id: id
-      },
+      data: object,
       method: 'POST',
       header: {
         'content-type': 'application/json'

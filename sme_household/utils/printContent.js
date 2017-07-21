@@ -18,9 +18,7 @@ var printObject = {
     deviceNumber:"",
     data:null,
     imgupdata:"",
-    imgupdataLogo: "",
     mbImage: '',
-    mbImageLogo:'',
     getBmimgage: function (stringSend) {
       printObject.data = stringSend
       var that = this;
@@ -28,18 +26,6 @@ var printObject = {
         key: 'mbImage',
         success: function(res) {
            printObject.mbImage = res.data
-        },
-      })
-      wx.getStorage({
-        key: 'mbImageLogo',
-        success: function (res) {
-          printObject.mbImageLogo = res.data
-        },
-      })
-      wx.getStorage({
-        key: 'imgupdataLogo',
-        success: function (res) {
-          printObject.imgupdataLogo = res.data
         },
       })
       wx.getStorage({
@@ -51,7 +37,8 @@ var printObject = {
       wx.getStorage({
         key: 'showapi_userid',
         success: function (res) {
-          printObject.showapi_userid = res.data
+          that.showapi_userid = res.data;
+          that.refresh(stringSend);
         }
       })
       
@@ -62,54 +49,11 @@ var printObject = {
       console.log(printObject.deviceNumber);
       var that = this;
       wx.getStorage({
-        key: 'deviceNumber',
+        key: 'showapi_userid',
         success: function (res) {
           console.log(res.data)
-          printObject.deviceNumber = res.data;
-          if (!printObject.deviceNumber){
-               printObject.layerDe('data')
-             }else if(!printObject.showapi_userid){
-              printObject.userID('data');
-             }
-             else {
-          that.endSendGbk(data)
-         }
-        }
-      })
-      // if (!printObject.deviceNumber){
-      //     printObject.layerDe('data')
-      //   }else if(!printObject.showapi_userid){
-      //     printObject.userID('data');
-      //   }
-      //   else {
-          // this.endSendGbk(data)
-        // }
-    },
-    // 向我们自己的接口请求userID，成功之后存到本地
-    userID:function (type) {
-      var that = this;
-      util.api.request({
-        url: 'print/getPrintUserId',
-        data: {
-          printid: printObject.deviceNumber,
-          storeid: app.globalData.storeId,
-        },
-        method: 'POST',
-        header: {
-          'content-type': 'application/x-www-form-urlencoded'
-        },
-        success: function (res) {
-          wx.hideNavigationBarLoading();
-          wx.setStorage({
-            key: 'showapi_userid',
-            data: res.data.mbUser
-          })
-          printObject.showapi_userid = res.data.mbUser;
-          if (type == 'img') {
-            printObject.updataimg(res.data.mbUser, printObject.deviceNumber, umll);
-          } else if (type == 'data'){
-            printObject.endSendGbk(printObject.data)
-          }
+          printObject.showapi_userid = res.data;
+          that.endSendGbk('姓名：商城用户1000030 时间：2017-07-21 21:19:17 -------------------------------- 数量 单价 名称 1 36.00 125农夫山泉有点甜 -------------------------------- 总数量：1 实付金额：36.00元 应付金额：36.00元')
         }
       })
     },
@@ -127,16 +71,12 @@ var printObject = {
           },
           success: function (res) {
             wx.hideNavigationBarLoading();
-            printObject.showapi_userid = 233458;
-            if (th.imgupdata == 'false' && th.imgupdataLogo == 'false') {
+            if (!th.imgupdata) {
               printObject.printcontent('T:' + res.data, printObject.showapi_userid);
-            } else if (th.imgupdata == 'false' && th.imgupdataLogo == 'true') {
-              printObject.printcontent('P:' + printObject.mbImageLogo + '|T:' + res.data, printObject.showapi_userid);
-            } else if (th.imgupdata == 'true' && th.imgupdataLogo == 'false') {
+              console.log(5555)
+            }else if (th.imgupdata) {
               printObject.printcontent('T:' + res.data + '|P:' + printObject.mbImage, printObject.showapi_userid);
-            } else {
-              printObject.printcontent('P:' + printObject.mbImageLogo + '|T:' + res.data + '|P:' + printObject.mbImage, printObject.showapi_userid);
-            }
+            } 
             wx.showToast({
               title: "打印中，请稍等",
               mask: true,
@@ -160,71 +100,6 @@ var printObject = {
         },
         success: function(res) {}
       })
-    },
-    //上传图片给后台
-    updataimg:function(mbuser,mbid,idName)
-    {
-        var th =this;
-        var updData = new FormData();
-        updData.append('file', $(idName)[0].files[0]);
-        var url = window.api.host + 'api/v1/print/memobird?mbid='+mbid+'&mbuser='+mbuser+'&app_key=' + $.cookie("app_key");
-        $.ajax({
-            url: url,
-            type: 'POST',
-            data: updData ,
-            cache: false,
-            contentType: false,
-            processData: false,
-            success: function (data) {
-                if(data.status == 0){
-                    if(idName == "#inputfile"){
-                        th.mbImage = data.value.mbImage;
-                        localforage.setItem('mbImage',data.value.mbImage,null);
-                        console.log(th.mbImage)
-                        $('.imgupdata').text('已上传');
-                    }else if(idName == "#logofile"){
-                        th.mbImageLogo = data.value.mbImage;
-                        console.log(th.mbImageLogo)
-                      localforage.setItem('mbImageLogo',data.value.mbImage,null);
-                        $('.logodata').text('已上传');
-                    }
-                   
-
-                }else if(data.status == 1){
-                    layer.open({
-                        content: '图片太宽，请重新上传！'
-                        ,skin: 'msg'
-                        ,time: 2 //2秒后自动关闭
-                    });
-                }
-
-            }
-        });
-    },
-    // type 是”img“指的是图片，data指的是文本
-    layerDe: function (type, deviceNumber){
-        var th = this;
-       wx.setStorage({
-         key: 'deviceNumber',
-         data: deviceNumber,
-       })
-        printObject.deviceNumber = deviceNumber;
-        if (!printObject.showapi_userid){
-          th.userID(null);
-        }
-        // if (type == 'img') {
-        //   if (!printObject.showapi_userid) {
-        //     th.userID('img');
-        //   } else {
-        //     th.updataimg(printObject.showapi_userid, deviceNumber);
-        //   }
-        // } else {
-        //   if (!printObject.showapi_userid) {
-        //     printObject.userID('data');
-        //   } else {
-        //     printObject.endSendGbk(printObject.data);
-        //   }
-        // }
     },
     // 咕咕机打印机
     guguPrint: function (deviceNumber){

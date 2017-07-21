@@ -42,7 +42,10 @@ Page({
   },
   dictionarytype: function (e) {
     var that = this
-    let data = e.target.dataset
+    let data = e.target.dataset;
+    if (data.dictionary == 1){
+      this.printStrorage()
+    }
     this.setData({
       current: data.dictionary,
     })
@@ -483,11 +486,13 @@ Page({
     var that = this;
     var submitData = this.data.submitData;
     var param = {};
+    console.log(555)
     wx.uploadFile({
       url: util.api.host + 'product/uploadImage',
       filePath: file[i],
       name: 'file',
       success: function (res) {
+        console.log(JSON.parse(res.data))
         if (JSON.parse(res.data).code == 0){
           if (name == "images") {
             console.log(images)
@@ -658,10 +663,8 @@ Page({
   branchOk:function(){
     var addStoreId = this.data.addStoreId;
     if (addStoreId){
-      console.log('添加')
       this.saveChainStore()
     }else{
-      console.log('更改')
       this.storeIdDataChange();
     }
     this.cancel();
@@ -823,7 +826,6 @@ Page({
     }
     this.setData({
       print: print
-
     })
   },
   printModal: function () {
@@ -843,22 +845,65 @@ Page({
     this.setData({
       printNumber: e.detail.value
     })
-    wx.getStorage({
-      key: 'deviceNumber',
-      success: function (res) {
-        if (!res.data) {
-          wx.setStorage({
-            key: "deviceNumber",
-            data: e.detail.value
-          })
-        }
-      },
+  },
+  printTypeSave:function(){
+    wx.setStorage({
+      key: 'printType',
+      data: this.data.print,
+      success: function(res) {
+        wx.showToast({
+          title: "成功！",
+          mask: true,
+          duration: 2000
+        })
+      }
     })
+  },
+  // 完成打印机编号
+  printNumberOk:function(){
+    var that = this;
+    if (this.data.printNumber){
+      wx.setStorage({
+        key: "deviceNumber",
+        data: this.data.printNumber,
+        success:function(res){
+          that.setData({
+            bill_modal:true
+          })
+          printContent.guguPrint(that.data.printNumber);
+        }
+      })
+    }else{
+      wx.showToast({
+        title: "请先填写编号",
+        mask: true,
+        duration: 2000
+      })
+    }
   },
   // chooseImg: function (e) {
   //    util.api.chooseImg(e, this.imageCallback)
   // },
-
+//得到有关缓存数据
+  printStrorage:function(){
+    var that = this;
+    wx.getStorage({
+      key: "deviceNumber",
+      success: function (res) {
+        that.setData({
+          printNumber: res.data
+        })
+      }
+    })
+    wx.getStorage({
+      key: "printType",
+      success: function (res) {
+        that.setData({
+          print: res.data
+        })
+      }
+    })
+  },
   // 上传图片
   imageCallback: function (e, res) {
     var tempFilePaths = res.tempFilePaths;
@@ -880,11 +925,6 @@ Page({
         })
       }
     })
-  },
-  // 打印配置
-  printSet:function(){
-    printContent.guguPrint(this.data.printNumber);
-    this.printModal();
   },
  /***********
    * 打印结束 *

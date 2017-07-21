@@ -303,52 +303,71 @@ Page({
     this.setData({
       printNumber: e.detail.value
     })
-    console.log(55)
   },
-  printSet: function () {
+  // 完成打印机编号
+  printNumberOk: function () {
+    var that = this;
+    if (this.data.printNumber) {
+      wx.setStorage({
+        key: "deviceNumber",
+        data: this.data.printNumber,
+        success: function (res) {
+          that.setData({
+            bill_modal: true
+          })
+          printContent.guguPrint(that.data.printNumber);
+        }
+      })
+    } else {
+      wx.showToast({
+        title: "请先填写编号",
+        mask: true,
+        duration: 2000
+      })
+    }
+  },
+  // 打印选择
+  printType:function(){
+    var that = this;
+    wx.getStorage({
+      key: 'printType',
+      complete: function(res) {
+        if(res.data == "wifi"){
+          that.SendPrintBill()
+        }else{
+          that.SendPrintBill2()
+        }
+      },
+    })
+  },
+  // wifi打印
+  SendPrintBill:function(){
+    var stringSend = this.stringSendFunction("type1",2);
     var that = this;
     wx.getStorage({
       key: 'deviceNumber',
-      success: function (res) {
-        console.log()
-        if (!res.data) {
-          wx.setStorage({
-            key: "deviceNumber",
-            data: that.data.printNumber
+      success: function(res) {
+        console.log(111)
+        if (!res.data){
+          that.setData({
+            bill_modal: false
           })
+        }else{
+          printContent.deviceNumber = res.data;
+          printContent.getBmimgage(stringSend);
         }
       },
       fail: function () {
-        wx.setStorage({
-          key: "deviceNumber",
-          data: that.data.printNumber
+        that.setData({
+          bill_modal: false
         })
       }
     })
-    printContent.guguPrint(this.data.printNumber);
-    this.cancel()
   },
-  SendPrintBill:function(){
-    // var stringSend = this.stringSendFunction("type1",2);
-    // var that = this;
-    // wx.getStorage({
-    //   key: 'deviceNumber',
-    //   success: function(res) {
-    //     console.log(111)
-    //     if (!res.data){
-    //       that.bill_print();
-    //     }else{
-    //       printContent.getBmimgage();
-    //       printContent.refresh(stringSend);
-    //     }
-    //   },
-    //   fail: function () {
-    //     console.log(222)
-    //     that.bill_print();
-    //   }
-    // })
+  // 热敏打印
+  SendPrintBill2:function(){
     var shopCart = this.data.shopCart
-    for (var p in shopCart){
+    for (var p in shopCart) {
       shopCart[p].Cost = shopCart[p].count * shopCart[p].price
     }
     var payCost1 = this.data.payCost1 ? this.data.payCost1 : 0;
@@ -387,10 +406,7 @@ Page({
         })
       }
     })
-
-    
   },
-
   // 打印账单 num=1 打印账单，num=2 是微信账单 type1 微信账单 type2是打印账单
   stringSendFunction: function (type, num) {
     var now = new Date();
@@ -436,7 +452,6 @@ Page({
   confirm: function () {
     var type = this.data.type == 1?2:1;
     var stringSend = this.stringSendFunction("type2", 1);
-    console.log(stringSend)
     util.api.scanOk(type, this.data.id, null, stringSend)
     this.cancel()
   },
