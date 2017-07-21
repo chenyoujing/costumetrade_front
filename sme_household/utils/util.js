@@ -633,11 +633,11 @@ var api = {
   fail: function (res) {
     console.log(res)
     wx.hideNavigationBarLoading()
-    // wx.showToast({
-    //   title: res.data.msg,
-    //   mask: true,
-    //   duration: 2000
-    // })
+    wx.showToast({
+      title: res.data.msg,
+      mask: true,
+      duration: 2000
+    })
   },
   // 加价尺码表,商城里面用
   // sizeArray 尺码数据

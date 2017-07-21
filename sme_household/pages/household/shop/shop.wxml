@@ -50,13 +50,6 @@
       </navigator>
     </view>
   </view>
-   <form bindsubmit="aa" report-submit>
-<button form-type="submit">初始化</button>
-</form> 
-<navigator url="Bluetooth/Bluetooth">
-  <button> 搜索 </button>
-</navigator>
-  
 </scroll-view>
 
 <template is="navBottom" data="{{nav:'首页'}}" wx:if="{{!shopkeeper}}"></template>

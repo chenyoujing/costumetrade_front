@@ -432,6 +432,8 @@ Page({
   },
   // 上传图片
   photoSubmit: function (file, i,e) {
+    console.log(555)
+    
     var name = e.target.dataset.name;
     var index = e.target.dataset.index;
     var images = this.data.imageurl;
@@ -444,6 +446,8 @@ Page({
       filePath: file[i],
       name: 'file',
       success: function (res) {
+        console.log(555)
+        
         console.log(JSON.parse(res.data))
         if (JSON.parse(res.data).code == 0){
           if (name == "images") {
@@ -473,7 +477,9 @@ Page({
   },
   // 上传图片
   chooseVideoCallback: function (e, res){
+    console.log(res)
     var tempFilePaths = res.tempFilePaths;
+    console.log(111)
     this.photoSubmit(tempFilePaths,0,e);
   },
   choosImage:function(e){
@@ -810,17 +816,17 @@ Page({
       },
     })
   },
-  chooseImg: function (e) {
-     util.api.chooseImg(e, this.imageCallback)
-  },
+  // chooseImg: function (e) {
+  //    util.api.chooseImg(e, this.imageCallback)
+  // },
 
   // 上传图片
   imageCallback: function (e, res) {
     var tempFilePaths = res.tempFilePaths;
-    this.photoSubmit(tempFilePaths, 0,e);
+    this.photoSubmitgbk(tempFilePaths, 0,e);
   },
   // 上传图片 gbk
-  photoSubmit: function (file, i,e) {
+  photoSubmitgbk: function (file, i,e) {
     console.log(e)
     var name = e.target.dataset.name;
     var that = this;
@@ -857,7 +863,7 @@ Page({
        console.log(submitData[p])
        if (p == 'imageurl'){
          var array = this.data.images;
-         array.dictValue = submitData[p].join(',').replace(/http:\/\/117.149.24.42:8788/g, '');
+         array.dictValue = submitData[p].join(',').replace(/http:\/\/ot84hx5jl.bkt.clouddn.com\//g, '');
          newSubmitData.push(array)
        } else if (p == 'sellingProduct' || p == "pointExchange" ||p=="customerProduct"){
           submitData[p].storeId = app.globalData.storeId
