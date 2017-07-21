@@ -363,8 +363,8 @@ Page({
       paycost2: this.data.payCost2,
       shopCart: this.data.shopCart,
     }
-    console.log(data)
     data = JSON.stringify(data)
+    console.log(data)
     util.api.request({
       url: 'print/printer',
       data: {

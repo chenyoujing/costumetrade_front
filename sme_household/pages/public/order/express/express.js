@@ -16,11 +16,11 @@ Page({
             that.setData({
               "sender.address": res.detailInfo,
               "sender.mobile": res.telNumber,
-              "sender.userName": res.userName,
-              "sender.provinceName": res.provinceName ,
+              "sender.name": res.userName,
+              "sender.prov": res.provinceName ,
               "sender.cityName": res.cityName,
-              "sender.countyName":res.countyName,
-              "sender.postalCode": res.postalCode,
+              "sender.county":res.countyName,
+              "sender.postCode": res.postalCode,
               "regobject.sender":{}
             })
             break;
@@ -28,11 +28,11 @@ Page({
             that.setData({
               "receiver.address": res.detailInfo,
               "receiver.mobile": res.telNumber,
-              "receiver.userName": res.userName,
-              "receiver.provinceName": res.provinceName,
+              "receiver.name": res.userName,
+              "receiver.prov": res.provinceName,
               "receiver.cityName": res.cityName,
-              "receiver.countyName": res.countyName,
-              "receiver.postalCode": res.postalCode,
+              "receiver.county": res.countyName,
+              "receiver.postCode": res.postalCode,
               "regobject.receiver": {}
             })
             break;
@@ -61,15 +61,15 @@ Page({
         wx.hideNavigationBarLoading();
         var sender = res.data[1]
         var receiver = res.data[0]
-        console.log(sender.city)
+        console.log(res.data)
         var sender_city = sender.city.split(',')
         var receiver_city = receiver.city.split(',')
-        sender.provinceName = sender_city[0] == 'null' ? '' : sender_city[0]
+        sender.prov = sender_city[0] == 'null' ? '' : sender_city[0]
         sender.cityName = sender_city[1] == 'null' ? '' : sender_city[1]
-        sender.countyName = sender_city[2] == 'null' ? '' : sender_city[2]
-        receiver.provinceName = receiver_city[0] == 'null' ? '' : receiver_city[0]
+        sender.county = sender_city[2] == 'null' ? '' : sender_city[2]
+        receiver.prov = receiver_city[0] == 'null' ? '' : receiver_city[0]
         receiver.cityName = receiver_city[1] == 'null' ? '' : receiver_city[1]
-        receiver.countyName = receiver_city[2] == 'null' ? '' : receiver_city[2]
+        receiver.county = receiver_city[2] == 'null' ? '' : receiver_city[2]
         sender.city
         that.setData({
           sender: res.data[1],
@@ -91,10 +91,63 @@ Page({
     this.setData(param)
   },
   // 打印快递单
-  print:function(){
-    this.setData({
-      logistics:'d'
+  print: function (e){
+    var that = this
+    var value = e.detail.value
+    var Sender = this.data.sender || {}
+    var Receiver = this.data.receiver || {}
+    
+    var sender = {}
+    sender.id = app.globalData.storeId
+    sender.name = value.senderName
+    sender.company = value.consigneeCompany
+    sender.mobile = value.senderMobile
+    sender.prov = Sender.prov
+    sender.city = Sender.cityName
+    sender.county = Sender.county
+    sender.address = value.senderAddress
+    // sender.zipcode = Sender.postCode
+
+    var receiver = {}
+    receiver.id = that.data.buyerstoreid
+    receiver.name = value.receiverName
+    receiver.company = value.deliverCompany
+    receiver.mobile = value.receiverMobile
+    receiver.prov = Receiver.prov
+    receiver.city = Receiver.cityName
+    receiver.county = Receiver.county
+    receiver.address = value.receiverAddress
+    // receiver.zipcode = Receiver.postCode
+
+    var data = {
+      sender: sender,
+      receiver: receiver,
+      orderId: this.data.orderNo,
+      cargo: value.name,
+      logistics: this.data.logistics,
+      nowStr: util.formatTime(new Date()),
+    }
+
+    data = JSON.stringify(data)
+    console.log(data)
+    util.api.request({
+      url: 'print/printer',
+      data: {
+        storeId: app.globalData.storeId,
+        data: data,
+        reportName: "快递"
+      },
+      method: 'POST',
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      success: function (res) {
+        wx.showToast({
+          title: '打印成功',
+        })
+      }
     })
+
   },
   // 提交表单
   expressSubmit: function (e) {
@@ -109,7 +162,7 @@ Page({
       case (value.consigneeCompany):
         regobject.sender.company = true
         break;
-      case (value.senderUserName):
+      case (value.senderName):
         regobject.sender.contact = true
         break;
       case (value.senderMobile):
@@ -118,7 +171,7 @@ Page({
       case (value.senderAddress):
         regobject.sender.address = true
         break;
-      case (sender.cityName && sender.provinceName && sender.countyName):
+      case (sender.cityName && sender.prov && sender.county):
         regobject.sender.city = true
         break;
 
@@ -134,30 +187,33 @@ Page({
       case (value.receiverAddress):
         regobject.receiver.address = true
         break;
-      case (receiver.cityName && receiver.provinceName && receiver.countyName):
+      case (receiver.cityName && receiver.prov && receiver.county):
         regobject.receiver.city = true
         break;
       default:
-
-        switch (this.data.logistics){
-          case ('顺丰'):
-            this.expressSF(e)
-            break;
-          case ('中通'):
-            this.expressZTO(e)
-            break;
-          case ('韵达'):
-            this.expressYD(e)
-            break;
-          case (''||undefined):
-            wx.showToast({
-              title: '您还没有选择快递公司',
-            })
-            break;
-          default :
-          wx.showToast({
-            title: '暂不支持这种快递',
-          })
+        if (e.detail.target.dataset.type =="print"){
+          this.print(e)
+        }else{
+          switch (this.data.logistics){
+            case ('顺丰'):
+              this.expressSF(e)
+              break;
+            case ('中通'):
+              this.expressZTO(e)
+              break;
+            case ('韵达'):
+              this.expressYD(e)
+              break;
+            case (''||undefined):
+              wx.showToast({
+                title: '您还没有选择快递公司',
+              })
+              break;
+            default :
+              wx.showToast({
+                title: '暂不支持这种快递',
+              })
+          }
         }
     }
     this.setData({
@@ -175,23 +231,23 @@ Page({
     consigneeInfo.address = value.senderAddress
     consigneeInfo.city = sender.cityName
     consigneeInfo.company = value.consigneeCompany
-    consigneeInfo.contact = sender.userName
-    consigneeInfo.county = sender.countyName
+    consigneeInfo.contact = value.senderName
+    consigneeInfo.county = sender.county
     consigneeInfo.country = "中国"
-    consigneeInfo.province = sender.provinceName
+    consigneeInfo.province = sender.prov
     consigneeInfo.tel = value.senderMobile
-    consigneeInfo.shipperCode = sender.postalCode
+    consigneeInfo.shipperCode = sender.postCode
     
     var deliverInfo = {}
     deliverInfo.address = receiver.address
     deliverInfo.city = receiver.cityName
     deliverInfo.company = value.deliverCompany
-    deliverInfo.contact = receiver.userName
-    deliverInfo.county = receiver.countyName
+    deliverInfo.contact = receiver.name
+    deliverInfo.county = receiver.county
     deliverInfo.country = "中国"
-    deliverInfo.province = receiver.provinceName
+    deliverInfo.province = receiver.prov
     deliverInfo.tel = receiver.mobile
-    deliverInfo.shipperCode = receiver.postalCode
+    deliverInfo.shipperCode = receiver.postCode
 
     var cargoInfo = {}
     cargoInfo.cargo = '衣物'
@@ -223,7 +279,7 @@ Page({
           success: function (res) {
             wx.hideNavigationBarLoading();
             wx.showToast({
-              title: res.head.message,
+              title: res.msg,
             })
           }
         })
@@ -236,25 +292,25 @@ Page({
 
     var sender = {}
     sender.id = app.globalData.storeId
-    sender.name = Sender.userName
+    sender.name = value.senderName
     sender.company = value.consigneeCompany
-    sender.mobile = Sender.mobile
-    sender.prov = Sender.provinceName
+    sender.mobile = value.senderMobile
+    sender.prov = Sender.prov
     sender.city = Sender.cityName
-    sender.county = Sender.countyName
-    sender.address = Sender.address
-    sender.zipcode = Sender.postalCode
+    sender.county = Sender.county
+    sender.address = value.senderAddress
+    sender.zipcode = Sender.postCode
 
     var receiver = {}
     receiver.id = that.data.buyerstoreid
-    receiver.name = Receiver.userName
+    receiver.name = value.receiverName
     receiver.company = value.deliverCompany
-    receiver.mobile = Receiver.mobile
-    receiver.prov = Receiver.provinceName
+    receiver.mobile = value.receiverMobile
+    receiver.prov = Receiver.prov
     receiver.city = Receiver.cityName
-    receiver.county = Receiver.countyName
-    receiver.address = Receiver.address
-    receiver.zipcode = Receiver.postalCode
+    receiver.county = Receiver.county
+    receiver.address = value.receiverAddress
+    receiver.zipcode = Receiver.postCode
 
     var item = {}
     item.id = 1//货品ID？订单号？
@@ -303,7 +359,7 @@ Page({
       success: function (res) {
         wx.hideNavigationBarLoading();
         wx.showToast({
-          title: res.head.message,
+          title: res.msg,
         })
       }
     })
@@ -315,20 +371,20 @@ Page({
     var Receiver = this.data.receiver || {}
 
     var sender = {}
-    sender.name = Sender.userName
+    sender.name = value.senderName
     sender.company = value.consigneeCompany
-    sender.mobile = Sender.mobile
-    sender.city = Sender.provinceName + ',' + Sender.cityName + ',' + Sender.countyName
-    sender.address = Sender.address
-    sender.postcode = Sender.postalCode
+    sender.mobile = value.senderMobile
+    sender.city = Sender.prov + ',' + Sender.cityName + ',' + Sender.county
+    sender.address = value.senderAddress
+    sender.postcode = Sender.postCode
 
     var receiver = {}
-    receiver.name = Receiver.userName
+    receiver.name = value.receiverName
     receiver.company = value.deliverCompany
-    receiver.mobile = Receiver.mobile
-    receiver.city = Receiver.provinceName + ',' + Receiver.cityName + ',' + Receiver.countyName
-    receiver.address = Receiver.address
-    receiver.zipcode = Receiver.postalCode
+    receiver.mobile = value.receiverMobile
+    receiver.city = Receiver.prov + ',' + Receiver.cityName + ',' + Receiver.county
+    receiver.address = value.receiverAddress
+    receiver.zipcode = Receiver.postCode
 
     var item = {}
     item.name = value.name
@@ -353,7 +409,7 @@ Page({
       success: function (res) {
         wx.hideNavigationBarLoading();
         wx.showToast({
-          title: res.head.message,
+          title: res.msg,
         })
       }
     })

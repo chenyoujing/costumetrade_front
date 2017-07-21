@@ -66,7 +66,7 @@ Page({
     var fixedFee = e.target.dataset.fixedfee;
     console.log(fixedFee)
     this.setData({
-      // logisticName: logisticName,
+      logisticName: logisticName,
       logisticCode: logisticCode,
       freight: fixedFee
     })

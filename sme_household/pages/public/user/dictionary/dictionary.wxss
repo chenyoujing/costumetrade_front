@@ -320,6 +320,7 @@ swiper{
   background-color: #ffffff;
   padding: 8px;
   min-height: 70px;
+  line-height: unset;
 }
 .bank_input{
   width: auto;
@@ -327,6 +328,7 @@ swiper{
   border: 1px solid #DCDCDC;
   border-radius: 3px;
   padding:5px 8px;
+  min-height: 40px;
   max-height:100px;
 }
 
