@@ -34,19 +34,36 @@ Page({
   },
   chart: function () {
     var that = this
+    var report = this.data.report.productReportQuerys
+    var report_quantity = []
+    var report_date = []
+    for (var p in report){
+      report_date.push(parseInt(p)+1)
+      report_quantity.push(report[p].quantity||0)
+      var last_p = p
+    }
+    var today = {}
+    today.quantity = report[last_p].quantity || 0
+    today.amount = report[last_p].amount || 0
+    today.profit = today.amount||0 - report[last_p].primeCost||0
+    this.setData({
+      today: today
+    })
+    console.log(report_quantity)
+    console.log(report_date)
     wx.getSystemInfo({
       success: function (res) {
         var width = res.windowWidth
         columnChart = new wxCharts({
           canvasId: 'columnCanvas',
           type: 'column',
-          categories: ['1', '2', '3', '4', '5', '6', '7'],
+          categories: report_date,
           animation: true,
           background: '#52CAC1',
           legend: false,
           series: [{
-            name: "s",
-            data: [10, 10, 5, 30, 25, 25, 20],
+            name: "销量",
+            data: report_quantity,
             color: '#52CAC1'
           }],
           xAxis: {
@@ -69,6 +86,9 @@ Page({
   },
 
   onLoad: function (options) {
+    this.setData({
+      report: app.globalData.report
+    })
     if (!app.logisticFees && app.globalData.userIdentity !== 2) {
       util.api.getProductInit()
     }

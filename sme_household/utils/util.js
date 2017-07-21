@@ -65,6 +65,7 @@ var api = {
                 app.globalData.discount = res.data.data.employee.discount;
                 app.globalData.storeId = res.data.data.storeId;
                 app.globalData.userid = res.data.data.userid;
+                app.globalData.report = res.data.data.report;
                 if (callback) {
                   callback();
                 }

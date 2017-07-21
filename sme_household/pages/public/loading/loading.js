@@ -14,6 +14,7 @@ Page({
   fail:function(){
     wx.showModal({
       title: '登录失败',
+      showCancel: false,
     })
   },
   // 判断权限显示页面

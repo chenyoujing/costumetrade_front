@@ -1,9 +1,10 @@
 <!--头部-->
 <view class="title clearfix">
   <navigator open-type="navigateBack">
-    <image src="../../../../images/back-away.png" mode="aspectFit" class="title_image_back" />
+    <image src="../../../../images/right-thrust.png" mode="aspectFit" class="title_image_back" />
   </navigator>
   <view class="title_text">{{payType}}支付</view>
+  <view style="float:right; margin-right:15px;">合计金额：<text style="color:#FE2D04;">￥{{pay||0}}</text></view>
 </view>
 
 

@@ -400,7 +400,7 @@ clearStorage:function(name){
   onLoad: function (e) {
     // 分享货品初始化
     this.setData({
-      productIdArray: JSON.parse(e.ids),
+      productIdArray: e.ids?JSON.parse(e.ids):'',
       type: e.goodshare ? 3:undefined
     })
     if (e.goodshare){

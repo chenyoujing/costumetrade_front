@@ -1,5 +1,15 @@
 /*头部*/
 @import "../../../../css/title.wxss";
+.title{
+  background-color: #ffffff;
+  border: 1px solid #DEDEDE;
+  border-width: 1px 0;
+  box-sizing: border-box;
+  color: #000000;
+}
+.title_image_back{
+  transform: rotate(180deg);
+}
 
 .pay_scroll{
   position: absolute;

@@ -1,19 +1,6 @@
-  <view class="share_container clearfix">
+  <view class="share_container {{product.length==1?'one':''}}{{product.length==2?'two':''}}">
     <block wx:for="{{product}}">
-      <navigator url="../../../household/shop/goods_detail/goods_detail?strod={{storeId}}&ID={{item.id}}&name={{title}}">
-        <view class="goods_container" wx:if="{{index<1}}">
-          <view class="content_container clearfix">
-            <image src="{{item.image ? item.image : '../../../../images/image_none.png'}}" mode="aspectFill" />
-            <!--<view class="content_container_text one_line">{{item.name}}</view>-->
-          </view>
-        </view>
-        <view class="goods_container2" wx:if="{{index>=1&&index<4}}">
-          <view class="content_container clearfix">
-            <image src="{{item.image ? item.image : '../../../../images/image_none.png'}}" mode="aspectFill" />
-            <!--<view class="content_container_text one_line">{{item.name}}</view>-->
-          </view>
-        </view>
-      </navigator>
+      <image src="{{item.image ? item.image : '../../../../images/image_none.png'}}" mode="aspectFill" class="goods_container" wx:if="{{index<6}}" />
     </block>
   </view>
  
@@ -25,7 +12,7 @@
 </view>
   <scroll-view scroll-y class="share_scroll">
     <block wx:for="{{product}}">
-      <view class="goods_container2" wx:if="{{index>=4}}">
+      <view class="goods_container2" wx:if="{{index>=6}}">
         <view class="content_container clearfix">
           <image src="{{item.image ? item.image : '../../../../images/image_none.png'}}" mode="aspectFill" />
           <!--<view class="content_container_text one_line">{{item.name}}</view>-->

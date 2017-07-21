@@ -63,9 +63,9 @@
     <canvas class="index_canvas" canvas-id="columnCanvas"/>
     <view class="index_report_content">
       <view class="index_report_text">时间：今天</view>
-      <view class="index_report_text">总数：150</view>
-      <view class="index_report_text">金额：500</view>
-      <view class="index_report_text">利润率：20%</view>
+      <view class="index_report_text">总数：{{today.quantity}}</view>
+      <view class="index_report_text">金额：{{today.amount}}</view>
+      <view class="index_report_text">利润：{{today.profit}}</view>
     </view>
   </navigator>
 
