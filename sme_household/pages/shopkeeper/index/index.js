@@ -73,6 +73,7 @@ Page({
       util.api.getProductInit()
     }
     this.chart()
+
   },
   onShow:function(){
     this.setData({

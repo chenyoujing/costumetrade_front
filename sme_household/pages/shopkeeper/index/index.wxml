@@ -65,7 +65,7 @@
       <view class="index_report_text">时间：今天</view>
       <view class="index_report_text">总数：150</view>
       <view class="index_report_text">金额：500</view>
-      <view class="index_report_text">毛利率：20%</view>
+      <view class="index_report_text">利润率：20%</view>
     </view>
   </navigator>
 

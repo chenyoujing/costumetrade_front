@@ -316,6 +316,11 @@ swiper{
 .setting_operation text{
   padding: 0 20px;
 }
+.bank_info{
+  background-color: #ffffff;
+  padding: 8px;
+  min-height: 70px;
+}
 .bank_input{
   width: auto;
   color: #000000;

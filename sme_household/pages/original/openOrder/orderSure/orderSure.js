@@ -329,25 +329,60 @@ Page({
     this.cancel()
   },
   SendPrintBill:function(){
-    var stringSend = this.stringSendFunction("type1",2);
-    var that = this;
-    wx.getStorage({
-      key: 'deviceNumber',
-      success: function(res) {
-        console.log(111)
-        if (!res.data){
-          that.bill_print();
-        }else{
-          printContent.getBmimgage();
-          printContent.refresh(stringSend);
-        }
+    // var stringSend = this.stringSendFunction("type1",2);
+    // var that = this;
+    // wx.getStorage({
+    //   key: 'deviceNumber',
+    //   success: function(res) {
+    //     console.log(111)
+    //     if (!res.data){
+    //       that.bill_print();
+    //     }else{
+    //       printContent.getBmimgage();
+    //       printContent.refresh(stringSend);
+    //     }
+    //   },
+    //   fail: function () {
+    //     console.log(222)
+    //     that.bill_print();
+    //   }
+    // })
+    var payCost1 = this.payCost1 ? this.payCost1 : 0;
+    var payCost2 = this.payCost2 ? this.payCost2 : 0;
+    var data = {
+      totalNum: this.data.totalNum,
+      realCost: (parseFloat(payCost1) + parseFloat(payCost2)).toFixed(2),
+      totleCost: this.data.reallyPay,
+      nowStr: util.formatTime(new Date()),
+      debetam: this.data.debet,
+      discountratio: this.data.disCount,
+      mchange: this.data.mchange,
+      paycate1: this.data.payCate1,
+      paycost1: this.data.payCost1,
+      paycate2: this.data.payCate2,
+      paycost2: this.data.payCost2,
+      shopCart: this.data.shopCart,
+    }
+    console.log(data)
+    data = JSON.stringify(data)
+    util.api.request({
+      url: 'print/printer',
+      data: {
+        storeId: app.globalData.storeId,
+        data: data,
+        reportName: "门店销售"
       },
-      fail: function () {
-        console.log(222)
-        that.bill_print();
+      method: 'POST',
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      success: function (res) {
+        wx.showToast({
+          title: '打印成功',
+        })
       }
     })
-   
+
     
   },
 

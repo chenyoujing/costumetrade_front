@@ -90,6 +90,12 @@ Page({
     param[regobject] = !boolean;
     this.setData(param)
   },
+  // 打印快递单
+  print:function(){
+    this.setData({
+      logistics:'d'
+    })
+  },
   // 提交表单
   expressSubmit: function (e) {
     var value = e.detail.value
@@ -143,7 +149,7 @@ Page({
           case ('韵达'):
             this.expressYD(e)
             break;
-          case (''||undened):
+          case (''||undefined):
             wx.showToast({
               title: '您还没有选择快递公司',
             })
