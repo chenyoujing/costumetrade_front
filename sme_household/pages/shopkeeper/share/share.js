@@ -79,6 +79,7 @@ Page({
             data.push(res.data[p])
           }
         }
+
         if (res.data.length < 10) {
           booleanre = false;
         } else {
@@ -352,6 +353,7 @@ Page({
     var ids = e.target.dataset.id;
     var boolean2 = true;
     var idsArray = this.data.ids;
+    var product = this.data.product
     for (var p in idsArray) {
       if (idsArray[p] == ids) {
         idsArray.splice(p, 1);
@@ -363,9 +365,10 @@ Page({
       idsArray.push(ids)
     }
     this.setData({
-      ids: idsArray
+      ids: idsArray,
     })
     console.log(idsArray)
+
   },
   delectRequest: function () {
     var that = this;

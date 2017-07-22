@@ -110,20 +110,16 @@
 .order_view{
   padding: 10px 8px 0;
   border-top: 5px solid #DBF4F1;
-  position: relative;
-  
+  display: flex;
+  align-items: center;
 }
 .order_image{
   width: 70px;
   height: 70px;
-  margin: auto 0;
-  display: block;
-  position:absolute;
-  top:0;
-  bottom:0;
+  flex-shrink: 0;
 }
 .order_view_info{
-  margin-left: 70px;
+  width: 100%;
 }
 .order_view_title{
   font-size: 12px;

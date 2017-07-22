@@ -110,5 +110,5 @@
 </scroll-view>
 
 <button class="submit bg_g" style="left:50%;" form-type="submit">提交</button>
-<button class="submit" style="right:50%;" form-type="submit" data-type="print">打印</button>
+<button class="submit" style="right:50%;" form-type="submit" data-type="print">提交并打印</button>
 </form>

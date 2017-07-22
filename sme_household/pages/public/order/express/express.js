@@ -126,6 +126,7 @@ Page({
       cargo: value.name,
       logistics: this.data.logistics,
       nowStr: util.formatTime(new Date()),
+      mailNo: this.mailNo,
     }
 
     data = JSON.stringify(data)
@@ -144,6 +145,10 @@ Page({
       success: function (res) {
         wx.showToast({
           title: '打印成功',
+        })
+      },fail: function () {
+        wx.showToast({
+          title: '打印失败',
         })
       }
     })
@@ -191,29 +196,29 @@ Page({
         regobject.receiver.city = true
         break;
       default:
+        var print = ''
         if (e.detail.target.dataset.type =="print"){
-          this.print(e)
-        }else{
-          switch (this.data.logistics){
-            case ('顺丰'):
-              this.expressSF(e)
-              break;
-            case ('中通'):
-              this.expressZTO(e)
-              break;
-            case ('韵达'):
-              this.expressYD(e)
-              break;
-            case (''||undefined):
-              wx.showToast({
-                title: '您还没有选择快递公司',
-              })
-              break;
-            default :
-              wx.showToast({
-                title: '暂不支持这种快递',
-              })
-          }
+          print = this.print
+        }
+        switch (this.data.logistics){
+          case ('顺丰'):
+            this.expressSF(e, print)
+            break;
+          case ('中通'):
+            this.expressZTO(e, print)
+            break;
+          case ('韵达'):
+            this.expressYD(e, print)
+            break;
+          case (''||undefined):
+            wx.showToast({
+              title: '您还没有选择快递公司',
+            })
+            break;
+          default :
+            wx.showToast({
+              title: '暂不支持这种快递',
+            })
         }
     }
     this.setData({
@@ -221,7 +226,7 @@ Page({
     })
   },
   // 提交快递单/顺丰
-  expressSF:function(e){
+  expressSF: function (e, print){
     var that = this;
     var value = e.detail.value 
     var sender = this.data.sender || {}
@@ -268,23 +273,34 @@ Page({
     object.isDoCall = 1
     object.isGenBillNo = 1
     console.log(object)
-        wx.showNavigationBarLoading();
-        util.api.request({
-          url: 'logistic/orderSF',
-          data: object,
-          method: 'POST',
-          header: {
-            'content-type': 'application/json'
-          },
-          success: function (res) {
-            wx.hideNavigationBarLoading();
+    wx.showNavigationBarLoading();
+    util.api.request({
+      url: 'logistic/orderSF',
+      data: object,
+      method: 'POST',
+      header: {
+        'content-type': 'application/json'
+      },
+      success: function (res) {
+        wx.hideNavigationBarLoading();
+        if (res.data) {
+          if (print) {
+            that.mailNo = res.data.head.transMessageId
+            print(e)
+          } else {
             wx.showToast({
-              title: res.msg,
+              title: res.data.head.message,
             })
           }
-        })
+        } else {
+          wx.showToast({
+            title: res.msg,
+          })
+        }
+      }
+    })
   },
-  expressZTO: function (e) {
+  expressZTO: function (e, print) {
     var that = this
     var value = e.detail.value
     var Sender = this.data.sender || {}
@@ -333,7 +349,7 @@ Page({
     object.sendstarttime = "2010-06-19 08:00:00"
     object.sendendtime = "2010-06-19 08:00:00"
     object.tradeId = 1
-    object.mailNo = 1
+    // object.mailNo = 1
     object.siteName = 1
     object.weight = 1
     object.size = 1
@@ -358,14 +374,25 @@ Page({
       },
       success: function (res) {
         wx.hideNavigationBarLoading();
-        wx.showToast({
-          title: res.msg,
-        })
+        if (res.data) {
+          if (print) {
+            that.mailNo = res.data.orderCode
+            print(e)
+          } else {
+            wx.showToast({
+              title: '快递单已下',
+            })
+          }
+        } else {
+          wx.showToast({
+            title: res.msg,
+          })
+        }
       }
     })
 
   },
-  expressYD: function (e) {
+  expressYD: function (e, print) {
     var value = e.detail.value
     var Sender = this.data.sender || {}
     var Receiver = this.data.receiver || {}
@@ -408,17 +435,28 @@ Page({
       },
       success: function (res) {
         wx.hideNavigationBarLoading();
-        wx.showToast({
-          title: res.msg,
-        })
+        if (res.data) {
+          if (print) {
+            that.mailNo = res.data.head.mailNo
+            print(e)
+          } else {
+            wx.showToast({
+              title: res.data.head.message,
+            })
+          }
+        } else {
+          wx.showToast({
+            title: res.msg,
+          })
+        }
       }
     })
 
   },
   onLoad:function(e){
     this.setData({
-      orderNo: e.orderNo,
-      logistics: e.logistics,
+      orderNo: 452045315||e.orderNo,
+      logistics: "韵达"||e.logistics,
       buyerstoreid: e.buyerstoreid,
     })
     this.logisticInit()
