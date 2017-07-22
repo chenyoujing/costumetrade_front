@@ -19,13 +19,13 @@
 
 
   <view class="sort">
-    <view class="sort_text {{state=='timeUpOp' ? 'screen_active' : ''}}" bindtap="changeSortData" data-sort="timeUpOp">
+    <view class="sort_text {{state=='recommend' ? 'screen_active' : ''}}" bindtap="changeSortData" data-sort="recommend">
       推荐
     </view>
-    <view class="sort_text {{state=='saleOp' ? 'screen_active' : ''}}" bindtap="changeSortData" data-sort="saleOp" >
+    <view class="sort_text {{state=='timeUpOp' ? 'screen_active' : ''}}" bindtap="changeSortData" data-sort="timeUpOp" >
       上新
     </view>
-    <view class="sort_text {{state=='priceOp' ? 'screen_active' : ''}}" bindtap="changeSortData" data-sort="priceOp" >
+    <view class="sort_text {{state=='hottestOp' ? 'screen_active' : ''}}" bindtap="changeSortData" data-sort="hottestOp" >
       最热
     </view>
     <view class="more">
@@ -33,7 +33,8 @@
     </view>
   </view>
 
-  <scroll-view scroll-y="true" class="mall_scroll" lower-threshold="10" bindscrolltolower="{{loadMore?'onReachBottom':''}}" style="bottom:{{delete_button}}px;">
+<!--推荐货品-->
+  <scroll-view wx:if="{{state == 'recommend'}}" scroll-y="true" class="mall_scroll" lower-threshold="10" bindscrolltolower="{{loadMore?'onReachBottom':''}}" style="bottom:{{delete_button}}px;">
     <view class="prompt_none" wx:if="{{product.length == 0}}">
       <text>该店铺未发图于您！</text>
     </view>
@@ -58,6 +59,36 @@
         </view>
         <view class="shop_goods">
           <view class="mall_container {{rank}}" wx:for="{{item.products}}">
+            <navigator url="../goods_detail/goods_detail?strod={{id}}&ID={{item.id}}&name={{name}}" hover-class="navigator-hover" class="content_container clearfix">
+              <image src="{{item.image?url+item.image:'../../../../images/shop1_1.png'}}" mode="aspectFill" />
+              <view class="content_container_text">
+                <view class="clear"></view>
+                <view class="content_container_title">{{item.name}}</view>
+                <view class="content_container_info clearfix">
+                  <view class="price">{{item.salePrice}}</view>
+                  <view class="info_other">
+                    <view class="volume">{{item.volume}}</view>
+                    <view class="date">{{item.timeUp}}</view>
+                  </view>
+                </view>
+              </view>
+            </navigator>
+          </view>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+  
+  <!--上新 最热 货品-->
+  <scroll-view wx:if="{{state !== 'recommend'}}" scroll-y="true" class="mall_scroll" lower-threshold="10" bindscrolltolower="{{loadMore?'onReachBottom':''}}" style="bottom:{{delete_button}}px;">
+    <view class="prompt_none" wx:if="{{product.length == 0}}">
+      <text>没有查到您需要的货品</text>
+    </view>
+
+    <view class="shop_content" wx:for="{{product}}"> 
+      <view class="shop_content_view">
+        <view class="shop_goods">
+          <view class="mall_container {{rank}}">
             <navigator url="../goods_detail/goods_detail?strod={{id}}&ID={{item.id}}&name={{name}}" hover-class="navigator-hover" class="content_container clearfix">
               <image src="{{item.image?url+item.image:'../../../../images/shop1_1.png'}}" mode="aspectFill" />
               <view class="content_container_text">

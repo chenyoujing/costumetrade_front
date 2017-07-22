@@ -9,7 +9,6 @@ Page({
     pageNum: 1,
     loadMore: true,
     requestSwitch: true,
-    Op: 'desc',
     getSortData: {
       value: 'timeUpOp',
       op: 'desc'
@@ -19,8 +18,9 @@ Page({
     code: null,
     getFilterData: [],
     prompt:0,
-    state:"timeUpOp",
-    rank:'rank'
+    state:"recommend",
+    rank:'rank',
+    urlAjax:'product/getAllPromotionalProduct'
   },
   // 跳转搜索页面
   bindfocus:function(){
@@ -71,11 +71,12 @@ Page({
     }
   },
   // 店铺货品列表
-  page_request:function(){
+  page_request:function(url){
     var that = this;
-    wx.showNavigationBarLoading()
+    var header = this.data.state == 'recommend' ? "application/x-www-form-urlencoded" :'application/json'
+    wx.showNavigationBarLoading();
     util.api.request({
-      url: 'product/getAllPromotionalProduct',
+      url: url,
       data: {
         storeId: that.data.id,
         sort: that.data.getSortData,
@@ -87,7 +88,7 @@ Page({
       },
       method: 'POST',
       header: {
-        'content-type': 'application/x-www-form-urlencoded'
+        'content-type': header
       },
       success: function (res) {
         wx.hideNavigationBarLoading();
@@ -95,6 +96,7 @@ Page({
         var booleanre = that.data.requestSwitch;
         res.data = res.data == 1000 ? [] : res.data;
         for (var p in res.data) {
+          res.data[p].timeUp = util.toDate(res.data[p].timeUp);
           res.data[p].createTime = util.toDate(res.data[p].createTime);
           for (var j in res.data[p].products){
             res.data[p].products[j].timeUp = util.toDate(res.data[p].products[j].timeUp);
@@ -129,24 +131,19 @@ Page({
   // 三种排序效果切换
   changeSortData: function (e) {
     var status = e.currentTarget.dataset.sort;
-    var op = this.data.Op ? this.data.Op : 'desc';
-    if (op == 'desc') {
-      op = 'asc'
-    } else {
-      op = 'desc'
-    }
+    var url = status == 'recommend' ? "product/getAllPromotionalProduct" :"product/getProducts";
     this.setData({
       state: status,
-      Op: op,
       getSortData: {
         value: status,
-        op: op
+        op: "desc"
       },
+      urlAjax: url,
       pageNum: 1,
       product: [],
       requestSwitch: true
     });
-    this.page_request();
+    this.page_request(url);
   },
   // 跳转货品详情
   goods_detail: function (e) {
@@ -197,7 +194,7 @@ Page({
     });
     console.log(app.globalData)
     console.log(options.id)
-    this.page_request();
+    this.page_request(this.data.urlAjax);
   },
   onShow:function(){
     this.promptNum();
@@ -211,7 +208,7 @@ Page({
         requeseName: app.searchValue ? app.searchValue : null,
         getFilterData: app.getFilterData ? app.getFilterData : undefined
       })
-      this.page_request();
+      this.page_request(this.data.urlAjax);
       app.getFilterData = [];
       app.searchValue = null;
     }

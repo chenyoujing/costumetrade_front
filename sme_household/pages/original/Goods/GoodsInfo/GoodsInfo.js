@@ -370,7 +370,7 @@ Page({
     target.fourthPrice = this.data.picker_view[3].price ? this.data.picker_view[3].price : 0;
     target.fifthPrice = this.data.picker_view[4].price ? this.data.picker_view[4].price : 0;
     if (this.data.GoodsInfoData.image) {
-      target.image = this.data.GoodsInfoData.image.replace(/http:\/\/ot84hx5jl.bkt.clouddn.com/g, '');
+      target.image = this.data.GoodsInfoData.image.replace(/http:\/\/ot84hx5jl.bkt.clouddn.com\//g, '');
     }
     if (this.data.GoodsInfoData.image1) {
       target.image1 = this.data.GoodsInfoData.image1.replace(/http:\/\/ot84hx5jl.bkt.clouddn.com\//g, '');

@@ -77,7 +77,7 @@ Page({
     var that = this;
     var fileList = this.data.fileList;
     for (var p in fileList){
-      fileList[p]= fileList[p].replace(/http:\/\/117.149.24.42:8788/g, '');
+      fileList[p] = fileList[p].replace(/http:\/\/ot84hx5jl.bkt.clouddn.com\//g, '');
     }
     wx.showNavigationBarLoading();
     util.api.request({
