@@ -29,9 +29,9 @@ Page({
     var index = e.target.dataset.index;
     var shopCart = this.data.shopCart;
     if (type == 'sub') {
-      shopCart[index].count = parseInt(shopCart[index].count - 1)
+      shopCart[index].count = parseInt(shopCart[index].count - 1) == 0 ? -1 : parseInt(shopCart[index].count - 1);
     } else {
-      shopCart[index].count = parseInt(shopCart[index].count + 1)
+      shopCart[index].count = parseInt(shopCart[index].count + 1) == 0 ? 1 :parseInt(shopCart[index].count + 1)
     }
     this.setData({
       shopCart: shopCart

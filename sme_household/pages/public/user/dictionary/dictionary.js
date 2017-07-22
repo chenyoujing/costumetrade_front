@@ -640,14 +640,29 @@ Page({
           } else if (type == "logisticFees"){
             submitData[type] = product;
             product[index].feeType = product[index].feeType == 1 ? 2 : 1;
-            submitData[index] = product;
+            submitData[type] = product;
             param[type] = product;
+            param['submitData'] = submitData
           }
           that.setData(param);
-          that.submitData()
+          if (type == "sellingProduct"){
+            that.submitData()
+          }
         }
       }
     })
+  },
+  // 运费提交
+  logisticFeesSubmit:function(){
+    if (this.data.submitData.logisticFees){
+      this.submitData()
+    }else{
+      wx.showToast({
+        title: "您没有更改！",
+        mask: true,
+        duration: 2000
+      })
+    }
   },
   // 分店管理
   branch:function(e){
@@ -674,8 +689,6 @@ Page({
     var name = e.target.dataset.name;
     var storeIdData = this.data.storeIdData;
     storeIdData[name] = e.detail.value;
-    console.log(e.detail.value)
-    console.log(storeIdData)
     this.setData({
       storeIdData: storeIdData
     })
@@ -945,7 +958,6 @@ Page({
        } else if (p == 'sellingProduct' || p == "pointExchange" ||p=="customerProduct"){
           submitData[p].storeId = app.globalData.storeId
           newSubmitData.push(submitData[p])
-          
        }else{
          for (var j in submitData[p]) {
            newSubmitData.push(submitData[p][j])

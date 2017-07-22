@@ -296,7 +296,7 @@
                   元
                 </view>
               </view>
-              <view class="freight_button" bindtap="submitData">保存</view>
+              <view class="freight_button" bindtap="logisticFeesSubmit">保存</view>
             </scroll-view>
           </block>
         </view>
@@ -348,8 +348,8 @@
           <view class="branch" style="height:40px;">
             <view class="branch_view" style="font-size:16px;flex:3;">分店管理</view>
             <view class="branch_view">共享库存</view>
-            <view class="branch_view">共享会员</view>
-            <view class="branch_view">共享货品</view>
+            <!--<view class="branch_view">共享会员</view>
+            <view class="branch_view">共享货品</view>-->
             <view class="branch_view" style="flex:1;">
               <image src="/images/append.png" mode="aspectFit" class="branch_image" />
               <view class="bindtap_cover" data-add="true" bindtap="branch"></view>
@@ -358,8 +358,8 @@
           <view class="branch" wx:for="{{stores}}">
             <view class="branch_view" style="flex:3;"><text>{{index+1}}.</text>{{item.name}}</view>
             <view class="branch_view">{{item.inventoryShare==1?'是':'否'}}</view>
-            <view class="branch_view">{{item.inventoryShare==1?'是':'否'}}</view>
-            <view class="branch_view">{{item.inventoryShare==1?'是':'否'}}</view>
+            <!--<view class="branch_view">{{item.inventoryShare==1?'是':'否'}}</view>
+            <view class="branch_view">{{item.inventoryShare==1?'是':'否'}}</view>-->
             <view class="branch_view" style="flex:1;">
               <image src="/images/update.png" mode="aspectFit" class="branch_image"/>
         <view class="bindtap_cover" bindtap="branch"  data-add="false" data-item="{{item}}"></view>
@@ -389,7 +389,7 @@
         <radio value="2" checked="{{storeIdData.inventoryShare == 2}}"/>否
       </label>
     </radio-group>
-     <radio-group class="branchModal_content">
+     <!--<radio-group class="branchModal_content">
       <view class="branchModal_content_view">共享货品</view>
       <label class="branchModal_content_view"><radio checked="{{storeIdData.inventoryShare == 1}}"/>是</label>
       <label class="branchModal_content_view"><radio checked="{{storeIdData.inventoryShare !== 1}}"/>否</label>
@@ -398,7 +398,7 @@
       <view class="branchModal_content_view">共享会员</view>
       <label class="branchModal_content_view"><radio value="1" checked="{{storeIdData.inventoryShare == 1}}"/>是</label>
       <label class="branchModal_content_view"><radio checked="{{storeIdData.inventoryShare !== 1}}"/>否</label>
-    </radio-group>
+    </radio-group>-->
   </view>
 </modal>
 

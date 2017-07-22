@@ -7,7 +7,7 @@
       </navigator>
       <navigator url="../shoppingcard/shoppingcard?stordId={{id}}">
         <image src="../../../../images/shopping-cart.png" mode="aspectFit" class="shoppingcard_image" style="margin-left:3%;">
-          <view class="prompt" wx:if="{{prompt>0}}">{{prompt}}</view>
+          <view class="prompt" wx:if="{{prompt !== 0}}">{{prompt}}</view>
         </image>
       </navigator>
       <input class="search_input" type="text" placeholder="请输入货号搜索货品..." bindfocus="bindfocus"  focus="{{inputFocus}}" >
