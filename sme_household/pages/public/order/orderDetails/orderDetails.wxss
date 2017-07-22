@@ -22,17 +22,20 @@
 .order_container{
   padding: 5px 0;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
 .seller_info{
   padding: 10px 50rpx;
+  display: flex;
+  justify-content: center;
 }
 .seller_tx{
   width: 50px;
   height: 50px;
   border-radius: 25px;
-  float: left;
   margin-right: 15px;
+  flex-shrink: 0;
 }
 .seller_text{
   font-size: 13px;
@@ -42,6 +45,8 @@
   border-top: 5px solid #DBF4F1;
   padding: 10px 50rpx;
   padding-bottom:40px;
+  width: 100%;
+  box-sizing: border-box;
 }
 .orderinfo_title{
   border-bottom: 2px solid #DDDDDD;

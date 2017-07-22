@@ -42,9 +42,16 @@ Page({
   },
   changeOrderStatus: function (e) {
     var that = this;
+    var pay = e.currentTarget.dataset.pay;
+    var content
+    if(pay == 1){
+      content = '我选择了不支付，确定？'
+    } else if (pay == 2){
+      content = '我已经支付过，确定？'
+    }
     wx.showModal({
       title: '确定更改',
-      content: '我已经支付过，确定？',
+      content: content,
       success: function (res) {
         if (res.confirm) {
           that.surepay(e);
