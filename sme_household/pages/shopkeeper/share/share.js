@@ -220,28 +220,6 @@ Page({
       }
     }
   },
-  // 打开多功能键
-  more_function: function () {
-    this.setData({
-      more_function_display: "block",
-    })
-    setTimeout(() => {
-      this.setData({
-        animation: "animation",
-      })
-    }, 10)
-  },
-  // 关闭多功能键
-  more_function_close: function () {
-    this.setData({
-      animation: "",
-    })
-    setTimeout(() => {
-      this.setData({
-        more_function_display: "none",
-      })
-    }, 300)
-  },
   //滚动到底部触发事件  
   onReachBottom: function () {
     console.log('到底不了')
@@ -268,33 +246,8 @@ Page({
       select_checkbox: '50',
       update_button: '40'
     })
-    this.more_function_close();
   },
-  // 完成删除操作
-  batchOperationsOk: function () {
-    this.setData({
-      select_checkbox: '0',
-      update_button: '0',
-      reset: false,
-      aa: false
-    })
-  },
-  batch_delete_sure: function () {
-    var idsArray = this.data.ids;
-    if (idsArray.length == 0 && !this.data.checkAllTag) {
-      wx.showToast({
-        title: '请勾选要删除的货品',
-        mask: true,
-        duration: 2000
-      })
-    } else {
-      this.batchOperationsOk();
-      this.delectRequest();
-    }
-    this.setData({
-      ids: []
-    })
-  },
+
   // 进入分享页面
   batch_share_sure: function (e) {
     var type = e.target.dataset.name;
@@ -322,34 +275,6 @@ Page({
       })
     }
   },
-  // 进入批量修改页面
-  batch_update_sure: function () {
-    var idsArray = this.data.ids;
-    if (idsArray.length == 0 || idsArray.length>50) {
-      wx.showToast({
-        title: '请勾选要修改的货品',
-        mask: true,
-        duration: 2000
-      })
-    } else {
-      this.batchOperationsOk();
-      var ids = this.data.ids.join(',');
-      wx.navigateTo({
-        url: '../../original/Goods/GoodsUpdate/GoodsUpdate?ids=' + ids + "&checkAllTag=" + this.data.checkAllTag,
-      })
-    }
-    this.setData({
-      ids: []
-    })
-  },
-  // 全选全不选
-  SelectallOrNot: function () {
-    this.setData({
-      aa: !this.data.aa,
-      checkAllTag: !this.data.aa,
-      ids: []
-    })
-  },
   SelectContainer: function (e) {
     var ids = e.target.dataset.id;
     var boolean2 = true;
@@ -370,65 +295,6 @@ Page({
     })
     console.log(idsArray)
 
-  },
-  delectRequest: function () {
-    var that = this;
-    var ids = that.data.ids;
-    ids = ids.length == 0 ? null : ids;
-    wx.showNavigationBarLoading()
-    util.api.request({
-      url: 'product/updateProducts',
-      data: {
-        storeId: app.globalData.storeId,
-        idArray: ids,
-        checkAllTag: that.data.checkAllTag,
-        status: 3
-      },
-      method: 'POST',
-      header: {
-        'content-type': 'application/x-www-form-urlencoded'
-      },
-      success: function (res) {
-        wx.hideNavigationBarLoading();
-        var product = that.data.product;
-        var totalProduct = [];
-        var newData = [];
-        // 货品
-        wx.getStorage({
-          key: 'GoodsData',
-          success: function (res) {
-            console.log(res)
-            totalProduct = res.data ? res.data : [];
-            console.log(totalProduct[0])
-            // 更新货品缓存
-            totalProduct = util.api.deleteGoodsorClient(ids, totalProduct, that.data.checkAllTag);
-            console.log(totalProduct)
-            wx.setStorage({
-              key: "GoodsData",
-              data: totalProduct,
-              fail: function () {
-                wx.showToast({
-                  title: '失败',
-                  mask: true,
-                  duration: 2000
-                })
-              }
-            })
-          }
-        })
-        product = util.api.deleteGoodsorClient(ids, product, that.data.checkAllTag)
-        that.setData({
-          product: product,
-          ids: [],
-          checkAllTag: false
-        })
-        wx.showToast({
-          title: '成功',
-          mask: true,
-          duration: 2000
-        })
-      }
-    })
   },
 
   onLoad() {

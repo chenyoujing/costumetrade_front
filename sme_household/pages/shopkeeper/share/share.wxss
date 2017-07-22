@@ -24,7 +24,7 @@
 }
 .image_search{
   position: absolute;
-  right: 118px;
+  right: 82px;
 }
 .condition{
   width: 100%;
