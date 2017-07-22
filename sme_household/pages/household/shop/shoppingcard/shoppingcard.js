@@ -6,7 +6,8 @@ Page({
     totalnum:0,
     totalPrice: 0,
     aa:false,
-    stordId:0
+    stordId:0,
+    ishasGoodsnum:0
   },
   // 得到缓存本地数据
   getData: function () {
@@ -28,6 +29,7 @@ Page({
     var type = e.target.dataset.type;
     var index = e.target.dataset.index;
     var shopCart = this.data.shopCart;
+   
     if (type == 'sub') {
       shopCart[index].count = parseInt(shopCart[index].count - 1) == 0 ? -1 : parseInt(shopCart[index].count - 1);
     } else {
@@ -44,9 +46,11 @@ Page({
     var totalPrice = 0;
     var totalnum = 0;
     var shopCart = this.data.shopCart;
+    var ishasGoodsnum = 0;
     for (var p in shopCart){
       shopCart[p].image1 = shopCart[p].image ? util.api.imgUrl + shopCart[p].image : "";
       if (shopCart[p].sizeGroup && shopCart[p].iSselect == true){
+        ishasGoodsnum += 1;
         var sizeArray = shopCart[p].sizeGroup.split(',')
         for(var g in sizeArray){
           totalnum += 1;
@@ -57,14 +61,17 @@ Page({
           }
         }
     } else if (!shopCart[p].sizeGroup && shopCart[p].iSselect == true){
+        ishasGoodsnum += 1;
         totalnum += 1;
         totalPrice += Number(Number(shopCart[p].price) * shopCart[p].count);
       }
     }
+    console.log(ishasGoodsnum)
     this.setData({
       totalnum: parseInt(totalnum),
       totalPrice: totalPrice,
-      shopCart: shopCart
+      shopCart: shopCart,
+      ishasGoodsnum: ishasGoodsnum
     })
   },
   // 取消选择
@@ -115,9 +122,9 @@ Page({
   // 跳转至确认订单
   orderSure:function(){
     var that = this
-    if (this.data.shopCart == 0) {
+    if (this.data.ishasGoodsnum == 0) {
       wx.showModal({
-        title: '没商品不能下订单',
+        title: '请选择商品后再下单',
         showCancel: false,
       })
     } else {

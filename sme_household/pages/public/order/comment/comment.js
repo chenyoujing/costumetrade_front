@@ -93,7 +93,7 @@ Page({
     util.api.request({
       url: this.data.url,
       data: {
-        storeId: that.data.storeId,
+        storeid: that.data.storeId,
         productid: that.data.productid,
         url: that.data.fileList,
         msg: that.data.msg
