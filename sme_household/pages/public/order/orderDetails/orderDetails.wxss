@@ -127,41 +127,39 @@
 }
 .order_view_title{
   font-size: 12px;
-  line-height: 23px;
-  padding: 0 8px;
-  padding-right: 70px;
+  height: 23px;
+  padding-left: 8px;
   border-bottom: 2px solid #DCDCDC;
   position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 .order_view_date{
-  position: absolute;
-  top: 0;
-  right: 0;
   font-size: 10px;
   color: #999999;
-  max-width: 65px;
+  flex-shrink: 0;
 }
 .order_view_content{
   position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 .order_view_text{
   font-size: 10px;
   line-height: 20px;
   color: #999999;
-  padding-right: 70px;
 }
 .order_view_text text{
   padding: 0 8px;
   display: inline-block;
 }
 .order_unit_price{
-  position: absolute;
-  top: 0;
-  right: 0;
   font-size: 10px;
   line-height: 20px;
   color: #999999;
-  max-width: 65px;
+  flex-shrink: 0;
 }
 .order_view_input{
   font-size: 12px;

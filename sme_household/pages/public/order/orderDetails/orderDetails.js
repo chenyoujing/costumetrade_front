@@ -34,7 +34,7 @@ Page({
         res.data.ssStoOrder.ordertime = util.toDate(res.data.ssStoOrder.ordertime)
         var price = 0
         for (var p in res.data.ssStoDetail){
-          res.data.ssStoDetail[p].createtime = util.toDate(res.data.ssStoDetail[p].createtime);
+          // res.data.ssStoDetail[p].createtime = util.toDate(res.data.ssStoDetail[p].createtime);
           res.data.ssStoDetail[p].totalPrice = (res.data.ssStoDetail[p].count * res.data.ssStoDetail[p].price).toFixed(2)
           price += Math.round((res.data.ssStoDetail[p].count * res.data.ssStoDetail[p].price) * 100) / 100 || 0
         }

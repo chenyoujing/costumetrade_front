@@ -385,6 +385,7 @@ Page({
       paycate2: this.data.payCate2,
       paycost2: this.data.payCost2,
       name: app.globalData.userInfo.name,
+      uname: app.selectName.name ? app.selectName.name : '',
       shopCart: shopCart,
     }
     data = JSON.stringify(data)

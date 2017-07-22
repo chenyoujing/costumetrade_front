@@ -12,9 +12,14 @@ Page({
     }
   },
   fail:function(){
+    var that = this
     wx.showModal({
       title: '登录失败',
-      showCancel: false,
+      cancelText: '确认',
+      confirmText: '重新登录',
+      success:function(){
+        that.onLoad()
+      }
     })
   },
   // 判断权限显示页面
