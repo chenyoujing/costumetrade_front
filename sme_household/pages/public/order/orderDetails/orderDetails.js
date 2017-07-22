@@ -168,7 +168,8 @@ Page({
        ordertype2: options.ordertype2,
        update: options.update,
        logisticFees: app.logisticFees,
-       openid: app.globalData.openid
+       openid: app.globalData.openid,
+       url: util.api.imgUrl
      })
      this.orderDetail_request();
   }

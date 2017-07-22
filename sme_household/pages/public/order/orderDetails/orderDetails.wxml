@@ -54,7 +54,7 @@
     </view>
   </view>
   <view class="order_view" wx:for="{{product.ssStoDetail}}">
-    <image src="../../../../images/image_none.png" mode="aspectFill" class="order_image" />
+    <image src="{{item.image?url+item.image:'../../../../images/image_none.png'}}" mode="aspectFill" class="order_image" />
     <view class="order_view_info">
       <view class="order_view_title">
         <view class="one_line">名称：{{item.productname}}</view>
