@@ -68,7 +68,7 @@ Page({
         buyerid: that.data.buyerid,
         sellerid: that.data.sellerid,
         openid: app.globalData.openid,
-        pay: that.data.pay
+        payable: that.data.pay
       },
       method: 'POST',
       header: {

@@ -44,7 +44,7 @@ Page({
     }
     today.quantity = report[report.length-1].quantity || 0
     today.amount = report[report.length - 1].amount || 0
-    today.profit = (report[report.length - 1].amount || 0) - (report[report.length - 1].primeCost||0)
+    today.profit = ((report[report.length - 1].amount || 0) - (report[report.length - 1].primeCost||0)).toFixed(1);
     this.setData({
       today: today
     })
