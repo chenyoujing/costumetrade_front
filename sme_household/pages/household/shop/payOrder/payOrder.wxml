@@ -12,7 +12,7 @@
 <scroll-view scroll-y class="pay_scroll" wx:if="{{payType !== '转账'}}">
   <view class="pay_title">转账给</view>
   <view class="shop_name">{{seller}}</view>
-  <image src="{{imagePAy?url+imagePAy:'../../../../images/image_none.png'}}" mode="aspectFit" class="pay_image" />
+  <image src="{{imagePAy?url+imagePAy:'../../../../images/image_none.png'}}" mode="aspectFit" class="pay_image" bindlongtap="saveImage" />
 
   <view class="pay_text">
     <view>1.打开{{payType}}扫一扫</view>

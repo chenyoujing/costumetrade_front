@@ -75,7 +75,9 @@ Page({
         buyerid: that.data.buyerid,
         sellerid: that.data.sellerid,
         openid: app.globalData.openid,
-        payable: that.data.pay
+        payable: that.data.pay,
+        payStatus: orderInfo.pay == 2 ? 1 : 2
+
       },
       method: 'POST',
       header: {
@@ -91,6 +93,42 @@ Page({
         wx.navigateBack({
           delta: 2
         })
+      }
+    })
+  },
+  // 长按保存
+  saveImage: function () {
+    var that = this
+    wx.showActionSheet({
+      itemList: ['保存图片'],
+      success: function (res) {
+        if (res.tapIndex == 0) {
+          var imagePAy = that.data.imagePAy
+          if (imagePAy) {
+            console.log(that.data.url + imagePAy)
+            wx.downloadFile({
+              url: that.data.url + imagePAy,
+              success: function (res) {
+                console.log(res)
+                wx.saveImageToPhotosAlbum({
+                  filePath: res.tempFilePath,
+                  success(res) {
+                    wx.showToast({
+                      title: '保存成功',
+                    })
+                  }
+                })
+              }
+            })
+          } else {
+            wx.showToast({
+              title: '没有可以保存的图片',
+            })
+          }
+        }
+      },
+      fail: function (res) {
+        console.log(res.errMsg)
       }
     })
   },
