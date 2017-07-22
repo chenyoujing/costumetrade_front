@@ -85,7 +85,7 @@ Page({
       object.nickName = this.null(object.nickName)
       object.storeId = app.globalData.storeId
       object.type = this.data.client
-      object.cate = this.data.initCustomerList[this.data.type_index].id
+      object.cate = this.data.initCustomerList[this.data.type_index].custTypeCode
       console.log(object)
       wx.showNavigationBarLoading()
       util.api.request({

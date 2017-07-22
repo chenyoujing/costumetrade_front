@@ -56,7 +56,10 @@ var api = {
                 app.globalData.userInfo.code = loginCode.code;
                 app.globalData.userInfo.name = res.data.data.name;
                 app.globalData.userInfo.fansCount = res.data.data.fansCount;
-                app.globalData.userInfo.photo = res.data.data.photo;
+                // 微信头像加载小图
+                var photo = res.data.data.photo
+                photo = photo.replace(/\/0$/, "/46"); 
+                app.globalData.userInfo.photo = photo;
                 app.globalData.openid = res.data.data.query.openid;
                 app.globalData.privilegeEmployees = res.data.data.employee.privilegeEmployees;
                 app.globalData.userIdentity = res.data.data.userIdentity;

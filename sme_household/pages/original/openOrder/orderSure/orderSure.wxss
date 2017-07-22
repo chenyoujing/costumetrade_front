@@ -73,10 +73,22 @@
   color: #000000;
 }
 .order_input{
-  padding: 10px 30px 0;
+  margin: 10px 30px 0;
+  position: relative;
 }
 .order_input:last-child{
   margin-bottom: 10px;
+}
+.order_input_right{
+  position: absolute;
+  right: 4px;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  color: #666666;
 }
 .order_input_text{
   width: 30%;

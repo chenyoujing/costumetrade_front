@@ -21,6 +21,8 @@
 }
 .order_container{
   padding: 5px 0;
+  display: flex;
+  justify-content: center;
 }
 .seller_info{
   padding: 10px 50rpx;
@@ -96,7 +98,10 @@
 }
 .info_text{
   font-size: 12px;
-  line-height: 30px;
+  min-height: 20px;
+  padding: 5px 0;
+  display: flex;
+  align-items: center;
 }
 .info_price{
   color: #FF011F;

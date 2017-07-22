@@ -41,7 +41,7 @@
         </view>
       </view>
     </block>
-    <view wx:if="{{ordertype==1}}" style="padding:0 50rpx;text-align:center;">
+    <view wx:if="{{ordertype==1}}" style="max-width:70%;">
       <view class="info_text" wx:if="{{ordertype==1}}">供应商：{{product.ssStoOrder.seller}}</view>
       <view class="info_text" wx:if="{{ordertype==2}}">客户：{{product.ssStoOrder.buyer}}</view>
       <view class="info_text">订单号：{{product.ssStoOrder.payorderno}}</view>

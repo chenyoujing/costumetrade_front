@@ -28,6 +28,10 @@
   line-height: 18px;
   padding: 3px 0;
 }
+.vip_content{
+  width: 100%;
+  display: flex;
+}
 .vip_view{
   margin-top: 10px;
   border: 1px solid #52CAC1;

@@ -18,7 +18,8 @@
         <view class="pay_info_content">
           <view class="order_input">
             <view class="order_input_text">折扣：</view>
-            <input type="number" class="order_input1" value="{{disCount}}" bindblur="EventInputDiscount" name="disCount" placeholder="请输入折扣1-100" />
+            <input type="number" class="order_input1" value="{{disCount}}" bindblur="EventInputDiscount" name="disCount" placeholder="请输入折扣1-100" style="padding-right:16px;"/>
+            <view class="order_input_right">%</view>
             <view class="clear"></view>
           </view>
           <view class="order_input">
