@@ -7,11 +7,11 @@ Page({
     grade_index: 0,
     title:'新增货品',
     picker_view: [
-      { name: '名字', price: 0, discPriceJson: 0, custPriceJson: 0,isUse:false,isChage:false, pricename:"firsthPrice"},
-      { name: '名字', price: 0, discPriceJson: 0, custPriceJson: 0, isUse: false, isChage: false,pricename:"secondPrice"},
-      { name: '名字', price: 0, discPriceJson: 0, custPriceJson: 0, isUse: false, isChage: false,pricename:"thirdPrice"},
-      { name: '名字', price: 0, discPriceJson: 0, custPriceJson: 0, isUse: false, isChage: false,pricename:"fourthPrice"},
-      { name: '名字', price: 0, discPriceJson: 0, custPriceJson: 0, isUse: false, isChage: false,pricename:"fifthPrice"},
+      { name: '名字', price: 0, discpricejson: 0, custpricejson: 0,isUse:false,isChage:false, pricename:"firsthPrice"},
+      { name: '名字', price: 0, discpricejson: 0, custpricejson: 0, isUse: false, isChage: false,pricename:"secondPrice"},
+      { name: '名字', price: 0, discpricejson: 0, custpricejson: 0, isUse: false, isChage: false,pricename:"thirdPrice"},
+      { name: '名字', price: 0, discpricejson: 0, custpricejson: 0, isUse: false, isChage: false,pricename:"fourthPrice"},
+      { name: '名字', price: 0, discpricejson: 0, custpricejson: 0, isUse: false, isChage: false,pricename:"fifthPrice"},
     ],
     screen_content3: [
       { name: '春', value: '春' },
@@ -584,20 +584,20 @@ Page({
     console.log(value)
     if (name == "price"){
       newPicker[index].price = value?value:"";
-      newPicker[index].discPriceJson = (value / this.data.GoodsInfoData.tagprice * 100).toFixed(1);
+      newPicker[index].discpricejson = (value / this.data.GoodsInfoData.tagprice * 100).toFixed(1);
       if (purchaseprice !== 0){
-        newPicker[index].custPriceJson = ((value - purchaseprice) / purchaseprice * 100).toFixed(1)
+        newPicker[index].custpricejson = ((value - purchaseprice) / purchaseprice * 100).toFixed(1)
       }
-    } else if (name == "discPriceJson"){
+    } else if (name == "discpricejson"){
       console.log(value)
-      newPicker[index].discPriceJson = value ? value : "";
+      newPicker[index].discpricejson = value ? value : "";
       newPicker[index].price = (value * this.data.GoodsInfoData.tagprice / 100).toFixed(1);
       console.log(value)
-      newPicker[index].custPriceJson = ((newPicker[index].price - purchaseprice) / purchaseprice * 100).toFixed(1)
-    } else if (name == "custPriceJson") {
-      newPicker[index].custPriceJson = value ? value : "";
+      newPicker[index].custpricejson = ((newPicker[index].price - purchaseprice) / purchaseprice * 100).toFixed(1)
+    } else if (name == "custpricejson") {
+      newPicker[index].custpricejson = value ? value : "";
       newPicker[index].price = ((parseFloat(value) * purchaseprice / 100) + purchaseprice).toFixed(1);
-      newPicker[index].discPriceJson = (newPicker[index].price / this.data.GoodsInfoData.tagprice * 100).toFixed(1)
+      newPicker[index].discpricejson = (newPicker[index].price / this.data.GoodsInfoData.tagprice * 100).toFixed(1)
     }
     this.setData({
       picker_view: newPicker,
@@ -630,21 +630,21 @@ Page({
     var newPicker = this.data.picker_view;
     for (var p in newPicker) {
       if (!this.data.firstBoolean) {
-        newPicker[p].price = (tagprice * newPicker[p].discPriceJson / 100).toFixed(2);
-        newPicker[p].custPriceJson = ((newPicker[p].price - purchaseprice) / purchaseprice).toFixed(2);
-        
+        newPicker[p].price = (tagprice * newPicker[p].discpricejson / 100).toFixed(2);
+        newPicker[p].custpricejson = ((newPicker[p].price - purchaseprice) / purchaseprice*100).toFixed(2);
+        console.log(newPicker[p].custpricejson)
       }else{
-      newPicker[p].discPriceJson = (newPicker[p].price / tagprice * 100).toFixed(1);
+        newPicker[p].discpricejson = (newPicker[p].price / tagprice * 100).toFixed(1);
       if (purchaseprice !== 0) {
-        newPicker[p].custPriceJson = ((newPicker[p].price - purchaseprice) / purchaseprice * 100).toFixed(1)
+        newPicker[p].custpricejson = ((newPicker[p].price - purchaseprice) / purchaseprice * 100).toFixed(1)
        }
       }
-      newPicker[p].custPriceJson = newPicker[p].custPriceJson == "Infinity" ? 100 : newPicker[p].custPriceJson;
-      newPicker[p].custPriceJson = newPicker[p].custPriceJson == "NaN" ? 0 : newPicker[p].custPriceJson;
+      newPicker[p].custpricejson = newPicker[p].custpricejson == "Infinity" ? 100 : newPicker[p].custpricejson;
+      newPicker[p].custpricejson = newPicker[p].custpricejson == "NaN" ? 0 : newPicker[p].custpricejson;
     }
     this.setData({
       picker_view: newPicker,
-      firstBoolean: false
+      firstBoolean: this.data.soruceData.isModify ? true : false
     })
   },
   // 按毛利率计算
@@ -655,19 +655,19 @@ Page({
     var newPicker = this.data.picker_view;
     for (var p in newPicker){
       if (!this.data.firstBoolean){
-        newPicker[p].price = (purchaseprice * (1 + newPicker[p].custPriceJson / 100)).toFixed(1);
-        newPicker[p].discPriceJson = (newPicker[p].price / tagprice *100).toFixed(1);
+        newPicker[p].price = (purchaseprice * (1 + newPicker[p].custpricejson / 100)).toFixed(1);
+        newPicker[p].discpricejson = (newPicker[p].price / tagprice *100).toFixed(1);
        
       }else{
         console.log(newPicker[p])
-        newPicker[p].discPriceJson = (newPicker[p].price / tagprice * 100).toFixed(1);
+        newPicker[p].discpricejson = (newPicker[p].price / tagprice * 100).toFixed(1);
         if (purchaseprice !== 0) {
-          newPicker[p].custPriceJson = ((newPicker[p].price - purchaseprice) / purchaseprice * 100).toFixed(1)
+          newPicker[p].custpricejson = ((newPicker[p].price - purchaseprice) / purchaseprice * 100).toFixed(1)
         }
       }
-      console.log(newPicker[p].discPriceJson)
-      newPicker[p].discPriceJson = newPicker[p].discPriceJson == "Infinity" ? 100 : newPicker[p].discPriceJson;
-      newPicker[p].discPriceJson = newPicker[p].discPriceJson == "NaN" ? 0 : newPicker[p].discPriceJson;
+      console.log(newPicker[p].discpricejson)
+      newPicker[p].discpricejson = newPicker[p].discpricejson == "Infinity" ? 100 : newPicker[p].discpricejson;
+      newPicker[p].discpricejson = newPicker[p].discpricejson == "NaN" ? 0 : newPicker[p].discpricejson;
     }
     this.setData({
       picker_view: newPicker,
@@ -677,10 +677,14 @@ Page({
   // 初始化折扣率或者销售价
   initializeData:function(){
     var newPicker = this.data.picker_view;
-    var name = app.custOrDiscTag == 1 ? 'custPriceJson' :'discPriceJson';
+    var name = app.custOrDiscTag == 1 ? 'custpricejson' :'discpricejson';
    for (var p in app.custProdPrice){
-     console.log(app.custProdPrice[p].custpricejson)
-     newPicker[p][name] = app.custProdPrice[p].custpricejson;
+     console.log(app.custProdPrice[p][name])
+     if (name == "custpricejson"){
+       newPicker[p][name] = app.custProdPrice[p][name] || 0;
+     }else{
+       newPicker[p][name] = app.custProdPrice[p][name] || 100;
+     }
      newPicker[p].name = app.custProdPrice[p].custtypename;
      newPicker[p].isUse = true;
    }
@@ -798,7 +802,8 @@ Page({
           GoodsInfoData: param
         });
       } else if (app.nameChange == "加价表"){
-        param.priceJsons = app.changeData;
+        console.log(app.changeData)
+        param.priceJsons = app.changeData == "false" ? null : app.changeData;
         if (app.changeData == "false"){
           param.isPattern = 2;
         }

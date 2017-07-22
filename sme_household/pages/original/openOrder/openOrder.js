@@ -253,7 +253,7 @@ Page({
   SalePassOrNot:function(){
     var GoodsDetail = this.data.GoodsDetail;
     var showPrice2 = this.data.showPrice2;
-    var judgeSalePrice = this.data.judgeSalePrice + this.data.sizeRaise + this.data.colorRaise;
+    var judgeSalePrice = this.data.judgeSalePrice + (this.data.sizeRaise || 0) + (this.data.colorRaise || 0);
     console.log(this.data.GoodsDetail.showPrice)
     console.log(judgeSalePrice)
     if (app.globalData.modifyPrice > this.data.cate && this.data.cate !== 0 && this.data.GoodsDetail.showPrice <= judgeSalePrice && app.globalData.modifyPrice){
@@ -262,7 +262,7 @@ Page({
         icon: 'warn',
         duration: 2000
       })
-      GoodsDetail.showPrice = parseFloat(showPrice2) + parseFloat(this.data.colorRaise) + parseFloat(this.data.sizeRaise);
+      GoodsDetail.showPrice = parseFloat(showPrice2) + parseFloat(this.data.colorRaise||0) + parseFloat(this.data.sizeRaise||0);
        this.setData({
         GoodsDetail: GoodsDetail
       })
@@ -288,12 +288,12 @@ Page({
       param.size = size
     }
     this.setData(param);
-    this.sizeColorRaise(this.data.selectSize, this.data.selectColor);
+    this.sizeColorRaise(this.data.selectSize||0, this.data.selectColor||0);
   },
   // 加价表
   sizeColorRaise: function (size, color){
-    var sizeRaise = this.data.sizeRaise;
-    var colorRaise = this.data.colorRaise;
+    var sizeRaise = this.data.sizeRaise||0;
+    var colorRaise = this.data.colorRaise || 0;
     var showPrice2 = this.data.showPrice2;
     var GoodsDetail = this.data.GoodsDetail;
     var param = {};
@@ -301,7 +301,7 @@ Page({
     if (this.data.isPattern == 1) {
       for (var g in this.data.priceRaise.colorLists) {
         if (color == this.data.priceRaise.colorLists[g].name) {
-          colorRaise = this.data.priceRaise.colorLists[g].priceRaise;
+          colorRaise = this.data.priceRaise.colorLists[g].priceRaise || 0;
           param.colorRaise = parseFloat(colorRaise);
         }
       }
@@ -309,7 +309,7 @@ Page({
     if (this.data.isPattern == 1) {
       for (var g in this.data.priceRaise.sizeLists) {
         if (size == this.data.priceRaise.sizeLists[g].name) {
-          sizeRaise = this.data.priceRaise.sizeLists[g].priceRaise;
+          sizeRaise = this.data.priceRaise.sizeLists[g].priceRaise || 0;
           param.sizeRaise = parseFloat(sizeRaise);
         }
       }
@@ -548,7 +548,7 @@ Page({
   // 调用函数请求方法
   saleAver: function (unitString){
     if (unitString && this.data.GoodsDetail.isPattern == 1) {
-      var object = util.api.sizeRaiseArray(this.data.size, this.data.GoodsDetail, this.data.priceRaise.sizeLists, this.data.showPrice2, this.data.colorRaise, 'showPrice');
+      var object = util.api.sizeRaiseArray(this.data.size, this.data.GoodsDetail, this.data.priceRaise.sizeLists, this.data.showPrice2, this.data.colorRaise || 0, 'showPrice');
       this.setData({
         GoodsDetail: object.GoodsInfoData,
         sizeRaiseArray: object.sizeRaiseArray
@@ -661,7 +661,7 @@ Page({
       })
       this.changeSale();
     } else {
-      GoodsDetail.showPrice = Number(GoodsDetail[this.data.saleChangeName2]) + Number(this.data.sizeRaise) + Number(this.data.colorRaise);
+      GoodsDetail.showPrice = Number(GoodsDetail[this.data.saleChangeName2]) + Number(this.data.sizeRaise || 0) + Number(this.data.colorRaise || 0);
       this.setData({
         GoodsDetail: GoodsDetail,
         cate: cate,

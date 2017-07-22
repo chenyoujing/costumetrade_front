@@ -436,8 +436,6 @@ Page({
     var param = {};
     if (name == "customerCusts"){
       product[this.data.customerIndex].prodgrade = e.detail.value + 1;
-      console.log(e.detail.value)
-      console.log(e.detail.value)
       submitData[name] = product;
       param[name] = product;
       param.submitData = submitData;
@@ -949,8 +947,10 @@ Page({
      var that = this;
      var submitData = this.data.submitData;
      var newSubmitData = [];
+     var name = "";
      var url = "dictionary/saveDataDictionary"
      for (var p in submitData){
+       name = p;
        if (p == 'imageurl'){
          var array = this.data.images;
          array.dictValue = submitData[p].join(',').replace(/http:\/\/ot84hx5jl.bkt.clouddn.com\//g, '');
@@ -962,38 +962,52 @@ Page({
          for (var j in submitData[p]) {
            newSubmitData.push(submitData[p][j])
            if (p == 'customerCusts'){
-             url = 'dictionary/saveTypeOrGradeRate'
+             url = 'dictionary/saveTypeOrGradeRate';
+            
            } else if (p == 'logisticFees'){
              url = "dictionary/updateLogistics"
            }
          }
        }
-     }
+     } 
      console.log(newSubmitData)
-     wx.showNavigationBarLoading()
-     util.api.request({
-       url: url,
-       data: newSubmitData,
-       method: 'POST',
-       header: {
-         'content-type': 'application/josn'
-       },
-       success: function (res) {
-        that.setData({
-          submitData:[],
-          freightUpdate:'',
-        })
-        if (p == 'customerCusts'){
-          that.cancel()
-        }
-         wx.hideNavigationBarLoading();
-         wx.showToast({
-           title: "成功！",
-           mask: true,
-           duration: 2000
-         })
-       }
-     })
+    //  提交
+     if (newSubmitData.length == 0){
+       wx.showToast({
+         title: "没有内容提交",
+         mask: true,
+         duration: 2000
+       })
+     }else{
+       wx.showNavigationBarLoading()
+       util.api.request({
+         url: url,
+         data: newSubmitData,
+         method: 'POST',
+         header: {
+           'content-type': 'application/josn'
+         },
+         success: function (res) {
+           that.setData({
+             submitData: [],
+             freightUpdate: '',
+           })
+           if (name == 'customerCusts') {
+             that.cancel()
+           }
+           if (name !== "imageurl"){
+             util.api.getProductInit();
+           }
+           wx.hideNavigationBarLoading();
+           wx.showToast({
+             title: "成功！",
+             mask: true,
+             duration: 2000
+           })
+         }
+       })
+     }
+    
    },
   onLoad: function() {
     var that = this;

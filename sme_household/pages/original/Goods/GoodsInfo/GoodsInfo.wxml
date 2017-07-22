@@ -88,10 +88,10 @@
               <input type = "digit" disabled="true" value="{{item.price}}" />
             </view>
             <view class="picker_content_view">
-              <input type = "digit" disabled="true" value="{{item.discPriceJson}}"/>
+              <input type = "digit" disabled="true" value="{{item.discpricejson}}"/>
            </view>
             <view class="picker_content_view">
-                <input type = "{{privilegeEmployees?'digit':'password'}}" disabled="true"  value="{{item.custPriceJson}}"/>
+                <input type = "{{privilegeEmployees?'digit':'password'}}" disabled="true"  value="{{item.custpricejson}}"/>
             </view>
           </view>
           </block>
@@ -282,10 +282,10 @@
               <input type = "digit" data-index="{{index}}" data-name="price" bindinput="blurInputPrice" value="{{item.price}}" />
          </view>
           <view class="table_text">
-              <input type = "digit" data-index="{{index}}" data-name="discPriceJson"  bindinput="blurInputPrice" value="{{item.discPriceJson}}"/>
+              <input type = "digit" data-index="{{index}}" data-name="discpricejson"  bindinput="blurInputPrice" value="{{item.discpricejson}}"/>
          </view>
          <view class="table_text">
-            <input type = "{{privilegeEmployees?'digit':'password'}}" disabled="{{!privilegeEmployees}}" data-index="{{index}}" data-name="custPriceJson" bindinput="blurInputPrice" value="{{item.custPriceJson}}"/>
+            <input type = "{{privilegeEmployees?'digit':'password'}}" disabled="{{!privilegeEmployees}}" data-index="{{index}}" data-name="custpricejson" bindinput="blurInputPrice" value="{{item.custpricejson}}"/>
          </view>
       </view>
     </block>
