@@ -45,7 +45,7 @@ Page({
     var today = {}
     today.quantity = report[last_p].quantity || 0
     today.amount = report[last_p].amount || 0
-    today.profit = today.amount||0 - report[last_p].primeCost||0
+    today.profit = report[last_p].amount||0 - report[last_p].primeCost||0
     this.setData({
       today: today
     })
