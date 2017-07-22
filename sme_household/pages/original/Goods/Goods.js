@@ -108,6 +108,7 @@ Page({
         value: status,
         op: op
       },
+      ids:[],
       pageNum: 1,
       product: [],
       requestSwitch: true
