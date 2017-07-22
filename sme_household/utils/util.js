@@ -261,7 +261,7 @@ var api = {
           wx.showToast({
             title: res.msg,
           })
-        } else {
+        } else if (callback){
           callback(res.data)
         }
       }

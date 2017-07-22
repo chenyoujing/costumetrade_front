@@ -54,10 +54,10 @@ Page({
         var sizeArray = answerData.sizes.split(',');
         var productReviews = that.data.productReviews;
 
-        var reg = /^\//;
-        if (reg.test(answerData.storeImage)) {
-          answerData.storeImage = util.api.imgUrl + answerData.storeImage
-        }
+        // var reg = /^\//;
+        // if (reg.test(answerData.storeImage)) {
+        //   answerData.storeImage = util.api.imgUrl + answerData.storeImage
+        // }
 
         answerData.timeDown = answerData.timeDown?util.toDate(answerData.timeDown) : "";
         answerData.timeUp = answerData.timeUp?util.toDate(answerData.timeUp): "";
@@ -106,14 +106,14 @@ Page({
       image: this.data.GoodsInfoData.image,
       iSselect:true
     };
-    if (this.data.sizes == 2) {
+    if (this.data.sizes == '2') {
       object.productsize = '全尺码';
       object.sizeGroup = this.data.GoodsInfoData.sizes;
       object.sizeRaiseArray = this.data.sizeRaiseArray;
       object.isPattern = this.data.GoodsInfoData.isPattern
     }
     for (var p in shopCart) {
-      if (shopCart[p].productId == object.productId && shopCart[p].productcolor == object.productcolor && shopCart[p].productsize == object.productsize) {
+      if (shopCart[p].productid == object.productid && shopCart[p].productcolor == object.productcolor && shopCart[p].productsize == object.productsize) {
         shopCart[p].count = parseInt(object.count) + parseInt(shopCart[p].count);
         add = false;
       }
@@ -147,13 +147,13 @@ Page({
     console.log(this.data.color)
     if(!this.data.color){
       wx.showToast({
-        title: '颜色没有更改',
+        title: '请选择颜色',
         mask: true,
         duration: 500
       })
-    } else if (this.data.sizes !== 2 && !this.data.size){
+    } else if (this.data.sizes !== "2" && !this.data.size){
       wx.showToast({
-        title: '尺码没有更新',
+        title: '请选择尺码',
         mask: true,
         duration: 500
       })

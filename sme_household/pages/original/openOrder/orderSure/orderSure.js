@@ -413,6 +413,7 @@ Page({
     var nowStr = util.formatTime(now);
     //获取账单数据
     var serial = '时间：' + nowStr;
+    var mystroed =  '      '+app.globalData.userInfo.name;
     var uname = '';
     if (app.selectName.name) {
       uname = '姓名：' + app.selectName.name;
@@ -436,7 +437,9 @@ Page({
       str2 = ((this.data.shopCart[p].countnum || this.data.shopCart[p].count) * this.data.shopCart[p].price).toFixed(2) + str2.substring(0, str2.length - (((this.data.shopCart[p].countnum || this.data.shopCart[p].count) * this.data.shopCart[p].price).toFixed(2).length * num) - 1);
       rows += str1 + str2 + this.data.shopCart[p].productName + '\n';
     }
-   var stringSend = uname + '\n' + serial + '\n' + xian + '\n' + title + '\n' + rows + xian + '\n' + totleCount + '\n' + realCost + '\n' + totleCost + '\n' + address + '\n' + '\n';
+    var stringSend = mystroed + '\n' + '\n' +uname + '\n' + serial + '\n' + xian + '\n' + title + '\n' + rows + xian + '\n' + totleCount + '\n' + realCost + '\n' + totleCost + '\n' + address + '\n' + '\n';
+    console.log(stringSend)
+    console.log(JSON.stringify(stringSend))
    return stringSend;
   },
   // 微信二维码
