@@ -3,7 +3,7 @@
     <image src="../../../../images/back-away.png" mode="aspectFit" class="title_image_back" />
   </navigator>
   <view class="title_text">发表评论</view>
-  <view class="title_submit" bindtap="order_request">发布</view>
+  <view class="title_submit" bindtap="suresubmit">发布</view>
 </view>
 
   <view class="comment_content">
@@ -11,7 +11,7 @@
       输入评价内容
       <image src="../../../../images/comment_add.png" bindtap="updataM" mode="aspectFit" class="add_image" />
     </view>
-    <textarea class="comment_container" bindblur="textareaChange" placeholder="产品满足你的期待吗？说说你的心得，分享给他们把..." />
+    <textarea class="comment_container" bindinput="textareaChange" placeholder="产品满足你的期待吗？说说你的心得，分享给他们把..." />
     <block wx:for="{{fileList}}">
       <view class="add_image_view" style="text-align:left;">
         <image src="{{item}}" bindtap="changeImage" data-index="{{index}}" mode="aspectFill" class="image" />

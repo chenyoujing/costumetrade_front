@@ -27,7 +27,6 @@ Page({
       filePath: file[i],
       name: 'file',
       success: function (res) {
-        console.log(JSON.stringify(res));
         var url = util.api.imgUrl + JSON.parse(res.data).data.url;
         var fileArray = that.data.fileList;
         if (index) {
@@ -35,7 +34,6 @@ Page({
         } else {
           fileArray.push(url);
         }
-        console.log(fileArray)
         that.setData({
           fileList: fileArray
         })
@@ -72,6 +70,18 @@ Page({
   changeImage: function (e) {
     var index = e.target.dataset.index;
     this.chooseImg(index);
+  },
+  // 检测是不是有没有内容上传
+  suresubmit:function(){
+    if (this.data.fileList.length == 0 && !this.data.msg ){
+      wx.showToast({
+        title: '没有内容上传',
+        mask: true,
+        duration: 2000
+      })
+    }else{
+      this.order_request()
+    }
   },
   order_request: function () {
     var that = this;

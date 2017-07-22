@@ -49,7 +49,7 @@
       <view class="info_text">合计金额：{{product.ssStoOrder.totalamt}}元</view>
       <view class="info_text" wx:if="{{product.ssStoOrder.paycost1>0}}">{{product.ssStoOrder.paycate1}}：{{product.ssStoOrder.paycost1}}元</view>
       <view class="info_text" wx:if="{{product.ssStoOrder.paycost2>0}}">{{product.ssStoOrder.paycate2}}：{{product.ssStoOrder.paycost2}}元</view>
-      <view class="info_text">未付：{{product.ssStoOrder.unPay}}元</view>
+      <view class="info_text" wx:if="{{product.ssStoOrder.unPay}}">未付：{{product.ssStoOrder.unPay}}元</view>
       <!--<view class="info_text info_price">1099.6元</view>-->
     </view>
   </view>
@@ -73,7 +73,7 @@
       </view>
       <view class="order_view_price">{{item.totalPrice}}</view>
       <view class="order_view_button" wx:if="{{update}}" bindtap="update_price" data-boolean="{{update_price}}">{{update_price?'保存':'改价'}}</view>
-      <navigator url="../comment/comment?productid={{item.productid}}" wx:if="{{ordertype==1&&ordertype2==5}}">
+      <navigator url="../comment/comment?productid={{item.productid}}&storeId={{item.storeid}}" wx:if="{{ordertype==1&&ordertype2==5}}">
         <view class="order_view_button">评价</view>
       </navigator>
     </view>

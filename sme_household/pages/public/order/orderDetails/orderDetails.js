@@ -30,7 +30,6 @@ Page({
         console.log(res.data)
         wx.hideNavigationBarLoading();
         var paycost = that.data.paycost;
-
         res.data.ssStoOrder.ordertime = util.toDate(res.data.ssStoOrder.ordertime)
         var price = 0
         for (var p in res.data.ssStoDetail){

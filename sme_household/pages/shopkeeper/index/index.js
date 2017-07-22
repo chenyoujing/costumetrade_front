@@ -37,14 +37,14 @@ Page({
     var report = this.data.report.productReportQuerys
     var report_quantity = []
     var report_date = [];
-    var today = {}
+    var today = {};
     for (var p in report){
       report_date.push(parseInt(p)+1)
       report_quantity.push(report[p].quantity||0)
     }
     today.quantity = report[report.length-1].quantity || 0
     today.amount = report[report.length - 1].amount || 0
-    today.profit = report[report.length - 1].amount || 0 - report[report.length - 1].primeCost||0
+    today.profit = (report[report.length - 1].amount || 0) - (report[report.length - 1].primeCost||0)
     this.setData({
       today: today
     })
