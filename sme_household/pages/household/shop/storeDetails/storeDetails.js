@@ -19,11 +19,6 @@ Page({
       success: function (res) {
         wx.hideNavigationBarLoading();
         res.data.birthday = util.formatTime(new Date(res.data.birthday))
-        var reg = /^\//;
-        if (reg.test(res.data.storephoto)) {
-          res.data.storephoto = util.api.imgUrl + res.data.storephoto
-        }
-
         that.setData({
           storeInfo: res.data
         })
