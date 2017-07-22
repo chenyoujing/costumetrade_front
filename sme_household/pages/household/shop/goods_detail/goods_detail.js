@@ -121,6 +121,7 @@ Page({
     if (add) {
       shopCart.push(object);
     }
+    
     this.localData(shopCart)
   },
   // 缓存
@@ -226,6 +227,8 @@ Page({
     setTimeout(() => {
       this.setData({
         modal: "none",
+        color: "",
+        size: ""
       })
     }, 300)
   },

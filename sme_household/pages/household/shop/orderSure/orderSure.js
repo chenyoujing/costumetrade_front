@@ -196,10 +196,10 @@ Page({
     var shopCart = this.data.shopCartOrigin;
     var name = this.data.name;
     console.log(name)
-    for (var p in shopCart){
-      console.log(shopCart[p].iSselect)
-      if (shopCart[p].iSselect == true){
-        shopCart.splice(p,1)
+    for (var p = shopCart.length-1;p>=0;p--){
+      console.log(p)
+      if (shopCart[p].iSselect == true) {
+        shopCart.splice(p, 1)
       }
     }
     wx.setStorage({
