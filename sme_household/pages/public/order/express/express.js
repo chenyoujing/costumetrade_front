@@ -455,8 +455,8 @@ Page({
   },
   onLoad:function(e){
     this.setData({
-      orderNo: 4520453125||e.orderNo,
-      logistics: "韵达"||e.logistics,
+      orderNo: e.orderNo,
+      logistics: e.logistics,
       buyerstoreid: e.buyerstoreid,
     })
     this.logisticInit()
