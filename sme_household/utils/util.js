@@ -55,6 +55,7 @@ var api = {
               success: function (res) {
                 app.globalData.userInfo.code = loginCode.code;
                 app.globalData.userInfo.name = res.data.data.name;
+                app.globalData.userInfo.fansCount = res.data.data.fansCount;
                 app.globalData.userInfo.photo = res.data.data.photo;
                 app.globalData.openid = res.data.data.query.openid;
                 app.globalData.privilegeEmployees = res.data.data.employee.privilegeEmployees;

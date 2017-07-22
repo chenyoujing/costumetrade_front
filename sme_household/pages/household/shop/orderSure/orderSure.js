@@ -248,7 +248,7 @@ Page({
     util.api.request({
       url: 'product/getProductInit',
       data: {
-        storeId: that.data.storeId
+        storeId: that.data.stordId
       },
       method: 'POST',
       header: {
@@ -272,6 +272,7 @@ Page({
       totalnum: options.totalnum,
       name: 'shopCartUp' + options.stordId
     })
+    console.log(options.stordId)
     this.orderInitAddress();
     this.shopBrandandProduct();
     this.getData()

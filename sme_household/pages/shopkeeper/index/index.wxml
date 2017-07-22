@@ -15,7 +15,7 @@
       </navigator>
       <view class="my_info clearfix">
         <navigator url="../../public/user/storeUpdate/storeUpdate" class="my_name one_line">{{userInfo.name}}</navigator>
-        <view class="my_fans">200</view>
+        <view class="my_fans">{{userInfo.fansCount}}</view>
       </view>
     </view>
     <view class="operation_view">
