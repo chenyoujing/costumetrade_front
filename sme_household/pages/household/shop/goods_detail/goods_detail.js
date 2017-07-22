@@ -69,8 +69,8 @@ Page({
         answerData.handcount = sizeArray.length;
         productReviews = answerData.productReviews;
         for (var p in productReviews){
-          productReviews[p].headphoto = productReviews[p].headphoto ? util.api.imgUrl + productReviews[p].headphoto :''
-          productReviews[p].createTime = answerData.createTime ? util.toDate(answerData.createTime) : "";
+          // productReviews[p].headphoto = productReviews[p].headphoto ? util.api.imgUrl + productReviews[p].headphoto :''
+          productReviews[p].createTime = util.formatTime(answerData.createTime)
         }
         if (answerData.description){
           answerData.description = JSON.parse(answerData.description)

@@ -31,11 +31,19 @@
 .vip_content{
   width: 100%;
   display: flex;
+  padding: 10px;
+}
+.vip_content checkbox-group{
+  margin-left: -10px;
+  width: 70px;
+  flex-shrink: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .vip_view{
   margin-top: 10px;
   border: 1px solid #52CAC1;
-  padding: 10px;
   background-color: #ffffff;
   color: #000000;
 }

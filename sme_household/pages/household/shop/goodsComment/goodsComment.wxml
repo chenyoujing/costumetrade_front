@@ -23,7 +23,7 @@
     商品评价({{countReview}})
    <view class="evaluate_content" wx:for="{{productReviews}}">
       <view class="evaluate_content_header clearfix">
-        <image src="{{true?'../../../../images/shop2_tx.png':'../../../../images/image_none.png'}}" mode="aspectFill" class="client_tx" />
+        <image src="{{item.headphoto?item.headphoto:'../../../../images/image_none.png'}}" mode="aspectFill" class="client_tx" />
         <view class="client_name">{{item.contactname}}</view>
       </view>
       <view class="evaluate_content_body">{{item.msg}}</view>

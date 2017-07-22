@@ -67,7 +67,7 @@
                 <view class="content_container_info clearfix">
                   <view class="price">{{item.salePrice}}</view>
                   <view class="info_other">
-                    <view class="volume">{{item.volume}}</view>
+                    <view class="volume">{{item.volume||0}}</view>
                     <view class="date">{{item.timeUp}}</view>
                   </view>
                 </view>

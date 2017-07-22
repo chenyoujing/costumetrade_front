@@ -15,7 +15,7 @@
     <view class="explain_text">2.您的销售记录，入库记录等等...我们会以报表的形式展示给您，让您一目了然；</view>
     <view class="explain_text">3.商城里面好多功能呢，让您的采购方便起来了；好多功能不一一列举了，开通会员试试吧!</view>
     <view class="vip_content" wx:for="{{getList}}">
-      <checkbox-group>
+      <checkbox-group bindchange="">
         <checkbox value="{{item.id}}"/>
       </checkbox-group>
       <view class="vip_view {{payOption==index+1?'vip_active':''}}" data-id="{{item.id}}" data-payOption="{{index+1}}" bindtap="selectOptions">

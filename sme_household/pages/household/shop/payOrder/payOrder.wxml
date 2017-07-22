@@ -32,6 +32,6 @@
 
 <!--底部浮动-->
 <view class="shopping_cart_container">
-  <view class="pay_button1" bindtap="changeOrderStatus" data-pay="1">本次不支付</view>
-  <view class="pay_button2" bindtap="changeOrderStatus" data-pay="2">本次已支付</view>
+  <view class="pay_button1" bindtap="changeOrderStatus" data-pay="2">本次不支付</view>
+  <view class="pay_button2" bindtap="changeOrderStatus" data-pay="1">本次已支付</view>
 </view>

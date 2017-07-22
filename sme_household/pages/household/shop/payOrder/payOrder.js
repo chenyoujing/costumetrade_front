@@ -71,12 +71,12 @@ Page({
       url: 'order/orderPay',
       data: {
         orderno: that.data.orderno,
-        operate: orderInfo.pay,
+        operate: 2,
         buyerid: that.data.buyerid,
         sellerid: that.data.sellerid,
         openid: app.globalData.openid,
         payable: that.data.pay,
-        payStatus: orderInfo.pay == 2 ? 1 : 2
+        payStatus: orderInfo.pay,
 
       },
       method: 'POST',

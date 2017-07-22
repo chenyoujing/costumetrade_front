@@ -27,7 +27,8 @@ Page({
       success: function (res) {
         wx.hideNavigationBarLoading();
         for(var p in res.data){
-          res.data[p].createtime = res.data[p].createtime ? util.toDate(res.data[p].createtime) : "";
+          // productReviews[p].headphoto = productReviews[p].headphoto ? util.api.imgUrl + productReviews[p].headphoto :''
+          productReviews[p].createTime = util.formatTime(answerData.createTime)
         }
         that.setData({
           productReviews: res.data
