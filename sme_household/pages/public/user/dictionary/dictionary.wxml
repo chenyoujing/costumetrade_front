@@ -163,7 +163,7 @@
           </view>
           <view class="setting_operation">
             <text>2.</text>支付宝支付(二维码)
-            <image data-index="0" data-name="payQrcode" src="/images/update.png"  bindtap="choosImage"  mode="aspectFit" class="image_setting0" />
+            <image data-index="1" data-name="payQrcode" src="/images/update.png"  bindtap="choosImage"  mode="aspectFit" class="image_setting0" />
           </view>
           <view class="setting_operation" style="border-top:2px solid #ffffff;margin:0 -15px;padding:0 15px;">
             银行卡信息
