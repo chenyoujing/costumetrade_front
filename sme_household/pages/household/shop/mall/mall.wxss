@@ -1,3 +1,7 @@
+.aa image{
+  width:calc(50vw - 10px);
+  height:calc(50vw - 10px);
+}
 .title{
   background-color: #52CAC1;
   padding: 15px 20px;

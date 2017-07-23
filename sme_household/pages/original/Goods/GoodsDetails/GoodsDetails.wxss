@@ -48,7 +48,8 @@
 }
 .details_content image{
   display: block;
-  width: 100%;
+  width: 85px;
+  height: 85px;
 }
 .details_content view{
   width: 100%;
