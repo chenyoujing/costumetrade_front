@@ -617,6 +617,30 @@ Page({
       freightUpdate: true
     })
   },
+  // 免邮
+  freightFree:function(){
+    var title
+    var content
+    var free
+    var no
+
+    if(event.detail.value=='free'){
+      title = '选择免邮'
+      content = '选择免邮后，您的'
+      title = '选择免邮'
+    }
+    wx.showModal({
+      title: '提示',
+      content: '这是一个模态弹窗',
+      success: function (res) {
+        if (res.confirm) {
+          console.log('用户点击确定')
+        } else if (res.cancel) {
+          console.log('用户点击取消')
+        }
+      }
+    })
+  },
   // 货品售价生成方式
   goodsPrice:function(e){
     var that = this

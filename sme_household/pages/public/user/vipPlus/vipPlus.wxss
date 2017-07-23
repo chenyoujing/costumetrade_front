@@ -29,9 +29,9 @@
   padding: 3px 0;
 }
 .vip_content{
-  width: 100%;
+  width: auto;
   display: flex;
-  padding: 10px;
+  margin-top: 10px;
 }
 .vip_content checkbox-group{
   margin-left: -10px;
@@ -42,55 +42,30 @@
   align-items: center;
 }
 .vip_view{
-  margin-top: 10px;
+  height: 40px;
+  width: 100%;
   border: 1px solid #52CAC1;
   background-color: #ffffff;
   color: #000000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 20px;
+  padding-right: 5px;
 }
 .vip_view_name{
-  float: left;
   font-size: 16px;
   line-height: 20px;
   padding-right: 10px;
 }
-.vip_view_price1{
-  float: left;
+.vip_view_price{
   font-size: 13px;
   line-height: 24px;
-}
-.vip_num{
-  float: right;
-}
-.vip_num_view{
-  float: left;
-  font-size: 14px;
-  line-height: 22px;
-  border: 1px solid #000000;
-  min-width: 22px;
-  text-align: center;
-}
-.number{
-  border-width: 1px 0;
-}
-.subtract,.add{
-  font-size: 20px;
-}
-.vip_view_price2{
-  float: right; 
-  font-size: 16px;
-  line-height: 24px;
-  padding-left: 40rpx;
+  flex-shrink: 0;
 }
 .vip_active{
   background-color: #52CAC1;
   color: #ffffff;
-}
-.vip_active .vip_num_view{
-  border-color: #ffffff;
-}
-
-.vip_pay{
-  padding-bottom: 10px;
 }
 .vip_pay_title{
   font-size: 13px;
@@ -102,17 +77,47 @@
   font-size: 11px;
   line-height: 30px;
 }
+.vip_price_view{
+  display: flex;
+  justify-content: space-between;
+}
+.vip_price_prompt{
+  color: #999999;
+  font-size: 14px;
+  display:flex;
+  align-items:center;
+}
 .vip_price{
   color: #FE2D04;
   font-size: 18px;
-  line-height: 20px;
   padding: 0 10px;
-  float: right;
+  flex-shrink: 0;
 }
 .vip_price::before{
   content: "应付金额：";
   color: #000000;
   font-size: 14px;
+}
+
+.vip_num{
+  float: right;
+}
+.vip_num_view{
+  color: #000000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 28px;
+  font-size: 14px;
+  border: 1px solid #777777;
+  min-width: 28px;
+  text-align: center;
+}
+.number{
+  border-width: 1px 0;
+}
+.subtract,.add{
+  font-size: 20px;
 }
 
 

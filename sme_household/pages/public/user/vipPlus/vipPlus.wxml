@@ -15,25 +15,49 @@
     <view class="explain_text">2.您的销售记录，入库记录等等...我们会以报表的形式展示给您，让您一目了然；</view>
     <view class="explain_text">3.商城里面好多功能呢，让您的采购方便起来了；好多功能不一一列举了，开通会员试试吧!</view>
     <view class="vip_content" wx:for="{{getList||3}}">
-      <checkbox-group bindchange="">
-        <checkbox value="{{item.id}}"/>
+      <checkbox-group bindchange="selectOptions" data-id="{{item.id}}" data-payOption="{{index+1}}" >
+        <checkbox value="{{item.id}}" checked="{{payOption==index+1}}"/>
       </checkbox-group>
       <view class="vip_view {{payOption==index+1?'vip_active':''}}" data-id="{{item.id}}" data-payOption="{{index+1}}" bindtap="selectOptions">
-        <view class="vip_view_name">VIP会员</view>
-        <view class="vip_view_price1">{{item.price}}/一年</view>
-        <view class="vip_view_price2">￥{{item.price*count1}}</view>
-        <view class="vip_num">
-          <view class="vip_num_view subtract" data-name="count1" data-type="sub" bindtap="countAddorSub">-</view>
-          <view class="vip_num_view number">{{count1}}</view>
-          <view class="vip_num_view add"  data-name="count1"data-type="add" bindtap="countAddorSub">+</view>
-          <view class="clear"></view>
+        <view class="vip_view_name one_line">
+          {{index==0?'线上销售工具':''}}
+          {{index==1?'店内管理工具':''}}
+          {{index==2?'集团管理工具':''}}
         </view>
-        <view class="clear"></view>
+        <view class="vip_view_price">￥{{item.price}}/年</view>
       </view>
     </view>
     <view class="vip_prompt">检测到您的会员于2035-03-09到期，支付后延长至2036-03-09</view>
-    <view class="vip_price">￥{{payTotal}}</view>
-    <view class="clear"></view>
+    <view class="vip_price_view">
+      <view class="vip_price_prompt">还有2个月即将到期，还剩50元</view>
+      <view class="vip_price">￥{{payTotal}}</view>
+    </view>
+  </view>
+  <view class="vip_explain">
+    <view class="explain_title">续费</view>
+    <view class="vip_content" wx:for="{{getList}}">
+      <checkbox-group bindchange="selectOptions" data-id="{{item.id}}" data-payOption="{{index+1}}" >
+        <checkbox value="{{item.id}}" checked="{{payOption==index+1}}"/>
+      </checkbox-group>
+      <view class="vip_view {{payOption==index+1?'vip_active':''}}" data-id="{{item.id}}" data-payOption="{{index+1}}" bindtap="selectOptions">
+        <view class="vip_view_name one_line">
+          {{index==0?'线上销售工具':''}}
+          {{index==1?'店内管理工具':''}}
+          {{index==2?'集团管理工具':''}}
+        </view>
+        <view class="vip_view_price">￥{{item.price}}/一年</view>
+      </view>
+    </view>
+    <view class="vip_prompt" style="padding:5px 0;">检测到您的会员于2035-03-09到期，支付后延长至2036-03-09</view>
+    <view class="vip_price_view">
+      <view class="vip_price_prompt">
+        <view style="color:#000000;font-size:16px;">年数：</view>
+        <view class="vip_num_view subtract" data-name="count1" data-type="sub" bindtap="countAddorSub">-</view>
+        <view class="vip_num_view number">{{count1}}</view>
+        <view class="vip_num_view add"  data-name="count1"data-type="add" bindtap="countAddorSub">+</view>
+      </view>
+      <view class="vip_price">￥{{payTotal}}</view>
+    </view>
   </view>
 </scroll-view>
 

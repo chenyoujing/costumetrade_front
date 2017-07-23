@@ -37,6 +37,7 @@ var api = {
       secret:'8d7f55d6a5008b7f8efead72672008a6',
       storeInfo: ''
     }
+    wx.showNavigationBarLoading()
     wx.login({
       success: function (loginCode) {
         wx.getUserInfo({
@@ -53,12 +54,13 @@ var api = {
               },
               method: 'POST',
               success: function (res) {
+                wx.hideNavigationBarLoading()
                 app.globalData.userInfo.code = loginCode.code;
                 app.globalData.userInfo.name = res.data.data.name;
                 app.globalData.userInfo.fansCount = res.data.data.fansCount;
                 // 微信头像加载小图
                 var photo = res.data.data.photo
-                photo = photo.replace(/\/0$/, "/46"); 
+                photo = photo.replace(/\/0$/, "/132"); 
                 app.globalData.userInfo.photo = photo;
                 app.globalData.openid = res.data.data.query.openid;
                 app.globalData.privilegeEmployees = res.data.data.employee.privilegeEmployees;

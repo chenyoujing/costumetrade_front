@@ -18,7 +18,9 @@ Page({
       cancelText: '确认',
       confirmText: '重新登录',
       success:function(){
-        that.onLoad()
+        if (res.confirm) {
+          that.onLoad()
+        }
       }
     })
   },
