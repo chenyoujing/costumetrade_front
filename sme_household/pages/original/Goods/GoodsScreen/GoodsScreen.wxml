@@ -7,6 +7,7 @@
       <image src="../../../../images/return.png" mode="aspectFit" class="image_back" />
     </navigator>
     <view class="search_button" bindtap="searchClick">搜索</view>
+    <view class="search_button" bindtap="reseting">搜索</view>
     <input class="title_input" value='{{enterValue}}' type="text" name="search" placeholder="货号名称" bindinput="bindKeyInput" />
   </view>
 

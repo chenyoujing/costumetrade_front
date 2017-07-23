@@ -384,6 +384,7 @@ var api = {
     for (var key in name) {
       obj[key] = name[key];
     }
+    console.log(obj)
     return obj;
   },
   //对比两个对象之间的变化

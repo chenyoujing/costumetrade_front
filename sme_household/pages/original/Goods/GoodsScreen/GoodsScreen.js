@@ -209,10 +209,29 @@ Page({
         var screen_content1 = res.data.brandList;
         var screen_content2 = res.data.productTypeList;
         for (var p in screen_content1) {
-          screen_content1[p].screen_checked = false;
+          var add = false;
+          for (var j in that.data.brand) {
+            if (screen_content1[p].brandname == that.data.brand[j]) {
+              screen_content1[p].screen_checked = true;
+              add = true;
+            }
+          }
+          if (!add) {
+            screen_content1[p].screen_checked = false;
+          }
         }
+
         for (var p in screen_content2) {
-          screen_content2[p].screen_checked = false;
+          var add = false;
+          for (var j in that.data.cate) {
+            if (screen_content2[p].catename == that.data.cate[j]) {
+              screen_content2[p].screen_checked = true;
+              add = true;
+            }
+          }
+          if (!add) {
+            screen_content2[p].screen_checked = false;
+          }
         }
         console.log(res)
         that.setData({
@@ -237,6 +256,7 @@ Page({
         cate = app.getFilterData[p].value
       } else if (app.getFilterData[p].filed == 'productBrandArray'){
         brand = app.getFilterData[p].value
+        console.log(brand)
       } else if (app.getFilterData[p].filed == 'productSeasonArray') {
         season = app.getFilterData[p].value[0]
       } else if (app.getFilterData[p].filed == 'status') {
@@ -260,9 +280,33 @@ Page({
       operatorArray: operatorArray
     })
   },
+  // 重置
+  reseting:function(){
+    var screen_content1 = this.data.screen_content1;
+    var screen_content2 = this.data.screen_content2;
+    for (var p in screen_content1) {
+        screen_content1[p].screen_checked = false;
+    }
+
+    for (var p in screen_content2) {
+      screen_content2[p].screen_checked = false;
+    }
+    this.setData({
+      cate: '',
+      brand: '',
+      season: '',
+      status: '',
+      enterValue: '',
+      productSizeArray: [],
+      productColorArray: [],
+      operatorArray: [],
+      screen_content1: screen_content1,
+      screen_content2: screen_content2
+    })
+  },
   onLoad: function (options) {
     console.log(app.getFilterData)
-    this.recoverSelect()
+   
     if (!app.logisticFees && app.globalData.userIdentity !== 2) {
       util.api.getProductInit()
     }
@@ -270,29 +314,37 @@ Page({
       type: options.type,
       storeId: options.storeId
     })
+    this.recoverSelect()
     if (app.globalData.userIdentity !== 2 & options.type !== 'shop'){
+      console.log(app.screen_brandList)
       var screen_content1 = app.screen_brandList;
       var screen_content2 = app.screen_productTypeList;
-      for (var p in screen_content1) {
-        for (var j in this.data.brand){
-          if (screen_content1[p].brandname == this.data.brand[j]){
+      for (var p in screen_content1){
+        var add = false;
+        for (var j in this.data.brand) {
+          if (screen_content1[p].brandname == this.data.brand[j]) {
             screen_content1[p].screen_checked = true;
-          }else{
-            screen_content1[p].screen_checked = false;
+            add = true;
           }
         }
+        if (!add){
+          screen_content1[p].screen_checked = false;
+        }
       }
+     
       for (var p in screen_content2) {
+        var add = false;
         for (var j in this.data.cate) {
-          console.log(screen_content2[p].catename)
-          console.log(this.data.cate[j])
           if (screen_content2[p].catename == this.data.cate[j]) {
             screen_content2[p].screen_checked = true;
-          } else {
-            screen_content2[p].screen_checked = false;
-          }
+            add = true;
+          } 
+        }
+        if (!add) {
+          screen_content2[p].screen_checked = false;
         }
       }
+      console.log(screen_content1)
       this.setData({
         screen_content1: screen_content1,
         screen_content2: screen_content2,

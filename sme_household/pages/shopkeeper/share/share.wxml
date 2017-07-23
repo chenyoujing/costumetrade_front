@@ -139,8 +139,8 @@
   </scroll-view>
   <!--发图按钮-->
   <view class="batch_button_view" style="height:40px; font-size:18px;">
-    <view class="batch_button bg_g" data-name="wchat" bindtap="batch_share_sure">分享到微信</view>
-    <view class="batch_button bg_g" data-name="client" bindtap="batch_share_sure">分享给客户</view>
+    <view class="batch_button bg_g" data-name="wchat" bindtap="batch_share_sure">发图给好友</view>
+    <view class="batch_button bg_g" data-name="client" bindtap="batch_share_sure">发图给客户</view>
   </view>
 
 
