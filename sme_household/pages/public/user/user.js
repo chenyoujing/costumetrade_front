@@ -22,7 +22,9 @@ Page({
   },
   address:function(){
     wx.chooseAddress({
-      success: function(res) {},
+      success: function(res) {
+        console.log(res)
+      },
     })
   },
   

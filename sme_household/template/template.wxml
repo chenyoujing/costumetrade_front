@@ -24,7 +24,7 @@
     <navigator url="{{nav!='首页'?'/pages/household/shop/shop':''}}" open-type="redirect" class="nav_bottom_view {{nav=='首页'?'nav_bottom_active':''}}">
       <image src="/images/look_board2.png" mode="aspectFit" wx:if="{{nav!='首页'}}" />
       <image src="/images/look_board.png" mode="aspectFit" wx:if="{{nav=='首页'}}" />
-      <text>看板</text>
+      <text>看版</text>
     </navigator>
     <navigator url="{{nav!='订单'?'/pages/public/order/order?ordertype=1':''}}" open-type="redirect" class="nav_bottom_view {{nav=='订单'?'nav_bottom_active':''}}">
       <image src="/images/order-form2.png" mode="aspectFit" wx:if="{{nav!='订单'}}" />
@@ -176,7 +176,7 @@
       </view>
     </view>
     <view class="template_form_content " wx:for="{{product}}">
-      <view class="template_form_view">{{item.name}}</view>
+      <view class="template_form_view one_line" style="line-height:36px;text-align: center;">{{item.name}}</view>
       <view class="template_form_view">{{item.quantity}}</view>
       <view class="template_form_view">{{item.saleAmount}}</view>
     </view>

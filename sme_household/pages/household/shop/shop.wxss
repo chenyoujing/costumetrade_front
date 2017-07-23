@@ -89,9 +89,9 @@
   flex-shrink: 0;
 }
 .shop_content_tx image{
-  width: 50px;
-  height: 50px;
-  border-radius: 25px;
+  width: 30px;
+  height: 30px;
+  border-radius: 15px;
 }
 .shop_content_info{
   width: 80%;
