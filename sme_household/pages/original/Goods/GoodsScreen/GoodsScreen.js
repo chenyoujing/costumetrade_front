@@ -1,4 +1,3 @@
-// pages/my/Goods/GoodsScreen/GoodsScreen.js
 var util = require('../../../../utils/util.js')
 var app = getApp()
 Page({
@@ -70,8 +69,9 @@ Page({
   radioSelect:function(e){
     var type = e.target.dataset.type;
     var name = e.target.dataset.name; 
+    var original = this.data[type];
     var object = {};
-    object[type] = name;
+    object[type] = original == name?"":name;
     this.setData(object);
   },
   selectOptions:function(e){
@@ -102,6 +102,12 @@ Page({
         value: season
       })
     }  
+    if (this.data.status !== '') {
+      getFilterData.push({
+        filed: 'status',
+        value: status
+      })
+    };
     if(this.data.type == "report"){
       getFilterData.push({
         filed: 'operatorArray',
@@ -119,12 +125,7 @@ Page({
     if (this.data.enterValue){
       app.searchValue = this.data.enterValue;     
     };
-    if (this.data.status !== '') {
-      getFilterData.push({
-        filed: 'status',
-        value: status
-      })
-    };
+   
     console.log(getFilterData)
     app.getFilterData = getFilterData;
     wx.navigateBack({
@@ -185,7 +186,7 @@ Page({
           cplorList: res.data.cplorList,
           employeeList: res.data.employeeList,
           sizeList: res.data.sizeList,
-          product: res.data.purchaseReportQuerys,
+          purchaseReportQuerys: res.data.purchaseReportQuerys,
         })
       }
     })
@@ -221,7 +222,46 @@ Page({
       }
     })
   },
+  // 恢复以前的选择
+  recoverSelect:function(){
+      var cate = [];
+      var brand = [];
+      var season = '';
+      var status = '';
+      var enterValue = '';
+      var productSizeArray ='';
+      var productColorArray = '';
+      var operatorArray = '';
+    for (var p in app.getFilterData){
+      if (app.getFilterData[p].filed == 'productTypeArray'){
+        cate = app.getFilterData[p].value
+      } else if (app.getFilterData[p].filed == 'productBrandArray'){
+        brand = app.getFilterData[p].value
+      } else if (app.getFilterData[p].filed == 'productSeasonArray') {
+        season = app.getFilterData[p].value[0]
+      } else if (app.getFilterData[p].filed == 'status') {
+        status = app.getFilterData[p].value[0]
+      } else if (app.getFilterData[p].filed == 'productSizeArray') {
+        productSizeArray = app.getFilterData[p].value
+      } else if (app.getFilterData[p].filed == 'productColorArray') {
+        productColorArray = app.getFilterData[p].value
+      } else if (app.getFilterData[p].filed == 'operatorArray') {
+        operatorArray = app.getFilterData[p].value
+      }
+    }
+    this.setData({
+      cate: cate,
+      brand: brand,
+      season: season,
+      status: status,
+      enterValue: enterValue,
+      productSizeArray: productSizeArray,
+      productColorArray: productColorArray,
+      operatorArray: operatorArray
+    })
+  },
   onLoad: function (options) {
+    console.log(app.getFilterData)
     if (!app.logisticFees && app.globalData.userIdentity !== 2) {
       util.api.getProductInit()
     }
@@ -229,7 +269,7 @@ Page({
       type: options.type,
       storeId: options.storeId
     })
-    if (app.globalData.userIdentity !== 2){
+    if (app.globalData.userIdentity !== 2 & options.type !== 'shop'){
       var screen_content1 = app.screen_brandList;
       var screen_content2 = app.screen_productTypeList;
       for (var p in screen_content1) {
@@ -249,5 +289,6 @@ Page({
     if (options.type == 'report'){
       this.reportslect();
     }
+    this.recoverSelect()
   }
 })

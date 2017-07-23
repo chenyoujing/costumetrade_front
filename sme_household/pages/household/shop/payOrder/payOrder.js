@@ -17,7 +17,7 @@ Page({
     util.api.request({
       url: 'order/enterPay',
       data: {
-        storeId:app.globalData.storeId
+        storeId: that.data.sellerid
       },
       method: 'POST',
       header: {
