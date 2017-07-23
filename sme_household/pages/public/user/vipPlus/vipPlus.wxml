@@ -14,7 +14,7 @@
     <view class="explain_text">1.您的交易记录我们会牢牢的存在服务器哦，您就可以随时的查看了；</view>
     <view class="explain_text">2.您的销售记录，入库记录等等...我们会以报表的形式展示给您，让您一目了然；</view>
     <view class="explain_text">3.商城里面好多功能呢，让您的采购方便起来了；好多功能不一一列举了，开通会员试试吧!</view>
-    <view class="vip_content" wx:for="{{getList}}">
+    <view class="vip_content" wx:for="{{getList||3}}">
       <checkbox-group bindchange="">
         <checkbox value="{{item.id}}"/>
       </checkbox-group>
