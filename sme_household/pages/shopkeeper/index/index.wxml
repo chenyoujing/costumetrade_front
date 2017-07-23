@@ -68,8 +68,10 @@
       <view class="index_report_text">利润：{{today.profit}}</view>
     </view>
   </navigator>
-
+<image src="/images/index_news1.png" mode="widthFix" />
+<image src="/images/index_news2.png" mode="widthFix" />
 </view>
 
 <template is="navBottom2" data="{{nav:'首页'}}" />
 <template is="scanModal" data="{{scanModal:scanModal,scanImage:scan}}" />
+
