@@ -53,7 +53,7 @@ var printObject = {
         success: function (res) {
           console.log(res.data)
           printObject.showapi_userid = res.data;
-          that.endSendGbk('姓名：商城用户1000030 时间：2017-07-21 21:19:17 -------------------------------- 数量 单价 名称 1 36.00 125农夫山泉有点甜 -------------------------------- 总数量：1 实付金额：36.00元 应付金额：36.00元')
+          that.endSendGbk(data)
         }
       })
     },

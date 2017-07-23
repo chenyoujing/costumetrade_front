@@ -464,10 +464,11 @@ Page({
         getFilterData: app.getFilterData ? app.getFilterData : undefined
       })
       this.page_request();
+      app.searchValue = null
     }
   },
   onUnload:function(){
     app.getFilterData = [];
-    app.searchValue = null
+   
   }
 });

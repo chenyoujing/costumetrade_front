@@ -60,7 +60,7 @@
   <template is="notice" />
 
   <navigator url="../../original/report/report" class="index_report">
-    <canvas class="index_canvas" canvas-id="columnCanvas"/>
+    <canvas class="index_canvas" hidden="{{canvas}}" canvas-id="columnCanvas"/>
     <view class="index_report_content">
       <view class="index_report_text">时间：今天</view>
       <view class="index_report_text">总数：{{today.quantity}}</view>
@@ -68,8 +68,8 @@
       <view class="index_report_text">利润：{{today.profit}}</view>
     </view>
   </navigator>
-<image src="/images/index_news1.png" mode="widthFix" class="index_news" />
-<image src="/images/index_news2.png" mode="widthFix" class="index_news" />
+<image src="/images/index_news1.png" mode="widthFix" />
+<image src="/images/index_news2.png" mode="widthFix" />
 </view>
 
 <template is="navBottom2" data="{{nav:'首页'}}" />

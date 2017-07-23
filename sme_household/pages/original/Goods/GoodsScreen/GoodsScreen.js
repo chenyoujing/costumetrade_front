@@ -262,6 +262,7 @@ Page({
   },
   onLoad: function (options) {
     console.log(app.getFilterData)
+    this.recoverSelect()
     if (!app.logisticFees && app.globalData.userIdentity !== 2) {
       util.api.getProductInit()
     }
@@ -273,10 +274,24 @@ Page({
       var screen_content1 = app.screen_brandList;
       var screen_content2 = app.screen_productTypeList;
       for (var p in screen_content1) {
-        screen_content1[p].screen_checked = false;
+        for (var j in this.data.brand){
+          if (screen_content1[p].brandname == this.data.brand[j]){
+            screen_content1[p].screen_checked = true;
+          }else{
+            screen_content1[p].screen_checked = false;
+          }
+        }
       }
       for (var p in screen_content2) {
-        screen_content2[p].screen_checked = false;
+        for (var j in this.data.cate) {
+          console.log(screen_content2[p].catename)
+          console.log(this.data.cate[j])
+          if (screen_content2[p].catename == this.data.cate[j]) {
+            screen_content2[p].screen_checked = true;
+          } else {
+            screen_content2[p].screen_checked = false;
+          }
+        }
       }
       this.setData({
         screen_content1: screen_content1,
@@ -289,6 +304,6 @@ Page({
     if (options.type == 'report'){
       this.reportslect();
     }
-    this.recoverSelect()
+    
   }
 })

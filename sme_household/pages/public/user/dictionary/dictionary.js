@@ -1018,7 +1018,7 @@ Page({
            if (name == 'customerCusts') {
              that.cancel()
            }
-           if (name !== "imageurl"){
+           if (name !== "imageurl" || name !=='payQrcode'){
              util.api.getProductInit();
            }
            wx.hideNavigationBarLoading();
