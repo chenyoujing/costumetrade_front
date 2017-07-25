@@ -13,9 +13,7 @@
   right: 0;
 }
 
-.report_scroll{
-  margin-top: 40px;
-}
+
 .time_select{ 
   display: flex;
   justify-content: center;
@@ -105,7 +103,8 @@
   height: 100%
 }
 .more_function::before{
-  right: 10px;
+  right:20px;
+  border-bottom-color:rgba(0,0,0,0.1);
 }
 
 .report_form{

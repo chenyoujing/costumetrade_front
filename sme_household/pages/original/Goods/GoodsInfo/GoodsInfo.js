@@ -93,10 +93,7 @@ Page({
         })
       }
     } else if (name == "name") {
-      boolean = reg.iSlength(e.detail.value, 50) && reg.iSnull(e.detail.value);
-      if (e.detail.value == '') {
-        boolean = false;
-      }
+      boolean = reg.iSlength(e.detail.value, 50);
     }
     else{
       boolean = reg.iSnull(e.detail.value);
@@ -351,15 +348,18 @@ Page({
     if (!target.code){
       var regobject = "regobject.code";
       this.setData({
-        "regobject.code":false
+        "regobject.code":false,
+        current: 0
       })
     } else if (!target.tagprice){
       this.setData({
-        "regobject.tagprice": false
+        "regobject.tagprice": false,
+        current:2
       })
     } else if (!GoodsInfoData.image && !GoodsInfoData.image1 && !GoodsInfoData.image2 && !GoodsInfoData.image3 && !GoodsInfoData.image4){
       this.setData({
-        "regobject.image": false
+        "regobject.image": false,
+        current:1
       })
     }else{
       this.submitGoodsInfo(target)
@@ -733,22 +733,27 @@ Page({
     }else{
       var name
       var value
+      var GoodsInfoData = this.data.GoodsInfoData
       switch (this.data.current){
         case (undefined):
-          name = 'name'
-          value = this.data.GoodsInfoData.name || ''
+          name = 'code'
+          value = GoodsInfoData.code || ''
           break;
         case (0):
-          name = 'name'
-          value = this.data.GoodsInfoData.name || ''
+          name = 'code'
+          value = GoodsInfoData.code || ''
           break;
         case (1):
-          name = 'image'
-          value = this.data.GoodsInfoData.image || ''
+          if (!GoodsInfoData.image && !GoodsInfoData.image1 && !GoodsInfoData.image2 && !GoodsInfoData.image3 && !GoodsInfoData.image4) {
+            this.setData({
+              "regobject.image": false
+            })
+            boolean = false
+          }
           break;
         case (2):
           name = 'tagprice'
-          value = this.data.GoodsInfoData.tagprice || ''
+          value = GoodsInfoData.tagprice || ''
           break;
       }
       var e = {
@@ -759,7 +764,9 @@ Page({
       }
       console.log(e)
       current = (this.data.current || 0) + 1
-      boolean = this.reg(e)
+      if (this.data.current != 1){
+        boolean = this.reg(e)
+      }
     }
     if (boolean){
       this.setData({

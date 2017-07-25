@@ -1,1 +1,5 @@
-{}
+{
+  "navigationBarBackgroundColor": "#52CAC1",
+  "navigationBarTextStyle": "white",
+  "navigationBarTitleText": "销售排行"
+}

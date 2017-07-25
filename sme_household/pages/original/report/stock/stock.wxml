@@ -1,12 +1,6 @@
 <import src="../../../../template/template.wxml"/>
 
-<!--头部-->
-<view class="title clearfix">
-  <navigator open-type="navigateBack">
-    <image src="../../../../images/back-away.png" mode="aspectFit" class="title_image_back" />
-  </navigator>
-  <view class="title_text">{{title}}</view>
-</view>
+<template is="backNav" />
 
 <scroll-view scroll-y class="report_scroll">
   <view style="height:1px;width:100%;"></view>

@@ -110,9 +110,21 @@
 
 <!----------报表---------->
 
+<!-- 头部 -->
+<template name="title">
+  <view class="title clearfix">
+    <navigator open-type="navigateBack">
+      <image src="../../../../images/back-away.png" mode="aspectFit" class="title_image_back" />
+    </navigator>
+    <view class="title_text">{{title}}</view>
+    <image src="../../../../images/more.png" mode="aspectFit" class="title_more" bindtap="more_function" wx:if="{{more}}" /> 
+  </view>
+</template>
+
 <!--报表-时间选择-->
 <template name="report_date">
   <view class="time_select" wx:if="{{timebool == 1}}">
+    <navigator open-type="navigateBack" class="select_view">返回</navigator>
     <view class="select_view {{selected==0?'selected':''}}" bindtap="select" data-index="0" data-number="0">今日</view>
     <view class="select_view {{selected==1?'selected':''}}" bindtap="select" data-index="1" data-number="7">7日</view>
     <view class="select_view {{selected==2?'selected':''}}" bindtap="select" data-index="2" data-number="30">30日</view>

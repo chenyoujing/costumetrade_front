@@ -162,6 +162,9 @@ Page({
       url: e.url,
       title:e.title
     })
+    wx.setNavigationBarTitle({
+      title: e.title
+    })
     this.purchase_request(e.url)
   }
 })

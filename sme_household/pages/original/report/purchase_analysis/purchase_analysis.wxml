@@ -1,13 +1,5 @@
 <import src="../../../../template/template.wxml"/>
 
-<!--头部-->
-<view class="title clearfix">
-  <navigator open-type="navigateBack">
-    <image src="../../../../images/back-away.png" mode="aspectFit" class="title_image_back" />
-  </navigator>
-  <view class="title_text">{{title}}</view>
-    <image src="../../../../images/more.png" mode="aspectFit" class="title_more" bindtap="more_function" />
-</view>
 
 <view class="report_scroll" >
 
@@ -22,7 +14,7 @@
   </view>
   <canvas class="canvas" wx:if="{{total1>0}}" canvas-id="pieCanvas" bindtouchstart="touchHandler"/>
 
-  <view  class="pietitle" wx:if="{{title !== '利润分析'}}">销售</view> 
+  <view class="pietitle" wx:if="{{title !== '利润分析'}}">销售</view> 
   <view class="pietitle" wx:if="{{title == '利润分析'}}">销售额</view>
 
 <view wx:if="{{total2 == 0}}" class="canvas" >
