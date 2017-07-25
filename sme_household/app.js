@@ -46,7 +46,6 @@ App({
                 that.globalData.discount = res.data.data.employee.discount;
                 that.globalData.storeId = res.data.data.storeId; 
                 that.globalData.userid = res.data.data.userid;
-               
                 console.log(res.data)
               }
             })
@@ -55,7 +54,6 @@ App({
       }
     })
   },
-  
   getUserInfo: function (cb) {
     var that = this;
     wx.checkSession({
