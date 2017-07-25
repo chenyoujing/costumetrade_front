@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/household/shop/shop",
     
 
     "pages/shopkeeper/index/index",
@@ -9,7 +10,6 @@
     "pages/shopkeeper/share/share",
     
 
-    "pages/household/shop/shop",
     "pages/household/shop/mall/mall",
     "pages/household/shop/shoppingcard/shoppingcard",
     "pages/household/shop/goods_detail/goods_detail",

@@ -97,6 +97,8 @@ Page({
         var data = that.data.product;
         var booleanre = that.data.requestSwitch;
         for (var p in res.data) {
+          res.data[p].disable1 = false;
+          res.data[p].disable2 = false;
           res.data[p].ordertime = util.toDate(res.data[p].ordertime);
           if (res.data[p].debetamt > 0){
             res.data[p].debetText = "收付款"

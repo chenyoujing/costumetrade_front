@@ -4,9 +4,9 @@ App({
     openid: ''
   },
   onLaunch: function () {
-    if (!this.globalData.openid){
-      this.getOpenid()
-    }
+    // if (!this.globalData.openid){
+    //   this.getOpenid()
+    // }
     this.getUserInfo();
   },
   getOpenid: function () {
@@ -64,7 +64,7 @@ App({
         // that.getOpenid()
       },
       fail: function () {
-        that.getOpenid()
+        // that.getOpenid()
       }
     })
     var that = this

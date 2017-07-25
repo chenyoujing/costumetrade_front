@@ -97,9 +97,7 @@ Page({
     console.log(11111)
     console.log(app.globalData.report)
     console.log(app.globalData.userInfo)
-    if (!app.logisticFees && app.globalData.userIdentity !== 2) {
-      util.api.getProductInit()
-    }
+   
     this.chart();
   },
   onShow:function(){

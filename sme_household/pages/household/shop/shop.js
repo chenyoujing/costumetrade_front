@@ -7,7 +7,7 @@ Page({
       '../../../images/swiper1.jpg',
       '../../../images/swiper2.jpg',
     ],
-    otherStord:[],
+    otherStord:true,
     pageNum:1,
     loadMore: false,
     requestSwitch: false
@@ -55,15 +55,13 @@ Page({
           res.data[p].createTime = util.toDate(res.data[p].createTime)
           data.push(res.data[p])
         }
-        
         if (res.data.length < 10) {
           booleanre = false;
         } else {
           booleanre = true;
         }
-        console.log(data)
         that.setData({
-          otherStord: data,
+          otherStord: data || false,
           loadMore: true,
           requestSwitch: booleanre
         })
@@ -82,13 +80,37 @@ Page({
       this.page_request();
     }
   },
+  // 登录接口使用
+  callback: function () {
+    if (app.globalData.userIdentity !== 2) {
+      util.api.getProductInit(this.getAllPromotionalProduct);
+    }
+  },
+  // 登录失败
+  fail: function () {
+    var that = this
+    wx.showModal({
+      title: '登录失败',
+      cancelText: '确认',
+      confirmText: '重新登录',
+      success: function () {
+        if (res.confirm) {
+          that.onLoad()
+        }
+      }
+    })
+  },
   onLoad:function(e){
-    // this.aa()
-    //
+    if (!app.globalData.openid){
+      util.api.getOpenid(this.callback, this.fail);
+    }else{
+      this.getAllPromotionalProduct()
+    }
     this.setData({
       url: util.api.imgUrl,
       shopkeeper: e.shopkeeper,
     })
+    
     // if (!app.globalData.openid){
     //   util.api.getOpenid(this.initialize);
     // }else{
@@ -97,7 +119,7 @@ Page({
     // if (!app.logisticFees && app.globalData.userIdentity!==2) {
     //   util.api.getProductInit()
     // }
-    this.getAllPromotionalProduct()
+    // this.getAllPromotionalProduct()
     wx.updateShareMenu({
       withShareTicket: true,
       success() {
@@ -107,35 +129,6 @@ Page({
   // 店主请求图片列表
   onShow:function(){
     
-    // wx.connectSocket({
-    //   url: 'ws://192.168.2.221:8081/ws',
-    //   data:{
-    //   },
-    //   method: "GET"
-    // })
-    // wx.onSocketOpen(function (res) {
-    //   console.log('WebSocket连接已打开！')
-    // })
-    // wx.onSocketMessage(function (res) {
-    //   console.log('收到服务器内容：' + res.data)
-    // })
-    // wx.onSocketClose(function (res) {
-    //   console.log('WebSocket 连接打开失败')
-    // })
-    // wx.onSocketOpen(function (res) {
-    //   wx.sendSocketMessage({
-    //     data: '123',
-    //     success: function () {
-    //       console.log('发送成功')
-    //     }
-    //   })
-    // })
-  },
- 
-  bb:function(){
-    wx.onSocketClose(function (res) {
-      console.log('WebSocket 已关闭！')
-    })
   },
   onShareAppMessage: function () {
     return {
