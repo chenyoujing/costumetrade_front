@@ -45,9 +45,9 @@
         <image src="../../../images/kinds-or-types-of-goods.png" mode="aspectFit" />
         <text>货架</text>
       </navigator>
-      <navigator url="../../household/shop/shop?shopkeeper=2" class="operation">
+      <navigator url="../share/share" class="operation">
         <image src="../../../images/Map-collection.png" mode="aspectFit" />
-        <text>看板</text>
+        <text>发图</text>
       </navigator>
       <navigator url="../../public/order/order?shopkeeper=2&ordertype=1" class="operation">
         <image src="../../../images/select-and-purchase.png" mode="aspectFit" />
@@ -72,6 +72,6 @@
 <image src="/images/index_news2.png" mode="widthFix" class="index_news" />
 </view>
 
-<template is="navBottom2" data="{{nav:'首页'}}" />
+<template is="navBottom2" data="{{nav:'我的'}}" />
 <template is="scanModal" data="{{scanModal:scanModal,scanImage:scan}}" />
 

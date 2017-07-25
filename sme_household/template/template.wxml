@@ -45,10 +45,10 @@
 </template>
 <template name="navBottom2">
   <view class="nav_bottom">
-    <navigator url="{{nav!='首页'?'/pages/shopkeeper/index/index':''}}" open-type="redirect" class="nav_bottom_view {{nav=='首页'?'nav_bottom_active':''}}">
-      <image src="/images/home-page2.png" mode="aspectFit" wx:if="{{nav!='首页'}}" />
-      <image src="/images/home-page.png" mode="aspectFit" wx:if="{{nav=='首页'}}" />
-      <text>首页</text>
+    <navigator url="{{nav!='首页'?'/pages/household/shop/shop':''}}" open-type="redirect" class="nav_bottom_view {{nav=='首页'?'nav_bottom_active':''}}">
+      <image src="/images/look_board2.png" mode="aspectFit" wx:if="{{nav!='首页'}}" />
+      <image src="/images/look_board.png" mode="aspectFit" wx:if="{{nav=='首页'}}" />
+      <text>看版</text>
     </navigator>
     <navigator url="{{nav!='开单'?'/pages/original/openOrder/openOrder?shopkeeper=true':''}}" open-type="redirect" class="nav_bottom_view {{nav=='开单'?'nav_bottom_active':''}}">
       <image src="/images/billing.png" mode="aspectFit" wx:if="{{nav!='开单'}}" />
@@ -60,10 +60,10 @@
       <image src="/images/info2.png" mode="aspectFit" wx:if="{{nav=='信息'}}" />
       <text>信息</text>
     </navigator>
-    <navigator url="{{nav!='发图'?'/pages/shopkeeper/share/share':''}}" open-type="redirect" class="nav_bottom_view {{nav=='发图'?'nav_bottom_active':''}}">
-      <image src="/images/Figure.png" mode="aspectFit" wx:if="{{nav!='发图'}}" />
-      <image src="/images/Figure-.png" mode="aspectFit" wx:if="{{nav=='发图'}}" />
-      <text>发图</text>
+    <navigator url="{{nav!='我的'?'/pages/shopkeeper/index/index':''}}" open-type="redirect" class="nav_bottom_view {{nav=='我的'?'nav_bottom_active':''}}">
+      <image src="/images/my.png" mode="aspectFit" wx:if="{{nav!='我的'}}" />
+      <image src="/images/myself.png" mode="aspectFit" wx:if="{{nav=='我的'}}" />
+      <text>店铺</text>
     </navigator>
   </view>
 </template>

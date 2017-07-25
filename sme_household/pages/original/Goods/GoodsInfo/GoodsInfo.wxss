@@ -9,6 +9,21 @@
 .template_reg_text{
   margin-left: calc(20% + 10px);
 }
+/* 一键上架 */
+.upload_swiper{
+  height: calc(100vh - 120px);
+}
+.goodsInfo{
+  height: 40px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  background-color: #ffffff;
+  color: #286561;
+  z-index: 10;
+}
 
 .upload_container{
   padding: 0 0 40px;
@@ -202,21 +217,29 @@
   display: inline-block;
   text-align: center;
 }
+.submit_view{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 40px;
+  border-radius: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  background-color: #ffffff;
+  color: #ffffff;
+  font-size: 16px;
+}
 .submit{
   font-size: 16px;
   border-radius: 0;
   background-color: #52CAC1;
   line-height: 30px;
   text-align: center;
-  padding: 0;
-  position: fixed;
   width: 100px;
-  bottom: 5px;
-  left: 0;
-  right: 0;
-  margin: auto;
   color: #ffffff;
-  z-index:10;
 }
 
 /*模态框2//添加种类*/

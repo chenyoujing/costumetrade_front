@@ -43,9 +43,9 @@ Page({
   onLoad: function (options) {
     console.log(options)
     this.setData({
-      payorderno: options.payorderno,
-      buyerid: options.buyerstoreid,
-      sellerid: options.sellerstoreid
+      payorderno: 17071821542805713||options.payorderno,
+      buyerid: 1500294978319||options.buyerstoreid,
+      sellerid: 1499331806102||options.sellerstoreid
     })
     this.viewLogicson()
   }

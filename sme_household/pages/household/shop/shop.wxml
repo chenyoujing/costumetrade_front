@@ -52,5 +52,5 @@
   </view>
 </scroll-view>
 
-<template is="navBottom" data="{{nav:'首页'}}" wx:if="{{!shopkeeper}}"></template>
+<template is="navBottom2" data="{{nav:'首页'}}" wx:if="{{!shopkeeper}}"></template>
 <template is="backNav" data="{{layer:3}}" wx:if="{{shopkeeper}}"></template>

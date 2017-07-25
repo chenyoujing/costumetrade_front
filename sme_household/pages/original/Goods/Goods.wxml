@@ -6,7 +6,7 @@
     </navigator>
     <image bindtap="packPageFilterCode" mode="aspectFit" src="../../../images/search.png" class="image_search" />
     <image src="../../../images/more.png" mode="aspectFit" class="title_image" bindtap="more_function" />
-    <navigator url="../Goods/GoodsInfo/GoodsInfo?ID=null" hover-class="navigator-hover">
+    <navigator url="../Goods/GoodsInfo/GoodsInfo?ID=null&oneKey=true" hover-class="navigator-hover">
       <image src="../../../images/add.png" mode="aspectFit" class="title_image" />
     </navigator>
     <navigator url="../Goods/GoodsScreen/GoodsScreen" hover-class="navigator-hover">

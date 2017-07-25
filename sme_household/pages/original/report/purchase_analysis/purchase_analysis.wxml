@@ -9,7 +9,7 @@
     <image src="../../../../images/more.png" mode="aspectFit" class="title_more" bindtap="more_function" />
 </view>
 
-<scroll-view scroll-y class="report_scroll" >
+<view class="report_scroll" >
 
   <template is="report_date" data="{{timebool:timebool,selected:selected,beginTime:beginTime,endTime:endTime,select:true}}"></template>
 
@@ -41,7 +41,7 @@
         <view>毛利率：{{grossProfit*100}}% </view>
       </view>  
     </view>
-</scroll-view>
+</view>
 
 <!--更多功能-->
  <template is="more_feature" data="{{animation:animation,more_function_close:more_function_close,more_function_display:more_function_display,productName:productName,client:title}}"></template>

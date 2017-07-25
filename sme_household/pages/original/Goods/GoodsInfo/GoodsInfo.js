@@ -93,7 +93,7 @@ Page({
         })
       }
     } else if (name == "name") {
-      boolean = reg.iSlength(e.detail.value,50);
+      boolean = reg.iSlength(e.detail.value, 50) && reg.iSnull(e.detail.value);
     }
     else{
       boolean = reg.iSnull(e.detail.value);
@@ -707,8 +707,61 @@ Page({
     })
     console.log(object)
   },
+  // 一键上架的功能
+  goodsInfo: function(e){
+    var type = e.currentTarget.dataset.type;
+    var oneKey
+    if (type == 'go'){
+      oneKey = false
+    }else{
+      oneKey = true
+    }
+    this.setData({
+      oneKey: oneKey,
+      goodsInfo_back: true,
+    })
+  },
+  swiper_go:function(e){
+    var current
+    if (e.detail.current!==undefined){
+      current = e.detail.current
+    }else{
+      var name
+      var value
+      switch (this.data.current){
+        case (undefined):
+          name = 'name'
+          value = this.data.GoodsInfoData.name
+          break;
+        case (0):
+          name = 'name'
+          value = this.data.GoodsInfoData.name
+          break;
+        case (1):
+          name = 'image'
+          value = this.data.GoodsInfoData.image
+          break;
+        case (2):
+          name = 'tagprice'
+          value = this.data.GoodsInfoData.tagprice
+          break;
+      }
+      var e = {
+        target:{ dataset: { name: name }},
+        detail:{
+          value: value
+        }
+      }
+      this.reg(e)
+      current = (this.data.current || 0) + 1
+    }
+    this.setData({
+      current: current
+    })
+  },
   onLoad: function (options) {
     this.setData({
+      oneKey: options.oneKey,
       screen_brandList: app.screen_brandList,
       screen_productTypeList: app.screen_productTypeList,
       screen_gradeList: app.screen_gradeList,
