@@ -178,8 +178,10 @@ Page({
         rules: app.getFilterData ? app.getFilterData : undefined
       })
       this.purchase_request();
-      app.getFilterData = [];
-      app.searchValue =""
+      app.searchValue =null
     }
+  },
+  onUnload: function () {
+    app.getFilterData = [];
   }
 })

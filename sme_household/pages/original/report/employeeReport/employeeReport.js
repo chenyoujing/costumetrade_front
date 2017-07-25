@@ -142,8 +142,10 @@ Page({
         rules: app.getFilterData ? app.getFilterData : undefined
       })
       this.chart();
-      app.getFilterData = [];
-      app.searchValue = ""
+      app.searchValue = null
     }
+  },
+  onUnload: function () {
+    app.getFilterData = [];
   }
 })

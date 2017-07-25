@@ -74,7 +74,9 @@ Page({
         rules: app.getFilterData ? app.getFilterData : undefined
       })
       this.stock_request();
-      app.getFilterData = [];
     }
+  },
+  onUnload: function () {
+    app.getFilterData = [];
   }
 })
