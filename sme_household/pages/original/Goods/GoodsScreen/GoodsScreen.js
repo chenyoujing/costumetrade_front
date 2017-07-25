@@ -248,9 +248,9 @@ Page({
       var season = '';
       var status = '';
       var enterValue = '';
-      var productSizeArray ='';
-      var productColorArray = '';
-      var operatorArray = '';
+      var productSizeArray =[];
+      var productColorArray = [];
+      var operatorArray = [];
     for (var p in app.getFilterData){
       if (app.getFilterData[p].filed == 'productTypeArray'){
         cate = app.getFilterData[p].value
@@ -291,9 +291,11 @@ Page({
     for (var p in screen_content2) {
       screen_content2[p].screen_checked = false;
     }
+    app.screen_brandList = screen_content1;
+    app.screen_productTypeList = screen_content2;
     this.setData({
-      cate: '',
-      brand: '',
+      cate: [],
+      brand: [],
       season: '',
       status: '',
       enterValue: '',

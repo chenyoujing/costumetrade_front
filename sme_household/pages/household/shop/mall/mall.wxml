@@ -39,15 +39,15 @@
       <text>该店铺未发图于您！</text>
     </view>
 
-    <view class="shop_content" wx:for="{{product}}"> 
+    <view class="shop_content" wx:for="{{product}}" wx:for-item="storeinfo"> 
       <view class="shop_content_view">
         <view class="shop_content_title">
           <view class="shop_content_info">
-            <view class="shop_content_unread {{item.readStatus=='1'?'shop_content_read':''}}">
+            <view class="shop_content_unread {{storeinfo.readStatus=='1'?'shop_content_read':''}}">
               <view class="shop_content_unread_prompt">{{index+1}}</view>
-              {{item.readStatus=='1'?'已读信息':'未读信息'}}
+              {{storeinfo.readStatus=='1'?'已读信息':'未读信息'}}
             </view>
-            <text>{{item.createTime}}</text>
+            <text>{{storeinfo.createTime}}</text>
           </view>
           <view class="shop_content_service">
             <image src="../../../../images/customer_service.png"  class="shop_content_service" mode="aspectFit" />
@@ -55,11 +55,11 @@
           </view>
         </view>
         <view class="shop_content_address two_line">
-          {{item.title}}
+          {{storeinfo.title}}
         </view>
         <view class="shop_goods">
-          <view class="mall_container {{rank}}" wx:for="{{item.products}}">
-            <navigator url="../goods_detail/goods_detail?strod={{id}}&ID={{item.id}}&name={{name}}" hover-class="navigator-hover" class="content_container clearfix">
+          <view class="mall_container {{rank}}" wx:for="{{storeinfo.products}}">
+            <navigator url="../goods_detail/goods_detail?strod={{id}}&shareId={{storeinfo.id}}&ID={{item.id}}&name={{name}}" hover-class="navigator-hover" class="content_container clearfix">
               <image src="{{item.image?url+item.image:'../../../../images/shop1_1.png'}}" mode="aspectFill" />
               <view class="content_container_text">
                 <view class="clear"></view>

@@ -1,12 +1,14 @@
 {
   "pages": [
     "pages/public/loading/loading",
+    
+
     "pages/shopkeeper/index/index",
     "pages/shopkeeper/index/Purchase/Purchase",
     "pages/shopkeeper/info/info",
     "pages/shopkeeper/info/chat/chat",
     "pages/shopkeeper/share/share",
-
+    
 
     "pages/household/shop/shop",
     "pages/household/shop/mall/mall",

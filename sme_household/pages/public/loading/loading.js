@@ -33,9 +33,24 @@ Page({
       url: url,
       success: function (res) { }
     })
+    console.log(8888888)
   },
   onLoad: function (options) {
     console.log(Date())
-    util.api.getOpenid(this.callback, this.fail);
+    var that = this;
+    wx.checkSession({
+      success: function (res) {
+        console.log(res)
+        // console.log("loading")
+        // that.householdOrshopkeper()
+        util.api.getOpenid(that.callback, that.fail);
+      },
+      fail: function () {
+        //登录态过期
+        console.log("loading")
+        util.api.getOpenid(this.callback, this.fail);
+      }
+    })
+   
   }
 })

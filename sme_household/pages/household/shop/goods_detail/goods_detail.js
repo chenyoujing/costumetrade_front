@@ -39,7 +39,8 @@ Page({
       data: {
         storeId: that.data.stordId,
         id: that.data.id,
-        openid: app.globalData.openid
+        openid: app.globalData.openid,
+        shareId: that.data.shareId
       },
       method: 'POST',
       header: {
@@ -321,6 +322,7 @@ Page({
       title: e.name,
       stordId: e.strod,
       url: util.api.imgUrl,
+      shareId: e.shareId
     });
     console.log({
       id: e.ID,
