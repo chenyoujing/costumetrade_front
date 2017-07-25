@@ -61,7 +61,7 @@
     </view>
 </scroll-view>
 
-<button class="sure_button" form-type="submit">确定</button>
+<button class="sure_button" form-type="submit" disabled="{{disabled}}">确定</button>
 </form>
 <!--选择快递公司-->
 <modal title="选择快递公司" hidden="{{expressModal}}" confirm-text="取消" no-cancel bindconfirm="cancel" bindcancel="cancel" >

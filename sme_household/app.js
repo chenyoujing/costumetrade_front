@@ -4,9 +4,9 @@ App({
     openid: ''
   },
   onLaunch: function () {
-    // if (!this.globalData.openid){
-    //   this.getOpenid()
-    // }
+    if (!this.globalData.openid){
+      this.getOpenid()
+    }
     this.getUserInfo();
   },
   getOpenid: function () {
@@ -32,6 +32,7 @@ App({
               },
               method: 'POST',
               success: function (res) {
+                that.globalData.report = res.data.data.report;
                 that.globalData.userInfo.code= loginCode.code;
                 that.globalData.userInfo.name = res.data.data.name;  
                 that.globalData.userInfo.fansCount = res.data.data.fansCount;
@@ -45,9 +46,8 @@ App({
                 that.globalData.discount = res.data.data.employee.discount;
                 that.globalData.storeId = res.data.data.storeId; 
                 that.globalData.userid = res.data.data.userid;
-                that.globalData.report = res.data.data.report;
+               
                 console.log(res.data)
-                // that.householdOrshopkeper(res.data.data.userIdentity)
               }
             })
           }
@@ -55,20 +55,7 @@ App({
       }
     })
   },
-  // // 判断权限显示页面
-  householdOrshopkeper: function (userIdentity) {
-    console.log(this.firstLogin)
-    var householdurl = this.firstLogin ?'../../household/shop/shop':"pages/household/shop/shop";
-    console.log(householdurl)
-    var shopkeper = this.firstLogin ? './index' : "pages/shopkeeper/index/index";
-    console.log(shopkeper)
-    var url = userIdentity == 2 ? householdurl : shopkeper;
-    this.firstLogin = undefined;
-    wx.redirectTo({
-      url: url,
-      success: function (res) { }
-    })
-  },
+  
   getUserInfo: function (cb) {
     var that = this;
     wx.checkSession({
@@ -79,17 +66,7 @@ App({
         // that.getOpenid()
       },
       fail: function () {
-        //登录态过期
-        wx.login({
-          success: function () {
-            wx.getUserInfo({
-              success: function (res) {
-                that.globalData.myInfo = res.userInfo;
-                typeof cb == "function" && cb(that.globalData.userInfo)
-              }
-            })
-          }
-        })
+        that.getOpenid()
       }
     })
     var that = this

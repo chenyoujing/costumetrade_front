@@ -11,7 +11,8 @@ Page({
     shopCartOrigin:[],
     logisticFees:[],
     logisticCode: 0,
-    logisticName: ''
+    logisticName: '',
+    disabled:false
   },
   // 更改地址
   address:function(){
@@ -160,7 +161,10 @@ Page({
   submitData: function (submitData){
       var that = this;
       console.log(JSON.stringify(submitData))
-      wx.showNavigationBarLoading()
+      wx.showNavigationBarLoading();
+      this.setData({
+        disabled:true
+      })
       util.api.request({
         url: 'order/saveOrders',
         data: submitData,
@@ -170,6 +174,9 @@ Page({
         },
         success: function (res) {
           wx.hideNavigationBarLoading();
+          that.setData({
+            disabled: false
+          })
           if(res.data == 1013){
             wx.showModal({
               title: '提示',

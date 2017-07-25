@@ -94,20 +94,26 @@ Page({
     this.setData({
       report: app.globalData.report
     })
+    console.log(11111)
+    console.log(app.globalData.report)
+    console.log(app.globalData.userInfo)
     if (!app.logisticFees && app.globalData.userIdentity !== 2) {
       util.api.getProductInit()
     }
-    this.chart()
-
+    this.chart();
   },
   onShow:function(){
+    console.log(22)
     this.setData({
-      userInfo: app.globalData.userInfo
+      userInfo: app.globalData.userInfo,
+      report: app.globalData.report
     })
   },
   onReady: function(){
+    console.log(33)
     this.setData({
-      userInfo: app.globalData.userInfo
+      userInfo: app.globalData.userInfo,
+      report: app.globalData.report
     })
   }
 })
