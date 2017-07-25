@@ -4,7 +4,7 @@
   
   <view class="index_title">
     <image src="../../../images/index_title_bg.png" mode="aspectFill" class="index_title_bg" />
-    <navigator url="../../public/user/dictionary/dictionary" class="index_dictionary">设置</navigator>
+    <navigator url="../../public/user/dictionary/dictionary" class="index_dictionary">店铺设置</navigator>
     <view class="index_share" bindtap="scan">
       <image src="../../../images/QR_code.png" mode="aspectFill" />
       <view class="index_share_text">+粉</view>
@@ -56,8 +56,6 @@
     </view>
   </view>
 
-  <!-- 点艺公告 -->
-  <template is="notice" />
 
   <navigator url="../../original/report/report" class="index_report">
     <canvas class="index_canvas" hidden="{{canvas}}" canvas-id="columnCanvas"/>

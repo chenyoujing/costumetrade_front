@@ -94,12 +94,16 @@ Page({
       }
     } else if (name == "name") {
       boolean = reg.iSlength(e.detail.value, 50) && reg.iSnull(e.detail.value);
+      if (e.detail.value == '') {
+        boolean = false;
+      }
     }
     else{
       boolean = reg.iSnull(e.detail.value);
     }
     param[regobject] = boolean;
     this.setData(param)
+    return boolean
   },
   // 返回
   backdelta: function () {
@@ -722,6 +726,7 @@ Page({
     })
   },
   swiper_go:function(e){
+    var boolean = true
     var current
     if (e.detail.current!==undefined){
       current = e.detail.current
@@ -731,19 +736,19 @@ Page({
       switch (this.data.current){
         case (undefined):
           name = 'name'
-          value = this.data.GoodsInfoData.name
+          value = this.data.GoodsInfoData.name || ''
           break;
         case (0):
           name = 'name'
-          value = this.data.GoodsInfoData.name
+          value = this.data.GoodsInfoData.name || ''
           break;
         case (1):
           name = 'image'
-          value = this.data.GoodsInfoData.image
+          value = this.data.GoodsInfoData.image || ''
           break;
         case (2):
           name = 'tagprice'
-          value = this.data.GoodsInfoData.tagprice
+          value = this.data.GoodsInfoData.tagprice || ''
           break;
       }
       var e = {
@@ -752,12 +757,15 @@ Page({
           value: value
         }
       }
-      this.reg(e)
+      console.log(e)
       current = (this.data.current || 0) + 1
+      boolean = this.reg(e)
     }
-    this.setData({
-      current: current
-    })
+    if (boolean){
+      this.setData({
+        current: current
+      })
+    }
   },
   onLoad: function (options) {
     this.setData({

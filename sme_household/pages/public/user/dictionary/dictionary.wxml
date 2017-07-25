@@ -280,6 +280,14 @@
                 <view class="freight_content_text">手动修改：客户下单后（审核时），手动修改运费</view>
                 <view class="freight_content_text">固定运费：客户下单后，自动添加运费</view>
               </view>
+              <radio-group class="freight_content freight_free" bindchange="freightFree">
+                <label>
+                  <radio value="value" checked="false" />包邮
+                </label>
+                <label>
+                  <radio value="value" checked="false" />不包邮
+                </label>
+              </radio-group>
               <view class="freight_content clearfix">
                 <view class="freight_content_title">
                   2. 固定运费：
