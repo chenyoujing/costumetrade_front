@@ -60,7 +60,10 @@ var api = {
                 app.globalData.userInfo.fansCount = res.data.data.fansCount;
                 // 微信头像加载小图
                 var photo = res.data.data.photo
-                photo = photo.replace(/\/0$/, "/132"); 
+                photo = photo.replace(/\/0$/, "/132");
+                photo = photo.replace(/\/46$/, "/132");
+                photo = photo.replace(/\/64$/, "/132");
+                photo = photo.replace(/\/96$/, "/132");
                 app.globalData.userInfo.photo = photo;
                 app.globalData.openid = res.data.data.query.openid;
                 app.globalData.privilegeEmployees = res.data.data.employee.privilegeEmployees;
