@@ -47,7 +47,7 @@ Page({
     var report_date = [];
     var today = {};
     for (var p in report){
-      report_date.push(parseInt(p)+1)
+      report_date.push(parseInt(p) + 1 == 7 ? '今天' : parseInt(p) + 1)
       report_quantity.push(report[p].quantity||0)
     }
     today.quantity = report[report.length-1].quantity || 0
