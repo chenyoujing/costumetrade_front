@@ -322,7 +322,8 @@ Page({
       title: e.name,
       stordId: e.strod,
       url: util.api.imgUrl,
-      shareId: e.shareId
+      shareId: e.shareId,
+      userIdentity: app.globalData.userIdentity
     });
     console.log({
       id: e.ID,
