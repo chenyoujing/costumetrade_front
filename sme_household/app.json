@@ -69,6 +69,7 @@
     "pages/public/order/payOrder/payOrder",
 
     "pages/public/user/user",
+    "pages/public/user/address/address",
     "pages/public/user/customerType/customerType",
     "pages/public/user/shareStore/shareStore",
     "pages/public/user/vipPlus/vipPlus",
