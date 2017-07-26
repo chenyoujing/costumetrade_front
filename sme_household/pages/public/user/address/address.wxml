@@ -1,0 +1,15 @@
+<import src="/template/template.wxml"/>
+
+<template is="title" data="{{title:'我的地址',add:true}}" />
+
+<scroll-view scroll-y class="address_scroll">
+  <view class="address_view">
+    <view class="address_name">
+      <view class="one_line">王武 11111111111</view>
+      <text>默认</text>
+    </view>
+    <view class="address_info">
+      <view class="one_line">s</view>
+    </view>
+  </view>
+</scroll-view>

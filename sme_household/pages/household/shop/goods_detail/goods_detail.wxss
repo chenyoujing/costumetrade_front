@@ -217,21 +217,27 @@ swiper image{
   left: 0;
   right: 0;
   bottom: 0;
+  height: 40px;
+  display: flex;
 }
 .shopping_cart{
+  flex: 1;
   box-sizing: border-box;
   border: 1px solid #AFAFAF;
   background-color: #ffffff;
   color: #286561;
   font-size: 16px;
-  line-height: 40px;
   height: 40px;
-  text-align: center;
-  width: 50%;
-  display: inline-block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .active_red{
   border-color: #FE2D04;
   background-color: #FE2D04;
   color: #ffffff;
+}
+.active_gray{
+  border-color: #EEEEEE;
+  background-color: #EEEEEE;
 }

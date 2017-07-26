@@ -421,7 +421,102 @@ Page({
       }
     })
   },
- 
+  // 输入框操作
+  bindKeyInput: function (e) {
+    var value = e.detail.value;
+    this.setData({
+      enterValue: value
+    })
+    this.keyup(value)
+  },
+  // 清空输入框
+  clear: function () {
+    this.setData({
+      enterValue: ""
+    })
+    this.keyup(value)
+  },
+  keyup: function (e) {
+    if (e == "") {
+      this.setData({
+        changeBoolean: false
+      })
+    } else {
+      var endArray4 = util.api.objectPushArry(this.data.product, e)
+      this.setData({
+        keyArray: endArray4,
+        changeBoolean: true
+      })
+    }
+  },
+  selectOptions: function (e) {
+    var value = e.target.dataset.name;
+    this.setData({
+      enterValue: value
+    });
+    this.searchClick()
+  },
+  searchClick: function () {
+    var season = [];
+    season.push(this.data.season);
+    var status = [];
+    status.push(this.data.status);
+    var getFilterData = [
+      {
+        filed: 'productTypeArray',
+        value: this.data.cate
+      },
+      {
+        filed: 'productBrandArray',
+        value: this.data.brand
+      }
+    ]
+    if (this.data.season !== '') {
+      getFilterData.push({
+        filed: 'productSeasonArray',
+        value: season
+      })
+    }
+    if (this.data.status !== '') {
+      getFilterData.push({
+        filed: 'status',
+        value: status
+      })
+    };
+    if (this.data.type == "report") {
+      getFilterData.push({
+        filed: 'operatorArray',
+        value: this.data.operatorArray
+      })
+      getFilterData.push({
+        filed: 'productColorArray',
+        value: this.data.productColorArray
+      })
+      getFilterData.push({
+        filed: 'productSizeArray',
+        value: this.data.productSizeArray
+      })
+    }
+    if (this.data.enterValue) {
+      app.searchValue = this.data.enterValue;
+    };
+
+    console.log(getFilterData)
+    app.getFilterData = getFilterData;
+    this.onShow()
+    this.setData({
+      changeBoolean: false
+    })
+
+  },
+  // 清空输入框
+  clear: function () {
+    this.setData({
+      enterValue: ""
+    })
+    this.keyup(value)
+  },
+
   onLoad() {
     this.setData({
       storeId: app.globalData.storeId

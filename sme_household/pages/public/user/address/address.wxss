@@ -1,0 +1,35 @@
+/*头部*/
+@import "../../../../css/report.wxss";
+
+.address_scroll{
+  position: absolute;
+  top: 40px;
+  left: 0;
+  right: 0;
+}
+.address_view{
+  display: flex;
+  flex-direction: column;
+  min-height: 60px;
+  padding: 5px 20px;
+  margin-bottom: 10px;
+  justify-content: space-around;
+  background-color: #F4F4F4;
+  border-bottom: 1px solid #DCDCDC;
+}
+.address_name{
+  display: flex;
+  align-items: center;
+  font-size: 17px;
+  justify-content: space-between;
+}
+.address_name text{
+  flex-shrink: 0;
+  margin-left: 10px;
+}
+.address_info{
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  color: #aaaaaa;
+}

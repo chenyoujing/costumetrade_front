@@ -172,6 +172,7 @@ button{
   margin: 0;
   padding: 0;
   border: none;
+  border-radius: 0;
 }
 button::after {
   content: none;
@@ -232,6 +233,16 @@ radio,checkbox{
   position: relative;
   padding-right: 30px;
 }
+.search_input_view image{
+  width: 16px;
+  height: 16px;
+  padding: 7px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 4;
+  display: block;
+}
 .search_input_image{
   width: 16px;
   height: 16px;
@@ -255,16 +266,6 @@ radio,checkbox{
   height: 100%;
   width: 100%;
   border-radius: 5px;
-}
-.search_input_view image{
-  width: 16px;
-  height: 16px;
-  padding: 7px;
-  position: absolute;
-  top: 0;
-  right: 0;
-  z-index: 4;
-  display: block;
 }
 /*覆盖，bindatp用*/
 .bindtap_cover{

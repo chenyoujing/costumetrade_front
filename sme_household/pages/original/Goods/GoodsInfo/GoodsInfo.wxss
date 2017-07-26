@@ -24,6 +24,19 @@
   color: #286561;
   z-index: 10;
 }
+.screen_view{
+  min-width: 40px;
+  height: 24px;
+  line-height: 24px;
+  border-radius: 12px;
+  font-size: 13px;
+  text-align: center;
+  color: #000000;
+  margin:5px 8px;
+  background-color: #EAEAEA;
+  padding: 0 10px;
+  float: left;
+}
 
 .upload_container{
   padding: 0 0 40px;

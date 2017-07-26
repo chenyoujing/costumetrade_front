@@ -284,6 +284,10 @@
   padding: 10px 5px 0;
 }
 .rank .content_container > image{
+  width: calc(50vw - 10px);
+  height: calc(50vw - 10px);
+}
+.shop_content .rank .content_container > image{
   width: calc(50vw - 20px);
   height: calc(50vw - 20px);
 }

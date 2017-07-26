@@ -32,6 +32,7 @@
 }
 .progress1{
   background-color: #52CAC1;
+  color: #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;

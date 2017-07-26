@@ -25,6 +25,10 @@
             <input type="text" class="upload_input1"  bindblur="reg" bindinput="blurInput" data-name="name" name="name" value="{{GoodsInfoData.name}}" />
           </view>
           <template is="reg" wx:if="{{regobject.name == false}}" data="{{text: '名字的长度不能超过50'}}"/>
+          <block wx:for="{{3}}">
+            <view class="screen_view" >衣服</view>
+          </block>
+
         </swiper-item>
         <swiper-item class="upload_container">
           <view class="upload_input clearfix">

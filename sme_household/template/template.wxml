@@ -114,10 +114,11 @@
 <template name="title">
   <view class="title clearfix">
     <navigator open-type="navigateBack">
-      <image src="../../../../images/back-away.png" mode="aspectFit" class="title_image_back" />
+      <image src="/images/back-away.png" mode="aspectFit" class="title_image_back" />
     </navigator>
     <view class="title_text">{{title}}</view>
-    <image src="../../../../images/more.png" mode="aspectFit" class="title_more" bindtap="more_function" wx:if="{{more}}" /> 
+    <image src="/images/more.png" mode="aspectFit" class="title_more" bindtap="more_function" wx:if="{{more}}" /> 
+    <image src="/images/add.png" mode="aspectFit" class="title_image_close" bindtap="add_function" wx:if="{{add}}" /> 
   </view>
 </template>
 

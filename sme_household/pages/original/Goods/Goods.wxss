@@ -10,16 +10,6 @@
   padding: 12px 10px;
   float: left;
 }
-.title_input{
-  margin-left: 2%; 
-  background-color: #ffffff;
-  font-family: Microsoft YaHei;
-  padding: 4px 10px;
-  font-size: 14px;
-  height:27px;
-  min-height:27px;
-  border-radius: 5px;
-}
 .image_search,.title_image{
   float: right;
   background-color: transparent;
@@ -618,4 +608,27 @@
 /*更多功能*/
 .more_function{
   top: 65px;
+}
+
+/*搜索*/
+.search_input_view input{
+  padding-top: 3px;
+  padding-bottom: 3px;
+}
+.search_input_image{
+  top: 3px;
+}
+.search{}
+.search_view{
+  padding: 10px 25px;
+  border-bottom: 1px solid #DCDCDC;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.search .prompt_none{
+  padding: 0;
+}
+.prompt_none text{
+  padding: 5px 10px;
 }

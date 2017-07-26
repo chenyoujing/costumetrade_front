@@ -25,9 +25,9 @@
           <view class="shop_content_name">
             <navigator url="storeDetails/storeDetails?id={{item.promoterStoreid}}" class="shop_content_name_title one_line">
               {{item.promoterName}}
-              <text>{{item.createTime}}</text>
+              <text class="shop_content_time">{{item.createTime}}</text>
             </navigator>
-            <navigator url="mall/mall?id={{item.promoterStoreid}}&storephoto={{item.promoterPhoto}}" class="shop_content_time">
+            <navigator url="mall/mall?id={{item.promoterStoreid}}&storephoto={{item.promoterPhoto}}" class="shop_content_prompt">
               <view class="shop_content_unread" wx:if="{{item.noReadCount >0}}">
                 <view class="shop_content_unread_prompt">{{item.noReadCount}}</view>
                 未读信息
