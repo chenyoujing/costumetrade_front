@@ -212,7 +212,7 @@ Page({
       success: function (res) {
         wx.hideNavigationBarLoading();
         product[index][disabled] = false
-        if (data.status == "3" && res.data == "1013") {
+        if (data.changestatus == "3" && res.data == "1013") {
           data.isContinue = true;
           wx.showModal({
             title: '提示',
@@ -220,7 +220,7 @@ Page({
             success: function (res) {
               if (res.confirm) {
                 that.ajaxChange(data);
-                that.changecountOrders(data.status, null)                
+                that.changecountOrders(data.changestatus, null)                
               }
             }
           })
@@ -229,26 +229,18 @@ Page({
             title: res.msg,
           })
         }else{
-          that.changecountOrders(data.status, null)
+          that.changecountOrders(data.changestatus, null)
           product.splice(index, 1);
-          // for (var p in product) {
-          //   if (product[p].payorderno == data.orderno) {
-             
-          //     that.setData({
-          //       product: product
-          //     })
-          //     break;
-          //   }
-          // }
-          that.setData({
-            product: product
-          })
+         
           wx.showToast({
             title: '成功',
             mask: true,
             duration: 2000
           })
         }
+        that.setData({
+          product: product
+        })
       }
     })
   },
