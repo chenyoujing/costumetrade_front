@@ -44,7 +44,8 @@ Page({
     storeId: app.globalData.storeId,
     aa:false,
     type:1,
-    checkAllTag:false
+    checkAllTag:false,
+    enterValue:''
   },
   // 请求数据函数
   page_request: function () {
@@ -439,10 +440,14 @@ Page({
   keyup: function (e) {
     if (e == "") {
       this.setData({
-        changeBoolean: false
+        changeBoolean: false,
+        code: null,
+        name: null,
       })
+      app.searchValue = null;
+      this.onLoad()
     } else {
-      var endArray4 = util.api.objectPushArry(this.data.product, e)
+      var endArray4 = util.api.objectPushArry(this.data.search_product, e)
       this.setData({
         keyArray: endArray4,
         changeBoolean: true
@@ -457,52 +462,9 @@ Page({
     this.searchClick()
   },
   searchClick: function () {
-    var season = [];
-    season.push(this.data.season);
-    var status = [];
-    status.push(this.data.status);
-    var getFilterData = [
-      {
-        filed: 'productTypeArray',
-        value: this.data.cate
-      },
-      {
-        filed: 'productBrandArray',
-        value: this.data.brand
-      }
-    ]
-    if (this.data.season !== '') {
-      getFilterData.push({
-        filed: 'productSeasonArray',
-        value: season
-      })
-    }
-    if (this.data.status !== '') {
-      getFilterData.push({
-        filed: 'status',
-        value: status
-      })
-    };
-    if (this.data.type == "report") {
-      getFilterData.push({
-        filed: 'operatorArray',
-        value: this.data.operatorArray
-      })
-      getFilterData.push({
-        filed: 'productColorArray',
-        value: this.data.productColorArray
-      })
-      getFilterData.push({
-        filed: 'productSizeArray',
-        value: this.data.productSizeArray
-      })
-    }
     if (this.data.enterValue) {
       app.searchValue = this.data.enterValue;
     };
-
-    console.log(getFilterData)
-    app.getFilterData = getFilterData;
     this.onShow()
     this.setData({
       changeBoolean: false
@@ -514,14 +476,28 @@ Page({
     this.setData({
       enterValue: ""
     })
-    this.keyup(value)
+    this.keyup('')
   },
-
+  callback: function () {
+    var that = this;
+    wx.getStorage({
+      key: 'GoodsData',
+      success: function (res) {
+        that.setData({
+          search_product: res.data
+        })
+      }
+    })
+  },
+  downData: function () {
+    util.api.supplierRefresh('product/getProducts', "GoodsData", 'updataTime', this.callback);
+  },
   onLoad() {
     this.setData({
       storeId: app.globalData.storeId
     })
     this.page_request();
+    this.downData();
     // util.api.getProductInit();
   },
   onShow() {

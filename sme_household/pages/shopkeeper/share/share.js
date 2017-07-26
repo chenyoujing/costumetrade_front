@@ -44,7 +44,8 @@ Page({
     storeId: app.globalData.storeId,
     aa: false,
     type: 1,
-    checkAllTag: false
+    checkAllTag: false,
+    enterValue: ''
   },
   // 请求数据函数
   page_request: function () {
@@ -296,12 +297,82 @@ Page({
     console.log(idsArray)
 
   },
+  // 输入框操作
+  bindKeyInput: function (e) {
+    var value = e.detail.value;
+    this.setData({
+      enterValue: value
+    })
+    this.keyup(value)
+  },
+  // 清空输入框
+  clear: function () {
+    this.setData({
+      enterValue: ""
+    })
+    this.keyup(value)
+  },
+  keyup: function (e) {
+    if (e == "") {
+      this.setData({
+        changeBoolean: false,
+        code: null,
+        name: null,
+      })
+      app.searchValue = null;
+      this.onLoad()
+    } else {
+      var endArray4 = util.api.objectPushArry(this.data.search_product, e)
+      this.setData({
+        keyArray: endArray4,
+        changeBoolean: true
+      })
+    }
+  },
+  selectOptions: function (e) {
+    var value = e.target.dataset.name;
+    this.setData({
+      enterValue: value
+    });
+    this.searchClick()
+  },
+  searchClick: function () {
+    if (this.data.enterValue) {
+      app.searchValue = this.data.enterValue;
+    };
+    this.onShow()
+    this.setData({
+      changeBoolean: false
+    })
 
+  },
+  // 清空输入框
+  clear: function () {
+    this.setData({
+      enterValue: ""
+    })
+    this.keyup('')
+  },
+  callback: function () {
+    var that = this;
+    wx.getStorage({
+      key: 'GoodsData',
+      success: function (res) {
+        that.setData({
+          search_product: res.data
+        })
+      }
+    })
+  },
+  downData: function () {
+    util.api.supplierRefresh('product/getProducts', "GoodsData", 'updataTime', this.callback);
+  },
   onLoad() {
     this.setData({
       storeId: app.globalData.storeId
     })
     this.page_request();
+    this.downData();
   },
   onShow() {
     var newProduct = this.data.product;

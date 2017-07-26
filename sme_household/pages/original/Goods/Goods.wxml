@@ -13,8 +13,8 @@
     </navigator>
     <view class="search_input_view">
       <input type="text" name="search" placeholder="货号" bindinput="bindKeyInput" value='{{enterValue}}'/>
-      <image bindtap="packPageFilterCode" mode="aspectFit" src="../../../images/search.png" class="search_input_image" />
-      <icon type="clear" size="16" class="search_input_image" wx:if="{{enterValue !==''||undefined}}" bindtap="clear"/>
+      <image bindtap="packPageFilterCode" mode="aspectFit" src="../../../images/search.png" class="search_input_image" style="top:3px;" wx:if="{{enterValue===''}}" />
+      <icon type="clear" size="16" class="search_input_image" wx:if="{{enterValue !==''}}" bindtap="clear"/>
     </view>
 
   </view>

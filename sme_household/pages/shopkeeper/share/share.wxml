@@ -6,142 +6,152 @@
 <!--pages/my/Goods/Goods.wxml-->
 <view style="overflow:hidden;position:relative;min-height:calc(100vh - 46px);">
   <view class="title clearfix">
-    <image bindtap="packPageFilterCode" mode="aspectFit" src="../../../images/search.png" class="image_search" />
     <navigator url="../../original/Goods/GoodsInfo/GoodsInfo?ID=null" hover-class="navigator-hover">
       <image src="../../../images/add.png" mode="aspectFit" class="title_image" />
     </navigator>
     <navigator url="../../original/Goods/GoodsScreen/GoodsScreen" hover-class="navigator-hover">
       <image src="../../../images/preparation.png" mode="aspectFit" class="title_image" style="margin-left:10px;" />
     </navigator>
-    <input class="title_input" disabled="true" type="text" name="search" placeholder="货号" bindtap="bindKeyInput" />
-  </view>
-  <view class="screen_cover" bindtap="screen_close" animation="{{screen_opacity}}" style="display:{{screen_display}};"></view>
-  <view class="condition">
-    <view class="screen_content" style="top:{{state == 'classify' ? screen_content_height : '-270px'}}">
-      <form bindsubmit="packPageFilterRule" data-screen="productTypeArray">
-        <checkbox-group name="screen">
-          <label class="screen_checkbox" wx:for="{{screen_content2}}">
-            <checkbox value="{{item.catename}}"/>
-            {{item.catename}}
-          </label>
-        </checkbox-group>
-        <button form-type="reset" class="screen_reset" bindtap="resetting" data-screen="productTypeArray">重置</button>
-        <button form-type="submit" class="screen_submit">确定</button>
-      </form>
-    </view>
-    <view class="screen_content" style="top:{{state == 'brand' ? screen_content_height : '-270px'}}">
-      <form bindsubmit="packPageFilterRule" data-screen="productBrandArray">
-        <checkbox-group name="screen">
-          <label class="screen_checkbox" wx:for="{{screen_content1}}" >
-            <checkbox value="{{item.brandname}}"/>
-            {{item.brandname}}
-          </label>
-        </checkbox-group>
-        <button form-type="reset" class="screen_reset" bindtap="resetting" data-screen="productBrandArray">重置</button>
-        <button form-type="submit" class="screen_submit">确定</button>
-      </form>
-    </view>
-    <view class="screen_content" style="top:{{state == 'season' ? screen_content_height : '-270px'}}">
-      <form bindsubmit="packPageFilterRule" data-screen="productSeasonArray">
-        <radio-group name="screen">
-          <label class="screen_checkbox" wx:for="{{screen_content3}}">
-            <radio value="{{item.value}}" checked="{{item.checked}}"/>
-            {{item.value}}
-          </label>
-        </radio-group>
-        <button form-type="reset" class="screen_reset" bindtap="resetting" data-screen="productSeasonArray">重置</button>
-        <button form-type="submit" class="screen_submit">确定</button>
-      </form>
-    </view>
-    <view class="screen_content" style="top:{{state == 'state' ? screen_content_height : '-270px'}}">
-      <form bindsubmit="packPageFilterRule" data-screen="status">
-        <radio-group name="screen">
-          <label class="screen_checkbox" wx:for="{{screen_content4}}">
-            <radio value="{{item.name}}" checked="{{item.checked}}"/>{{item.value}}
-          </label>
-        </radio-group>
-        <button form-type="reset" class="screen_reset" bindtap="resetting" data-screen="status">重置</button>
-        <button form-type="submit" class="screen_submit">确定</button>
-      </form>
-    </view>
-    <view class="sort">
-      <view class="sort_text {{state=='timeUpOp' ? 'screen_active' : ''}}" bindtap="changeSortData" data-sort="timeUpOp">
-        上架时间
-        <image src="../../../images/sort.png" mode="aspectFit" class="image_down {{Op=='asc' ? 'sort_up' : ''}}" />
-      </view>
-      <view class="sort_text {{state=='priceOp' ? 'screen_active' : ''}}" bindtap="changeSortData" data-sort="priceOp" >
-        价格排序
-        <image src="../../../images/sort.png" mode="aspectFit" class="image_down {{Op=='asc' ? 'sort_up' : ''}}" />
-      </view>
-      <view class="sort_text {{state=='saleOp' ? 'screen_active' : ''}}" bindtap="changeSortData" data-sort="saleOp" >
-        销量排序
-        <image src="../../../images/sort.png" mode="aspectFit" class="image_down {{Op=='asc' ? 'sort_up' : ''}}" />
-      </view>
-      <view class="more" bindtap="more">更多</view>
-      <view class="clear"></view>
-    </view>
-    <view class="screen" style="left:{{condition}};right:-{{condition}}">
-      <view class="back" bindtap="back">
-        <image src="../../../images/back.png" mode="aspectFit" class="image_back" />
-      </view>
-      <view class="screen_text {{state=='classify' ? 'screen_active' : ''}}" bindtap="screen" data-name="classify">
-        类别
-        <image src="../../../images/down.png" mode="aspectFit" class="image_down screen_image" />
-      </view>
-      <view class="screen_text {{state=='brand' ? 'screen_active' : ''}}" bindtap="screen" data-name="brand">
-        品牌
-        <image src="../../../images/down.png" mode="aspectFit" class="image_down screen_image" />
-      </view>
-      <view class="screen_text {{state=='season' ? 'screen_active' : ''}}" bindtap="screen" data-name="season">
-        季节
-        <image src="../../../images/down.png" mode="aspectFit" class="image_down screen_image" />
-      </view>
-      <view class="screen_text {{state=='state' ? 'screen_active' : ''}}" bindtap="screen" data-name="state">
-        状态
-        <image src="../../../images/down.png" mode="aspectFit" class="image_down screen_image" />
-      </view>
+    <view class="search_input_view">
+      <input type="text" name="search" placeholder="货号" bindinput="bindKeyInput" value='{{enterValue}}'/>
+      <image bindtap="packPageFilterCode" mode="aspectFit" src="../../../images/search.png" class="search_input_image" style="top:3px;" wx:if="{{enterValue===''}}" />
+      <icon type="clear" size="16" class="search_input_image" wx:if="{{enterValue !==''}}" bindtap="clear"/>
     </view>
   </view>
-  <scroll-view scroll-y="true" class="content" lower-threshold="10" bindscrolltolower="{{loadMore?'onReachBottom':''}}">
-  
-    <view class="prompt_none" wx:if="{{product == 0}}">
-      <text>对不起，搜不到您要的货品</text>
+  <view hidden="{{changeBoolean}}">
+    <view class="screen_cover" bindtap="screen_close" animation="{{screen_opacity}}" style="display:{{screen_display}};"></view>
+    <view class="condition">
+      <view class="screen_content" style="top:{{state == 'classify' ? screen_content_height : '-270px'}}">
+        <form bindsubmit="packPageFilterRule" data-screen="productTypeArray">
+          <checkbox-group name="screen">
+            <label class="screen_checkbox" wx:for="{{screen_content2}}">
+              <checkbox value="{{item.catename}}"/>
+              {{item.catename}}
+            </label>
+          </checkbox-group>
+          <button form-type="reset" class="screen_reset" bindtap="resetting" data-screen="productTypeArray">重置</button>
+          <button form-type="submit" class="screen_submit">确定</button>
+        </form>
+      </view>
+      <view class="screen_content" style="top:{{state == 'brand' ? screen_content_height : '-270px'}}">
+        <form bindsubmit="packPageFilterRule" data-screen="productBrandArray">
+          <checkbox-group name="screen">
+            <label class="screen_checkbox" wx:for="{{screen_content1}}" >
+              <checkbox value="{{item.brandname}}"/>
+              {{item.brandname}}
+            </label>
+          </checkbox-group>
+          <button form-type="reset" class="screen_reset" bindtap="resetting" data-screen="productBrandArray">重置</button>
+          <button form-type="submit" class="screen_submit">确定</button>
+        </form>
+      </view>
+      <view class="screen_content" style="top:{{state == 'season' ? screen_content_height : '-270px'}}">
+        <form bindsubmit="packPageFilterRule" data-screen="productSeasonArray">
+          <radio-group name="screen">
+            <label class="screen_checkbox" wx:for="{{screen_content3}}">
+              <radio value="{{item.value}}" checked="{{item.checked}}"/>
+              {{item.value}}
+            </label>
+          </radio-group>
+          <button form-type="reset" class="screen_reset" bindtap="resetting" data-screen="productSeasonArray">重置</button>
+          <button form-type="submit" class="screen_submit">确定</button>
+        </form>
+      </view>
+      <view class="screen_content" style="top:{{state == 'state' ? screen_content_height : '-270px'}}">
+        <form bindsubmit="packPageFilterRule" data-screen="status">
+          <radio-group name="screen">
+            <label class="screen_checkbox" wx:for="{{screen_content4}}">
+              <radio value="{{item.name}}" checked="{{item.checked}}"/>{{item.value}}
+            </label>
+          </radio-group>
+          <button form-type="reset" class="screen_reset" bindtap="resetting" data-screen="status">重置</button>
+          <button form-type="submit" class="screen_submit">确定</button>
+        </form>
+      </view>
+      <view class="sort">
+        <view class="sort_text {{state=='timeUpOp' ? 'screen_active' : ''}}" bindtap="changeSortData" data-sort="timeUpOp">
+          上架时间
+          <image src="../../../images/sort.png" mode="aspectFit" class="image_down {{Op=='asc' ? 'sort_up' : ''}}" />
+        </view>
+        <view class="sort_text {{state=='priceOp' ? 'screen_active' : ''}}" bindtap="changeSortData" data-sort="priceOp" >
+          价格排序
+          <image src="../../../images/sort.png" mode="aspectFit" class="image_down {{Op=='asc' ? 'sort_up' : ''}}" />
+        </view>
+        <view class="sort_text {{state=='saleOp' ? 'screen_active' : ''}}" bindtap="changeSortData" data-sort="saleOp" >
+          销量排序
+          <image src="../../../images/sort.png" mode="aspectFit" class="image_down {{Op=='asc' ? 'sort_up' : ''}}" />
+        </view>
+        <view class="more" bindtap="more">更多</view>
+        <view class="clear"></view>
+      </view>
+      <view class="screen" style="left:{{condition}};right:-{{condition}}">
+        <view class="back" bindtap="back">
+          <image src="../../../images/back.png" mode="aspectFit" class="image_back" />
+        </view>
+        <view class="screen_text {{state=='classify' ? 'screen_active' : ''}}" bindtap="screen" data-name="classify">
+          类别
+          <image src="../../../images/down.png" mode="aspectFit" class="image_down screen_image" />
+        </view>
+        <view class="screen_text {{state=='brand' ? 'screen_active' : ''}}" bindtap="screen" data-name="brand">
+          品牌
+          <image src="../../../images/down.png" mode="aspectFit" class="image_down screen_image" />
+        </view>
+        <view class="screen_text {{state=='season' ? 'screen_active' : ''}}" bindtap="screen" data-name="season">
+          季节
+          <image src="../../../images/down.png" mode="aspectFit" class="image_down screen_image" />
+        </view>
+        <view class="screen_text {{state=='state' ? 'screen_active' : ''}}" bindtap="screen" data-name="state">
+          状态
+          <image src="../../../images/down.png" mode="aspectFit" class="image_down screen_image" />
+        </view>
+      </view>
     </view>
+    <scroll-view scroll-y="true" class="content" lower-threshold="10" bindscrolltolower="{{loadMore?'onReachBottom':''}}">
+    
+      <view class="prompt_none" wx:if="{{product == 0}}">
+        <text>对不起，搜不到您要的货品</text>
+      </view>
 
-    <view class="content_view" wx:for="{{product}}" wx:key="{{id}}">
-      <checkbox-group name="SelectContainer" class="delete_container" bindchange="SelectContainer" data-id ="{{item.id}}" >
-        <label class="checkbox">
-          <checkbox value="{{item.id}}"  checked='{{aa}}'/>
-        </label>
-      </checkbox-group>
-      <view class="content_container" style="margin-left:50px;">
-        <navigator url="../../original/Goods/Goodstock/Goodstock?ID={{item.id}}&title={{item.name}}" hover-class="navigator-hover">
-          <image src="{{item.image ? item.image : '../../../images/image_none.png'}}" mode="aspectFill" class="goods_image" />
-          <view class="content_container_text">
-            <view class="content_container_title">{{item.name}}</view>
-            <view class="content_container_info">
-              <view class="price two_line" style="max-width:50%">{{item.tagprice}}</view>
-              <view class="info_other" style="max-width:50%;">
-                <view class="volume">{{item.volume||0}}</view>
-                <view class="date">{{item.timeUp}}</view>
+      <view class="content_view" wx:for="{{product}}" wx:key="{{id}}">
+        <checkbox-group name="SelectContainer" class="delete_container" bindchange="SelectContainer" data-id ="{{item.id}}" >
+          <label class="checkbox">
+            <checkbox value="{{item.id}}"  checked='{{aa}}'/>
+          </label>
+        </checkbox-group>
+        <view class="content_container" style="margin-left:50px;">
+          <navigator url="../../original/Goods/Goodstock/Goodstock?ID={{item.id}}&title={{item.name}}" hover-class="navigator-hover">
+            <image src="{{item.image ? item.image : '../../../images/image_none.png'}}" mode="aspectFill" class="goods_image" />
+            <view class="content_container_text">
+              <view class="content_container_title">{{item.name}}</view>
+              <view class="content_container_info">
+                <view class="price two_line" style="max-width:50%">{{item.tagprice}}</view>
+                <view class="info_other" style="max-width:50%;">
+                  <view class="volume">{{item.volume||0}}</view>
+                  <view class="date">{{item.timeUp}}</view>
+                </view>
               </view>
             </view>
-          </view>
-          <view class="clear"></view>
-        </navigator>
-        <navigator url="../../original/Goods/GoodsInfo/GoodsInfo?ID={{item.id}}&name={{item.name}}" hover-class="navigator-hover">
-          <image src="../../../images/update.png" mode="aspectFit" class="image_update"/>
-        </navigator>
+            <view class="clear"></view>
+          </navigator>
+          <navigator url="../../original/Goods/GoodsInfo/GoodsInfo?ID={{item.id}}&name={{item.name}}" hover-class="navigator-hover">
+            <image src="../../../images/update.png" mode="aspectFit" class="image_update"/>
+          </navigator>
+        </view>
       </view>
+    </scroll-view>
+    <!--发图按钮-->
+    <view class="batch_button_view" style="height:40px; font-size:18px;">
+      <view class="batch_button bg_g" data-name="wchat" bindtap="batch_share_sure">发图给好友</view>
+      <view class="batch_button bg_g" data-name="client" bindtap="batch_share_sure">发图给客户</view>
     </view>
-  </scroll-view>
-  <!--发图按钮-->
-  <view class="batch_button_view" style="height:40px; font-size:18px;">
-    <view class="batch_button bg_g" data-name="wchat" bindtap="batch_share_sure">发图给好友</view>
-    <view class="batch_button bg_g" data-name="client" bindtap="batch_share_sure">发图给客户</view>
   </view>
-
-
+  <!--搜索-->
+  <view class="search" wx:if="{{changeBoolean}}">
+    <block wx:for="{{keyArray}}">
+      <view class="search_view" bindtap="selectOptions" data-code="{  {item.code}}" data-name="{{item.name}}">{{item.name}}</view>
+    </block>
+    
+  </view>
 </view>
 
 
