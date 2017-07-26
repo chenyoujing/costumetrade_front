@@ -97,8 +97,8 @@ Page({
         var data = that.data.product;
         var booleanre = that.data.requestSwitch;
         for (var p in res.data) {
-          res.data[p].disable1 = false;
-          res.data[p].disable2 = false;
+          res.data[p].disabled1 = false;
+          res.data[p].disabled2 = false;
           res.data[p].ordertime = util.toDate(res.data[p].ordertime);
           if (res.data[p].debetamt > 0){
             res.data[p].debetText = "收付款"
@@ -164,13 +164,32 @@ Page({
       countNum:totole
     })
   },
+  // 订单操作
+  changeOrderStatus: function (e) {
+    var that = this;
+    var index = e.target.dataset.index;
+    var item = e.target.dataset.item;
+    var disabled = e.target.dataset.disabled;
+    var changestatus = e.target.dataset.status;
+    item.changestatus = changestatus
+    wx.showModal({
+      title: '提示',
+      content: '确定更改？',
+      success: function (res) {
+        if (res.confirm) {
+          that.ajaxChange(item, index, disabled);
+        }
+      }
+    })
+  },
   // 订单操作请求
-  ajaxChange:function(data){
+  ajaxChange: function (data, index, disabled){
     console.log('res.code')
     var that= this;
+    var product = this.data.product;
     var fliter = {
-      orderNo: data.orderno,
-      operate: data.status,
+      orderNo: data.payorderno,
+      operate: data.changestatus,
       sellerstoreid: data.sellerstoreid,
       buyerstoreid: data.buyerstoreid,
       openid: app.globalData.openid
@@ -178,6 +197,10 @@ Page({
     if (data.isContinue){
       fliter.isContinue = true;
     }
+    product[index][disabled] = true
+    this.setData({
+      product: product
+    })
     wx.showNavigationBarLoading();
     util.api.request({
       url: that.data.statusUrl,
@@ -188,6 +211,7 @@ Page({
       },
       success: function (res) {
         wx.hideNavigationBarLoading();
+        product[index][disabled] = false
         if (data.status == "3" && res.data == "1013") {
           data.isContinue = true;
           wx.showModal({
@@ -206,16 +230,19 @@ Page({
           })
         }else{
           that.changecountOrders(data.status, null)
-          var product = that.data.product;
-          for (var p in product) {
-            if (product[p].payorderno == data.orderno) {
-              product.splice(p, 1);
-              that.setData({
-                product: product
-              })
-              break;
-            }
-          }
+          product.splice(index, 1);
+          // for (var p in product) {
+          //   if (product[p].payorderno == data.orderno) {
+             
+          //     that.setData({
+          //       product: product
+          //     })
+          //     break;
+          //   }
+          // }
+          that.setData({
+            product: product
+          })
           wx.showToast({
             title: '成功',
             mask: true,
@@ -277,29 +304,7 @@ Page({
     })
   },
  
-  // 订单操作
-  changeOrderStatus:function(e){
-     var orderInfo = e.target.dataset;
-     var that = this;
-     var param = {
-       orderNo: orderInfo.orderno,
-       operate: orderInfo.status,
-       sellerstoreid: orderInfo.sellerstoreid,
-       buyerstoreid: orderInfo.buyerstoreid,
-       openid: app.globalData.openid
-     };
-     console.log(orderInfo)
-     wx.showModal({
-       title: '提示',
-       content: '确定更改？',
-       success: function (res) {
-         if (res.confirm) {
-           that.ajaxChange(orderInfo);
-         }
-       }
-     })
-    
-  },
+  
   // 加载订单列表页面汇总数量
   countOrders:function(){
     var that = this;

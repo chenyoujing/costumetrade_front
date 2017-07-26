@@ -79,7 +79,7 @@
       <view class="order_container_button btn_1">付款</view>      
     </navigator>
     <view class="order_container_button btn_4" wx:if="{{item.orderstatus !== 3}}">付款</view> 
-    <button class="order_container_button" wx:if="{{item.orderstatus==1 || item.orderstatus==3}}" bindtap="changeOrderStatus" data-status='6' data-orderNo="{{item.payorderno}}" data-sellerstoreid="{{item.sellerstoreid}}" data-buyerstoreid="{{item.buyerstoreid}}" >取消订单</button>      
+    <button data-disabled="{{item.disabled1}}" class="order_container_button" wx:if="{{item.orderstatus==1 || item.orderstatus==3}}" bindtap="changeOrderStatus" data-status='6' data-orderNo="{{item.payorderno}}" data-sellerstoreid="{{item.sellerstoreid}}" data-buyerstoreid="{{item.buyerstoreid}}" >取消订单</button>      
     <view class="clear"></view>
   </view>
   <!--采购待收货-->
@@ -106,8 +106,8 @@
       </view>
       <view class="clear"></view>
     </navigator>
-    <button class="order_container_button" wx:if="{{item.orderstatus==1 || item.orderstatus==3}}" bindtap="changeOrderStatus" data-status='6' data-orderNo="{{item.payorderno}}" data-sellerstoreid="{{item.sellerstoreid}}" data-buyerstoreid="{{item.buyerstoreid}}">取消订单</button>   
-    <button class="order_container_button btn_1"  bindtap="changeOrderStatus" data-status='' data-orderNo="{{item.payorderno}}" data-sellerstoreid="{{item.sellerstoreid}}" data-buyerstoreid="{{item.buyerstoreid}}">催单</button>
+    <button class="order_container_button" data-disabled="{{item.disabled1}}" wx:if="{{item.orderstatus==1 || item.orderstatus==3}}" bindtap="changeOrderStatus" data-status='6' data-orderNo="{{item.payorderno}}" data-sellerstoreid="{{item.sellerstoreid}}" data-buyerstoreid="{{item.buyerstoreid}}">取消订单</button>   
+    <button class="order_container_button btn_1" data-disabled="{{item.disabled2}}" bindtap="changeOrderStatus" data-status='' data-orderNo="{{item.payorderno}}" data-sellerstoreid="{{item.sellerstoreid}}" data-buyerstoreid="{{item.buyerstoreid}}">催单</button>
     <view class="clear"></view>
   </view>
 
@@ -135,7 +135,7 @@
       </view>
       <view class="clear"></view>
     </navigator>
-    <button class="order_container_button btn_1"  bindtap="changeOrderStatus" data-status='5' data-orderNo="{{item.payorderno}}" data-sellerstoreid="{{item.sellerstoreid}}" data-buyerstoreid="{{item.buyerstoreid}}">确认收货</button>
+    <button class="order_container_button btn_1" data-disabled="{{item.disabled1}}"  bindtap="changeOrderStatus" data-status='5' data-orderNo="{{item.payorderno}}" data-sellerstoreid="{{item.sellerstoreid}}" data-buyerstoreid="{{item.buyerstoreid}}">确认收货</button>
     <navigator url="./logistics/logistics?sellerstoreid={{item.sellerstoreid}}&payorderno={{item.payorderno}}&buyerstoreid={{item.buyerstoreid}}">
       <view class="order_container_button">查看物流</view>
     </navigator>
@@ -172,7 +172,7 @@
       <view class="clear"></view>
     </navigator>
     <navigator wx:if="{{item.ordertype == 1}}" url="orderDetails/orderDetails?ordertype={{ordertype}}&payorderno={{item.payorderno}}&ordertype2=5&storeId={{item.sellerstoreid}}" class="order_container_button btn_2" >评价</navigator>
-    <button class="order_container_button"  wx:if="{{item.canCancellation}}"  bindtap="changeOrderStatus" data-status='7' data-orderNo="{{item.payorderno}}" data-sellerstoreid="{{item.sellerstoreid}}" data-buyerstoreid="{{item.buyerstoreid}}">作废</button>
+    <button class="order_container_button"  wx:if="{{item.canCancellation}}"  bindtap="changeOrderStatus" data-status='7' data-orderNo="{{item.payorderno}}" data-sellerstoreid="{{item.sellerstoreid}}" data-disabled="{{item.disabled1}}" data-buyerstoreid="{{item.buyerstoreid}}">作废</button>
     <view class="clear"></view>
   </view>
 
@@ -201,10 +201,10 @@
       </view>
       <view class="clear"></view>
     </navigator>
-    <button class="order_container_button btn_2"  bindtap="changeOrderStatus" data-status='8' data-orderNo="{{item.payorderno}}" data-sellerstoreid="{{item.sellerstoreid}}" data-buyerstoreid="{{item.buyerstoreid}}">通过审核</button>
+    <button class="order_container_button btn_2"  bindtap="changeOrderStatus" data-status='8' data-orderNo="{{item.payorderno}}" data-disabled="{{item.disabled1}}" data-sellerstoreid="{{item.sellerstoreid}}" data-buyerstoreid="{{item.buyerstoreid}}">通过审核</button>
     <navigator url="orderDetails/orderDetails?ordertype={{ordertype}}&payorderno={{item.payorderno}}&ordertype2=4&update=true" class="order_container_button">修改订单</navigator>
    
-    <button class="order_container_button btn_3" wx:if="{{item.orderstatus==1 || item.orderstatus==3}}" bindtap="changeOrderStatus" data-status='6' data-orderNo="{{item.payorderno}}" data-sellerstoreid="{{item.sellerstoreid}}" data-buyerstoreid="{{item.buyerstoreid}}">取消订单</button>
+    <button class="order_container_button btn_3" wx:if="{{item.orderstatus==1 || item.orderstatus==3}}" bindtap="changeOrderStatus" data-status='6' data-orderNo="{{item.payorderno}}" data-disabled="{{item.disabled2}}" data-sellerstoreid="{{item.sellerstoreid}}" data-buyerstoreid="{{item.buyerstoreid}}">取消订单</button>
     <view class="clear"></view>
   </view>
 
@@ -234,8 +234,8 @@
     </navigator>
     <button class="order_container_button btn_2" wx:if="{{item.debetamt >0 || item.debeButton}}" bindtap="collectView" data-status='2' data-orderNo="{{item.payorderno}}" data-debet="{{item.debetamt}}" data-sellerstoreid="{{item.sellerstoreid}}" data-buyerstoreid="{{item.buyerstoreid}}" >{{item.debetText}}</button>
 
-     <button class="order_container_button" data-status='3' data-orderNo="{{item.payorderno}}"  data-sellerstoreid="{{item.sellerstoreid}}" data-buyerstoreid="{{item.buyerstoreid}}" bindtap="changeOrderStatus">配货</button>
-    <button class="order_container_button btn_3" wx:if="{{item.orderstatus==1 || item.orderstatus==3}}" bindtap="changeOrderStatus" data-status='6' data-orderNo="{{item.payorderno}}" data-sellerstoreid="{{item.sellerstoreid}}" data-buyerstoreid="{{item.buyerstoreid}}">取消</button>
+     <button class="order_container_button" data-status='3' data-orderNo="{{item.payorderno}}"  data-sellerstoreid="{{item.sellerstoreid}}" data-buyerstoreid="{{item.buyerstoreid}}" data-disabled="{{item.disabled1}}" bindtap="changeOrderStatus">配货</button>
+    <button class="order_container_button btn_3" wx:if="{{item.orderstatus==1 || item.orderstatus==3}}" data-disabled="{{item.disabled2}}" bindtap="changeOrderStatus" data-status='6' data-orderNo="{{item.payorderno}}" data-sellerstoreid="{{item.sellerstoreid}}" data-buyerstoreid="{{item.buyerstoreid}}">取消订单</button>
     <view class="clear"></view>
   </view>
   <!--收付款-->
@@ -275,8 +275,8 @@
       </view>
       <view class="clear"></view>
     </navigator>
-    <button class="order_container_button btn_2"  bindtap="changeOrderStatus" data-status='4' data-orderNo="{{item.payorderno}}" data-sellerstoreid="{{item.sellerstoreid}}" data-buyerstoreid="{{item.buyerstoreid}}">发货</button>
-    <view class="order_container_button" data-payorderno="{{item.payorderno}}"  data-logisticstype="{{item.ordertype}}" data-logistics="{{item.logisticsCode}}" data-buyerstoreid="{{item.buyerstoreid}}" bindtap="logisticsView">选物流</view>
+    <button class="order_container_button btn_2" data-disabled="{{item.disabled1}}" bindtap="changeOrderStatus" data-status='4' data-orderNo="{{item.payorderno}}" data-sellerstoreid="{{item.sellerstoreid}}"  data-index="{{index}}" data-item="{{item}}" data-buyerstoreid="{{item.buyerstoreid}}">发货</button>
+    <view class="order_container_button"  data-payorderno="{{item.payorderno}}"  data-logisticstype="{{item.ordertype}}" data-logistics="{{item.logisticsCode}}" data-buyerstoreid="{{item.buyerstoreid}}" bindtap="logisticsView">选物流</view>
     <view class="clear"></view>
   </view>
 
@@ -307,7 +307,7 @@
       <view class="clear"></view>
     </navigator>
     <button class="order_container_button btn_2" bindtap="updateModal" data-no="{{item.payorderno}}">修改</button>
-    <button class="order_container_button" wx:if="{{item.canCancellation}}"  bindtap="changeOrderStatus" data-status='7' data-orderNo="{{item.payorderno}}" data-sellerstoreid="{{item.sellerstoreid}}" data-buyerstoreid="{{item.buyerstoreid}}">作废</button>
+    <button class="order_container_button" wx:if="{{item.canCancellation}}"  bindtap="changeOrderStatus" data-status='7' data-index="{{index}}" data-item="{{item}}" data-orderNo="{{item.payorderno}}" data-sellerstoreid="{{item.sellerstoreid}}" data-disabled="{{item.disabled1}}" data-buyerstoreid="{{item.buyerstoreid}}">作废</button>
   </view>
 </scroll-view>
 
