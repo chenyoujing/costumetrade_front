@@ -96,33 +96,38 @@ Page({
   },
   chartShow: function (data1, categories) {
     var that = this;
-    var columnChart = new wxCharts({
-      canvasId: 'columnCanvas',
-      type: 'column',
-      categories: categories,
-      animation: true,
-      background: '#52CAC1',
-      legend: false,
-      series: [{
-        name: '销售量',
-        data: data1,
-        color: "#52CAC1"
-      }],
-      xAxis: {
-        disableGrid: true
-      },
-      yAxis: {
-        title: '销售数量 (件)',
-        min: 0
-      },
-      width: 375,
-      height: 200,
-      dataLabel: true,
-      dataPointShape: true,
-      extra: {
-        columnStyle: 'straight'
+    wx.getSystemInfo({
+      success: function (res) {
+        var width = res.windowWidth
+        var columnChart = new wxCharts({
+          canvasId: 'columnCanvas',
+          type: 'column',
+          categories: categories,
+          animation: true,
+          background: '#52CAC1',
+          legend: false,
+          series: [{
+            name: '销售量',
+            data: data1,
+            color: "#52CAC1"
+          }],
+          xAxis: {
+            disableGrid: true
+          },
+          yAxis: {
+            title: '销售数量 (件)',
+            min: 0
+          },
+          width: width || 375,
+          height: 200,
+          dataLabel: true,
+          dataPointShape: true,
+          extra: {
+            columnStyle: 'straight'
+          }
+        });
       }
-    });
+    })
   },
   onLoad: function (e) {
     var myDate = new Date();
