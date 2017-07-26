@@ -110,33 +110,38 @@ Page({
   // 创建报表
   chart: function (data1,categories){
     var that = this;
-    lineChart = new wxCharts({
-      canvasId: 'columnCanvas',
-      type: 'line',
-      categories:categories,
-      animation: true,
-      background: '#52CAC1',
-      legend: false,
-      series: [{
-        name: that.data.reportTitle,
-        data: data1,
-        color: "#52CAC1"
-      }],
-      xAxis: {
-        disableGrid: true
-      },
-      yAxis: {
-        title: that.data.reportTitle,
-        min: 0
-      },
-      width: 375,
-      height: 200,
-      dataLabel: true,
-      dataPointShape: true,
-      extra: {
-        lineStyle: 'straight'
+    wx.getSystemInfo({
+      success: function (res) {
+        var width = res.windowWidth
+        lineChart = new wxCharts({
+          canvasId: 'columnCanvas',
+          type: 'line',
+          categories: categories,
+          animation: true,
+          background: '#52CAC1',
+          legend: false,
+          series: [{
+            name: that.data.reportTitle,
+            data: data1,
+            color: "#52CAC1"
+          }],
+          xAxis: {
+            disableGrid: true
+          },
+          yAxis: {
+            title: that.data.reportTitle,
+            min: 0
+          },
+          width: width || 375,
+          height: 200,
+          dataLabel: true,
+          dataPointShape: true,
+          extra: {
+            lineStyle: 'straight'
+          }
+        });
       }
-    });
+    })
   },
   // 报表显示名称
   reportName: function (reportType){
